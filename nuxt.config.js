@@ -150,10 +150,7 @@ export default defineNuxtConfig({
   },
   ui: {
       global: true,
-      icons: 'all',
-      selectMenu: {
-          background: 'bg-input dark:bg-white',
-      },
+      icons: {},
   },
   colorMode: {
       preference: 'light',

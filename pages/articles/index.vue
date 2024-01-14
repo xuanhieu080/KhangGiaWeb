@@ -1,5 +1,5 @@
 <template>
-    <NuxtLayout name="default">
+    <NuxtLayout name="main">
         <div>
             "Articles"
             <ClientOnly>
@@ -9,6 +9,7 @@
     </NuxtLayout>
 </template>
 <script setup>
+definePageMeta({layout: false});
 import EditorBox from '@@/components/EditorBox.vue';
 const content = ref();
 </script>

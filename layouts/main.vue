@@ -1,8 +1,6 @@
 <template>
     <Teleport to="body">
-        <slot name="header">
-            <header class="header"></header>
-        </slot>
+        <Header />
         <main class="wrapper-desktop relative w-full">
             <div class="w-full relative main">
                 <slot />
@@ -26,18 +24,25 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
 import '@vueform/multiselect/themes/default.css';
+import Header from '@/components/Header.vue';
+
+//Swiper css
+import 'swiper/css';
+import 'swiper/css/grid';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+
+
 const router = useRouter();
 const { locale } = useI18n();
 </script>
 <style lang="scss" scoped>
-header {
-    background-color: #f5f5f7;
-    @media screen and (min-width: 768px) {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-    }
+.wrapper-desktop {
+    padding-top: calc(var(--header-topbar) + var(--header-top-promotion) + var(--header-main))
 }
+
 .dmca-container {
     position: absolute;
     top: 0;
