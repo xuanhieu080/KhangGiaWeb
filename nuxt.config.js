@@ -150,7 +150,9 @@ export default defineNuxtConfig({
   },
   ui: {
       global: true,
-      icons: {},
+      icons: {
+        dynamic: true,
+      },
   },
   colorMode: {
       preference: 'light',

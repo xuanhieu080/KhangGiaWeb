@@ -3,25 +3,15 @@
 @import "./mixins.scss";
 @import "./ckeditor.scss";
 @import "./reset.scss";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap');
 
 * {
-    &::-webkit-scrollbar {
-        background: transparent;
-        width: 0px;
-        height: 0px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
     &::-webkit-scrollbar-thumb {
         background: #999;
     }
 
-    font-family:'Roboto',
+    font-family:'Mulish',
     'Roboto Slab',
     sans-serif !important;
 }
@@ -36,4 +26,11 @@ html {
 .multiselect-placeholder {
     overflow: hidden;
     white-space: nowrap;
+}
+.container{
+    @media screen and (max-width: 767px) {
+        max-width: 100% !important;
+        padding: 0 16px;
+        margin: 0;
+    }
 }

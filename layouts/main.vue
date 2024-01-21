@@ -6,6 +6,7 @@
                 <slot />
             </div>
         </main>
+        <Footer />
         <div class="dmca-container">
             <a
                 href="//www.dmca.com/Protection/Status.aspx?ID=96e6318b-dec0-4669-9c13-a488589c8416"
@@ -25,6 +26,7 @@
 import { useI18n } from 'vue-i18n';
 import '@vueform/multiselect/themes/default.css';
 import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
 //Swiper css
 import 'swiper/css';
@@ -34,13 +36,45 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 
+import { useHeader } from '@@/store/useHeader';
+import { storeToRefs } from 'pinia';
 
+const useHeaderStore = useHeader();
+
+const { isScrollDown } = storeToRefs(useHeaderStore);
 const router = useRouter();
 const { locale } = useI18n();
+let lastScrollTop = 80;
+onMounted(() => {
+    window.addEventListener('resize', handleHideHeader, false);
+    window.addEventListener('scroll', controlHeaderShowing, false);
+});
+function handleHideHeader() {
+    console.log(window.innerWidth);
+    if (window.innerWidth < 991) {
+        window.removeEventListener('scroll', controlHeaderShowing);
+    } else {
+        window.addEventListener('scroll', controlHeaderShowing, false);
+    }
+}
+function controlHeaderShowing() {
+    if (window.innerWidth > 991) {
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+            isScrollDown.value = true;
+        } else {
+            isScrollDown.value = false;
+        }
+        lastScrollTop = st <= 80 ? 80 : st;
+    }
+}
 </script>
 <style lang="scss" scoped>
 .wrapper-desktop {
-    padding-top: calc(var(--header-topbar) + var(--header-top-promotion) + var(--header-main))
+    padding-top: calc(var(--header-topbar) + var(--header-top-promotion) + var(--header-main));
+    @media screen and (max-width: 991px) {
+        padding-top: var(--header-main);
+    }
 }
 
 .dmca-container {
