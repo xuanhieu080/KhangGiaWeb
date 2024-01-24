@@ -15,12 +15,20 @@
                     <ProductList :productList="productList" />
                 </div>
             </div>
+            <div class="banner-block h-full">
+                <BannerBlock :bannerBlock="bannerBlock" />
+            </div>
+            <div class="container mx-auto overflow-hidden md:overflow:visible my-4">
+                <ProductCollection :productList="collectionList" :collectionTitle="'Sản phẩm áo quần dài nam'" :collectionLink="'/articles'" />
+            </div>
         </div>
     </NuxtLayout>
 </template>
 <script setup>
-import Banner from '@/components/Banner';
+import Banner from '@/components/Banners/Banner.vue';
+import BannerBlock from '@/components/Banners/BannerBlock.vue';
 import ProductList from '@/components/products/ProductSwiper';
+import ProductCollection from '@/components/products/ProductCollection';
 const localePath = useLocalePath();
 const bannerList = ref([
     {
@@ -214,6 +222,127 @@ const productList = ref([
         ],
     },
 ]);
+const collectionList = ref([
+    {
+        id: 1,
+        product_name: 'Áo polo nam dài tay thể thao',
+        product_slug: 'ao-polo-nam-dai-tay-the-thao',
+        product_category_id: 1,
+        product_category_name: 'Áo thun',
+        product_category_slug: 'ao-thun',
+        product_introduction: 'Co giãn',
+        product_price: 159000,
+        product_discount: 0,
+        product_compaign_id: 1,
+        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
+        product_images: [
+            {
+                color: 'Đen',
+                code: '#000',
+                list: [
+                    'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/23CMAW.PL001.1s7.jpg',
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMAW.PL001.1s6_74.jpg',
+                ],
+            },
+            {
+                color: 'Trắng',
+                code: '#fff',
+                list: [
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/December2023/23CMAW.PL001.13.jpg',
+                    'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/23CMAW.PL001.1s7.jpg',
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMAW.PL001.1s6_74.jpg',
+                ],
+            },
+        ],
+    },
+    {
+        id: 2,
+        product_name: 'Quần jeans nam Basics',
+        product_slug: 'quan-jeans-nam-basics',
+        product_category_id: 2,
+        product_category_name: 'Quần dài',
+        product_category_name: 'quan-dai',
+        product_introduction: 'Dáng Straight',
+        product_price: 299000,
+        product_discount: 10,
+        product_compaign_id: null,
+        product_compaign_name: null,
+        product_images: [
+            {
+                color: 'Xanh wash',
+                code: 'blue',
+                list: [
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.1_46_27.jpg',
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.2_45.jpg',
+                ],
+            },
+            {
+                color: 'Xanh navi',
+                code: 'green',
+                list: ['https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.5_8.jpg'],
+            },
+        ],
+    },
+    {
+        id: 3,
+        product_name: 'Áo bảo hộ thi công',
+        product_slug: 'ao-bao-ho-thi-cong',
+        product_category_id: 22,
+        product_category_name: 'Áo bảo hộ',
+        product_category_slug: 'ao-bao-ho',
+        product_introduction: 'Thoáng mát / Nhanh khô',
+        product_price: 199000,
+        product_discount: 10,
+        product_compaign_id: 2,
+        product_compaign_name: 'Giảm 10% cho thành viên mới',
+        product_images: [
+            {
+                color: 'Vàng',
+                code: 'yellow',
+                list: [
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.1_46_27.jpg',
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.2_45.jpg',
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.5_8.jpg',
+                ],
+            },
+        ],
+    },
+    {
+        id: 1,
+        product_name: 'Áo polo nam dài tay thể thao',
+        product_slug: 'ao-polo-nam-dai-tay-the-thao',
+        product_category_id: 1,
+        product_category_name: 'Áo thun',
+        product_category_slug: 'ao-thun',
+        product_introduction: 'Co giãn',
+        product_price: 159000,
+        product_discount: 0,
+        product_compaign_id: 1,
+        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
+        product_images: [
+            {
+                color: 'Đen',
+                code: '#000',
+                list: [
+                    'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/23CMAW.PL001.1s7.jpg',
+                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMAW.PL001.1s6_74.jpg',
+                ],
+            },
+            {
+                color: 'Trắng',
+                code: '#fff',
+                list: ['https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/December2023/23CMAW.PL001.13.jpg'],
+            },
+        ],
+    },
+]);
+const bannerBlock = ref({
+    image_desktop: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/mceclip2_93.png',
+    image_mobile: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/mceclip4_96.png',
+    title: 'Quần dài nam',
+    description: 'Nhập mã <b>CM2024</b> giảm 15% tối đa 100K',
+    link: '/articles',
+});
 </script>
 <style lang="scss" scoped>
 .dashboard {

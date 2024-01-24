@@ -1,8 +1,7 @@
 <template>
-    <div class="container mx-auto">
-        <ckeditor :editor="ClassicEditor" v-model="editorHtml" :config="editorConfig" />
+    <div v-if="contentBlog" class="container mx-auto">
+        <ckeditor :editor="ClassicEditor" v-model="contentBlog" :config="editorConfig" />
         <div class="content">
-            Content is:
             <div v-html="editorHtml"></div>
         </div>
     </div>
@@ -29,8 +28,11 @@ import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { Clipboard } from '@ckeditor/ckeditor5-clipboard';
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { Indent, IndentBlock } from '@ckeditor/ckeditor5-indent';
-const props = defineProps(['modelValue']);
-const emit = defineEmits(['update:modelValue']);
+const props = defineProps({
+    content: String,
+});
+const contentBlog = ref(props.content)
+const emit = defineEmits(['update:content']);
 
 const editorConfig = ref({
     lang: 'vi',

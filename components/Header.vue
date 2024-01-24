@@ -218,7 +218,7 @@ const openProfileSideBar = () => {
     left: 0;
     width: 100%;
     height: auto;
-    z-index: 10;
+    z-index: 999;
     transition: all 0.3s;
     font-size: 14px;
     background-color: white;
