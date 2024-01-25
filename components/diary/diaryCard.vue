@@ -2,7 +2,7 @@ import type { _relative } from '#tailwind-config/content';
 <template>
     <UCard :ui="{ ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }" v-if="diary" class="diary-card relative">
         <div class="diary-card-wrapper w-full h-full cursor-pointer">
-            <NuxtImg format="webp" class="object-cover" :src="diary.image_thumb" />
+            <NuxtImg format="webp" class="w-full h-full object-cover" :src="diary.image_thumb" />
         </div>
     </UCard>
     <UCard :ui="{ body: { padding: '' } }" v-else class="product-card w-full relative">
