@@ -21,14 +21,32 @@
             <div class="container mx-auto overflow-hidden md:overflow:visible my-4">
                 <ProductCollection :productList="collectionList" :collectionTitle="'Sản phẩm áo quần dài nam'" :collectionLink="'/articles'" />
             </div>
+            <div class="banner-block h-full">
+                <BannerBlock :bannerBlock="bannerBlock2" />
+            </div>
+            <div class="container mx-auto overflow-hidden md:overflow:visible my-4">
+                <ProductCollection :productList="collectionList" :collectionTitle="'Sản phẩm thu đông'" :collectionLink="'/articles'" />
+            </div>
+            <div class="banner-block container mx-auto flex justify-between gap-4 w-full h-full">
+                <BannerBlock :bannerBlock="bannerBlock3" :split-banner="true" />
+                <BannerBlock :bannerBlock="bannerBlock4" :split-banner="true" />
+            </div>
+            <div class="container mx-auto w-full h-full my-4">
+                <CategoryBox :categoryList="categoryList" />
+            </div>
+            <div class="container mx-auto w-full my-4">
+                <DiaryWrapper :diaryList="diaryList" :autoPlay="true" />
+            </div>
         </div>
     </NuxtLayout>
 </template>
 <script setup>
-import Banner from '@/components/Banners/Banner.vue';
-import BannerBlock from '@/components/Banners/BannerBlock.vue';
+import Banner from '@/components/banners/Banner.vue';
+import BannerBlock from '@/components/banners/BannerBlock.vue';
 import ProductList from '@/components/products/ProductSwiper';
 import ProductCollection from '@/components/products/ProductCollection';
+import CategoryBox from '@/components/categories/CategoryBox.vue';
+import DiaryWrapper from '@/components/diary/diaryWrapper.vue';
 const localePath = useLocalePath();
 const bannerList = ref([
     {
@@ -343,6 +361,87 @@ const bannerBlock = ref({
     description: 'Nhập mã <b>CM2024</b> giảm 15% tối đa 100K',
     link: '/articles',
 });
+const bannerBlock2 = ref({
+    image_desktop: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/mceclip0_9.png',
+    image_mobile: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/mceclip3_93.png',
+    title: 'Quần dài nam',
+    description: 'Nhập mã <b>CM2024</b> giảm 15% tối đa 100K',
+    link: '/articles',
+});
+const bannerBlock3 = ref({
+    image_desktop: 'https://mcdn.coolmate.me/image/January2024/mceclip9.png',
+    image_mobile: 'https://mcdn.coolmate.me/image/January2024/mceclip9.png',
+    title: 'Quà tặng hấp dẫn',
+    subtitle: 'CM24 - Nước hoa nam',
+    link: '/articles',
+});
+const bannerBlock4 = ref({
+    image_desktop: 'https://mcdn.coolmate.me/image/October2023/mceclip1_15.png',
+    image_mobile: 'https://mcdn.coolmate.me/image/October2023/mceclip1_15.png',
+    title: 'Basketball collection',
+    subtitle: '84Rising - Streetwear',
+    link: '/articles',
+});
+
+const categoryList = ref([
+    {
+        name: 'Tất cả sản phẩm',
+        image: 'https://media2.coolmate.me/cdn-cgi/image/width=1069,height=1575,quality=80,format=auto/uploads/January2024/mceclip1_53.png',
+        link: '/collection/tat-ca-san-pham',
+    },
+    {
+        name: 'Đồ thể thao',
+        image: 'https://media2.coolmate.me/cdn-cgi/image/width=1069,height=1575,quality=80,format=auto/uploads/January2024/mceclip2_29.png',
+        link: '/collection/do-the-thao',
+    },
+    {
+        name: 'Mặc hàng ngày',
+        image: 'https://media2.coolmate.me/cdn-cgi/image/width=1069,height=1575,quality=80,format=auto/uploads/January2024/mceclip0_91.png',
+        link: '/collection/mac-hang-ngay',
+    },
+    {
+        name: 'Đồ lót nam',
+        image: 'https://media2.coolmate.me/cdn-cgi/image/width=1069,height=1575,quality=80,format=auto/uploads/January2024/mceclip1_92.png',
+        link: '/collection/do-lot-nam',
+    },
+])
+const diaryList = ref([
+    {
+        name: 'ABC',
+        slug: 'abc',
+        image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        price: 199000
+    },
+    {
+        name: 'ABC',
+        slug: 'abc',
+        image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        price: 199000
+    },
+    {
+        name: 'ABC',
+        slug: 'abc',
+        image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        price: 199000
+    },
+    {
+        name: 'ABC',
+        slug: 'abc',
+        image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        price: 199000
+    },
+    {
+        name: 'ABC',
+        slug: 'abc',
+        image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
+        price: 199000
+    }
+])
 </script>
 <style lang="scss" scoped>
 .dashboard {

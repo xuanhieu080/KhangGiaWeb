@@ -29,7 +29,7 @@
                 },
             }"
             class="swiper product-swiper min-w-0 relative z-10">
-            <SwiperSlide v-for="product in productList" :key="product" class="h-full">
+            <SwiperSlide v-for="product in productList" :key="product" class="h-full w-[300px]">
                 <ProductCard :product="product" />
             </SwiperSlide>
         </Swiper>

@@ -1,25 +1,22 @@
 <template>
     <div v-if="bannerBlock" class="banner-block my-4">
         <picture style="width: 100%"
-            ><source
-                :srcset="bannerBlock.image_mobile"
-                media="(max-width: 991px)" />
-            <img
-                :src="bannerBlock.image_desktop"
-                alt="Quần dài nam"
-                style="width: 100%"
+            ><source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
+            <img :src="bannerBlock.image_desktop" alt="Quần dài nam" style="width: 100%"
         /></picture>
-        <div class="banner-content">
-            <div class="title">{{ bannerBlock.title }}</div>
-            <div class="description" v-html="bannerBlock.description"></div>
+        <div class="banner-content" :class="splitBanner ? 'modify-position' : ''">
+            <div v-if="bannerBlock.subtitle" class="opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
+            <div class="title" :class="splitBanner ? 'custom-font' : ''">{{ bannerBlock.title }}</div>
+            <div v-if="bannerBlock.description" class="description" v-html="bannerBlock.description"></div>
             <NuxtLink :to="bannerBlock.link">
                 <UButton
                     size="xl"
                     color="none"
                     variant="ghost"
-                    class="rounded-2xl px-5 py-3 bg-white text-black hover:bg-black hover:text-white transition ease-in-out duration-300"
-                    >Khám phá ngay</UButton
-                >
+                    :class="splitBanner ? 'h-[48px] px-6 mt-auto hover:bg-gray-200/80' : ' px-10 h-[54px]  hover:bg-black hover:text-white'"
+                    class="rounded-3xl bg-white text-black transition ease-in-out duration-300">
+                    <span class="uppercase">Khám phá ngay</span>
+                </UButton>
             </NuxtLink>
         </div>
     </div>
@@ -29,6 +26,10 @@ const props = defineProps({
     bannerBlock: {
         type: Object,
         default: null,
+    },
+    splitBanner: {
+        type: Boolean,
+        default: false,
     },
 });
 </script>
@@ -48,6 +49,10 @@ const props = defineProps({
             top: 50%;
             transform: translateY(-50%);
         }
+        &.modify-position {
+            top: 50%;
+            transform: translateY(-50%);
+        }
         .title {
             @media screen and (min-width: 1660px) {
                 font-size: 80px;
@@ -61,6 +66,10 @@ const props = defineProps({
             text-transform: uppercase;
             font-weight: bold;
             max-width: 265px;
+            &.custom-font {
+                font-size: 2rem;
+                max-width: 50%;
+            }
         }
         .description {
             @media screen and (min-width: 1280px) {
