@@ -49,9 +49,13 @@ const props = defineProps({
             transform: translateY(-50%);
         }
         .title {
-            @media screen and (min-width: 1280px) {
+            @media screen and (min-width: 1660px) {
                 font-size: 80px;
-                max-width: 400px;
+                max-width: 450px;
+            }
+            @media screen and (min-width: 1280px) and (max-width: 1659px) {
+                font-size: 3.75rem;
+                max-width: 350px;
             }
             font-size: 2.25rem;
             text-transform: uppercase;

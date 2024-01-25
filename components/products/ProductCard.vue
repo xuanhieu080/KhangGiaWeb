@@ -11,15 +11,14 @@
                     :class="activeType == index ? 'block' : 'hidden'">
                     <NuxtImg
                         v-for="(item, indexImage) in image.list"
-                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg"
+                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover"
                         :class="{
                             hidden: indexImage > 1,
                             'first-look': indexImage == 0 && image.list.length > 1,
                             'second-look': indexImage == 1,
                         }"
                         :src="item"
-                        format="webp"
-                        fit="cover" />
+                        format="webp" />
                 </button>
             </div>
             <div class="product-type flex items-center justify-start flex-wrap gap-2">
@@ -130,8 +129,8 @@ const formatPriceProduct = (item) => {
     .product-compaign {
         font-size: 12px;
         font-style: italic;
-        color: blue;
-        font-weight: 500;
+        font-weight: 600;
+        @apply text-blue-700;
     }
 }
 </style>

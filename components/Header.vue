@@ -93,7 +93,7 @@
                 </UButton>
             </div>
         </div>
-        <USlideover :ui="{ overlay: { background: 'bg-gray-600/75' } }" v-model="profileSide">
+        <USlideover :ui="{wrapper: 'z-[999]', overlay: { background: 'bg-gray-600/75' } }" v-model="profileSide">
             <UCard
                 class="flex flex-col flex-1"
                 :ui="{
@@ -218,7 +218,7 @@ const openProfileSideBar = () => {
     left: 0;
     width: 100%;
     height: auto;
-    z-index: 999;
+    z-index: 99;
     transition: all 0.3s;
     font-size: 14px;
     background-color: white;
