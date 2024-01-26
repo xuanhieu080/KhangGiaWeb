@@ -407,39 +407,44 @@ const categoryList = ref([
 ])
 const diaryList = ref([
     {
-        name: 'ABC',
-        slug: 'abc',
+        name: 'Quần đùi nam cá tính',
+        slug: 'quan-dui-nam-ca-tinh',
         image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
         image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
-        price: 199000
+        price: 200000,
+        discount: 10,
     },
     {
-        name: 'ABC',
-        slug: 'abc',
+        name: 'Quần đùi nam cá tính',
+        slug: 'quan-dui-nam-ca-tinh',
         image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
         image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
-        price: 199000
+        price: 129000,
+        discount: 16,
     },
     {
-        name: 'ABC',
-        slug: 'abc',
+        name: 'Quần đùi nam cá tính',
+        slug: 'quan-dui-nam-ca-tinh',
         image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
         image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
-        price: 199000
+        price: 300000,
+        discount: 25,
     },
     {
-        name: 'ABC',
-        slug: 'abc',
+        name: 'Quần đùi nam cá tính',
+        slug: 'quan-dui-nam-ca-tinh',
         image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
         image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
-        price: 199000
+        price: 299000,
+        discount: 50,
     },
     {
-        name: 'ABC',
-        slug: 'abc',
+        name: 'Quần đùi nam cá tính',
+        slug: 'quan-dui-nam-ca-tinh',
         image_thumb: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
         image_sale: 'https://mcdn.coolmate.me/image/October2023/mceclip4_52.png',
-        price: 199000
+        price: 199000,
+        discount: 0,
     }
 ])
 </script>

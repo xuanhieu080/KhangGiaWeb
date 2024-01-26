@@ -34,13 +34,15 @@
                 </div>
                 <div class="product-introduction">{{ product.product_introduction }} / {{ product.product_images[activeType].color }}</div>
                 <div class="product-price">
-                    <div v-if="product.product_discount == 0" class="original-price">{{ formatPriceProduct(product.product_price) + 'đ' }}</div>
+                    <div v-if="product.product_discount == 0" class="original-price">
+                        {{ formatPriceProduct(product.product_price) + 'đ' }}
+                    </div>
                     <div v-else class="discount-price">
                         <div class="after-discount">
-                            {{ formatPriceProduct(product.product_price * (100 - product.product_discount) / 100) + 'đ' }}
+                            {{ formatPriceProduct((product.product_price * (100 - product.product_discount)) / 100) + 'đ' }}
                         </div>
-                        <div class="original-price">{{ formatPriceProduct(product.product_price) + 'đ' }}</div>    
-                        <div class="discount-tag">{{ product.product_discount + '%' }}</div>    
+                        <div class="original-price">{{ formatPriceProduct(product.product_price) + 'đ' }}</div>
+                        <div class="discount-tag">{{ product.product_discount + '%' }}</div>
                     </div>
                 </div>
             </div>
@@ -49,8 +51,18 @@
             </div>
         </div>
     </UCard>
-    <UCard :ui="{ body: { padding: '' } }" v-else class="product-card w-full relative">
+    <UCard :ui="{shadow: '', ring: '', body: { padding: '', base: 'flex flex-col gap-4' } }" v-else class="product-card w-full relative">
         <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-[300px] w-full" />
+        <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-2">
+                <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-6 w-[48px]" />
+                <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-6 w-[48px]" />
+            </div>
+            <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-5 w-4/5" />
+            <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-5 w-3/5" />
+            <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-5 w-1/2" />
+            <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-5 w-4/5 mt-2" />
+        </div>
     </UCard>
 </template>
 <script setup>
@@ -60,8 +72,8 @@ const props = defineProps({
 const activeType = ref(0);
 
 const formatPriceProduct = (item) => {
-    return new  Intl.NumberFormat('en-US').format(item)
-}
+    return new Intl.NumberFormat('en-US').format(item);
+};
 </script>
 <style lang="scss" scoped>
 .product-card {
@@ -106,7 +118,6 @@ const formatPriceProduct = (item) => {
         }
         .product-introduction {
             @apply text-gray-500 font-semibold;
-            
         }
         .product-price {
             @apply font-bold;
