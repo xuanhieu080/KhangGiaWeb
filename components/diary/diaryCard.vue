@@ -1,13 +1,17 @@
-import type { _relative } from '#tailwind-config/content';
 <template>
     <UCard :ui="{ ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }" v-if="diary" class="diary-card relative">
-        <div class="diary-card-wrapper w-full h-full cursor-pointer">
+        <div class="diary-card-wrapper w-full h-full cursor-pointer" @click="handleOpenDiaryProduct">
             <NuxtImg format="webp" class="w-full h-full object-cover" :src="diary.image_thumb" />
         </div>
     </UCard>
     <UCard :ui="{ body: { padding: '' } }" v-else class="product-card w-full relative">
         <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-[250px] w-full" />
     </UCard>
+    <UModal v-model="openDiaryProduct">
+        <UCard :ui="{ body: { padding: '' } }" class="product-card w-full relative">
+            <div class="flex gap-4 w-full justify-between"></div>
+        </UCard>
+    </UModal>
 </template>
 <script setup>
 const props = defineProps({
@@ -18,6 +22,10 @@ const activeType = ref(0);
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
 };
+const openDiaryProduct = ref(false);
+const handleOpenDiaryProduct = () => {
+    openDiaryProduct.value = true;
+}
 </script>
 <style lang="scss" scoped>
 .diary-card {

@@ -2,7 +2,7 @@
     <div v-if="contentBlog" class="container mx-auto">
         <ckeditor :editor="ClassicEditor" v-model="contentBlog" :config="editorConfig" />
         <div class="content">
-            <div v-html="editorHtml"></div>
+            <div v-html="contentBlog"></div>
         </div>
     </div>
 </template>
