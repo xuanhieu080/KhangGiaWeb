@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import ckeditor5 from '@ckeditor/vite-plugin-ckeditor5'
 export default defineNuxtConfig({
   debug: false,
   runtimeConfig: {
@@ -28,7 +27,6 @@ export default defineNuxtConfig({
           'acceptHMRUpdate',
       ],
   },
-  plugins: [{ src: '~/plugins/ckeditor.js', mode: 'client' }],
   i18n: {
       lazy: true,
       langDir: 'locales',
@@ -146,7 +144,6 @@ export default defineNuxtConfig({
               },
           },
       },
-      plugins: [ckeditor5({ theme: require.resolve( '@ckeditor/ckeditor5-theme-lark' ) })]
   },
   ui: {
       global: true,

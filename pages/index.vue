@@ -41,8 +41,8 @@
     </NuxtLayout>
 </template>
 <script setup>
-import Banner from '@/components/banners/Banner.vue';
-import BannerBlock from '@/components/banners/BannerBlock.vue';
+import Banner from '@/components/Banners/Banner.vue';
+import BannerBlock from '@/components/Banners/BannerBlock.vue';
 import ProductList from '@/components/products/ProductSwiper';
 import ProductCollection from '@/components/products/ProductCollection';
 import CategoryBox from '@/components/categories/CategoryBox.vue';
@@ -113,7 +113,7 @@ const productList = ref([
         product_slug: 'quan-jeans-nam-basics',
         product_category_id: 2,
         product_category_name: 'Quần dài',
-        product_category_name: 'quan-dai',
+        product_category_slug: 'quan-dai',
         product_introduction: 'Dáng Straight',
         product_price: 299000,
         product_discount: 10,
@@ -193,7 +193,7 @@ const productList = ref([
         product_slug: 'quan-jeans-nam-basics',
         product_category_id: 2,
         product_category_name: 'Quần dài',
-        product_category_name: 'quan-dai',
+        product_category_slug: 'quan-dai',
         product_introduction: 'Dáng Straight',
         product_price: 299000,
         product_discount: 10,
@@ -279,7 +279,7 @@ const collectionList = ref([
         product_slug: 'quan-jeans-nam-basics',
         product_category_id: 2,
         product_category_name: 'Quần dài',
-        product_category_name: 'quan-dai',
+        product_category_slug: 'quan-dai',
         product_introduction: 'Dáng Straight',
         product_price: 299000,
         product_discount: 10,

@@ -1,9 +1,6 @@
 <template>
     <NuxtLayout name="main">
         <div class="p-4">
-            <ClientOnly>
-                <EditorBox :content="content" />
-            </ClientOnly>
             <div class="content">
                 <p>
                     Marketing vốn là một ngành rất HOT hiện nay với rất nhiều vị trí công việc khác nhau. Đây là một lĩnh vực được rất nhiều
@@ -189,7 +186,6 @@
 </template>
 <script setup>
 definePageMeta({ layout: false });
-import EditorBox from '@@/components/EditorBox.vue';
 const content = ref('');
 </script>
 <style lang="scss" scoped></style>
