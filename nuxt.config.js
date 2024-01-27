@@ -61,79 +61,79 @@ export default defineNuxtConfig({
       vueI18n: './nuxt-i18n.js',
   },
   auth: {
-      cookie: {
-          options: {
-              maxAge: 31536000,
-          },
-      },
-      strategies: {
-          local: {
-              maxAge: 31536000,
-              token: {
-                  property: 'token',
-                  required: true,
-                  type: 'Bearer',
-                  maxAge: 31536000,
-              },
-              user: {
-                  property: '',
-                  autoFetch: true,
-              },
-              endpoints: {
-                  login: {
-                      url: `${process.env.BASE_URL}/api/v1/login`,
-                      method: 'post',
-                  },
-                  user: {
-                      url: `${process.env.BASE_URL}/api/v1/profile`,
-                      method: 'get',
-                  },
-                  logout: {
-                      url: `${process.env.BASE_URL}/api/v1/logout`,
-                      method: 'post',
-                  },
-              },
-          },
+    //   cookie: {
+    //       options: {
+    //           maxAge: 31536000,
+    //       },
+    //   },
+    //   strategies: {
+    //       local: {
+    //           maxAge: 31536000,
+    //           token: {
+    //               property: 'token',
+    //               required: true,
+    //               type: 'Bearer',
+    //               maxAge: 31536000,
+    //           },
+    //           user: {
+    //               property: '',
+    //               autoFetch: true,
+    //           },
+    //           endpoints: {
+    //               login: {
+    //                   url: `${process.env.BASE_URL}/api/v1/login`,
+    //                   method: 'post',
+    //               },
+    //               user: {
+    //                   url: `${process.env.BASE_URL}/api/v1/profile`,
+    //                   method: 'get',
+    //               },
+    //               logout: {
+    //                   url: `${process.env.BASE_URL}/api/v1/logout`,
+    //                   method: 'post',
+    //               },
+    //           },
+    //       },
 
-          google: {
-              clientId: process.env.GOOGLE_APP_ID,
-              endpoints: {
-                  token: {
-                      url: `${process.env.BASE_URL}/api/v1/login`,
-                      method: 'post',
-                  },
-                  userInfo: {
-                      url: `${process.env.BASE_URL}/api/v1/profile`,
-                      method: 'get',
-                  },
-                  logout: {
-                      url: `${process.env.BASE_URL}/api/v1/logout`,
-                      method: 'post',
-                  },
-              },
-          },
+    //       google: {
+    //           clientId: process.env.GOOGLE_APP_ID,
+    //           endpoints: {
+    //               token: {
+    //                   url: `${process.env.BASE_URL}/api/v1/login`,
+    //                   method: 'post',
+    //               },
+    //               userInfo: {
+    //                   url: `${process.env.BASE_URL}/api/v1/profile`,
+    //                   method: 'get',
+    //               },
+    //               logout: {
+    //                   url: `${process.env.BASE_URL}/api/v1/logout`,
+    //                   method: 'post',
+    //               },
+    //           },
+    //       },
 
-          // laravelSanctum: {
-          //     provider: 'laravel/sanctum',
-          //     url: `${process.env.BASE_URL}`,
-          //     cookie: {
-          //         cookie: {
-          //             name: 'XSRF-TOKEN',
-          //         },
-          //     },
-          //     endpoints: {
-          //         login: {url: '/api/v1/login', method: 'post'},
-          //         user: {url: '/api/v1/user'},
-          //         logout: {url: '/api/v1/logout', method: 'post'},
-          //         // csrf: {url: `/api/v1/login`, method: 'post'},
-          //     },
-          // },
-      },
-      redirect: {
-          login: '/',
-          home: '/app/home',
-          logout: '/',
-      },
+    //       // laravelSanctum: {
+    //       //     provider: 'laravel/sanctum',
+    //       //     url: `${process.env.BASE_URL}`,
+    //       //     cookie: {
+    //       //         cookie: {
+    //       //             name: 'XSRF-TOKEN',
+    //       //         },
+    //       //     },
+    //       //     endpoints: {
+    //       //         login: {url: '/api/v1/login', method: 'post'},
+    //       //         user: {url: '/api/v1/user'},
+    //       //         logout: {url: '/api/v1/logout', method: 'post'},
+    //       //         // csrf: {url: `/api/v1/login`, method: 'post'},
+    //       //     },
+    //       // },
+    //   },
+    //   redirect: {
+    //       login: '/',
+    //       home: '/app/home',
+    //       logout: '/',
+    //   },
   },
   css: ['@/assets/css/index.css'],
   vite: {
