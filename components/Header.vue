@@ -3,7 +3,7 @@
         <div class="topbar">
             <div class="left-top-bar">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
-                    <NuxtImg class="h-full w-full object-contain" format="webp" loading="lazy" alt="Logo Site" src="/logo.svg" />
+                    <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
                 </NuxtLink>
             </div>
             <div class="sub-nav">
@@ -25,19 +25,19 @@
         <div class="header">
             <div class="left-header">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
-                    <NuxtImg class="h-full w-full object-contain" format="webp" loading="lazy" alt="Logo Site" src="/logo.svg" />
+                    <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
                 </NuxtLink>
             </div>
             <div class="mobile-header"></div>
             <div class="middle-header" :class="menuMobile ? 'active-mobile' : ''">
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'index' })" @click="menuMobile = false">Sale</NuxtLink>
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'articles' })" @click="menuMobile = false">Sản phẩm</NuxtLink>
-                <NuxtLink class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Đồ lót</NuxtLink>
-                <NuxtLink class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Đồ thể thao</NuxtLink>
-                <NuxtLink class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Mặc hàng ngày</NuxtLink>
-                <NuxtLink class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Nước hoa</NuxtLink>
-                <NuxtLink class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Sản xuất riêng</NuxtLink>
-                <NuxtLink class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Care&Share</NuxtLink>
+                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Đồ lót</div>
+                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Đồ thể thao</div>
+                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Mặc hàng ngày</div>
+                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Nước hoa</div>
+                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Sản xuất riêng</div>
+                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Care&Share</div>
             </div>
             <div class="right-header">
                 <UInput

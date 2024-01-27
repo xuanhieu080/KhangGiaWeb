@@ -12,8 +12,8 @@ const props = defineProps({
 const emit = defineEmits(['update:content']);
 
 const editorHtml = computed({
-    get: () => props.modelValue,
-    set: (value) => emit('update:modelValue', value),
+    get: () => props.content,
+    set: (value) => emit('update:content', value),
 });
 </script>
 <style lang="scss"></style>

@@ -16,20 +16,20 @@
                 </div>
             </div>
             <div class="banner-block h-full">
-                <BannerBlock :bannerBlock="bannerBlock" />
+                <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" />
             </div>
             <div class="container mx-auto overflow-hidden md:overflow:visible my-4">
-                <ProductCollection :productList="collectionList" :collectionTitle="'Sản phẩm áo quần dài nam'" :collectionLink="'/articles'" />
+                <ProductCollection key="container-1" :productList="collectionList" :collectionTitle="'Sản phẩm áo quần dài nam'" :collectionLink="'/articles'" />
             </div>
             <div class="banner-block h-full">
-                <BannerBlock :bannerBlock="bannerBlock2" />
+                <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />
             </div>
             <div class="container mx-auto overflow-hidden md:overflow:visible my-4">
-                <ProductCollection :productList="collectionList" :collectionTitle="'Sản phẩm thu đông'" :collectionLink="'/articles'" />
+                <ProductCollection key="container-2" :productList="collectionList" :collectionTitle="'Sản phẩm thu đông'" :collectionLink="'/articles'" />
             </div>
             <div class="banner-block container mx-auto flex justify-between gap-4 w-full h-full">
-                <BannerBlock :bannerBlock="bannerBlock3" :split-banner="true" />
-                <BannerBlock :bannerBlock="bannerBlock4" :split-banner="true" />
+                <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
+                <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
             </div>
             <div class="container mx-auto w-full h-full my-4">
                 <CategoryBox :categoryList="categoryList" />
