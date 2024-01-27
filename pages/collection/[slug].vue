@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <NuxtLayout name="main">
         <div class="category-page pt-16 bg-white">
             <div class="container mx-auto">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
                 <div class="container mx-auto md:max-w-[1280px] p-4">
@@ -61,6 +61,7 @@
     </NuxtLayout>
 </template>
 <script setup>
+definePageMeta({layout: false})
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
@@ -142,7 +143,7 @@ const productList = ref([
         product_slug: 'quan-jeans-nam-basics',
         product_category_id: 2,
         product_category_name: 'Quần dài',
-        product_category_name: 'quan-dai',
+        product_category_slug: 'quan-dai',
         product_introduction: 'Dáng Straight',
         product_price: 299000,
         product_discount: 10,
@@ -222,7 +223,7 @@ const productList = ref([
         product_slug: 'quan-jeans-nam-basics',
         product_category_id: 2,
         product_category_name: 'Quần dài',
-        product_category_name: 'quan-dai',
+        product_category_slug: 'quan-dai',
         product_introduction: 'Dáng Straight',
         product_price: 299000,
         product_discount: 10,
