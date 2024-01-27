@@ -40,7 +40,6 @@ const props = defineProps({
     .banner-content {
         position: absolute;
         left: 24px;
-        width: 100%;
         @apply flex flex-col gap-4;
         color: white;
         top: 75%;
@@ -68,7 +67,7 @@ const props = defineProps({
             max-width: 265px;
             &.custom-font {
                 font-size: 2rem;
-                max-width: 50%;
+                max-width: 250px;
             }
         }
         .description {
