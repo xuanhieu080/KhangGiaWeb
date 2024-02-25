@@ -75,32 +75,32 @@ const tabIndex = ref(0);
 const categoryList = ref([
     {
         name: 'Áo các loại',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80,format=auto/uploads/September2023/Refdfdctangle_178.png',
+        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
         description: 'Áo thun, áo polo và áo khoác',
     },
     {
         name: 'Quần các loại',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80,format=auto/uploads/September2023/Rectanffffgle_178.png',
+        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
         description: 'Áo shorts, Jogger, Kaki và Jeans',
     },
     {
         name: 'Phụ kiện các loại',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80,format=auto/uploads/September2023/Rectangleftrer_178.png',
+        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
         description: 'Tất/vớ, mũ và phụ kiện khác',
     },
     {
         name: 'Áo các loại',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80,format=auto/uploads/September2023/Refdfdctangle_178.png',
+        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
         description: 'Áo thun, áo polo và áo khoác',
     },
     {
         name: 'Quần các loại',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80,format=auto/uploads/September2023/Rectanffffgle_178.png',
+        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
         description: 'Áo shorts, Jogger, Kaki và Jeans',
     },
     {
         name: 'Phụ kiện các loại',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80,format=auto/uploads/September2023/Rectangleftrer_178.png',
+        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
         description: 'Tất/vớ, mũ và phụ kiện khác',
     },
 ]);
@@ -122,17 +122,15 @@ const productList = ref([
                 color: 'Đen',
                 code: '#000',
                 list: [
-                    'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/23CMAW.PL001.1s7.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMAW.PL001.1s6_74.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
                 ],
             },
             {
                 color: 'Trắng',
                 code: '#fff',
                 list: [
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/December2023/23CMAW.PL001.13.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/23CMAW.PL001.1s7.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMAW.PL001.1s6_74.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
                 ],
             },
         ],
@@ -154,14 +152,17 @@ const productList = ref([
                 color: 'Xanh wash',
                 code: 'blue',
                 list: [
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.1_46_27.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.2_45.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
                 ],
             },
             {
                 color: 'Xanh navi',
                 code: 'green',
-                list: ['https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.5_8.jpg'],
+                list: [
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
+                ],
             },
         ],
     },
@@ -182,9 +183,8 @@ const productList = ref([
                 color: 'Vàng',
                 code: 'yellow',
                 list: [
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.1_46_27.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.2_45.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.5_8.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
                 ],
             },
         ],
@@ -206,14 +206,16 @@ const productList = ref([
                 color: 'Đen',
                 code: '#000',
                 list: [
-                    'https://media2.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/23CMAW.PL001.1s7.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMAW.PL001.1s6_74.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
                 ],
             },
             {
                 color: 'Trắng',
                 code: '#fff',
-                list: ['https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/December2023/23CMAW.PL001.13.jpg'],
+                list: [
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
+                ],
             },
         ],
     },
@@ -234,14 +236,17 @@ const productList = ref([
                 color: 'Xanh wash',
                 code: 'blue',
                 list: [
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.1_46_27.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.2_45.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
                 ],
             },
             {
                 color: 'Xanh navi',
                 code: 'green',
-                list: ['https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.5_8.jpg'],
+                list: [
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
+                ],
             },
         ],
     },
@@ -262,9 +267,8 @@ const productList = ref([
                 color: 'Vàng',
                 code: 'yellow',
                 list: [
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.1_46_27.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.2_45.jpg',
-                    'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/January2024/23CMCW.JE006.5_8.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
+                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
                 ],
             },
         ],

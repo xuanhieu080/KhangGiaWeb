@@ -3,7 +3,7 @@
         :ui="{ rounded: '', ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }"
         v-if="product"
         class="product-card relative">
-        <div class="flex flex-col gap-4 w-full">
+        <NuxtLink :to="localePath({name: 'product-slug', params: {slug: product.product_slug}})" class="flex flex-col gap-4 w-full">
             <div v-if="product && product.product_images.length > 0" class="product-image relative">
                 <button
                     v-for="(image, index) in product.product_images"
@@ -49,7 +49,7 @@
             <div v-if="product.product_compaign_id" class="product-compaign">
                 {{ product.product_compaign_name }}
             </div>
-        </div>
+        </NuxtLink>
     </UCard>
     <UCard :ui="{shadow: '', ring: '', body: { padding: '', base: 'flex flex-col gap-4' } }" v-else class="product-card w-full relative">
         <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-[300px] w-full" />
@@ -70,6 +70,7 @@ const props = defineProps({
     product: Object,
 });
 const activeType = ref(0);
+const localePath = useLocalePath();
 
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);

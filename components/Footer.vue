@@ -18,7 +18,7 @@
                     <div class="footer-contact">
                         <div class="footer-info">
                             <div class="footer-info__icon">
-                                <img src="https://static.coolmate.me/images/footer/icon-hotline.svg" alt="Footer Icon Phone" />
+                                <img :src="images.icon_hotline" alt="Footer Icon Phone" />
                             </div>
                             <div class="footer-info__content">
                                 <span class="footer-info__title"> Hotline </span>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="footer-info">
                             <div class="footer-info__icon">
-                                <img src="https://static.coolmate.me/images/footer/icon-email.svg" alt="Footer Icon Email" />
+                                <img :src="images.icon_email" alt="Footer Icon Email" />
                             </div>
                             <div class="footer-info__content">
                                 <span class="footer-info__title"> Email </span>
@@ -40,19 +40,19 @@
                     </div>
                     <div class="footer-social">
                         <a href="https://www.facebook.com/coolmate.me" target="_blank" class="footer-social__item"
-                            ><img src="https://mcdn.coolmate.me/image/June2023/mceclip1_43.png" alt="Footer Icon facebook"
+                            ><img :src="images.logo_facebook" alt="Footer Icon facebook"
                         /></a>
                         <a href="https://zalo.me/1517736583279228381" target="_blank" class="footer-social__item"
-                            ><img src="https://mcdn.coolmate.me/image/June2023/mceclip2_68.png" alt="Footer Icon Zalo"
+                            ><img :src="images.logo_zalo" alt="Footer Icon Zalo"
                         /></a>
                         <a href="https://www.tiktok.com/@cool.coolmate" target="_blank" class="footer-social__item"
-                            ><img src="https://mcdn.coolmate.me/image/June2023/mceclip0_62.png" alt="Footer Icon tiktok"
+                            ><img :src="images.logo_tiktok" alt="Footer Icon tiktok"
                         /></a>
                         <a href="https://www.instagram.com/coolmate.me/" target="_blank" class="footer-social__item"
-                            ><img src="https://static.coolmate.me/images/footer/icon-instar.svg" alt="Footer Icon instar"
+                            ><img :src="images.logo_instagram" alt="Footer Icon instar"
                         /></a>
                         <a href="https://www.youtube.com/channel/UCWw8wLlodKBtEvVt1tTAsMA" target="_blank" class="footer-social__item"
-                            ><img src="https://static.coolmate.me/images/footer/icon-youtube.svg" alt="Footer Icon youtube"
+                            ><img :src="images.logo_youtube" alt="Footer Icon youtube"
                         /></a>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-            <div class="site-footer__after">
+            <div v-if="false" class="site-footer__after">
                 <div class="copyright">
                     <h5 class="copyright__title">@ CÔNG TY TNHH FASTECH ASIA</h5>
                     <p class="copyright__description">
@@ -176,7 +176,9 @@
         </div>
     </footer>
 </template>
-<script setup></script>
+<script setup>
+import images from '@/assets/icons/index'
+</script>
 <style lang="scss" scoped>
 .site-footer {
     background-color: #000;

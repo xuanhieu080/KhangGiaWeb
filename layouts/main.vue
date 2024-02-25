@@ -1,9 +1,12 @@
 <template>
     <Teleport to="body">
         <Header />
-        <main class="wrapper-desktop relative w-full">
+        <main class="wrapper-desktop relative w-full min-h-screen">
             <div class="w-full relative main">
                 <slot />
+            </div>
+            <div class="scroll-to-top fixed bottom-8 right-4" :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">
+                <UButton class="back-to-top rounded-full w-[50px] h-[50px] justify-center" icon="i-heroicons-chevron-up" @click="backToTop"></UButton>
             </div>
         </main>
         <Footer />
@@ -35,7 +38,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
-
+import 'swiper/css/thumbs';
 import { useHeader } from '@@/store/useHeader';
 import { storeToRefs } from 'pinia';
 
@@ -44,13 +47,14 @@ const useHeaderStore = useHeader();
 const { isScrollDown } = storeToRefs(useHeaderStore);
 const router = useRouter();
 const { locale } = useI18n();
+const showBackToTop = ref(false);
 let lastScrollTop = 80;
 onMounted(() => {
     window.addEventListener('resize', handleHideHeader, false);
     window.addEventListener('scroll', controlHeaderShowing, false);
+    window.addEventListener('scroll', handleBackToTopButton, false);
 });
 function handleHideHeader() {
-    console.log(window.innerWidth);
     if (window.innerWidth < 991) {
         window.removeEventListener('scroll', controlHeaderShowing);
     } else {
@@ -67,6 +71,16 @@ function controlHeaderShowing() {
         }
         lastScrollTop = st <= 80 ? 80 : st;
     }
+}
+function handleBackToTopButton() {
+    if(window.scrollY > 500 && !showBackToTop.value) {
+        showBackToTop.value = true
+    } else if (window.scrollY < 500 && showBackToTop.value) {
+        showBackToTop.value = false
+    }
+}
+const backToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
 }
 </script>
 <style lang="scss" scoped>
