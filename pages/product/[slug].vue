@@ -72,7 +72,7 @@
                                 :active-color="'green'"
                                 rating-content="⭐" />
                             <div class="fs-12">({{ product.product_rating.reviews.length }})</div>
-                            <div> | </div>
+                            <div>|</div>
                             <div v-if="product.product_sold > 0" class="fs-12">{{ $t('Sold') + ' (web): ' + product.product_sold }}</div>
                         </div>
                         <div class="product-price font-bold text-[22px]">{{ product.product_price.toLocaleString() }}đ</div>
@@ -100,7 +100,10 @@
                             <div class="size-list flex items-center gap-4">
                                 <button
                                     v-for="(size, index) in product.product_sizes"
-                                    :class="[productSizeIndex == index ? '!bg-black !text-white' : '', size.quantity == 0 ? 'opacity-30 pointer-events-none' : '']"
+                                    :class="[
+                                        productSizeIndex == index ? '!bg-black !text-white' : '',
+                                        size.quantity == 0 ? 'opacity-30 pointer-events-none' : '',
+                                    ]"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-16 h-10 rounded-2xl font-bold"
                                     @click="setProductSize(size, index)">
                                     {{ size.name }}
@@ -115,10 +118,12 @@
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1)"></UIcon>
                             </div>
-                            <UButton class="flex-1 h-12 rounded-full justify-center">
-                                <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
-                                <span>Thêm vào giỏ hàng</span>
-                            </UButton>
+                            <NuxtLink class="flex flex-1 h-12 rounded-full justify-center" :to="localePath({ name: 'cart' })">
+                                <UButton class="flex-1 h-12 rounded-full justify-center">
+                                    <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
+                                    <span>Thêm vào giỏ hàng</span>
+                                </UButton>
+                            </NuxtLink>
                         </div>
                         <UDivider />
                         <div class="delivery-box flex flex-col gap-4">
@@ -603,7 +608,8 @@ const handleQuantity = (index) => {
                             width: 100%;
                             height: 100%;
                             z-index: 10;
-                            &::after, &::before {
+                            &::after,
+                            &::before {
                                 content: '';
                                 position: absolute;
                                 width: 80%;

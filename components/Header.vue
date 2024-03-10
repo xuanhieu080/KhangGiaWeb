@@ -87,7 +87,7 @@
                     <UIcon name="i-heroicons-magnifying-glass" class="fs-28 text-white" />
                 </UButton>
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
-                    <NuxtImg class="h-full w-full object-contain" format="webp" loading="lazy" alt="Logo Site" src="/logo.svg" />
+                    <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
                 </NuxtLink>
                 <UButton variant="ghost" color="none" :padded="false" @click="menuMobile = !menuMobile">
                     <UIcon name="i-pajamas-hamburger" class="fs-28 text-white" dynamic />
