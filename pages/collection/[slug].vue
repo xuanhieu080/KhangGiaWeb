@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div class="category-page pt-16 bg-white">
-            <div class="container mx-auto">
+            <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
                         <h1 class="font-bold uppercase text-2xl">Đồ mặc hàng ngày</h1>
@@ -16,17 +16,21 @@
                             :breakpoints="{
                                 1280: {
                                     slidesPerView: 5,
-                                    slidesPerGroup:5,
+                                    slidesPerGroup: 5,
                                     spaceBetween: 16,
                                 },
                             }"
                             class="swiper category-swiper min-w-0 relative z-10">
                             <SwiperSlide v-for="(category, index) in categoryList" :key="product" class="h-full w-[200px] mr-4">
-                                <UCard :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }" class="category-card" :class="index == tabIndex ? 'active': ''" @click="changeCategoryTab(index)">
+                                <UCard
+                                    :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
+                                    class="category-card"
+                                    :class="index == tabIndex ? 'active' : ''"
+                                    @click="changeCategoryTab(index)">
                                     <div class="flex flex-col gap-2">
                                         <NuxtImg :src="category.image" format="webp" class="w-full h-full object-cover rounded-md" />
                                         <div class="category-name font-semibold">
-                                            {{category.name}}
+                                            {{ category.name }}
                                         </div>
                                     </div>
                                 </UCard>
@@ -34,34 +38,104 @@
                         </Swiper>
                     </div>
                 </div>
-                <div class="category-data flex flex-col gap-4">
-                    <div class="category-filter flex items-center gap-4">
-                        <span class="uppercase text-gray-500 fs-14 font-medium">Phân loại</span>
-                        <USelect v-model="filter" :options="filterList" option-attribute="name" />
-                    </div>
-                    <div v-if="isLoadingData" class="category-data-list">
-                        <div v-for="product in 6" class="category-data-item">
-                            <ProductCard />
+                <div class="category-main flex justify-between w-full gap-6 mt-12">
+                    <div class="category-main-left w-full max-w-[350px] px-4">
+                        <div class="flex flex-col gap-4 justify-start-w-full sticky top-8">
+                            <div class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
+                                {{ '16' + ' ' + $t('Kết quả') }}
+                                <UButton v-if="Object.keys(selectedForm).length > 0 || Object.keys(selectedMaterial).length > 0 || selectedColor" size="lg" variant="ghost" color="none" class="border rounded-3xl border-black font-bold" @click="removeAllFilter">{{ $t('Xóa lọc') }}</UButton>
+                            </div>
+                            <div class="filter-options flex flex-col gap-4">
+                                <div class="filter-option-item flex flex-col gap-4">
+                                    <div class="filter-option-title text-sm font-bold text-gray-500">
+                                        {{ $t('Kiểu dáng') }}
+                                    </div>
+                                    <UCheckbox
+                                        v-model="selectedForm[index]"
+                                        v-for="(form, index) in formFilter"
+                                        size="lg"
+                                        class="rounded-full"
+                                        :name="form.name"
+                                        :label="form.label" />
+                                </div>
+                                <div class="filter-option-item flex flex-col gap-4">
+                                    <div class="filter-option-title text-sm font-bold text-gray-500">
+                                        {{ $t('Chất liệu') }}
+                                    </div>
+                                    <UCheckbox
+                                        v-model="selectedMaterial[index]"
+                                        v-for="(material, index) in materialFilter"
+                                        size="lg"
+                                        class="rounded-full"
+                                        :name="material.name"
+                                        :label="material.label" />
+                                </div>
+                                <div class="filter-option-item flex flex-col gap-4">
+                                    <div class="filter-option-title text-sm font-bold text-gray-500">
+                                        {{ $t('Kích cỡ') }}
+                                    </div>
+                                    <div class="color-list grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+                                        <div class="color-list-item flex flex-col gap-2 items-center justify-center" v-for="(size, index) in sizeFilter" :key="colour" @click="selectedSize[index] = size">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filter-option-item flex flex-col gap-4">
+                                    <div class="filter-option-title text-sm font-bold text-gray-500">
+                                        {{ $t('Màu sắc') }}
+                                    </div>
+                                    <div class="color-list grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+                                        <div class="color-list-item flex flex-col gap-2 items-center justify-center" v-for="(colour, index) in colourFilter" :key="colour" @click="selectedColor = colour">
+                                            <div class="h-6 w-6 border border-gray-400 rounded-full" :class="selectedColor && (selectedColor.name  == colour.name) ? 'ring ring-green-450' : ''  " :style="{backgroundColor: colour.color}"></div>
+                                            <span class="text-xs text-gray-500">{{ colour.name }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div v-else class="category-data-list">
-                        <div v-for="product in productList" class="category-data-item">
-                            <ProductCard :product="product" />
+                    <div class="category-data flex flex-col gap-4 flex-1">
+                        <div class="flex justify-between gap-6 w-full">
+                            <div class="category-filter-data flex items-center z-50 w-full gap-4">
+                                <span class="uppercase text-gray-500 fs-14 font-medium">Phân loại</span>
+                                <USelectMenu v-model="filter" :options="filterList" option-attribute="name" class="w-full max-w-[200px]">
+                                    <UButton size="lg" color="gray" class="flex-1 justify-between">
+                                        {{ filter ? filter.name : $t('Sắp xếp theo') }}
+                                        <UIcon
+                                            name="i-heroicons-chevron-right-20-solid"
+                                            class="w-5 h-5 transition-transform transform rotate-90 text-gray-400 dark:text-gray-500" />
+                                    </UButton>
+                                    <template #option="{ option: filterItem }">
+                                        <span>{{ filterItem.name }}</span>
+                                    </template>
+                                </USelectMenu>
+                            </div>
+                        </div>
+                        <div v-if="isLoadingData" class="category-data-list">
+                            <div v-for="product in 6" class="category-data-item" :key="product">
+                                <ProductCard />
+                            </div>
+                        </div>
+                        <div v-else class="category-data-list">
+                            <div v-for="product in productList" class="category-data-item" :key="product">
+                                <ProductCard :product="product" />
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
                 <div class="container mx-auto md:max-w-[1280px] p-4">
-                    <span class="text-gray-500 font-medium fs-20 leading-relaxed">Dòng sản phẩm thể thao ứng dụng các chất liệu và thiết kế mới với nhiều tính năng ưu việt giúp bạn thoải mái và tập trung hơn vào các chuyển động của mình.</span>
+                    <span class="text-gray-500 font-medium fs-20 leading-relaxed"
+                        >Dòng sản phẩm thể thao ứng dụng các chất liệu và thiết kế mới với nhiều tính năng ưu việt giúp bạn thoải mái và tập
+                        trung hơn vào các chuyển động của mình.
+                    </span>
                 </div>
             </div>
         </div>
     </NuxtLayout>
 </template>
 <script setup>
-definePageMeta({layout: false})
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
@@ -274,33 +348,113 @@ const productList = ref([
         ],
     },
 ]);
-const filterList = [{
-  name: 'Mới nhất',
-  value: 'newest'
-}, {
-  name: 'Cũ nhất',
-  value: 'oldest',
-}, {
-  name: 'Bán chạy',
-  value: 'best_sale'
-}, {
-  name: 'Giá thấp đến cao',
-  value: 'Price increasement'
-}, {
-  name: 'Giá cao đến thấp',
-  value: 'Price decreasement'
-}]
+const filterList = ref([
+    {
+        name: 'Mới nhất',
+        value: 'newest',
+    },
+    {
+        name: 'Cũ nhất',
+        value: 'oldest',
+    },
+    {
+        name: 'Bán chạy',
+        value: 'best_sale',
+    },
+    {
+        name: 'Giá thấp đến cao',
+        value: 'Price increasement',
+    },
+    {
+        name: 'Giá cao đến thấp',
+        value: 'Price decreasement',
+    },
+]);
 
+const filter = ref(filterList.value[0]);
 
-const filter = ref('newest')
+const selectedForm = ref({});
+const selectedMaterial = ref({});
+const selectedColor = ref(null);
+
+const removeAllFilter = () => {
+    selectedForm.value = {};
+    selectedMaterial.value = {};
+    selectedColor.value = null;
+}
+const formFilter = ref([
+    {
+        name: 'Quần Trunk',
+        label: 'Quần Trunk',
+    },
+    {
+        name: 'Quần Tam Giác',
+        label: 'Quần Tam Giác',
+    },
+    {
+        name: 'Quần Boxer dài',
+        label: 'Quần Boxer dài',
+    },
+    {
+        name: 'Quần Long Leg',
+        label: 'Quần Long Leg',
+    },
+]);
+
+const materialFilter = ref([
+    {
+        name: 'Vải bamboo',
+        label: 'Vải bamboo (Sợi tre)',
+    },
+    {
+        name: 'Vải Café',
+        label: 'Vải Café',
+    },
+    {
+        name: 'Vải Cotton',
+        label: 'Vải Cotton',
+    },
+    {
+        name: 'Vải Ice Cooling',
+        label: 'Vải Ice Cooling',
+    },
+]);
+
+const colourFilter = ref([
+    {
+        name: 'Đen',
+        label: 'Đen',
+        color: '#000'
+    },
+    {
+        name: 'Trắng',
+        label: 'Trắng',
+        color: '#fff'
+    },
+    {
+        name: 'Xanh navy',
+        label: 'Xanh navy',
+        color: 'blue'
+    },
+    {
+        name: 'Xám',
+        label: 'Xám',
+        color: 'gray'
+    },
+    {
+        name: 'Đỏ',
+        label: 'Đỏ',
+        color: 'red'
+    },
+]);
 
 const changeCategoryTab = (index) => {
     tabIndex.value = index;
     isLoadingData.value = true;
     setTimeout(() => {
         isLoadingData.value = false;
-    }, 500)
-}
+    }, 500);
+};
 </script>
 <style lang="scss" scoped>
 .category-page {
@@ -319,10 +473,10 @@ const changeCategoryTab = (index) => {
         @apply flex gap-4 justify-start w-full flex-wrap;
         .category-data-item {
             width: calc(25% - 12px);
-            @media screen and (max-width: 991px) {
+            @media screen and (max-width: 1199px) {
                 width: calc(100% / 3 - 11px);
             }
-            @media screen and (max-width: 767px) {
+            @media screen and (max-width: 991px) {
                 width: calc(100% / 2 - 8px);
             }
         }

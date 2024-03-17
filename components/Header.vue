@@ -7,14 +7,14 @@
                 </NuxtLink>
             </div>
             <div class="sub-nav">
-                <NuxtLink to="#">Blog</NuxtLink>
-                <NuxtLink to="#">Về GAK</NuxtLink>
-                <NuxtLink to="#">Trung tâm CSKH</NuxtLink>
-                <NuxtLink to="#">Đăng nhập</NuxtLink>
+                <NuxtLink :to="localePath({ name: 'blog' })">{{ $t('Blog') }}</NuxtLink>
+                <NuxtLink :to="localePath({ name: 'about-us' })">{{ $t('Về GAK') }}</NuxtLink>
+                <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
+                <NuxtLink to="">{{ $t('Đăng nhập') }}</NuxtLink>
             </div>
         </div>
         <div class="topbar-promotion">
-            <NuxtLink to="#" target="_blank" class="flex items-center gap-1">
+            <NuxtLink to="" target="_blank" class="flex items-center gap-1">
                 Ra mắt GAK Basics!
                 <img
                     src="https://mcdn.coolmate.me/image/August2023/mceclip0_10.png"
@@ -75,12 +75,14 @@
                         <img :src="images.person" class="filter-white" alt="" />
                     </nuxt-link>
                 </UButton>
-                <UButton class="cart-btn" variant="ghost" color="none">
-                    <nuxt-link type="button" to="">
-                        <img :src="images.cart" class="filter-white" alt="" />
-                    </nuxt-link>
-                    <div class="count-item">99</div>
-                </UButton>
+                <NuxtLink :to="localePath({ name: 'cart' })">
+                    <UButton class="cart-btn" variant="ghost" color="none">
+                        <nuxt-link type="button" to="">
+                            <img :src="images.cart" class="filter-white" alt="" />
+                        </nuxt-link>
+                        <div class="count-item">99</div>
+                    </UButton>
+                </NuxtLink>
             </div>
             <div class="right-header-mobile flex justify-between items-center gap-6">
                 <UButton variant="ghost" color="none" :padded="false" class="search-mobile">
@@ -94,7 +96,7 @@
                 </UButton>
             </div>
         </div>
-        <USlideover :ui="{wrapper: 'z-[999]', overlay: { background: 'bg-gray-600/75' } }" v-model="profileSide">
+        <USlideover :ui="{ wrapper: 'z-[999]', overlay: { background: 'bg-gray-600/75' } }" v-model="profileSide">
             <UCard
                 class="flex flex-col flex-1"
                 :ui="{

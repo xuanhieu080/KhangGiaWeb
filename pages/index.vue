@@ -49,8 +49,9 @@
     </NuxtLayout>
 </template>
 <script setup>
-import Banner from '@/components/Banners/Banner.vue';
-import BannerBlock from '@/components/Banners/BannerBlock.vue';
+definePageMeta({ layout: false, auth: false });
+import Banner from '@/components/banners/Banner.vue';
+import BannerBlock from '@/components/banners/BannerBlock.vue';
 import ProductList from '@/components/products/ProductSwiper';
 import ProductCollection from '@/components/products/ProductCollection';
 import CategoryBox from '@/components/categories/CategoryBox.vue';

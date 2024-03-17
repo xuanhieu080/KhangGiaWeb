@@ -1,28 +1,31 @@
 <template>
-    <Teleport to="body">
-        <Header />
-        <main class="wrapper-desktop relative w-full min-h-screen">
-            <div class="w-full relative main">
-                <slot />
-            </div>
-            <div class="scroll-to-top fixed bottom-8 right-4" :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">
-                <UButton class="back-to-top rounded-full w-[50px] h-[50px] justify-center" icon="i-heroicons-chevron-up" @click="backToTop"></UButton>
-            </div>
-        </main>
-        <Footer />
-        <div class="dmca-container">
-            <a
-                href="//www.dmca.com/Protection/Status.aspx?ID=96e6318b-dec0-4669-9c13-a488589c8416"
-                title="DMCA.com Protection Status"
-                class="dmca-badge">
-                <NuxtImg
-                    format="webp"
-                    src="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=96e6318b-dec0-4669-9c13-a488589c8416"
-                    alt="DMCA.com Protection Status"
-                    class="w-full h-full object-contain"
-            /></a>
+    <Header />
+    <main class="wrapper-desktop relative w-full min-h-screen">
+        <div class="w-full relative main">
+            <slot />
         </div>
-    </Teleport>
+        <div
+            class="scroll-to-top fixed bottom-8 right-4"
+            :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">
+            <UButton
+                class="back-to-top rounded-full w-[50px] h-[50px] justify-center"
+                icon="i-heroicons-chevron-up"
+                @click="backToTop"></UButton>
+        </div>
+    </main>
+    <Footer />
+    <div class="dmca-container">
+        <a
+            href="//www.dmca.com/Protection/Status.aspx?ID=96e6318b-dec0-4669-9c13-a488589c8416"
+            title="DMCA.com Protection Status"
+            class="dmca-badge">
+            <NuxtImg
+                format="webp"
+                src="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=96e6318b-dec0-4669-9c13-a488589c8416"
+                alt="DMCA.com Protection Status"
+                class="w-full h-full object-contain"
+        /></a>
+    </div>
     <UNotifications class="z-99999" />
 </template>
 <script setup>
@@ -73,15 +76,15 @@ function controlHeaderShowing() {
     }
 }
 function handleBackToTopButton() {
-    if(window.scrollY > 500 && !showBackToTop.value) {
-        showBackToTop.value = true
+    if (window.scrollY > 500 && !showBackToTop.value) {
+        showBackToTop.value = true;
     } else if (window.scrollY < 500 && showBackToTop.value) {
-        showBackToTop.value = false
+        showBackToTop.value = false;
     }
 }
 const backToTop = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
-}
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+};
 </script>
 <style lang="scss" scoped>
 .wrapper-desktop {

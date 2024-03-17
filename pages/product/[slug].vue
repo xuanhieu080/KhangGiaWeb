@@ -87,7 +87,7 @@
                                 <div
                                     v-for="(listColor, index) in product.product_images"
                                     class="color-list-item w-12 h-8 rounded-3xl"
-                                    :class="colorProductActive == index ? 'ring-2 ring-inset ring-green-500' : ''"
+                                    :class="colorProductActive == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700'"
                                     :style="{ backgroundColor: listColor.code }"
                                     @click="colorProductActive = index"></div>
                             </div>
@@ -109,6 +109,7 @@
                                     {{ size.name }}
                                     <div v-if="size.quantity == 0" class="check-mark"></div>
                                 </button>
+                                <span v-if="productSizeIndex !== null" class="fs-14">{{ $t('Số lượng còn') }} <b>{{ product.product_sizes[productSizeIndex].quantity }}</b></span>
                             </div>
                         </div>
                         <div class="product-add-to-cart mt-auto flex items-center gap-4">
@@ -353,13 +354,13 @@ const product = ref({
         {
             name: 'L',
             description: '(1m66-1m72 | 62kg-68kg)',
-            quantity: 2,
+            quantity: 19,
         },
 
         {
             name: 'XL',
             description: '(1m72-1m77 | 69kg-75kg)',
-            quantity: 2,
+            quantity: 5,
         },
     ],
     product_images: [
@@ -574,10 +575,13 @@ const setThumbsSwiper = (swiper) => {
 const setProductSize = (size, index) => {
     productSize.value = size;
     productSizeIndex.value = index;
+    quantity.value = 1;
 };
 const handleQuantity = (index) => {
     if (index == 1) {
-        quantity.value += index;
+        if(quantity.value < product.value.product_sizes[productSizeIndex.value].quantity) {
+            quantity.value += index;
+        }
     } else {
         if (quantity.value > 1) {
             quantity.value += index;

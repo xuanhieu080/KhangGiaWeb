@@ -26,7 +26,7 @@
                     v-for="(image, index) in product.product_images"
                     class="product-type-item opacity-80"
                     :style="{ 'background-color': image.code }"
-                    @click="activeType = index"></button>
+                    @click.stop.prevent="activeType = index"></button>
             </div>
             <div class="product-details flex flex-col gap-2 w-full">
                 <div class="product-name">
