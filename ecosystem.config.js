@@ -6,7 +6,7 @@ module.exports = {
             instances: 'max', // Or a number of instances
             script: '.output/server/index.mjs',
             args: 'start',
-            port: 3002
+            port: 3000
         }
     ]
 }
