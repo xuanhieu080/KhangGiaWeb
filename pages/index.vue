@@ -59,11 +59,11 @@ import DiaryWrapper from '@/components/diary/diaryWrapper.vue';
 const localePath = useLocalePath();
 const bannerList = ref([
     {
-        url: 'https://media.coolmate.me/cdn-cgi/image/width=1920,quality=90,format=auto/uploads/February2024/UT_JOGGER.png',
+        url: '/images/banner_1.jpg',
         name: 'banner 1',
     },
     {
-        url: 'https://media.coolmate.me/cdn-cgi/image/width=1920,quality=90,format=auto/uploads/January2024/Banner-Basic_copytet.jpg',
+        url: '/images/banner_2.jpg',
         name: 'banner 2',
     },
 ]);
@@ -281,19 +281,19 @@ const collectionList = ref([
 ]);
 const bannerBlock = ref({
     image_desktop:
-        'https://media.coolmate.me/cdn-cgi/image/width=1800,height=1200,quality=80,format=auto/uploads/December2023/mceclip1_31.png',
-    image_mobile: 'https://media.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/December2023/mceclip5_50.png',
-    title: 'Quần dài nam',
-    description: 'Nhập mã <b>CM2024</b> giảm 15% tối đa 100K',
-    link: '/articles',
+        '/images/banner_3.jpg',
+    image_mobile: '/images/banner_3.jpg',
+    title: 'Đồng phục',
+    description: 'Thời trang 2024',
+    link: '/collection/dong-phuc',
 });
 const bannerBlock2 = ref({
     image_desktop:
-        'https://media.coolmate.me/cdn-cgi/image/width=1800,height=1200,quality=80,format=auto/uploads/December2023/mceclip2_67.png',
-    image_mobile: 'https://media.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/December2023/mceclip3_15.png',
-    title: 'Quần dài nam',
-    description: 'Nhập mã <b>CM2024</b> giảm 15% tối đa 100K',
-    link: '/articles',
+        '/images/banner_4.jpg',
+    image_mobile: '/images/banner_4.jpg',
+    title: 'Áo ghile kỹ sư',
+    description: 'Chuyên dụng - Chất lượng - Uy tín',
+    link: '/collection/ao-ghile',
 });
 const bannerBlock3 = ref({
     image_desktop: 'https://mcdn.coolmate.me/image/January2024/mceclip9.png',
