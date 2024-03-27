@@ -8,9 +8,9 @@
                     </div>
                     <div class="category-tabs w-full">
                         <Swiper
-                            :slidesPerView="4"
+                            :slidesPerView="2"
                             :spaceBetween="16"
-                            :slidesPerGroup="4"
+                            :slidesPerGroup="2"
                             :scrollbar="true"
                             :modules="modules"
                             :breakpoints="{
@@ -18,6 +18,16 @@
                                     slidesPerView: 5,
                                     slidesPerGroup: 5,
                                     spaceBetween: 16,
+                                },
+                                992: {
+                                    slidesPerView: 4,
+                                    slidesPerGroup: 4,
+                                    spaceBetween: 16,
+                                },
+                                768: {
+                                    slidesPerView: 3,
+                                    slidesPerGroup: 3,
+                                    spaceBetween: 15,
                                 },
                             }"
                             class="swiper category-swiper min-w-0 relative z-10">
@@ -38,14 +48,14 @@
                         </Swiper>
                     </div>
                 </div>
-                <div class="category-main flex justify-between w-full gap-6 mt-12">
-                    <div class="category-main-left w-full max-w-[350px] px-4">
-                        <div class="flex flex-col gap-4 justify-start-w-full sticky top-8">
+                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
+                    <div class="category-main-left w-full lg:max-w-[350px] px-4">
+                        <div class="flex flex-col gap-4 justify-start w-full sticky top-8">
                             <div class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
                                 {{ '16' + ' ' + $t('Kết quả') }}
-                                <UButton v-if="Object.keys(selectedForm).length > 0 || Object.keys(selectedMaterial).length > 0 || selectedColor" size="lg" variant="ghost" color="none" class="border rounded-3xl border-black font-bold" @click="removeAllFilter">{{ $t('Xóa lọc') }}</UButton>
+                                <UButton v-if="Object.keys(selectedForm).length > 0 || Object.keys(selectedMaterial).length > 0 || Object.keys(selectedSize).length > 0 || selectedColor" size="lg" variant="ghost" color="none" class="border rounded-3xl border-black font-bold" @click="removeAllFilter">{{ $t('Xóa lọc') }}</UButton>
                             </div>
-                            <div class="filter-options flex flex-col gap-4">
+                            <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
                                 <div class="filter-option-item flex flex-col gap-4">
                                     <div class="filter-option-title text-sm font-bold text-gray-500">
                                         {{ $t('Kiểu dáng') }}
@@ -74,10 +84,10 @@
                                     <div class="filter-option-title text-sm font-bold text-gray-500">
                                         {{ $t('Kích cỡ') }}
                                     </div>
-                                    <div class="color-list grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
-                                        <div class="color-list-item flex flex-col gap-2 items-center justify-center" v-for="(size, index) in sizeFilter" :key="colour" @click="selectedSize[index] = size">
-                                            
-                                        </div>
+                                    <div class="size-list grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+                                        <button class="size-list-item bg-gray-200 p-2 rounded-md flex flex-col gap-2 items-center justify-center" :class="(selectedSize && selectedSize.label) == size.label ? 'ring ring-green-500' : ''  " v-for="(size, index) in sizeFilter" :key="colour" @click="selectedSize = size">
+                                            {{ size.label }}
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="filter-option-item flex flex-col gap-4">
@@ -86,7 +96,7 @@
                                     </div>
                                     <div class="color-list grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
                                         <div class="color-list-item flex flex-col gap-2 items-center justify-center" v-for="(colour, index) in colourFilter" :key="colour" @click="selectedColor = colour">
-                                            <div class="h-6 w-6 border border-gray-400 rounded-full" :class="selectedColor && (selectedColor.name  == colour.name) ? 'ring ring-green-450' : ''  " :style="{backgroundColor: colour.color}"></div>
+                                            <div class="h-6 w-6 border border-gray-400 rounded-full" :class="selectedColor && (selectedColor.name  == colour.name) ? 'ring ring-green-500' : ''  " :style="{backgroundColor: colour.color}"></div>
                                             <span class="text-xs text-gray-500">{{ colour.name }}</span>
                                         </div>
                                     </div>
@@ -376,10 +386,11 @@ const filter = ref(filterList.value[0]);
 const selectedForm = ref({});
 const selectedMaterial = ref({});
 const selectedColor = ref(null);
-
+const selectedSize = ref({});
 const removeAllFilter = () => {
     selectedForm.value = {};
     selectedMaterial.value = {};
+    selectedSize.value = {};
     selectedColor.value = null;
 }
 const formFilter = ref([
@@ -419,7 +430,28 @@ const materialFilter = ref([
         label: 'Vải Ice Cooling',
     },
 ]);
-
+const sizeFilter = ref([
+{
+        name: 'S',
+        label: 'S',
+    },
+    {
+        name: 'M',
+        label: 'M',
+    },
+    {
+        name: 'L',
+        label: 'L',
+    },
+    {
+        name: 'XL',
+        label: 'XL',
+    },
+    {
+        name: '2XL',
+        label: '2XL',
+    },
+])
 const colourFilter = ref([
     {
         name: 'Đen',

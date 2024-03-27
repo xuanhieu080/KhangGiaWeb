@@ -31,7 +31,7 @@
             <div class="mobile-header"></div>
             <div class="middle-header" :class="menuMobile ? 'active-mobile' : ''">
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'index' })" @click="menuMobile = false">Sale</NuxtLink>
-                <NuxtLink class="main-nav-item" :to="localePath({ name: 'articles' })" @click="menuMobile = false">Sản phẩm</NuxtLink>
+                <NuxtLink class="main-nav-item" :to="localePath({ name: 'collection-slug', params: {slug: 'tat-ca'} })" @click="menuMobile = false">Sản phẩm</NuxtLink>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Đồ lót</div>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Đồ thể thao</div>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">Mặc hàng ngày</div>
@@ -75,10 +75,10 @@
                         <img :src="images.person" class="filter-white" alt="" />
                     </nuxt-link>
                 </UButton>
-                <NuxtLink :to="localePath({ name: 'cart' })">
+                <NuxtLink :to="localePath({ name: 'cart' })" class="flex-grow-0 flex-shrink-0">
                     <UButton class="cart-btn" variant="ghost" color="none">
-                        <nuxt-link type="button" to="">
-                            <img :src="images.cart" class="filter-white" alt="" />
+                        <nuxt-link type="button" to="" class="">
+                            <img :src="images.cart" class="filter-white " alt="" />
                         </nuxt-link>
                         <div class="count-item">99</div>
                     </UButton>

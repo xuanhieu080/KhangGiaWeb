@@ -4,9 +4,9 @@
         <div class="diary-subtitle text-center">Chia sẻ diện mạo mới nhất của bạn cùng với #GAK</div>
         <div v-if="diaryList.length > 0" class="diary-wrapper w-full my-4">
             <Swiper
-                :slidesPerView="4"
-                :spaceBetween="24"
-                :slidesPerGroup="4"
+                :slidesPerView="2"
+                :spaceBetween="16"
+                :slidesPerGroup="2"
                 :modules="modules"
                 :loop="true"
                 :autoplay="{
@@ -21,6 +21,17 @@
                     1280: {
                         slidesPerView: 5,
                         spaceBetween: 24,
+                        slidesPerGroup: 5
+                    },
+                    992: {
+                        slidesPerView: 4,
+                        spaceBetween: 16,
+                        slidesPerGroup: 4
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 16,
+                        slidesPerGroup: 3
                     },
                 }"
                 class="swiper diary-swiper min-w-0 relative z-10">

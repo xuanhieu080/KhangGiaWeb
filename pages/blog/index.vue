@@ -22,7 +22,7 @@
                         name="search-box-blog"
                         :placeholder="$t('Tìm kiếm bài viết...')" />
                 </div>
-                <div class="filter-category-blog flex items-center gap-6 w-full">
+                <div class="filter-category-blog flex flex-wrap items-center gap-6 w-full">
                     <USelectMenu
                         v-model="selectedCategory"
                         size="xl"
@@ -63,13 +63,13 @@
                         >
                     </NuxtLink>
                 </div>
-                <div class="blog-box-content flex items-start justify-between gap-6 w-full mt-6">
-                    <div class="flex w-1/2 max-w-[600px]">
+                <div class="blog-box-content flex md:flex-row flex-col items-start justify-between gap-6 w-full mt-6">
+                    <div class="flex w-full md:w-1/2 md:max-w-[660px]">
                         <ArticleSwiper :articleList="articleList" :title="'Bài viết nổi bật'" />
                     </div>
-                    <div class="most-view flex flex-col gap-4 w-2/5">
+                    <div class="most-view flex flex-col gap-4 py-4 md:py-0 w-full md:w-2/5">
                         <div class="title text-[28px] 2xl:text-[36px] font-bold">{{ $t('Xem nhiều nhất') }}</div>
-                        <div class="article-list flex flex-col gap-3">
+                        <div class="article-list flex flex-col gap-6 md:gap-3">
                             <ArticleBadge v-for="article in articleListBadge" :article="article" />
                         </div>
                     </div>
