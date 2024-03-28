@@ -28,7 +28,7 @@
                     </div>
                 </UButton>
             </div>
-            <div class="about-content py-12 container mx-auto">
+            <div class="about-content !py-12 container mx-auto">
                 <div class="prose max-w-full" v-html="content"></div>
             </div>
         </div>

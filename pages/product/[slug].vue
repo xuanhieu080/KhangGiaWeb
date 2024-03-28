@@ -2,9 +2,9 @@
     <NuxtLayout name="main">
         <div class="product-page py-6">
             <div class="container mx-auto flex flex-col gap-4">
-                <div class="product-image-swiper justify-center items-start flex gap-4 relative pt-12">
+                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start  gap-4 relative pt-12">
                     <UBreadcrumb
-                        class="w-max absolute -top-2 left-[96px]"
+                        class="w-max absolute -top-2 left-2 lg:left-[96px]"
                         divider="/"
                         :links="[{ label: $t('Home'), to: '/' }, { label: product.product_name }]" />
                     <swiper
@@ -16,7 +16,7 @@
                         :watchSlidesProgress="true"
                         :modules="modules"
                         :direction="'vertical'"
-                        class="!w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
+                        class="!hidden lg:!block !w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
                         <SwiperSlide v-for="image in imageList.list" class="!h-[120px] w-full rounded-md">
                             <img :src="image" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
@@ -25,7 +25,7 @@
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                     </div>
-                    <div v-show="thumbsSwiper" class="main-product-swiper md:min-w-[350px] w-[350px] sticky top-2">
+                    <div v-show="thumbsSwiper" class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
                         <Swiper
                             :spaceBetween="10"
                             :navigation="{
@@ -35,7 +35,7 @@
                             :thumbs="{ swiper: thumbsSwiper }"
                             :modules="modules"
                             class="!mx-0">
-                            <SwiperSlide v-for="image in imageList.list">
+                            <SwiperSlide v-for="image in imageList.list" class="!flex justify-center">
                                 <img :src="image" alt="" class="rounded-md" />
                             </SwiperSlide>
                             <template v-slot:container-end>
@@ -190,16 +190,30 @@
                 <div class="product-similar my-8">
                     <h3 class="w-full text-center !text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
                     <Swiper
-                        :spaceBetween="12"
+                        :spaceBetween="0"
                         :navigation="{
                             nextEl: '.similar-products-swiper .next-similar-btn',
                             prevEl: '.similar-products-swiper .prev-similar-btn',
                         }"
                         :modules="modulesSimilar"
-                        :slidesPerView="4"
+                        :slidesPerView="1"
                         :slidesPerGroup="1"
                         :grabCursor="true"
                         :loop="true"
+                        :breakpoints="{
+                            1280: {
+                                slidesPerView: 4,
+                                spaceBetween: 12,
+                            },
+                            992: {
+                                slidesPerView: 3,
+                                spaceBetween: 14,
+                            },
+                            567: {
+                                slidesPerView: 2,
+                                spaceBetween: 16,
+                            },
+                        }"
                         class="similar-products-swiper relative">
                         <SwiperSlide v-for="similarProduct in similarList">
                             <ProductCard :product="similarProduct" />
@@ -222,8 +236,8 @@
                         </template>
                     </Swiper>
                 </div>
-                <div class="product-reviews flex items-start gap-6 mt-[48px]">
-                    <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-max sticky top-2">
+                <div class="product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px]">
+                    <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-max lg:sticky top-2">
                         <div class="uppercase font-bold">Đánh giá sản phẩm</div>
                         <div class="font-bold text-[4rem]">{{ product.product_rating.number }}</div>
                         <NuxtRating
@@ -236,7 +250,7 @@
                             {{ product.product_rating.reviews.length + ' ' + $t('Review') }}
                         </div>
                     </div>
-                    <div v-if="product.product_rating.reviews.length > 0" class="grid grid-cols-2 flex-1 gap-8">
+                    <div v-if="product.product_rating.reviews.length > 0" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
                         <div
                             v-for="review in product.product_rating.reviews"
                             class="review-item flex flex-col justify-start gap-4 py-4 fs-14 font-medium border-b">

@@ -1,8 +1,8 @@
 <template>
     <NuxtLayout name="main">
         <div class="cart-page py-6">
-            <div class="container mx-auto flex items-start w-full gap-4">
-                <div class="cart-information-user flex flex-col gap-6 w-1/2 border-r border-gray-300 pr-4">
+            <div class="container mx-auto flex flex-col-reverse lg:flex-row items-start w-full gap-4">
+                <div class="cart-information-user flex flex-col gap-6 w-full lg:w-1/2 border-r border-gray-300 pr-4">
                     <div class="flex flex-col gap-2 font-medium">
                         <div class="text-3xl font-bold">Hi, {{ 'Nguyễn Văn A' }}</div>
                         <span>
@@ -239,7 +239,7 @@
                         {{ $t('Thanh toán') + ' ' + '499k' + '(COD)' }}
                     </UButton>
                 </div>
-                <div class="cart-product flex flex-col gap-4 w-1/2">
+                <div class="cart-product flex flex-col gap-4 w-full lg:w-1/2">
                     <div class="text-3xl font-bold">{{ $t('Giỏ hàng') }}</div>
                     <div
                         class="font-medium uppercase text-gray-400 text-sm pb-4 border-b border-gray-300 w-full flex items-center justify-between">
@@ -248,7 +248,7 @@
                     </div>
                     <div class="product-list flex flex-col gap-4 divide-y divide-gray-300">
                         <div class="product-list-item w-full flex gap-4 pt-4" v-for="item in productList">
-                            <div class="product-image w-[126px]">
+                            <div class="product-image flex-grow-0 flex-shrink-0 w-[126px]">
                                 <img :src="item.product_images[0].list[0]" class="h-full w-full object-contain" alt="" />
                             </div>
                             <div class="product-information flex flex-col justify-between gap-4 w-full">
@@ -262,7 +262,7 @@
                                         }}
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between w-full gap-2">
+                                <div class="flex flex-col md:flex-wrap md:flex-row items-start gap-4 md:items-center justify-between w-full h-full md:gap-2">
                                     <USelectMenu
                                         v-model="selectedColorProduct"
                                         :options="item.product_images"
@@ -283,7 +283,7 @@
                                         option-attribute="name"
                                         :ui="{ rounded: 'rounded-2xl' }">
                                         <template #label>
-                                            <span class="truncate">{{ selectedSizeProduct ? selectedSizeProduct.name : 'Chọn màu' }}</span>
+                                            <span class="truncate">{{ selectedSizeProduct ? selectedSizeProduct.name : 'Chọn kích cỡ' }}</span>
                                         </template>
                                         <template #option="{ option: selected }">
                                             <span class="truncate">{{ selected.name }}</span>
