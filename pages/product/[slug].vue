@@ -603,7 +603,6 @@ const handleQuantity = (index) => {
     }
 };
 
-
 useSchemaOrg([
     defineProduct({
         name: 'test',
