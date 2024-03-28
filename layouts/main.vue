@@ -85,6 +85,91 @@ function handleBackToTopButton() {
 const backToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 };
+
+useSchemaOrg([
+    definePlace({
+        name: process.env.NUXT_SITE_NAME,
+        address: {
+            addressCountry: process.env.NUXT_SITE_ADDRESS_COUNTRY,
+            postalCode: process.env.NUXT_SITE_POSTAL_CODE,
+            addressLocality: process.env.NUXT_SITE_ADDRESS_LOCALITY,
+            addressRegion: process.env.NUXT_SITE_ADDRESS_REGION,
+            streetAddress: process.env.NUXT_SITE_STREET_ADDRESS,
+        },
+        geo: {
+            latitude: "10.786930681950782",
+            longitude: "106.65401739821424"
+        }
+    }),
+    defineOrganization({
+        '@type': 'Organization',
+        name: process.env.NUXT_SITE_NAME,
+        url: process.env.WEB_BASE_URL,
+        logo: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
+        email:process.env.NUXT_SITE_EMAIL,
+        phone:process.env.NUXT_SITE_PHONE,
+        telephone:process.env.NUXT_SITE_PHONE,
+        sameAs: [
+            'https://www.facebook.com/GAKBHLD',
+            'https://twitter.com/congtygak',
+            'https://www.instagram.com/congtygak',
+            'https://www.tiktok.com/@congtygak',
+        ]
+    }),
+    defineOrganization({
+        '@type': 'Store',
+        name: process.env.NUXT_SITE_NAME,
+        url: process.env.WEB_BASE_URL,
+        logo: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
+        email:process.env.NUXT_SITE_EMAIL,
+        phone:process.env.NUXT_SITE_PHONE,
+        telephone:process.env.NUXT_SITE_PHONE,
+        sameAs: [
+            'https://www.facebook.com/GAKBHLD',
+            'https://twitter.com/congtygak',
+            'https://www.instagram.com/congtygak',
+            'https://www.tiktok.com/@congtygak',
+        ]
+    }),
+    defineLocalBusiness({
+        name: process.env.NUXT_SITE_NAME,
+        url: process.env.WEB_BASE_URL,
+        logo: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
+        address: {
+            addressCountry: process.env.NUXT_SITE_ADDRESS_COUNTRY,
+            postalCode: process.env.NUXT_SITE_POSTAL_CODE,
+            addressLocality: process.env.NUXT_SITE_ADDRESS_LOCALITY,
+            addressRegion: process.env.NUXT_SITE_ADDRESS_REGION,
+            streetAddress: process.env.NUXT_SITE_STREET_ADDRESS,
+        },
+        openingHoursSpecification: [
+            {
+                dayOfWeek: [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                ],
+                opens: '08:00',
+                closes: '12:00',
+            },
+            {
+                dayOfWeek: [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                ],
+                opens: '13:00',
+                closes: '17:00',
+            },
+        ],
+    }),
+])
 </script>
 <style lang="scss" scoped>
 .wrapper-desktop {

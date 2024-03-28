@@ -602,6 +602,33 @@ const handleQuantity = (index) => {
         }
     }
 };
+
+
+useSchemaOrg([
+    defineProduct({
+        name: 'test',
+        image: '/product.png',
+        offers: [
+            { price: 50 },
+        ],
+        aggregateRating: {
+            ratingValue: 88,
+            bestRating: 100,
+            ratingCount: 20,
+        },
+        review: [
+            {
+                name: 'Awesome product!',
+                author: {
+                    name: 'Harlan Wilton',
+                },
+                reviewRating: {
+                    ratingValue: 5,
+                },
+            },
+        ],
+    })
+]);
 </script>
 <style lang="scss" scoped>
 .product-page {

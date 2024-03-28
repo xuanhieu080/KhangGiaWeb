@@ -8,17 +8,54 @@ export default defineNuxtConfig({
             domain: process.env.DOMAIN,
             apiURL: process.env.API_BASE_URL,
             hegkaURL: process.env.HEGKA_URL,
+            name: process.env.NUXT_SITE_NAME,
+            title: process.env.NUXT_SITE_TITLE,
+            description: process.env.NUXT_SITE_DESCRIPTION,
+            defaultLocale: process.env.NUXT_SITE_LOCALE,
+            email: process.env.NUXT_SITE_EMAIL,
+            telephone: process.env.NUXT_SITE_TELEPHONE,
+            street: process.env.NUXT_SITE_STREET_ADDRESS,
+            region: process.env.NUXT_SITE_ADDRESS_REGION,
+            country: process.env.NUXT_SITE_ADDRESS_COUNTRY,
+            postal: process.env.NUXT_SITE_POSTAL_CODE,
         },
     },
     build: {
         transpile: ['@vuepic/vue-datepicker'],
     },
     routeRules: {
-        '/articles/**': { ssr: false },
+        // '/articles/**': { ssr: false },
         // '/app/**': { ssr: false },
         // '/en/app/**': { ssr: false },
     },
-    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image'],
+    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo'],
+    site: {
+        indexable: false,
+        url: process.env.WEB_BASE_URL,
+        name: process.env.NUXT_SITE_NAME,
+        description: process.env.NUXT_SITE_DESCRIPTION,
+        defaultLocale: process.env.NUXT_SITE_LOCALE,
+    },
+    sitemap: {
+        enabled: false,
+    },
+    schemaOrg: {
+        identity: {
+            type: 'Organization',
+            name: process.env.NUXT_SITE_NAME,
+            url: process.env.WEB_BASE_URL,
+            logo: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
+            email:process.env.NUXT_SITE_EMAIL,
+            phone:process.env.NUXT_SITE_PHONE,
+            telephone:process.env.NUXT_SITE_PHONE,
+            sameAs: [
+                'https://www.facebook.com/GAKBHLD',
+                'https://twitter.com/congtygak',
+                'https://www.instagram.com/congtygak',
+                'https://www.tiktok.com/@congtygak',
+            ]
+        },
+    },
     pinia: {
         autoImports: [
             // automatically imports `defineStore`

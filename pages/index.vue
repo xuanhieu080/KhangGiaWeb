@@ -49,6 +49,8 @@
     </NuxtLayout>
 </template>
 <script setup>
+import { defineOrganization } from '@unhead/schema-org';
+
 definePageMeta({ layout: false, auth: false });
 import Banner from '@/components/Banners/Banner.vue';
 import BannerBlock from '@/components/Banners/BannerBlock.vue';
@@ -374,6 +376,18 @@ const diaryList = ref([
         discount: 0,
     },
 ]);
+
+///SEO
+const config = useRuntimeConfig();
+
+
+defineOgImageComponent('GAK', {
+    title: config.public.title,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+})
+
 </script>
 <style lang="scss" scoped>
 .dashboard {

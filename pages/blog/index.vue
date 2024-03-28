@@ -303,6 +303,23 @@ const articleListBadge = ref([
 ]);
 const selectedCategory = ref(categoryBlog.value[0]);
 const selectedSecondCategory = ref(categoryBlog.value[0]);
+useSchemaOrg([
+    defineArticle({
+        type: 'BlogPosting',
+        headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
+        title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
+        description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
+        image: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
+        datePublished: new Date(2024, 1, 1),
+        dateModified: new Date(2024, 1, 1),
+        author: [
+            {
+                name: 'Chung Ngô',
+                url: 'https://gak.vn',
+            },
+        ]
+    })
+]);
 </script>
 
 <style lang="scss" scoped>
