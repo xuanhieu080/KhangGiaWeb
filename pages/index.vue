@@ -22,7 +22,7 @@
                 <ProductCollection
                     key="container-1"
                     :productList="collectionList"
-                    :collectionTitle="'Sản phẩm áo quần dài nam'"
+                    :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'"
                     :collectionLink="'/articles'" />
             </div>
             <div class="banner-block h-full">
@@ -32,7 +32,7 @@
                 <ProductCollection
                     key="container-2"
                     :productList="collectionList"
-                    :collectionTitle="'Sản phẩm thu đông'"
+                    :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"
                     :collectionLink="'/articles'" />
             </div>
             <div class="banner-block container mx-auto flex justify-between gap-4 w-full h-full">
@@ -300,15 +300,15 @@ const bannerBlock2 = ref({
 const bannerBlock3 = ref({
     image_desktop: '/images/banner_5.jpg',
     image_mobile: '/images/banner_5.jpg',
-    title: 'Quà tặng hấp dẫn',
-    subtitle: 'CM24 - Nước hoa nam',
+    title: 'Nguyên phụ liệu',
+    subtitle: 'Phản Quang Chất lượng cao',
     link: '/articles',
 });
 const bannerBlock4 = ref({
     image_desktop: '/images/banner_6.jpg',
     image_mobile: '/images/banner_6.jpg',
-    title: 'Basketball collection',
-    subtitle: '84Rising - Streetwear',
+    title: 'Nguyên phụ liệu',
+    subtitle: 'Vải /lưới',
     link: '/articles',
 });
 

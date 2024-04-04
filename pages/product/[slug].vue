@@ -290,6 +290,9 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 
+const route = useRoute();
+// console.log(route.params.slug);
+
 let modules = ref([Navigation, Thumbs]);
 let modulesSimilar = ref([Navigation]);
 const localePath = useLocalePath();

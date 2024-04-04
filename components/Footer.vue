@@ -4,7 +4,7 @@
             <div class="site-footer__inner">
                 <div class="site-footer__sidebar">
                     <div class="footer-about mb-6">
-                        <h4 class="site-footer__title">COOLMATE lắng nghe bạn!</h4>
+                        <h4 class="site-footer__title">Công ty GAK tận tâm & tử tế trên từng sản phẩm</h4>
                         <p class="site-footer__description">
                             Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm
                             dịch vụ và sản phẩm tốt hơn nữa.
@@ -23,8 +23,8 @@
                             <div class="footer-info__content">
                                 <span class="footer-info__title"> Hotline </span>
                                 <p class="footer-info__desciption">
-                                    <a href="tel: 1900272737">1900.272737</a> - <a href="tel: 02877772737">028.7777.2737</a> <br />
-                                    <span>(8:30 - 22:00)</span>
+                                    <a href="tel: 0569133339">056.913.33.39</a> - <a href="tel: 0947636569">094.763.65.69</a> <br />
+                                    <span>(8:00 - 17:30)</span>
                                 </p>
                             </div>
                         </div>
@@ -34,24 +34,24 @@
                             </div>
                             <div class="footer-info__content">
                                 <span class="footer-info__title"> Email </span>
-                                <p class="footer-info__desciption"><a href="mailto: Cool@coolmate.me"> Cool@coolmate.me </a></p>
+                                <p class="footer-info__desciption"><a href="mailto:ctygak@gmail.com"> ctygak@gmail.com </a></p>
                             </div>
                         </div>
                     </div>
                     <div class="footer-social">
-                        <a href="https://www.facebook.com/coolmate.me" target="_blank" class="footer-social__item"
+                        <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_facebook" alt="Footer Icon facebook"
                         /></a>
-                        <a href="https://zalo.me/1517736583279228381" target="_blank" class="footer-social__item"
+                        <a href="https://zalo.me/569133339" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_zalo" alt="Footer Icon Zalo"
                         /></a>
-                        <a href="https://www.tiktok.com/@cool.coolmate" target="_blank" class="footer-social__item"
+                        <a href="https://www.tiktok.com/@congtygak" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_tiktok" alt="Footer Icon tiktok"
                         /></a>
-                        <a href="https://www.instagram.com/coolmate.me/" target="_blank" class="footer-social__item"
+                        <a href="https://www.instagram.com/congtygak/" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_instagram" alt="Footer Icon instar"
                         /></a>
-                        <a href="https://www.youtube.com/channel/UCWw8wLlodKBtEvVt1tTAsMA" target="_blank" class="footer-social__item"
+                        <a href="https://twitter.com/congtygak" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_youtube" alt="Footer Icon youtube"
                         /></a>
                     </div>
@@ -59,43 +59,42 @@
                 <div class="site-footer__menu">
                     <div class="footer-menu">
                         <div class="footer-menu__item">
-                            <h4 class="footer-menu__title">COOLCLUB</h4>
+                            <h4 class="footer-menu__title">GAK CARE</h4>
                             <ul>
                                 <li>
                                     <a href="/page/coolclub-chuong-trinh-khach-hang-than-thiet-cua-coolmate?itm_source=footerm"
-                                        >Đăng kí thành viên</a
+                                        >GAK OFFICIAL</a
                                     >
                                 </li>
                                 <li>
-                                    <a href="/page/coolclub-chinh-sach-khach-hang-than-thiet?itm_source=footer">Ưu đãi &amp; Đặc quyền</a>
+                                    <a href="/page/coolclub-chinh-sach-khach-hang-than-thiet?itm_source=footer">Ưu đãi & Đặc quyền đại lý</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="footer-menu__item">
                             <h4 class="footer-menu__title">Chính sách</h4>
                             <ul>
-                                <li><a href="/page/dich-vu-60-ngay-doi-tra">Chính sách đổi trả 60 ngày</a></li>
-                                <li><a href="/page/chuong-trinh-va-chinh-sach-khuyen-mai-tai-coolmate">Chính sách khuyến mãi</a></li>
-                                <li><a href="/page/chinh-sach-bao-mat-thong-tin-ca-nhan">Chính sách bảo mật</a></li>
+                                <li><a href="/page/dieu-khoan-sua-dung">Điều khoản sử dụng</a></li>
+                                <li><a href="/page/chinh-sach-cookie">Chính sách Cookie</a></li>
+                                <li><a href="/page/chinh-sach-bao-mat-thong-tin-ca-nhan">Chính sách khuyến mãi</a></li>
+                                <li><a href="/page/chinh-sach-bao-mat">Chính sách bảo mật</a></li>
                                 <li><a href="/page/dich-vu-giao-hang-coolmate">Chính sách giao hàng</a></li>
-                            </ul>
-                            <h4 class="footer-menu__title">Coolmate.me</h4>
-                            <ul>
-                                <li><a href="/page/changelog?itm_source=footer">Lịch sử thay đổi website</a></li>
+                                <li><a href="/page/dich-vu-giao-hang-coolmate">Sơ đồ website</a></li>
                             </ul>
                         </div>
                         <div class="footer-menu__item">
-                            <h4 class="footer-menu__title">Chăm sóc khách hàng</h4>
+
+                            <h4 class="footer-menu__title">CHĂM SÓC KHÁCH HÀNG</h4>
                             <ul>
-                                <li><a href="/page/11-dich-vu-tai-coolmate-co-the-ban-chua-biet">Trải nghiệm mua sắm 100% hài lòng</a></li>
-                                <li><a href="/page/faqs">Hỏi đáp - FAQs</a></li>
+                                <li><a href="/page/changelog?itm_source=footer">Quy trình mua sắm</a></li>
+                                <li><a href="/page/changelog?itm_source=footer">Hỏi đáp - FAQs</a></li>
                             </ul>
-                            <h4 class="footer-menu__title">Kiến thức mặc đẹp</h4>
+                            <h4 class="footer-menu__title">KIẾN THỨC HỮU ÍCH</h4>
                             <ul>
                                 <li><a href="/size-chart">Hướng dẫn chọn size</a></li>
                                 <li><a href="/blog">Blog</a></li>
                                 <li>
-                                    <a href="https://www.facebook.com/groups/2103080403316797" target="_blank">Group mặc đẹp sống chất</a>
+                                    <a href="https://www.facebook.com/GAKBHLD" target="_blank">Group mua bán vài & Bảo hộ Lao Động</a>
                                 </li>
                             </ul>
                         </div>
@@ -105,29 +104,25 @@
                                 <li><a href="/lp/coolmate-101?itm_source=footer#recruitment-jobs">Tuyển dụng</a></li>
                                 <li>
                                     <a
-                                        href="http://online.gov.vn/(X(1)S(sgmttobbtsiaq3l5itoicxhw))/Home/WebDetails/53184?AspxAutoDetectCookieSupport=1"
+                                        href="#"
                                         target="_blank"
-                                        >Đăng ký bản quyền</a
+                                        >Công bố bộ công thương</a
                                     >
                                 </li>
                             </ul>
-                            <h4 class="footer-menu__title">Về COOLMATE</h4>
+                            <h4 class="footer-menu__title">VỀ CÔNG TY GAK</h4>
                             <ul>
-                                <li><a href="/lp/coolmate-101?itm_source=footer">Coolmate 101</a></li>
-                                <li><a href="/page/11-dich-vu-tai-coolmate-co-the-ban-chua-biet?itm_source=footer">DVKH xuất sắc</a></li>
-                                <li><a href="/page/coolmate-story?itm_source=footer"> Câu chuyện về Coolmate</a></li>
+                                <li><a href="/lp/coolmate-101?itm_source=footer">GAK BE KINDNESS</a></li>
+                                <li><a href="/page/11-dich-vu-tai-coolmate-co-the-ban-chua-biet?itm_source=footer">DVKH tận tâm</a></li>
+                                <li><a href="/page/coolmate-story?itm_source=footer">Câu chuyện về công ty GAK</a></li>
                                 <li><a href="/page/san-pham-coolmate-duoc-san-xuat-nhu-the-nao?itm_source=footer">Nhà máy</a></li>
-                                <li><a href="/collection/care-and-share?itm_source=footer">Care &amp; Share</a></li>
+                                <li><a href="/collection/care-and-share?itm_source=footer">Trách nhiệm xã hội và cộng đồng</a></li>
                             </ul>
                         </div>
                         <div class="footer-menu__item">
                             <h4 class="footer-menu__title">Địa chỉ liên hệ</h4>
                             <p class="footer-menu__desciption">
-                                <u>Văn phòng Hà Nội:</u> Tầng 3-4, Tòa nhà BMM, KM2, Đường Phùng Hưng, Phường Phúc La, Quận Hà Đông, TP Hà
-                                Nội
-                            </p>
-                            <p class="footer-menu__desciption">
-                                <u>Văn phòng Tp HCM:</u> Lầu 1, Số 163 Trần Trọng Cung, Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh
+                                <u>Văn phòng Tp HCM:</u> 15 Lê Minh Xuân, Phường 7, Tân Bình, Thành phố Hồ Chí Minh 700000
                             </p>
                         </div>
                     </div>

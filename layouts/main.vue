@@ -5,13 +5,21 @@
             <slot />
         </div>
         <div
-            class="scroll-to-top fixed bottom-8 right-4"
+            class="scroll-to-top fixed bottom-8 left-4 z-[999]"
             :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">
             <UButton
                 class="back-to-top rounded-full w-[50px] h-[50px] justify-center"
                 icon="i-heroicons-chevron-up"
                 @click="backToTop"></UButton>
         </div>
+<!--        <div-->
+<!--            class="scroll-to-top fixed bottom-8 right-4"-->
+<!--            :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">-->
+<!--            <UButton-->
+<!--                class="back-to-top rounded-full w-[50px] h-[50px] justify-center"-->
+<!--                icon="i-heroicons-chevron-up"-->
+<!--                @click="backToTop"></UButton>-->
+<!--        </div>-->
     </main>
     <Footer />
     <div class="dmca-container">
