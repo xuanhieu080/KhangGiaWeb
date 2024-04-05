@@ -37,7 +37,7 @@
             variant="ghost"
             color="none"
             size="lg"
-            class="prev-product-btn -translate-x-1/2 md:-translate-x-full absolute top-1/2 left-0 -translate-y-1/2 z-0 hover:z-20"
+            class="prev-product-btn -translate-x-1/2 md:-translate-x-full absolute top-1/2 left-0 -translate-y-1/2 z-20 md:z-0 hover:z-20"
             :padded="false">
             <UIcon class="text-[40px]" name="i-material-symbols-arrow-circle-left-rounded" dynamic />
         </UButton>
@@ -45,7 +45,7 @@
             variant="ghost"
             color="none"
             size="lg"
-            class="next-product-btn translate-x-1/2 md:translate-x-full absolute top-1/2 right-0 -translate-y-1/2 z-0 hover:z-20"
+            class="next-product-btn translate-x-1/2 md:translate-x-full absolute top-1/2 right-0 -translate-y-1/2 z-20 md:z-0 hover:z-20"
             :padded="false">
             <UIcon class="text-[40px]" name="i-material-symbols-arrow-circle-right-rounded" dynamic />
         </UButton>

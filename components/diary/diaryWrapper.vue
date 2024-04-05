@@ -2,7 +2,7 @@
     <div class="diary-container">
         <div class="diary-title text-center fs-28 font-bold leading-relaxed">Nhật ký GAK</div>
         <div class="diary-subtitle text-center">Chia sẻ diện mạo mới nhất của bạn cùng với #GAK</div>
-        <div v-if="diaryList.length > 0" class="diary-wrapper w-full my-4">
+        <div v-if="diaryList.length > 0" class="diary-wrapper w-full my-4 relative">
             <Swiper
                 :slidesPerView="2"
                 :spaceBetween="16"
@@ -43,17 +43,17 @@
                 variant="ghost"
                 color="none"
                 size="lg"
-                class="prev-diary-btn -translate-x-1/2 md:-translate-x-full absolute top-1/2 left-0 -translate-y-1/2 z-0 hover:z-20"
+                class="prev-diary-btn lg:bg-gray-200 bg-black rounded-full -translate-x-1/2 md:-translate-x-full absolute top-1/2 left-2 lg:left-4 -translate-y-1/2 z-20 lg:z-0 hover:z-20"
                 :padded="false">
-                <UIcon class="text-[40px]" name="i-flowbite-arrow-left-outline" dynamic />
+                <UIcon class="text-[32px] text-white lg:text-black lg:text-[40px]" name="i-flowbite-arrow-left-outline" dynamic />
             </UButton>
             <UButton
                 variant="ghost"
                 color="none"
                 size="lg"
-                class="next-diary-btn translate-x-1/2 md:translate-x-full absolute top-1/2 right-0 -translate-y-1/2 z-0 hover:z-20"
+                class="next-diary-btn lg:bg-gray-200 bg-black rounded-full translate-x-1/2 md:translate-x-full absolute top-1/2 right-2 lg:right-4 -translate-y-1/2 z-20 lg:z-0 hover:z-20"
                 :padded="false">
-                <UIcon class="text-[40px]" name="i-flowbite-arrow-right-outline" dynamic />
+                <UIcon class="text-[32px] text-white lg:text-black lg:text-[40px]" name="i-flowbite-arrow-right-outline" dynamic />
             </UButton>
         </div>
     </div>

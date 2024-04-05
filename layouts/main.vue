@@ -12,14 +12,6 @@
                 icon="i-heroicons-chevron-up"
                 @click="backToTop"></UButton>
         </div>
-<!--        <div-->
-<!--            class="scroll-to-top fixed bottom-8 right-4"-->
-<!--            :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">-->
-<!--            <UButton-->
-<!--                class="back-to-top rounded-full w-[50px] h-[50px] justify-center"-->
-<!--                icon="i-heroicons-chevron-up"-->
-<!--                @click="backToTop"></UButton>-->
-<!--        </div>-->
     </main>
     <Footer />
     <div class="dmca-container">
@@ -181,7 +173,7 @@ useSchemaOrg([
 </script>
 <style lang="scss" scoped>
 .wrapper-desktop {
-    padding-top: calc(var(--header-topbar) + var(--header-top-promotion) + var(--header-main));
+    padding-top: calc(var(--header-topbar) + var(--header-main)); // + var(--header-top-promotion) if need middle header 
     @media screen and (max-width: 991px) {
         padding-top: var(--header-main);
     }

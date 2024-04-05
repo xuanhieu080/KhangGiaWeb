@@ -35,7 +35,7 @@
                     :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"
                     :collectionLink="'/articles'" />
             </div>
-            <div class="banner-block container mx-auto flex justify-between gap-4 w-full h-full">
+            <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-1 md:gap-4 w-full h-full">
                 <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
                 <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
             </div>

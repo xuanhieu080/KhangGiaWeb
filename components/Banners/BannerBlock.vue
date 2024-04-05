@@ -1,9 +1,9 @@
 <template>
     <div v-if="bannerBlock" class="banner-block my-4">
-        <picture class="w-full"
-            ><source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
-            <img :src="bannerBlock.image_desktop" alt="Quần dài nam" style="width: 100%"
-        /></picture>
+        <picture class="w-full">
+            <source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
+            <img :src="bannerBlock.image_desktop" alt="Quần dài nam" style="width: 100%" />
+        </picture>
         <div v-if="!hideContent" class="banner-content" :class="splitBanner ? 'modify-position' : ''">
             <div v-if="bannerBlock.subtitle" class="opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
             <div class="title" :class="splitBanner ? 'custom-font' : ''">{{ bannerBlock.title }}</div>
