@@ -391,7 +391,7 @@ const handleCloseSubMenu = (e) => {
         padding-right: 30px;
     }
     .header {
-        background-color: #181818;
+        background-color: #f1f1f1;
         transition: all 0.3s;
         position: relative;
         height: var(--header-main);
