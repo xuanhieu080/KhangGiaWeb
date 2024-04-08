@@ -1,5 +1,4 @@
-
-export const useMyFetch = (request, opts, contentType = 'application/json') => {
+export const useOriginalFetch = (request, opts, contentType = 'application/json') => {
     let headerParams = {};
     const config = useRuntimeConfig();
     // const { $auth } = useNuxtApp();
@@ -7,6 +6,5 @@ export const useMyFetch = (request, opts, contentType = 'application/json') => {
     //     headerParams.Authorization = $auth.strategy.token.get();
     // }
 
-
-    return useFetch(request, { baseURL: config.public.apiURL, headers: headerParams, ...opts });
+    return $fetch(`${config.public.apiURL}${request}`, { baseURL: config.public.apiURL, headers: headerParams, ...opts });
 };

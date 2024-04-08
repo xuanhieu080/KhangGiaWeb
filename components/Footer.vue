@@ -58,66 +58,15 @@
                 </div>
                 <div class="site-footer__menu">
                     <div class="footer-menu">
-                        <div class="footer-menu__item">
-                            <h4 class="footer-menu__title">GAK CARE</h4>
-                            <ul>
-                                <li>
-                                    <a href="/page/coolclub-chuong-trinh-khach-hang-than-thiet-cua-coolmate?itm_source=footerm"
-                                        >GAK OFFICIAL</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="/page/coolclub-chinh-sach-khach-hang-than-thiet?itm_source=footer">Ưu đãi & Đặc quyền đại lý</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="footer-menu__item">
-                            <h4 class="footer-menu__title">Chính sách</h4>
-                            <ul>
-                                <li><a href="/page/dieu-khoan-sua-dung">Điều khoản sử dụng</a></li>
-                                <li><a href="/page/chinh-sach-cookie">Chính sách Cookie</a></li>
-                                <li><a href="/page/chinh-sach-bao-mat-thong-tin-ca-nhan">Chính sách khuyến mãi</a></li>
-                                <li><a href="/page/chinh-sach-bao-mat">Chính sách bảo mật</a></li>
-                                <li><a href="/page/dich-vu-giao-hang-coolmate">Chính sách giao hàng</a></li>
-                                <li><a href="/page/dich-vu-giao-hang-coolmate">Sơ đồ website</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-menu__item">
-
-                            <h4 class="footer-menu__title">CHĂM SÓC KHÁCH HÀNG</h4>
-                            <ul>
-                                <li><a href="/page/changelog?itm_source=footer">Quy trình mua sắm</a></li>
-                                <li><a href="/page/changelog?itm_source=footer">Hỏi đáp - FAQs</a></li>
-                            </ul>
-                            <h4 class="footer-menu__title">KIẾN THỨC HỮU ÍCH</h4>
-                            <ul>
-                                <li><a href="/size-chart">Hướng dẫn chọn size</a></li>
-                                <li><a href="/blog">Blog</a></li>
-                                <li>
-                                    <a href="https://www.facebook.com/GAKBHLD" target="_blank">Group mua bán vài & Bảo hộ Lao Động</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="footer-menu__item">
-                            <h4 class="footer-menu__title">Tài liệu - Tuyển dụng</h4>
-                            <ul>
-                                <li><a href="/lp/coolmate-101?itm_source=footer#recruitment-jobs">Tuyển dụng</a></li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        target="_blank"
-                                        >Công bố bộ công thương</a
-                                    >
-                                </li>
-                            </ul>
-                            <h4 class="footer-menu__title">VỀ CÔNG TY GAK</h4>
-                            <ul>
-                                <li><a href="/lp/coolmate-101?itm_source=footer">GAK BE KINDNESS</a></li>
-                                <li><a href="/page/11-dich-vu-tai-coolmate-co-the-ban-chua-biet?itm_source=footer">DVKH tận tâm</a></li>
-                                <li><a href="/page/coolmate-story?itm_source=footer">Câu chuyện về công ty GAK</a></li>
-                                <li><a href="/page/san-pham-coolmate-duoc-san-xuat-nhu-the-nao?itm_source=footer">Nhà máy</a></li>
-                                <li><a href="/collection/care-and-share?itm_source=footer">Trách nhiệm xã hội và cộng đồng</a></li>
-                            </ul>
+                        <div v-for="pageGroup in pageGroups" class="footer-menu__item">
+                               <div v-for="item in pageGroup">
+                                   <h4 class="footer-menu__title">{{item.name}}</h4>
+                                      <ul>
+                                          <li v-for="page in item.details">
+                                              <NuxtLink :to="localePath({ name: 'slug', params:{slug: page.slug} })">{{page.name}}</NuxtLink>
+                                          </li>
+                                      </ul>
+                               </div>
                         </div>
                         <div class="footer-menu__item">
                             <h4 class="footer-menu__title">Địa chỉ liên hệ</h4>
@@ -172,7 +121,20 @@
     </footer>
 </template>
 <script setup>
-import images from '@/assets/icons/index'
+import images from '@/assets/icons/index';
+import { useMain } from '@@/store/index';
+import { storeToRefs } from 'pinia';
+
+const useMainStore = useMain();
+const {getPageGroup} = useMain();
+const localePath = useLocalePath();
+
+const {pageGroups} = storeToRefs(useMainStore)
+
+if (pageGroups.value.length == 0) {
+    getPageGroup();
+}
+
 </script>
 <style lang="scss" scoped>
 .site-footer {

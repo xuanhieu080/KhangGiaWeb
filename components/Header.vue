@@ -8,7 +8,7 @@
             </div>
             <div class="sub-nav">
                 <NuxtLink :to="localePath({ name: 'blog' })">{{ $t('Blog') }}</NuxtLink>
-                <NuxtLink :to="localePath({ name: 'about-us' })">{{ $t('Về GAK') }}</NuxtLink>
+                <NuxtLink v-for="page in pageHeaders" :to="localePath({ name: 'slug', params: {slug: page.slug} })">{{ page.name }}</NuxtLink>
                 <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
         </div>
@@ -318,6 +318,16 @@
 import images from '@@/assets/icons/index';
 import { useHeader } from '@@/store/useHeader';
 import { storeToRefs } from 'pinia';
+import { useMain } from '@@/store/index';
+
+const useMainStore = useMain();
+const {getPageHeader} = useMain();
+
+const {pageHeaders} = storeToRefs(useMainStore)
+
+if (pageHeaders.value.length == 0) {
+    getPageHeader();
+}
 
 const useHeaderStore = useHeader();
 

@@ -7,7 +7,6 @@ export default defineNuxtConfig({
             Url: process.env.WEB_BASE_URL,
             domain: process.env.DOMAIN,
             apiURL: process.env.API_BASE_URL,
-            hegkaURL: process.env.HEGKA_URL,
             name: process.env.NUXT_SITE_NAME,
             title: process.env.NUXT_SITE_TITLE,
             description: process.env.NUXT_SITE_DESCRIPTION,
