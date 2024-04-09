@@ -155,7 +155,7 @@
             </div>
             <div class="right-header">
                 <UInput
-                    class="search-box max-w-[500px] rounded-[50px] overflow-hidden"
+                    class="search-box ring-0 border-0 shadow-none max-w-[500px] rounded-[50px] overflow-hidden"
                     name="search-box"
                     size="xl"
                     color="white"
@@ -192,7 +192,7 @@
                 <NuxtLink :to="localePath({ name: 'cart' })" class="flex-grow-0 flex-shrink-0">
                     <UButton type="button" class="cart-btn" variant="ghost" color="none">
                         <nuxt-link type="button" to="" class="">
-                            <img :src="images.cart" class="filter-white" alt="" />
+                            <img :src="images.cart" class="" alt="" />
                         </nuxt-link>
                         <div class="count-item">99</div>
                     </UButton>
@@ -402,6 +402,7 @@ const handleCloseSubMenu = (e) => {
     }
     .header {
         background-color: #f1f1f1;
+        color: black;
         transition: all 0.3s;
         position: relative;
         height: var(--header-main);
@@ -442,7 +443,7 @@ const handleCloseSubMenu = (e) => {
             .main-nav-item {
                 padding: 31px 16px;
                 white-space: nowrap;
-                color: #fff;
+                color: #000000;
                 transition: all 0.3s;
                 font-weight: bold;
                 text-transform: uppercase;
