@@ -14,6 +14,7 @@
     --header-topbar: 40px;
     --header-top-promotion:32px;
     --header-main: 80px;
+    --filter-green-color: invert(63%) sepia(79%) saturate(460%) hue-rotate(87deg) brightness(85%) contrast(92%);
     --filter-white-color: invert(100%) sepia(13%) saturate(2%) hue-rotate(321deg) brightness(108%) contrast(101%);
     --filter-black-color: invert(0%) sepia(88%) saturate(7452%) hue-rotate(35deg) brightness(103%) contrast(96%);
 }
@@ -23,6 +24,9 @@
 
 .filter-black {
     filter: var(--filter-black-color);
+}
+.filter-green {
+    filter: var(--filter-green-color);
 }
 .fs-10 {
     font-size: 10px !important;
