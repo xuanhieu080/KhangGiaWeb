@@ -63,7 +63,8 @@
                                    <h4 class="footer-menu__title">{{item.name}}</h4>
                                       <ul>
                                           <li v-for="page in item.details">
-                                              <NuxtLink :to="localePath({ name: 'slug', params:{slug: page.slug} })">{{page.name}}</NuxtLink>
+                                              <NuxtLink v-if="page.is_button" :to="localePath( page.link )">{{page.name}}</NuxtLink>
+                                              <NuxtLink v-else :to="localePath({ name: 'slug', params:{slug: page.slug} })">{{page.name}}</NuxtLink>
                                           </li>
                                       </ul>
                                </div>
