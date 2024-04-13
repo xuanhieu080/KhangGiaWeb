@@ -150,7 +150,7 @@
                     {{ $t('Đồ bảo hộ lao động') }}
                 </div>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Vải') }}</div>
-                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Đặt may') }}</div>
+                <NuxtLink class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{ $t('Đặt may') }}</NuxtLink>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Văn hoá') }}</div>
             </div>
             <div class="right-header">
