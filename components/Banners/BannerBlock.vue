@@ -2,7 +2,7 @@
     <div v-if="bannerBlock" class="banner-block my-4">
         <picture class="w-full">
             <source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
-            <img :src="bannerBlock.image_desktop" alt="Quần dài nam" style="width: 100%" />
+            <img :src="bannerBlock.image_desktop" :alt="bannerBlock.title" style="width: 100%" />
         </picture>
         <div v-if="!hideContent" class="banner-content" :class="splitBanner ? 'modify-position' : ''">
             <div v-if="bannerBlock.subtitle" class="opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
@@ -42,10 +42,10 @@ const props = defineProps({
     width: 100%;
     position: relative;
     .banner-content {
+        color: black;
         position: absolute;
         left: 24px;
         @apply flex flex-col gap-4;
-        color: white;
         top: 50%;
         transform: translateY(-35%);
         @media screen and (min-width: 992px) {
@@ -67,6 +67,7 @@ const props = defineProps({
                 font-size: 3.75rem;
                 max-width: 350px;
             }
+            color: black;
             font-size: 2.25rem;
             text-transform: uppercase;
             font-weight: bold;
@@ -77,6 +78,7 @@ const props = defineProps({
             }
         }
         .description {
+            color: black;
             @media screen and (min-width: 1280px) {
                 font-size: 1.25rem;
             }

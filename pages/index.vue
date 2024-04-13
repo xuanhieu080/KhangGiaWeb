@@ -286,7 +286,7 @@ const bannerBlock = ref({
         '/images/banner_3.jpg',
     image_mobile: '/images/banner_3.jpg',
     title: 'Đồng phục',
-    description: 'Thời trang 2024',
+    description: 'Công ty',
     link: '/collection/dong-phuc',
 });
 const bannerBlock2 = ref({
