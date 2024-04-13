@@ -8,7 +8,10 @@
             </div>
             <div class="sub-nav">
                 <NuxtLink :to="localePath({ name: 'blog' })">{{ $t('Blog') }}</NuxtLink>
-                <NuxtLink v-for="page in pageHeaders" :to="localePath({ name: 'slug', params: {slug: page.slug} })">{{ page.name }}</NuxtLink>
+                <div v-for="page in pageHeaders">
+                    <NuxtLink v-if="page.is_button" :to="localePath(page.link)">{{ page.name }}</NuxtLink>
+                    <NuxtLink v-else :to="localePath({ name: 'slug', params: {slug: page.slug} })">{{ page.name }}</NuxtLink>
+                </div>
                 <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
         </div>
