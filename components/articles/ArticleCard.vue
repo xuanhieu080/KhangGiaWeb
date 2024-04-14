@@ -1,6 +1,6 @@
 <template>
-    <div class="article-card w-full">
-        <div class="article-card__thumbnail w-full h-[400px] relative rounded-lg overflow-hidden">
+    <div class="article-card w-full h-full">
+        <div class="article-card__thumbnail w-full relative rounded-lg overflow-hidden" :class="customHeight > 0 ? `h-[${customHeight}px]` : 'h-full'">
             <NuxtLink :to="article.link">
                 <img class="w-full h-full object-cover" :src="article.image" :alt="article.title" />
             </NuxtLink>
@@ -40,6 +40,10 @@ const prop = defineProps({
     isViewCount: {
         type: Boolean,
         default: true,
+    },
+    customHeight: {
+        type: Number,
+        default: 0
     }
 });
 </script>
@@ -47,6 +51,7 @@ const prop = defineProps({
 <style lang="scss" scoped>
 @import '@/assets/scss/mixins.scss';
 .article-card {
+    @apply flex flex-col;
     .article-card_description {
         p {
             @include text-overflow(3);

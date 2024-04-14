@@ -212,7 +212,6 @@
                                 clickable: true,
                                 renderBullet: (index, className) => renderBullet(index, className),
                             }"
-                            ,
                             :breakpoints="{
                                 768: {
                                     slidesPerView: 3,
