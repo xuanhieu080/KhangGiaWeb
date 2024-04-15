@@ -370,6 +370,21 @@ const slug = ref(router.currentRoute.value.params.slug);
         background-image: linear-gradient(transparent, #00000091);
     }
 }
+.running-video {
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 120px);
+    video {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        object-fit: cover;
+        object-position: bottom;
+    }
+}
 .about-content {
     background-color: #f1f1f1;
     .cs-about,
