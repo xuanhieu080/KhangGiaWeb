@@ -10,14 +10,54 @@
             </div>
             <div class="about-content !py-12 container mx-auto">
                 <div class="flex items-start justify-between w-full gap-8">
-                    <UTabs variant="ghost" color="none" :items="items" orientation="vertical" class="w-full" :ui="{ wrapper: 'flex flex-col items-start gap-6 lg:flex-row lg:gap-16', list: {base: 'flex flex-col gap-4', width: 'flex-grow-0 flex-shrink-0 basis-[250px]', tab: {base: '!h-12 !px-0 lg:!px-3'} } }">
+                    <UTabs
+                        variant="ghost"
+                        color="none"
+                        :items="items"
+                        orientation="vertical"
+                        class="w-full"
+                        :ui="{
+                            wrapper: 'flex flex-col items-start gap-6 lg:flex-row lg:gap-16',
+                            list: {
+                                base: 'flex flex-col gap-4',
+                                width: 'flex-grow-0 flex-shrink-0 basis-[250px]',
+                                tab: { base: '!h-12 !px-0 lg:!px-3' },
+                            },
+                        }">
                         <template #default="{ item, index, selected }">
-                            <div class="flex items-center justify-between gap-2 relative w-full h-12 font-bold hover:text-green-700" :class="selected ? 'text-green-700' : 'text-black'">
+                            <div
+                                class="flex items-center justify-between gap-2 relative w-full h-12 font-bold hover:text-green-700"
+                                :class="selected ? 'text-green-700' : 'text-black'">
                                 <span class="capitalize">{{ item.label }}</span>
                                 <UIcon name="i-heroicons-chevron-right-20-solid"></UIcon>
                             </div>
                         </template>
                     </UTabs>
+                </div>
+            </div>
+            <div class="footer-policy-page flex flex-col gap-4 items-center mt-auto">
+                <h3>Bạn có muốn tìm thêm thông tin gì không?</h3>
+                <div class="contact__content-hotline mx-auto">
+                    <div class="contact__content-info">
+                        <img
+                            src="/images/phone-icon.svg"
+                            class="bg-gray-200 p-2 rounded-full !border border-solid border-gray-300"
+                            alt="" />
+                        <div>
+                            <p>Hotline</p>
+                            <a href="tel:0569133339">0569133339</a>
+                        </div>
+                    </div>
+                    <div class="contact__content-info">
+                        <img
+                            src="/images/sms-notification.svg"
+                            class="bg-gray-200 p-2 rounded-full !border border-solid border-gray-300"
+                            alt="" />
+                        <div>
+                            <p>Email</p>
+                            <a href="mailto:mediagakvn@gmail.com">mediagakvn@gmail.com</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,10 +118,36 @@ const content = ref();
 <style lang="scss" scoped>
 .page {
     @apply flex flex-col gap-6 w-full;
+    min-height: 100vh;
     .about-us-image {
         height: 300px;
         width: 100%;
         background-color: #1f9408;
+    }
+    .footer-policy-page {
+        background-color: white;
+        .contact__content-hotline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 48px;
+            @media (max-width: 991px) {
+                @apply flex-wrap items-center justify-center;
+            }
+            .contact__content-info {
+                display: flex;
+                border-radius: 16px;
+                gap: 8px;
+                align-items: flex-end;
+                padding: 4px 20px 4px 12px;
+                p {
+                    font-size: 14px;
+                    color: #2c2f30;
+                    margin: 0;
+                }
+            }
+        }
     }
 }
 </style>
