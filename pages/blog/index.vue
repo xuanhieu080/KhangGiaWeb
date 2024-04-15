@@ -78,7 +78,7 @@
                     <div class="title text-[28px] 2xl:text-[30px] font-bold py-3 px-5 bg-[#008000] text-white rounded-xl">{{ $t('Bài mới mỗi ngày') }}</div>
                     <div class="flex flex-wrap items-start justify-start gap-4 w-full">
                         <div v-for="article in articleList" class="blog-daily-item">
-                            <ArticleCard :article="article" :is-view-count="false" />
+                            <ArticleCard :article="article" :is-view-count="false" :custom-height="400" />
                         </div>
                     </div>
                 </div>
