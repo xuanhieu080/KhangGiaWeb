@@ -1,5 +1,5 @@
 <template>
-    <div class="site-header" :class="{ 'hidden-header': isScrollDown }">
+    <div v-if="!loadingCategoryHeader" class="site-header" :class="{ 'hidden-header': isScrollDown }">
         <div class="topbar">
             <div class="left-top-bar">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
@@ -10,7 +10,7 @@
                 <NuxtLink :to="localePath({ name: 'blog' })">{{ $t('Blog') }}</NuxtLink>
                 <div v-for="page in pageHeaders">
                     <NuxtLink v-if="page.is_button" :to="localePath(page.link)">{{ page.name }}</NuxtLink>
-                    <NuxtLink v-else :to="localePath({ name: 'slug', params: {slug: page.slug} })">{{ page.name }}</NuxtLink>
+                    <NuxtLink v-else :to="localePath({ name: 'slug', params: { slug: page.slug } })">{{ page.name }}</NuxtLink>
                 </div>
                 <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
@@ -26,71 +26,54 @@
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'index' })" @click="menuMobile = false">{{
                     $t('Trang chủ')
                 }}</NuxtLink>
-                <div class="main-nav-item" @click="menuMobile = false" @mouseleave="(e) => handleCloseSubMenu(e)" @mouseenter="(e) => handleAddSubMenu(e)">
+                <div
+                    class="main-nav-item"
+                    @click="menuMobile = false"
+                    @mouseleave="(e) => handleCloseSubMenu(e)"
+                    @mouseenter="(e) => handleAddSubMenu(e)">
                     <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'tat-ca' } })">
                         {{ $t('Sản phẩm') }}
                     </NuxtLink>
                     <div class="sub-menu">
                         <div class="sub-menu-wrapper grid grid-cols-5 gap-4">
-                            <div class="col-span-3 grid grid-cols-4 gap-8 p-6 border-r border-gray-300">
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Theo sản phẩm</div>
-                                    <span>Sản phẩm 1</span>
-                                    <span>Sản phẩm 2</span>
-                                    <span>Sản phẩm 3</span>
-                                    <span>Sản phẩm 4</span>
-                                </div>
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Áo nam</div>
-                                    <span>Sản phẩm 1</span>
-                                    <span>Sản phẩm 2</span>
-                                    <span>Sản phẩm 3</span>
-                                </div>
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Quần nam</div>
-                                    <span>Sản phẩm 1</span>
-                                    <span>Sản phẩm 2</span>
-                                    <span>Sản phẩm 3</span>
-                                    <span>Sản phẩm 4</span>
-                                    <span>Sản phẩm 5</span>
-                                    <span>Sản phẩm 6</span>
-                                </div>
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Phụ kiện nam</div>
-                                    <span>Sản phẩm 1</span>
-                                    <span>Sản phẩm 2</span>
+                            <div
+                                v-if="categoryHeader.data.length > 0"
+                                class="col-span-3 grid grid-cols-4 gap-8 p-6 border-r border-gray-300">
+                                <div
+                                    v-show="index < 4"
+                                    v-for="(category, index) in categoryHeader.data"
+                                    class="flex flex-col gap-4 text-gray-500">
+                                    <NuxtLink
+                                        :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
+                                        class="sub-product-title uppercase font-bold text-black"
+                                        >{{ category.name }}</NuxtLink
+                                    >
+                                    <div v-if="category.descendants.length > 0" v-for="sub_category in category.descendants">
+                                        <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: sub_category.slug } })" class="hover:text-green-700 transition duration-300 ease-in-out">{{
+                                            sub_category.name
+                                        }}</NuxtLink>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-span-2 grid grid-cols-2 grid-rows-2 gap-4 py-6 pr-4">
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip14_74.jpg" alt="" />
-                                        <div class="product-content">Quần jogger nam UT đa năng</div>
-                                    </div>
-                                </div>
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip15_78.jpg" alt="" />
-                                        <div class="product-content">Pack 3 Áo Polo nam Pique Cotton</div>
-                                    </div>
-                                </div>
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip14_74.jpg" alt="" />
-                                        <div class="product-content">Quần jogger nam UT đa năng</div>
-                                    </div>
-                                </div>
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip15_78.jpg" alt="" />
-                                        <div class="product-content">Pack 3 Áo Polo nam Pique Cotton</div>
-                                    </div>
+                            <div v-if="categoryHeader.data.length > 0" class="col-span-2 grid grid-cols-2 grid-rows-2 gap-4 py-6 pr-4">
+                                <div
+                                    v-show="categoryHeader.data.length - index < 5"
+                                    v-for="(category, index) in categoryHeader.data"
+                                    class="product-random-box">
+                                    <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: category.slug}})" class="product-item">
+                                        <img loading="lazy" :src="category.image_url" alt="" />
+                                        <div class="product-content">{{ category.name }}</div>
+                                    </NuxtLink>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="main-nav-item" @click="menuMobile = false"  @mouseleave="(e) => handleCloseSubMenu(e)" @mouseenter="(e) => handleAddSubMenu(e)">
+                <div
+                    class="main-nav-item"
+                    @click="menuMobile = false"
+                    @mouseleave="(e) => handleCloseSubMenu(e)"
+                    @mouseenter="(e) => handleAddSubMenu(e)">
                     <div :to="localePath({ name: 'collection-slug', params: { slug: 'tat-ca' } })">
                         {{ $t('Áo ghi lê') }}
                     </div>
@@ -146,14 +129,15 @@
                             </div>
                         </div>
                     </div>
-                
                 </div>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Áo phản quang') }}</div>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">
                     {{ $t('Đồ bảo hộ lao động') }}
                 </div>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Vải') }}</div>
-                <NuxtLink class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{ $t('Đặt may') }}</NuxtLink>
+                <NuxtLink class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{
+                    $t('Đặt may')
+                }}</NuxtLink>
                 <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Văn hoá') }}</div>
             </div>
             <div class="right-header">
@@ -324,9 +308,9 @@ import { storeToRefs } from 'pinia';
 import { useMain } from '@@/store/index';
 
 const useMainStore = useMain();
-const {getPageHeader} = useMain();
+const { getPageHeader } = useMain();
 
-const {pageHeaders} = storeToRefs(useMainStore)
+const { pageHeaders } = storeToRefs(useMainStore);
 
 if (pageHeaders.value.length == 0) {
     getPageHeader();
@@ -345,10 +329,14 @@ const openProfileSideBar = () => {
 
 const handleAddSubMenu = (e) => {
     e.srcElement.lastChild.classList.add('active');
-}
+};
 const handleCloseSubMenu = (e) => {
     e.srcElement.lastChild.classList.remove('active');
-}
+};
+
+const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAsyncData('category-header', () =>
+    useOriginalFetch('/api/v1/categories/header'),
+);
 </script>
 <style lang="scss" scoped>
 .site-header {
