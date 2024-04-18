@@ -3,6 +3,7 @@ export const useHeader = defineStore('header-store', {
     state: () => ({
       // all these properties will have their type inferred automatically
       isScrollDown: false,
+      isLoadingPage: true,
     }),
     actions: {
       

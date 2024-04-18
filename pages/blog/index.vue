@@ -64,20 +64,20 @@
                     </NuxtLink>
                 </div>
                 <div class="blog-box-content flex md:flex-row flex-col items-start justify-between gap-6 w-full mt-6">
-                    <div class="flex w-full md:w-1/2 md:max-w-[660px]">
-                        <ArticleSwiper :articleList="articleList" :title="'Bài viết nổi bật'" />
+                    <div v-if="!loadingAticlesList && articlesList.data && articlesList.data.length > 0" class="flex w-full md:w-1/2 md:max-w-[660px]">
+                        <ArticleSwiper :articleList="articlesList.data" :title="'Bài viết nổi bật'" />
                     </div>
-                    <div class="most-view flex flex-col gap-4 py-4 md:py-0 w-full md:w-2/5">
+                    <div  v-if="!loadingAticlesList && articlesList.data && articlesList.data.length > 0" class="most-view flex flex-col gap-4 py-4 md:py-0 w-full md:w-2/5">
                         <div class="title text-[28px] 2xl:text-[36px] font-bold">{{ $t('Xem nhiều nhất') }}</div>
                         <div class="article-list flex flex-col gap-6 md:gap-3">
-                            <ArticleBadge v-for="article in articleListBadge" :article="article" />
+                            <ArticleBadge v-for="article in articlesList.data" :article="article" />
                         </div>
                     </div>
                 </div>
                 <div class="blog-daily flex flex-col gap-4 w-full">
                     <div class="title text-[28px] 2xl:text-[30px] font-bold py-3 px-5 bg-[#008000] text-white rounded-xl">{{ $t('Bài mới mỗi ngày') }}</div>
-                    <div class="flex flex-wrap items-start justify-start gap-4 w-full">
-                        <div v-for="article in articleList" class="blog-daily-item">
+                    <div v-if="!loadingAticlesList && articlesList.data && articlesList.data.length > 0" class="flex flex-wrap items-start justify-start gap-4 w-full">
+                        <div v-for="article in articlesList.data" class="blog-daily-item">
                             <ArticleCard :article="article" :is-view-count="false" :custom-height="400" />
                         </div>
                     </div>
@@ -320,6 +320,11 @@ useSchemaOrg([
         ]
     })
 ]);
+
+//data
+const { data: articlesList, pending: loadingAticlesList } = await useLazyAsyncData('articles-blog', () =>
+    useOriginalFetch('/api/v1/posts'),
+);
 </script>
 
 <style lang="scss" scoped>

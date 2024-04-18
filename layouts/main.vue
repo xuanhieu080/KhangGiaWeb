@@ -1,11 +1,17 @@
 <template>
     <Header />
-    <main class="wrapper-desktop relative w-full min-h-screen">
+    <div v-if="isLoadingPage" class="loading-container">
+        <div class="loading-wrapper">
+            <div class="loading"></div>
+            <div id="loading-text">Welcome...</div>
+        </div>
+    </div>
+    <main v-else class="wrapper-desktop relative w-full min-h-screen">
         <div class="w-full relative main">
             <slot />
         </div>
         <div
-            class="scroll-to-top fixed bottom-8 left-4 z-[999]"
+            class="scroll-to-top fixed bottom-8 left-4 z-[99] hidden lg:block"
             :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">
             <UButton
                 class="back-to-top rounded-full w-[50px] h-[50px] justify-center"
@@ -47,7 +53,7 @@ import { storeToRefs } from 'pinia';
 
 const useHeaderStore = useHeader();
 
-const { isScrollDown } = storeToRefs(useHeaderStore);
+const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
 const router = useRouter();
 const { locale } = useI18n();
 const showBackToTop = ref(false);
@@ -97,39 +103,39 @@ useSchemaOrg([
             streetAddress: process.env.NUXT_SITE_STREET_ADDRESS,
         },
         geo: {
-            latitude: "10.786930681950782",
-            longitude: "106.65401739821424"
-        }
+            latitude: '10.786930681950782',
+            longitude: '106.65401739821424',
+        },
     }),
     defineOrganization({
         '@type': 'Organization',
         name: process.env.NUXT_SITE_NAME,
         url: process.env.WEB_BASE_URL,
         logo: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
-        email:process.env.NUXT_SITE_EMAIL,
-        phone:process.env.NUXT_SITE_PHONE,
-        telephone:process.env.NUXT_SITE_PHONE,
+        email: process.env.NUXT_SITE_EMAIL,
+        phone: process.env.NUXT_SITE_PHONE,
+        telephone: process.env.NUXT_SITE_PHONE,
         sameAs: [
             'https://www.facebook.com/GAKBHLD',
             'https://twitter.com/congtygak',
             'https://www.instagram.com/congtygak',
             'https://www.tiktok.com/@congtygak',
-        ]
+        ],
     }),
     defineOrganization({
         '@type': 'Store',
         name: process.env.NUXT_SITE_NAME,
         url: process.env.WEB_BASE_URL,
         logo: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
-        email:process.env.NUXT_SITE_EMAIL,
-        phone:process.env.NUXT_SITE_PHONE,
-        telephone:process.env.NUXT_SITE_PHONE,
+        email: process.env.NUXT_SITE_EMAIL,
+        phone: process.env.NUXT_SITE_PHONE,
+        telephone: process.env.NUXT_SITE_PHONE,
         sameAs: [
             'https://www.facebook.com/GAKBHLD',
             'https://twitter.com/congtygak',
             'https://www.instagram.com/congtygak',
             'https://www.tiktok.com/@congtygak',
-        ]
+        ],
     }),
     defineLocalBusiness({
         name: process.env.NUXT_SITE_NAME,
@@ -144,36 +150,31 @@ useSchemaOrg([
         },
         openingHoursSpecification: [
             {
-                dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                ],
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
                 opens: '08:00',
                 closes: '12:00',
             },
             {
-                dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                ],
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
                 opens: '13:00',
                 closes: '17:00',
             },
         ],
     }),
-])
+]);
 </script>
 <style lang="scss" scoped>
+.loading-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+    @apply flex items-center justify-center;
+    background-color: rgb(244, 244, 244);
+}
 .wrapper-desktop {
-    padding-top: calc(var(--header-topbar) + var(--header-main)); // + var(--header-top-promotion) if need middle header 
+    padding-top: calc(var(--header-topbar) + var(--header-main)); // + var(--header-top-promotion) if need middle header
     @media screen and (max-width: 991px) {
         padding-top: var(--header-main);
     }

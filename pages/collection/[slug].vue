@@ -1,10 +1,10 @@
 <template>
     <NuxtLayout name="main">
-        <div class="category-page pt-16 bg-white">
+        <div v-if="!loadingCollection && !loadingCategories" class="category-page pt-16 bg-white">
             <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase text-2xl">Đồ mặc hàng ngày</h1>
+                        <h1 class="font-bold uppercase text-2xl">{{ collection.item.name }}</h1>
                     </div>
                     <div class="category-tabs w-full">
                         <Swiper
@@ -31,18 +31,20 @@
                                 },
                             }"
                             class="swiper category-swiper min-w-0 relative z-10">
-                            <SwiperSlide v-for="(category, index) in categoryList" :key="product" class="h-full w-[200px] mr-4">
+                            <SwiperSlide v-for="(category, index) in categories.data" :key="product" class="h-full w-[200px] mr-4">
                                 <UCard
                                     :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
                                     class="category-card"
-                                    :class="index == tabIndex ? 'active' : ''"
                                     @click="changeCategoryTab(index)">
-                                    <div class="flex flex-col gap-2">
-                                        <NuxtImg :src="category.image" format="webp" class="w-full h-full object-cover rounded-md" />
+                                    <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: category.id}})" class=" category-item flex flex-col gap-2">
+                                        <NuxtImg
+                                            :src="category.image_url"
+                                            format="webp"
+                                            class="w-full h-full object-cover rounded-md flex-1" />
                                         <div class="category-name font-semibold">
                                             {{ category.name }}
                                         </div>
-                                    </div>
+                                    </NuxtLink>
                                 </UCard>
                             </SwiperSlide>
                         </Swiper>
@@ -51,22 +53,36 @@
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
                     <div class="category-main-left w-full lg:max-w-[350px] px-4">
                         <div class="flex flex-col gap-4 justify-start w-full sticky top-8">
-                            <div class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
-                                {{ '16' + ' ' + $t('Kết quả') }}
-                                <UButton v-if="Object.keys(selectedForm).length > 0 || Object.keys(selectedMaterial).length > 0 || Object.keys(selectedSize).length > 0 || selectedColor" size="lg" variant="ghost" color="none" class="border rounded-3xl border-black font-bold" @click="removeAllFilter">{{ $t('Xóa lọc') }}</UButton>
+                            <div
+                                class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
+                                {{ 0 + ' ' + $t('Kết quả') }}
+                                <UButton
+                                    v-if="
+                                        Object.keys(selectedForm).length > 0 ||
+                                        Object.keys(selectedMaterial).length > 0 ||
+                                        Object.keys(selectedSize).length > 0 ||
+                                        selectedColor
+                                    "
+                                    size="lg"
+                                    variant="ghost"
+                                    color="none"
+                                    class="border rounded-3xl border-black font-bold"
+                                    @click="removeAllFilter"
+                                    >{{ $t('Xóa lọc') }}</UButton
+                                >
                             </div>
                             <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
-                                <div class="filter-option-item flex flex-col gap-4">
+                                <div v-if="false" class="filter-option-item flex flex-col gap-4">
                                     <div class="filter-option-title text-sm font-bold text-gray-500">
                                         {{ $t('Kiểu dáng') }}
                                     </div>
                                     <UCheckbox
                                         v-model="selectedForm[index]"
-                                        v-for="(form, index) in formFilter"
+                                        v-for="(form, index) in collection.variants['Lưới']"
                                         size="lg"
                                         class="rounded-full"
-                                        :name="form.name"
-                                        :label="form.label" />
+                                        :name="form.attribute_name"
+                                        :label="form.attribute_name" />
                                 </div>
                                 <div class="filter-option-item flex flex-col gap-4">
                                     <div class="filter-option-title text-sm font-bold text-gray-500">
@@ -74,19 +90,24 @@
                                     </div>
                                     <UCheckbox
                                         v-model="selectedMaterial[index]"
-                                        v-for="(material, index) in materialFilter"
+                                        v-for="(material, index) in collection.variants['Lưới']"
                                         size="lg"
                                         class="rounded-full"
-                                        :name="material.name"
-                                        :label="material.label" />
+                                        :name="material.attribute_name"
+                                        :label="material.attribute_name" />
                                 </div>
                                 <div class="filter-option-item flex flex-col gap-4">
                                     <div class="filter-option-title text-sm font-bold text-gray-500">
                                         {{ $t('Kích cỡ') }}
                                     </div>
                                     <div class="size-list grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
-                                        <button class="size-list-item bg-gray-200 p-2 rounded-md flex flex-col gap-2 items-center justify-center" :class="(selectedSize && selectedSize.label) == size.label ? 'ring ring-green-500' : ''  " v-for="(size, index) in sizeFilter" :key="colour" @click="selectedSize = size">
-                                            {{ size.label }}
+                                        <button
+                                            class="size-list-item bg-gray-200 p-2 rounded-md flex flex-col gap-2 items-center justify-center"
+                                            :class="(selectedSize && selectedSize.attribute_name) == size.attribute_name ? 'ring ring-green-500' : ''"
+                                            v-for="(size, index) in collection.variants['Size']"
+                                            :key="colour"
+                                            @click="selectedSize = size">
+                                            {{ size.attribute_name }}
                                         </button>
                                     </div>
                                 </div>
@@ -95,9 +116,16 @@
                                         {{ $t('Màu sắc') }}
                                     </div>
                                     <div class="color-list grid grid-cols-3 lg:grid-cols-4 gap-4 w-full">
-                                        <div class="color-list-item flex flex-col gap-2 items-center justify-center" v-for="(colour, index) in colourFilter" :key="colour" @click="selectedColor = colour">
-                                            <div class="h-6 w-6 border border-gray-400 rounded-full" :class="selectedColor && (selectedColor.name  == colour.name) ? 'ring ring-green-500' : ''  " :style="{backgroundColor: colour.color}"></div>
-                                            <span class="text-xs text-gray-500">{{ colour.name }}</span>
+                                        <div
+                                            class="color-list-item flex flex-col gap-2 items-center justify-center"
+                                            v-for="(colour, index) in collection.variants['Màu sắc']"
+                                            :key="colour"
+                                            @click="selectedColor = colour">
+                                            <div
+                                                class="h-6 w-6 border border-gray-400 rounded-full"
+                                                :class="selectedColor && selectedColor.attribute_name == colour.attribute_name ? 'ring ring-green-500' : ''"
+                                                :style="{ backgroundColor: colour.attribute_color }"></div>
+                                            <span class="text-xs text-gray-500">{{ colour.attribute_name }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -121,14 +149,19 @@
                                 </USelectMenu>
                             </div>
                         </div>
-                        <div v-if="isLoadingData" class="category-data-list">
+                        <div v-if="loadingCollection" class="category-data-list">
                             <div v-for="product in 6" class="category-data-item" :key="product">
                                 <ProductCard />
                             </div>
                         </div>
-                        <div v-else class="category-data-list">
-                            <div v-for="product in productList" class="category-data-item" :key="product">
+                        <div v-else-if="!loadingCollection && collection.item.products && collection.item.products.length > 0" class="category-data-list">
+                            <div v-for="product in collection.item.products" class="category-data-item" :key="product">
                                 <ProductCard :product="product" />
+                            </div>
+                        </div>
+                        <div v-else-if="!loadingCollection && collection.item.products && collection.item.products.length == 0" class="category-data-list">
+                            <div class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
+                                {{ 'Không có sản phẩm trong danh mục này' }}
                             </div>
                         </div>
                     </div>
@@ -153,6 +186,9 @@ import ProductCard from '@/components/products/ProductCard';
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
+
+const router = useRouter();
+const localePath = useLocalePath();
 const modules = [Scrollbar];
 const isLoadingData = ref(false);
 const tabIndex = ref(0);
@@ -392,7 +428,7 @@ const removeAllFilter = () => {
     selectedMaterial.value = {};
     selectedSize.value = {};
     selectedColor.value = null;
-}
+};
 const formFilter = ref([
     {
         name: 'Quần Trunk',
@@ -431,7 +467,7 @@ const materialFilter = ref([
     },
 ]);
 const sizeFilter = ref([
-{
+    {
         name: 'S',
         label: 'S',
     },
@@ -451,32 +487,32 @@ const sizeFilter = ref([
         name: '2XL',
         label: '2XL',
     },
-])
+]);
 const colourFilter = ref([
     {
         name: 'Đen',
         label: 'Đen',
-        color: '#000'
+        color: '#000',
     },
     {
         name: 'Trắng',
         label: 'Trắng',
-        color: '#fff'
+        color: '#fff',
     },
     {
         name: 'Xanh navy',
         label: 'Xanh navy',
-        color: 'blue'
+        color: 'blue',
     },
     {
         name: 'Xám',
         label: 'Xám',
-        color: 'gray'
+        color: 'gray',
     },
     {
         name: 'Đỏ',
         label: 'Đỏ',
-        color: 'red'
+        color: 'red',
     },
 ]);
 
@@ -487,6 +523,15 @@ const changeCategoryTab = (index) => {
         isLoadingData.value = false;
     }, 500);
 };
+
+//data
+const { data: collection, pending: loadingCollection } = await useLazyAsyncData('collection-category', () =>
+    useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`),
+);
+
+const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
+    useOriginalFetch(`/api/v1/categories`),
+);
 </script>
 <style lang="scss" scoped>
 .category-page {
@@ -494,9 +539,14 @@ const changeCategoryTab = (index) => {
         .category-swiper {
             padding: 24px 0;
             .category-card {
-                border: 2px solid transparent;
-                &.active {
-                    @apply border-blue-700;
+                .category-item {
+                    border: 2px solid transparent;
+                    padding: 12px;
+                    border-radius: 12px;
+                    &.router-link-active {
+                        @apply border-blue-700;
+
+                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!loadingCategoryHeader" class="site-header" :class="{ 'hidden-header': isScrollDown }">
+    <div class="site-header" :class="{ 'hidden-header': isScrollDown }">
         <div class="topbar">
             <div class="left-top-bar">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
@@ -15,7 +15,7 @@
                 <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
         </div>
-        <div class="header">
+        <div v-show="!loadingCategoryHeader" class="header" :class="loadingCategoryHeader ? 'hidden' : ''">
             <div class="left-header">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
                     <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
@@ -26,119 +26,79 @@
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'index' })" @click="menuMobile = false">{{
                     $t('Trang chủ')
                 }}</NuxtLink>
-                <div
-                    class="main-nav-item"
-                    @click="menuMobile = false"
-                    @mouseleave="(e) => handleCloseSubMenu(e)"
-                    @mouseenter="(e) => handleAddSubMenu(e)">
-                    <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'tat-ca' } })">
-                        {{ $t('Sản phẩm') }}
+                <UDropdown
+                    v-if="categoryHeader.data.length > 0 && !menuMobile"
+                    v-for="(category, index) in categoryHeader.data"
+                    :items="[[category]]"
+                    mode="hover"
+                    :key="category"
+                    :ui="{
+                        width: 'w-max',
+                        container: category.descendants.length > 0 ? '' : 'hidden',
+                        item: { active: '', base: 'cursor-default', disabled: 'cursor-text select-text' },
+                    }"
+                    :popper="{ placement: 'bottom-start' }">
+                    <NuxtLink
+                        :to="localePath({ name: 'collection-slug', params: { slug: category.id } })"
+                        v-show="index < 4"
+                        class="main-nav-item"
+                        @click="(e) => handleChangePage(e)"
+                        @mouseleave="(e) => handleCloseSubMenu(e)"
+                        @mouseenter="(e) => handleAddSubMenu(e)">
+                        {{ category.name }}
                     </NuxtLink>
-                    <div class="sub-menu">
-                        <div class="sub-menu-wrapper grid grid-cols-5 gap-4">
-                            <div
-                                v-if="categoryHeader.data.length > 0"
-                                class="col-span-3 grid grid-cols-4 gap-8 p-6 border-r border-gray-300">
-                                <div
-                                    v-show="index < 4"
-                                    v-for="(category, index) in categoryHeader.data"
-                                    class="flex flex-col gap-4 text-gray-500">
-                                    <NuxtLink
-                                        :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
-                                        class="sub-product-title uppercase font-bold text-black"
-                                        >{{ category.name }}</NuxtLink
-                                    >
-                                    <div v-if="category.descendants.length > 0" v-for="sub_category in category.descendants">
-                                        <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: sub_category.slug } })" class="hover:text-green-700 transition duration-300 ease-in-out">{{
-                                            sub_category.name
-                                        }}</NuxtLink>
+                    <template #item="{ item }">
+                        <div v-show="item.descendants.length > 0" class="sub-menu">
+                            <div class="sub-menu-wrapper grid grid-cols-2 gap-4 w-max">
+                                <div class="flex flex-col items-start gap-y-6 p-6 border-r border-gray-300">
+                                    <div
+                                        v-show="index1 < item.descendants.length - 2"
+                                        v-for="(subMenu, index1) in item.descendants"
+                                        class="text-gray-500">
+                                        <NuxtLink
+                                            :to="localePath({ name: 'collection-slug', params: { slug: subMenu.id } })"
+                                            class="uppercase font-bold text-black hover:text-green-700">
+                                            {{ subMenu.name }}
+                                        </NuxtLink>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 py-6 pr-4">
+                                    <div
+                                        v-show="index2 >= item.descendants.length - 2"
+                                        v-for="(subMenu, index2) in item.descendants"
+                                        class="product-random-box max-w-[300px] max-h-[200px]">
+                                        <NuxtLink
+                                            :to="localePath({ name: 'collection-slug', params: { slug: subMenu.id } })"
+                                            class="product-item">
+                                            <img
+                                                loading="lazy"
+                                                :src="'https://app.gak.vn/storage/media/product-variants/ao-ghi-le-1713426370UherAi32.jpg'"
+                                                alt="" />
+                                            <div class="product-content">{{ subMenu.name }}</div>
+                                        </NuxtLink>
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="categoryHeader.data.length > 0" class="col-span-2 grid grid-cols-2 grid-rows-2 gap-4 py-6 pr-4">
-                                <div
-                                    v-show="categoryHeader.data.length - index < 5"
-                                    v-for="(category, index) in categoryHeader.data"
-                                    class="product-random-box">
-                                    <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: category.slug}})" class="product-item">
-                                        <img loading="lazy" :src="category.image_url" alt="" />
-                                        <div class="product-content">{{ category.name }}</div>
-                                    </NuxtLink>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                </div>
-                <div
+                    </template>
+                </UDropdown>
+                <NuxtLink
+                    v-if="categoryHeader.data.length > 0 && menuMobile"
+                    v-for="(category, index) in categoryHeader.data"
+                    :to="localePath({ name: 'collection-slug', params: { slug: category.id } })"
+                    v-show="index < 4"
                     class="main-nav-item"
-                    @click="menuMobile = false"
+                    @click="(e) => handleChangePage(e)"
                     @mouseleave="(e) => handleCloseSubMenu(e)"
                     @mouseenter="(e) => handleAddSubMenu(e)">
-                    <div :to="localePath({ name: 'collection-slug', params: { slug: 'tat-ca' } })">
-                        {{ $t('Áo ghi lê') }}
-                    </div>
-                    <div class="sub-menu">
-                        <div class="sub-menu-wrapper grid grid-cols-5 gap-4">
-                            <div class="col-span-3 grid grid-cols-4 gap-8 p-6 border-r border-gray-300">
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Theo sản phẩm</div>
-                                    <span>Sản phẩm 1</span>
-                                </div>
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Áo nam</div>
-                                    <span>Sản phẩm 1</span>
-                                    <span>Sản phẩm 2</span>
-                                </div>
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Quần nam</div>
-                                    <span>Sản phẩm 1</span>
-                                    <span>Sản phẩm 2</span>
-                                    <span>Sản phẩm 3</span>
-                                    <span>Sản phẩm 4</span>
-                                </div>
-                                <div class="flex flex-col gap-4 text-gray-500">
-                                    <div class="sub-product-title uppercase font-bold text-black">Phụ kiện nam</div>
-                                    <span>Sản phẩm 1</span>
-                                </div>
-                            </div>
-                            <div class="col-span-2 grid grid-cols-2 grid-rows-2 gap-4 py-6 pr-4">
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip14_74.jpg" alt="" />
-                                        <div class="product-content">Quần jogger nam UT đa năng</div>
-                                    </div>
-                                </div>
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip15_78.jpg" alt="" />
-                                        <div class="product-content">Pack 3 Áo Polo nam Pique Cotton</div>
-                                    </div>
-                                </div>
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip14_74.jpg" alt="" />
-                                        <div class="product-content">Quần jogger nam UT đa năng</div>
-                                    </div>
-                                </div>
-                                <div class="product-random-box">
-                                    <div class="product-item">
-                                        <img loading="lazy" src="https://mcdn.coolmate.me/image/March2024/mceclip15_78.jpg" alt="" />
-                                        <div class="product-content">Pack 3 Áo Polo nam Pique Cotton</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Áo phản quang') }}</div>
-                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">
-                    {{ $t('Đồ bảo hộ lao động') }}
-                </div>
-                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Vải') }}</div>
+                    {{ category.name }}
+                </NuxtLink>
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{
                     $t('Đặt may')
                 }}</NuxtLink>
-                <div class="main-nav-item" to="localePath({ name: 'articles' })" @click="menuMobile = false">{{ $t('Văn hoá') }}</div>
+                <NuxtLink class="main-nav-item" :to="localePath({ name: 'van-hoa-gak' })" @click="menuMobile = false">{{
+                    $t('Văn hoá GAK')
+                }}</NuxtLink>
             </div>
             <div class="right-header">
                 <UInput
@@ -162,26 +122,26 @@
                     </template>
                 </UInput>
 
-                <!--                <UButton-->
-                <!--                    v-if="true"-->
-                <!--                    class="user-btn justify-center items-center"-->
-                <!--                    :padded="false"-->
-                <!--                    variant="ghost"-->
-                <!--                    color="none"-->
-                <!--                    @click="openProfileSideBar">-->
-                <!--                    <UIcon name="i-mdi-account-circle-outline" class="text-green-500 fs-28" dynamic />-->
-                <!--                </UButton>-->
-                <!--                <UButton v-else class="login-btn" variant="ghost" color="none">-->
-                <!--                    <nuxt-link type="button" to="">-->
-                <!--                        <img :src="images.person" class="filter-white" alt="" />-->
-                <!--                    </nuxt-link>-->
-                <!--                </UButton>-->
+                <UButton
+                    v-if="false"
+                    class="user-btn justify-center items-center"
+                    :padded="false"
+                    variant="ghost"
+                    color="none"
+                    @click="openProfileSideBar">
+                    <UIcon name="i-mdi-account-circle-outline" class="text-green-500 fs-28" dynamic />
+                </UButton>
+                <UButton v-else-if="false" class="login-btn" variant="ghost" color="none">
+                    <nuxt-link type="button" to="">
+                        <img :src="images.person" class="filter-white" alt="" />
+                    </nuxt-link>
+                </UButton>
                 <NuxtLink :to="localePath({ name: 'cart' })" class="flex-grow-0 flex-shrink-0">
                     <UButton type="button" class="cart-btn" variant="ghost" color="none">
                         <nuxt-link type="button" to="" class="">
                             <img :src="images.cart" class="" alt="" />
                         </nuxt-link>
-                        <div class="count-item">99</div>
+                        <div class="count-item">0</div>
                     </UButton>
                 </NuxtLink>
             </div>
@@ -306,7 +266,6 @@ import images from '@@/assets/icons/index';
 import { useHeader } from '@@/store/useHeader';
 import { storeToRefs } from 'pinia';
 import { useMain } from '@@/store/index';
-
 const useMainStore = useMain();
 const { getPageHeader } = useMain();
 
@@ -318,7 +277,7 @@ if (pageHeaders.value.length == 0) {
 
 const useHeaderStore = useHeader();
 
-const { isScrollDown } = storeToRefs(useHeaderStore);
+const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
 const localePath = useLocalePath();
 const searchItem = ref('');
 const profileSide = ref(false);
@@ -328,15 +287,32 @@ const openProfileSideBar = () => {
 };
 
 const handleAddSubMenu = (e) => {
-    e.srcElement.lastChild.classList.add('active');
+    if (e.srcElement.children.length > 0) {
+        e.srcElement.lastChild.classList.add('active');
+    }
 };
 const handleCloseSubMenu = (e) => {
-    e.srcElement.lastChild.classList.remove('active');
+    if (e.srcElement.children.length > 0) {
+        e.srcElement.lastChild.classList.remove('active');
+    }
+};
+const handleChangePage = (e) => {
+    menuMobile.value = false;
+    handleCloseSubMenu(e);
 };
 
 const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAsyncData('category-header', () =>
-    useOriginalFetch('/api/v1/categories/header'),
+    useOriginalFetch('/api/v1/categories/header', {
+        params: {
+            limit: 4,
+        },
+    }),
 );
+watchEffect(() => {
+    if (!loadingCategoryHeader.value) {
+        isLoadingPage.value = false;
+    }
+});
 </script>
 <style lang="scss" scoped>
 .site-header {
@@ -424,7 +400,7 @@ const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAs
                 justify-content: unset;
                 align-items: unset;
                 height: calc(100vh - var(--header-main));
-                z-index: 99;
+                z-index: 100;
                 background-color: #fff;
                 overflow: auto;
                 &.active-mobile {
@@ -439,6 +415,7 @@ const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAs
                 font-weight: bold;
                 text-transform: uppercase;
                 height: 100%;
+                position: relative;
                 @apply flex items-center;
                 &.router-link-active {
                     @apply bg-green-500/75;
@@ -457,12 +434,12 @@ const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAs
                 .sub-menu {
                     display: none;
                     &.active {
-                        @apply block absolute top-full w-full left-0 px-[30px];
+                        @apply block absolute top-full w-max left-0;
                     }
                     &:after {
                         content: '';
-                        position: absolute;
-                        top: 0;
+                        position: fixed;
+                        top: calc(var(--header-topbar) + var(--header-main));
                         left: 0;
                         width: 100%;
                         height: 100vh;
@@ -487,40 +464,6 @@ const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAs
                                 height: 3px;
                                 width: 40px;
                                 background-color: #000;
-                            }
-                        }
-                        .product-random-box {
-                            position: relative;
-                            .product-item {
-                                width: 100%;
-                                height: 100%;
-                                &:before {
-                                    content: '';
-                                    position: absolute;
-                                    background: linear-gradient(181deg, hsla(0, 0%, 100%, 0) 8.25%, #000);
-                                    width: 100%;
-                                    height: 100%;
-                                    opacity: 0.5;
-                                    z-index: 2;
-                                }
-                                img {
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: cover;
-                                }
-                                .product-content {
-                                    font-size: 12px;
-                                    padding: 0 10px 10px;
-                                    position: absolute;
-                                    bottom: 0;
-                                    left: 0;
-                                    width: 100%;
-                                    color: white;
-                                    transition: opacity 0.3s ease-in-out;
-                                    z-index: 5;
-                                    font-weight: bold;
-                                    white-space: pre-wrap;
-                                }
                             }
                         }
                     }
@@ -563,6 +506,42 @@ const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAs
                 height: 40px;
                 flex: 0 1 100px;
             }
+        }
+    }
+}
+.product-random-box {
+    position: relative;
+    .product-item {
+        width: 100%;
+        height: 100%;
+        display: block;
+        &:before {
+            content: '';
+            position: absolute;
+            background: linear-gradient(181deg, hsla(0, 0%, 100%, 0) 8.25%, #000);
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            z-index: 2;
+            left: 0;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-content {
+            font-size: 12px;
+            padding: 0 10px 10px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            color: white;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 5;
+            font-weight: bold;
+            white-space: pre-wrap;
         }
     }
 }

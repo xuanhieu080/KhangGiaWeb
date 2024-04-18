@@ -11,27 +11,29 @@
                         <UIcon name="i-ic-round-star" class="fs-22 tab-button-icon" dynamic />
                     </UButton>
                 </div>
-                <div class="product-box my-4">
-                    <ProductList :productList="productList" />
+                <div v-if="!loadingCategoryDashboard" class="product-box my-4">
+                    <ProductList :productList="categoryDashboard.data[0].products" />
                 </div>
             </div>
             <div class="banner-block h-full">
                 <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" />
             </div>
-            <div class="container mx-auto overflow-hidden md:overflow:visible my-4">
+            <div v-if="!loadingCategoryDashboard" class="container mx-auto overflow-hidden md:overflow:visible my-4">
                 <ProductCollection
                     key="container-1"
-                    :productList="collectionList"
+                    :loading="loadingCategoryDashboard"
+                    :productList="categoryDashboard.data && categoryDashboard.data.length > 0 ? categoryDashboard.data[0] : []"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'"
                     :collectionLink="'/articles'" />
             </div>
             <div class="banner-block h-full">
                 <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />
             </div>
-            <div class="container mx-auto overflow-hidden md:overflow:visible my-4">
+            <div v-if="!loadingCategoryDashboard" class="container mx-auto overflow-hidden md:overflow:visible my-4">
                 <ProductCollection
                     key="container-2"
-                    :productList="collectionList"
+                    :loading="loadingCategoryDashboard"
+                    :productList="categoryDashboard.data && categoryDashboard.data.length > 1 ? categoryDashboard.data[1] : []"
                     :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"
                     :collectionLink="'/articles'" />
             </div>
@@ -69,229 +71,16 @@ const bannerList = ref([
         name: 'banner 2',
     },
 ]);
-const productList = ref([
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Xanh wash',
-                code: 'blue',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
-                ],
-            },
-            {
-                color: 'Xanh navi',
-                code: 'green',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Vàng',
-                code: 'yellow',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
-                ],
-            },
-        ],
-    },
-]);
-const collectionList = ref([
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-5_17.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-7_87.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/sCM006.thumb1.2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/CM006.thumb1.3_35.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-5_17.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-7_87.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/sCM006.thumb1.2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/CM006.thumb1.3_35.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-5_17.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-7_87.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/sCM006.thumb1.2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/CM006.thumb1.3_35.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-5_17.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-7_87.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/sCM006.thumb1.2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/CM006.thumb1.3_35.jpg',
-                ],
-            },
-        ],
-    },
-]);
+;
 const bannerBlock = ref({
-    image_desktop:
-        '/images/banner_3.jpg',
+    image_desktop: '/images/banner_3.jpg',
     image_mobile: '/images/banner_3.jpg',
     title: 'Đồng phục',
     description: 'Công ty',
     link: '/collection/dong-phuc',
 });
 const bannerBlock2 = ref({
-    image_desktop:
-        '/images/banner_4.jpg',
+    image_desktop: '/images/banner_4.jpg',
     image_mobile: '/images/banner_4.jpg',
     title: 'Áo ghile kỹ sư',
     description: 'Chuyên dụng - Chất lượng - Uy tín',
@@ -377,17 +166,20 @@ const diaryList = ref([
     },
 ]);
 
+//data
+const { data: categoryDashboard, pending: loadingCategoryDashboard } = await useLazyAsyncData('category-dashboard', async () =>
+    useOriginalFetch('/api/v1/categories/dashboard'),
+);
+
 ///SEO
 const config = useRuntimeConfig();
-
 
 defineOgImageComponent('GAK', {
     title: config.public.title,
     description: config.public.description,
     theme: '#ff0000',
     colorMode: 'dark',
-})
-
+});
 </script>
 <style lang="scss" scoped>
 .dashboard {
