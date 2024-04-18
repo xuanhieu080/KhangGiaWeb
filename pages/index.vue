@@ -5,7 +5,7 @@
             <div class="container mx-auto overflow-hidden md:overflow-visible">
                 <div class="flex items-center gap-4 w-full my-4">
                     <UButton variant="ghost" color="none" size="lg" class="tab-button active">Sản phẩm mới</UButton>
-                    <UButton variant="ghost" color="none" size="lg" class="tab-button">Bán chạy nhất</UButton>
+                    <UButton variant="ghost" color="none" size="lg" class="tab-button">Sản phẩm nổi bật</UButton>
                     <UButton variant="ghost" color="none" size="lg" class="tab-button">
                         Sắp ra mắt
                         <UIcon name="i-ic-round-star" class="fs-22 tab-button-icon" dynamic />

@@ -34,7 +34,7 @@
                     :key="category"
                     :ui="{
                         width: 'w-max',
-                        container: category.descendants.length > 0 ? '' : 'hidden',
+                        container: category.products.length > 0 ? '' : 'hidden',
                         item: { active: '', base: 'cursor-default', disabled: 'cursor-text select-text' },
                     }"
                     :popper="{ placement: 'bottom-start' }">
@@ -48,15 +48,15 @@
                         {{ category.name }}
                     </NuxtLink>
                     <template #item="{ item }">
-                        <div v-show="item.descendants.length > 0" class="sub-menu">
+                        <div v-show="item.products.length > 0" class="sub-menu">
                             <div class="sub-menu-wrapper grid grid-cols-2 gap-4 w-max">
                                 <div class="flex flex-col items-start gap-y-6 p-6 border-r border-gray-300">
                                     <div
-                                        v-show="index1 < item.descendants.length - 2"
-                                        v-for="(subMenu, index1) in item.descendants"
+                                        v-show="index1 < item.products.length - 2"
+                                        v-for="(subMenu, index1) in item.products"
                                         class="text-gray-500">
                                         <NuxtLink
-                                            :to="localePath({ name: 'collection-slug', params: { slug: subMenu.id } })"
+                                            :to="localePath({ name: 'product-slug', params: { slug: subMenu.slug } })"
                                             class="uppercase font-bold text-black hover:text-green-700">
                                             {{ subMenu.name }}
                                         </NuxtLink>
@@ -64,11 +64,11 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-4 py-6 pr-4">
                                     <div
-                                        v-show="index2 >= item.descendants.length - 2"
-                                        v-for="(subMenu, index2) in item.descendants"
+                                        v-show="index2 >= item.products.length - 2"
+                                        v-for="(subMenu, index2) in item.products"
                                         class="product-random-box max-w-[300px] max-h-[200px]">
                                         <NuxtLink
-                                            :to="localePath({ name: 'collection-slug', params: { slug: subMenu.id } })"
+                                            :to="localePath({ name: 'product-slug', params: { slug: subMenu.slug } })"
                                             class="product-item">
                                             <img
                                                 loading="lazy"
