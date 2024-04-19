@@ -1014,14 +1014,50 @@
                         :grid="{
                             rows: 2,
                         }"
-                        :breakpoints="{
-                            992: {
-                                slidesPerView: 3,
-                                spaceBetween: 24,
-                                slidesPerGroup: 3,
-                            },
+                        class="swiper pod-tech-swiper min-w-0 h-[450px] !px-32 lg:!hidden">
+                        <SwiperSlide class="pod-tech-slide">
+                            <a
+                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
+                                rel-script="techcxp-popup"
+                                data-tab-active="#tab1"
+                                data-id="#popup1"
+                                tabindex="0"
+                                ><img alt="" src="/images/silk-tech-1.png" class="lazyload"
+                            /></a>
+                            <span>Công nghệ vải</span>
+                        </SwiperSlide>
+                        <SwiperSlide class="pod-tech-slide">
+                            <a
+                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
+                                rel-script="techcxp-popup"
+                                data-tab-active="#tab2"
+                                data-id="#popup1"
+                                tabindex="0"
+                                ><img alt="" src="/images/silk-tech-2.png" class="lazyload"
+                            /></a>
+                            <span>Công nghệ may</span>
+                        </SwiperSlide>
+                        <SwiperSlide class="pod-tech-slide">
+                            <a
+                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
+                                rel-script="techcxp-popup"
+                                data-tab-active="#tab3"
+                                data-id="#popup1"
+                                tabindex="0"
+                                ><img alt="" src="/images/silk-tech-3.png" class="lazyload"
+                            /></a>
+                            <span>Công nghệ in/thêu</span>
+                        </SwiperSlide>
+                    </Swiper>
+                    <Swiper
+                        :slidesPerView="3"
+                        :spaceBetween="24"
+                        :slidesPerGroup="3"
+                        :modules="modules"
+                        :grid="{
+                            rows: 2,
                         }"
-                        class="swiper pod-tech-swiper min-w-0 h-[450px] !px-32">
+                        class="swiper pod-tech-swiper min-w-0 h-[450px] !px-32 !hidden lg:!block">
                         <SwiperSlide class="pod-tech-slide">
                             <a
                                 href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
