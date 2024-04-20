@@ -19,6 +19,19 @@
                 @click="backToTop"></UButton>
         </div>
     </main>
+    <UNotifications>
+        <template #title="{ title }">
+            <span v-html="title" />
+        </template>
+        <template #description="{ description }">
+            <ul v-if="typeof description == 'object'" class="flex flex-col gap-4 !px-0 text-red-500">
+                <li class="px-0 list-disc" v-for="item in Object.values(description)">{{ item[0] }}</li>
+            </ul>
+            <span v-else>
+                {{ description }}
+            </span>
+        </template>
+    </UNotifications>
     <Footer />
     <div class="dmca-container">
         <a
@@ -66,6 +79,7 @@ onMounted(() => {
 function handleHideHeader() {
     if (window.innerWidth < 991) {
         window.removeEventListener('scroll', controlHeaderShowing);
+        isScrollDown.value = false;
     } else {
         window.addEventListener('scroll', controlHeaderShowing, false);
     }

@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div class="dashboard">
+        <div v-if="!isLoadingPage" class="dashboard">
             <Banner :bannerList="bannerList" :autoPlay="true" />
             <div class="container mx-auto overflow-hidden md:overflow-visible">
                 <div class="flex items-center gap-4 w-full my-4">
@@ -12,7 +12,7 @@
                     </UButton>
                 </div>
                 <div v-if="!loadingCategoryDashboard" class="product-box my-4">
-                    <ProductList :productList="categoryDashboard.data[0].products" />
+                    <ProductList :productList="categoryDashboard.data && categoryDashboard.data.length > 0 ? categoryDashboard.data[0].products : []" />
                 </div>
             </div>
             <div class="banner-block h-full">
@@ -61,6 +61,11 @@ import ProductCollection from '@/components/products/ProductCollection';
 import CategoryBox from '@/components/categories/CategoryBox.vue';
 import DiaryWrapper from '@/components/diary/diaryWrapper.vue';
 const localePath = useLocalePath();
+
+import { useHeader } from '@@/store/useHeader';
+const useHeaderStore = useHeader();
+const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
+
 const bannerList = ref([
     {
         url: '/images/banner_1.jpg',
@@ -77,28 +82,28 @@ const bannerBlock = ref({
     image_mobile: '/images/banner_3.jpg',
     title: 'Đồng phục',
     description: 'Công ty',
-    link: '/collection/dong-phuc',
+    link: 'dong-phuc',
 });
 const bannerBlock2 = ref({
     image_desktop: '/images/banner_4.jpg',
     image_mobile: '/images/banner_4.jpg',
     title: 'Áo ghile kỹ sư',
     description: 'Chuyên dụng - Chất lượng - Uy tín',
-    link: '/collection/ao-ghile',
+    link: 'ao-ghile',
 });
 const bannerBlock3 = ref({
     image_desktop: '/images/banner_5.jpg',
     image_mobile: '/images/banner_5.jpg',
     title: 'Nguyên phụ liệu',
     subtitle: 'Phản Quang Chất lượng cao',
-    link: '/articles',
+    link: 'articles',
 });
 const bannerBlock4 = ref({
     image_desktop: '/images/banner_6.jpg',
     image_mobile: '/images/banner_6.jpg',
     title: 'Nguyên phụ liệu',
     subtitle: 'Vải /lưới',
-    link: '/articles',
+    link: 'articles',
 });
 
 const categoryList = ref([

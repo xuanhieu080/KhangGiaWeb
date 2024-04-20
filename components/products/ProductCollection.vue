@@ -6,7 +6,7 @@
                 <ProductCard :product="product" />
             </div>
         </div>
-        <NuxtLink v-if="productList.slug" :to="localePath({ name: 'collection-slug', params: { slug: productList.id } })" class="see-more-btn mx-auto mt-4">
+        <NuxtLink v-if="productList.slug" :to="localePath({ name: 'collection-slug', params: { slug: productList.slug } })" class="see-more-btn mx-auto mt-4">
             <UButton size="lg" variant="outline" color="none" class="rounded-2xl h-12 w-[200px] justify-center ring-2">
                 <span class="uppercase font-bold">{{ $t('Xem thêm') }}</span>
             </UButton>

@@ -8,7 +8,7 @@
             <div v-if="bannerBlock.subtitle" class="opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
             <div class="title" :class="splitBanner ? 'custom-font' : ''">{{ bannerBlock.title }}</div>
             <div v-if="bannerBlock.description" class="description" v-html="bannerBlock.description"></div>
-            <NuxtLink :to="bannerBlock.link">
+            <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: bannerBlock.link}})">
                 <UButton
                     size="xl"
                     color="none"
@@ -22,6 +22,7 @@
     </div>
 </template>
 <script setup>
+const localePath = useLocalePath();
 const props = defineProps({
     bannerBlock: {
         type: Object,

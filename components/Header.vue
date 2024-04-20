@@ -15,19 +15,19 @@
                 <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
         </div>
-        <div v-show="!loadingCategoryHeader" class="header" :class="loadingCategoryHeader ? 'hidden' : ''">
+        <div  class="header" :class="loadingCategoryHeader ? 'hidden' : ''">
             <div class="left-header">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
                     <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
                 </NuxtLink>
             </div>
             <div class="mobile-header"></div>
-            <div class="middle-header" :class="menuMobile ? 'active-mobile' : ''">
+            <div v-if="!isLoadingPage" class="middle-header" :class="menuMobile ? 'active-mobile' : ''">
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'index' })" @click="menuMobile = false">{{
                     $t('Trang chủ')
                 }}</NuxtLink>
                 <UDropdown
-                    v-if="categoryHeader.data.length > 0 && !menuMobile"
+                    v-if="categoryDashboard && categoryHeader.data && categoryHeader.data.length > 0 && !menuMobile"
                     v-for="(category, index) in categoryHeader.data"
                     :items="[[category]]"
                     mode="hover"
@@ -83,7 +83,7 @@
                     </template>
                 </UDropdown>
                 <NuxtLink
-                    v-if="categoryHeader.data.length > 0 && menuMobile"
+                    v-if="categoryDashboard && categoryHeader.data && categoryHeader.data.length > 0 && menuMobile"
                     v-for="(category, index) in categoryHeader.data"
                     :to="localePath({ name: 'collection-slug', params: { slug: category.id } })"
                     v-show="index < 4"

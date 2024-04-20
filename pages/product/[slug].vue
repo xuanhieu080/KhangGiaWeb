@@ -1,13 +1,14 @@
 <template>
     <NuxtLayout name="main">
-        <div class="product-page py-6">
+        <div v-if="!loadingProduct" class="product-page py-6">
             <div class="container mx-auto flex flex-col gap-4">
-                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start  gap-4 relative pt-12">
+                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative pt-12">
                     <UBreadcrumb
                         class="w-max absolute -top-2 left-2 lg:left-[96px]"
                         divider="/"
-                        :links="[{ label: $t('Home'), to: '/' }, { label: product.product_name }]" />
+                        :links="[{ label: $t('Home'), to: localePath({name: 'index'}) }, { label: productItem.data.name }]" />
                     <swiper
+                        v-if="productItem.data && productItem.data.variants && productItem.data.variants.length > 0"
                         v-show="thumbsSwiper"
                         @swiper="setThumbsSwiper"
                         :spaceBetween="16"
@@ -17,7 +18,9 @@
                         :modules="modules"
                         :direction="'vertical'"
                         class="!hidden lg:!block !w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
-                        <SwiperSlide v-for="image in imageList.list" class="!h-[120px] w-full rounded-md">
+                        <SwiperSlide
+                            v-for="image in productItem.data.variants[indexActive].thumb_image"
+                            class="!h-[120px] w-full rounded-md">
                             <img :src="image" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
                     </swiper>
@@ -27,6 +30,7 @@
                     </div>
                     <div v-show="thumbsSwiper" class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
                         <Swiper
+                            v-if="productItem.data && productItem.data.variants && productItem.data.variants.length > 0"
                             :spaceBetween="10"
                             :navigation="{
                                 nextEl: '.main-product-swiper .next-product-btn',
@@ -35,7 +39,7 @@
                             :thumbs="{ swiper: thumbsSwiper }"
                             :modules="modules"
                             class="!mx-0">
-                            <SwiperSlide v-for="image in imageList.list" class="!flex justify-center">
+                            <SwiperSlide v-for="image in productItem.data.variants[indexActive].thumb_image" class="!flex justify-center">
                                 <img :src="image" alt="" class="rounded-md" />
                             </SwiperSlide>
                             <template v-slot:container-end>
@@ -61,8 +65,7 @@
                     </div>
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
-                            <span class="font-bold text-[28px] lg:text-[32px]">{{ product.product_name }}</span>
-                            <span class="text-gray-500 fs-18 font-medium">{{ product.product_introduction }}</span>
+                            <span class="font-bold text-[28px] lg:text-[32px]">{{ productItem.data.name }}</span>
                         </div>
                         <div class="product-rate flex items-center gap-2 text-black">
                             <NuxtRating
@@ -73,43 +76,59 @@
                                 rating-content="⭐" />
                             <div class="fs-12">({{ product.product_rating.reviews.length }})</div>
                             <div>|</div>
-                            <div v-if="product.product_sold > 0" class="fs-12">{{ $t('Sold') + ' (web): ' + product.product_sold }}</div>
+                            <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data.qty_sold }}</div>
                         </div>
-                        <div class="product-price font-bold text-[22px]">{{ product.product_price.toLocaleString() }}đ</div>
-                        <div class="product-compaign fs-14 text-blue-600 italic font-semibold">
+
+                        <div class="product-price font-bold text-[22px]">
+                            <div v-if="productItem.data.price_discount == 0" class="original-price">
+                                {{ formatPriceProduct(productItem.data.price) + 'đ' }}
+                            </div>
+                            <div v-else class="discount-price">
+                                <div class="after-discount">
+                                    {{ formatPriceProduct((productItem.data.price * (100 - productItem.data.price_discount)) / 100) + 'đ' }}
+                                </div>
+                                <div class="original-price">{{ formatPriceProduct(productItem.data.price) + 'đ' }}</div>
+                                <div class="discount-tag">{{ productItem.data.price_discount + '%' }}</div>
+                            </div>
+                        </div>
+                        <div v-if="productItem.data.compaign_name" class="product-compaign fs-14 text-blue-600 italic font-semibold">
                             {{ product.product_compaign_name }}
                         </div>
                         <div class="product-color-list flex flex-col gap-2">
                             <span class="text-[15px]"
-                                >Màu sắc: <b>{{ imageList.color }}</b></span
+                                >Màu sắc: <b>{{ productItem.data.variantAttribute['Màu sắc'][indexActive].attribute_name }}</b></span
                             >
-                            <div class="color-list flex items-center gap-4">
+                            <div
+                                v-if="productItem.data && productItem.data.variantAttribute['Màu sắc']"
+                                class="color-list flex items-center gap-4">
                                 <div
-                                    v-for="(listColor, index) in product.product_images"
+                                    v-for="(listColor, index) in productItem.data.variantAttribute['Màu sắc']"
                                     class="color-list-item w-12 h-8 rounded-3xl"
-                                    :class="colorProductActive == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700'"
-                                    :style="{ backgroundColor: listColor.code }"
-                                    @click="colorProductActive = index"></div>
+                                    :class="indexActive == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700'"
+                                    :style="{ backgroundColor: listColor.attribute_color }"
+                                    @click="indexActive = index"></div>
                             </div>
                         </div>
                         <div class="product-size-list flex flex-col gap-3">
                             <span class="text-[15px] font-medium"
-                                >Kích thước: <b>{{ productSize ? productSize.name : '' }}</b>
-                                {{ productSize ? productSize.description : '' }}</span
+                                >Kích thước: <b>{{ productSize ? productSize.attribute_name : '' }}</b>
+                                {{ productSize ? productSize.attribute_description : '' }}</span
                             >
                             <div class="size-list flex items-center gap-4">
                                 <button
-                                    v-for="(size, index) in product.product_sizes"
+                                    v-for="(size, index) in productItem.data.variantAttribute['Size']"
                                     :class="[
                                         productSizeIndex == index ? '!bg-black !text-white' : '',
-                                        size.quantity == 0 ? 'opacity-30 pointer-events-none' : '',
+                                        size.attribute_qty == 0 || size.attribute_qty ==  null ? 'opacity-30 pointer-events-none' : '',
                                     ]"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-16 h-10 rounded-2xl font-bold"
                                     @click="setProductSize(size, index)">
-                                    {{ size.name }}
-                                    <div v-if="size.quantity == 0" class="check-mark"></div>
+                                    {{ size.attribute_name }}
+                                    <div v-if="size.attribute_qty == 0 || size.attribute_qty ==  null" class="check-mark"></div>
                                 </button>
-                                <span v-if="productSizeIndex !== null" class="fs-14">{{ $t('Số lượng còn') }} <b>{{ product.product_sizes[productSizeIndex].quantity }}</b></span>
+                                <span v-if="productSizeIndex !== null" class="fs-14"
+                                    >{{ $t('Số lượng còn') }} <b>{{ productItem.data.variantAttribute['Size'][productSizeIndex].attribute_qty }}</b></span
+                                >
                             </div>
                         </div>
                         <div class="product-add-to-cart mt-auto flex items-center gap-4">
@@ -157,7 +176,7 @@
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-fluent-phone-checkmark-20-regular" dynamic />
-                                <span>Hotline 1900.27.27.37 hỗ trợ từ 8h30 - 22h mỗi ngày</span>
+                                <span>Hotline 056.913.33.39 hoặc 094.763.65.69 hỗ trợ từ 8h00 - 17h30 mỗi ngày</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-ph-clock-clockwise-bold" dynamic />
@@ -185,9 +204,9 @@
                 </div>
                 <div class="product-more-details">
                     <h3 class="!text-2xl font-extrabold">Chi tiết sản phẩm</h3>
-                    <div>Trống</div>
+                    <div v-html="productItem.data.description"></div>
                 </div>
-                <div class="product-similar my-8">
+                <div v-if="!loadingProductList && productList.data" class="product-similar my-8">
                     <h3 class="w-full text-center !text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
                     <Swiper
                         :spaceBetween="0"
@@ -215,7 +234,7 @@
                             },
                         }"
                         class="similar-products-swiper relative">
-                        <SwiperSlide v-for="similarProduct in similarList">
+                        <SwiperSlide v-for="similarProduct in productList.data">
                             <ProductCard :product="similarProduct" />
                         </SwiperSlide>
                         <template v-slot:container-end>
@@ -291,7 +310,7 @@ import { Navigation, Autoplay, Thumbs } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 
 const route = useRoute();
-// console.log(route.params.slug);
+const router = useRouter();
 
 let modules = ref([Navigation, Thumbs]);
 let modulesSimilar = ref([Navigation]);
@@ -300,6 +319,7 @@ const colorProductActive = ref(0);
 const productSize = ref(null);
 const productSizeIndex = ref(null);
 const quantity = ref(1);
+const indexActive = ref(0);
 const product = ref({
     id: 1,
     product_name: 'Áo polo nam dài tay thể thao',
@@ -596,7 +616,7 @@ const setProductSize = (size, index) => {
 };
 const handleQuantity = (index) => {
     if (index == 1) {
-        if(quantity.value < product.value.product_sizes[productSizeIndex.value].quantity) {
+        if (quantity.value < product.value.product_sizes[productSizeIndex.value].quantity) {
             quantity.value += index;
         }
     } else {
@@ -605,14 +625,27 @@ const handleQuantity = (index) => {
         }
     }
 };
+const formatPriceProduct = (item) => {
+    return new Intl.NumberFormat('en-US').format(item);
+};
+//DATA
+
+const { data: productItem, pending: loadingProduct } = await useLazyAsyncData('product-item', () =>
+    useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`),
+);
+
+const { data: productList, pending: loadingProductList } = await useLazyAsyncData('products-list', () =>
+    useOriginalFetch(`/api/v1/products`),
+);
+watchEffect(() => {
+    
+});
 
 useSchemaOrg([
     defineProduct({
         name: 'test',
         image: '/product.png',
-        offers: [
-            { price: 50 },
-        ],
+        offers: [{ price: 50 }],
         aggregateRating: {
             ratingValue: 88,
             bestRating: 100,
@@ -629,7 +662,7 @@ useSchemaOrg([
                 },
             },
         ],
-    })
+    }),
 ]);
 </script>
 <style lang="scss" scoped>

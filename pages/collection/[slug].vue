@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingCollection && !loadingCategories" class="category-page pt-16 bg-white">
+        <div v-if="!loadingCollection && !loadingCategories && !collectionError" class="category-page pt-16 bg-white">
             <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
@@ -123,9 +123,9 @@
                                             @click="selectedColor = colour">
                                             <div
                                                 class="h-6 w-6 border border-gray-400 rounded-full"
-                                                :class="selectedColor && selectedColor.attribute_name == colour.attribute_name ? 'ring ring-green-500' : ''"
-                                                :style="{ backgroundColor: colour.attribute_color }"></div>
-                                            <span class="text-xs text-gray-500">{{ colour.attribute_name }}</span>
+                                                
+                                                :style="{ backgroundColor: colour.attribute.color }"></div>
+                                            <span :class="selectedColor && selectedColor.attribute_name == colour.attribute_name ? 'font-bold' : ''" class="text-xs text-gray-500">{{ colour.attribute_name }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -175,6 +175,10 @@
                     </span>
                 </div>
             </div>
+        </div>
+        <div v-if="collectionError" class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
+            {{ collectionError.data.message }}
+            <UButton size="lg" :to="localePath({name: 'index'})">{{ $t('Quay trở về') }}</UButton>
         </div>
     </NuxtLayout>
 </template>
@@ -525,13 +529,19 @@ const changeCategoryTab = (index) => {
 };
 
 //data
-const { data: collection, pending: loadingCollection } = await useLazyAsyncData('collection-category', () =>
+const { data: collection, pending: loadingCollection, error: collectionError } = await useLazyAsyncData('collection-category', () =>
     useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`),
 );
 
 const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
     useOriginalFetch(`/api/v1/categories`),
 );
+
+watch(() => collectionError.value, () => {
+    
+
+})
+
 </script>
 <style lang="scss" scoped>
 .category-page {
