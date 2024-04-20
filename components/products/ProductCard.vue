@@ -33,7 +33,7 @@
                 </div>
                 <div class="product-introduction flex items-center gap-1">
                     <span v-html="product.description"></span> /
-                    {{ product.variantAttribute ? product.variantAttribute['Màu sắc'][activeType].attribute_name : '' }}
+                    {{ product.variantAttribute &&  product.variantAttribute['Màu sắc'] ? product.variantAttribute['Màu sắc'][activeType].attribute_name : '' }}
                 </div>
                 <div class="product-price">
                     <div v-if="product.price_discount == 0" class="original-price">
