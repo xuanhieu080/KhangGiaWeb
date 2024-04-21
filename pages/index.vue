@@ -4,39 +4,45 @@
             <Banner :bannerList="bannerList" :autoPlay="true" />
             <div class="container mx-auto overflow-hidden md:overflow-visible">
                 <div class="flex items-center gap-4 w-full my-4">
-                    <UButton variant="ghost" color="none" size="lg" class="tab-button active">Sản phẩm mới</UButton>
-                    <UButton variant="ghost" color="none" size="lg" class="tab-button">Sản phẩm nổi bật</UButton>
-                    <UButton variant="ghost" color="none" size="lg" class="tab-button">
+                    <UButton @click="() => {productIndex = 0}" variant="ghost" color="none" size="lg" class="tab-button" :class="{active: productIndex === 0}">Sản phẩm mới</UButton>
+                    <UButton @click="() => {productIndex = 1}" variant="ghost" color="none" size="lg" class="tab-button" :class="{active: productIndex === 1}">Sản phẩm nổi bật</UButton>
+                    <UButton @click="() => {productIndex = 2}" variant="ghost" color="none" size="lg" class="tab-button" :class="{active: productIndex === 2}">
                         Sắp ra mắt
                         <UIcon name="i-ic-round-star" class="fs-22 tab-button-icon" dynamic />
                     </UButton>
                 </div>
-                <div v-if="!loadingCategoryDashboard" class="product-box my-4">
-                    <ProductList :productList="categoryDashboard.data && categoryDashboard.data.length > 0 ? categoryDashboard.data[0].products : []" />
+                <div v-if="!loadingProductNew && productIndex === 0" class="product-box my-4">
+                    <ProductList :productList="productNew.data" />
+                </div>
+                <div v-if="!loadingProductHot && productIndex === 1" class="product-box my-4">
+                    <ProductList :productList="productHot.data" />
+                </div>
+                <div v-if="!loadingProductUpcoming && productIndex === 2" class="product-box my-4">
+                    <ProductList :productList="productUpcoming.data" />
                 </div>
             </div>
             <div class="banner-block h-full">
                 <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" />
             </div>
-            <div v-if="!loadingCategoryDashboard" class="container mx-auto overflow-hidden md:overflow:visible my-4">
+            <div v-if="!loadingProductUniform" class="container mx-auto overflow-hidden md:overflow:visible my-4">
                 <ProductCollection
                     key="container-1"
-                    :loading="loadingCategoryDashboard"
-                    :productList="categoryDashboard.data && categoryDashboard.data.length > 0 ? categoryDashboard.data[0] : []"
+                    :loading="loadingProductUniform"
+                    :productList="productUpcoming.data"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'"
                     :collectionLink="'/articles'" />
             </div>
-            <div class="banner-block h-full">
-                <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />
-            </div>
-            <div v-if="!loadingCategoryDashboard" class="container mx-auto overflow-hidden md:overflow:visible my-4">
-                <ProductCollection
-                    key="container-2"
-                    :loading="loadingCategoryDashboard"
-                    :productList="categoryDashboard.data && categoryDashboard.data.length > 1 ? categoryDashboard.data[1] : []"
-                    :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"
-                    :collectionLink="'/articles'" />
-            </div>
+<!--            <div class="banner-block h-full">-->
+<!--                <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />-->
+<!--            </div>-->
+<!--            <div v-if="!loadingCategoryDashboard" class="container mx-auto overflow-hidden md:overflow:visible my-4">-->
+<!--                <ProductCollection-->
+<!--                    key="container-2"-->
+<!--                    :loading="loadingCategoryDashboard"-->
+<!--                    :productList="categoryDashboard.data && categoryDashboard.data.length > 1 ? categoryDashboard.data[1] : []"-->
+<!--                    :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"-->
+<!--                    :collectionLink="'/articles'" />-->
+<!--            </div>-->
             <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-1 md:gap-4 w-full h-full">
                 <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
                 <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
@@ -65,6 +71,7 @@ const localePath = useLocalePath();
 import { useHeader } from '@@/store/useHeader';
 const useHeaderStore = useHeader();
 const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
+const productIndex = ref(0)
 
 const bannerList = ref([
     {
@@ -76,7 +83,7 @@ const bannerList = ref([
         name: 'banner 2',
     },
 ]);
-;
+
 const bannerBlock = ref({
     image_desktop: '/images/banner_3.jpg',
     image_mobile: '/images/banner_3.jpg',
@@ -174,6 +181,50 @@ const diaryList = ref([
 //data
 const { data: categoryDashboard, pending: loadingCategoryDashboard } = await useLazyAsyncData('category-dashboard', async () =>
     useOriginalFetch('/api/v1/categories/dashboard'),
+);
+const { data: productNew, pending: loadingProductNew } = await useLazyAsyncData('product-new', async () =>
+    useOriginalFetch('/api/v1/products', {
+        params: {
+            sort: {
+                'desc[0]': 'id'
+            },
+            is_new: 1,
+            limit: 20
+        }
+    }),
+);
+const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData('product-hot', async () =>
+    useOriginalFetch('/api/v1/products', {
+        params: {
+            sort: {
+                'desc[0]': 'id'
+            },
+            is_hot: 1,
+            limit: 20
+        }
+    }),
+);
+const { data: productUpcoming, pending: loadingProductUpcoming } = await useLazyAsyncData('product-upcoming', async () =>
+    useOriginalFetch('/api/v1/products', {
+        params: {
+            sort: {
+                'desc[0]': 'id'
+            },
+            is_upcoming: 1,
+            limit: 20
+        }
+    }),
+);
+const { data: productUniform, pending: loadingProductUniform } = await useLazyAsyncData('product-uniform', async () =>
+    useOriginalFetch('/api/v1/products', {
+        params: {
+            sort: {
+                'desc[0]': 'id'
+            },
+            is_uniform: 1,
+            limit: 20
+        }
+    }),
 );
 
 ///SEO

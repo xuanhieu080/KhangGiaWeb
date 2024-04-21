@@ -1,53 +1,10 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingCollection && !loadingCategories && !collectionError" class="category-page pt-16 bg-white">
+        <div  class="category-page pt-16 bg-white">
             <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase text-2xl">{{ collection.item.name }}</h1>
-                    </div>
-                    <div class="category-tabs w-full">
-                        <Swiper
-                            :slidesPerView="2"
-                            :spaceBetween="16"
-                            :slidesPerGroup="2"
-                            :scrollbar="true"
-                            :modules="modules"
-                            :breakpoints="{
-                                1280: {
-                                    slidesPerView: 5,
-                                    slidesPerGroup: 5,
-                                    spaceBetween: 16,
-                                },
-                                992: {
-                                    slidesPerView: 4,
-                                    slidesPerGroup: 4,
-                                    spaceBetween: 16,
-                                },
-                                768: {
-                                    slidesPerView: 3,
-                                    slidesPerGroup: 3,
-                                    spaceBetween: 15,
-                                },
-                            }"
-                            class="swiper category-swiper min-w-0 relative z-10">
-                            <SwiperSlide v-for="(category, index) in categories.data" :key="product" class="h-full w-[200px] mr-4">
-                                <UCard
-                                    :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
-                                    class="category-card"
-                                    @click="changeCategoryTab(index)">
-                                    <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: category.id}})" class=" category-item flex flex-col gap-2">
-                                        <NuxtImg
-                                            :src="category.image_url"
-                                            format="webp"
-                                            class="w-full h-full object-cover rounded-md flex-1" />
-                                        <div class="category-name font-semibold">
-                                            {{ category.name }}
-                                        </div>
-                                    </NuxtLink>
-                                </UCard>
-                            </SwiperSlide>
-                        </Swiper>
+                        <h1 class="font-bold uppercase text-2xl">CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT</h1>
                     </div>
                 </div>
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
@@ -65,7 +22,7 @@
                                     color="none"
                                     class="border rounded-3xl border-black font-bold"
                                     @click="removeAllFilter"
-                                >{{ $t('Xóa lọc') }}</UButton
+                                    >{{ $t('Xóa lọc') }}</UButton
                                 >
                             </div>
                             <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
@@ -101,12 +58,12 @@
                                 </USelectMenu>
                             </div>
                         </div>
-                        <div v-if="loadingCollection" class="category-data-list">
+                        <div v-if="false && loadingCollection" class="category-data-list">
                             <div v-for="product in 6" class="category-data-item" :key="product">
                                 <ProductCard />
                             </div>
                         </div>
-                        <div v-else-if="!loadingCollection && collection.item.products && collection.item.products.length > 0" class="category-data-list">
+                        <div v-else-if="false && !loadingCollection && collection.item.products && collection.item.products.length > 0" class="category-data-list">
                             <div v-for="product in collection.item.products" class="category-data-item" :key="product">
                                 <ProductCard :product="product" />
                             </div>
@@ -379,12 +336,13 @@ const selectedForm = ref({});
 const selectedMaterial = ref({});
 const selectedColor = ref(null);
 const selectedSize = ref({});
-const selectedAll = ref({});
+const selectedAll = ref([]);
 const removeAllFilter = () => {
     selectedForm.value = {};
     selectedMaterial.value = {};
     selectedSize.value = {};
     selectedColor.value = null;
+    selectedAll.value = [];
 };
 const formFilter = ref([
     {
@@ -481,9 +439,9 @@ const changeCategoryTab = (index) => {
     }, 500);
 };
 
-//data
 const { data: collection, pending: loadingCollection, error: collectionError } = await useLazyAsyncData('collection-category', () =>
-    useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`),
+        // useOriginalFetch(`/api/v1/categories`),
+    useOriginalFetch(`/api/v1/categories/ao-ghi-le`),
 );
 
 const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>

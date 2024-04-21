@@ -94,43 +94,40 @@
                         <div v-if="productItem.data.compaign_name" class="product-compaign fs-14 text-blue-600 italic font-semibold">
                             {{ product.product_compaign_name }}
                         </div>
-                        <div class="product-color-list flex flex-col gap-2">
-                            <span class="text-[15px]"
-                                >Màu sắc: <b>{{ productItem.data.variantAttribute['Màu sắc'][indexActive].attribute_name }}</b></span
-                            >
+
+                        <div v-for="variantAttribute in productItem.data.variantAttribute"
+                             class="flex flex-col gap-2"
+                             :class="{
+                                'product-color-list': variantAttribute.is_color,
+                                'product-size-list': !variantAttribute.is_color
+                             }"
+                        >
+                            <span class="text-[15px]">{{variantAttribute.name}}: <b>abc</b></span>
                             <div
-                                v-if="productItem.data && productItem.data.variantAttribute['Màu sắc']"
+                                v-if="variantAttribute.is_color"
                                 class="color-list flex items-center gap-4">
                                 <div
-                                    v-for="(listColor, index) in productItem.data.variantAttribute['Màu sắc']"
+                                    v-for="(attribute, index) in variantAttribute.attributes"
                                     class="color-list-item w-12 h-8 rounded-3xl"
                                     :class="indexActive == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700'"
-                                    :style="{ backgroundColor: listColor.attribute_color }"
-                                    @click="indexActive = index"></div>
+                                    :style="{ backgroundColor: attribute.attribute_color }"
+                                    @click="selectVariant(variantAttribute.id, attribute.attribute_id)"></div>
                             </div>
-                        </div>
-                        <div class="product-size-list flex flex-col gap-3">
-                            <span class="text-[15px] font-medium"
-                                >Kích thước: <b>{{ productSize ? productSize.attribute_name : '' }}</b>
-                                {{ productSize ? productSize.attribute_description : '' }}</span
-                            >
-                            <div class="size-list flex items-center gap-4">
+                            <div v-else class="size-list flex items-center gap-4">
                                 <button
-                                    v-for="(size, index) in productItem.data.variantAttribute['Size']"
-                                    :class="[
-                                        productSizeIndex == index ? '!bg-black !text-white' : '',
-                                        size.attribute_qty == 0 || size.attribute_qty ==  null ? 'opacity-30 pointer-events-none' : '',
-                                    ]"
+                                    v-for="(attribute, index) in variantAttribute.attributes"
+                                    :class="[index ? '!bg-black !text-white' : '']"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-16 h-10 rounded-2xl font-bold"
-                                    @click="setProductSize(size, index)">
-                                    {{ size.attribute_name }}
-                                    <div v-if="size.attribute_qty == 0 || size.attribute_qty ==  null" class="check-mark"></div>
+                                    @click="selectVariant(variantAttribute.id, attribute.attribute_id)">
+                                    {{ attribute.attribute_name }}
+                                    <div v-if="false" class="check-mark"></div>
                                 </button>
-                                <span v-if="productSizeIndex !== null" class="fs-14"
-                                    >{{ $t('Số lượng còn') }} <b>{{ productItem.data.variantAttribute['Size'][productSizeIndex].attribute_qty }}</b></span
+                                <span v-if="false" class="fs-14"
+                                >{{ $t('Số lượng còn') }} <b>{{ 12 }}</b></span
                                 >
                             </div>
                         </div>
+
                         <div class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
                                 class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
@@ -319,6 +316,8 @@ const colorProductActive = ref(0);
 const productSize = ref(null);
 const productSizeIndex = ref(null);
 const quantity = ref(1);
+const productVariants = ref([]);
+const productItemCurrent = ref({});
 const indexActive = ref(0);
 const product = ref({
     id: 1,
@@ -640,6 +639,33 @@ const { data: productList, pending: loadingProductList } = await useLazyAsyncDat
 watchEffect(() => {
     
 });
+
+function selectVariant(group, attributeId) {
+    let index = productVariants.value.findIndex(item => item.attribute_group_id === group);
+    if (index !== -1) {
+        productVariants[index].attribute_id = attributeId;
+    } else {
+        productVariants.value.push({
+            attribute_id: attributeId,
+            attribute_group_id: group,
+        });
+    }
+
+     productItemCurrent.value = getProductItem();
+}
+
+function getProductItem() {
+    // Duyệt qua từng phần tử trong mảng variants
+    for (const variant of productItem.value.data.variants) {
+        // Tạo mảng optionAll riêng từ option_all
+        const optionAll = variant.option_all.map(item => JSON.stringify(item));
+        // Kiểm tra xem tất cả các phần tử của productVariants có nằm trong optionAll hay không
+        if (productVariants.value.every(item => optionAll.includes(JSON.stringify(item)))) {
+            return variant;  // Trả lại variant phù hợp
+        }
+    }
+    return null;
+}
 
 useSchemaOrg([
     defineProduct({
