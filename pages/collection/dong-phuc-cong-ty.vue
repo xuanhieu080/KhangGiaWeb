@@ -7,7 +7,7 @@
                         <h1 class="font-bold uppercase text-2xl">CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT</h1>
                     </div>
                 </div>
-                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
+                <div v-if="!loadingCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
                     <div class="category-main-left w-full lg:max-w-[350px] px-4">
                         <div class="flex flex-col gap-4 justify-start w-full sticky top-8">
                             <div

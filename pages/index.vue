@@ -25,16 +25,17 @@
                 <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" />
             </div>
             <div v-if="!loadingProductUniform" class="container mx-auto overflow-hidden md:overflow:visible my-4">
-                <ProductCollection
+                <ProductCollectionOther
                     key="container-1"
                     :loading="loadingProductUniform"
                     :productList="productUpcoming.data"
+                    :collectionLink="'/collection/dong-phuc-cong-ty'"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'"
-                    :collectionLink="'/articles'" />
+                   />
             </div>
-<!--            <div class="banner-block h-full">-->
-<!--                <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />-->
-<!--            </div>-->
+            <div class="banner-block h-full">
+                <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />
+            </div>
 <!--            <div v-if="!loadingCategoryDashboard" class="container mx-auto overflow-hidden md:overflow:visible my-4">-->
 <!--                <ProductCollection-->
 <!--                    key="container-2"-->
@@ -64,6 +65,7 @@ import Banner from '@/components/Banners/Banner.vue';
 import BannerBlock from '@/components/Banners/BannerBlock.vue';
 import ProductList from '@/components/products/ProductSwiper';
 import ProductCollection from '@/components/products/ProductCollection';
+import ProductCollectionOther from '@/components/products/ProductCollectionOther.vue';
 import CategoryBox from '@/components/categories/CategoryBox.vue';
 import DiaryWrapper from '@/components/diary/diaryWrapper.vue';
 const localePath = useLocalePath();
