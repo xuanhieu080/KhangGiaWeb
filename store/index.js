@@ -3,6 +3,7 @@ export const useMain = defineStore('main-store', {
     state: () => ({
       pageGroups: [],
       pageHeaders: [],
+      categoryHeaders: [],
     }),
     actions: {
         async getPageGroup() {
@@ -19,6 +20,14 @@ export const useMain = defineStore('main-store', {
               console.log(error.value);
           } else {
               this.pageHeaders = response.value.data
+          }
+      },
+        async getCategoryHeader() {
+          const { data: response, error } = await useMyFetch(`/api/v1/categories/header`);
+          if (error.value) {
+              console.log(error.value);
+          } else {
+              this.categoryHeaders = response.value.data
           }
       }
     }

@@ -15,7 +15,8 @@
                 <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
         </div>
-        <div  class="header" :class="loadingCategoryHeader ? 'hidden' : ''">
+<!--        <div  class="header" :class="loadingCategoryHeader ? 'hidden' : ''">-->
+        <div  class="header">
             <div class="left-header">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
                     <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
@@ -27,8 +28,8 @@
                     $t('Trang chủ')
                 }}</NuxtLink>
                 <UDropdown
-                    v-if="categoryDashboard && categoryHeader.data && categoryHeader.data.length > 0 && !menuMobile"
-                    v-for="(category, index) in categoryHeader.data"
+                    v-if="categoryHeaders && categoryHeaders.length > 0 && !menuMobile"
+                    v-for="(category, index) in categoryHeaders"
                     :items="[[category]]"
                     mode="hover"
                     :key="category"
@@ -39,7 +40,7 @@
                     }"
                     :popper="{ placement: 'bottom-start' }">
                     <NuxtLink
-                        :to="localePath({ name: 'collection-slug', params: { slug: category.id } })"
+                        :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
                         v-show="index < 4"
                         class="main-nav-item"
                         @click="(e) => handleChangePage(e)"
@@ -83,9 +84,9 @@
                     </template>
                 </UDropdown>
                 <NuxtLink
-                    v-if="categoryDashboard && categoryHeader.data && categoryHeader.data.length > 0 && menuMobile"
-                    v-for="(category, index) in categoryHeader.data"
-                    :to="localePath({ name: 'collection-slug', params: { slug: category.id } })"
+                    v-if="pageHeaders && pageHeaders.length > 0 && menuMobile"
+                    v-for="(category, index) in pageHeaders"
+                    :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
                     v-show="index < 4"
                     class="main-nav-item"
                     @click="(e) => handleChangePage(e)"
@@ -267,12 +268,17 @@ import { useHeader } from '@@/store/useHeader';
 import { storeToRefs } from 'pinia';
 import { useMain } from '@@/store/index';
 const useMainStore = useMain();
-const { getPageHeader } = useMain();
+const { getPageHeader, getCategoryHeader } = useMain();
 
-const { pageHeaders } = storeToRefs(useMainStore);
+const { pageHeaders, categoryHeaders } = storeToRefs(useMainStore);
 
 if (pageHeaders.value.length == 0) {
     getPageHeader();
+}
+
+console.log(categoryHeaders.value);
+if (categoryHeaders.value.length == 0) {
+    getCategoryHeader();
 }
 
 const useHeaderStore = useHeader();
@@ -300,19 +306,21 @@ const handleChangePage = (e) => {
     menuMobile.value = false;
     handleCloseSubMenu(e);
 };
-
-const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAsyncData('category-header', () =>
-    useOriginalFetch('/api/v1/categories/header', {
-        params: {
-            limit: 4,
-        },
-    }),
-);
-watchEffect(() => {
-    if (!loadingCategoryHeader.value) {
-        isLoadingPage.value = false;
-    }
-});
+onMounted(() => {
+    isLoadingPage.value = false;
+})
+// const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAsyncData('category-header', () =>
+//     useOriginalFetch('/api/v1/categories/header', {
+//         params: {
+//             limit: 4,
+//         },
+//     }),
+// );
+// watchEffect(() => {
+//     if (!loadingCategoryHeader.value) {
+//         isLoadingPage.value = false;
+//     }
+// });
 </script>
 <style lang="scss" scoped>
 .site-header {
