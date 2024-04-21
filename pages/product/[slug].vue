@@ -110,7 +110,7 @@
                                     v-for="(attribute, index) in variantAttribute.attributes"
                                     class="color-list-item w-12 h-8 rounded-3xl"
                                     :class="indexActive == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700'"
-                                    :style="{ backgroundColor: attribute.attribute_color }"
+                                    :style="{ backgroundColor: attribute.attribute_color}"
                                     @click="selectVariant(variantAttribute.id, attribute.attribute_id)"></div>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
@@ -641,9 +641,10 @@ watchEffect(() => {
 });
 
 function selectVariant(group, attributeId) {
+
     let index = productVariants.value.findIndex(item => item.attribute_group_id === group);
-    if (index !== -1) {
-        productVariants[index].attribute_id = attributeId;
+    if (index !== -1 && productVariants.value[index] !== undefined) {
+        productVariants.value[index].attribute_id = attributeId;
     } else {
         productVariants.value.push({
             attribute_id: attributeId,
