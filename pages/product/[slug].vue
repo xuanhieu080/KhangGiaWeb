@@ -6,7 +6,7 @@
                     <UBreadcrumb
                         class="w-max absolute -top-2 left-2 lg:left-[96px]"
                         divider="/"
-                        :links="[{ label: $t('Home'), to: localePath({name: 'index'}) }, { label: productItem.data.name }]" />
+                        :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
                     <swiper
                         v-if="productItem.data && productItem.data.variants && productItem.data.variants.length > 0"
                         v-show="thumbsSwiper"
@@ -95,35 +95,33 @@
                             {{ product.product_compaign_name }}
                         </div>
 
-                        <div v-for="variantAttribute in productItem.data.variantAttribute"
-                             class="flex flex-col gap-2"
-                             :class="{
+                        <div
+                            v-for="variantAttribute in productItem.data.variantAttribute"
+                            class="flex flex-col gap-2"
+                            :class="{
                                 'product-color-list': variantAttribute.is_color,
-                                'product-size-list': !variantAttribute.is_color
-                             }"
-                        >
-                            <span class="text-[15px]">{{variantAttribute.name}}: <b>abc</b></span>
-                            <div
-                                v-if="variantAttribute.is_color"
-                                class="color-list flex items-center gap-4">
+                                'product-size-list': !variantAttribute.is_color,
+                            }">
+                            <span class="text-[15px]">{{ variantAttribute.name }}: <b>abc</b></span>
+                            <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
                                 <div
                                     v-for="(attribute, index) in variantAttribute.attributes"
                                     class="color-list-item w-12 h-8 rounded-3xl"
                                     :class="indexActive == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700'"
-                                    :style="{ backgroundColor: attribute.attribute_color}"
+                                    :style="{ backgroundColor: attribute.attribute_color }"
                                     @click="selectVariant(variantAttribute.id, attribute.attribute_id)"></div>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
                                 <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
                                     :class="[index ? '!bg-black !text-white' : '']"
-                                    class="size-list-item bg-gray-200 flex items-center justify-center w-16 h-10 rounded-2xl font-bold"
+                                    class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                     @click="selectVariant(variantAttribute.id, attribute.attribute_id)">
                                     {{ attribute.attribute_name }}
                                     <div v-if="false" class="check-mark"></div>
                                 </button>
                                 <span v-if="false" class="fs-14"
-                                >{{ $t('Số lượng còn') }} <b>{{ 12 }}</b></span
+                                    >{{ $t('Số lượng còn') }} <b>{{ 12 }}</b></span
                                 >
                             </div>
                         </div>
@@ -195,7 +193,7 @@
                             </ul>
                         </div>
                         <div class="image-example w-1/2 max-w-[300px] m-auto">
-                            <img :src="product.product_for_example" class="w-[300px] h-[300px] object-contain" alt="" />
+                            <img :src="productItem.data.thumb_image" class="w-[300px] h-[300px] object-contain" alt="" />
                         </div>
                     </div>
                 </div>
@@ -203,7 +201,7 @@
                     <h3 class="!text-2xl font-extrabold">Chi tiết sản phẩm</h3>
                     <div v-html="productItem.data.description"></div>
                 </div>
-                <div v-if="!loadingProductList && productList.data" class="product-similar my-8">
+                <div v-if="!loadingProductHot && productHot.data" class="product-similar my-8">
                     <h3 class="w-full text-center !text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
                     <Swiper
                         :spaceBetween="0"
@@ -231,7 +229,7 @@
                             },
                         }"
                         class="similar-products-swiper relative">
-                        <SwiperSlide v-for="similarProduct in productList.data">
+                        <SwiperSlide v-for="similarProduct in productHot.data">
                             <ProductCard :product="similarProduct" />
                         </SwiperSlide>
                         <template v-slot:container-end>
@@ -632,17 +630,21 @@ const formatPriceProduct = (item) => {
 const { data: productItem, pending: loadingProduct } = await useLazyAsyncData('product-item', () =>
     useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`),
 );
-
-const { data: productList, pending: loadingProductList } = await useLazyAsyncData('products-list', () =>
-    useOriginalFetch(`/api/v1/products`),
+const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData('product-hot', async () =>
+    useOriginalFetch('/api/v1/products', {
+        params: {
+            sort: {
+                'desc[0]': 'id',
+            },
+            is_hot: 1,
+            limit: 20,
+        },
+    }),
 );
-watchEffect(() => {
-    
-});
+watchEffect(() => {});
 
 function selectVariant(group, attributeId) {
-
-    let index = productVariants.value.findIndex(item => item.attribute_group_id === group);
+    let index = productVariants.value.findIndex((item) => item.attribute_group_id === group);
     if (index !== -1 && productVariants.value[index] !== undefined) {
         productVariants.value[index].attribute_id = attributeId;
     } else {
@@ -652,17 +654,17 @@ function selectVariant(group, attributeId) {
         });
     }
 
-     productItemCurrent.value = getProductItem();
+    productItemCurrent.value = getProductItem();
 }
 
 function getProductItem() {
     // Duyệt qua từng phần tử trong mảng variants
     for (const variant of productItem.value.data.variants) {
         // Tạo mảng optionAll riêng từ option_all
-        const optionAll = variant.option_all.map(item => JSON.stringify(item));
+        const optionAll = variant.option_all.map((item) => JSON.stringify(item));
         // Kiểm tra xem tất cả các phần tử của productVariants có nằm trong optionAll hay không
-        if (productVariants.value.every(item => optionAll.includes(JSON.stringify(item)))) {
-            return variant;  // Trả lại variant phù hợp
+        if (productVariants.value.every((item) => optionAll.includes(JSON.stringify(item)))) {
+            return variant; // Trả lại variant phù hợp
         }
     }
     return null;

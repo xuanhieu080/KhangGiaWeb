@@ -74,7 +74,7 @@ import images from 'assets/icons';
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-const defaultIndex = ref(0)
+const defaultIndex = ref(1)
 const items = ref([
     {
         label: 'Điều khoản sử dụng',
@@ -103,8 +103,8 @@ const items = ref([
     },
 ]);
 const content = ref();
-const { data: page, pending: loadingPage } = await useLazyAsyncData('dieu-khoan-su-dung', () =>
-    useOriginalFetch(`/api/v1/pages/dieu-khoan-su-dung`),
+const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-cookie', () =>
+    useOriginalFetch(`/api/v1/pages/chinh-sach-cookie`),
 );
 
 watchEffect(() => {
