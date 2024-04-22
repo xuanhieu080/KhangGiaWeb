@@ -31,7 +31,7 @@
                                 },
                             }"
                             class="swiper category-swiper min-w-0 relative z-10">
-                            <SwiperSlide v-for="(category, index) in collection.item.descendants" :key="'product'" class="h-full w-[200px] mr-4">
+                            <SwiperSlide v-for="(category, index) in collection.item.descendants" :key="product" class="h-full w-[200px] mr-4">
                                 <UCard
                                     :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
                                     class="category-card"
