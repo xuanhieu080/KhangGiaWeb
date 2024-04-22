@@ -1,12 +1,12 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingCollection && !loadingCategories && !collectionError" class="category-page pt-16 bg-white">
+        <div v-if="!loadingCollection && !collectionError" class="category-page pt-16 bg-white">
             <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
                         <h1 class="font-bold uppercase text-2xl">{{ collection.item.name }}</h1>
                     </div>
-                    <div class="category-tabs w-full">
+                    <div v-if="collection.item.descendants" class="category-tabs w-full">
                         <Swiper
                             :slidesPerView="2"
                             :spaceBetween="16"
@@ -31,7 +31,7 @@
                                 },
                             }"
                             class="swiper category-swiper min-w-0 relative z-10">
-                            <SwiperSlide v-for="(category, index) in categories.data" :key="product" class="h-full w-[200px] mr-4">
+                            <SwiperSlide v-for="(category, index) in collection.item.descendants" :key="'product'" class="h-full w-[200px] mr-4">
                                 <UCard
                                     :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
                                     class="category-card"
@@ -486,9 +486,9 @@ const { data: collection, pending: loadingCollection, error: collectionError } =
     useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`),
 );
 
-const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
-    useOriginalFetch(`/api/v1/categories`),
-);
+// const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
+//     useOriginalFetch(`/api/v1/categories`),
+// );
 
 watch(() => collectionError.value, () => {
 
