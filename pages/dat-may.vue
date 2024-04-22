@@ -2,16 +2,17 @@
     <NuxtLayout name="main">
         <section class="pod-banner">
             <video
-                poster="https://www.coolmate.me/images/cxp-placholder.png"
-                src="https://mcdn.coolmate.me/uploads/assets/0216.mp4"
+                poster="/images/dat-may-background.jpg"
+                src="/images/dat-may-background.jpg"
                 muted="muted"
                 autoplay="autoplay"
                 loop="loop"
                 playsinline=""
                 class="pod-banner__video"
-                style="pointer-events: none"></video>
+                style="pointer-events: none; display: none"></video>
+            <img src="/images/dat-may-background.jpg" class="h-full w-full object-contain lg:object-cover" />
             <div class="pod-banner__filter"></div>
-            <div class="container container--medium prose prose-lg h-full">
+            <div v-if="false" class="container container--medium prose prose-lg h-full">
                 <div class="pod-banner__content">
                     <h1 class="pod-banner__heading">Đặt may đồng phục</h1>
                     <p class="pod-banner__description">
@@ -161,7 +162,7 @@
             <section id="products" class="pod-products">
                 <div class="container container--medium">
                     <h2 class="pod-products__heading" style="margin-bottom: 10px">
-                        Các mẫu đồng phục giá rẻ đang được khách hàng tin chọn
+                        Các mẫu đồng phục đẹp giá tốt đang được khách hàng tin chọn
                     </h2>
                     <div>
                         <h3 style="text-align: center; font-size: 16px; padding: 0px 30px">
@@ -880,14 +881,13 @@
                     </div>
                 </div>
             </section>
-            <section id="mockup">
+            <section id="mockup" class="mt-8">
                 <div class="container container--medium">
                     <div class="contact">
                         <div class="contact__wrapper">
                             <div class="contact__content">
                                 <h2 class="contact__content-title">
-                                    Bạn đang cần được tư vấn cho đồng phục công ty, may quần áo bảo hộ lao động, đồng phục ông nhân? Hãy để
-                                    chúng tôi tư vấn cho bạn
+                                    Bạn đang cần được tư vấn cho đồng phục công ty, may quần áo bảo hộ lao động, đồng phục công nhân? Hãy để chúng tôi tư vấn cho bạn
                                 </h2>
                                 <div class="contact__content-hotline">
                                     <div class="contact__content-info">
@@ -930,7 +930,7 @@
                                             variant="none"
                                             id="product"
                                             name="product"
-                                            placeholder="vd: 3 khẩu trang đen"
+                                            placeholder="vd: Đồng phục Shopee"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
                                     <UFormGroup class="form-group" label="Họ và tên của bạn" required>
@@ -987,9 +987,12 @@
             <section class="pod-factory">
                 <div class="pod-factory__banner">
                     <picture style="width: 100%"
-                        ><source media="(max-width: 781px)" srcset="https://mcdn.coolmate.me/image/February2023/mceclip35.jpg" />
-                        <img src="/images/factory-banner.jpg" alt="block banner" style="width: 100%"
-                    /></picture>
+                        ><source
+                            class="hidden"
+                            media="(max-width: 781px)"
+                            srcset="https://mcdn.coolmate.me/image/February2023/mceclip35.jpg" />
+                        <img src="/images/nha-may-background.png" alt="Nha may" class="h-full w-full object-cover" />
+                    </picture>
                 </div>
                 <div class="pod-factory__info">
                     <h2>Nhà máy của chúng tôi</h2>
@@ -1014,39 +1017,20 @@
                         :grid="{
                             rows: 2,
                         }"
-                        class="swiper pod-tech-swiper min-w-0 h-[450px] !px-32 lg:!hidden">
+                        class="swiper pod-tech-swiper h-[450px] lg:!hidden">
                         <SwiperSlide class="pod-tech-slide">
-                            <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
-                                rel-script="techcxp-popup"
-                                data-tab-active="#tab1"
-                                data-id="#popup1"
-                                tabindex="0"
-                                ><img alt="" src="/images/silk-tech-1.png" class="lazyload"
+                            <a href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
                             /></a>
-                            <span>Công nghệ vải</span>
+                            <span>Vải chất lượng cao</span>
                         </SwiperSlide>
                         <SwiperSlide class="pod-tech-slide">
-                            <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
-                                rel-script="techcxp-popup"
-                                data-tab-active="#tab2"
-                                data-id="#popup1"
-                                tabindex="0"
-                                ><img alt="" src="/images/silk-tech-2.png" class="lazyload"
-                            /></a>
-                            <span>Công nghệ may</span>
+                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
+                            <span>Công nghệ may tiên tiến</span>
                         </SwiperSlide>
                         <SwiperSlide class="pod-tech-slide">
-                            <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
-                                rel-script="techcxp-popup"
-                                data-tab-active="#tab3"
-                                data-id="#popup1"
-                                tabindex="0"
-                                ><img alt="" src="/images/silk-tech-3.png" class="lazyload"
-                            /></a>
-                            <span>Công nghệ in/thêu</span>
+                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
+                            <span>Công nghệ in/thêu đồng phục</span>
                         </SwiperSlide>
                     </Swiper>
                     <Swiper
@@ -1059,37 +1043,18 @@
                         }"
                         class="swiper pod-tech-swiper min-w-0 h-[450px] !px-32 !hidden lg:!block">
                         <SwiperSlide class="pod-tech-slide">
-                            <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
-                                rel-script="techcxp-popup"
-                                data-tab-active="#tab1"
-                                data-id="#popup1"
-                                tabindex="0"
-                                ><img alt="" src="/images/silk-tech-1.png" class="lazyload"
+                            <a href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
                             /></a>
-                            <span>Công nghệ vải</span>
+                            <span>Vải chất lượng cao</span>
                         </SwiperSlide>
                         <SwiperSlide class="pod-tech-slide">
-                            <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
-                                rel-script="techcxp-popup"
-                                data-tab-active="#tab2"
-                                data-id="#popup1"
-                                tabindex="0"
-                                ><img alt="" src="/images/silk-tech-2.png" class="lazyload"
-                            /></a>
-                            <span>Công nghệ may</span>
+                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
+                            <span>Công nghệ may tiên tiến</span>
                         </SwiperSlide>
                         <SwiperSlide class="pod-tech-slide">
-                            <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar"
-                                rel-script="techcxp-popup"
-                                data-tab-active="#tab3"
-                                data-id="#popup1"
-                                tabindex="0"
-                                ><img alt="" src="/images/silk-tech-3.png" class="lazyload"
-                            /></a>
-                            <span>Công nghệ in/thêu</span>
+                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
+                            <span>Công nghệ in/thêu đồng phục</span>
                         </SwiperSlide>
                     </Swiper>
                 </div>
@@ -1320,6 +1285,9 @@ const articleList = ref([
 .pod-banner {
     position: relative;
     height: calc(100vh - 120px);
+    @media screen and (max-width: 991px) {
+        height: 100%;
+    }
     .pod-banner__content,
     .pod-banner__filter,
     .pod-banner__video {
@@ -1802,16 +1770,21 @@ const articleList = ref([
         position: relative;
         margin-top: 3em;
         .pod-factory__banner {
-            background-image: url(https://mcdn.coolmate.me/image/February2023/mceclip4_99.jpg);
-            background-repeat: no-repeat;
-            background-position: 50%;
-            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(105, 105, 105, 0.5);
+            }
         }
         .pod-factory__info {
             position: absolute;
             top: 25%;
             left: 10%;
-            max-width: 775px;
+            max-width: 768px;
             color: #fff;
             h2 {
                 font-size: 64px;
@@ -1825,6 +1798,11 @@ const articleList = ref([
                 @media screen and (max-width: 991px) {
                     font-size: 16px;
                 }
+            }
+            @media screen and (max-width: 767px) {
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
             }
         }
     }
@@ -1840,7 +1818,7 @@ const articleList = ref([
             height: calc((100% - 24px) / 2) !important;
             border-radius: 12px;
             /* Center slide text vertically */
-            @apply flex flex-col gap-4 items-center justify-center;
+            @apply flex flex-col gap-4 items-center justify-start;
             img {
                 height: 150px;
             }
@@ -1850,6 +1828,9 @@ const articleList = ref([
         padding: 0 60px;
         margin-top: 2em;
         border-radius: 20px;
+        @media screen and (max-width: 991px) {
+            padding: 0 16px;
+        }
         .container {
             background-color: rgb(249, 248, 108);
         }
