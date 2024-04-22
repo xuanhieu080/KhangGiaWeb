@@ -36,7 +36,7 @@
                                     :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
                                     class="category-card"
                                     @click="changeCategoryTab(index)">
-                                    <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: category.id}})" class=" category-item flex flex-col gap-2">
+                                    <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: category.slug}})" class=" category-item flex flex-col gap-2">
                                         <NuxtImg
                                             :src="category.image_url"
                                             format="webp"
