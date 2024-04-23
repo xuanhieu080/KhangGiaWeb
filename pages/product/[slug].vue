@@ -8,8 +8,7 @@
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
                     <swiper
-                        v-if="productItem.data && productItem.data.variants && productItem.data.variants.length > 0"
-                        v-show="thumbsSwiper"
+                        v-show="thumbsSwiper && productItemCurrent"
                         @swiper="setThumbsSwiper"
                         :spaceBetween="16"
                         :slidesPerView="4"
@@ -19,18 +18,22 @@
                         :direction="'vertical'"
                         class="!hidden lg:!block !w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
                         <SwiperSlide
-                            v-for="image in productItem.data.variants[indexActive].thumb_image"
+                            v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
+                            v-for="image in productItemCurrent.thumb_image"
                             class="!h-[120px] w-full rounded-md">
                             <img :src="image" alt="" class="w-full h-full object-cover rounded-md" />
+                        </SwiperSlide>
+                        <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
+                            <img :src="productItemCurrent ? productItemCurrent.image : ''" alt="No image" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
                     </swiper>
                     <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                     </div>
-                    <div v-show="thumbsSwiper" class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
+                    <div v-show="thumbsSwiper && productItemCurrent" class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
                         <Swiper
-                            v-if="productItem.data && productItem.data.variants && productItem.data.variants.length > 0"
+                            v-if="productItemCurrent"
                             :spaceBetween="10"
                             :navigation="{
                                 nextEl: '.main-product-swiper .next-product-btn',
@@ -39,8 +42,17 @@
                             :thumbs="{ swiper: thumbsSwiper }"
                             :modules="modules"
                             class="!mx-0">
-                            <SwiperSlide v-for="image in productItem.data.variants[indexActive].thumb_image" class="!flex justify-center">
+                            <SwiperSlide v-if="productItemCurrent.video_link">
+                                <video :src="productItemCurrent.video_link"></video>
+                            </SwiperSlide>
+                            <SwiperSlide
+                                v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
+                                v-for="image in productItemCurrent.thumb_image"
+                                class="!flex justify-center">
                                 <img :src="image" alt="" class="rounded-md" />
+                            </SwiperSlide>
+                            <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
+                                <img :src="productItemCurrent ? productItemCurrent.image : ''" alt="No image" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <template v-slot:container-end>
                                 <UButton
@@ -102,21 +114,21 @@
                                 'product-color-list': variantAttribute.is_color,
                                 'product-size-list': !variantAttribute.is_color,
                             }">
-                            <span class="text-[15px]">{{ variantAttribute.name }}: <b>abc</b></span>
+                            <span class="text-[15px]">{{ variantAttribute.name }}: <b>{{ selectedProductVariant[variantAttribute.name] }}</b></span>
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
                                 <div
                                     v-for="(attribute, index) in variantAttribute.attributes"
                                     class="color-list-item w-12 h-8 rounded-3xl"
-                                    :class="indexActive == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700'"
+                                    :class="[indexActiveColor == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700']"
                                     :style="{ backgroundColor: attribute.attribute_color }"
-                                    @click="selectVariant(variantAttribute.id, attribute.attribute_id)"></div>
+                                    @click="selectVariant(variantAttribute, attribute, index)"></div>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
                                 <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
-                                    :class="[index ? '!bg-black !text-white' : '']"
+                                    :class="[indexActive == index  && variantAttribute.name != 'Chất vải' ? '!bg-black !text-white' : '', variantAttribute.name == 'Chất vải' ? 'pointer-events-none' : '' ]"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
-                                    @click="selectVariant(variantAttribute.id, attribute.attribute_id)">
+                                    @click="selectVariant(variantAttribute, attribute, index)">
                                     {{ attribute.attribute_name }}
                                     <div v-if="false" class="check-mark"></div>
                                 </button>
@@ -311,12 +323,16 @@ let modules = ref([Navigation, Thumbs]);
 let modulesSimilar = ref([Navigation]);
 const localePath = useLocalePath();
 const colorProductActive = ref(0);
-const productSize = ref(null);
 const productSizeIndex = ref(null);
 const quantity = ref(1);
 const productVariants = ref([]);
-const productItemCurrent = ref({});
+const productItemCurrent = ref(null);
+
+const productColor = ref(null);
+const productSize = ref(null);
+const productSilk = ref(null);
 const indexActive = ref(0);
+const indexActiveColor = ref(0);
 const product = ref({
     id: 1,
     product_name: 'Áo polo nam dài tay thể thao',
@@ -429,178 +445,11 @@ const product = ref({
     product_for_example:
         'https://media.coolmate.me/cdn-cgi/image/width=1426,height=2100,quality=80,format=auto/uploads/January2024/23CMAW.TT004.3D.3K.png',
 });
-const similarList = ref([
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Xanh wash',
-                code: 'blue',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
-                ],
-            },
-            {
-                color: 'Xanh navi',
-                code: 'green',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Vàng',
-                code: 'yellow',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Xanh wash',
-                code: 'blue',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
-                ],
-            },
-            {
-                color: 'Xanh navi',
-                code: 'green',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Vàng',
-                code: 'yellow',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
-                ],
-            },
-        ],
-    },
-]);
+const loadingProductItem = ref(true);
+const selectedProductVariant = ref({});
 const imageList = computed(() => product.value.product_images[colorProductActive.value]);
 const thumbsSwiper = ref(null);
+
 
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;
@@ -622,6 +471,21 @@ const handleQuantity = (index) => {
         }
     }
 };
+
+let initialProduct = (product) => {
+    let productColorIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc')
+    let productSizeIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Size')
+    let productSilkIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải')
+    if(productColorIndex != -1) {
+        productColor.value = product.variantAttribute[productColorIndex];
+    }
+    if(productSizeIndex != -1) {
+        productSize.value = product.variantAttribute[productSizeIndex];
+    }
+    if(productSilkIndex != -1) {
+        productSilk.value = product.variantAttribute[productSilkIndex];
+    }
+}
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
 };
@@ -641,20 +505,36 @@ const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
         },
     }),
 );
-watchEffect(() => {});
-
-function selectVariant(group, attributeId) {
-    let index = productVariants.value.findIndex((item) => item.attribute_group_id === group);
-    if (index !== -1 && productVariants.value[index] !== undefined) {
-        productVariants.value[index].attribute_id = attributeId;
-    } else {
-        productVariants.value.push({
-            attribute_id: attributeId,
-            attribute_group_id: group,
-        });
+watchEffect(() => {
+    if(productItem.value && !loadingProduct.value) {
+        productItemCurrent.value = productItem.value.data.variants[0]
+        loadingProductItem.value = false;
+        initialProduct(productItem.value.data)
     }
 
+});
+
+function selectVariant(group, attribute, indexProductNumber) {
+    loadingProductItem.value = true;
+    let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
+    if (index !== -1 && productVariants.value[index] !== undefined) {
+        productVariants.value[index].attribute_id = attribute.attribute_id;
+    } else {
+        productVariants.value.push({
+            attribute_id: attribute.id,
+            attribute_group_id: group.id,
+        });
+    }
     productItemCurrent.value = getProductItem();
+    if(group.name == 'Màu sắc') {
+        indexActiveColor.value = indexProductNumber;
+        selectedProductVariant.value[group.name] = attribute.attribute_name;
+    }
+    if(group.name == 'Size') {
+        indexActive.value = indexProductNumber;
+        selectedProductVariant.value[group.name] = attribute.attribute_name;
+    }
+    loadingProductItem.value = false;
 }
 
 function getProductItem() {
