@@ -20,20 +20,20 @@
                         :src="item" />
                 </button>
             </div>
-            <div v-if="product.variantAttribute" class="product-type flex items-center justify-start flex-wrap gap-2">
+            <div v-if="productColor" class="product-type flex items-center justify-start flex-wrap gap-2">
                 <button
-                    v-for="(color, index) in product.variantAttribute['Màu sắc']"
+                    v-for="(color, index) in productColor.attributes"
                     class="product-type-item opacity-80"
                     :style="{ 'background-color': color.attribute_color }"
-                    @click.stop.prevent="activeType = index"></button>
+                    @click.stop.prevent="handleShowImage(color, index)"></button>
             </div>
             <div class="product-details flex flex-col gap-2 w-full">
                 <div class="product-name">
                     {{ product.name }}
                 </div>
                 <div class="product-introduction flex items-center gap-1">
-                    <span v-html="product.description"></span> /
-                    {{ product.variantAttribute &&  product.variantAttribute['Màu sắc'] ? product.variantAttribute['Màu sắc'][activeType].attribute_name : '' }}
+                    {{ productSilk ? productSilk.attributes[activeSilk].attribute_name + ' / ' : '' }}
+                    {{ productColor ? productColor.attributes[activeColor].attribute_name : '' }}
                 </div>
                 <div class="product-price">
                     <div v-if="product.price_discount == 0" class="original-price">
@@ -72,7 +72,65 @@ const props = defineProps({
     product: Object,
 });
 const activeType = ref(0);
+const activeSilk = ref(0)
+const activeColor = ref(0)
 const localePath = useLocalePath();
+
+const productColor = ref(null);
+const productSize = ref(null);
+const productSilk = ref(null);
+
+const mixedProduct = ref(null);
+
+const productVariants = ref([]);
+
+// => Data {màu: A, mã màu A: ... , hình của màu A: []}
+
+let initialProduct = () => {
+    let productColorIndex = props.product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc')
+    let productSizeIndex = props.product.variantAttribute.findIndex((attr) => attr.name == 'Size')
+    let productSilkIndex = props.product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải')
+    if(productColorIndex != -1) {
+        productColor.value = props.product.variantAttribute[productColorIndex];
+        productVariants.value = [...productVariants.value, ...productColor.value.attributes]
+    }
+    if(productSizeIndex != -1) {
+        productSize.value = props.product.variantAttribute[productSizeIndex];
+        productVariants.value = [...productVariants.value, ...productSize.value.attributes]
+    }
+    if(productSilkIndex != -1) {
+        productSilk.value = props.product.variantAttribute[productSilkIndex];
+        productVariants.value = [...productVariants.value, ...productSilk.value.attributes]
+    }
+}
+
+const handleShowImage = (colorItem, index) => {
+    console.log(colorItem.attribute_id);
+    let imageIndex = props.product.variants.findIndex(item => item.options.length > 0 && item.options.includes(colorItem.attribute_id))
+    let colorIndex = productColor.value.attributes.findIndex(item => item.attribute_id == colorItem.attribute_id)
+    if(imageIndex != -1) {
+        activeType.value = imageIndex;
+    }
+    if(colorIndex != -1) {
+        activeColor.value = colorIndex;
+    }
+}
+
+function getProductItem() {
+    // Duyệt qua từng phần tử trong mảng variants
+    for (const variant of props.product.data.variants) {
+        // Tạo mảng optionAll riêng từ option_all
+        const optionAll = variant.option_all.map((item) => JSON.stringify(item));
+        // Kiểm tra xem tất cả các phần tử của productVariants có nằm trong optionAll hay không
+        if (productVariants.value.every((item) => optionAll.includes(JSON.stringify(item)))) {
+            return variant; // Trả lại variant phù hợp
+        }
+    }
+    return null;
+}
+onBeforeMount(() => {
+    initialProduct();
+})
 
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
