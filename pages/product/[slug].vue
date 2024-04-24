@@ -18,7 +18,7 @@
                         :lazy="true"
                         :direction="'vertical'"
                         class="!hidden lg:!block !w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
-                        <SwiperSlide v-if="productItemCurrent.video_link"  class="!h-[80px] w-full rounded-md relative">
+                        <SwiperSlide v-if="productItemCurrent.video_link" class="!h-[80px] w-full rounded-md relative">
                             <video class="pointer-events-none">
                                 <source :src="productItemCurrent.video_link" />
                             </video>
@@ -147,12 +147,19 @@
                                 >{{ variantAttribute.name }}: <b>{{ selectedProductVariant[variantAttribute.name] }}</b></span
                             >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
-                                <div
+                                <NuxtLink
+                                    :to="
+                                        localePath({
+                                            name: 'product-slug',
+                                            params: { slug: router.currentRoute.value.params.slug },
+                                            query: { color: attribute.attribute_id },
+                                        })
+                                    "
                                     v-for="(attribute, index) in variantAttribute.attributes"
-                                    class="color-list-item w-12 h-8 rounded-3xl"
-                                    :class="[indexActiveColor == index ? 'ring-2 ring-inset ring-green-500' : 'border border-slate-700']"
+                                    class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
+                                    :class="[indexActiveColor == index ? ' !ring-green-500' : '']"
                                     :style="{ backgroundColor: attribute.attribute_color }"
-                                    @click="selectVariant(variantAttribute, attribute, index)"></div>
+                                    @click="selectVariant(variantAttribute, attribute, index)"></NuxtLink>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
                                 <button
@@ -172,15 +179,20 @@
                                 >
                             </div>
                         </div>
-                        <div class="product-add-to-cart mt-auto flex items-center gap-4">
+                        <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
                                 class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1)"></UIcon>
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1)"></UIcon>
                             </div>
-                            <NuxtLink class="flex flex-1 h-12 rounded-full justify-center" :to="localePath({ name: 'cart' })">
-                                <UButton class="flex-1 h-12 rounded-full justify-center">
+                            <NuxtLink
+                                class="flex flex-1 h-12 rounded-full justify-center"
+                                :class="productItemCurrent.qty > 0 ? '' : 'pointer-events-none'"
+                                :to="localePath({ name: 'cart', query: { product_id: productItemCurrent.id, quantity: quantity } })">
+                                <UButton
+                                    :class="productItemCurrent.qty > 0 ? '' : 'bg-gray-400'"
+                                    class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
                                 </UButton>
@@ -355,6 +367,8 @@ const router = useRouter();
 
 let modules = ref([Navigation, Thumbs]);
 let modulesSimilar = ref([Navigation]);
+
+const { locale } = useI18n();
 const localePath = useLocalePath();
 const colorProductActive = ref(0);
 const productSizeIndex = ref(null);
@@ -380,7 +394,7 @@ const product = ref({
     product_sold: 32,
     product_compaign_id: 1,
     product_rating: {
-        number: 4.5,
+        number: 4,
         reviews: [
             {
                 name: 'Hoàng Lâm',
@@ -495,7 +509,7 @@ const setProductSize = (size, index) => {
 };
 const handleQuantity = (index) => {
     if (index == 1) {
-        if (quantity.value < product.value.product_sizes[productSizeIndex.value].quantity) {
+        if (quantity.value < productItemCurrent.value.qty) {
             quantity.value += index;
         }
     } else {
@@ -519,22 +533,58 @@ let initialProduct = (product) => {
         productSilk.value = product.variantAttribute[productSilkIndex];
     }
     let optionsFirst = [];
-    optionsFirst.push(productColor.value.attributes[0].attribute_id);
-    optionsFirst.push(productSize.value.attributes[0].attribute_id);
-    optionsFirst.push(productSilk.value.attributes[0].attribute_id);
+    if (router.currentRoute.value.query && router.currentRoute.value.query.color) {
+        optionsFirst.push(Number(router.currentRoute.value.query.color));
+        let colorIndex = -1;
+        if (productColor.value) {
+            colorIndex = productColor.value.attributes.findIndex((item) => item.attribute_id == router.currentRoute.value.query.color);
+            if (colorIndex != -1) {
+                indexActiveColor.value = colorIndex;
+                selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[colorIndex].attribute_name;
+            }
+        }
+    } else {
+        if (productColor.value) {
+            optionsFirst.push(productColor.value.attributes[0].attribute_id);
+            selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[0].attribute_name;
+            router.push({ path: router.currentRoute.value.path, query: { color: productColor.value.attributes[0].attribute_id } });
+        }
+    }
+    if (productSize.value) {
+        optionsFirst.push(productSize.value.attributes[0].attribute_id);
+        selectedProductVariant.value[productSize.value.name] = productSize.value.attributes[0].attribute_name;
+    }
+    if (productSilk.value) {
+        optionsFirst.push(productSilk.value.attributes[0].attribute_id);
+        selectedProductVariant.value[productSilk.value.name] = productSilk.value.attributes[0].attribute_name;
+    }
+
     let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
-    productItemCurrent.value = findProduct;
-    productVariants.value = [...findProduct.option_all];
+    if (findProduct) {
+        productItemCurrent.value = findProduct;
+        productVariants.value = [...findProduct.option_all];
+    } else {
+        router.push({ path: router.currentRoute.value.path });
+    }
+
     loadingProductItem.value = false;
 };
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
 };
 //DATA
-
-const { data: productItem, pending: loadingProduct } = await useLazyAsyncData('product-item', () =>
-    useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`),
-);
+const refreshData = ref(0);
+const {
+    data: productItem,
+    pending: loadingProduct,
+    error: errorGetProduct,
+} = await useLazyAsyncData('product-item', () => useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`), {
+    default: () => [],
+    watch: [refreshData],
+});
+if (errorGetProduct.value) {
+    router.push({ name: `index___${locale.value}` });
+}
 const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData('product-hot', async () =>
     useOriginalFetch('/api/v1/products', {
         params: {
@@ -547,10 +597,11 @@ const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
     }),
 );
 watchEffect(() => {
-    if (productItem.value && !loadingProduct.value) {
+    if (!loadingProduct.value && productItem.value && productItem.value.data) {
         initialProduct(productItem.value.data);
     }
 });
+
 
 function selectVariant(group, attribute, indexProductNumber) {
     loadingProductItem.value = true;
@@ -567,6 +618,7 @@ function selectVariant(group, attribute, indexProductNumber) {
     if (group.name == 'Màu sắc') {
         indexActiveColor.value = indexProductNumber;
         selectedProductVariant.value[group.name] = attribute.attribute_name;
+        indexActive.value = 0;
     }
     if (group.name == 'Size') {
         indexActive.value = indexProductNumber;
