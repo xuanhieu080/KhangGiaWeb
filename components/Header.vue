@@ -276,7 +276,6 @@ if (pageHeaders.value.length == 0) {
     getPageHeader();
 }
 
-console.log(categoryHeaders.value);
 if (categoryHeaders.value.length == 0) {
     getCategoryHeader();
 }

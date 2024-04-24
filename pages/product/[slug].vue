@@ -7,34 +7,56 @@
                         class="w-max absolute -top-2 left-2 lg:left-[96px]"
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
-                    <swiper
-                        v-show="thumbsSwiper && productItemCurrent"
+                    <Swiper
+                        v-if="productItemCurrent && !loadingProductItem"
                         @swiper="setThumbsSwiper"
                         :spaceBetween="16"
                         :slidesPerView="4"
                         :freeMode="true"
                         :watchSlidesProgress="true"
                         :modules="modules"
+                        :lazy="true"
                         :direction="'vertical'"
                         class="!hidden lg:!block !w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
+                        <SwiperSlide v-if="productItemCurrent.video_link"  class="!h-[80px] w-full rounded-md relative">
+                            <video class="pointer-events-none">
+                                <source :src="productItemCurrent.video_link" />
+                            </video>
+                        </SwiperSlide>
                         <SwiperSlide
                             v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
-                            v-for="image in productItemCurrent.thumb_image"
-                            class="!h-[120px] w-full rounded-md">
-                            <img :src="image" alt="" class="w-full h-full object-cover rounded-md" />
+                            v-for="(image, index) in productItemCurrent.thumb_image"
+                            v-show="!productItemCurrent.video_link ? index < 4 : index < 3"
+                            class="!h-[120px] w-full rounded-md relative">
+                            <span
+                                v-if="
+                                    (!productItemCurrent.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
+                                    (productItemCurrent.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
+                                "
+                                class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
+                                >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                            >
+                            <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
                         <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
-                            <img :src="productItemCurrent ? productItemCurrent.image : ''" alt="No image" class="w-full h-full object-cover rounded-md" />
+                            <img
+                                :src="productItemCurrent ? productItemCurrent.image : ''"
+                                alt="No image"
+                                class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
-                    </swiper>
+                    </Swiper>
                     <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                     </div>
-                    <div v-show="thumbsSwiper && productItemCurrent" class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
+                    <div
+                        v-show="thumbsSwiper && productItemCurrent"
+                        class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
                         <Swiper
-                            v-if="productItemCurrent"
+                            v-if="productItemCurrent && !loadingProductItem"
                             :spaceBetween="10"
+                            :lazy="true"
+                            :key="productItemCurrent"
                             :navigation="{
                                 nextEl: '.main-product-swiper .next-product-btn',
                                 prevEl: '.main-product-swiper .prev-product-btn',
@@ -42,17 +64,24 @@
                             :thumbs="{ swiper: thumbsSwiper }"
                             :modules="modules"
                             class="!mx-0">
-                            <SwiperSlide v-if="productItemCurrent.video_link">
-                                <video :src="productItemCurrent.video_link"></video>
+                            <SwiperSlide v-if="productItemCurrent.video_link" class="!flex justify-center !h-auto">
+                                <video controls class="h-full w-full object-contain" autoplay muted>
+                                    <source
+                                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                        type="video/mp4" />
+                                </video>
                             </SwiperSlide>
                             <SwiperSlide
                                 v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                                 v-for="image in productItemCurrent.thumb_image"
-                                class="!flex justify-center">
-                                <img :src="image" alt="" class="rounded-md" />
+                                class="!flex justify-center !h-auto max-h-[500px]">
+                                <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
                             </SwiperSlide>
                             <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
-                                <img :src="productItemCurrent ? productItemCurrent.image : ''" alt="No image" class="w-full h-full object-cover rounded-md" />
+                                <img
+                                    :src="productItemCurrent ? productItemCurrent.image : ''"
+                                    alt="No image"
+                                    class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <template v-slot:container-end>
                                 <UButton
@@ -114,7 +143,9 @@
                                 'product-color-list': variantAttribute.is_color,
                                 'product-size-list': !variantAttribute.is_color,
                             }">
-                            <span class="text-[15px]">{{ variantAttribute.name }}: <b>{{ selectedProductVariant[variantAttribute.name] }}</b></span>
+                            <span class="text-[15px]"
+                                >{{ variantAttribute.name }}: <b>{{ selectedProductVariant[variantAttribute.name] }}</b></span
+                            >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
                                 <div
                                     v-for="(attribute, index) in variantAttribute.attributes"
@@ -126,18 +157,21 @@
                             <div v-else class="size-list flex items-center gap-4">
                                 <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
-                                    :class="[indexActive == index  && variantAttribute.name != 'Chất vải' ? '!bg-black !text-white' : '', variantAttribute.name == 'Chất vải' ? 'pointer-events-none' : '' ]"
+                                    :class="[
+                                        indexActive == index && variantAttribute.name != 'Chất vải' ? '!bg-black !text-white' : '',
+                                        variantAttribute.name == 'Chất vải' ? 'pointer-events-none' : '',
+                                    ]"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                     @click="selectVariant(variantAttribute, attribute, index)">
                                     {{ attribute.attribute_name }}
                                     <div v-if="false" class="check-mark"></div>
                                 </button>
-                                <span v-if="false" class="fs-14"
-                                    >{{ $t('Số lượng còn') }} <b>{{ 12 }}</b></span
+                                <span v-if="variantAttribute.name != 'Chất vải'" class="fs-14"
+                                    >{{ $t('Số lượng còn') }}
+                                    <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : 0 }}</b></span
                                 >
                             </div>
                         </div>
-
                         <div class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
                                 class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
@@ -450,7 +484,6 @@ const selectedProductVariant = ref({});
 const imageList = computed(() => product.value.product_images[colorProductActive.value]);
 const thumbsSwiper = ref(null);
 
-
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;
 };
@@ -473,19 +506,27 @@ const handleQuantity = (index) => {
 };
 
 let initialProduct = (product) => {
-    let productColorIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc')
-    let productSizeIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Size')
-    let productSilkIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải')
-    if(productColorIndex != -1) {
+    let productColorIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc');
+    let productSizeIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Size');
+    let productSilkIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải');
+    if (productColorIndex != -1) {
         productColor.value = product.variantAttribute[productColorIndex];
     }
-    if(productSizeIndex != -1) {
+    if (productSizeIndex != -1) {
         productSize.value = product.variantAttribute[productSizeIndex];
     }
-    if(productSilkIndex != -1) {
+    if (productSilkIndex != -1) {
         productSilk.value = product.variantAttribute[productSilkIndex];
     }
-}
+    let optionsFirst = [];
+    optionsFirst.push(productColor.value.attributes[0].attribute_id);
+    optionsFirst.push(productSize.value.attributes[0].attribute_id);
+    optionsFirst.push(productSilk.value.attributes[0].attribute_id);
+    let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+    productItemCurrent.value = findProduct;
+    productVariants.value = [...findProduct.option_all];
+    loadingProductItem.value = false;
+};
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
 };
@@ -506,12 +547,9 @@ const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
     }),
 );
 watchEffect(() => {
-    if(productItem.value && !loadingProduct.value) {
-        productItemCurrent.value = productItem.value.data.variants[0]
-        loadingProductItem.value = false;
-        initialProduct(productItem.value.data)
+    if (productItem.value && !loadingProduct.value) {
+        initialProduct(productItem.value.data);
     }
-
 });
 
 function selectVariant(group, attribute, indexProductNumber) {
@@ -526,11 +564,11 @@ function selectVariant(group, attribute, indexProductNumber) {
         });
     }
     productItemCurrent.value = getProductItem();
-    if(group.name == 'Màu sắc') {
+    if (group.name == 'Màu sắc') {
         indexActiveColor.value = indexProductNumber;
         selectedProductVariant.value[group.name] = attribute.attribute_name;
     }
-    if(group.name == 'Size') {
+    if (group.name == 'Size') {
         indexActive.value = indexProductNumber;
         selectedProductVariant.value[group.name] = attribute.attribute_name;
     }
@@ -544,6 +582,7 @@ function getProductItem() {
         const optionAll = variant.option_all.map((item) => JSON.stringify(item));
         // Kiểm tra xem tất cả các phần tử của productVariants có nằm trong optionAll hay không
         if (productVariants.value.every((item) => optionAll.includes(JSON.stringify(item)))) {
+            console.log(variant);
             return variant; // Trả lại variant phù hợp
         }
     }
