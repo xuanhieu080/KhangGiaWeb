@@ -38,6 +38,21 @@
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
+                        <SwiperSlide
+                            v-else-if="productItem.data.thumb_image.length > 0"
+                            v-for="(image, index) in productItem.data.thumb_image"
+                            v-show="!productItemCurrent.video_link ? index < 4 : index < 3"
+                            class="!h-[120px] w-full rounded-md relative">
+                            <span
+                                v-if="
+                                    (!productItemCurrent.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
+                                    (productItemCurrent.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
+                                "
+                                class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
+                                >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                            >
+                            <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
+                        </SwiperSlide>
                         <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
                             <img
                                 :src="productItemCurrent ? productItemCurrent.image : ''"
@@ -76,6 +91,21 @@
                                 v-for="image in productItemCurrent.thumb_image"
                                 class="!flex justify-center !h-auto max-h-[500px]">
                                 <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
+                            </SwiperSlide>
+                            <SwiperSlide
+                                v-else-if="productItem.data.thumb_image.length > 0"
+                                v-for="(image, index) in productItem.data.thumb_image"
+                                v-show="!productItemCurrent.video_link ? index < 4 : index < 3"
+                                class="w-full rounded-md relative">
+                                <span
+                                    v-if="
+                                        (!productItemCurrent.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
+                                        (productItemCurrent.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
+                                    "
+                                    class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
+                                    >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                                >
+                                <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
                                 <img
@@ -173,12 +203,12 @@
                                     {{ attribute.attribute_name }}
                                     <div v-if="false" class="check-mark"></div>
                                 </button>
-                                <span v-if="variantAttribute.name != 'Chất vải'" class="fs-14"
-                                    >{{ $t('Số lượng còn') }}
-                                    <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : 0 }}</b></span
-                                >
                             </div>
                         </div>
+                        <span class="fs-14"
+                            >{{ $t('Số lượng còn') }}
+                            <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : 0 }}</b></span
+                        >
                         <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
                                 class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
@@ -547,7 +577,6 @@ let initialProduct = (product) => {
         if (productColor.value) {
             optionsFirst.push(productColor.value.attributes[0].attribute_id);
             selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[0].attribute_name;
-            router.push({ path: router.currentRoute.value.path, query: { color: productColor.value.attributes[0].attribute_id } });
         }
     }
     if (productSize.value) {
@@ -602,9 +631,10 @@ watchEffect(() => {
     }
 });
 
-
 function selectVariant(group, attribute, indexProductNumber) {
     loadingProductItem.value = true;
+    console.log(group, attribute, indexProductNumber);
+    console.log('----');
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
     if (index !== -1 && productVariants.value[index] !== undefined) {
         productVariants.value[index].attribute_id = attribute.attribute_id;
