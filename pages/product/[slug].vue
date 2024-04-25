@@ -157,17 +157,14 @@
                                     "
                                     v-for="(attribute, index) in variantAttribute.attributes"
                                     class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                    :class="[indexActiveColor == index ? ' !ring-green-500' : '']"
+                                    :class="{'!ring-green-500' : checkActive(attribute.attribute_id)}"
                                     :style="{ backgroundColor: attribute.attribute_color }"
                                     @click="selectVariant(variantAttribute, attribute, index)"></NuxtLink>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
                                 <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
-                                    :class="[
-                                        indexActive == index && variantAttribute.name != 'Chất vải' ? '!bg-black !text-white' : '',
-                                        variantAttribute.name == 'Chất vải' ? 'pointer-events-none' : '',
-                                    ]"
+                                    :class="{'!bg-black !text-white': checkActive(attribute.attribute_id)}"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                     @click="selectVariant(variantAttribute, attribute, index)">
                                     {{ attribute.attribute_name }}
@@ -519,47 +516,66 @@ const handleQuantity = (index) => {
     }
 };
 
-let initialProduct = (product) => {
-    let productColorIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc');
-    let productSizeIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Size');
-    let productSilkIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải');
-    if (productColorIndex != -1) {
-        productColor.value = product.variantAttribute[productColorIndex];
-    }
-    if (productSizeIndex != -1) {
-        productSize.value = product.variantAttribute[productSizeIndex];
-    }
-    if (productSilkIndex != -1) {
-        productSilk.value = product.variantAttribute[productSilkIndex];
-    }
-    let optionsFirst = [];
-    if (router.currentRoute.value.query && router.currentRoute.value.query.color) {
-        optionsFirst.push(Number(router.currentRoute.value.query.color));
-        let colorIndex = -1;
-        if (productColor.value) {
-            colorIndex = productColor.value.attributes.findIndex((item) => item.attribute_id == router.currentRoute.value.query.color);
-            if (colorIndex != -1) {
-                indexActiveColor.value = colorIndex;
-                selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[colorIndex].attribute_name;
-            }
-        }
-    } else {
-        if (productColor.value) {
-            optionsFirst.push(productColor.value.attributes[0].attribute_id);
-            selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[0].attribute_name;
-            router.push({ path: router.currentRoute.value.path, query: { color: productColor.value.attributes[0].attribute_id } });
-        }
-    }
-    if (productSize.value) {
-        optionsFirst.push(productSize.value.attributes[0].attribute_id);
-        selectedProductVariant.value[productSize.value.name] = productSize.value.attributes[0].attribute_name;
-    }
-    if (productSilk.value) {
-        optionsFirst.push(productSilk.value.attributes[0].attribute_id);
-        selectedProductVariant.value[productSilk.value.name] = productSilk.value.attributes[0].attribute_name;
-    }
+// let initialProduct = (product) => {
+//     let productColorIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc');
+//     let productSizeIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Size');
+//     let productSilkIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải');
+//     if (productColorIndex != -1) {
+//         productColor.value = product.variantAttribute[productColorIndex];
+//     }
+//     if (productSizeIndex != -1) {
+//         productSize.value = product.variantAttribute[productSizeIndex];
+//     }
+//     if (productSilkIndex != -1) {
+//         productSilk.value = product.variantAttribute[productSilkIndex];
+//     }
+//     let optionsFirst = [];
+//     if (router.currentRoute.value.query && router.currentRoute.value.query.color) {
+//         optionsFirst.push(Number(router.currentRoute.value.query.color));
+//         let colorIndex = -1;
+//         if (productColor.value) {
+//             colorIndex = productColor.value.attributes.findIndex((item) => item.attribute_id == router.currentRoute.value.query.color);
+//             if (colorIndex != -1) {
+//                 indexActiveColor.value = colorIndex;
+//                 selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[colorIndex].attribute_name;
+//             }
+//         }
+//     } else {
+//         if (productColor.value) {
+//             optionsFirst.push(productColor.value.attributes[0].attribute_id);
+//             selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[0].attribute_name;
+//             router.push({ path: router.currentRoute.value.path, query: { color: productColor.value.attributes[0].attribute_id } });
+//         }
+//     }
+//     if (productSize.value) {
+//         optionsFirst.push(productSize.value.attributes[0].attribute_id);
+//         selectedProductVariant.value[productSize.value.name] = productSize.value.attributes[0].attribute_name;
+//     }
+//     if (productSilk.value) {
+//         optionsFirst.push(productSilk.value.attributes[0].attribute_id);
+//         selectedProductVariant.value[productSilk.value.name] = productSilk.value.attributes[0].attribute_name;
+//     }
+//
+//     let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+//     if (findProduct) {
+//         productItemCurrent.value = findProduct;
+//         productVariants.value = [...findProduct.option_all];
+//     } else {
+//         router.push({ path: router.currentRoute.value.path });
+//     }
+//
+//     loadingProductItem.value = false;
+// };
 
-    let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+let initialProduct = (product) => {
+    let attributeIds = product.variantAttribute.map(item =>
+        item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined
+    );
+
+    console.log(attributeIds);
+
+    let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
+    console.log(findProduct)
     if (findProduct) {
         productItemCurrent.value = findProduct;
         productVariants.value = [...findProduct.option_all];
@@ -605,6 +621,7 @@ watchEffect(() => {
 
 function selectVariant(group, attribute, indexProductNumber) {
     loadingProductItem.value = true;
+    // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
     if (index !== -1 && productVariants.value[index] !== undefined) {
         productVariants.value[index].attribute_id = attribute.attribute_id;
@@ -614,16 +631,10 @@ function selectVariant(group, attribute, indexProductNumber) {
             attribute_group_id: group.id,
         });
     }
+
     productItemCurrent.value = getProductItem();
-    if (group.name == 'Màu sắc') {
-        indexActiveColor.value = indexProductNumber;
-        selectedProductVariant.value[group.name] = attribute.attribute_name;
-        indexActive.value = 0;
-    }
-    if (group.name == 'Size') {
-        indexActive.value = indexProductNumber;
-        selectedProductVariant.value[group.name] = attribute.attribute_name;
-    }
+    selectedProductVariant.value[group.name] = attribute.attribute_name;
+
     loadingProductItem.value = false;
 }
 
@@ -634,11 +645,14 @@ function getProductItem() {
         const optionAll = variant.option_all.map((item) => JSON.stringify(item));
         // Kiểm tra xem tất cả các phần tử của productVariants có nằm trong optionAll hay không
         if (productVariants.value.every((item) => optionAll.includes(JSON.stringify(item)))) {
-            console.log(variant);
             return variant; // Trả lại variant phù hợp
         }
     }
     return null;
+}
+
+function checkActive(attributeId) {
+    return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false
 }
 
 useSchemaOrg([
