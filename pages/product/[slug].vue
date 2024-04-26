@@ -174,32 +174,22 @@
                                 'product-size-list': !variantAttribute.is_color,
                             }">
                             <span class="text-[15px]"
-                                >{{ variantAttribute.name }}: <b>{{ selectedProductVariant[variantAttribute.name] }}</b></span
+                                >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
                             >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
-                                <NuxtLink
-                                    :to="
-                                        localePath({
-                                            name: 'product-slug',
-                                            params: { slug: router.currentRoute.value.params.slug },
-                                            query: { color: attribute.attribute_id },
-                                        })
-                                    "
+                                <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
                                     class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                    :class="[indexActiveColor == index ? ' !ring-green-500' : '']"
+                                    :class="{'!ring-green-500' : checkActive(attribute.attribute_id)}"
                                     :style="{ backgroundColor: attribute.attribute_color }"
-                                    @click="selectVariant(variantAttribute, attribute, index)"></NuxtLink>
+                                    @click="selectVariant(variantAttribute, attribute)"></button>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
                                 <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
-                                    :class="[
-                                        indexActive == index && variantAttribute.name != 'Chất vải' ? '!bg-black !text-white' : '',
-                                        variantAttribute.name == 'Chất vải' ? 'pointer-events-none' : '',
-                                    ]"
+                                    :class="{'!bg-black !text-white': checkActive(attribute.attribute_id)}"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
-                                    @click="selectVariant(variantAttribute, attribute, index)">
+                                    @click="selectVariant(variantAttribute, attribute)">
                                     {{ attribute.attribute_name }}
                                     <div v-if="false" class="check-mark"></div>
                                 </button>
@@ -404,6 +394,7 @@ const colorProductActive = ref(0);
 const productSizeIndex = ref(null);
 const quantity = ref(1);
 const productVariants = ref([]);
+const productVariantSlugs = ref({});
 const productItemCurrent = ref(null);
 
 const productColor = ref(null);
@@ -411,6 +402,7 @@ const productSize = ref(null);
 const productSilk = ref(null);
 const indexActive = ref(0);
 const indexActiveColor = ref(0);
+const product1 = ref({});
 const product = ref({
     id: 1,
     product_name: 'Áo polo nam dài tay thể thao',
@@ -549,49 +541,74 @@ const handleQuantity = (index) => {
     }
 };
 
+// let initialProduct = (product) => {
+//     let productColorIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc');
+//     let productSizeIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Size');
+//     let productSilkIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải');
+//     if (productColorIndex != -1) {
+//         productColor.value = product.variantAttribute[productColorIndex];
+//     }
+//     if (productSizeIndex != -1) {
+//         productSize.value = product.variantAttribute[productSizeIndex];
+//     }
+//     if (productSilkIndex != -1) {
+//         productSilk.value = product.variantAttribute[productSilkIndex];
+//     }
+//     let optionsFirst = [];
+//     if (router.currentRoute.value.query && router.currentRoute.value.query.color) {
+//         optionsFirst.push(Number(router.currentRoute.value.query.color));
+//         let colorIndex = -1;
+//         if (productColor.value) {
+//             colorIndex = productColor.value.attributes.findIndex((item) => item.attribute_id == router.currentRoute.value.query.color);
+//             if (colorIndex != -1) {
+//                 indexActiveColor.value = colorIndex;
+//                 selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[colorIndex].attribute_name;
+//             }
+//         }
+//     } else {
+//         if (productColor.value) {
+//             optionsFirst.push(productColor.value.attributes[0].attribute_id);
+//             selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[0].attribute_name;
+//             router.push({ path: router.currentRoute.value.path, query: { color: productColor.value.attributes[0].attribute_id } });
+//         }
+//     }
+//     if (productSize.value) {
+//         optionsFirst.push(productSize.value.attributes[0].attribute_id);
+//         selectedProductVariant.value[productSize.value.name] = productSize.value.attributes[0].attribute_name;
+//     }
+//     if (productSilk.value) {
+//         optionsFirst.push(productSilk.value.attributes[0].attribute_id);
+//         selectedProductVariant.value[productSilk.value.name] = productSilk.value.attributes[0].attribute_name;
+//     }
+//
+//     let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+//     if (findProduct) {
+//         productItemCurrent.value = findProduct;
+//         productVariants.value = [...findProduct.option_all];
+//     } else {
+//         router.push({ path: router.currentRoute.value.path });
+//     }
+//
+//     loadingProductItem.value = false;
+// };
+
 let initialProduct = (product) => {
-    let productColorIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc');
-    let productSizeIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Size');
-    let productSilkIndex = product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải');
-    if (productColorIndex != -1) {
-        productColor.value = product.variantAttribute[productColorIndex];
-    }
-    if (productSizeIndex != -1) {
-        productSize.value = product.variantAttribute[productSizeIndex];
-    }
-    if (productSilkIndex != -1) {
-        productSilk.value = product.variantAttribute[productSilkIndex];
-    }
-    let optionsFirst = [];
-    if (router.currentRoute.value.query && router.currentRoute.value.query.color) {
-        optionsFirst.push(Number(router.currentRoute.value.query.color));
-        let colorIndex = -1;
-        if (productColor.value) {
-            colorIndex = productColor.value.attributes.findIndex((item) => item.attribute_id == router.currentRoute.value.query.color);
-            if (colorIndex != -1) {
-                indexActiveColor.value = colorIndex;
-                selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[colorIndex].attribute_name;
-            }
-        }
+    let findProduct = null;
+    if (router.currentRoute.value.query?.code) {
+        findProduct = product.variants.find((item) => item.code == router.currentRoute.value.query.code);
     } else {
-        if (productColor.value) {
-            optionsFirst.push(productColor.value.attributes[0].attribute_id);
-            selectedProductVariant.value[productColor.value.name] = productColor.value.attributes[0].attribute_name;
-        }
-    }
-    if (productSize.value) {
-        optionsFirst.push(productSize.value.attributes[0].attribute_id);
-        selectedProductVariant.value[productSize.value.name] = productSize.value.attributes[0].attribute_name;
-    }
-    if (productSilk.value) {
-        optionsFirst.push(productSilk.value.attributes[0].attribute_id);
-        selectedProductVariant.value[productSilk.value.name] = productSilk.value.attributes[0].attribute_name;
+        let attributeIds = product.variantAttribute.map(item =>
+            item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined
+        );
+
+        findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
 
-    let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+    product1.value = product;
     if (findProduct) {
         productItemCurrent.value = findProduct;
         productVariants.value = [...findProduct.option_all];
+        console.log(productVariants.value);
     } else {
         router.push({ path: router.currentRoute.value.path });
     }
@@ -631,44 +648,122 @@ watchEffect(() => {
     }
 });
 
-function selectVariant(group, attribute, indexProductNumber) {
+function selectVariant(group, attribute) {
     loadingProductItem.value = true;
-    console.log(group, attribute, indexProductNumber);
-    console.log('----');
+    // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
+
     if (index !== -1 && productVariants.value[index] !== undefined) {
         productVariants.value[index].attribute_id = attribute.attribute_id;
+        productVariants.value[index].attribute_group_id = group.id;
     } else {
-        productVariants.value.push({
+        productVariants.value.push(...{
             attribute_id: attribute.id,
             attribute_group_id: group.id,
         });
     }
+
+    productVariantSlugs.value[group.slug] = attribute.attribute_slug;
+
     productItemCurrent.value = getProductItem();
-    if (group.name == 'Màu sắc') {
-        indexActiveColor.value = indexProductNumber;
-        selectedProductVariant.value[group.name] = attribute.attribute_name;
-        indexActive.value = 0;
-    }
-    if (group.name == 'Size') {
-        indexActive.value = indexProductNumber;
-        selectedProductVariant.value[group.name] = attribute.attribute_name;
-    }
+    selectedProductVariant.value[group.slug] = attribute.attribute_name;
+
     loadingProductItem.value = false;
+    const query = JSON.parse(JSON.stringify(productVariantSlugs.value));
+
+    // router.push({
+    //     name: `product-slug___${locale.value}`,
+    //     params: { slug: router.currentRoute.value.params.slug },
+    //     query: query
+    // });
+    router.push({
+        name: `product-slug___${locale.value}`,
+        params: { slug: router.currentRoute.value.params.slug },
+        query: {code: productItemCurrent.value?.code}
+    });
 }
 
-function getProductItem() {
-    // Duyệt qua từng phần tử trong mảng variants
-    for (const variant of productItem.value.data.variants) {
-        // Tạo mảng optionAll riêng từ option_all
-        const optionAll = variant.option_all.map((item) => JSON.stringify(item));
-        // Kiểm tra xem tất cả các phần tử của productVariants có nằm trong optionAll hay không
-        if (productVariants.value.every((item) => optionAll.includes(JSON.stringify(item)))) {
-            console.log(variant);
-            return variant; // Trả lại variant phù hợp
-        }
+function arraysMatch(arr1, arr2) {
+    arr2  = arr2.sort();
+    arr1  = arr1.sort();
+    if (arr1.length !== arr2.length) return false;
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) return false;
     }
-    return null;
+    return true;
+}
+function getProductItem() {
+
+    const attributeIDs = productVariants.value.map(item => item.attribute_id);
+    const attributeGroupIDs = productVariants.value.map(item => item.attribute_group_id);
+
+
+    const matchingVariant = productItem.value.data.variants.find(variant => {
+        // Chú ý rằng bạn cần phải so sánh với 'options' và 'option_group' từ dữ liệu của variant
+        return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
+    });
+
+    if (matchingVariant) {
+        console.log("Item tìm thấy là:", matchingVariant);
+        return matchingVariant
+    } else {
+        console.log("Không có item nào khớp với các options và option_group cung cấp.");
+        return null
+    }
+
+    // Hàm để chuyển đổi mảng option_all thành một string định dạng để so sánh
+    /*const stringifyOptions = (options) =>
+        options.map(o => `${o.attribute_id}:${o.attribute_group_id}`).sort().join(',');
+    let stringifiedOptionAll = stringifyOptions(productVariants.value);
+
+
+    console.log(productItem.value);
+
+// Tìm item có option_all khớp với mảng cung cấp
+    let matchingItem = productItem.value.data.variants.find(variant => stringifyOptions(variant.option_all) === stringifiedOptionAll);
+
+    if (matchingItem) {
+        // cấponsole.log("Mảng thuộc về item:", matchingItem);
+        return matchingItem
+    } else {
+        // console.log("Không tìm thấy item nào có mảng 'option_all' phù hợp.");
+        return null;
+    }
+    */
+
+
+    // // Duyệt qua từng phần tử trong mảng variants
+    // for (const variant of productItem.value.data.variants) {
+    //     // Tạo mảng optionAll riêng từ option_all
+    //     const optionAll = variant.option_all.map((item) => JSON.stringify(item));
+    //     // Kiểm tra xem tất cả các phần tử của productVariants có nằm trong optionAll hay không
+    //     if (productVariants.value.every((item) => optionAll.includes(JSON.stringify(item)))) {
+    //         return variant; // Trả lại variant phù hợp
+    //     }
+    // }
+    // return null;
+}
+
+function checkActive(attributeId) {
+    return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false
+}
+
+function getAttributeName(attributeGroupId) {
+    if (productItemCurrent.value) {
+        let attributeItem = productItemCurrent.value.option_all.find((item) => item.attribute_group_id === attributeGroupId)
+
+        const attribute = productItem.value.data.variantAttribute.reduce((foundAttr, group) => {
+            return foundAttr || group.attributes.find(attr => attr.attribute_id === attributeItem.attribute_id);
+        }, null);
+
+        if (attribute) {
+            return attribute.attribute_name;
+        } else {
+            return 'd';
+        }
+
+    }
+
 }
 
 useSchemaOrg([
