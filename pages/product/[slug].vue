@@ -776,10 +776,17 @@ function getAttributeName(attributeGroupId) {
     }
 }
 
+useHead({
+    // templateParams: {
+    //     blogCategory: 'Tutorials'
+    // },
+    title:  productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
+    titleTemplate: '%s %separator'
+})
 useSchemaOrg([
     defineProduct({
-        name: 'test',
-        image: '/product.png',
+        name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
+        image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.image_url,
         offers: [{ price: 50 }],
         aggregateRating: {
             ratingValue: 88,
