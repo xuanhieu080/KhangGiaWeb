@@ -71,7 +71,6 @@
                             v-if="productItemCurrent && !loadingProductItem"
                             :spaceBetween="10"
                             :lazy="true"
-                            :key="productItemCurrent"
                             :navigation="{
                                 nextEl: '.main-product-swiper .next-product-btn',
                                 prevEl: '.main-product-swiper .prev-product-btn',
@@ -180,14 +179,14 @@
                                 <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
                                     class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                    :class="{'!ring-green-500' : checkActive(attribute.attribute_id)}"
+                                    :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
                                     :style="{ backgroundColor: attribute.attribute_color }"
                                     @click="selectVariant(variantAttribute, attribute)"></button>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
                                 <button
                                     v-for="(attribute, index) in variantAttribute.attributes"
-                                    :class="{'!bg-black !text-white': checkActive(attribute.attribute_id)}"
+                                    :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
                                     class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                     @click="selectVariant(variantAttribute, attribute)">
                                     {{ attribute.attribute_name }}
@@ -594,21 +593,19 @@ const handleQuantity = (index) => {
 
 let initialProduct = (product) => {
     let findProduct = null;
+    console.log(product);
     if (router.currentRoute.value.query?.code) {
         findProduct = product.variants.find((item) => item.code == router.currentRoute.value.query.code);
     } else {
-        let attributeIds = product.variantAttribute.map(item =>
-            item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined
+        let attributeIds = product.variantAttribute.map((item) =>
+            item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined,
         );
-
         findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
-
-    product1.value = product;
+    console.log(findProduct);
     if (findProduct) {
-        productItemCurrent.value = findProduct;
+        productItemCurrent.value = { ...findProduct };
         productVariants.value = [...findProduct.option_all];
-        console.log(productVariants.value);
     } else {
         router.push({ path: router.currentRoute.value.path });
     }
@@ -624,10 +621,19 @@ const {
     data: productItem,
     pending: loadingProduct,
     error: errorGetProduct,
-} = await useLazyAsyncData('product-item', () => useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`), {
-    default: () => [],
-    watch: [refreshData],
-});
+} = await useLazyAsyncData(
+    'product-item',
+    () =>
+        useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
+            query: {
+                code: router.currentRoute.value.query?.code,
+            },
+        }),
+    {
+        default: () => [],
+        watch: [refreshData],
+    },
+);
 if (errorGetProduct.value) {
     router.push({ name: `index___${locale.value}` });
 }
@@ -642,14 +648,18 @@ const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
         },
     }),
 );
-watchEffect(() => {
-    if (!loadingProduct.value && productItem.value && productItem.value.data) {
-        initialProduct(productItem.value.data);
-    }
-});
 
+watch(
+    loadingProduct,
+    async (newValue, oldValue) => {
+        if (!newValue) {
+            let productCurrent = ref({ ...productItem.value.data });
+            initialProduct(productCurrent.value);
+        }
+    },
+    { immediate: true }
+);
 function selectVariant(group, attribute) {
-    loadingProductItem.value = true;
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
 
@@ -657,35 +667,40 @@ function selectVariant(group, attribute) {
         productVariants.value[index].attribute_id = attribute.attribute_id;
         productVariants.value[index].attribute_group_id = group.id;
     } else {
-        productVariants.value.push(...{
-            attribute_id: attribute.id,
-            attribute_group_id: group.id,
-        });
+        productVariants.value.push(
+            ...{
+                attribute_id: attribute.id,
+                attribute_group_id: group.id,
+            },
+        );
     }
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
+    let checkProduct = getProductItem();
+    if (checkProduct.code != productItemCurrent.value.code) {
+        loadingProductItem.value = true;
+        productItemCurrent.value = getProductItem();
+        selectedProductVariant.value[group.slug] = attribute.attribute_name;
+        loadingProductItem.value = false;
 
-    productItemCurrent.value = getProductItem();
-    selectedProductVariant.value[group.slug] = attribute.attribute_name;
-
-    loadingProductItem.value = false;
-    const query = JSON.parse(JSON.stringify(productVariantSlugs.value));
-
-    // router.push({
-    //     name: `product-slug___${locale.value}`,
-    //     params: { slug: router.currentRoute.value.params.slug },
-    //     query: query
-    // });
-    router.push({
-        name: `product-slug___${locale.value}`,
-        params: { slug: router.currentRoute.value.params.slug },
-        query: {code: productItemCurrent.value?.code}
-    });
+        const query = JSON.parse(JSON.stringify(productVariantSlugs.value));
+        // refreshData.value++;
+        // router.push({
+        //     name: `product-slug___${locale.value}`,
+        //     params: { slug: router.currentRoute.value.params.slug },
+        //     query: query
+        // });
+        if (productItemCurrent.value) {
+            router.replace({
+                query: { code: productItemCurrent.value.code },
+            });
+        }
+    }
 }
 
 function arraysMatch(arr1, arr2) {
-    arr2  = arr2.sort();
-    arr1  = arr1.sort();
+    arr2 = arr2.sort();
+    arr1 = arr1.sort();
     if (arr1.length !== arr2.length) return false;
     for (let i = 0; i < arr1.length; i++) {
         if (arr1[i] !== arr2[i]) return false;
@@ -693,22 +708,18 @@ function arraysMatch(arr1, arr2) {
     return true;
 }
 function getProductItem() {
+    const attributeIDs = productVariants.value.map((item) => item.attribute_id);
+    const attributeGroupIDs = productVariants.value.map((item) => item.attribute_group_id);
 
-    const attributeIDs = productVariants.value.map(item => item.attribute_id);
-    const attributeGroupIDs = productVariants.value.map(item => item.attribute_group_id);
-
-
-    const matchingVariant = productItem.value.data.variants.find(variant => {
+    const matchingVariant = productItem.value.data.variants.find((variant) => {
         // Chú ý rằng bạn cần phải so sánh với 'options' và 'option_group' từ dữ liệu của variant
         return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
     });
 
     if (matchingVariant) {
-        console.log("Item tìm thấy là:", matchingVariant);
-        return matchingVariant
+        return matchingVariant;
     } else {
-        console.log("Không có item nào khớp với các options và option_group cung cấp.");
-        return null
+        return null;
     }
 
     // Hàm để chuyển đổi mảng option_all thành một string định dạng để so sánh
@@ -731,7 +742,6 @@ function getProductItem() {
     }
     */
 
-
     // // Duyệt qua từng phần tử trong mảng variants
     // for (const variant of productItem.value.data.variants) {
     //     // Tạo mảng optionAll riêng từ option_all
@@ -745,7 +755,7 @@ function getProductItem() {
 }
 
 function checkActive(attributeId) {
-    return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false
+    return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false;
 }
 
 function getAttributeName(attributeGroupId) {
@@ -756,14 +766,14 @@ function getAttributeName(attributeGroupId) {
             return foundAttr || group.attributes.find(attr => attr.attribute_id === attributeItem.attribute_id);
         }, null);
 
+
         if (attribute) {
             return attribute.attribute_name;
         } else {
-            return 'd';
+            return null
         }
 
     }
-
 }
 
 useSchemaOrg([
