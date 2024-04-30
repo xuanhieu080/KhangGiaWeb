@@ -208,6 +208,7 @@
                             <NuxtLink
                                 class="flex flex-1 h-12 rounded-full justify-center"
                                 :class="productItemCurrent.qty > 0 ? '' : 'pointer-events-none'"
+                                @click="handleAddToCookie(productItemCurrent)"
                                 :to="localePath({ name: 'cart', query: { product_id: productItemCurrent.id, quantity: quantity } })">
                                 <UButton
                                     :class="productItemCurrent.qty > 0 ? '' : 'bg-gray-400'"
@@ -593,7 +594,6 @@ const handleQuantity = (index) => {
 
 let initialProduct = (product) => {
     let findProduct = null;
-    console.log(product);
     if (router.currentRoute.value.query?.code) {
         findProduct = product.variants.find((item) => item.code == router.currentRoute.value.query.code);
     } else {
@@ -602,7 +602,6 @@ let initialProduct = (product) => {
         );
         findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
-    console.log(findProduct);
     if (findProduct) {
         productItemCurrent.value = { ...findProduct };
         productVariants.value = [...findProduct.option_all];
@@ -614,6 +613,32 @@ let initialProduct = (product) => {
 };
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
+};
+
+const handleAddToCookie = (item) => {
+    let productLists = useCookie('products-cart', {
+        default: () => [],
+        maxAge: 60 * 60 * 24 * 7,
+    });
+    if (productLists.value.length == 0) {
+        if (item.id)
+            productLists.value.push({
+                variant_id: item.id,
+                product_code: productItem.value.data.code,
+                quantity: quantity.value,
+            });
+    } else {
+        let productIndex = productLists.value.findIndex(
+            (ele) => (ele.product_id == productItem.value.data.id && ele.variant_id == null) || ele.variant_id == item.id,
+        );
+        if (productIndex == -1) {
+            productLists.value.push({
+                variant_id: item.id,
+                product_code: productItem.value.data.code,
+                quantity: quantity.value,
+            });
+        }
+    }
 };
 //DATA
 const refreshData = ref(0);
@@ -657,7 +682,7 @@ watch(
             initialProduct(productCurrent.value);
         }
     },
-    { immediate: true }
+    { immediate: true },
 );
 function selectVariant(group, attribute) {
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
@@ -682,7 +707,6 @@ function selectVariant(group, attribute) {
         productItemCurrent.value = getProductItem();
         selectedProductVariant.value[group.slug] = attribute.attribute_name;
         loadingProductItem.value = false;
-
         const query = JSON.parse(JSON.stringify(productVariantSlugs.value));
         // refreshData.value++;
         // router.push({
@@ -760,19 +784,17 @@ function checkActive(attributeId) {
 
 function getAttributeName(attributeGroupId) {
     if (productItemCurrent.value) {
-        let attributeItem = productItemCurrent.value.option_all.find((item) => item.attribute_group_id === attributeGroupId)
+        let attributeItem = productItemCurrent.value.option_all.find((item) => item.attribute_group_id === attributeGroupId);
 
         const attribute = productItem.value.data.variantAttribute.reduce((foundAttr, group) => {
-            return foundAttr || group.attributes.find(attr => attr.attribute_id === attributeItem.attribute_id);
+            return foundAttr || group.attributes.find((attr) => attr.attribute_id === attributeItem.attribute_id);
         }, null);
-
 
         if (attribute) {
             return attribute.attribute_name;
         } else {
-            return null
+            return null;
         }
-
     }
 }
 
@@ -780,9 +802,9 @@ useHead({
     // templateParams: {
     //     blogCategory: 'Tutorials'
     // },
-    title:  productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
-    titleTemplate: '%s %separator'
-})
+    title: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
+    titleTemplate: '%s %separator',
+});
 useSchemaOrg([
     defineProduct({
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,

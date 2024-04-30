@@ -4,6 +4,7 @@ export const useMain = defineStore('main-store', {
       pageGroups: [],
       pageHeaders: [],
       categoryHeaders: [],
+      cartNumber: null,
     }),
     actions: {
         async getPageGroup() {

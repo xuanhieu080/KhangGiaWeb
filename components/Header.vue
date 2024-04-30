@@ -142,7 +142,7 @@
                         <nuxt-link type="button" to="" class="">
                             <img :src="images.cart" class="" alt="" />
                         </nuxt-link>
-                        <div class="count-item">0</div>
+                        <div class="count-item">{{ cartNumber }}</div>
                     </UButton>
                 </NuxtLink>
             </div>
@@ -270,7 +270,7 @@ import { useMain } from '@@/store/index';
 const useMainStore = useMain();
 const { getPageHeader, getCategoryHeader } = useMain();
 
-const { pageHeaders, categoryHeaders } = storeToRefs(useMainStore);
+const { pageHeaders, categoryHeaders, cartNumber } = storeToRefs(useMainStore);
 
 if (pageHeaders.value.length == 0) {
     getPageHeader();
@@ -307,6 +307,10 @@ const handleChangePage = (e) => {
 };
 onMounted(() => {
     isLoadingPage.value = false;
+    let productLists = useCookie('products-cart');
+    if(productLists.value.length > 0) {
+        cartNumber.value = productLists.value.length;
+    }
 })
 // const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAsyncData('category-header', () =>
 //     useOriginalFetch('/api/v1/categories/header', {
