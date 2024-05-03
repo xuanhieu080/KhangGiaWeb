@@ -135,7 +135,7 @@
                     </div>
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
-                            <span class="font-bold text-[28px] lg:text-[32px]">{{ productItem.data.name }}</span>
+                            <span class="font-bold text-[28px] lg:text-[32px]">{{ productItemCurrent.name }}</span>
                         </div>
                         <div class="product-rate flex items-center gap-2 text-black">
                             <NuxtRating
@@ -176,22 +176,32 @@
                                 >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
                             >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
-                                <button
-                                    v-for="(attribute, index) in variantAttribute.attributes"
-                                    class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                    :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
-                                    :style="{ backgroundColor: attribute.attribute_color }"
-                                    @click="selectVariant(variantAttribute, attribute)"></button>
+                                <div  v-for="(attribute, index) in variantAttribute.attributes">
+                                    <button
+                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
+                                        :class="{ '!ring-green-500': checkActive(attribute.attribute_id)}"
+                                        :style="{ backgroundColor: attribute.attribute_color }"
+                                        @click="selectVariant(variantAttribute, attribute)"
+                                        >
+                                    </button>
+                                </div>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
-                                <button
-                                    v-for="(attribute, index) in variantAttribute.attributes"
-                                    :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
-                                    class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
-                                    @click="selectVariant(variantAttribute, attribute)">
-                                    {{ attribute.attribute_name }}
-                                    <div v-if="false" class="check-mark"></div>
-                                </button>
+                                <div v-for="(attribute, index) in variantAttribute.attributes">
+                                    <button
+                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
+                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id)}"
+                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
+                                        @click="selectVariant(variantAttribute, attribute)">
+                                        {{ attribute.attribute_name }}
+                                    </button>
+                                    <button
+                                        v-else
+                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14">
+                                        {{ attribute.attribute_name }}
+                                        <div class="check-mark"></div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <span class="fs-14"
@@ -593,7 +603,6 @@ const handleQuantity = (index) => {
 
 let initialProduct = (product) => {
     let findProduct = null;
-    console.log(product);
     if (router.currentRoute.value.query?.code) {
         findProduct = product.variants.find((item) => item.code == router.currentRoute.value.query.code);
     } else {
@@ -602,7 +611,6 @@ let initialProduct = (product) => {
         );
         findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
-    console.log(findProduct);
     if (findProduct) {
         productItemCurrent.value = { ...findProduct };
         productVariants.value = [...findProduct.option_all];
@@ -677,7 +685,7 @@ function selectVariant(group, attribute) {
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
     let checkProduct = getProductItem();
-    if (checkProduct.code != productItemCurrent.value.code) {
+    if (checkProduct && checkProduct.code != productItemCurrent.value.code) {
         loadingProductItem.value = true;
         productItemCurrent.value = getProductItem();
         selectedProductVariant.value[group.slug] = attribute.attribute_name;
@@ -758,6 +766,31 @@ function checkActive(attributeId) {
     return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false;
 }
 
+function checkEventNone(attributeId, attributeGroupId ) {
+    let items = [...productVariants.value];
+    items = items.map(item => {
+        if(item.attribute_group_id === attributeGroupId) {
+            return {...item, attribute_id: attributeId};
+        } else {
+            return item;
+        }
+    });
+
+    const attributeIDs = items.map((item) => item.attribute_id);
+    const attributeGroupIDs = items.map((item) => item.attribute_group_id);
+
+    const matchingVariant = productItem.value.data.variants.find((variant) => {
+        // Chú ý rằng bạn cần phải so sánh với 'options' và 'option_group' từ dữ liệu của variant
+        return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
+    });
+
+    if (matchingVariant) {
+        return matchingVariant.qty > 0;
+    } else {
+        return false;
+    }
+}
+
 function getAttributeName(attributeGroupId) {
     if (productItemCurrent.value) {
         let attributeItem = productItemCurrent.value.option_all.find((item) => item.attribute_group_id === attributeGroupId)
@@ -775,14 +808,19 @@ function getAttributeName(attributeGroupId) {
 
     }
 }
+let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.meta_title
+let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description
+let seoMeta = {
+    description: description,
+    ogDescription: description,
+    ogTitle: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: description,
+    keywords: productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.meta_key,
+};
 
-useHead({
-    // templateParams: {
-    //     blogCategory: 'Tutorials'
-    // },
-    title:  productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
-    titleTemplate: '%s %separator'
-})
+useSeoMeta(seoMeta)
 useSchemaOrg([
     defineProduct({
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
@@ -824,6 +862,7 @@ useSchemaOrg([
                 .size-list {
                     .size-list-item {
                         position: relative;
+                        overflow: hidden;
                         .check-mark {
                             position: absolute;
                             left: 0;
@@ -834,7 +873,7 @@ useSchemaOrg([
                             &::before {
                                 content: '';
                                 position: absolute;
-                                width: 80%;
+                                width: 100%;
                                 height: 0;
                                 border-bottom: 2px dashed grey;
                                 left: 50%;
