@@ -4,20 +4,16 @@
         v-if="product"
         class="product-card relative">
         <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-4 w-full">
-            <div v-if="product.variants && product.variants.length > 0" class="product-image relative">
+            <div class="product-image relative">
                 <button
-                    v-for="(image, index) in product.variants"
-                    class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden"
-                    :class="activeType == index ? 'block' : 'hidden'">
+                    class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden block">
                     <NuxtImg
-                        v-for="(item, indexImage) in image.thumb_image"
-                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover"
-                        :class="{
-                            hidden: indexImage > 1,
-                            'first-look': indexImage == 0 && image.thumb_image.length > 1,
-                            'second-look': indexImage == 1,
-                        }"
-                        :src="item" />
+                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover first-look"
+                        :src="product.image_url" />
+                    <NuxtImg
+
+                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover second-look"
+                        :src="product.thumb_image[0]" />
                 </button>
             </div>
             <div v-if="productColor" class="product-type flex items-center justify-start flex-wrap gap-2">
@@ -31,7 +27,7 @@
                 <div class="product-name">
                     {{ product.name }}
                 </div>
-                <div class="product-introduction flex items-center gap-1">
+                <div v-if="productSilk || productColor" class="product-introduction flex items-center gap-1">
                     {{ productSilk ? productSilk.attributes[activeSilk].attribute_name + ' / ' : '' }}
                     {{ productColor ? productColor.attributes[activeColor].attribute_name : '' }}
                 </div>
@@ -87,9 +83,9 @@ const productVariants = ref([]);
 // => Data {màu: A, mã màu A: ... , hình của màu A: []}
 
 let initialProduct = () => {
-    let productColorIndex = props.product.variantAttribute.findIndex((attr) => attr.name == 'Màu sắc')
-    let productSizeIndex = props.product.variantAttribute.findIndex((attr) => attr.name == 'Size')
-    let productSilkIndex = props.product.variantAttribute.findIndex((attr) => attr.name == 'Chất vải')
+    let productColorIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'mau-sac')
+    let productSizeIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'size')
+    let productSilkIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'chat-vai')
     if(productColorIndex != -1) {
         productColor.value = props.product.variantAttribute[productColorIndex];
         productVariants.value = [...productVariants.value, ...productColor.value.attributes]
