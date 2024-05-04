@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <section class="pod-banner">
+        <section  v-if="false" class="pod-banner">
             <video
                 poster="/images/dat-may-background.jpg"
                 src="/images/dat-may-background.jpg"
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </section>
-        <div class="about-content pt-8 mx-auto bg-white">
+        <div v-if="false" class="about-content pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty GAK</h2>

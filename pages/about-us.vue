@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div class="about-us-image relative">
+        <div v-if="false" class="about-us-image relative">
             <NuxtImg
                 class="w-full h-[500px] object-cover"
                 loading="lazy"
@@ -63,7 +63,7 @@
                 </UButton>
             </div>
         </div>
-        <div class="about-content !pt-[5rem] mx-auto">
+        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
                     <div class="grid lg:grid-cols-2 gap-6 lg:gap-4">
