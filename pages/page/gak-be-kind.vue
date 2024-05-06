@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div class="about-us-image relative">
+        <div v-if="false" class="about-us-image relative">
             <NuxtImg
                 class="w-full h-[500px] object-cover"
                 loading="lazy"
@@ -63,7 +63,7 @@
                 </UButton>
             </div>
         </div>
-        <div class="about-content !pt-[5rem] mx-auto">
+        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
             <section class="cs-caption">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-about__heading w-full text-center !my-6">CÔNG TY GAK XIN CHÀO !</h2>

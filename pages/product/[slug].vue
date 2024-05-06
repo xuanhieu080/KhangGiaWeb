@@ -7,8 +7,9 @@
                         class="w-max absolute -top-2 left-2 lg:left-[96px]"
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
+
                     <Swiper
-                        v-if="productItemCurrent && !loadingProductItem"
+                        v-if="!loadingProductItem"
                         @swiper="setThumbsSwiper"
                         :spaceBetween="16"
                         :slidesPerView="4"
@@ -18,44 +19,50 @@
                         :lazy="true"
                         :direction="'vertical'"
                         class="!hidden lg:!block !w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
-                        <SwiperSlide v-if="productItemCurrent.video_link" class="!h-[80px] w-full rounded-md relative">
+                        <SwiperSlide v-if="productItem.data.video_link" class="!h-[80px] w-full rounded-md relative">
                             <video class="pointer-events-none">
-                                <source :src="productItemCurrent.video_link" />
+                                <source :src="productItem.data.video_link" />
                             </video>
                         </SwiperSlide>
                         <SwiperSlide
                             v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                             v-for="(image, index) in productItemCurrent.thumb_image"
-                            v-show="!productItemCurrent.video_link ? index < 4 : index < 3"
+                            v-show="!productItem.data.video_link ? index < 4 : index < 3"
                             class="!h-[120px] w-full rounded-md relative">
                             <span
                                 v-if="
-                                    (!productItemCurrent.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
-                                    (productItemCurrent.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
+                                    (!productItem.data.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
+                                    (productItem.data.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
                                 "
                                 class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                                >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                            >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
+                        <SwiperSlide v-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
+                            <img
+                                :src="productItemCurrent ? productItemCurrent.image : ''"
+                                alt="No image"
+                                class="w-full h-full object-cover rounded-md" />
+                        </SwiperSlide>
                         <SwiperSlide
-                            v-else-if="productItem.data.thumb_image.length > 0"
+                            v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
                             v-for="(image, index) in productItem.data.thumb_image"
-                            v-show="!productItemCurrent.video_link ? index < 4 : index < 3"
+                            v-show="!productItem.data.video_link ? index < 4 : index < 3"
                             class="!h-[120px] w-full rounded-md relative">
                             <span
                                 v-if="
-                                    (!productItemCurrent.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
-                                    (productItemCurrent.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
+                                    (!productItem.data.video_link && productItem.data.thumb_image.length > 4 && index == 3) ||
+                                    (productItem.data.video_link && productItem.data.thumb_image.length > 3 && index == 2)
                                 "
                                 class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                                >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                            >+{{ productItem.data.thumb_image.length - index - 1 }}</span
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
                         <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
                             <img
-                                :src="productItemCurrent ? productItemCurrent.image : ''"
+                                :src="productItem.data ? productItem.data.image : ''"
                                 alt="No image"
                                 class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
@@ -65,10 +72,10 @@
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                     </div>
                     <div
-                        v-show="thumbsSwiper && productItemCurrent"
+                        v-show="thumbsSwiper"
                         class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
                         <Swiper
-                            v-if="productItemCurrent && !loadingProductItem"
+                            v-if="!loadingProductItem"
                             :spaceBetween="10"
                             :lazy="true"
                             :navigation="{
@@ -78,7 +85,7 @@
                             :thumbs="{ swiper: thumbsSwiper }"
                             :modules="modules"
                             class="!mx-0">
-                            <SwiperSlide v-if="productItemCurrent.video_link" class="!flex justify-center !h-auto">
+                            <SwiperSlide v-if="productItem.data.video_link" class="!flex justify-center !h-auto">
                                 <video controls class="h-full w-full object-contain" autoplay muted>
                                     <source
                                         src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
@@ -91,24 +98,22 @@
                                 class="!flex justify-center !h-auto max-h-[500px]">
                                 <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
                             </SwiperSlide>
-                            <SwiperSlide
-                                v-else-if="productItem.data.thumb_image.length > 0"
-                                v-for="(image, index) in productItem.data.thumb_image"
-                                v-show="!productItemCurrent.video_link ? index < 4 : index < 3"
-                                class="w-full rounded-md relative">
-                                <span
-                                    v-if="
-                                        (!productItemCurrent.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
-                                        (productItemCurrent.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
-                                    "
-                                    class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                                    >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
-                                >
-                                <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
-                            </SwiperSlide>
-                            <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
+                            <SwiperSlide v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
                                 <img
                                     :src="productItemCurrent ? productItemCurrent.image : ''"
+                                    alt="No image"
+                                    class="w-full h-full object-cover rounded-md" />
+                            </SwiperSlide>
+                            <SwiperSlide
+                                v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
+                                v-for="image in productItem.data.thumb_image"
+                                class="!flex justify-center !h-auto max-h-[500px]">
+                                <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
+                            </SwiperSlide>
+
+                            <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
+                                <img
+                                    :src="productItem.data ? productItem.data.image : ''"
                                     alt="No image"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
@@ -130,12 +135,13 @@
                             </template>
                         </Swiper>
                     </div>
+
                     <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
                         <USkeleton class="min-w-[350px] w-[350px] h-[500px] rounded-md"></USkeleton>
                     </div>
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
-                            <span class="font-bold text-[28px] lg:text-[32px]">{{ productItem.data.name }}</span>
+                            <span class="font-bold text-[28px] lg:text-[32px]">{{ productItemCurrent ? productItemCurrent.name : productItem.data.name }}</span>
                         </div>
                         <div class="product-rate flex items-center gap-2 text-black">
                             <NuxtRating
@@ -176,22 +182,47 @@
                                 >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
                             >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
-                                <button
-                                    v-for="(attribute, index) in variantAttribute.attributes"
-                                    class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                    :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
-                                    :style="{ backgroundColor: attribute.attribute_color }"
-                                    @click="selectVariant(variantAttribute, attribute)"></button>
+                                <div  v-for="(attribute, index) in variantAttribute.attributes">
+                                    <button
+                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
+                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
+                                        :class="{ '!ring-green-500': checkActive(attribute.attribute_id)}"
+                                        :style="{ backgroundColor: attribute.attribute_color }"
+                                        @click="selectVariant(variantAttribute, attribute)"
+                                        >
+                                    </button>
+                                    <button
+                                        v-else
+                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
+                                        :style="{ backgroundColor: attribute.attribute_color }"
+                                    >
+                                        <div class="check-mark"></div>
+                                    </button>
+                                </div>
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
-                                <button
-                                    v-for="(attribute, index) in variantAttribute.attributes"
-                                    :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
-                                    class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
-                                    @click="selectVariant(variantAttribute, attribute)">
-                                    {{ attribute.attribute_name }}
-                                    <div v-if="false" class="check-mark"></div>
-                                </button>
+                                <div v-for="(attribute, index) in variantAttribute.attributes">
+                                    <button
+                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
+                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id)}"
+                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
+                                        @click="selectVariant(variantAttribute, attribute)">
+                                        {{ attribute.attribute_name }}
+                                    </button>
+                                    <button
+                                        v-else-if="!checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main && !productItemCurrent"
+                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id)}"
+                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
+                                        @click="selectVariant(variantAttribute, attribute)">
+                                        {{ attribute.attribute_name }}
+                                    </button>
+                                    <button
+                                        v-else
+                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14">
+                                        {{ attribute.attribute_name }}
+                                        <div class="check-mark"></div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <span class="fs-14"
@@ -596,18 +627,19 @@ let initialProduct = (product) => {
     let findProduct = null;
     if (router.currentRoute.value.query?.code) {
         findProduct = product.variants.find((item) => item.code == router.currentRoute.value.query.code);
+        if (findProduct) {
+            productItemCurrent.value = { ...findProduct };
+            productVariants.value = [...findProduct.option_all];
+        } else {
+            router.push({ path: router.currentRoute.value.path });
+        }
     } else {
-        let attributeIds = product.variantAttribute.map((item) =>
-            item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined,
-        );
-        findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
+        // let attributeIds = product.variantAttribute.map((item) =>
+        //     item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined,
+        // );
+        // findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
-    if (findProduct) {
-        productItemCurrent.value = { ...findProduct };
-        productVariants.value = [...findProduct.option_all];
-    } else {
-        router.push({ path: router.currentRoute.value.path });
-    }
+
 
     loadingProductItem.value = false;
 };
@@ -693,8 +725,8 @@ function selectVariant(group, attribute) {
         productVariants.value[index].attribute_group_id = group.id;
     } else {
         productVariants.value.push(
-            ...{
-                attribute_id: attribute.id,
+            {
+                attribute_id: attribute.attribute_id,
                 attribute_group_id: group.id,
             },
         );
@@ -702,9 +734,9 @@ function selectVariant(group, attribute) {
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
     let checkProduct = getProductItem();
-    if (checkProduct.code != productItemCurrent.value.code) {
+    if (checkProduct && (!productItemCurrent.value || (checkProduct.code != productItemCurrent.value.code))) {
         loadingProductItem.value = true;
-        productItemCurrent.value = getProductItem();
+        productItemCurrent.value = checkProduct;
         selectedProductVariant.value[group.slug] = attribute.attribute_name;
         loadingProductItem.value = false;
         const query = JSON.parse(JSON.stringify(productVariantSlugs.value));
@@ -740,7 +772,7 @@ function getProductItem() {
         return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
     });
 
-    if (matchingVariant) {
+    if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image) {
         return matchingVariant;
     } else {
         return null;
@@ -779,7 +811,39 @@ function getProductItem() {
 }
 
 function checkActive(attributeId) {
-    return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false;
+    if (productItemCurrent.value) {
+        return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false;
+    }
+    let index = productVariants.value.findIndex((item) => item.attribute_id === attributeId);
+    return index != -1
+}
+
+function checkEventNone(attributeId, attributeGroupId ) {
+    if (!productItemCurrent.value) {
+        return true;
+    }
+    let items = [...productVariants.value];
+    items = items.map(item => {
+        if(item.attribute_group_id === attributeGroupId) {
+            return {...item, attribute_id: attributeId};
+        } else {
+            return item;
+        }
+    });
+
+    const attributeIDs = items.map((item) => item.attribute_id);
+    const attributeGroupIDs = items.map((item) => item.attribute_group_id);
+
+    const matchingVariant = productItem.value.data.variants.find((variant) => {
+        // Chú ý rằng bạn cần phải so sánh với 'options' và 'option_group' từ dữ liệu của variant
+        return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
+    });
+
+    if (matchingVariant) {
+        return matchingVariant.out_of_stock == false;
+    } else {
+        return false;
+    }
 }
 
 function getAttributeName(attributeGroupId) {
@@ -797,14 +861,19 @@ function getAttributeName(attributeGroupId) {
         }
     }
 }
+let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.meta_title
+let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description
+let seoMeta = {
+    description: description,
+    ogDescription: description,
+    ogTitle: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: description,
+    keywords: productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.meta_key,
+};
 
-useHead({
-    // templateParams: {
-    //     blogCategory: 'Tutorials'
-    // },
-    title: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
-    titleTemplate: '%s %separator',
-});
+useSeoMeta(seoMeta)
 useSchemaOrg([
     defineProduct({
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
@@ -846,6 +915,7 @@ useSchemaOrg([
                 .size-list {
                     .size-list-item {
                         position: relative;
+                        overflow: hidden;
                         .check-mark {
                             position: absolute;
                             left: 0;
@@ -856,7 +926,39 @@ useSchemaOrg([
                             &::before {
                                 content: '';
                                 position: absolute;
-                                width: 80%;
+                                width: 100%;
+                                height: 0;
+                                border-bottom: 2px dashed grey;
+                                left: 50%;
+                                top: 50%;
+                            }
+                            &::before {
+                                transform: translate(-50%, -50%) rotate(45deg);
+                            }
+                            &::after {
+                                transform: translate(-50%, -50%) rotate(-45deg);
+                            }
+                        }
+                    }
+                }
+            }
+            .product-color-list {
+                .color-list {
+                    .color-list-item {
+                        position: relative;
+                        overflow: hidden;
+                        .check-mark {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 10;
+                            &::after,
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                width: 100%;
                                 height: 0;
                                 border-bottom: 2px dashed grey;
                                 left: 50%;

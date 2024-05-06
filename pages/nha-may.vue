@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <section class="running-video">
+        <section v-if="false" class="running-video">
             <video
                 id="banner-video"
                 poster="https://mcdn.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/December2023/mceclip0_71.png"
@@ -11,7 +11,7 @@
                 <source src="https://mcdn.coolmate.me/uploads/videos/xuong-may.mp4" />
             </video>
         </section>
-        <div class="about-content !pt-[5rem] mx-auto">
+        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg space-y-8">
                     <h2 class="cs-services__heading">TỰ CHỦ NGUỒN NGUYÊN LIỆU VÀ SẢN XUẤT</h2>
