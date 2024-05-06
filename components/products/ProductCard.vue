@@ -9,11 +9,11 @@
                     class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden block">
                     <NuxtImg
                         class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover first-look"
-                        :src="product.image_url" />
-                    <NuxtImg
-
-                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover second-look"
                         :src="product.thumb_image[0]" />
+                    <NuxtImg
+                        v-if="product.thumb_image[1]"
+                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover second-look"
+                        :src="product.thumb_image[1]" />
                 </button>
             </div>
             <div v-if="productColor" class="product-type flex items-center justify-start flex-wrap gap-2">

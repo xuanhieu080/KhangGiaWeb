@@ -39,9 +39,9 @@
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
-                        <SwiperSlide v-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
+                        <SwiperSlide v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
                             <img
-                                :src="productItemCurrent ? productItemCurrent.image : ''"
+                                :src="productItemCurrent ? productItemCurrent.image_url : ''"
                                 alt="No image"
                                 class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
@@ -60,9 +60,9 @@
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
-                        <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
+                        <SwiperSlide  v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
                             <img
-                                :src="productItem.data ? productItem.data.image : ''"
+                                :src="productItem.data ? productItem.data.image_url : ''"
                                 alt="No image"
                                 class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
@@ -100,7 +100,7 @@
                             </SwiperSlide>
                             <SwiperSlide v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
                                 <img
-                                    :src="productItemCurrent ? productItemCurrent.image : ''"
+                                    :src="productItemCurrent ? productItemCurrent.image_url : ''"
                                     alt="No image"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
@@ -111,9 +111,9 @@
                                 <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
                             </SwiperSlide>
 
-                            <SwiperSlide v-else class="!h-[120px] w-full rounded-md">
+                            <SwiperSlide  v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
                                 <img
-                                    :src="productItem.data ? productItem.data.image : ''"
+                                    :src="productItem.data ? productItem.data.image_url : ''"
                                     alt="No image"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
@@ -252,7 +252,7 @@
                         <div class="delivery-box flex flex-col gap-4">
                             <button class="flex items-center gap-2">
                                 <img src="https://page.widget.zalo.me/static/images/2.0/Logo.svg" class="h-8 w-8 object-contain" alt="" />
-                                <span class="text-blue-700 fs-14 font-bold">Chat để được GAK tư vấn ngay (8:30 - 22:00)</span>
+                                <span class="text-blue-700 fs-14 font-bold">Chat để được Navy tư vấn ngay (8:30 - 22:00)</span>
                                 <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
                             </button>
                             <div class="delivery-information p-6 bg-gray-200 rounded-lg flex flex-col gap-4 fs-14 font-medium">
@@ -630,9 +630,37 @@ let initialProduct = (product) => {
             productItemCurrent.value = { ...findProduct };
             productVariants.value = [...findProduct.option_all];
         } else {
+            let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
+                if (!variant.is_color) { // Chỉ xử lý những variant có is_color là false
+                    let firstAttribute = variant.attributes[0]; // Lấy phần tử đầu tiên trong attributes
+                    if (firstAttribute) { // Kiểm tra phần tử đầu có is_main là false
+                        acc.push({
+                            attribute_id: firstAttribute.attribute_id,
+                            attribute_group_id: variant.id
+                        });
+                    }
+                }
+                return acc;
+            }, []);
+
+            productVariants.value = [...filteredAttributes];
             router.push({ path: router.currentRoute.value.path });
         }
     } else {
+        let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
+            if (!variant.is_color) { // Chỉ xử lý những variant có is_color là false
+                let firstAttribute = variant.attributes[0]; // Lấy phần tử đầu tiên trong attributes
+                if (firstAttribute) { // Kiểm tra phần tử đầu có is_main là false
+                    acc.push({
+                        attribute_id: firstAttribute.attribute_id,
+                        attribute_group_id: variant.id
+                    });
+                }
+            }
+            return acc;
+        }, []);
+
+        productVariants.value = [...filteredAttributes];
         // let attributeIds = product.variantAttribute.map((item) =>
         //     item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined,
         // );
