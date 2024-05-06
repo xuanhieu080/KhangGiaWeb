@@ -19,17 +19,17 @@
                 @click="backToTop"></UButton>
         </div>
     </main>
-    <UNotifications>
+    <UNotifications class="prose-p:mt-0">
         <template #title="{ title }">
-            <span v-html="title" />
+            <span class="font-bold" v-html="title" />
         </template>
         <template #description="{ description }">
-            <ul v-if="typeof description == 'object'" class="flex flex-col gap-4 !px-0 text-red-500">
+            <ul v-if="typeof description == 'object'" class="flex flex-col gap-4 !px-0 text-red-500 prose prose-li:!my-0">
                 <li class="px-0 list-disc" v-for="item in Object.values(description)">{{ item[0] }}</li>
             </ul>
-            <span v-else>
+            <div class="w-max" v-else>
                 {{ description }}
-            </span>
+            </div>
         </template>
     </UNotifications>
     <Footer />
@@ -45,7 +45,6 @@
                 class="w-full h-full object-contain"
         /></a>
     </div>
-    <UNotifications class="z-99999" />
 </template>
 <script setup>
 import { useI18n } from 'vue-i18n';

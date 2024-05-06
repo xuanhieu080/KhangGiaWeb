@@ -4,9 +4,9 @@
             <div class="container mx-auto flex flex-col-reverse lg:flex-row items-start w-full gap-4">
                 <div class="cart-information-user flex flex-col gap-6 w-full lg:w-1/2 border-r border-gray-300 pr-4">
                     <div class="flex flex-col gap-2 font-medium">
-                        <div class="text-3xl font-bold">Hi, {{ 'Nguyễn Văn A' }}</div>
+                        <div class="text-3xl font-bold">Chào {{ 'quý khách' }}</div>
                         <span>
-                            {{ $t('Tổng tiền') }} ({{ '3' + ' ' + $t('sản phẩm') }})
+                            {{ $t('Tổng tiền') }} ({{ cartNumber + ' ' + $t('sản phẩm') }})
                             <b class="text-blue-600">{{ '499000'.toLocaleString() }}đ</b>
                         </span>
                     </div>
@@ -14,7 +14,7 @@
                         <div class="flex items-center justify-between">
                             <div class="font-bold text-2xl">{{ $t('Thông tin vận chuyển') }}</div>
                         </div>
-                        <UForm ref="form" :schema="schema" :state="state" @submit="submitOrder" class="flex flex-col gap-4 w-full">
+                        <UForm ref="form" :schema="schema" :state="state" class="flex flex-col gap-4 w-full">
                             <div class="flex items-center justify-between gap-4 w-full">
                                 <UFormGroup label="" name="User name" class="w-full">
                                     <UInput
@@ -54,18 +54,18 @@
                                     <USelectMenu
                                         v-model="state.city"
                                         size="xl"
-                                        :options="people"
+                                        :options="cities.data"
                                         searchable
+                                        clear-search-on-close
                                         searchable-placeholder="Search a city..."
                                         class="w-full custom-input"
                                         :placeholder="$t('Tỉnh/Thành phố')"
                                         option-attribute="name"
+                                        value-attribute="id"
+                                        :loading="loadingCities"
                                         :ui="{ rounded: 'rounded-full' }">
-                                        <template #label>
-                                            <span class="truncate">{{ state.city ? state.city.name : 'Tỉnh/Thành phố' }}</span>
-                                        </template>
-                                        <template #option="{ option: person }">
-                                            <span class="truncate">{{ person.name }}</span>
+                                        <template #option="{ option: city }">
+                                            <span class="truncate">{{ city.name }}</span>
                                         </template>
                                     </USelectMenu>
                                 </UFormGroup>
@@ -73,18 +73,18 @@
                                     <USelectMenu
                                         v-model="state.district"
                                         size="xl"
-                                        :options="people"
+                                        :options="districts"
                                         searchable
+                                        clear-search-on-close
                                         searchable-placeholder="Search a district..."
                                         class="w-full custom-input"
                                         :placeholder="$t('Quận/Huyện')"
                                         option-attribute="name"
+                                        value-attribute="id"
+                                        :disabled="!state.city"
                                         :ui="{ rounded: 'rounded-full' }">
-                                        <template #label>
-                                            <span class="truncate">{{ state.district ? state.district.name : 'Quận/Huyện' }}</span>
-                                        </template>
-                                        <template #option="{ option: person }">
-                                            <span class="truncate">{{ person.name }}</span>
+                                        <template #option="{ option: district }">
+                                            <span class="truncate">{{ district.name }}</span>
                                         </template>
                                     </USelectMenu>
                                 </UFormGroup>
@@ -92,18 +92,18 @@
                                     <USelectMenu
                                         v-model="state.ward"
                                         size="xl"
-                                        :options="people"
+                                        :options="wards"
                                         searchable
+                                        clear-search-on-close
                                         searchable-placeholder="Search a ward..."
                                         class="w-full custom-input"
                                         :placeholder="$t('Phường/Xã')"
                                         option-attribute="name"
+                                        value-attribute="id"
+                                        :disabled="!state.city || !state.district"
                                         :ui="{ rounded: 'rounded-full' }">
-                                        <template #label>
-                                            <span class="truncate">{{ state.ward ? state.ward.name : 'Phường/Xã' }}</span>
-                                        </template>
-                                        <template #option="{ option: person }">
-                                            <span class="truncate">{{ person.name }}</span>
+                                        <template #option="{ option: ward }">
+                                            <span class="truncate">{{ ward.name }}</span>
                                         </template>
                                     </USelectMenu>
                                 </UFormGroup>
@@ -117,6 +117,11 @@
                                     :ui="{ rounded: 'rounded-full' }" />
                             </UFormGroup>
                         </UForm>
+                        <div class="list-error w-full bg-gray-100 prose-lg max-w-full rounded-lg" v-if="errors">
+                            <ul>
+                                <li class="list-disc text-red-500" v-for="error in errors">{{ error[0] }}</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex flex-col gap-4 w-full">
                         <div class="flex items-center justify-between">
@@ -232,9 +237,14 @@
                     </div>
                     <UButton
                         class="bg-black text-white hover:bg-gray-400 transition duration-200 rounded-2xl h-12"
+                        :class="
+                            state.name && state.email && state.phone && state.address && state.city ? '' : 'pointer-events-none bg-gray-400'
+                        "
                         variant="ghost"
                         size="xl"
                         color="none"
+                        type="submit"
+                        @click="handleProcessOrder"
                         block>
                         {{ $t('Thanh toán') + ' ' + '499k' + '(COD)' }}
                     </UButton>
@@ -262,7 +272,8 @@
                                         }}
                                     </div>
                                 </div>
-                                <div class="flex flex-col md:flex-wrap md:flex-row items-start gap-4 md:items-center justify-between w-full h-full md:gap-2">
+                                <div
+                                    class="flex flex-col md:flex-wrap md:flex-row items-start gap-4 md:items-center justify-between w-full h-full md:gap-2">
                                     <USelectMenu
                                         v-model="selectedColorProduct"
                                         :options="item.product_images"
@@ -283,7 +294,9 @@
                                         option-attribute="name"
                                         :ui="{ rounded: 'rounded-2xl' }">
                                         <template #label>
-                                            <span class="truncate">{{ selectedSizeProduct ? selectedSizeProduct.name : 'Chọn kích cỡ' }}</span>
+                                            <span class="truncate">{{
+                                                selectedSizeProduct ? selectedSizeProduct.name : 'Chọn kích cỡ'
+                                            }}</span>
                                         </template>
                                         <template #option="{ option: selected }">
                                             <span class="truncate">{{ selected.name }}</span>
@@ -341,12 +354,14 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
-import { object, string } from 'yup';
+import { ArraySchema, object, string } from 'yup';
 
 let modules = ref([Navigation, Thumbs]);
 let modulesSimilar = ref([Navigation]);
 const localePath = useLocalePath();
 const { t: trans, locale } = useI18n();
+
+const toast = useToast();
 
 const state = ref({
     email: null,
@@ -363,6 +378,8 @@ const form = ref({
     errors: [],
 });
 
+const errors = ref(null);
+
 const schema = object({
     email: string().required(trans('required')),
     name: string().required(trans('required')),
@@ -372,22 +389,26 @@ const schema = object({
     ward: string().required(trans('required')),
     district: string().required(trans('required')),
 });
-const people = [
+const payment_method = [
     {
         id: 1,
-        name: 'Wade Cooper',
+        name: 'COD',
     },
     {
         id: 2,
-        name: 'Arlene Mccoy',
+        name: 'Zalopay',
     },
     {
         id: 3,
-        name: 'Devon Webb',
+        name: 'Momo',
     },
     {
         id: 4,
-        name: 'Tom Cook',
+        name: 'ShopeePay',
+    },
+    {
+        id: 5,
+        name: 'VNPAY',
     },
 ];
 const selectedPaidOption = ref(1);
@@ -534,6 +555,141 @@ const handleQuantity = (index) => {
         }
     }
 };
+
+const handleProcessOrder = async () => {
+    let params = {
+        items: JSON.stringify([...productLists.value]),
+        customer_name: state.value.name,
+        customer_email: state.value.email,
+        customer_phone: state.value.phone,
+        address: state.value.address,
+        province_id: state.value.city,
+        district_id: state.value.district,
+        ward_id: state.value.ward,
+    };
+    let methodForPay = payment_method.find((item) => item.id == selectedPaidOption.value);
+    if (methodForPay) {
+        params.payment_method = methodForPay.name;
+    }
+    if (state.value.note) {
+        params.note = state.value.note;
+    }
+    console.log(params);
+    const { data: response, error } = await useMyFetch('/api/v1/orders', {
+        method: 'POST',
+        body: params,
+    });
+    if (response.value) {
+        toast.add({
+            title: trans('Chúc mừng') + ' !',
+            description: response.value.message,
+            timeout: 3000,
+            icon: 'i-heroicons-check-badge',
+            color: 'green',
+        });
+    } else {
+        if (error.value.statusCode === 422) {
+            errors.value = error.value.data.errors;
+            toast.add({
+                title: `<p class="text-red-500"> ${trans('Warning')} </p>`,
+                description: errors.value,
+                timeout: 10000,
+                icon: 'i-heroicons-check-badge',
+                color: 'red',
+            });
+        }
+        else {
+            toast.add({
+                title: `<p class="text-red-500"> ${trans('Warning')} </p>`,
+                description: error.value.data.message,
+                timeout: 10000,
+                icon: 'i-heroicons-check-badge',
+                color: 'red',
+            });
+        }
+    }
+};
+
+let districts = ref([]);
+let wards = ref([]);
+let listCart = ref([]);
+let cartNumber = ref(0);
+let productLists = useCookie('products-cart');
+onBeforeMount(() => {
+    if (productLists.value.length > 0) {
+        cartNumber.value = productLists.value.length;
+        getCheckCarts(productLists.value);
+    }
+});
+
+//Data
+
+const getCheckCarts = async (items) => {
+    const { data: response, error } = await useMyFetch('/api/v1/check-stock', {
+        headers: { 'Content-Type': 'application/json' },
+        params: {
+            items: JSON.stringify([...items]),
+        },
+    });
+    if (response.value) {
+        listCart.value = response.value.data;
+    }
+};
+
+const { data: cities, pending: loadingCities } = await useLazyAsyncData('cities-list', async () =>
+    useOriginalFetch('/api/v1/provinces', {
+        params: {
+            limit: 999,
+        },
+    }),
+);
+
+const getDistrict = async (city) => {
+    const { data: response, error } = await useMyFetch(`/api/v1/districts/${city}`, {
+        params: {
+            limit: 999,
+        },
+    });
+    if (response.value) {
+        districts.value = response.value.data;
+    } else {
+        return [];
+    }
+};
+const getWard = async (district = null) => {
+    const { data: response, error } = await useMyFetch(`/api/v1/wards/${district}`, {
+        params: {
+            limit: 999,
+        },
+    });
+    if (response.value) {
+        wards.value = response.value.data;
+    } else {
+        return [];
+    }
+};
+
+watch(
+    () => state.value.city,
+    (value) => {
+        if (value) {
+            state.value.district = null;
+            state.value.ward = null;
+            getDistrict(value);
+        }
+    },
+    { immediate: true },
+);
+watch(
+    () => state.value.district,
+    (value) => {
+        if (value) {
+            state.value.ward = null;
+            getWard(value);
+        }
+    },
+    { immediate: true },
+);
 </script>
 <style lang="scss" scoped>
 .cart-page {

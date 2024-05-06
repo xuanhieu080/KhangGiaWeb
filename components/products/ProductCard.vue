@@ -101,7 +101,6 @@ let initialProduct = () => {
 }
 
 const handleShowImage = (colorItem, index) => {
-    console.log(colorItem.attribute_id);
     let imageIndex = props.product.variants.findIndex(item => item.options.length > 0 && item.options.includes(colorItem.attribute_id))
     let colorIndex = productColor.value.attributes.findIndex(item => item.attribute_id == colorItem.attribute_id)
     if(imageIndex != -1) {

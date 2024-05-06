@@ -35,11 +35,13 @@
                                     (productItem.data.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
                                 "
                                 class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                            >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                                >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
-                        <SwiperSlide v-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
+                        <SwiperSlide
+                            v-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
+                            class="!h-[120px] w-full rounded-md">
                             <img
                                 :src="productItemCurrent ? productItemCurrent.image : ''"
                                 alt="No image"
@@ -56,7 +58,7 @@
                                     (productItem.data.video_link && productItem.data.thumb_image.length > 3 && index == 2)
                                 "
                                 class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                            >+{{ productItem.data.thumb_image.length - index - 1 }}</span
+                                >+{{ productItem.data.thumb_image.length - index - 1 }}</span
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
@@ -71,9 +73,7 @@
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                         <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
                     </div>
-                    <div
-                        v-show="thumbsSwiper"
-                        class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
+                    <div v-show="thumbsSwiper" class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
                         <Swiper
                             v-if="!loadingProductItem"
                             :spaceBetween="10"
@@ -98,7 +98,9 @@
                                 class="!flex justify-center !h-auto max-h-[500px]">
                                 <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
                             </SwiperSlide>
-                            <SwiperSlide v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
+                            <SwiperSlide
+                                v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
+                                class="!h-[120px] w-full rounded-md">
                                 <img
                                     :src="productItemCurrent ? productItemCurrent.image : ''"
                                     alt="No image"
@@ -141,7 +143,9 @@
                     </div>
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
-                            <span class="font-bold text-[28px] lg:text-[32px]">{{ productItemCurrent ? productItemCurrent.name : productItem.data.name }}</span>
+                            <span class="font-bold text-[28px] lg:text-[32px]">{{
+                                productItemCurrent ? productItemCurrent.name : productItem.data.name
+                            }}</span>
                         </div>
                         <div class="product-rate flex items-center gap-2 text-black">
                             <NuxtRating
@@ -182,20 +186,17 @@
                                 >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
                             >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
-                                <div  v-for="(attribute, index) in variantAttribute.attributes">
+                                <div v-for="(attribute, index) in variantAttribute.attributes">
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
                                         class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                        :class="{ '!ring-green-500': checkActive(attribute.attribute_id)}"
+                                        :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
                                         :style="{ backgroundColor: attribute.attribute_color }"
-                                        @click="selectVariant(variantAttribute, attribute)"
-                                        >
-                                    </button>
+                                        @click="selectVariant(variantAttribute, attribute)"></button>
                                     <button
                                         v-else
                                         class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                        :style="{ backgroundColor: attribute.attribute_color }"
-                                    >
+                                        :style="{ backgroundColor: attribute.attribute_color }">
                                         <div class="check-mark"></div>
                                     </button>
                                 </div>
@@ -204,14 +205,18 @@
                                 <div v-for="(attribute, index) in variantAttribute.attributes">
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
-                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id)}"
+                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
                                         class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                         @click="selectVariant(variantAttribute, attribute)">
                                         {{ attribute.attribute_name }}
                                     </button>
                                     <button
-                                        v-else-if="!checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main && !productItemCurrent"
-                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id)}"
+                                        v-else-if="
+                                            !checkEventNone(attribute.attribute_id, variantAttribute.id) &&
+                                            !variantAttribute.is_main &&
+                                            !productItemCurrent
+                                        "
+                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
                                         class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                         @click="selectVariant(variantAttribute, attribute)">
                                         {{ attribute.attribute_name }}
@@ -240,7 +245,7 @@
                                 class="flex flex-1 h-12 rounded-full justify-center"
                                 :class="productItemCurrent.qty > 0 ? '' : 'pointer-events-none'"
                                 @click="handleAddToCookie(productItemCurrent)"
-                                :to="localePath({ name: 'cart', query: { product_id: productItemCurrent.id, quantity: quantity } })">
+                                :to="localePath({ name: 'cart' })">
                                 <UButton
                                     :class="productItemCurrent.qty > 0 ? '' : 'bg-gray-400'"
                                     class="flex-1 h-12 rounded-full justify-center">
@@ -415,11 +420,12 @@ import ProductCard from '@/components/products/ProductCard';
 
 const route = useRoute();
 const router = useRouter();
+const toast = useToast();
 
 let modules = ref([Navigation, Thumbs]);
 let modulesSimilar = ref([Navigation]);
 
-const { locale } = useI18n();
+const { locale, t: trans } = useI18n();
 const localePath = useLocalePath();
 const colorProductActive = ref(0);
 const productSizeIndex = ref(null);
@@ -640,7 +646,6 @@ let initialProduct = (product) => {
         // findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
 
-
     loadingProductItem.value = false;
 };
 const formatPriceProduct = (item) => {
@@ -653,12 +658,20 @@ const handleAddToCookie = (item) => {
         maxAge: 60 * 60 * 24 * 7,
     });
     if (productLists.value.length == 0) {
-        if (item.id)
+        if (item.id) {
             productLists.value.push({
                 variant_id: item.id,
-                product_code: productItem.value.data.code,
+                product_id: productItem.value.data.id,
                 quantity: quantity.value,
             });
+            toast.add({
+                title: trans('Chúc mừng') + ' !',
+                description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
+                timeout: 3000,
+                icon: 'i-heroicons-check-badge',
+                color: 'green',
+            });
+        }
     } else {
         let productIndex = productLists.value.findIndex(
             (ele) => (ele.product_id == productItem.value.data.id && ele.variant_id == null) || ele.variant_id == item.id,
@@ -666,8 +679,15 @@ const handleAddToCookie = (item) => {
         if (productIndex == -1) {
             productLists.value.push({
                 variant_id: item.id,
-                product_code: productItem.value.data.code,
+                product_id: productItem.value.data.id,
                 quantity: quantity.value,
+            });
+            toast.add({
+                title: trans('Chúc mừng') + ' !',
+                description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
+                timeout: 3000,
+                icon: 'i-heroicons-check-badge',
+                color: 'green',
             });
         }
     }
@@ -724,17 +744,15 @@ function selectVariant(group, attribute) {
         productVariants.value[index].attribute_id = attribute.attribute_id;
         productVariants.value[index].attribute_group_id = group.id;
     } else {
-        productVariants.value.push(
-            {
-                attribute_id: attribute.attribute_id,
-                attribute_group_id: group.id,
-            },
-        );
+        productVariants.value.push({
+            attribute_id: attribute.attribute_id,
+            attribute_group_id: group.id,
+        });
     }
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
     let checkProduct = getProductItem();
-    if (checkProduct && (!productItemCurrent.value || (checkProduct.code != productItemCurrent.value.code))) {
+    if (checkProduct && (!productItemCurrent.value || checkProduct.code != productItemCurrent.value.code)) {
         loadingProductItem.value = true;
         productItemCurrent.value = checkProduct;
         selectedProductVariant.value[group.slug] = attribute.attribute_name;
@@ -815,17 +833,17 @@ function checkActive(attributeId) {
         return productItemCurrent.value && productItemCurrent.value.options.findIndex((item) => item === attributeId) !== -1 ? true : false;
     }
     let index = productVariants.value.findIndex((item) => item.attribute_id === attributeId);
-    return index != -1
+    return index != -1;
 }
 
-function checkEventNone(attributeId, attributeGroupId ) {
+function checkEventNone(attributeId, attributeGroupId) {
     if (!productItemCurrent.value) {
         return true;
     }
     let items = [...productVariants.value];
-    items = items.map(item => {
-        if(item.attribute_group_id === attributeGroupId) {
-            return {...item, attribute_id: attributeId};
+    items = items.map((item) => {
+        if (item.attribute_group_id === attributeGroupId) {
+            return { ...item, attribute_id: attributeId };
         } else {
             return item;
         }
@@ -861,8 +879,8 @@ function getAttributeName(attributeGroupId) {
         }
     }
 }
-let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.meta_title
-let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description
+let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.meta_title;
+let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description;
 let seoMeta = {
     description: description,
     ogDescription: description,
@@ -873,7 +891,7 @@ let seoMeta = {
     keywords: productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.meta_key,
 };
 
-useSeoMeta(seoMeta)
+useSeoMeta(seoMeta);
 useSchemaOrg([
     defineProduct({
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,

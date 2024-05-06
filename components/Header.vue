@@ -308,8 +308,10 @@ const handleChangePage = (e) => {
 onMounted(() => {
     isLoadingPage.value = false;
     let productLists = useCookie('products-cart');
-    if(productLists.value.length > 0) {
+    if(productLists.value && productLists.value.length > 0) {
         cartNumber.value = productLists.value.length;
+    } else {
+        cartNumber.value = 0;
     }
 })
 // const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAsyncData('category-header', () =>
