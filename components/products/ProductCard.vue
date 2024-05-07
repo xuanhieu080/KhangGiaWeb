@@ -32,15 +32,15 @@
                     {{ productColor ? productColor.attributes[activeColor].attribute_name : '' }}
                 </div>
                 <div class="product-price">
-                    <div v-if="product.price_discount == 0" class="original-price">
+                    <div v-if="product.percent == 0" class="original-price">
                         {{ formatPriceProduct(product.price) + 'đ' }}
                     </div>
                     <div v-else class="discount-price">
                         <div class="after-discount">
-                            {{ formatPriceProduct((product.price * (100 - product.price_discount)) / 100) + 'đ' }}
+                            {{ formatPriceProduct(product.price_discount) + 'đ' }}
                         </div>
                         <div class="original-price">{{ formatPriceProduct(product.price) + 'đ' }}</div>
-                        <div class="discount-tag">{{ product.price_discount + '%' }}</div>
+                        <div class="discount-tag">{{ product.percent + '%' }}</div>
                     </div>
                 </div>
             </div>

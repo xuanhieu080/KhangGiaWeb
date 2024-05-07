@@ -12,13 +12,13 @@
                     </UButton>
                 </div>
                 <div v-if="!loadingProductNew && productIndex === 0" class="product-box my-4">
-                    <ProductList :productList="productNew.data" />
+                    <ProductList :productList="productNew?.data" />
                 </div>
                 <div v-if="!loadingProductHot && productIndex === 1" class="product-box my-4">
-                    <ProductList :productList="productHot.data" />
+                    <ProductList :productList="productHot?.data" />
                 </div>
                 <div v-if="!loadingProductUpcoming && productIndex === 2" class="product-box my-4">
-                    <ProductList :productList="productUpcoming.data" />
+                    <ProductList :productList="productUpcoming?.data" />
                 </div>
             </div>
             <div class="banner-block h-full">
@@ -28,7 +28,7 @@
                 <ProductCollectionOther
                     key="container-1"
                     :loading="loadingProductUniform"
-                    :productList="productUpcoming.data"
+                    :productList="productUpcoming?.data"
                     :collectionLink="'/collection/dong-phuc-cong-ty'"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'"
                    />

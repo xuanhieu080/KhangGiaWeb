@@ -39,7 +39,9 @@
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
-                        <SwiperSlide v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
+                        <SwiperSlide
+                            v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
+                            class="!h-[120px] w-full rounded-md">
                             <img
                                 :src="productItemCurrent ? productItemCurrent.image_url : ''"
                                 alt="No image"
@@ -60,7 +62,9 @@
                             >
                             <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
                         </SwiperSlide>
-                        <SwiperSlide  v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
+                        <SwiperSlide
+                            v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
+                            class="!h-[120px] w-full rounded-md">
                             <img
                                 :src="productItem.data ? productItem.data.image_url : ''"
                                 alt="No image"
@@ -111,7 +115,9 @@
                                 <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
                             </SwiperSlide>
 
-                            <SwiperSlide  v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0" class="!h-[120px] w-full rounded-md">
+                            <SwiperSlide
+                                v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
+                                class="!h-[120px] w-full rounded-md">
                                 <img
                                     :src="productItem.data ? productItem.data.image_url : ''"
                                     alt="No image"
@@ -158,15 +164,15 @@
                         </div>
 
                         <div class="product-price font-bold text-[22px]">
-                            <div v-if="productItem.data.price_discount == 0" class="original-price">
+                            <div v-if="productItem.data.percent == 0" class="original-price">
                                 {{ formatPriceProduct(productItem.data.price) + 'đ' }}
                             </div>
                             <div v-else class="discount-price">
                                 <div class="after-discount">
-                                    {{ formatPriceProduct((productItem.data.price * (100 - productItem.data.price_discount)) / 100) + 'đ' }}
+                                    {{ formatPriceProduct(productItem.data.price_discount) + 'đ' }}
                                 </div>
                                 <div class="original-price">{{ formatPriceProduct(productItem.data.price) + 'đ' }}</div>
-                                <div class="discount-tag">{{ productItem.data.price_discount + '%' }}</div>
+                                <div class="discount-tag">{{ productItem.data.percent + '%' }}</div>
                             </div>
                         </div>
                         <div v-if="productItem.data.compaign_name" class="product-compaign fs-14 text-blue-600 italic font-semibold">
@@ -230,7 +236,7 @@
                         </div>
                         <span class="fs-14"
                             >{{ $t('Số lượng còn') }}
-                            <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : 0 }}</b></span
+                            <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : productItem.data.qty }}</b></span
                         >
                         <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
@@ -246,6 +252,26 @@
                                 :to="localePath({ name: 'cart' })">
                                 <UButton
                                     :class="productItemCurrent.qty > 0 ? '' : 'bg-gray-400'"
+                                    class="flex-1 h-12 rounded-full justify-center">
+                                    <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
+                                    <span>Thêm vào giỏ hàng</span>
+                                </UButton>
+                            </NuxtLink>
+                        </div>
+                        <div v-else class="product-add-to-cart mt-auto flex items-center gap-4">
+                            <div
+                                class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
+                                {{ quantity }}
+                                <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
+                            </div>
+                            <NuxtLink
+                                class="flex flex-1 h-12 rounded-full justify-center"
+                                :class="productItem.data.qty > 0 ? '' : 'pointer-events-none'"
+                                @click="handleAddToCookie(productItem.data, false)"
+                                :to="localePath({ name: 'cart' })">
+                                <UButton
+                                    :class="productItem.data.qty > 0 ? '' : 'bg-gray-400'"
                                     class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
@@ -564,12 +590,21 @@ const setProductSize = (size, index) => {
     productSizeIndex.value = index;
     quantity.value = 1;
 };
-const handleQuantity = (index) => {
-    if (index == 1) {
+const handleQuantity = (index, variant = true) => {
+    if (index == 1 && variant) {
         if (quantity.value < productItemCurrent.value.qty) {
             quantity.value += index;
         }
-    } else {
+    } else if (variant) {
+        if (quantity.value > 1) {
+            quantity.value += index;
+        }
+    }
+    if (index == 1 && variant == false) {
+        if (quantity.value < productItem.value.data.qty) {
+            quantity.value += index;
+        }
+    } else if (variant == false) {
         if (quantity.value > 1) {
             quantity.value += index;
         }
@@ -636,12 +671,14 @@ let initialProduct = (product) => {
             productVariants.value = [...findProduct.option_all];
         } else {
             let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
-                if (!variant.is_color) { // Chỉ xử lý những variant có is_color là false
+                if (!variant.is_color) {
+                    // Chỉ xử lý những variant có is_color là false
                     let firstAttribute = variant.attributes[0]; // Lấy phần tử đầu tiên trong attributes
-                    if (firstAttribute) { // Kiểm tra phần tử đầu có is_main là false
+                    if (firstAttribute) {
+                        // Kiểm tra phần tử đầu có is_main là false
                         acc.push({
                             attribute_id: firstAttribute.attribute_id,
-                            attribute_group_id: variant.id
+                            attribute_group_id: variant.id,
                         });
                     }
                 }
@@ -653,12 +690,14 @@ let initialProduct = (product) => {
         }
     } else {
         let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
-            if (!variant.is_color) { // Chỉ xử lý những variant có is_color là false
+            if (!variant.is_color) {
+                // Chỉ xử lý những variant có is_color là false
                 let firstAttribute = variant.attributes[0]; // Lấy phần tử đầu tiên trong attributes
-                if (firstAttribute) { // Kiểm tra phần tử đầu có is_main là false
+                if (firstAttribute) {
+                    // Kiểm tra phần tử đầu có is_main là false
                     acc.push({
                         attribute_id: firstAttribute.attribute_id,
-                        attribute_group_id: variant.id
+                        attribute_group_id: variant.id,
                     });
                 }
             }
@@ -678,18 +717,27 @@ const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
 };
 
-const handleAddToCookie = (item) => {
+const handleAddToCookie = (item, variant = true) => {
     let productLists = useCookie('products-cart', {
         default: () => [],
         maxAge: 60 * 60 * 24 * 7,
     });
     if (productLists.value.length == 0) {
         if (item.id) {
-            productLists.value.push({
-                variant_id: item.id,
-                product_id: productItem.value.data.id,
-                quantity: quantity.value,
-            });
+            if (variant == true) {
+                productLists.value.push({
+                    variant_id: item.id,
+                    product_id: productItem.value.data.id,
+                    quantity: quantity.value,
+                });
+            } else {
+                productLists.value.push({
+                    variant_id: null,
+                    product_id: item.id,
+                    quantity: quantity.value,
+                });
+            }
+
             toast.add({
                 title: trans('Chúc mừng') + ' !',
                 description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
@@ -703,11 +751,19 @@ const handleAddToCookie = (item) => {
             (ele) => (ele.product_id == productItem.value.data.id && ele.variant_id == null) || ele.variant_id == item.id,
         );
         if (productIndex == -1) {
-            productLists.value.push({
-                variant_id: item.id,
-                product_id: productItem.value.data.id,
-                quantity: quantity.value,
-            });
+            if (variant == true) {
+                productLists.value.push({
+                    variant_id: item.id,
+                    product_id: productItem.value.data.id,
+                    quantity: quantity.value,
+                });
+            } else {
+                productLists.value.push({
+                    variant_id: null,
+                    product_id: item.id,
+                    quantity: quantity.value,
+                });
+            }
             toast.add({
                 title: trans('Chúc mừng') + ' !',
                 description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
@@ -1017,6 +1073,23 @@ useSchemaOrg([
                         }
                     }
                 }
+            }
+        }
+    }
+    .product-price {
+        @apply font-bold;
+        .discount-price {
+            @apply flex items-center gap-3;
+            .original-price {
+                @apply font-bold;
+                text-decoration: line-through;
+                text-decoration-thickness: 2px;
+                @apply text-gray-400/75;
+            }
+            .discount-tag {
+                @apply font-semibold;
+                font-size: 13px;
+                color: red;
             }
         }
     }

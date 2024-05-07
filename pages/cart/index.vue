@@ -50,7 +50,7 @@
                                     :ui="{ rounded: 'rounded-full' }" />
                             </UFormGroup>
                             <div class="flex items-center gap-2 w-full flex-wrap xl:flex-nowrap">
-                                <UFormGroup label="" name="Tỉnh/Thành phố" class="w-full xl:w-1/3">
+                                <UFormGroup v-if="!loadingCities" label="" name="Tỉnh/Thành phố" class="w-full xl:w-1/3">
                                     <USelectMenu
                                         v-model="state.city"
                                         size="xl"
@@ -61,6 +61,7 @@
                                         class="w-full custom-input"
                                         :placeholder="$t('Tỉnh/Thành phố')"
                                         option-attribute="name"
+                                        :uiMenu="{ container: '!fixed max-w-max' }"
                                         value-attribute="id"
                                         :loading="loadingCities"
                                         :ui="{ rounded: 'rounded-full' }">
@@ -79,12 +80,13 @@
                                         searchable-placeholder="Search a district..."
                                         class="w-full custom-input"
                                         :placeholder="$t('Quận/Huyện')"
-                                        option-attribute="name"
+                                        option-attribute="full_name"
+                                        :uiMenu="{ container: '!fixed max-w-max' }"
                                         value-attribute="id"
                                         :disabled="!state.city"
                                         :ui="{ rounded: 'rounded-full' }">
                                         <template #option="{ option: district }">
-                                            <span class="truncate">{{ district.name }}</span>
+                                            <span class="truncate">{{ district.full_name }}</span>
                                         </template>
                                     </USelectMenu>
                                 </UFormGroup>
@@ -98,12 +100,13 @@
                                         searchable-placeholder="Search a ward..."
                                         class="w-full custom-input"
                                         :placeholder="$t('Phường/Xã')"
-                                        option-attribute="name"
+                                        :uiMenu="{ container: '!fixed max-w-max' }"
+                                        option-attribute="full_name"
                                         value-attribute="id"
                                         :disabled="!state.city || !state.district"
                                         :ui="{ rounded: 'rounded-full' }">
                                         <template #option="{ option: ward }">
-                                            <span class="truncate">{{ ward.name }}</span>
+                                            <span class="truncate">{{ ward.full_name }}</span>
                                         </template>
                                     </USelectMenu>
                                 </UFormGroup>
@@ -256,59 +259,20 @@
                         <span>{{ $t('Mô tả sản phẩm') }}</span>
                         <span>{{ $t('Giá') }}</span>
                     </div>
-                    <div class="product-list flex flex-col gap-4 divide-y divide-gray-300">
-                        <div class="product-list-item w-full flex gap-4 pt-4" v-for="item in productList">
+                    <div v-if="listCart.length > 0" class="product-list flex flex-col gap-4 divide-y divide-gray-300">
+                        <div class="product-list-item w-full flex gap-4 pt-4" v-for="item in listCart">
                             <div class="product-image flex-grow-0 flex-shrink-0 w-[126px]">
-                                <img :src="item.product_images[0].list[0]" class="h-full w-full object-contain" alt="" />
+                                <img :src="item.image" class="h-full w-full object-contain" alt="" />
                             </div>
                             <div class="product-information flex flex-col justify-between gap-4 w-full">
                                 <div class="flex flex-col gap-2">
-                                    <div class="product-name font-semibold">{{ item.product_name }}</div>
-                                    <div class="product-selection text-gray-500 text-sm">
-                                        {{
-                                            (selectedColorProduct ? selectedColorProduct.color : 'Chưa chọn màu') +
-                                            ' / ' +
-                                            (selectedSizeProduct ? selectedSizeProduct.name : 'Chưa chọn kích cỡ')
-                                        }}
-                                    </div>
+                                    <div class="product-name font-semibold">{{ item.name }}</div>
+                                    
                                 </div>
                                 <div
                                     class="flex flex-col md:flex-wrap md:flex-row items-start gap-4 md:items-center justify-between w-full h-full md:gap-2">
-                                    <USelectMenu
-                                        v-model="selectedColorProduct"
-                                        :options="item.product_images"
-                                        option-attribute="color"
-                                        :ui="{ rounded: 'rounded-2xl' }">
-                                        <template #label>
-                                            <span class="truncate">{{
-                                                selectedColorProduct ? selectedColorProduct.color : 'Chọn màu'
-                                            }}</span>
-                                        </template>
-                                        <template #option="{ option: selected }">
-                                            <span class="truncate">{{ selected.color }}</span>
-                                        </template>
-                                    </USelectMenu>
-                                    <USelectMenu
-                                        v-model="selectedSizeProduct"
-                                        :options="item.product_sizes"
-                                        option-attribute="name"
-                                        :ui="{ rounded: 'rounded-2xl' }">
-                                        <template #label>
-                                            <span class="truncate">{{
-                                                selectedSizeProduct ? selectedSizeProduct.name : 'Chọn kích cỡ'
-                                            }}</span>
-                                        </template>
-                                        <template #option="{ option: selected }">
-                                            <span class="truncate">{{ selected.name }}</span>
-                                        </template>
-                                    </USelectMenu>
-                                    <div
-                                        class="select-amount flex items-center justify-between w-[100px] border h-8 px-4 rounded-3xl border-black">
-                                        <UIcon name="i-heroicons-minus" @click="handleQuantity(-1)"></UIcon>
-                                        {{ quantity }}
-                                        <UIcon name="i-heroicons-plus" @click="handleQuantity(1)"></UIcon>
-                                    </div>
-                                    <div class="product-price font-bold">{{ item.product_price.toLocaleString() }}đ</div>
+                                    {{ $t('Số Lượng') + ': ' + findQuantity(item) }}
+                                    <div class="product-price font-bold">{{ item.price.toLocaleString() }}đ</div>
                                 </div>
                                 <button class="delete-product flex items-center gap-2">
                                     <UIcon name="i-material-symbols-delete-outline" class="text-xl" dynamic />
@@ -321,7 +285,7 @@
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ $t('Tạm tính') }}</div>
                         <div class="total-price flex flex-col items-end gap-2">
-                            {{ product.product_price.toLocaleString() }}đ
+                            {{ getFullTotalPrice() }}đ
                             <span v-if="true" class="italic text-xs">
                                 ({{ $t('Tiết kiệm') }} <span class="text-blue-600">{{ '179k' }} </span>)
                             </span>
@@ -339,7 +303,7 @@
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ $t('Tổng') }}</div>
                         <div class="discount-price flex flex-col items-end gap-2 text-2xl">
-                            {{ product.product_price.toLocaleString() }}đ
+                            {{ '0' }}đ
                             <span v-if="true" class="italic text-xs text-red-500">
                                 ({{ $t('Đã giảm') + ' ' + '179k' + ' ' + $t('trên giá gốc') }})
                             </span>
@@ -574,7 +538,6 @@ const handleProcessOrder = async () => {
     if (state.value.note) {
         params.note = state.value.note;
     }
-    console.log(params);
     const { data: response, error } = await useMyFetch('/api/v1/orders', {
         method: 'POST',
         body: params,
@@ -610,6 +573,24 @@ const handleProcessOrder = async () => {
     }
 };
 
+const findQuantity = (item) => {
+    let indexProd = productLists.value.findIndex(ele => (item.id == ele.product_id || item.id == ele.variant_id));
+    if(indexProd != -1){
+        console.log(productLists.value[indexProd])
+        return productLists.value[indexProd].quantity;
+    }
+    return 0;
+}
+const getFullTotalPrice = () => {
+    if(listCart.value.length > 0) {
+        let totalPrice = 0;
+        listCart.value.forEach(ele => {
+            totalPrice += ele.price;
+        });
+        return totalPrice.toLocaleString();
+    }
+}
+
 let districts = ref([]);
 let wards = ref([]);
 let listCart = ref([]);
@@ -625,14 +606,26 @@ onBeforeMount(() => {
 //Data
 
 const getCheckCarts = async (items) => {
+    let params = {};
+    if(items.length > 0) {
+        items.forEach((ele, index) => {
+            params[`items[${index}][product_id]`] = ele.product_id
+            params[`items[${index}][product_variant_id]`] = ele.variant_id
+        })
+    }
     const { data: response, error } = await useMyFetch('/api/v1/check-stock', {
         headers: { 'Content-Type': 'application/json' },
-        params: {
-            items: JSON.stringify([...items]),
-        },
+        method: 'POST',
+        params: params,
     });
     if (response.value) {
-        listCart.value = response.value.data;
+        response.value.data.forEach(item => {
+            if(item.variants.length > 0) {
+                listCart.value.push(...item.variants)
+            } else {
+                listCart.value.push(item);
+            }
+        })
     }
 };
 
@@ -645,9 +638,10 @@ const { data: cities, pending: loadingCities } = await useLazyAsyncData('cities-
 );
 
 const getDistrict = async (city) => {
-    const { data: response, error } = await useMyFetch(`/api/v1/districts/${city}`, {
+    const { data: response, error } = await useMyFetch(`/api/v1/districts`, {
         params: {
             limit: 999,
+            province_id: city,
         },
     });
     if (response.value) {
@@ -656,10 +650,11 @@ const getDistrict = async (city) => {
         return [];
     }
 };
-const getWard = async (district = null) => {
-    const { data: response, error } = await useMyFetch(`/api/v1/wards/${district}`, {
+const getWard = async (district) => {
+    const { data: response, error } = await useMyFetch(`/api/v1/wards`, {
         params: {
             limit: 999,
+            district_id: district,
         },
     });
     if (response.value) {
