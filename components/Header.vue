@@ -305,9 +305,9 @@ const handleChangePage = (e) => {
     menuMobile.value = false;
     handleCloseSubMenu(e);
 };
+let productLists = useCookie('products-cart');
 onMounted(() => {
     isLoadingPage.value = false;
-    let productLists = useCookie('products-cart');
     if(productLists.value && productLists.value.length > 0) {
         cartNumber.value = productLists.value.length;
     } else {

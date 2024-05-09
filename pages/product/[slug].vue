@@ -163,7 +163,19 @@
                             <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data.qty_sold }}</div>
                         </div>
 
-                        <div class="product-price font-bold text-[22px]">
+                        <div v-if="productItemCurrent" class="product-price font-bold text-[22px]">
+                            <div v-if="productItemCurrent.percent == 0" class="original-price">
+                                {{ formatPriceProduct(productItemCurrent.price) + 'đ' }}
+                            </div>
+                            <div v-else class="discount-price">
+                                <div class="after-discount">
+                                    {{ formatPriceProduct(productItemCurrent.price_discount) + 'đ' }}
+                                </div>
+                                <div class="original-price">{{ formatPriceProduct(productItemCurrent.price) + 'đ' }}</div>
+                                <div class="discount-tag">{{ productItemCurrent.percent + '%' }}</div>
+                            </div>
+                        </div>
+                        <div v-else class="product-price font-bold text-[22px]">
                             <div v-if="productItem.data.percent == 0" class="original-price">
                                 {{ formatPriceProduct(productItem.data.price) + 'đ' }}
                             </div>
@@ -204,6 +216,15 @@
                                         <div class="check-mark"></div>
                                     </button>
                                 </div>
+                                <UButton
+                                    v-if="productItemCurrent"
+                                    :to="localePath({ name: 'product-slug', params: { slug: router.currentRoute.value.params.slug } })"
+                                    variant="ghost"
+                                    color="blue"
+                                    icon="i-heroicons-arrow-path"
+                                    @click="resetProductPage"
+                                    >{{ $t('Cài lại') }}</UButton
+                                >
                             </div>
                             <div v-else class="size-list flex items-center gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes">
@@ -267,11 +288,11 @@
                             </div>
                             <NuxtLink
                                 class="flex flex-1 h-12 rounded-full justify-center"
-                                :class="productItem.data.qty > 0 ? '' : 'pointer-events-none'"
+                                :class="productItem.data.qty > 0 && getAttributeName() ? '' : 'pointer-events-none'"
                                 @click="handleAddToCookie(productItem.data, false)"
                                 :to="localePath({ name: 'cart' })">
                                 <UButton
-                                    :class="productItem.data.qty > 0 ? '' : 'bg-gray-400'"
+                                    :class="productItem.data.qty > 0 && getAttributeName() ? '' : 'bg-gray-400'"
                                     class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
@@ -434,6 +455,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="loading-wrapper !mt-[128px]">
+            <div class="loading"></div>
+            <div id="loading-text">Loading...</div>
         </div>
     </NuxtLayout>
 </template>
@@ -771,6 +796,15 @@ const handleAddToCookie = (item, variant = true) => {
                 icon: 'i-heroicons-check-badge',
                 color: 'green',
             });
+        } else {
+            productLists.value[productIndex].quantity += quantity.value;
+            toast.add({
+                title: trans('Chúc mừng') + ' !',
+                description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
+                timeout: 3000,
+                icon: 'i-heroicons-check-badge',
+                color: 'green',
+            });
         }
     }
 };
@@ -946,7 +980,7 @@ function checkEventNone(attributeId, attributeGroupId) {
     }
 }
 
-function getAttributeName(attributeGroupId) {
+function getAttributeName(attributeGroupId = null) {
     if (productItemCurrent.value) {
         let attributeItem = productItemCurrent.value.option_all.find((item) => item.attribute_group_id === attributeGroupId);
 
@@ -960,6 +994,16 @@ function getAttributeName(attributeGroupId) {
             return null;
         }
     }
+    if (attributeGroupId == null) {
+        return false;
+    }
+}
+const resetProductPage = () => {
+    productItemCurrent.value = null;
+    thumbsSwiper.value = null;
+    loadingProductItem.value = loadingProduct.value;
+    refreshData.value++;
+
 }
 let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.meta_title;
 let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description;
@@ -1001,6 +1045,11 @@ useSchemaOrg([
 <style lang="scss" scoped>
 .product-page {
     @apply w-full bg-white;
+    .container {
+        @media screen and (min-width: 1536px) {
+            max-width: 1280px !important;
+        }
+    }
     .thumb-product-swiper {
         .swiper-slide {
             opacity: 0.6;

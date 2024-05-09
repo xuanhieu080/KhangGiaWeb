@@ -27,7 +27,7 @@
             <ul v-if="typeof description == 'object'" class="flex flex-col gap-4 !px-0 text-red-500 prose prose-li:!my-0">
                 <li class="px-0 list-disc" v-for="item in Object.values(description)">{{ item[0] }}</li>
             </ul>
-            <div class="w-max" v-else>
+            <div class="w-fit" v-else>
                 {{ description }}
             </div>
         </template>

@@ -1,13 +1,13 @@
 <template>
     <NuxtLayout name="main">
-        <div class="cart-page py-6">
-            <div class="container mx-auto flex flex-col-reverse lg:flex-row items-start w-full gap-4">
+        <div class="cart-page py-6" :class="isLoadingPage ? 'h-[90vh]' : ''">
+            <div v-if="!isLoadingPage" class="container mx-auto flex flex-col-reverse lg:flex-row items-start w-full gap-4">
                 <div class="cart-information-user flex flex-col gap-6 w-full lg:w-1/2 border-r border-gray-300 pr-4">
                     <div class="flex flex-col gap-2 font-medium">
                         <div class="text-3xl font-bold">Chào {{ 'quý khách' }}</div>
                         <span>
                             {{ $t('Tổng tiền') }} ({{ cartNumber + ' ' + $t('sản phẩm') }})
-                            <b class="text-blue-600">{{ '499000'.toLocaleString() }}đ</b>
+                            <b class="text-blue-600">{{ getPaidPrice() }}đ</b>
                         </span>
                     </div>
                     <div class="flex flex-col gap-4 w-full">
@@ -234,11 +234,12 @@
                     </div>
                     <div class="text-sm font-medium">
                         {{ $t('Nếu bạn không hài lòng với sản phẩm của chúng tôi? Bạn hoàn toàn có thể trả lại sản phẩm. Tìm hiểu thêm') }}
-                        <NuxtLink to="#">
+                        <NuxtLink :to="localePath({ name: 'index' })">
                             <b>{{ $t('tại đây.') }}</b>
                         </NuxtLink>
                     </div>
                     <UButton
+                        v-if="listCart.length > 0"
                         class="bg-black text-white hover:bg-gray-400 transition duration-200 rounded-2xl h-12"
                         :class="
                             state.name && state.email && state.phone && state.address && state.city ? '' : 'pointer-events-none bg-gray-400'
@@ -247,9 +248,10 @@
                         size="xl"
                         color="none"
                         type="submit"
+                        :loading="false"
                         @click="handleProcessOrder"
                         block>
-                        {{ $t('Thanh toán') + ' ' + '499k' + '(COD)' }}
+                        {{ $t('Thanh toán') + '(COD)' }}
                     </UButton>
                 </div>
                 <div class="cart-product flex flex-col gap-4 w-full lg:w-1/2">
@@ -267,19 +269,32 @@
                             <div class="product-information flex flex-col justify-between gap-4 w-full">
                                 <div class="flex flex-col gap-2">
                                     <div class="product-name font-semibold">{{ item.name }}</div>
-                                    
                                 </div>
                                 <div
                                     class="flex flex-col md:flex-wrap md:flex-row items-start gap-4 md:items-center justify-between w-full h-full md:gap-2">
                                     {{ $t('Số Lượng') + ': ' + findQuantity(item) }}
-                                    <div class="product-price font-bold">{{ item.price.toLocaleString() }}đ</div>
+                                    <div class="product-price">
+                                        <div v-if="item.percent == 0" class="original-price">
+                                            {{ formatPriceProduct(item.price) + 'đ' }}
+                                        </div>
+                                        <div v-else class="discount-price">
+                                            <div class="after-discount">
+                                                {{ formatPriceProduct(item.price_discount) + 'đ' }}
+                                            </div>
+                                            <div class="original-price">{{ formatPriceProduct(item.price) + 'đ' }}</div>
+                                            <div class="discount-tag">{{ item.percent + '%' }}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button class="delete-product flex items-center gap-2">
+                                <button class="delete-product flex items-center gap-2" @click="handleDeleteCartItem(item)">
                                     <UIcon name="i-material-symbols-delete-outline" class="text-xl" dynamic />
                                     {{ $t('Xóa') }}
                                 </button>
                             </div>
                         </div>
+                    </div>
+                    <div v-else class="product-list-empty h-24 border border-dashed rounded-lg flex items-center justify-center">
+                        {{ $t('Không có sản phẩm nào trong giỏ hàng') }}
                     </div>
                     <UDivider />
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
@@ -287,13 +302,13 @@
                         <div class="total-price flex flex-col items-end gap-2">
                             {{ getFullTotalPrice() }}đ
                             <span v-if="true" class="italic text-xs">
-                                ({{ $t('Tiết kiệm') }} <span class="text-blue-600">{{ '179k' }} </span>)
+                                ({{ $t('Tiết kiệm') }} <span class="text-blue-600">{{ getFullDiscountPrice() + 'k' }} </span>)
                             </span>
                         </div>
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ $t('Giảm giá') }}</div>
-                        <div class="discount-price flex flex-col items-end gap-2">{{ product.product_discount.toLocaleString() }}đ</div>
+                        <div class="discount-price flex flex-col items-end gap-2">{{ getFullDiscountPrice(false) }}đ</div>
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ $t('Phí giao hàng') }}</div>
@@ -303,13 +318,17 @@
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ $t('Tổng') }}</div>
                         <div class="discount-price flex flex-col items-end gap-2 text-2xl">
-                            {{ '0' }}đ
-                            <span v-if="true" class="italic text-xs text-red-500">
-                                ({{ $t('Đã giảm') + ' ' + '179k' + ' ' + $t('trên giá gốc') }})
+                            {{ getPaidPrice() }}đ
+                            <span v-if="getFullDiscountPrice() > 0" class="italic text-xs text-red-500">
+                                ({{ $t('Đã giảm') + ' ' + getFullDiscountPrice() + 'k' + ' ' + $t('trên giá gốc') }})
                             </span>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div v-else class="loading-wrapper !mt-[128px]">
+                <div class="loading"></div>
+                <div id="loading-text">Loading...</div>
             </div>
         </div>
     </NuxtLayout>
@@ -319,6 +338,10 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import { ArraySchema, object, string } from 'yup';
+import { storeToRefs } from 'pinia';
+import { useMain } from '@@/store/index';
+const useMainStore = useMain();
+const { cartNumber } = storeToRefs(useMainStore);
 
 let modules = ref([Navigation, Thumbs]);
 let modulesSimilar = ref([Navigation]);
@@ -326,6 +349,10 @@ const localePath = useLocalePath();
 const { t: trans, locale } = useI18n();
 
 const toast = useToast();
+const router = useRouter();
+
+const isLoadingPage = ref(false);
+const isOrdered = ref(false);
 
 const state = ref({
     email: null,
@@ -522,7 +549,6 @@ const handleQuantity = (index) => {
 
 const handleProcessOrder = async () => {
     let params = {
-        items: JSON.stringify([...productLists.value]),
         customer_name: state.value.name,
         customer_email: state.value.email,
         customer_phone: state.value.phone,
@@ -531,6 +557,15 @@ const handleProcessOrder = async () => {
         district_id: state.value.district,
         ward_id: state.value.ward,
     };
+    let userInformation = useCookie('user-information', { default: () => [], maxAge: 60 * 60 * 24 * 365 });
+    userInformation.value = params;
+    if (productLists.value.length > 0) {
+        productLists.value.forEach((ele, index) => {
+            params[`items[${index}][product_id]`] = ele.product_id;
+            params[`items[${index}][product_variant_id]`] = ele.variant_id;
+            params[`items[${index}][qty]`] = ele.quantity;
+        });
+    }
     let methodForPay = payment_method.find((item) => item.id == selectedPaidOption.value);
     if (methodForPay) {
         params.payment_method = methodForPay.name;
@@ -539,17 +574,23 @@ const handleProcessOrder = async () => {
         params.note = state.value.note;
     }
     const { data: response, error } = await useMyFetch('/api/v1/orders', {
+        headers: { 'Content-Type': 'application/json' },
         method: 'POST',
-        body: params,
+        params: params,
     });
     if (response.value) {
         toast.add({
-            title: trans('Chúc mừng') + ' !',
-            description: response.value.message,
-            timeout: 3000,
+            title: trans('Đặt hàng thành công') + ' !',
+            description: trans('Đơn hàng của bạn đã đặt thành công, Nhân viên kinh doanh sẽ sớm liên hệ tới bạn!'),
+            timeout: 5000,
             icon: 'i-heroicons-check-badge',
             color: 'green',
         });
+        isOrdered.value = true;
+        productLists.value = null;
+        setTimeout(() => {
+            router.push({ name: `index___${locale.value}` });
+        }, 3000);
     } else {
         if (error.value.statusCode === 422) {
             errors.value = error.value.data.errors;
@@ -560,11 +601,10 @@ const handleProcessOrder = async () => {
                 icon: 'i-heroicons-check-badge',
                 color: 'red',
             });
-        }
-        else {
+        } else {
             toast.add({
                 title: `<p class="text-red-500"> ${trans('Warning')} </p>`,
-                description: error.value.data.message,
+                description: trans('Oops, Xảy ra lỗi!. Vui lòng thử lại sau'),
                 timeout: 10000,
                 icon: 'i-heroicons-check-badge',
                 color: 'red',
@@ -574,44 +614,98 @@ const handleProcessOrder = async () => {
 };
 
 const findQuantity = (item) => {
-    let indexProd = productLists.value.findIndex(ele => (item.id == ele.product_id || item.id == ele.variant_id));
-    if(indexProd != -1){
-        console.log(productLists.value[indexProd])
+    let indexProd = productLists.value.findIndex((ele) => item.id == ele.product_id || item.id == ele.variant_id);
+    if (indexProd != -1) {
         return productLists.value[indexProd].quantity;
     }
     return 0;
-}
+};
+
+const formatPriceProduct = (item) => {
+    return new Intl.NumberFormat('en-US').format(item);
+};
 const getFullTotalPrice = () => {
-    if(listCart.value.length > 0) {
+    if (listCart.value.length > 0) {
         let totalPrice = 0;
-        listCart.value.forEach(ele => {
-            totalPrice += ele.price;
+        listCart.value.forEach((ele) => {
+            let quantityIndex = productLists.value.findIndex(
+                (item) => (item.variant_id == ele.id && item.product_id) || (item.product_id == ele.id && !item.variant_id),
+            );
+            if (quantityIndex != -1) {
+                totalPrice += ele.price * productLists.value[quantityIndex].quantity;
+            }
         });
         return totalPrice.toLocaleString();
+    } else {
+        return 0;
     }
-}
+};
+const getFullDiscountPrice = (divide = true) => {
+    if (listCart.value.length > 0) {
+        let discountTotal = 0;
+        listCart.value.forEach((ele) => {
+            let quantityIndex = productLists.value.findIndex(
+                (item) => (item.variant_id == ele.id && item.product_id) || (item.product_id == ele.id && !item.variant_id),
+            );
+            if (quantityIndex != -1) {
+                discountTotal += (ele.price - ele.price_discount) * productLists.value[quantityIndex].quantity;
+            }
+        });
+        if (divide == true) {
+            return Math.round(discountTotal / 1000).toLocaleString();
+        } else {
+            return Math.round(discountTotal).toLocaleString();
+        }
+    } else {
+        return 0;
+    }
+};
+const getPaidPrice = (divide = false) => {
+    if (listCart.value.length > 0) {
+        let totalPrice = 0;
+        listCart.value.forEach((ele) => {
+            let quantityIndex = productLists.value.findIndex(
+                (item) => (item.variant_id == ele.id && item.product_id) || (item.product_id == ele.id && !item.variant_id),
+            );
+            if (quantityIndex != -1) {
+                totalPrice += ele.price_discount * productLists.value[quantityIndex].quantity;
+            }
+        });
+        if (divide == true) {
+            return Math.round(totalPrice / 1000).toLocaleString();
+        } else {
+            return Math.round(totalPrice).toLocaleString();
+        }
+    } else {
+        return 0;
+    }
+};
+
+const handleDeleteCartItem = (product) => {
+    let productIndex = productLists.value.findIndex(
+        (item) => (item.variant_id == product.id && item.product_id) || (item.product_id == product.id && !item.variant_id),
+    );
+    productLists.value.splice(productIndex, 1);
+};
 
 let districts = ref([]);
 let wards = ref([]);
 let listCart = ref([]);
-let cartNumber = ref(0);
-let productLists = useCookie('products-cart');
-onBeforeMount(() => {
-    if (productLists.value.length > 0) {
-        cartNumber.value = productLists.value.length;
-        getCheckCarts(productLists.value);
-    }
+let productLists = useCookie('products-cart', {
+    default: () => [],
+    maxAge: 60 * 60 * 24 * 7,
 });
 
 //Data
 
 const getCheckCarts = async (items) => {
+    listCart.value = [];
     let params = {};
-    if(items.length > 0) {
+    if (items.length > 0) {
         items.forEach((ele, index) => {
-            params[`items[${index}][product_id]`] = ele.product_id
-            params[`items[${index}][product_variant_id]`] = ele.variant_id
-        })
+            params[`items[${index}][product_id]`] = ele.product_id;
+            params[`items[${index}][product_variant_id]`] = ele.variant_id;
+        });
     }
     const { data: response, error } = await useMyFetch('/api/v1/check-stock', {
         headers: { 'Content-Type': 'application/json' },
@@ -619,13 +713,18 @@ const getCheckCarts = async (items) => {
         params: params,
     });
     if (response.value) {
-        response.value.data.forEach(item => {
-            if(item.variants.length > 0) {
-                listCart.value.push(...item.variants)
+        response.value.data.forEach((item) => {
+            if (item.variants.length > 0) {
+                listCart.value.push(...item.variants);
             } else {
                 listCart.value.push(item);
             }
-        })
+        });
+        cartNumber.value = listCart.value.length;
+        if (cartNumber.value == 0) {
+            productLists.value = null;
+        }
+        isLoadingPage.value = false;
     }
 };
 
@@ -663,7 +762,16 @@ const getWard = async (district) => {
         return [];
     }
 };
-
+watch(
+    productLists.value,
+    async (newList) => {
+        if (newList.length > 0) {
+            isLoadingPage.value = true;
+            getCheckCarts(newList);
+        }
+    },
+    { immediate: true },
+);
 watch(
     () => state.value.city,
     (value) => {
@@ -689,5 +797,22 @@ watch(
 <style lang="scss" scoped>
 .cart-page {
     @apply w-full bg-white;
+    .product-price {
+        @apply font-bold;
+        .discount-price {
+            @apply flex items-center gap-3;
+            .original-price {
+                @apply font-bold;
+                text-decoration: line-through;
+                text-decoration-thickness: 2px;
+                @apply text-gray-400/75;
+            }
+            .discount-tag {
+                @apply font-semibold;
+                font-size: 13px;
+                color: red;
+            }
+        }
+    }
 }
 </style>
