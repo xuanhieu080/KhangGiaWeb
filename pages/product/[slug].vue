@@ -958,14 +958,16 @@ function getProductItem() {
 
     if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image) {
         return matchingVariant;
-    } else {
+    } else if (matchingVariant && !(matchingVariant.image_url && matchingVariant.thumb_image)) {
         toast.add({
             title: trans('Thông báo') + ' !',
-            description: trans('Sản phẩm đã hết hàng'),
+            description: trans('Sản phẩm đang tạm ngưng'),
             timeout: 3000,
             icon: 'i-heroicons-check-badge',
             color: 'red',
         });
+        return null;
+    } else {
         return null;
     }
 
