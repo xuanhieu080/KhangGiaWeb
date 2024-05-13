@@ -22,6 +22,11 @@ export default defineNuxtConfig({
     build: {
         transpile: ['@vuepic/vue-datepicker'],
     },
+    router: {
+        scrollBehavior: function (to, from, savedPosition) {
+            return { x: 0, y: 0 };
+        },
+    },
     routeRules: {
         // '/articles/**': { ssr: false },
         // '/app/**': { ssr: false },

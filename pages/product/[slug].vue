@@ -155,10 +155,10 @@
                             <NuxtRating
                                 class="w-[220px]"
                                 :read-only="true"
-                                :ratingValue="product.product_rating.number"
+                                :ratingValue="productItem.data.average_rate"
                                 :active-color="'green'"
                                 rating-content="⭐" />
-                            <div class="fs-12">({{ product.product_rating.reviews.length }})</div>
+                            <div class="fs-12">({{ productItem.data.rate_count }})</div>
                             <div>|</div>
                             <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data.qty_sold }}</div>
                         </div>
@@ -412,45 +412,76 @@
                 <div class="product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px]">
                     <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-max lg:sticky top-2">
                         <div class="uppercase font-bold">Đánh giá sản phẩm</div>
-                        <div class="font-bold text-[4rem]">{{ product.product_rating.number }}</div>
+                        <div class="font-bold text-[4rem]">{{ productItem.data.average_rate }}</div>
                         <NuxtRating
                             class="w-[220px]"
                             :read-only="true"
-                            :ratingValue="product.product_rating.number"
+                            :ratingValue="productItem.data.average_rate"
                             :active-color="'green'"
                             rating-content="⭐" />
-                        <div v-if="product.product_rating.reviews.length > 0" class="italic fs-14 leading-relaxed font-medium">
-                            {{ product.product_rating.reviews.length + ' ' + $t('Review') }}
+                        <div v-if="productItem.data.rate_count > 0" class="italic fs-14 leading-relaxed font-medium">
+                            {{ productItem.data.rate_count + ' ' + $t('Review') }}
                         </div>
                     </div>
-                    <div v-if="product.product_rating.reviews.length > 0" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
+                    <div v-if="!loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
                         <div
-                            v-for="review in product.product_rating.reviews"
+                            v-for="review in reviewProduct.data"
                             class="review-item flex flex-col justify-start gap-4 py-4 fs-14 font-medium border-b">
                             <div class="flex flex-col gap-2">
                                 <NuxtRating
                                     class="w-[220px]"
                                     :read-only="true"
-                                    :ratingValue="review.rating"
+                                    :ratingValue="review.rate"
                                     :rating-size="'18px'"
                                     :active-color="'green'"
                                     rating-content="⭐" />
                                 <div class="review-name font-bold capitalize">
-                                    {{ review.name }}
+                                    {{ review.customer_name }}
                                 </div>
-                                <div v-if="review.product_selected" class="review-collection-product fs-12 italic">
-                                    {{ review.product_selected + (review.product_size ? ' / ' + review.product_size : '') }}
+                                <div v-if="review.option_name" class="review-collection-product fs-12 italic">
+                                    {{ review.option_name }}
                                 </div>
                             </div>
                             <div class="review-content">
                                 {{ review.description }}
                             </div>
-                            <div v-if="review.feedback" class="feedback-review bg-gray-300 p-4 rounded-lg font-semibold">
-                                {{ review.feedback }}
+                            <div v-if="review.reply" class="feedback-review bg-gray-300 p-4 rounded-lg font-semibold">
+                                {{ review.reply }}
                             </div>
                             <div class="review-date text-gray-500">
-                                {{ review.review_date }}
+                                {{ moment(review.created_at).format('DD/MM/YYYY  HH:mm:ss') }}
                             </div>
+                        </div>
+                        <div class="flex flex-wrap justify-between items-center w-full col-span-2">
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-sm leading-5">{{ $t('Rows per page') }}:</span>
+                                <USelect v-model="pageCount" :options="[8, 25, 50]" class="me-2 w-20" size="xs" />
+                            </div>
+                            <div>
+                                <span class="text-sm leading-5">
+                                    Showing
+                                    <span class="font-medium">{{ pageFrom }}</span>
+                                    to
+                                    <span class="font-medium">{{ pageTo }}</span>
+                                    of
+                                    <span class="font-medium">{{ pageTotal }}</span>
+                                    results
+                                </span>
+                            </div>
+
+                            <UPagination
+                                v-model="page"
+                                :page-count="pageCount"
+                                :total="pageTotal"
+                                :ui="{
+                                    wrapper: 'flex items-center gap-1',
+                                    rounded: '!rounded-full min-w-[32px] justify-center',
+                                    default: {
+                                        activeButton: {
+                                            variant: 'outline',
+                                        },
+                                    },
+                                }" />
                         </div>
                     </div>
                 </div>
@@ -466,6 +497,7 @@
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
+import moment from 'moment';
 
 const route = useRoute();
 const router = useRouter();
@@ -482,6 +514,13 @@ const quantity = ref(1);
 const productVariants = ref([]);
 const productVariantSlugs = ref({});
 const productItemCurrent = ref(null);
+
+const sort = ref({ direction: 'desc' });
+const page = ref(1);
+const pageCount = ref(8);
+const pageTotal = ref(0); // This value should be dynamic coming from the API
+const pageFrom = computed(() => (page.value - 1) * pageCount.value + 1);
+const pageTo = computed(() => Math.min(page.value * pageCount.value, pageTotal.value));
 
 const productColor = ref(null);
 const productSize = ref(null);
@@ -713,6 +752,7 @@ let initialProduct = (product) => {
             productVariants.value = [...filteredAttributes];
             router.push({ path: router.currentRoute.value.path });
         }
+        loadingProductItem.value = false;
     } else {
         let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
             if (!variant.is_color) {
@@ -730,13 +770,12 @@ let initialProduct = (product) => {
         }, []);
 
         productVariants.value = [...filteredAttributes];
+        loadingProductItem.value = false;
         // let attributeIds = product.variantAttribute.map((item) =>
         //     item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined,
         // );
         // findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
-
-    loadingProductItem.value = false;
 };
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
@@ -816,7 +855,7 @@ const {
     error: errorGetProduct,
 } = await useLazyAsyncData(
     'product-item',
-    () =>
+    async () =>
         useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
             query: {
                 code: router.currentRoute.value.query?.code,
@@ -830,28 +869,39 @@ const {
 if (errorGetProduct.value) {
     router.push({ name: `index___${locale.value}` });
 }
-const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData('product-hot', async () =>
-    useOriginalFetch('/api/v1/products', {
-        params: {
-            sort: {
-                'desc[0]': 'id',
+const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
+    'product-hot',
+    async () =>
+        useOriginalFetch('/api/v1/products', {
+            params: {
+                sort: {
+                    'desc[0]': 'id',
+                },
+                is_hot: 1,
+                limit: 20,
             },
-            is_hot: 1,
-            limit: 20,
-        },
-    }),
+        }),
+    {
+        default: () => [],
+        watch: [refreshData],
+    },
+);
+const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyncData(
+    'product-review',
+    async () =>
+        useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}/reviews`, {
+            params: {
+                page: page.value,
+                limit: pageCount.value,
+                order: sort.value.direction,
+            },
+        }),
+    {
+        default: () => [],
+        watch: [refreshData, page],
+    },
 );
 
-watch(
-    loadingProduct,
-    async (newValue, oldValue) => {
-        if (!newValue) {
-            let productCurrent = ref({ ...productItem.value.data });
-            initialProduct(productCurrent.value);
-        }
-    },
-    { immediate: true },
-);
 function selectVariant(group, attribute) {
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
@@ -998,13 +1048,14 @@ function getAttributeName(attributeGroupId = null) {
         return false;
     }
 }
-const resetProductPage = () => {
+const resetProductPage = (isRefresh = true) => {
     productItemCurrent.value = null;
     thumbsSwiper.value = null;
     loadingProductItem.value = loadingProduct.value;
-    refreshData.value++;
-
-}
+    if (isRefresh == true) {
+        refreshData.value++;
+    }
+};
 let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.meta_title;
 let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description;
 let seoMeta = {
@@ -1022,6 +1073,7 @@ useSchemaOrg([
     defineProduct({
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
         image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.image_url,
+        description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description,
         offers: [{ price: 50 }],
         aggregateRating: {
             ratingValue: 88,
@@ -1041,6 +1093,26 @@ useSchemaOrg([
         ],
     }),
 ]);
+watch(
+    () => reviewProduct.value,
+    () => {
+        if (!loadingReviewProduct.value) {
+            pageTotal.value = reviewProduct.value.meta.total;
+        }
+    },
+    { immediate: true },
+);
+watch(
+    () => productItem.value,
+    async () => {
+        if (Object.keys(productItem.value).length > 0 && productItem.value.data) {
+            resetProductPage(false);
+            let productCurrent = ref({ ...productItem.value.data });
+            initialProduct(productCurrent.value);
+        }
+    },
+    { immediate: true },
+);
 </script>
 <style lang="scss" scoped>
 .product-page {
