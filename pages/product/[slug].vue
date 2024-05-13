@@ -257,7 +257,7 @@
                         </div>
                         <span class="fs-14"
                             >{{ $t('Số lượng còn') }}
-                            <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : productItem.data.qty }}</b></span
+                            <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : (productItem.data.variants.length == 0 && productItem.data.variantAttribute.length == 0 ? productItem.data.qty: 0) }}</b></span
                         >
                         <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
@@ -959,6 +959,13 @@ function getProductItem() {
     if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image) {
         return matchingVariant;
     } else {
+        toast.add({
+            title: trans('Thông báo') + ' !',
+            description: trans('Sản phẩm đã hết hàng'),
+            timeout: 3000,
+            icon: 'i-heroicons-check-badge',
+            color: 'red',
+        });
         return null;
     }
 
