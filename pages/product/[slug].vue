@@ -956,9 +956,9 @@ function getProductItem() {
         return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
     });
 
-    if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image) {
+    if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image.length > 0) {
         return matchingVariant;
-    } else if (matchingVariant && !(matchingVariant.image_url && matchingVariant.thumb_image)) {
+    } else if (matchingVariant) {
         toast.add({
             title: trans('Thông báo') + ' !',
             description: trans('Sản phẩm đang tạm ngưng'),
