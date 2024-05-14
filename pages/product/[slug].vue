@@ -18,7 +18,7 @@
                         :modules="modules"
                         :lazy="true"
                         :direction="'vertical'"
-                        class="!hidden lg:!block !w-[80px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
+                        class="!hidden lg:!block !w-[60px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
                         <SwiperSlide v-if="productItem.data.video_link" class="!h-[80px] w-full rounded-md relative">
                             <video class="pointer-events-none">
                                 <source :src="productItem.data.video_link" />
@@ -28,7 +28,7 @@
                             v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                             v-for="(image, index) in productItemCurrent.thumb_image"
                             v-show="!productItem.data.video_link ? index < 4 : index < 3"
-                            class="!h-[120px] w-full rounded-md relative">
+                            class="!h-[80px] w-full rounded-md relative">
                             <span
                                 v-if="
                                     (!productItem.data.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
@@ -41,7 +41,7 @@
                         </SwiperSlide>
                         <SwiperSlide
                             v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                            class="!h-[120px] w-full rounded-md">
+                            class="!h-[80px] w-full rounded-md">
                             <img
                                 :src="productItemCurrent ? productItemCurrent.image_url : ''"
                                 alt="No image"
@@ -51,7 +51,7 @@
                             v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
                             v-for="(image, index) in productItem.data.thumb_image"
                             v-show="!productItem.data.video_link ? index < 4 : index < 3"
-                            class="!h-[120px] w-full rounded-md relative">
+                            class="!h-[80px] w-full rounded-md relative">
                             <span
                                 v-if="
                                     (!productItem.data.video_link && productItem.data.thumb_image.length > 4 && index == 3) ||
@@ -72,10 +72,12 @@
                         </SwiperSlide>
                     </Swiper>
                     <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
-                        <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
-                        <USkeleton class="min-w-[80px] h-[120px] rounded-md"></USkeleton>
+                        <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                        <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
                     </div>
-                    <div v-show="thumbsSwiper" class="main-product-swiper w-full lg:min-w-[350px] lg:w-[350px] lg:sticky top-2">
+                    <div
+                        v-show="thumbsSwiper"
+                        class="main-product-swiper w-full lg:min-w-[540px] lg:w-[540px] lg:sticky top-2 bg-[#f1f1f1]">
                         <Swiper
                             v-if="!loadingProductItem"
                             :spaceBetween="10"
@@ -97,12 +99,12 @@
                             <SwiperSlide
                                 v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                                 v-for="image in productItemCurrent.thumb_image"
-                                class="!flex justify-center !h-auto max-h-[500px]">
+                                class="!flex justify-center !h-auto aspect-[3/4]">
                                 <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                                class="!h-[120px] w-full rounded-md">
+                                class="!h-[200px] w-full rounded-md">
                                 <img
                                     :src="productItemCurrent ? productItemCurrent.image_url : ''"
                                     alt="No image"
@@ -111,8 +113,8 @@
                             <SwiperSlide
                                 v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
                                 v-for="image in productItem.data.thumb_image"
-                                class="!flex justify-center !h-auto max-h-[500px]">
-                                <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
+                                class="!flex justify-center !h-auto aspect-[3/4]">
+                                <img :src="image" loading="lazy" alt="" class="w-full h-full rounded-md object-contain" />
                             </SwiperSlide>
 
                             <SwiperSlide
@@ -425,6 +427,7 @@
                     </div>
                     <div v-if="!loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
                         <div
+                            v-if="reviewProduct.data.length > 0"
                             v-for="review in reviewProduct.data"
                             class="review-item flex flex-col justify-start gap-4 py-4 fs-14 font-medium border-b">
                             <div class="flex flex-col gap-2">
@@ -452,20 +455,27 @@
                                 {{ moment(review.created_at).format('DD/MM/YYYY  HH:mm:ss') }}
                             </div>
                         </div>
-                        <div class="flex flex-wrap justify-between items-center w-full col-span-2">
+                        <div
+                            v-else
+                            class="empty-review h-[224px] col-span-2 flex items-center justify-center border border-dashed border-gray-200 rounded-lg font-medium text-gray-500">
+                            {{ 'Chưa có đánh giá nào cho sản phẩm này' }}
+                        </div>
+                        <div
+                            v-if="reviewProduct.data.length > 0 && pageTotal > 0"
+                            class="flex flex-wrap justify-between items-center w-full col-span-2">
                             <div class="flex items-center gap-1.5">
                                 <span class="text-sm leading-5">{{ $t('Rows per page') }}:</span>
                                 <USelect v-model="pageCount" :options="[8, 25, 50]" class="me-2 w-20" size="xs" />
                             </div>
                             <div>
                                 <span class="text-sm leading-5">
-                                    Showing
+                                    Hiển thị
                                     <span class="font-medium">{{ pageFrom }}</span>
-                                    to
+                                    đến
                                     <span class="font-medium">{{ pageTo }}</span>
-                                    of
+                                    trong
                                     <span class="font-medium">{{ pageTotal }}</span>
-                                    results
+                                    tổng số
                                 </span>
                             </div>
 
@@ -644,6 +654,7 @@ const loadingProductItem = ref(true);
 const selectedProductVariant = ref({});
 const imageList = computed(() => product.value.product_images[colorProductActive.value]);
 const thumbsSwiper = ref(null);
+let reviewJson = ref([]);
 
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;
@@ -1083,30 +1094,60 @@ useSchemaOrg([
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
         image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.image_url,
         description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description,
-        offers: [{ price: 50 }],
-        aggregateRating: {
-            ratingValue: 88,
-            bestRating: 100,
-            ratingCount: 20,
+        offers: {
+            offerCount: 5,
+            lowPrice: productItemCurrent.value
+                ? productItemCurrent.value.price - productItemCurrent.value.price_discount
+                : productItem.value.price - productItem.value.price_discount,
+            highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.price,
+            priceCurrency: 'VND',
         },
-        review: [
-            {
-                name: 'Awesome product!',
-                author: {
-                    name: 'Harlan Wilton',
-                },
-                reviewRating: {
-                    ratingValue: 5,
-                },
-            },
-        ],
+        aggregateRating: {
+            ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.average_rate,
+            bestRating: 5,
+            ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.rate_count,
+        },
+        review: [...reviewJson.value],
     }),
 ]);
 watch(
-    () => reviewProduct.value,
+    () => [reviewProduct.value, loadingReviewProduct.value],
     () => {
-        if (!loadingReviewProduct.value) {
+        if (!loadingReviewProduct.value && reviewProduct.value && reviewProduct.value.data.length > 0) {
             pageTotal.value = reviewProduct.value.meta.total;
+            reviewJson.value = [];
+            reviewProduct.value.data.forEach((item) => {
+                reviewJson.value.push({
+                    name: item.description,
+                    author: {
+                        name: item.customer_name,
+                    },
+                    reviewRating: {
+                        ratingValue: item.rate,
+                    },
+                });
+            });
+            useSchemaOrg([
+                defineProduct({
+                    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
+                    image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.image_url,
+                    description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description,
+                    offers: {
+                        offerCount: 5,
+                        lowPrice: productItemCurrent.value
+                            ? productItemCurrent.value.price - productItemCurrent.value.price_discount
+                            : productItem.value.price - productItem.value.price_discount,
+                        highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.price,
+                        priceCurrency: 'VND',
+                    },
+                    aggregateRating: {
+                        ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.average_rate,
+                        bestRating: 5,
+                        ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.rate_count,
+                    },
+                    review: reviewJson.value,
+                }),
+            ]);
         }
     },
     { immediate: true },
