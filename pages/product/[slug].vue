@@ -224,7 +224,7 @@
                                     variant="ghost"
                                     color="blue"
                                     icon="i-heroicons-arrow-path"
-                                    @click="resetProductPage"
+                                    @click="resetProductPage(true)"
                                     >{{ $t('Cài lại') }}</UButton
                                 >
                             </div>
@@ -259,7 +259,13 @@
                         </div>
                         <span class="fs-14"
                             >{{ $t('Số lượng còn') }}
-                            <b>{{ productItemCurrent && productItemCurrent.qty ? productItemCurrent.qty : (productItem.data.variants.length == 0 && productItem.data.variantAttribute.length == 0 ? productItem.data.qty: 0) }}</b></span
+                            <b>{{
+                                productItemCurrent && productItemCurrent.qty
+                                    ? productItemCurrent.qty
+                                    : productItem.data.variants.length == 0 && productItem.data.variantAttribute.length == 0
+                                    ? productItem.data.qty
+                                    : 0
+                            }}</b></span
                         >
                         <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
@@ -290,11 +296,11 @@
                             </div>
                             <NuxtLink
                                 class="flex flex-1 h-12 rounded-full justify-center"
-                                :class="productItem.data.qty > 0 && getAttributeName() ? '' : 'pointer-events-none'"
+                                :class="productItem.data.qty > 0 ? '' : 'pointer-events-none'"
                                 @click="handleAddToCookie(productItem.data, false)"
                                 :to="localePath({ name: 'cart' })">
                                 <UButton
-                                    :class="productItem.data.qty > 0 && getAttributeName() ? '' : 'bg-gray-400'"
+                                    :class="productItem.data.qty > 0 ? '' : 'bg-gray-400'"
                                     class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
@@ -425,7 +431,7 @@
                             {{ productItem.data.rate_count + ' ' + $t('Review') }}
                         </div>
                     </div>
-                    <div v-if="!loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
+                    <div v-if="loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
                         <div
                             v-if="reviewProduct.data.length > 0"
                             v-for="review in reviewProduct.data"
@@ -494,6 +500,28 @@
                                 }" />
                         </div>
                     </div>
+                    <div v-else class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
+                        <div v-for="item in 4" class="skeleton-btn">
+                            <div class="flex flex-col gap-2">
+                                <USkeleton></USkeleton>
+                                <div class="review-name font-bold capitalize">
+                                    <USkeleton></USkeleton>
+                                </div>
+                                <div class="review-collection-product fs-12 italic">
+                                    <USkeleton></USkeleton>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <USkeleton></USkeleton>
+                            </div>
+                            <div class="feedback-review bg-gray-300 p-4 rounded-lg font-semibold">
+                                <USkeleton></USkeleton>
+                            </div>
+                            <div class="review-date text-gray-500">
+                                <USkeleton></USkeleton>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -539,103 +567,6 @@ const indexActive = ref(0);
 const indexActiveColor = ref(0);
 const product1 = ref({});
 const product = ref({
-    id: 1,
-    product_name: 'Áo polo nam dài tay thể thao',
-    product_slug: 'ao-polo-nam-dai-tay-the-thao',
-    product_category_id: 1,
-    product_category_name: 'Áo thun',
-    product_category_slug: 'ao-thun',
-    product_introduction: 'Co giãn',
-    product_price: 159000,
-    product_discount: 0,
-    product_sold: 32,
-    product_compaign_id: 1,
-    product_rating: {
-        number: 4,
-        reviews: [
-            {
-                name: 'Hoàng Lâm',
-                product_selected: 'Đen',
-                product_size: 'S',
-                review_date: '04/02/2024',
-                rating: 3,
-                feedback:
-                    'Coolmate xin cảm ơn anh đã tin tưởng, ủng hộ, đặt hàng và đánh giá sản phẩm khách quan. Coolmate biết tất cả sản phẩm và dịch vụ của mình chưa phải là hoàn hảo và tốt nhất. Nhưng Cool sẽ luôn cố gắng và cải thiện mỗi ngày để hoàn thiện hơn. Nên hơn hết, Coolmate rất trân trọng những phản hồi và góp ý thẳng thắn của các anh để nâng cao trải nghiệm khách hàng. Có rất nhiều sự lựa chọn, một lần nữa, xin cảm ơn anh đã tin tưởng chọn Coolmate ạ!',
-                description:
-                    'Quần bị nhỏ hơn 1 size, dù mua theo hướng dẫn. 2 túi bên dưới vô dụng khi co gối lên, dễ rớt điện thoại. Chất liệu ổn, trượt nước nhẹ, sẽ cân nhắc mua thêm.',
-            },
-            {
-                name: 'Bùi Quang',
-                product_selected: null,
-                product_size: 'M',
-                review_date: '04/02/2024',
-                rating: 5,
-                feedback: null,
-                description: 'Tốt',
-            },
-            {
-                name: 'Khải kiện lao',
-                product_selected: 'Trắng',
-                product_size: 'XL',
-                review_date: '04/02/2024',
-                feedback: null,
-                rating: 4,
-                description:
-                    'Chất liệu vải khá tốt. Túi ngang gối chỉ phù hợp chứa vật nhỏ nhẹ, đồ mà to xíu thì nó khá vướng khi ngồi / co gối',
-            },
-            {
-                name: 'Điền Quân',
-                product_selected: 'Xanh Navi',
-                product_size: 'XL',
-                review_date: '04/02/2024',
-                feedback: null,
-                rating: 5,
-                description: 'Xuất sắc, đẹp hết chê!',
-            },
-        ],
-    },
-    product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-    product_sizes: [
-        {
-            name: 'S',
-            description: '(1m55-1m59 | 48kg-54kg)',
-            quantity: 2,
-        },
-        {
-            name: 'M',
-            description: '(1m60-1m65 | 55kg-61kg)',
-            quantity: 0,
-        },
-        {
-            name: 'L',
-            description: '(1m66-1m72 | 62kg-68kg)',
-            quantity: 19,
-        },
-
-        {
-            name: 'XL',
-            description: '(1m72-1m77 | 69kg-75kg)',
-            quantity: 5,
-        },
-    ],
-    product_images: [
-        {
-            color: 'Đen',
-            code: '#000',
-            list: [
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-5_17.jpg',
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-7_87.jpg',
-            ],
-        },
-        {
-            color: 'Trắng',
-            code: '#f3f3f3',
-            list: [
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/sCM006.thumb1.2.jpg',
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/CM006.thumb1.3_35.jpg',
-            ],
-        },
-    ],
     product_information: [
         'Chất liệu 100% Polyester',
         'Kiểu dệt Mini Square hạn chế sờn vải, tăng độ bền, ít bị rách hay thủng lỗ',

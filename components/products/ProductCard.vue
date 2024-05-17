@@ -124,7 +124,9 @@ function getProductItem() {
     return null;
 }
 onBeforeMount(() => {
-    initialProduct();
+    if(props.product) {
+        initialProduct();
+    }
 })
 
 const formatPriceProduct = (item) => {

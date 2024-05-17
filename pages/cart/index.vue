@@ -262,14 +262,14 @@
                         <span>{{ $t('Giá') }}</span>
                     </div>
                     <div v-if="listCart.length > 0" class="product-list flex flex-col gap-4 divide-y divide-gray-300">
-                        <div class="product-list-item w-full flex gap-4 pt-4" v-for="item in listCart">
+                        <div class="product-list-item w-full flex gap-4 pt-4" v-for="(item, index) in listCart">
                             <div class="product-image flex-grow-0 flex-shrink-0 w-[126px]">
                                 <img :src="item.image" class="h-full w-full object-contain" alt="" />
                             </div>
                             <div class="product-information flex flex-col justify-between gap-4 w-full">
-                                <div class="flex flex-col gap-2">
+                                <NuxtLink :to="item.product_id ? localePath({name: 'product-slug', params: {slug: item.slug}, query: {code: item.code}}) : localePath({name: 'product-slug', params: {slug: item.slug}})" class="flex flex-col gap-2">
                                     <div class="product-name font-semibold">{{ item.name }}</div>
-                                </div>
+                                </NuxtLink>
                                 <div
                                     class="flex flex-col md:flex-wrap md:flex-row items-start gap-4 md:items-center justify-between w-full h-full md:gap-2">
                                     {{ $t('Số Lượng') + ': ' + findQuantity(item) }}
@@ -286,7 +286,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="delete-product flex items-center gap-2" @click="handleDeleteCartItem(item)">
+                                <button class="delete-product flex items-center gap-2" @click="handleDeleteCartItem(item, index)">
                                     <UIcon name="i-material-symbols-delete-outline" class="text-xl" dynamic />
                                     {{ $t('Xóa') }}
                                 </button>
@@ -681,11 +681,13 @@ const getPaidPrice = (divide = false) => {
     }
 };
 
-const handleDeleteCartItem = (product) => {
+const handleDeleteCartItem = (product, index) => {
     let productIndex = productLists.value.findIndex(
         (item) => (item.variant_id == product.id && item.product_id) || (item.product_id == product.id && !item.variant_id),
     );
+    listCart.value.splice(index, 1);
     productLists.value.splice(productIndex, 1);
+    cartNumber.value--;
 };
 
 let districts = ref([]);

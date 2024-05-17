@@ -24,11 +24,13 @@ export const useMain = defineStore('main-store', {
           }
       },
         async getCategoryHeader() {
-          const { data: response, error } = await useMyFetch(`/api/v1/categories/header`);
-          if (error.value) {
-              console.log(error.value);
-          } else {
-              this.categoryHeaders = response.value.data
+          const { data: response, error } = await useMyFetch(`/api/v1/categories/header`, {
+            params: {
+              limit: 3
+            }
+          });
+          if(response.value) {
+            this.categoryHeaders = response.value.data
           }
       }
     }
