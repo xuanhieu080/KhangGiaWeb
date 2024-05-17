@@ -26,7 +26,7 @@
                     <USelectMenu
                         v-model="selectedCategory"
                         size="xl"
-                        :options="categoryBlog"
+                        :options="articleGroups.data"
                         class="w-full max-w-[250px] custom-input"
                         option-attribute="name"
                         :ui="{ rounded: 'rounded-full' }">
@@ -49,16 +49,16 @@
                 </div>
                 <div class="blog-box-content flex md:flex-row flex-col items-start justify-between gap-6 w-full mt-6">
                     <div
-                        v-if="!loadingAticlesList && articlesList.data && articlesList.data.length > 0"
+                        v-if="!loadingArticleHot && articlesHot.data && articlesHot.data.length > 0"
                         class="flex w-full md:w-1/2 md:max-w-[660px]">
-                        <ArticleSwiper :articleList="articlesList.data" :title="'Bài viết nổi bật'" />
+                        <ArticleSwiper :articleList="articlesHot.data" :title="'Bài viết nổi bật'" />
                     </div>
                     <div
-                        v-if="!loadingArticleHot && articlesHot.data && articlesHot.data.length > 0"
+                        v-if="!loadingArticleView && articlesView.data && articlesView.data.length > 0"
                         class="most-view flex flex-col gap-4 py-4 md:py-0 w-full md:w-2/5">
                         <div class="title text-[28px] 2xl:text-[36px] font-bold">{{ $t('Xem nhiều nhất') }}</div>
                         <div class="article-list flex flex-col gap-6 md:gap-3">
-                            <ArticleBadge v-for="article in articlesHot.data" :article="article" />
+                            <ArticleBadge v-for="article in articlesView.data" :article="article" />
                         </div>
                     </div>
                 </div>
@@ -87,28 +87,7 @@ definePageMeta({ layout: false });
 const localePath = useLocalePath();
 const searchBlog = ref(null);
 
-const categoryBlog = ref([
-    {
-        name: 'Mặc đẹp',
-        id: 1,
-    },
-    {
-        name: 'Phối đồ',
-        id: 2,
-    },
-    {
-        name: 'Thương hiệu thời trang',
-        id: 3,
-    },
-    {
-        name: 'Mua gì ở đâu',
-        id: 4,
-    },
-    {
-        name: 'Local Brand',
-        id: 5,
-    },
-]);
+const categoryBlog = ref([]);
 
 const articleList = ref([
     {
@@ -321,6 +300,13 @@ const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData
         }
     }),
 );
+const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncData('articles-blog-view', () =>
+    useOriginalFetch('/api/v1/posts', {
+        params: {
+            sort:{desc:'view'},
+        }
+    }),
+);
 const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-blog-new', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
@@ -328,9 +314,18 @@ const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData(
         }
     }),
 );
+const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>
+    useOriginalFetch('/api/v1/post-groups')
+);
 // const { data: articleGroup, pending: loadingArticleGroup } = await useLazyAsyncData('articles-blog-group', () =>
 //     useOriginalFetch('/api/v1/post/groups'),
 // );
+
+if (!loadingArticleGroup.value) {
+    if(articleGroups.value.data?.length > 0) {
+        selectedCategory.value = articleGroups.value.data[0]
+    }
+}
 </script>
 
 <style lang="scss" scoped>
