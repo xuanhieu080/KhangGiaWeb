@@ -311,11 +311,11 @@
                         <div class="delivery-box flex flex-col gap-4">
                             <button class="flex items-center gap-2">
                                 <img src="https://page.widget.zalo.me/static/images/2.0/Logo.svg" class="h-8 w-8 object-contain" alt="" />
-                                <span class="text-blue-700 fs-14 font-bold">Chat để được Navy tư vấn ngay (8:30 - 22:00)</span>
+                                <span class="text-blue-700 fs-14 font-bold">Chat với GAK để được tư vấn ngay ( 08:00 - 17:30)</span>
                                 <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
                             </button>
                             <div class="delivery-information p-6 bg-gray-200 rounded-lg flex flex-col gap-4 fs-14 font-medium">
-                                <span class="font-bold">Miễn phí giao hàng nhanh toàn quốc cho đơn hàng trên 200.000đ</span>
+                                <span class="font-bold">Giao hàng toàn quốc nhanh chóng tiện lợi</span>
                                 <div class="flex items-center gap-2">
                                     <UIcon class="text-[24px] text-green-500" name="i-mdi-clock-fast" dynamic />
                                     <span>Nội thành Hà Nội và HCM nhận hàng trong 1-2 ngày</span>
@@ -330,11 +330,11 @@
                         <div class="grid grid-cols-2 fs-14 gap-8">
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-mdi-phone-return" dynamic />
-                                <span>Đổi trả cực dễ chỉ cần số điện thoại</span>
+                                <span>Nội thành Hà Nội và HCM nhận hàng trong 1-2 ngày</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-game-icons-return-arrow" dynamic />
-                                <span>60 ngày đổi trả vì bất kỳ lý do gì</span>
+                                <span>30 ngày đổi trả hàng (Hàng trơn chưa dùng)</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-fluent-phone-checkmark-20-regular" dynamic />
@@ -342,7 +342,7 @@
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-ph-clock-clockwise-bold" dynamic />
-                                <span>Đến tận nơi nhận hàng trả, hoàn tiền trong 24h</span>
+                                <span>Tiếp nhận đơn hàng và phản hồi trong vòng 1 tiếng</span>
                             </div>
                         </div>
                         <UDivider />
