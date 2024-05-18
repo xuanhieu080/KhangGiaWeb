@@ -432,7 +432,7 @@
                             {{ productItem.data.rate_count + ' ' + $t('Review') }}
                         </div>
                     </div>
-                    <div v-if="loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
+                    <div v-if="!loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
                         <div
                             v-if="reviewProduct.data.length > 0"
                             v-for="review in reviewProduct.data"
@@ -504,23 +504,15 @@
                     <div v-else class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
                         <div v-for="item in 4" class="skeleton-btn">
                             <div class="flex flex-col gap-2">
-                                <USkeleton></USkeleton>
+                                <USkeleton class="h-16"></USkeleton>
                                 <div class="review-name font-bold capitalize">
-                                    <USkeleton></USkeleton>
+                                    <USkeleton class="h-8 w-1/2"></USkeleton>
                                 </div>
                                 <div class="review-collection-product fs-12 italic">
-                                    <USkeleton></USkeleton>
+                                    <USkeleton  class="h-24"></USkeleton>
                                 </div>
                             </div>
-                            <div class="review-content">
-                                <USkeleton></USkeleton>
-                            </div>
-                            <div class="feedback-review bg-gray-300 p-4 rounded-lg font-semibold">
-                                <USkeleton></USkeleton>
-                            </div>
-                            <div class="review-date text-gray-500">
-                                <USkeleton></USkeleton>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
