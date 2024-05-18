@@ -348,20 +348,20 @@
                         <UDivider />
                     </div>
                 </div>
-                <div v-if="productItem.highlight" class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
+                <div v-if="productItem.data.highlight" class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
                     <h3 class="product-features__heading !text-2xl font-bold">Đặc điểm nổi bật</h3>
                     <div class="product-details flex justify-between w-full">
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
-                            <div v-html="productItem.highlight"></div>
+                            <div v-html="productItem.data.highlight"></div>
 <!--                            <ul class="product-details-list !list-['-'] !mt-0 fs-14 font-semibold">-->
 <!--                                <li v-for="feature in product.product_information" class="product-details__item pl-3">-->
 <!--                                    {{ feature }}-->
 <!--                                </li>-->
 <!--                            </ul>-->
                         </div>
-                        <div v-if="productItem.data.productItem.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
-                            <img :src="productItem.data.productItem.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
+                        <div v-if="productItem.data.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
+                            <img :src="productItem.data.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
                         </div>
                     </div>
                 </div>
