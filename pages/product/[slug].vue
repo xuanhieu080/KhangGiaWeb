@@ -311,7 +311,7 @@
                         <div class="delivery-box flex flex-col gap-4">
                             <button class="flex items-center gap-2">
                                 <img src="https://page.widget.zalo.me/static/images/2.0/Logo.svg" class="h-8 w-8 object-contain" alt="" />
-                                <span class="text-blue-700 fs-14 font-bold">Chat với GAK để được tư vấn ngay ( 08:00 - 17:30)</span>
+                                <a href="https://zalo.me/569133339" class="text-blue-700 fs-14 font-bold">Chat với GAK để được tư vấn ngay ( 08:00 - 17:30)</a>
                                 <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
                             </button>
                             <div class="delivery-information p-6 bg-gray-200 rounded-lg flex flex-col gap-4 fs-14 font-medium">
@@ -338,7 +338,7 @@
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-fluent-phone-checkmark-20-regular" dynamic />
-                                <span>Hotline 056.913.33.39 hoặc 094.763.65.69 hỗ trợ từ 8h00 - 17h30 mỗi ngày</span>
+                                <span>Hotline <a href="tel: 0569133339">056.913.33.39</a> hoặc <a href="tel: 0947636569">094.763.65.69</a> hỗ trợ từ 8h00 - 17h30 mỗi ngày</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-ph-clock-clockwise-bold" dynamic />
