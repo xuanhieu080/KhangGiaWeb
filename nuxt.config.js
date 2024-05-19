@@ -34,14 +34,14 @@ export default defineNuxtConfig({
     },
     modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo'],
     site: {
-        indexable: true,
+        indexable: false,
         url: process.env.WEB_BASE_URL,
         name: process.env.NUXT_SITE_NAME,
         description: process.env.NUXT_SITE_DESCRIPTION,
         defaultLocale: process.env.NUXT_SITE_LOCALE,
     },
     sitemap: {
-        enabled: true,
+        enabled: false,
     },
     schemaOrg: {
         identity: {
