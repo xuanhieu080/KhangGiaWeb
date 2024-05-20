@@ -225,7 +225,19 @@ export default defineNuxtConfig({
                     content: 'website',
                 },
             ],
-            script: [],
+            script: [
+                {
+                    hid: 'gtmHead',
+                    async: true,
+                    src: 'https://www.googletagmanager.com/gtag/js?id=GTM-5MFK8NDW',
+                },
+                {
+                    hid: 'gtmHead',
+                    innerHTML:
+                        "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'GTM-5MFK8NDW');",
+                },
+            ],
+            __dangerouslyDisableSanitizers: ['script'],
         },
     },
 });
