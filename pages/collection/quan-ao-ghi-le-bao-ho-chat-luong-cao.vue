@@ -440,15 +440,11 @@ const changeCategoryTab = (index) => {
 };
 
 const { data: collection, pending: loadingCollection, error: collectionError } = await useLazyAsyncData('collection-category', () =>
-        // useOriginalFetch(`/api/v1/categories`),
-    useOriginalFetch('/api/v1/products', {
-        params: {
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_uniform: 1,
-            limit: 20,
-        },
+    useOriginalFetch('/api/v1/products',{
+        params:{
+            category_name:'ghi le',
+            limit: 4,
+        }
     }),
 );
 

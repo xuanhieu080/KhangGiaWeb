@@ -75,14 +75,14 @@
             <div class="banner-block h-full">
                 <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />
             </div>
-            <!--            <div v-if="!loadingCategoryDashboard" class="container mx-auto overflow-hidden md:overflow:visible my-4">-->
-            <!--                <ProductCollection-->
-            <!--                    key="container-2"-->
-            <!--                    :loading="loadingCategoryDashboard"-->
-            <!--                    :productList="categoryDashboard.data && categoryDashboard.data.length > 1 ? categoryDashboard.data[1] : []"-->
-            <!--                    :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"-->
-            <!--                    :collectionLink="'/articles'" />-->
-            <!--            </div>-->
+            <div v-if='!loadingProductDashboard' class='container mx-auto overflow-hidden md:overflow:visible my-4'>
+                <ProductCollectionOther
+                    key='container-2'
+                    :loading='loadingProductDashboard'
+                    :productList="productDashboard?.data"
+                    :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"
+                    :collectionLink="'/collection/quan-ao-ghi-le-bao-ho-chat-luong-cao'" />
+            </div>
             <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-1 md:gap-4 w-full h-full">
                 <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
                 <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
@@ -220,8 +220,13 @@ const diaryList = ref([
 ]);
 
 //data
-const { data: categoryDashboard, pending: loadingCategoryDashboard } = await useLazyAsyncData('category-dashboard', async () =>
-    useOriginalFetch('/api/v1/categories/dashboard'),
+const { data: productDashboard, pending: loadingProductDashboard } = await useLazyAsyncData('product-dashboard', async () =>
+    useOriginalFetch('/api/v1/products',{
+        params:{
+            category_name:'ghi le',
+            limit: 4,
+        }
+    }),
 );
 const { data: productNew, pending: loadingProductNew } = await useLazyAsyncData('product-new', async () =>
     useOriginalFetch('/api/v1/products', {
@@ -263,7 +268,7 @@ const { data: productUniform, pending: loadingProductUniform } = await useLazyAs
                 'desc[0]': 'id',
             },
             is_uniform: 1,
-            limit: 20,
+            limit: 4,
         },
     }),
 );
