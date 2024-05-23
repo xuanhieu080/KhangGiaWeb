@@ -2,7 +2,7 @@
     <NuxtLayout name="main">
         <div v-if="!loadingArticle && !error" class="article-details">
             <div class="container mx-auto prose prose-lg max-w-screen-xl py-8">
-                <UBreadcrumb :ui="{ol: 'gap-0 w-fit mt-0 pl-0'}" :links="links" />
+                <UBreadcrumb :ui="{ol: 'gap-0 max-w-fit mt-0 pl-0'}" :links="links" />
                 <h1 class="article-title">
                     {{ content.data.title }}
                 </h1>

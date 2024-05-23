@@ -1,10 +1,11 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingProduct" class="product-page py-6">
+        <div v-if="!loadingProduct" class="product-page py-6 w-full">
             <div class="container mx-auto flex flex-col gap-4">
                 <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative pt-12">
                     <UBreadcrumb
-                        class="w-max absolute -top-2 left-2 lg:left-[96px]"
+                        class="w-full absolute -top-2 left-2 lg:left-[96px]"
+                        :ui="{ol: 'gap-0 max-w-fit mt-0 pl-0'}" 
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
 
@@ -203,7 +204,7 @@
                             <span class="text-[15px]"
                                 >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
                             >
-                            <div v-if="variantAttribute.is_color" class="color-list flex items-center gap-4">
+                            <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes">
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
@@ -287,7 +288,7 @@
                                 </UButton>
                             </NuxtLink>
                         </div>
-                        <div v-else class="product-add-to-cart mt-auto flex items-center gap-4">
+                        <div v-else-if="productItem.data.variants.length == 0" class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
                                 class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
