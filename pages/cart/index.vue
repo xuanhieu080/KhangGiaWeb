@@ -796,7 +796,7 @@ const getWard = async (district) => {
 };
 watch(
     () => productLists.value,
-    () => {
+    async () => {
         if (productLists.value.length > 0) {
             isLoadingPage.value = true;
             getCheckCarts(productLists.value);
