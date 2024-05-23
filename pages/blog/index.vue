@@ -22,7 +22,7 @@
                         name="search-box-blog"
                         :placeholder="$t('Tìm kiếm bài viết...')" />
                 </div>
-                <div class="filter-category-blog flex flex-wrap items-center gap-6 w-full">
+                <div v-if="!loadingArticleGroup" class="filter-category-blog flex flex-wrap items-center gap-6 w-full">
                     <USelectMenu
                         v-model="selectedCategory"
                         size="xl"
