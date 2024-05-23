@@ -103,10 +103,11 @@
             </div>
             <div class="right-header">
                 <UInput
-                    class="search-box ring-0 border-0 shadow-none max-w-[500px] rounded-[50px] overflow-hidden"
+                    class="search-box max-w-[500px] rounded-[50px] overflow-hidden bg-white"
                     name="search-box"
                     size="xl"
                     color="white"
+                    variant="none"
                     icon="i-heroicons-magnifying-glass-20-solid"
                     v-model="searchItem"
                     :ui="{ icon: { trailing: { pointer: '' } } }"

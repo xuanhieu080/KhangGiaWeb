@@ -267,7 +267,13 @@
                                 <img :src="item.image" class="h-full w-full object-contain" alt="" />
                             </div>
                             <div class="product-information flex flex-col justify-between gap-4 w-full">
-                                <NuxtLink :to="item.product_id ? localePath({name: 'product-slug', params: {slug: item.slug}, query: {code: item.code}}) : localePath({name: 'product-slug', params: {slug: item.slug}})" class="flex flex-col gap-2">
+                                <NuxtLink
+                                    :to="
+                                        item.product_id
+                                            ? localePath({ name: 'product-slug', params: { slug: item.slug }, query: { code: item.code } })
+                                            : localePath({ name: 'product-slug', params: { slug: item.slug } })
+                                    "
+                                    class="flex flex-col gap-2">
                                     <div class="product-name font-semibold">{{ item.name }}</div>
                                 </NuxtLink>
                                 <div
@@ -715,16 +721,37 @@ const getCheckCarts = async (items) => {
         params: params,
     });
     if (response.value) {
+        let newCookie = ref([]);
         response.value.data.forEach((item) => {
             if (item.variants.length > 0) {
                 listCart.value.push(...item.variants);
+                newCookie.value.push({
+                    product_id: item.id,
+                    variant_id: item.variants[0].id,
+                });
             } else {
                 listCart.value.push(item);
+                newCookie.value.push({
+                    product_id: item.id,
+                    variant_id: null,
+                });
             }
         });
+        let combinedArray = newCookie.value.map((itemA) => {
+            let itemB = productLists.value.find((itemB) => itemB.product_id === itemA.product_id && itemB.variant_id === itemA.variant_id);
+            if (itemB) {
+                return { ...itemB, quantity: itemB.quantity };
+            } else {
+                return {...itemA, quantity: 0};
+            }
+        });
+        console.log(combinedArray);
+        console.log(productLists.value);
         cartNumber.value = listCart.value.length;
         if (cartNumber.value == 0) {
             productLists.value = null;
+        } else {
+            productLists.value = combinedArray;
         }
         isLoadingPage.value = false;
     }
