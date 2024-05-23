@@ -795,14 +795,13 @@ const getWard = async (district) => {
     }
 };
 watch(
-    productLists.value,
-    async () => {
+    () => productLists.value,
+    () => {
         if (productLists.value.length > 0) {
             isLoadingPage.value = true;
             getCheckCarts(productLists.value);
         }
-    },
-    { immediate: true },
+    }
 );
 watch(
     () => state.value.city,
