@@ -748,8 +748,6 @@ const getCheckCarts = async (items) => {
                 return {...itemA, quantity: 0};
             }
         });
-        console.log(combinedArray);
-        console.log(productLists.value);
         cartNumber.value = listCart.value.length;
         if (cartNumber.value == 0) {
             productLists.value = null;
@@ -801,7 +799,8 @@ watch(
             isLoadingPage.value = true;
             getCheckCarts(productLists.value);
         }
-    }
+    },
+    { once: true, immediate: true },
 );
 watch(
     () => state.value.city,
