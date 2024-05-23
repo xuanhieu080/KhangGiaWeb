@@ -725,10 +725,13 @@ const getCheckCarts = async (items) => {
         response.value.data.forEach((item) => {
             if (item.variants.length > 0) {
                 listCart.value.push(...item.variants);
-                newCookie.value.push({
-                    product_id: item.id,
-                    variant_id: item.variants[0].id,
-                });
+                item.variants.forEach((ele) => {
+                    newCookie.value.push({
+                        product_id: item.id,
+                        variant_id: ele.id,
+                    });
+                })
+                
             } else {
                 listCart.value.push(item);
                 newCookie.value.push({
