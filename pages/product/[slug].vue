@@ -277,7 +277,7 @@
                             <NuxtLink
                                 class="flex flex-1 h-12 rounded-full justify-center"
                                 :class="productItemCurrent.qty > 0 ? '' : 'pointer-events-none'"
-                                @click="handleAddToCookie(productItemCurrent)"
+                                @click="handleAddToCookie(productItemCurrent, true)"
                                 :to="localePath({ name: 'cart' })">
                                 <UButton
                                     :class="productItemCurrent.qty > 0 ? '' : 'bg-gray-400'"

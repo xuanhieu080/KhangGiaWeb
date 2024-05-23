@@ -16,9 +16,9 @@
             :grabCursor="true"
             class="swiper banner-swiper w-full h-full">
             <SwiperSlide v-for="item in bannerList" :key="item">
-                <a href="https://www.coolmate.me/" target="_blank" rel="noopener noreferrer">
+                <NuxtLink :to="localePath({name: 'index'})" target="_blank" rel="noopener noreferrer">
                     <NuxtImg fit="contain" class="w-full h-full" loading="lazy" format="webp" :src="item.url" alt="" />
-                </a>
+                </NuxtLink>
             </SwiperSlide>
             <template v-slot:container-end>
                 <div class="navigation-btns flex flex-col absolute top-1/2 right-4 -translate-y-1/2 z-10">
@@ -54,6 +54,7 @@ const props = defineProps({
         default: false,
     },
 });
+const localePath = useLocalePath();
 let modules = ref([Navigation]);
 const bannerSwiper = ref(null);
 onBeforeMount(() => {
