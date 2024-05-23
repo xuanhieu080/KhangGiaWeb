@@ -359,7 +359,13 @@ const router = useRouter();
 
 const isLoadingPage = ref(false);
 const isOrdered = ref(false);
-
+let districts = ref([]);
+let wards = ref([]);
+let listCart = ref([]);
+let productLists = useCookie('products-cart', {
+    default: () => [],
+    maxAge: 60 * 60 * 24 * 7,
+});
 const state = ref({
     email: null,
     name: null,
@@ -696,13 +702,7 @@ const handleDeleteCartItem = (product, index) => {
     cartNumber.value--;
 };
 
-let districts = ref([]);
-let wards = ref([]);
-let listCart = ref([]);
-let productLists = useCookie('products-cart', {
-    default: () => [],
-    maxAge: 60 * 60 * 24 * 7,
-});
+
 
 //Data
 
@@ -796,10 +796,10 @@ const getWard = async (district) => {
 };
 watch(
     productLists.value,
-    async (newList) => {
-        if (newList.length > 0) {
+    async () => {
+        if (productLists.value.length > 0) {
             isLoadingPage.value = true;
-            getCheckCarts(newList);
+            getCheckCarts(productLists.value);
         }
     },
     { immediate: true },
