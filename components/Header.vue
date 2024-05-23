@@ -149,13 +149,13 @@
             </div>
             <div class="right-header-mobile flex justify-between items-center gap-6">
                 <UButton variant="ghost" color="none" :padded="false" class="search-mobile">
-                    <UIcon name="i-heroicons-magnifying-glass" class="fs-28 text-white" />
+                    <UIcon name="i-heroicons-magnifying-glass" class="fs-28 text-black" />
                 </UButton>
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
                     <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
                 </NuxtLink>
                 <UButton variant="ghost" color="none" :padded="false" @click="menuMobile = !menuMobile">
-                    <UIcon name="i-pajamas-hamburger" class="fs-28 text-white" dynamic />
+                    <UIcon name="i-pajamas-hamburger" class="fs-28 text-black" dynamic />
                 </UButton>
             </div>
         </div>

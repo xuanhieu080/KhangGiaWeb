@@ -6,13 +6,13 @@
         <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-4 w-full">
             <div class="product-image relative">
                 <button
-                    class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden block">
+                    class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden flex">
                     <NuxtImg
-                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover first-look"
+                        class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain first-look"
                         :src="product.thumb_image[0]" />
                     <NuxtImg
                         v-if="product.thumb_image[1]"
-                        class="absolute left-0 top-0 z-30 h-full w-full object-top rounded-lg object-cover second-look"
+                        class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain second-look"
                         :src="product.thumb_image[1]" />
                 </button>
             </div>

@@ -5,7 +5,7 @@
                 <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative pt-12">
                     <UBreadcrumb
                         class="w-full absolute -top-2 left-2 lg:left-[96px]"
-                        :ui="{ol: 'gap-0 max-w-fit mt-0 pl-0'}" 
+                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0' }"
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
 
@@ -312,7 +312,9 @@
                         <div class="delivery-box flex flex-col gap-4">
                             <button class="flex items-center gap-2">
                                 <img src="https://page.widget.zalo.me/static/images/2.0/Logo.svg" class="h-8 w-8 object-contain" alt="" />
-                                <a href="https://zalo.me/569133339" class="text-blue-700 fs-14 font-bold">Chat với GAK để được tư vấn ngay ( 08:00 - 17:30)</a>
+                                <a href="https://zalo.me/569133339" class="text-blue-700 fs-14 font-bold"
+                                    >Chat với GAK để được tư vấn ngay ( 08:00 - 17:30)</a
+                                >
                                 <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
                             </button>
                             <div class="delivery-information p-6 bg-gray-200 rounded-lg flex flex-col gap-4 fs-14 font-medium">
@@ -339,7 +341,10 @@
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-fluent-phone-checkmark-20-regular" dynamic />
-                                <span>Hotline <a href="tel: 0569133339">056.913.33.39</a> hoặc <a href="tel: 0947636569">094.763.65.69</a> hỗ trợ từ 8h00 - 17h30 mỗi ngày</span>
+                                <span
+                                    >Hotline <a href="tel: 0569133339">056.913.33.39</a> hoặc <a href="tel: 0947636569">094.763.65.69</a> hỗ
+                                    trợ từ 8h00 - 17h30 mỗi ngày</span
+                                >
                             </div>
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-ph-clock-clockwise-bold" dynamic />
@@ -349,17 +354,19 @@
                         <UDivider />
                     </div>
                 </div>
-                <div v-if="productItem.data.highlight" class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
+                <div
+                    v-if="productItem.data.highlight"
+                    class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
                     <h3 class="product-features__heading !text-2xl font-bold">Đặc điểm nổi bật</h3>
                     <div class="product-details flex justify-between w-full">
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
                             <div v-html="productItem.data.highlight"></div>
-<!--                            <ul class="product-details-list !list-['-'] !mt-0 fs-14 font-semibold">-->
-<!--                                <li v-for="feature in product.product_information" class="product-details__item pl-3">-->
-<!--                                    {{ feature }}-->
-<!--                                </li>-->
-<!--                            </ul>-->
+                            <!--                            <ul class="product-details-list !list-['-'] !mt-0 fs-14 font-semibold">-->
+                            <!--                                <li v-for="feature in product.product_information" class="product-details__item pl-3">-->
+                            <!--                                    {{ feature }}-->
+                            <!--                                </li>-->
+                            <!--                            </ul>-->
                         </div>
                         <div v-if="productItem.data.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
                             <img :src="productItem.data.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
@@ -510,10 +517,9 @@
                                     <USkeleton class="h-8 w-1/2"></USkeleton>
                                 </div>
                                 <div class="review-collection-product fs-12 italic">
-                                    <USkeleton  class="h-24"></USkeleton>
+                                    <USkeleton class="h-24"></USkeleton>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -716,12 +722,11 @@ let initialProduct = (product) => {
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
 };
-
+let productLists = useCookie('products-cart', {
+    default: () => [],
+    maxAge: 60 * 60 * 24 * 7,
+});
 const handleAddToCookie = (item, variant = true) => {
-    let productLists = useCookie('products-cart', {
-        default: () => [],
-        maxAge: 60 * 60 * 24 * 7,
-    });
     if (productLists.value.length == 0) {
         if (item.id) {
             if (variant == true) {
