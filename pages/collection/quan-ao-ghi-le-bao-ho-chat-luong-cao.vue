@@ -1,32 +1,36 @@
 <template>
     <NuxtLayout name="main">
-        <div  class="category-page pt-16 bg-white">
+        <div class="category-page pt-8 bg-white">
             <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
                         <h1 class="font-bold uppercase text-2xl">CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT</h1>
                     </div>
                 </div>
-                <div v-if="!loadingCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
-                    <div class="category-main-left w-full lg:max-w-[350px] px-4">
+                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
+                    <div v-if="!loadingCollection" class="category-main-left w-full lg:max-w-[350px] px-4">
                         <div class="flex flex-col gap-4 justify-start w-full sticky top-8">
                             <div
                                 class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
-                                {{ 0 + ' ' + $t('Kết quả') }}
+                                {{
+                                    (!loadingCollectionProduct && collectionProduct.data ? collectionProduct.data.length : '') +
+                                    ' ' +
+                                    $t('Kết quả')
+                                }}
                                 <UButton
-                                    v-if="
-                                        selectedAll.length > 0
-                                    "
+                                    v-if="Object.keys(selectedAll).length > 0"
                                     size="lg"
                                     variant="ghost"
                                     color="none"
                                     class="border rounded-3xl border-black font-bold"
                                     @click="removeAllFilter"
-                                    >{{ $t('Xóa lọc') }}</UButton
-                                >
+                                    >{{ $t('Xóa lọc') }}
+                                </UButton>
                             </div>
-                            <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
-                                <div v-for="variant in collection.variants" class="filter-option-item flex flex-col gap-4">
+                            <div
+                                :class="showFullOption ? 'h-full' : 'h-[170px] overflow-hidden'"
+                                class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
+                                <div v-for="variant in collection.data" class="filter-option-item flex flex-col gap-4">
                                     <div class="filter-option-title text-sm font-bold text-gray-500">
                                         {{ variant.name }}
                                     </div>
@@ -39,6 +43,17 @@
                                         :label="form.name" />
                                 </div>
                             </div>
+                            <UButton
+                                variant="outline"
+                                color="none"
+                                @click="showFullOption = !showFullOption"
+                                class="show-option-btn border text-gray-500 border-gray-400 ring-0 justify-center">
+                                {{ showFullOption ? 'Thu gọn' : 'Mở rộng' }}
+                                <UIcon
+                                    class="text-sm"
+                                    :name="showFullOption ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                                    dynamic></UIcon>
+                            </UButton>
                         </div>
                     </div>
                     <div class="category-data flex flex-col gap-4 flex-1">
@@ -58,18 +73,23 @@
                                 </USelectMenu>
                             </div>
                         </div>
-                        <div v-if="false && loadingCollection" class="category-data-list">
+                        <div v-if="loadingCollectionProduct" class="category-data-list">
                             <div v-for="product in 6" class="category-data-item" :key="product">
                                 <ProductCard />
                             </div>
                         </div>
-                        <div v-else-if="false && !loadingCollection && collection.item.products && collection.item.products.length > 0" class="category-data-list">
-                            <div v-for="product in collection.item.products" class="category-data-item" :key="product">
+                        <div
+                            v-else-if="!loadingCollectionProduct && collectionProduct.data && collectionProduct.data.length > 0"
+                            class="category-data-list">
+                            <div v-for="product in collectionProduct.data" class="category-data-item" :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
-                        <div v-else-if="!loadingCollection && collection.item.products && collection.item.products.length == 0" class="category-data-list">
-                            <div class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
+                        <div
+                            v-else-if="!loadingCollectionProduct && collectionProduct.data && collectionProduct.data.length == 0"
+                            class="category-data-list">
+                            <div
+                                class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
                                 {{ 'Không có sản phẩm trong danh mục này' }}
                             </div>
                         </div>
@@ -85,9 +105,19 @@
                 </div>
             </div>
         </div>
-        <div v-if="collectionError" class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
+        <div
+            v-if="collectionError"
+            class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
             {{ collectionError.data.message }}
-            <UButton size="lg" :to="localePath({name: 'index'})">{{ $t('Quay trở về') }}</UButton>
+            <UButton size="lg" :to="localePath({ name: 'index' })">{{ $t('Quay trở về') }}</UButton>
+        </div>
+        <div
+            v-if="loadingCollection"
+            class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
+            <div class="loading-wrapper">
+                <div class="loading"></div>
+                <div id="loading-text">Loading...</div>
+            </div>
         </div>
     </NuxtLayout>
 </template>
@@ -104,6 +134,7 @@ const router = useRouter();
 const localePath = useLocalePath();
 const modules = [Scrollbar];
 const isLoadingData = ref(false);
+const showFullOption = ref(false);
 const tabIndex = ref(0);
 const categoryList = ref([
     {
@@ -335,14 +366,12 @@ const filter = ref(filterList.value[0]);
 const selectedForm = ref({});
 const selectedMaterial = ref({});
 const selectedColor = ref(null);
+const refreshData = ref(0);
 const selectedSize = ref({});
-const selectedAll = ref([]);
+const selectedAll = ref({});
 const removeAllFilter = () => {
-    selectedForm.value = {};
-    selectedMaterial.value = {};
-    selectedSize.value = {};
-    selectedColor.value = null;
-    selectedAll.value = [];
+    selectedAll.value = {};
+    refreshData.value++;
 };
 const formFilter = ref([
     {
@@ -439,20 +468,72 @@ const changeCategoryTab = (index) => {
     }, 500);
 };
 
-const { data: collection, pending: loadingCollection, error: collectionError } = await useLazyAsyncData('collection-category', () =>
-    useOriginalFetch('/api/v1/products',{
-        params:{
-            category_name:'ghi le',
-            limit: 4,
+// const { data: collection, pending: loadingCollection, error: collectionError } = await useLazyAsyncData('collection-category', () =>
+//     useOriginalFetch('/api/v1/products',{
+//         params:{
+//             category_name:'ghi le',
+//             limit: 4,
+//         }
+//     }),
+// );
+
+const getParamsCollection = async () => {
+    let params = {
+        category_name: 'ghi le',
+        limit: 20,
+    };
+    if (Object.keys(selectedAll.value).length > 0) {
+        let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
+        if (attribute.length > 0) {
+            attribute = attribute.filter((item) => item.value == true);
+            attribute.forEach((item, index) => {
+                if (item.value) {
+                    params[`attributes[${index}]`] = item.key;
+                }
+            });
         }
-    }),
+    }
+    switch (filter.value.value) {
+        case 0:
+            params['sort[desc][0]'] = 'id';
+            break;
+        case 1:
+            params['sort[asc][0]'] = 'id';
+            break;
+        case 2:
+            params['sort[desc][0]'] = 'price_discount';
+            break;
+        case 3:
+            params['sort[asc][0]'] = 'price_discount';
+            break;
+        default:
+            break;
+    }
+    return params;
+};
+
+const { data: collection, pending: loadingCollection } = await useLazyAsyncData('ghi-le-attribute-group', async () =>
+    useOriginalFetch(`/api/v1/attribute-groups`),
+);
+const {
+    data: collectionProduct,
+    pending: loadingCollectionProduct,
+    error: collectionError,
+} = await useLazyAsyncData(
+    'collection-ghi-le',
+    async () =>
+        useOriginalFetch(`/api/v1/products`, {
+            params: await getParamsCollection(),
+        }),
+    {
+        default: () => [],
+        watch: [filter,selectedAll.value, refreshData],
+    },
 );
 
-watch(() => collectionError.value, () => {
+// watch(() => collectionError.value, () => {
 
-
-})
-
+// })
 </script>
 <style lang="scss" scoped>
 .category-page {
@@ -466,7 +547,6 @@ watch(() => collectionError.value, () => {
                     border-radius: 12px;
                     &.router-link-active {
                         @apply border-blue-700;
-
                     }
                 }
             }

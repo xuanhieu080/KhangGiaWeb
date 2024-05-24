@@ -2,7 +2,7 @@
     <NuxtLayout name="main">
         <div v-if="!isLoadingPage" class="dashboard">
             <Banner :bannerList="bannerList" :autoPlay="true" />
-            <div class="container mx-auto overflow-hidden md:overflow-visible">
+            <div class="container mx-auto overflow-hidden lg:overflow-visible">
                 <div class="flex items-center gap-4 w-full my-4">
                     <UButton
                         @click="
@@ -61,7 +61,7 @@
             <div class="banner-block h-full">
                 <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" />
             </div>
-            <div v-if="!loadingProductUniform" class="container mx-auto overflow-hidden md:overflow:visible my-4">
+            <div v-if="!loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
                 <ProductCollectionOther
                     key="container-1"
                     :loading="loadingProductUniform"
@@ -69,13 +69,13 @@
                     :collectionLink="'/collection/dong-phuc-cong-ty'"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'" />
             </div>
-            <div v-else-if="loadingProductUniform" class="container mx-auto overflow-hidden md:overflow:visible my-4">
+            <div v-else-if="loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
                 <ProductList :productList="[]" />
             </div>
             <div class="banner-block h-full">
                 <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />
             </div>
-            <div v-if='!loadingProductDashboard' class='container mx-auto overflow-hidden md:overflow:visible my-4'>
+            <div v-if='!loadingProductDashboard' class='container mx-auto overflow-hidden lg:overflow-visible my-4'>
                 <ProductCollectionOther
                     key='container-2'
                     :loading='loadingProductDashboard'
@@ -90,7 +90,7 @@
             <div class="container mx-auto w-full h-full my-4">
                 <CategoryBox :categoryList="categoryList" />
             </div>
-            <div class="container mx-auto w-full my-4">
+            <div class="container mx-auto w-full my-4  overflow-hidden lg:overflow-visible">
                 <DiaryWrapper :diaryList="diaryList" :autoPlay="true" />
             </div>
         </div>
