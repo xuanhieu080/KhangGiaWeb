@@ -17,6 +17,17 @@ export default defineNuxtConfig({
             region: process.env.NUXT_SITE_ADDRESS_REGION,
             country: process.env.NUXT_SITE_ADDRESS_COUNTRY,
             postal: process.env.NUXT_SITE_POSTAL_CODE,
+            gtm: {
+                id: 'GTM-5MFK8NDW',
+                defer: false,
+                compatibility: false,
+                enabled: true,
+                debug: true,
+                loadScript: true,
+                enableRouterSync: true,
+                trackOnNextTick: false,
+                devtools: true,
+            }
         },
     },
     build: {
@@ -32,7 +43,7 @@ export default defineNuxtConfig({
         // '/app/**': { ssr: false },
         // '/en/app/**': { ssr: false },
     },
-    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo'],
+    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo', '@zadigetvoltaire/nuxt-gtm'],
     site: {
         indexable: false,
         url: process.env.WEB_BASE_URL,

@@ -828,6 +828,20 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
+"@gtm-support/core@^2.0.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@gtm-support/core/-/core-2.3.1.tgz#e802f1d60256583d468cf4ccef391f85e33c766d"
+  integrity sha512-eD0hndQjhgKm5f/7IA9fZYujmHiVMY+fnYv4mdZSmz5XJQlS4TiTmpdZx2l7I2A9rI9J6Ysz8LpXYYNo/Xq4LQ==
+
+"@gtm-support/vue-gtm@^2.0.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@gtm-support/vue-gtm/-/vue-gtm-2.2.0.tgz#b6b17da2f27ff186aae731c8c32fdcb8a6738f25"
+  integrity sha512-7nhBTRkTG0mD+7r7JvNalJz++YwszZk0oP1HIY6fCgz6wNKxT6LuiXCqdPrZmNPe/WbPIKuqxGZN5s+i6NZqow==
+  dependencies:
+    "@gtm-support/core" "^2.0.0"
+  optionalDependencies:
+    vue-router ">= 4.1.0 < 5.0.0"
+
 "@headlessui/tailwindcss@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@headlessui/tailwindcss/-/tailwindcss-0.2.0.tgz#2c55c98fd8eee4b4f21ec6eb35a014b840059eec"
@@ -1421,7 +1435,7 @@
   optionalDependencies:
     ipx "^2.1.0"
 
-"@nuxt/kit@3.11.2", "@nuxt/kit@^3.10.2", "@nuxt/kit@^3.10.3", "@nuxt/kit@^3.11.1", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.6.1", "@nuxt/kit@^3.8.1", "@nuxt/kit@^3.8.2", "@nuxt/kit@^3.9.3":
+"@nuxt/kit@3.11.2", "@nuxt/kit@^3.10.2", "@nuxt/kit@^3.10.3", "@nuxt/kit@^3.11.1", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.6.1", "@nuxt/kit@^3.8.1", "@nuxt/kit@^3.8.2", "@nuxt/kit@^3.9.3":
   version "3.11.2"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.11.2.tgz#dfc43c05992691bcd6aa58c14f88cf43e3abb788"
   integrity sha512-yiYKP0ZWMW7T3TCmsv4H8+jEsB/nFriRAR8bKoSqSV9bkVYWPE36sf7JDux30dQ91jSlQG6LQkB3vCHYTS2cIg==
@@ -2871,6 +2885,16 @@
   integrity sha512-Uud2IWncmAfJvRaFYzv5OHDli+FbOzxiVEQdLCKQKLyhz94PIyFC3CHcH7EDMwIn8NPtD06+PNbC/PiO0LGLtw==
   dependencies:
     vue-demi ">=0.14.7"
+
+"@zadigetvoltaire/nuxt-gtm@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@zadigetvoltaire/nuxt-gtm/-/nuxt-gtm-0.0.13.tgz#f4d6e504ef58a108fde6dc3669ab8861fea51978"
+  integrity sha512-7SgXtIB8uLdLGJaoUAQSGCSbRnNzplNkNVFKIHaVI4We0vqghstBoVPlJCJ9VdwsfdNyk3/C+Lh1uKpzTrtEuw==
+  dependencies:
+    "@gtm-support/vue-gtm" "^2.0.0"
+    "@nuxt/kit" "^3.5.1"
+    defu "^6.1.2"
+    sirv "^2.0.3"
 
 abbrev@1:
   version "1.1.1"
@@ -8299,7 +8323,7 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sirv@^2.0.4:
+sirv@^2.0.3, sirv@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/sirv/-/sirv-2.0.4.tgz#5dd9a725c578e34e449f332703eb2a74e46a29b0"
   integrity sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==
@@ -9563,6 +9587,13 @@ vue-resize@^2.0.0-alpha.1:
   version "2.0.0-alpha.1"
   resolved "https://registry.yarnpkg.com/vue-resize/-/vue-resize-2.0.0-alpha.1.tgz#43eeb79e74febe932b9b20c5c57e0ebc14e2df3a"
   integrity sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==
+
+"vue-router@>= 4.1.0 < 5.0.0":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.3.2.tgz#08096c7765dacc6832f58e35f7a081a8b34116a7"
+  integrity sha512-hKQJ1vDAZ5LVkKEnHhmm1f9pMiWIBNGF5AwU67PdH7TyXCj/a4hTccuUuYCAMgJK6rO/NVYtQIEN3yL8CECa7Q==
+  dependencies:
+    "@vue/devtools-api" "^6.5.1"
 
 vue-router@^4.2.5, vue-router@^4.3.0:
   version "4.3.0"
