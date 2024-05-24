@@ -247,6 +247,10 @@ export default defineNuxtConfig({
                     innerHTML:
                         "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'GTM-5MFK8NDW');",
                 },
+                {
+                    name: 'google-site-verification',
+                    content: "6w3-X134SqCECM8aDFS_WmQg30hUbvRAYVVbYpAYiZk",
+                },
             ],
             __dangerouslyDisableSanitizers: ['script'],
         },
