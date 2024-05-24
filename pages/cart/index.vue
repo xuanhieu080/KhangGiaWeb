@@ -558,6 +558,7 @@ const handleQuantity = (index) => {
         }
     }
 };
+let userInformation = useCookie('user-information', { default: () => {}, maxAge: 60 * 60 * 24 * 365 });
 
 const handleProcessOrder = async () => {
     let params = {
@@ -569,7 +570,6 @@ const handleProcessOrder = async () => {
         district_id: state.value.district,
         ward_id: state.value.ward,
     };
-    let userInformation = useCookie('user-information', { default: () => [], maxAge: 60 * 60 * 24 * 365 });
     userInformation.value = params;
     if (productLists.value.length > 0) {
         productLists.value.forEach((ele, index) => {

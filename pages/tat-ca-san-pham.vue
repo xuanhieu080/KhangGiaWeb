@@ -1,66 +1,22 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingCollection && !collectionError" class="category-page pt-8 bg-white">
+        <div v-if="!loadingPageCollection" class="category-page pt-8 bg-white">
             <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase text-2xl">{{ collection.item.name }}</h1>
-                    </div>
-                    <div v-if="collection.item.descendants" class="category-tabs w-full">
-                        <Swiper
-                            :slidesPerView="2"
-                            :spaceBetween="16"
-                            :slidesPerGroup="2"
-                            :scrollbar="true"
-                            :modules="modules"
-                            :breakpoints="{
-                                1280: {
-                                    slidesPerView: 5,
-                                    slidesPerGroup: 5,
-                                    spaceBetween: 16,
-                                },
-                                992: {
-                                    slidesPerView: 4,
-                                    slidesPerGroup: 4,
-                                    spaceBetween: 16,
-                                },
-                                768: {
-                                    slidesPerView: 3,
-                                    slidesPerGroup: 3,
-                                    spaceBetween: 15,
-                                },
-                            }"
-                            class="swiper category-swiper min-w-0 relative z-10">
-                            <SwiperSlide
-                                v-for="(category, index) in collection.item.descendants"
-                                :key="product"
-                                class="h-full w-[200px] mr-4">
-                                <UCard
-                                    :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
-                                    class="category-card"
-                                    @click="changeCategoryTab(index)">
-                                    <NuxtLink
-                                        :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
-                                        class="category-item flex flex-col gap-2">
-                                        <NuxtImg
-                                            :src="category.image_url"
-                                            format="webp"
-                                            class="w-full h-full object-cover rounded-md flex-1" />
-                                        <div class="category-name font-semibold">
-                                            {{ category.name }}
-                                        </div>
-                                    </NuxtLink>
-                                </UCard>
-                            </SwiperSlide>
-                        </Swiper>
+                        <h1 class="font-bold uppercase text-2xl">{{ 'Tất cả sản phẩm' }}</h1>
                     </div>
                 </div>
-                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
+                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
                     <div class="category-main-left w-full lg:max-w-[350px] px-4">
                         <div class="flex flex-col gap-4 justify-start w-full">
                             <div
                                 class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
-                                {{ (!loadingProductCollection && productCollection.data ?  productCollection.data.length : '') + ' ' + $t('Kết quả') }}
+                                {{
+                                    (!loadingProductCollection && productCollection.data ? productCollection.data.length : '') +
+                                    ' ' +
+                                    $t('Kết quả')
+                                }}
                                 <UButton
                                     v-if="Object.keys(selectedAll).length > 0"
                                     size="lg"
@@ -71,8 +27,10 @@
                                     >{{ $t('Xóa lọc') }}</UButton
                                 >
                             </div>
-                            <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
-                                <div v-for="variant in collection.variants" class="filter-option-item flex flex-col gap-4">
+                            <div
+                                :class="showFullOption ? 'h-full' : 'h-[170px] overflow-hidden'"
+                                class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
+                                <div v-for="variant in collection.data" class="filter-option-item flex flex-col gap-4">
                                     <div class="filter-option-title text-sm font-bold text-gray-500">
                                         {{ variant.name }}
                                     </div>
@@ -85,6 +43,17 @@
                                         :label="form.name" />
                                 </div>
                             </div>
+                            <UButton
+                                variant="outline"
+                                color="none"
+                                @click="showFullOption = !showFullOption"
+                                class="show-option-btn border text-gray-500 border-gray-400 ring-0 justify-center">
+                                {{ showFullOption ? 'Thu gọn' : 'Mở rộng' }}
+                                <UIcon
+                                    class="text-sm"
+                                    :name="showFullOption ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                                    dynamic></UIcon>
+                            </UButton>
                         </div>
                     </div>
                     <div class="category-data flex flex-col gap-4 flex-1">
@@ -117,7 +86,7 @@
                             </div>
                         </div>
                         <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length  == 0"
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
                             class="category-data-list">
                             <div
                                 class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
@@ -127,20 +96,6 @@
                     </div>
                 </div>
             </div>
-            <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
-                <div class="container mx-auto md:max-w-[1280px] p-4">
-                    <span class="text-gray-500 font-medium fs-20 leading-relaxed"
-                        >Dòng sản phẩm thể thao ứng dụng các chất liệu và thiết kế mới với nhiều tính năng ưu việt giúp bạn thoải mái và tập
-                        trung hơn vào các chuyển động của mình.
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div
-            v-if="collectionError"
-            class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
-            {{ collectionError.data.message }}
-            <UButton size="lg" :to="localePath({ name: 'index' })">{{ $t('Quay trở về') }}</UButton>
         </div>
         <div
             v-if="loadingPageCollection"
@@ -166,6 +121,7 @@ const localePath = useLocalePath();
 const modules = [Scrollbar];
 const isLoadingData = ref(false);
 const loadingPageCollection = ref(true);
+const showFullOption = ref(false);
 const tabIndex = ref(0);
 
 const filterList = ref([
@@ -208,17 +164,15 @@ const changeCategoryTab = (index) => {
 };
 
 const getParamsCollection = async () => {
-    let params = {
-        category_slug: router.currentRoute.value.params.slug
-    };
-    let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({key, value}))
-    if(attribute.length > 0) {
-        attribute = attribute.filter(item => item.value == true)
+    let params = {};
+    let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
+    if (attribute.length > 0) {
+        attribute = attribute.filter((item) => item.value == true);
         attribute.forEach((item, index) => {
-            if(item.value) {
+            if (item.value) {
                 params[`attributes[${index}]`] = item.key;
             }
-        })
+        });
     }
     switch (filter.value.value) {
         case 0:
@@ -244,16 +198,9 @@ const {
     data: collection,
     pending: loadingCollection,
     error: collectionError,
-} = await useLazyAsyncData(
-    'collection-category',
-    async () =>
-        useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`)
-);
-const {
-    data: productCollection,
-    pending: loadingProductCollection,
-} = await useLazyAsyncData(
-    'product-category',
+} = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`));
+const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
+    'product-category-all',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
             params: await getParamsCollection(),

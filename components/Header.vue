@@ -15,8 +15,7 @@
                 <NuxtLink to="">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
         </div>
-<!--        <div  class="header" :class="loadingCategoryHeader ? 'hidden' : ''">-->
-        <div  class="header">
+        <div class="header">
             <div class="left-header">
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
                     <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
@@ -26,6 +25,9 @@
             <div v-if="!isLoadingPage" class="middle-header" :class="menuMobile ? 'active-mobile' : ''">
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'index' })" @click="menuMobile = false">{{
                     $t('Trang chủ')
+                }}</NuxtLink>
+                <NuxtLink class="main-nav-item" :to="localePath({ name: 'tat-ca-san-pham' })" @click="menuMobile = false">{{
+                    $t('Tất cả sản phẩm')
                 }}</NuxtLink>
                 <UDropdown
                     v-if="categoryHeaders && categoryHeaders.length > 0 && !menuMobile"
@@ -109,21 +111,11 @@
                     color="white"
                     variant="none"
                     icon="i-heroicons-magnifying-glass-20-solid"
-                    v-model="searchItem"
                     :ui="{ icon: { trailing: { pointer: '' } } }"
                     autocomplete="off"
+                    @click="handleOpenSearchSlideOver"
                     placeholder="Tìm kiếm sản phẩm">
-                    <template #trailing>
-                        <UButton
-                            v-show="searchItem !== ''"
-                            color="gray"
-                            variant="link"
-                            icon="i-heroicons-x-mark-20-solid"
-                            :padded="false"
-                            @click="searchItem = ''" />
-                    </template>
                 </UInput>
-
                 <UButton
                     v-if="false"
                     class="user-btn justify-center items-center"
@@ -261,6 +253,75 @@
                 </template>
             </UCard>
         </USlideover>
+        <USlideover v-model="openSearchSlide" :ui="{ wrapper: 'z-[999]', overlay: { background: 'bg-gray-600/75' } }">
+            <div class="search-box flex flex-col gap-4 w-full p-4">
+                <UInput
+                    class="search-box max-w-[500px] rounded-[50px] overflow-hidden bg-gray-200"
+                    name="search-box"
+                    size="xl"
+                    color="white"
+                    variant="none"
+                    icon="i-heroicons-magnifying-glass-20-solid"
+                    v-model="searchItem"
+                    :ui="{ icon: { trailing: { pointer: '' } } }"
+                    autocomplete="off"
+                    :loading="loadingSearchProduct"
+                    @click="handleOpenSearchSlideOver"
+                    placeholder="Tìm kiếm sản phẩm">
+                    <template #trailing>
+                        <UButton
+                            v-show="searchItem !== ''"
+                            color="gray"
+                            variant="link"
+                            icon="i-heroicons-x-mark-20-solid"
+                            :padded="false"
+                            @click="searchItem = ''" />
+                    </template>
+                </UInput>
+                <div
+                    v-if="searchItem !== '' && !loadingSearchProduct"
+                    class="search-box-directly w-full py-2 px-6 bg-gray-100 rounded-md text-sm">
+                    Tìm kiếm từ khóa: <b class="lowercase">{{ searchItem }}</b>
+                </div>
+            </div>
+            <div class="search-results px-4 pb-6 overflow-auto">
+                <div class="search-title text-2xl font-medium mb-4">Danh sách tìm kiếm:</div>
+                <div
+                    v-if="searchProducts.length == 0 && searchItem == ''"
+                    class="mt-4 empty-product h-[150px] rounded-lg border border-dashed flex items-center justify-center">
+                    Nhập từ khóa để tìm kiếm sản phẩm
+                </div>
+                <div v-if="searchProducts.length > 0 && !loadingSearchProduct" class="product-list flex flex-col gap-4">
+                    <UCard v-for="product in searchProducts" :key="product" class="w-full">
+                        <NuxtLink
+                            :to="localePath({ name: 'product-slug', params: { slug: product.slug } })"
+                            class="flex items-center gap-4 w-full">
+                            <img :src="product.image" class="h-16 w-16 object-contain" />
+                            <div class="flex flex-col gap-2">
+                                <div class="product-name">{{ product.name }}</div>
+                                <div class="product-price">
+                                    <div v-if="product.percent == 0" class="original-price">
+                                        {{ formatPriceProduct(product.price) + 'đ' }}
+                                    </div>
+                                    <div v-else class="discount-price">
+                                        <div class="after-discount">
+                                            {{ formatPriceProduct(product.price_discount) + 'đ' }}
+                                        </div>
+                                        <div class="original-price">{{ formatPriceProduct(product.price) + 'đ' }}</div>
+                                        <div class="discount-tag">{{ product.percent + '%' }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </NuxtLink>
+                    </UCard>
+                </div>
+                <div
+                    v-else-if="searchProducts.length == 0 && !loadingSearchProduct && searchItem !== ''"
+                    class="mt-4 empty-product h-[150px] rounded-lg border border-dashed flex items-center justify-center">
+                    Không tìm thấy sản phẩm
+                </div>
+            </div>
+        </USlideover>
     </div>
 </template>
 <script setup>
@@ -287,6 +348,7 @@ const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
 const localePath = useLocalePath();
 const searchItem = ref('');
 const profileSide = ref(false);
+const openSearchSlide = ref(false);
 const menuMobile = ref(false);
 const openProfileSideBar = () => {
     profileSide.value = true;
@@ -306,27 +368,72 @@ const handleChangePage = (e) => {
     menuMobile.value = false;
     handleCloseSubMenu(e);
 };
-let productLists = useCookie('products-cart');
+
+const handleOpenSearchSlideOver = () => {
+    openSearchSlide.value = true;
+};
+
+const formatPriceProduct = (item) => {
+    return new Intl.NumberFormat('en-US').format(item);
+};
+let productLists = useCookie('products-cart', {
+    default: () => [],
+    maxAge: 60 * 60 * 24 * 7,
+});
+
 onMounted(() => {
     isLoadingPage.value = false;
-    if(productLists.value && productLists.value.length > 0) {
+    if (productLists.value && productLists.value.length > 0) {
         cartNumber.value = productLists.value.length;
     } else {
         cartNumber.value = 0;
     }
-})
-// const { data: categoryHeader, pending: loadingCategoryHeader } = await useLazyAsyncData('category-header', () =>
-//     useOriginalFetch('/api/v1/categories/header', {
-//         params: {
-//             limit: 4,
-//         },
-//     }),
-// );
-// watchEffect(() => {
-//     if (!loadingCategoryHeader.value) {
-//         isLoadingPage.value = false;
-//     }
-// });
+});
+const deboundTime = ref({
+    timeOut: null,
+});
+
+const loadingSearchProduct = ref(false);
+
+const searchProducts = ref([]);
+const getProductSearch = async () => {
+    const { data: response, error } = await useMyFetch('/api/v1/products', {
+        params: {
+            search: searchItem.value,
+            limit: 12,
+        },
+    });
+    if (response.value) {
+        searchProducts.value = response.value.data;
+        loadingSearchProduct.value = false;
+    } else {
+        searchProducts.value = [];
+        loadingSearchProduct.value = false;
+    }
+};
+
+watch(
+    () => searchItem.value,
+    async () => {
+        if (openSearchSlide.value) {
+            loadingSearchProduct.value = true;
+            clearTimeout(deboundTime.value.timeOut);
+            deboundTime.value.timeOut = setTimeout(() => {
+                getProductSearch();
+                deboundTime.value.timeOut = null;
+            }, 500);
+        }
+    },
+);
+watch(
+    () => openSearchSlide.value,
+    () => {
+        if (!openSearchSlide.value) {
+            searchProducts.value = [];
+            searchItem.value = '';
+        }
+    },
+);
 </script>
 <style lang="scss" scoped>
 .site-header {
@@ -556,6 +663,23 @@ onMounted(() => {
             z-index: 5;
             font-weight: bold;
             white-space: pre-wrap;
+        }
+    }
+}
+.product-price {
+    @apply font-bold;
+    .discount-price {
+        @apply flex items-center gap-3;
+        .original-price {
+            @apply font-bold;
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+            @apply text-gray-400/75;
+        }
+        .discount-tag {
+            @apply font-semibold;
+            font-size: 13px;
+            color: red;
         }
     }
 }
