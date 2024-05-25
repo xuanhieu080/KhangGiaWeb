@@ -45,14 +45,11 @@ export default defineNuxtConfig({
     },
     modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo', '@zadigetvoltaire/nuxt-gtm'],
     site: {
-        indexable: false,
+        indexable: true,
         url: process.env.WEB_BASE_URL,
         name: process.env.NUXT_SITE_NAME,
         description: process.env.NUXT_SITE_DESCRIPTION,
         defaultLocale: process.env.NUXT_SITE_LOCALE,
-    },
-    sitemap: {
-        enabled: false,
     },
     schemaOrg: {
         identity: {
