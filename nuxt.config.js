@@ -51,6 +51,9 @@ export default defineNuxtConfig({
         description: process.env.NUXT_SITE_DESCRIPTION,
         defaultLocale: process.env.NUXT_SITE_LOCALE,
     },
+    sitemap: {
+        enabled: false,
+    },
     schemaOrg: {
         identity: {
             type: 'Organization',
