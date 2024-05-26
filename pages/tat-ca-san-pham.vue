@@ -1,78 +1,10 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingPageCollection" class="category-page pt-8 bg-white">
+        <div v-if="!loadingPageCollection" class="category-page bg-white">
+            <Banner :bannerList="bannerList" :autoPlay="true" />
             <div class="px-8">
-                <div class="category-header mb-6">
-                    <div class="category-header-title">
-                        <h1 class="font-bold uppercase text-2xl">{{ 'Tất cả sản phẩm' }}</h1>
-                    </div>
-                </div>
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
-                    <div class="category-main-left w-full lg:max-w-[350px] px-4">
-                        <div class="flex flex-col gap-4 justify-start w-full">
-                            <div
-                                class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
-                                {{
-                                    (!loadingProductCollection && productCollection.data ? productCollection.data.length : '') +
-                                    ' ' +
-                                    $t('Kết quả')
-                                }}
-                                <UButton
-                                    v-if="Object.keys(selectedAll).length > 0"
-                                    size="lg"
-                                    variant="ghost"
-                                    color="none"
-                                    class="border rounded-3xl border-black font-bold"
-                                    @click="removeAllFilter"
-                                    >{{ $t('Xóa lọc') }}</UButton
-                                >
-                            </div>
-                            <div
-                                :class="showFullOption ? 'h-full' : 'h-[170px] overflow-hidden'"
-                                class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
-                                <div v-for="variant in collection.data" class="filter-option-item flex flex-col gap-4">
-                                    <div class="filter-option-title text-sm font-bold text-gray-500">
-                                        {{ variant.name }}
-                                    </div>
-                                    <UCheckbox
-                                        v-model="selectedAll[form.id]"
-                                        v-for="(form, index) in variant.attributes"
-                                        size="lg"
-                                        class="rounded-full"
-                                        :name="form.name"
-                                        :label="form.name" />
-                                </div>
-                            </div>
-                            <UButton
-                                variant="outline"
-                                color="none"
-                                @click="showFullOption = !showFullOption"
-                                class="show-option-btn border text-gray-500 border-gray-400 ring-0 justify-center">
-                                {{ showFullOption ? 'Thu gọn' : 'Mở rộng' }}
-                                <UIcon
-                                    class="text-sm"
-                                    :name="showFullOption ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                                    dynamic></UIcon>
-                            </UButton>
-                        </div>
-                    </div>
                     <div class="category-data flex flex-col gap-4 flex-1">
-                        <div class="flex justify-between gap-6 w-full">
-                            <div class="category-filter-data flex items-center z-50 w-full gap-4">
-                                <span class="uppercase text-gray-500 fs-14 font-medium">Phân loại</span>
-                                <USelectMenu v-model="filter" :options="filterList" option-attribute="name" class="w-full max-w-[200px]">
-                                    <UButton size="lg" color="gray" class="flex-1 justify-between">
-                                        {{ filter ? filter.name : $t('Sắp xếp theo') }}
-                                        <UIcon
-                                            name="i-heroicons-chevron-right-20-solid"
-                                            class="w-5 h-5 transition-transform transform rotate-90 text-gray-400 dark:text-gray-500" />
-                                    </UButton>
-                                    <template #option="{ option: filterItem }">
-                                        <span>{{ filterItem.name }}</span>
-                                    </template>
-                                </USelectMenu>
-                            </div>
-                        </div>
                         <div v-if="loadingProductCollection" class="category-data-list">
                             <div v-for="product in 6" class="category-data-item" :key="product">
                                 <ProductCard />
@@ -81,7 +13,10 @@
                         <div
                             v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
                             class="category-data-list">
-                            <div v-for="product in productCollection.data" class="category-data-item" :key="product">
+                            <div
+                                v-for="product in productCollection.data"
+                                class="category-data-item border p-2 rounded-lg shadow-md"
+                                :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
@@ -93,7 +28,106 @@
                                 {{ 'Không có sản phẩm trong danh mục này' }}
                             </div>
                         </div>
+                        <UButton
+                            variant="solid"
+                            color="none"
+                            size="xl"
+                            class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
+                            v-if="loadMoreBtn"
+                            >{{ 'Xem thêm' }}</UButton
+                        >
                     </div>
+                </div>
+            </div>
+            <div class="product-category-title">
+                Áo phản quang
+                <span class="sub-title">Lưới thun 2 bên</span>
+            </div>
+            <Banner :bannerList="bannerList" :autoPlay="true" />
+            <div class="px-8">
+                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
+                    <div class="category-data flex flex-col gap-4 flex-1">
+                        <div v-if="loadingProductCollection" class="category-data-list">
+                            <div v-for="product in 6" class="category-data-item" :key="product">
+                                <ProductCard />
+                            </div>
+                        </div>
+                        <div
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
+                            class="category-data-list">
+                            <div
+                                v-for="product in productCollection.data"
+                                class="category-data-item border p-2 rounded-lg shadow-md"
+                                :key="product">
+                                <ProductCard :product="product" />
+                            </div>
+                        </div>
+                        <div
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
+                            class="category-data-list">
+                            <div
+                                class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
+                                {{ 'Không có sản phẩm trong danh mục này' }}
+                            </div>
+                        </div>
+                        <UButton
+                            variant="solid"
+                            color="none"
+                            size="xl"
+                            class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
+                            v-if="loadMoreBtn"
+                            >{{ 'Xem thêm' }}</UButton
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="product-category-title">
+                Áo phản quang
+                <span class="sub-title">Kiểu Hà Nội</span>
+            </div>
+            <Banner :bannerList="bannerList" :autoPlay="true" />
+            <div class="px-8">
+                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
+                    <div class="category-data flex flex-col gap-4 flex-1">
+                        <div v-if="loadingProductCollection" class="category-data-list">
+                            <div v-for="product in 6" class="category-data-item" :key="product">
+                                <ProductCard />
+                            </div>
+                        </div>
+                        <div
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
+                            class="category-data-list">
+                            <div
+                                v-for="product in productCollection.data"
+                                class="category-data-item border p-2 rounded-lg shadow-md"
+                                :key="product">
+                                <ProductCard :product="product" />
+                            </div>
+                        </div>
+                        <div
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
+                            class="category-data-list">
+                            <div
+                                class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
+                                {{ 'Không có sản phẩm trong danh mục này' }}
+                            </div>
+                        </div>
+                        <UButton
+                            variant="solid"
+                            color="none"
+                            size="xl"
+                            class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
+                            v-if="loadMoreBtn"
+                            >{{ 'Xem thêm' }}</UButton
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="promotion-box bg-green-700 w-full px-6 py-4 flex flex-col items-center justify-center gap-6">
+                <div class="text-2xl text-white text-center">Bạn chưa tìm thấy ảo phản quang phù hợp?</div>
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-center w-full">
+                    <UButton :to="localePath({name: 'dat-may'})" color="white" class="font-bold !uppercase text-green-700 w-full md:max-w-[300px] justify-center" size="xl">Đặt may</UButton>
+                    <UButton variant="outline" color="none" class="font-bold !uppercase bg-green-700 text-white w-full md:max-w-[300px] justify-center" size="xl">Nhận tư vấn</UButton>
                 </div>
             </div>
         </div>
@@ -108,6 +142,7 @@
     </NuxtLayout>
 </template>
 <script setup>
+import Banner from '@/components/Banners/Banner.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
@@ -123,6 +158,17 @@ const isLoadingData = ref(false);
 const loadingPageCollection = ref(true);
 const showFullOption = ref(false);
 const tabIndex = ref(0);
+
+const bannerList = ref([
+    {
+        url: '/images/banner_1.jpg',
+        name: 'banner 1',
+    },
+    {
+        url: '/images/banner_2.jpg',
+        name: 'banner 2',
+    },
+]);
 
 const filterList = ref([
     {
@@ -155,6 +201,8 @@ const removeAllFilter = () => {
     refreshData.value++;
 };
 
+const loadMoreBtn = ref(false);
+
 const changeCategoryTab = (index) => {
     tabIndex.value = index;
     isLoadingData.value = true;
@@ -164,32 +212,9 @@ const changeCategoryTab = (index) => {
 };
 
 const getParamsCollection = async () => {
-    let params = {};
-    let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
-    if (attribute.length > 0) {
-        attribute = attribute.filter((item) => item.value == true);
-        attribute.forEach((item, index) => {
-            if (item.value) {
-                params[`attributes[${index}]`] = item.key;
-            }
-        });
-    }
-    switch (filter.value.value) {
-        case 0:
-            params['sort[desc][0]'] = 'id';
-            break;
-        case 1:
-            params['sort[asc][0]'] = 'id';
-            break;
-        case 2:
-            params['sort[desc][0]'] = 'price_discount';
-            break;
-        case 3:
-            params['sort[asc][0]'] = 'price_discount';
-            break;
-        default:
-            break;
-    }
+    let params = {
+        limit: 8,
+    };
     return params;
 };
 
@@ -207,14 +232,20 @@ const { data: productCollection, pending: loadingProductCollection } = await use
         }),
     {
         default: () => [],
-        watch: [filter, selectedAll.value, refreshData],
+        watch: [filter, refreshData],
     },
 );
 
 watch(
-    () => loadingCollection.value,
+    () => loadingProductCollection.value,
     () => {
-        if (!loadingCollection.value) loadingPageCollection.value = false;
+        if (!loadingProductCollection.value) {
+            loadingPageCollection.value = false;
+            console.log(productCollection.value);
+            if (productCollection.value.meta.last_page > productCollection.value.meta.from) {
+                loadMoreBtn.value = true;
+            }
+        }
     },
 );
 // const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
@@ -228,6 +259,13 @@ watch(
 </script>
 <style lang="scss" scoped>
 .category-page {
+    .product-category-title {
+        @apply flex flex-col gap-4 font-bold text-2xl lg:text-4xl text-center bg-gray-300 p-4;
+        .sub-title {
+            color: green;
+            @apply text-4xl lg:text-5xl;
+        }
+    }
     .category-tabs {
         .category-swiper {
             padding: 24px 0;

@@ -1,12 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div v-if="false" class="about-us-image relative">
-            <NuxtImg
-                class="w-full h-[500px] object-cover"
-                loading="lazy"
-                format="webp"
-                :src="'https://mcdn.coolmate.me/image/December2023/mceclip0_81.jpg'"
-                alt="" />
+            <NuxtImg class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
                 <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY GAK</h1>
@@ -19,7 +14,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                    :to="localePath({name: 've-chung-toi'})"
+                    :to="localePath({ name: 've-chung-toi' })"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
@@ -34,7 +29,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                    class="about-us-button bg-white p-4  rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
+                    class="about-us-button bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
@@ -47,9 +42,9 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({name: 'dvkh-tan-tam'})"
+                    :to="localePath({ name: 'dvkh-tan-tam' })"
                     color="none"
-                    class="about-us-button !bg-white p-4  rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
+                    class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
                     </div>
@@ -118,10 +113,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-5 grid--mobile-rev">
                         <div class="grid__column mobile--one-whole lg:col-span-2 p-4">
                             <div class="cs-story__image w-full h-full">
-                                <img
-                                    src="https://mcdn.coolmate.me/uploads/April2022/1-8_14.jpg"
-                                    class="w-full object-cover rounded-lg"
-                                    alt="image" />
+                                <img src="/images/company-banner-box.png" class="w-full object-cover rounded-lg" alt="image" />
                             </div>
                         </div>
                         <div class="grid__column mobile--one-whole my-auto col-span-3">
@@ -173,10 +165,7 @@
                         </div>
                         <div class="grid__column">
                             <div class="cs-services__image">
-                                <img
-                                    src="https://mcdn.coolmate.me/uploads/April2022/Group_1_(1).png"
-                                    class="w-full object-cover"
-                                    alt="image" />
+                                <img src="/images/about-us-1.png" class="w-full object-cover" alt="image" />
                             </div>
                         </div>
                     </div>
@@ -196,10 +185,7 @@
                         </div>
                         <div class="grid__column">
                             <div class="cs-services__image w-full">
-                                <img
-                                    src="https://mcdn.coolmate.me/uploads/April2022/sn34-5_2.png"
-                                    class="w-full object-cover"
-                                    alt="image" />
+                                <img src="/images/about-us-2.png" class="w-full object-cover" alt="image" />
                             </div>
                         </div>
                     </div>
@@ -219,7 +205,7 @@
                         </div>
                         <div class="grid__column">
                             <div class="cs-services__image">
-                                <img src="https://mcdn.coolmate.me/uploads/April2022/Group_1.jpg" class="w-full object-cover" alt="image" />
+                                <img src="/images/about-us-3.jpg" class="w-full object-cover" alt="image" />
                             </div>
                         </div>
                     </div>
@@ -239,10 +225,7 @@
                         </div>
                         <div class="grid__column">
                             <div class="cs-services__image">
-                                <img
-                                    src="https://mcdn.coolmate.me/uploads/April2022/Anh_chup_Man_hinh_2021-07-21_luc_16.png"
-                                    class="w-full object-cover"
-                                    alt="image" />
+                                <img src="/images/about-us-4.jpg" class="w-full object-cover" alt="image" />
                             </div>
                         </div>
                     </div>
@@ -264,7 +247,7 @@
                             <div class="cs-services__image">
                                 <img
                                     class="w-full object-cover"
-                                    src="https://mcdn.coolmate.me/uploads/April2022/Thiet_ke_chua_co_ten_(2)_1.jpg"
+                                    src="/images/about-us-5.jpeg"
                                     alt="image" />
                             </div>
                         </div>
@@ -288,21 +271,16 @@
                 </div>
             </section>
             <section class="cs-more">
-                <div class="grid lg:grid-cols-3 grid--aligned-center grid--three-columns grid--doubling">
+                <div class="grid lg:grid-cols-2 grid--aligned-center grid--three-columns grid--doubling">
                     <div class="grid__column">
-                        <a href="https://coolmate.typeform.com/to/lU2oprGc" target="_blank"
-                            ><img src="https://mcdn.coolmate.me/image/October2023/mceclip1_45.png" alt="Tim hiểu thêm Coolmate"
-                        /></a>
+                        <NuxtLink :to="localePath({name: 'dvkh-tan-tam'})" target="_blank"
+                            ><img src="/images/about-us-6.jpg" alt="Tim hiểu thêm GAK"
+                        /></NuxtLink>
                     </div>
                     <div class="grid__column">
-                        <a href="/collections" target="_blank"
-                            ><img src="https://mcdn.coolmate.me/image/October2023/mceclip2_96.png" alt="Khám phá ngay"
-                        /></a>
-                    </div>
-                    <div class="grid__column">
-                        <a href="/lp/coolmate-101" target="_blank"
-                            ><img src="https://mcdn.coolmate.me/image/October2023/mceclip0_36.png" alt="Gia nhập ngay"
-                        /></a>
+                        <NuxtLink :to="localePath({name: 'tat-ca-san-pham'})" target="_blank"
+                            ><img src="/images/about-us-7.jpg" alt="Khám phá ngay"
+                        /></NuxtLink>
                     </div>
                 </div>
             </section>
