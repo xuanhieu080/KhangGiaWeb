@@ -6,6 +6,19 @@
                     <div class="category-header-title">
                         <h1 class="font-bold uppercase text-2xl">{{ 'Tất cả sản phẩm' }}</h1>
                     </div>
+                    <UInput
+                        class="search-box max-w-[500px] rounded-[50px] bg-white"
+                        name="search-box"
+                        size="xl"
+                        color="white"
+                        variant="outline"
+                        icon="i-heroicons-magnifying-glass-20-solid"
+                        :loading="loadingProductCollection"
+                        v-model="searchItem"
+                        :ui="{ icon: { trailing: { pointer: '' } } }"
+                        autocomplete="off"
+                        placeholder="Tìm kiếm sản phẩm">
+                    </UInput>
                 </div>
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
                     <div class="category-main-left w-full lg:max-w-[350px] px-4">
@@ -123,6 +136,8 @@ const isLoadingData = ref(false);
 const loadingPageCollection = ref(true);
 const showFullOption = ref(false);
 const tabIndex = ref(0);
+const searchItem = ref(router.currentRoute.value.query ? router.currentRoute.value.query.search : null);
+
 
 const filterList = ref([
     {
@@ -155,6 +170,7 @@ const removeAllFilter = () => {
     refreshData.value++;
 };
 
+
 const changeCategoryTab = (index) => {
     tabIndex.value = index;
     isLoadingData.value = true;
@@ -162,6 +178,10 @@ const changeCategoryTab = (index) => {
         isLoadingData.value = false;
     }, 500);
 };
+
+const deboundTime = ref({
+    timeOut: null,
+});
 
 const getParamsCollection = async () => {
     let params = {};
@@ -173,6 +193,9 @@ const getParamsCollection = async () => {
                 params[`attributes[${index}]`] = item.key;
             }
         });
+    }
+    if(router.currentRoute.value.query) {
+        params.search = searchItem.value
     }
     switch (filter.value.value) {
         case 0:
@@ -215,6 +238,17 @@ watch(
     () => loadingCollection.value,
     () => {
         if (!loadingCollection.value) loadingPageCollection.value = false;
+    },
+);
+
+watch(
+    () => searchItem.value,
+    async () => {
+        clearTimeout(deboundTime.value.timeOut);
+        deboundTime.value.timeOut = setTimeout(() => {
+            refreshData.value++;
+            deboundTime.value.timeOut = null;
+        }, 500);
     },
 );
 // const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>

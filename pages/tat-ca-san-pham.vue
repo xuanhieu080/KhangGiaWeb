@@ -241,7 +241,6 @@ watch(
     () => {
         if (!loadingProductCollection.value) {
             loadingPageCollection.value = false;
-            console.log(productCollection.value);
             if (productCollection.value.meta.last_page > productCollection.value.meta.from) {
                 loadMoreBtn.value = true;
             }
