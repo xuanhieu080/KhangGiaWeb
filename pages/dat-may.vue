@@ -177,7 +177,7 @@
                                         <div class="pod-grid__inner">
                                             <div class="pod-grid__thumbnail">
                                                 <div rel-script="popup-grid__popup" data-product="thun" class="pod-grid__image">
-                                                    <img src="/images/product-item-1.webp" alt="images" />
+                                                    <img src="/images/product-item-1.jpg" alt="images" />
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline"><span>Áo thun </span> Số lượng tối thiểu: 50 chiếc</div>
