@@ -44,7 +44,6 @@ watchEffect(() => {
         isLoadingPage.value = false;
     }
 });
-console.log(page);
 // useSchemaOrg([
 //     defineArticle({
 //         type: 'Article',

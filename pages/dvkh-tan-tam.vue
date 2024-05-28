@@ -5,7 +5,7 @@
                 class="w-full h-[500px] object-cover"
                 loading="lazy"
                 format="webp"
-                :src="'https://mcdn.coolmate.me/image/December2023/mceclip0_81.jpg'"
+                src="/images/company-banner.jpg"
                 alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div v-if="false" class="about-content !pt-[5rem] mx-auto">
-            <section class="cs-caption">
+            <section class="cs-caption py-4">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-about__heading w-full text-center !my-6">CÔNG TY GAK XIN CHÀO !</h2>
                     <div class="cs-caption__wrapper !bg-[#2f5acf]">
@@ -115,7 +115,7 @@
                         </div>
                         <div class="grid__column">
                             <div class="cs-services__image">
-                                <img src="/images/order-step-1.png" class="w-full object-cover" alt="image" />
+                                <img src="/images/order-step-1.jpg" class="w-full object-cover" alt="image" />
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="grid__column flex items-end">
                             <div class="cs-services__image w-full">
-                                <img src="/images/order-step-2.png" class="w-full object-cover mb-6" alt="image" />
+                                <img src="/images/order-step-2.jpg" class="w-full object-cover mb-6" alt="image" />
                             </div>
                         </div>
                     </div>
@@ -154,22 +154,22 @@
                         </div>
                         <div class="grid__column">
                             <div class="cs-services__image">
-                                <img src="/images/order-step-3.png" class="w-full object-cover" alt="image" />
+                                <img src="/images/order-step-3.jpg" class="w-full object-cover" alt="image" />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <section class="services-thankyou mt-8 lg:mt-[128px]">
-                <div class="services-thankyou__image">
-                    <picture style="width: 100%"
-                        ><source srcset="/images/order-thank-you-portrait.png" media="(max-width: 991px)" />
-                        <img src="/images/order-thank-you.png" alt="Thanks you"
-                    /></picture>
-                </div>
                 <div class="services-thankyou__wrapper">
                     <h2 class="services-thankyou__heading">THANK YOU!</h2>
                     <div class="services-thankyou__content">Trong cuộc sống có quá nhiều sự lựa chọn, cảm ơn bạn đã chọn GAK!</div>
+                </div>
+                <div class="services-thankyou__image">
+                    <picture style="width: 100%"
+                        ><source srcset="/images/order-thank-you.jpg" media="(max-width: 991px)" />
+                        <img src="/images/order-thank-you.jpg" alt="Thanks you"
+                    /></picture>
                 </div>
             </section>
             <section class="cs-cta">
@@ -297,7 +297,6 @@ const slug = ref(router.currentRoute.value.params.slug);
         font-weight: 700;
         font-size: 10rem;
         line-height: 170px;
-        font-family: 'CriteriaCF';
         text-align: right;
     }
     .cs-thanks {
@@ -315,6 +314,7 @@ const slug = ref(router.currentRoute.value.params.slug);
         }
     }
     .services-thankyou {
+        background-color: #f3f3f5;
         position: relative;
         .services-thankyou__image {
             width: 100%;
@@ -326,20 +326,12 @@ const slug = ref(router.currentRoute.value.params.slug);
             object-fit: cover;
         }
         .services-thankyou__wrapper {
-            position: absolute;
-            z-index: 2;
             border-radius: 30px;
             text-align: center;
-            top: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            @media screen and (max-width: 991px) {
-                top: 48px;
-            }
+            padding: 32px 0;
             .services-thankyou__heading {
                 font-size: 4rem;
                 font-weight: 600;
-                font-family: 'CriteriaCF';
                 line-height: normal;
                 margin-bottom: 0;
             }

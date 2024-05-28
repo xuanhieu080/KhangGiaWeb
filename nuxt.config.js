@@ -17,6 +17,17 @@ export default defineNuxtConfig({
             region: process.env.NUXT_SITE_ADDRESS_REGION,
             country: process.env.NUXT_SITE_ADDRESS_COUNTRY,
             postal: process.env.NUXT_SITE_POSTAL_CODE,
+            gtm: {
+                id: 'GTM-5MFK8NDW',
+                defer: false,
+                compatibility: false,
+                enabled: true,
+                debug: true,
+                loadScript: true,
+                enableRouterSync: true,
+                trackOnNextTick: false,
+                devtools: true,
+            }
         },
     },
     build: {
@@ -32,9 +43,9 @@ export default defineNuxtConfig({
         // '/app/**': { ssr: false },
         // '/en/app/**': { ssr: false },
     },
-    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo'],
+    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo', '@zadigetvoltaire/nuxt-gtm'],
     site: {
-        indexable: false,
+        indexable: true,
         url: process.env.WEB_BASE_URL,
         name: process.env.NUXT_SITE_NAME,
         description: process.env.NUXT_SITE_DESCRIPTION,
@@ -236,6 +247,10 @@ export default defineNuxtConfig({
                     hid: 'gtmHead',
                     innerHTML:
                         "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'GTM-5MFK8NDW');",
+                },
+                {
+                    name: 'google-site-verification',
+                    content: "6w3-X134SqCECM8aDFS_WmQg30hUbvRAYVVbYpAYiZk",
                 },
             ],
             __dangerouslyDisableSanitizers: ['script'],

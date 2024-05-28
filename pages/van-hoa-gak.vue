@@ -68,7 +68,7 @@
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">ĐI LÊN TỪ CHẤT LƯỢNG VÀ SỰ TỈ MỈ</h2>
                                 <div class="cs-about__image">
-                                    <img src="/images/van-hoa-step-1.png" alt="" />
+                                    <img src="/images/company-banner-box.png" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                                 </p>
                             </div>
                             <div class="grid-column">
-                                <img src="/images/van-hoa-step-2.png" alt="" />
+                                <img src="/images/order-step-2.jpg" alt="" />
                             </div>
                         </div>
                         <div class="recruitment-culture__ten-facts mt-8 lg:mt-16">
@@ -1106,7 +1106,7 @@
                                 </UButton>
                             </div>
                         </div>
-                        <div class="about-card__image"><img loading="lazy" src="/images/recruitment-connect.jpg" alt="Image" /></div>
+                        <div class="about-card__image"><img loading="lazy" src="/images/company-banner.jpg" alt="Image" /></div>
                     </div>
                 </div>
             </section>
@@ -1118,7 +1118,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/facebook.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Fanpage</div>
-                                    <a href="https://www.facebook.com/tuyendungcoolmate/" class="recruitment-social__link"> Life at GAK </a>
+                                    <a href="" class="recruitment-social__link"> Life at GAK </a>
                                 </div>
                             </div>
                         </div>
@@ -1127,7 +1127,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/linkedin.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Linkedin</div>
-                                    <a href="https://www.linkedin.com/company/coolmate/" class="recruitment-social__link"> Coolmate.me </a>
+                                    <a href="" class="recruitment-social__link"> GAK VN </a>
                                 </div>
                             </div>
                         </div>
@@ -1136,7 +1136,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/tiktok.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Tiktok</div>
-                                    <a href="https://www.tiktok.com/@tuyendungcoolmate" class="recruitment-social__link"> Life at GAK </a>
+                                    <a href="" class="recruitment-social__link"> Life at GAK </a>
                                 </div>
                             </div>
                         </div>

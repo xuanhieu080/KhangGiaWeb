@@ -278,11 +278,13 @@
                             @click="searchItem = ''" />
                     </template>
                 </UInput>
-                <div
+                <NuxtLink
+                    :to="localePath({ name: 'tim-kiem-san-pham' , query: {search: searchItem}})"
                     v-if="searchItem !== '' && !loadingSearchProduct"
-                    class="search-box-directly w-full py-2 px-6 bg-gray-100 rounded-md text-sm">
+                    @click="handleSearchKeyword"
+                    class="search-box-directly w-full py-2 px-6 !bg-gray-100 rounded-md text-sm cursor-pointer">
                     Tìm kiếm từ khóa: <b class="lowercase">{{ searchItem }}</b>
-                </div>
+                </NuxtLink>
             </div>
             <div class="search-results px-4 pb-6 overflow-auto">
                 <div class="search-title text-2xl font-medium mb-4">Danh sách tìm kiếm:</div>
@@ -346,6 +348,8 @@ const useHeaderStore = useHeader();
 
 const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
 const localePath = useLocalePath();
+
+const router = useRouter();
 const searchItem = ref('');
 const profileSide = ref(false);
 const openSearchSlide = ref(false);
@@ -371,6 +375,15 @@ const handleChangePage = (e) => {
 
 const handleOpenSearchSlideOver = () => {
     openSearchSlide.value = true;
+};
+
+let searchWord = useCookie('search-keyword', {
+    default: () => null,
+    maxAge: 60 * 60 * 24 * 7,
+});
+const handleSearchKeyword = () => {
+    searchWord.value = searchItem.value;
+    openSearchSlide.value = false;
 };
 
 const formatPriceProduct = (item) => {
