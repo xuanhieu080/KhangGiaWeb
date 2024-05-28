@@ -85,17 +85,18 @@ export default defineNuxtConfig({
         // },
         locales: [
             {
-                code: 'en',
-                iso: 'en-US',
-                name: 'English',
-                file: 'en.json',
-            },
-            {
                 code: 'vi',
                 iso: 'vi-VN',
                 name: 'Việt Nam',
                 file: 'vi.json',
             },
+            {
+                code: 'en',
+                iso: 'en-US',
+                name: 'English',
+                file: 'en.json',
+            },
+            
         ],
         detectBrowserLanguage: false,
         defaultLocale: 'vi',
