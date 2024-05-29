@@ -1,31 +1,60 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingPageCollection" class="category-page bg-white">
+        <div class="category-page bg-white">
             <Banner :bannerList="bannerList" :autoPlay="true" />
-            <div class="px-8">
-                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
-                    <div class="category-data flex flex-col gap-4 flex-1">
-                        <div v-if="loadingProductCollection" class="category-data-list">
-                            <div v-for="product in 6" class="category-data-item" :key="product">
-                                <ProductCard />
-                            </div>
+            <div v-if="!loadingProductCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-8">
+                <div class="category-data flex flex-col gap-4 flex-1">
+                    <div v-if="productCollection.data && productCollection.data.length > 0" class="category-data-list">
+                        <div
+                            v-for="product in productCollection.data"
+                            class="category-data-item data-desktop hidden md:block border p-2 rounded-lg shadow-md"
+                            :key="product">
+                            <ProductCard :product="product" />
                         </div>
                         <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
-                            class="category-data-list">
+                            v-for="(product, index) in productCollection.data"
+                            :class="index > 1 ? '!hidden' : ''"
+                            class="category-data-item data-mobile block md:hidden border p-2 rounded-lg shadow-md"
+                            :key="product">
+                            <ProductCard :product="product" />
+                        </div>
+                    </div>
+                    <UButton
+                        variant="solid"
+                        color="none"
+                        size="xl"
+                        class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
+                        v-if="productCollection.meta.last_page > productCollection.meta.from"
+                        >{{ 'Xem thêm' }}</UButton
+                    >
+                </div>
+            </div>
+            <div v-else class="category-data-list my-4 p-4">
+                <div v-for="product in 4" class="category-data-item" :key="product">
+                    <ProductCard />
+                </div>
+            </div>
+            <div v-if="!loadingProductCollectionAll" v-for="category in productCollectionAll.data" class="category-product py-4">
+                <div class="product-category-title">
+                    Sản phẩm
+                    <span class="sub-title">{{ category.name }}</span>
+                </div>
+                <Banner :bannerList="[{ url: category.image_url }]" :autoPlay="true" />
+                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
+                    <div class="category-data flex flex-col gap-4 flex-1">
+                        <div v-if="category.products.length > 0" class="category-data-list">
                             <div
-                                v-for="product in productCollection.data"
-                                class="category-data-item border p-2 rounded-lg shadow-md"
+                                v-for="product in category.products"
+                                class="category-data-item data-desktop hidden md:block border p-2 rounded-lg shadow-md"
                                 :key="product">
                                 <ProductCard :product="product" />
                             </div>
-                        </div>
-                        <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
-                            class="category-data-list">
                             <div
-                                class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
-                                {{ 'Không có sản phẩm trong danh mục này' }}
+                                v-for="(product, index) in category.products"
+                                :class="index > 1 ? '!hidden' : ''"
+                                class="category-data-item data-mobile block md:hidden border p-2 rounded-lg shadow-md"
+                                :key="product">
+                                <ProductCard :product="product" />
                             </div>
                         </div>
                         <UButton
@@ -33,110 +62,35 @@
                             color="none"
                             size="xl"
                             class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
-                            v-if="loadMoreBtn"
-                            >{{ 'Xem thêm' }}</UButton
-                        >
+                            :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
+                            {{ 'Xem thêm' }}
+                        </UButton>
                     </div>
                 </div>
             </div>
-            <div class="product-category-title">
-                Áo phản quang
-                <span class="sub-title">Lưới thun 2 bên</span>
-            </div>
-            <Banner :bannerList="bannerList" :autoPlay="true" />
-            <div class="px-8">
-                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
-                    <div class="category-data flex flex-col gap-4 flex-1">
-                        <div v-if="loadingProductCollection" class="category-data-list">
-                            <div v-for="product in 6" class="category-data-item" :key="product">
-                                <ProductCard />
-                            </div>
-                        </div>
-                        <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
-                            class="category-data-list">
-                            <div
-                                v-for="product in productCollection.data"
-                                class="category-data-item border p-2 rounded-lg shadow-md"
-                                :key="product">
-                                <ProductCard :product="product" />
-                            </div>
-                        </div>
-                        <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
-                            class="category-data-list">
-                            <div
-                                class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
-                                {{ 'Không có sản phẩm trong danh mục này' }}
-                            </div>
-                        </div>
-                        <UButton
-                            variant="solid"
-                            color="none"
-                            size="xl"
-                            class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
-                            v-if="loadMoreBtn"
-                            >{{ 'Xem thêm' }}</UButton
-                        >
-                    </div>
-                </div>
-            </div>
-            <div class="product-category-title">
-                Áo phản quang
-                <span class="sub-title">Kiểu Hà Nội</span>
-            </div>
-            <Banner :bannerList="bannerList" :autoPlay="true" />
-            <div class="px-8">
-                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
-                    <div class="category-data flex flex-col gap-4 flex-1">
-                        <div v-if="loadingProductCollection" class="category-data-list">
-                            <div v-for="product in 6" class="category-data-item" :key="product">
-                                <ProductCard />
-                            </div>
-                        </div>
-                        <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
-                            class="category-data-list">
-                            <div
-                                v-for="product in productCollection.data"
-                                class="category-data-item border p-2 rounded-lg shadow-md"
-                                :key="product">
-                                <ProductCard :product="product" />
-                            </div>
-                        </div>
-                        <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
-                            class="category-data-list">
-                            <div
-                                class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
-                                {{ 'Không có sản phẩm trong danh mục này' }}
-                            </div>
-                        </div>
-                        <UButton
-                            variant="solid"
-                            color="none"
-                            size="xl"
-                            class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
-                            v-if="loadMoreBtn"
-                            >{{ 'Xem thêm' }}</UButton
-                        >
-                    </div>
+            <div v-else class="category-data-list my-4 p-4">
+                <div v-for="product in 4" class="category-data-item" :key="product">
+                    <ProductCard />
                 </div>
             </div>
             <div class="promotion-box bg-green-700 w-full px-6 py-4 flex flex-col items-center justify-center gap-6">
                 <div class="text-2xl text-white text-center">Bạn chưa tìm thấy ảo phản quang phù hợp?</div>
                 <div class="flex flex-col md:flex-row gap-4 items-center justify-center w-full">
-                    <UButton :to="localePath({name: 'dat-may'})" color="white" class="font-bold !uppercase text-green-700 w-full md:max-w-[300px] justify-center" size="xl">Đặt may</UButton>
-                    <UButton variant="outline" color="none" class="font-bold !uppercase bg-green-700 text-white w-full md:max-w-[300px] justify-center" size="xl">Nhận tư vấn</UButton>
+                    <UButton
+                        :to="localePath({ name: 'dat-may' })"
+                        color="white"
+                        class="font-bold !uppercase text-green-700 w-full md:max-w-[300px] justify-center"
+                        size="xl"
+                        >Đặt may</UButton
+                    >
+                    <UButton
+                        variant="outline"
+                        color="none"
+                        class="font-bold !uppercase bg-green-700 text-white w-full md:max-w-[300px] justify-center"
+                        size="xl"
+                        >Nhận tư vấn</UButton
+                    >
                 </div>
-            </div>
-        </div>
-        <div
-            v-if="loadingPageCollection"
-            class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
-            <div class="loading-wrapper">
-                <div class="loading"></div>
-                <div id="loading-text">Loading...</div>
             </div>
         </div>
     </NuxtLayout>
@@ -213,7 +167,7 @@ const changeCategoryTab = (index) => {
 
 const getParamsCollection = async () => {
     let params = {
-        limit: 8,
+        limit: 4,
     };
     return params;
 };
@@ -225,7 +179,7 @@ const {
     error: collectionError,
 } = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`));
 const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
-    'product-category-all',
+    'product-category-hot',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
             params: await getParamsCollection(),
@@ -236,17 +190,12 @@ const { data: productCollection, pending: loadingProductCollection } = await use
     },
 );
 
-watch(
-    () => loadingProductCollection.value,
-    () => {
-        if (!loadingProductCollection.value) {
-            loadingPageCollection.value = false;
-            if (productCollection.value.meta.last_page > productCollection.value.meta.from) {
-                loadMoreBtn.value = true;
-            }
-        }
-    },
+const { data: productCollectionAll, pending: loadingProductCollectionAll } = await useLazyAsyncData('product-category-all', async () =>
+    useOriginalFetch(`/api/v1/categories/all`, {
+        params: await getParamsCollection(),
+    }),
 );
+
 // const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
 //     useOriginalFetch(`/api/v1/categories`),
 // );
@@ -258,6 +207,12 @@ watch(
 </script>
 <style lang="scss" scoped>
 .category-page {
+    .category-main {
+        @apply container mx-auto;
+        @media screen and (max-width: 767px) {
+            padding: 0 4px;
+        }
+    }
     .product-category-title {
         @apply flex flex-col gap-4 font-bold text-2xl lg:text-4xl text-center bg-gray-300 p-4;
         .sub-title {
@@ -280,13 +235,13 @@ watch(
             }
         }
     }
+    .category-data {
+        @apply py-4;
+    }
     .category-data-list {
         @apply flex gap-4 justify-start w-full flex-wrap;
         .category-data-item {
             width: calc(25% - 12px);
-            @media screen and (max-width: 1199px) {
-                width: calc(100% / 3 - 11px);
-            }
             @media screen and (max-width: 991px) {
                 width: calc(100% / 2 - 8px);
             }

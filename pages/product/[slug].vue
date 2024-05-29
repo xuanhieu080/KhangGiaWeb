@@ -4,8 +4,8 @@
             <div class="container mx-auto flex flex-col gap-4">
                 <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative pt-12">
                     <UBreadcrumb
-                        class="w-full absolute -top-2 left-2 lg:left-[96px]"
-                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0' }"
+                        class="w-fit absolute -top-2 left-2 lg:left-[96px]"
+                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1' }"
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
 
@@ -205,7 +205,7 @@
                                 >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
                             >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
-                                <div v-for="(attribute, index) in variantAttribute.attributes">
+                                <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
                                         class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
@@ -228,8 +228,17 @@
                                     @click="resetProductPage(true)"
                                     >{{ $t('Cài lại') }}</UButton
                                 >
+                                <UButton
+                                    v-if="variantAttribute.attributes.length > 3"
+                                    :to="localePath({ name: 'product-slug', params: { slug: router.currentRoute.value.params.slug } })"
+                                    variant="ghost"
+                                    color="none"
+                                    class="text-blue-500"
+                                    @click="showAllColor = !showAllColor"
+                                    >{{ showAllColor ? $t('Thu gọn') : $t('Xem thêm') }}...</UButton
+                                >
                             </div>
-                            <div v-else class="size-list flex items-center gap-4">
+                            <div v-else class="size-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes">
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
@@ -440,7 +449,7 @@
                             {{ productItem.data.rate_count + ' ' + $t('Review') }}
                         </div>
                     </div>
-                    <div v-if="!loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
+                    <div v-if="!loadingReviewProduct" class="flex flex-col md:grid sm:grid-cols-2 flex-1 gap-8">
                         <div
                             v-if="reviewProduct.data.length > 0"
                             v-for="review in reviewProduct.data"
@@ -482,14 +491,14 @@
                                 <span class="text-sm leading-5">{{ $t('Rows per page') }}:</span>
                                 <USelect v-model="pageCount" :options="[8, 25, 50]" class="me-2 w-20" size="xs" />
                             </div>
-                            <div>
+                            <div class="hidden md:block">
                                 <span class="text-sm leading-5">
                                     Hiển thị
-                                    <span class="font-medium">{{ pageFrom }}</span>
+                                    <span class="font-bold">{{ pageFrom }}</span>
                                     đến
-                                    <span class="font-medium">{{ pageTo }}</span>
+                                    <span class="font-bold">{{ pageTo }}</span>
                                     trong
-                                    <span class="font-medium">{{ pageTotal }}</span>
+                                    <span class="font-bold">{{ pageTotal }}</span>
                                     tổng số
                                 </span>
                             </div>
@@ -552,6 +561,7 @@ const quantity = ref(1);
 const productVariants = ref([]);
 const productVariantSlugs = ref({});
 const productItemCurrent = ref(null);
+const showAllColor = ref(false);
 
 const sort = ref({ direction: 'desc' });
 const page = ref(1);

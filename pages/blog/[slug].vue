@@ -35,7 +35,9 @@
                             <span class="font-bold">{{ selectedCategory ? selectedCategory.name : '' }}</span>
                         </template>
                         <template #option="{ option: category }">
-                            <NuxtLink class="min-h-8 flex items-center w-full" :to="localePath({ name: 'blog-slug', params: { slug: category.slug } })">
+                            <NuxtLink
+                                class="min-h-8 flex items-center w-full"
+                                :to="localePath({ name: 'blog-slug', params: { slug: category.slug } })">
                                 <span>{{ category.name }}</span>
                             </NuxtLink>
                         </template>
@@ -65,16 +67,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="blog-daily flex flex-col gap-4 w-full">
+                <div v-if="!loadingArticleNew" class="blog-daily flex flex-col gap-4 w-full">
                     <div class="title text-[28px] 2xl:text-[30px] font-bold py-3 px-5 bg-[#008000] text-white rounded-xl">
-                        {{ $t('Bài mới mỗi ngày') }}
+                        {{ $t('Bài viết về') + ' ' + selectedCategory.name }}
                     </div>
                     <div
-                        v-if="!loadingArticleNew && articleNew.data && articleNew.data.length > 0"
+                        v-if="articleNew.data && articleNew.data.length > 0"
                         class="flex flex-wrap items-start justify-start gap-4 w-full">
                         <div v-for="article in articleNew.data" class="blog-daily-item">
                             <ArticleCard :article="article" :is-view-count="false" :custom-height="400" />
                         </div>
+                    </div>
+                    <div
+                        v-else
+                        class="flex items-center h-48 text-xl justify-center text-center border border-dashed rounded-lg gap-4 w-full">
+                        Không có bài viết nào trong nhóm này
                     </div>
                 </div>
             </div>
@@ -293,27 +300,25 @@ useSchemaOrg([
 ]);
 
 //data
-const { data: articlesList, pending: loadingAticlesList } = await useLazyAsyncData('articles-blog', () =>
-    useOriginalFetch('/api/v1/posts'),
-);
-const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData('articles-blog-hot', () =>
+
+const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData('articles-blog-hot-specific', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
             is_hot: true,
         },
     }),
 );
-const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncData('articles-blog-view', () =>
+const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncData('articles-blog-view-specific', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
             sort: { desc: 'view' },
         },
     }),
 );
-const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-blog-new', () =>
+const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-category-specific', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
-            is_new: true,
+            group_slug: router.currentRoute.value.params?.slug,
         },
     }),
 );
@@ -323,12 +328,21 @@ const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsync
 // const { data: articleGroup, pending: loadingArticleGroup } = await useLazyAsyncData('articles-blog-group', () =>
 //     useOriginalFetch('/api/v1/post/groups'),
 // );
-
+const router = useRouter();
 watch(
     () => loadingArticleGroup.value,
     () => {
         if (articleGroups.value.data?.length > 0) {
-            selectedCategory.value = articleGroups.value.data[0];
+            if (router.currentRoute.value.params.slug) {
+                let findIndex = articleGroups.value.data.findIndex((article) => article.slug == router.currentRoute.value.params.slug);
+                if (findIndex != -1) {
+                    selectedCategory.value = articleGroups.value.data[findIndex];
+                } else {
+                    selectedCategory.value = articleGroups.value.data[0];
+                }
+            } else {
+                selectedCategory.value = articleGroups.value.data[0];
+            }
         }
     },
     {

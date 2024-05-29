@@ -34,18 +34,18 @@
                             <SwiperSlide
                                 v-for="(category, index) in collection.item.descendants"
                                 :key="product"
-                                class="h-full w-[200px] mr-4">
+                                class="!h-[400px] w-[200px] mr-4">
                                 <UCard
-                                    :ui="{ wrapper: '', shadow: '', ring: '', body: { padding: 'p-2 sm:p-2' } }"
-                                    class="category-card"
+                                    :ui="{ wrapper: '', shadow: '', ring: '', body: { base: 'h-full', padding: 'p-2 sm:p-2' } }"
+                                    class="category-card h-full"
                                     @click="changeCategoryTab(index)">
                                     <NuxtLink
                                         :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
-                                        class="category-item flex flex-col gap-2">
+                                        class="category-item flex flex-col justify-between gap-2 h-full">
                                         <NuxtImg
                                             :src="category.image_url"
                                             format="webp"
-                                            class="w-full h-full object-cover rounded-md flex-1" />
+                                            class="w-full object-contain rounded-md h-4/5" />
                                         <div class="category-name font-semibold">
                                             {{ category.name }}
                                         </div>
@@ -286,9 +286,9 @@ watch(
             padding: 24px 0;
             .category-card {
                 .category-item {
-                    border: 2px solid transparent;
-                    padding: 12px;
+                    border: 1px solid rgb(229, 229, 229);
                     border-radius: 12px;
+                    padding: 8px;
                     &.router-link-active {
                         @apply border-blue-700;
                     }
