@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="blog-page-content container mx-auto py-6 flex flex-col gap-4">
-                <div class="search-box w-4/5 max-w-[567px] mx-auto">
+                <div v-if="false" class="search-box w-4/5 max-w-[567px] mx-auto">
                     <UInput
                         size="lg"
                         :ui="{ rounded: 'rounded-2xl' }"
@@ -29,12 +29,15 @@
                         :options="articleGroups.data"
                         class="w-full max-w-[250px] custom-input"
                         option-attribute="name"
+                        :uiMenu="{option: {container: 'w-full'}}"
                         :ui="{ rounded: 'rounded-full' }">
                         <template #label>
                             <span class="font-bold">{{ selectedCategory ? selectedCategory.name : '' }}</span>
                         </template>
                         <template #option="{ option: category }">
-                            <span>{{ category.name }}</span>
+                            <NuxtLink class="min-h-8 flex items-center w-full" :to="localePath({ name: 'blog-slug', params: { slug: category.slug } })">
+                                <span>{{ category.name }}</span>
+                            </NuxtLink>
                         </template>
                     </USelectMenu>
                     <NuxtLink :to="localePath({ name: 'index' })">
@@ -117,35 +120,41 @@ const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData
     useOriginalFetch('/api/v1/posts', {
         params: {
             is_hot: true,
-        }
+        },
     }),
 );
 const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncData('articles-blog-view', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
-            sort:{desc:'view'},
-        }
+            sort: { desc: 'view' },
+        },
     }),
 );
 const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-blog-new', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
             is_new: true,
-        }
+        },
     }),
 );
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>
-    useOriginalFetch('/api/v1/post-groups')
+    useOriginalFetch('/api/v1/post-groups'),
 );
 // const { data: articleGroup, pending: loadingArticleGroup } = await useLazyAsyncData('articles-blog-group', () =>
 //     useOriginalFetch('/api/v1/post/groups'),
 // );
 
-if (!loadingArticleGroup.value) {
-    if(articleGroups.value.data?.length > 0) {
-        selectedCategory.value = articleGroups.value.data[0]
-    }
-}
+watch(
+    () => loadingArticleGroup.value,
+    () => {
+        if (articleGroups.value.data?.length > 0) {
+            selectedCategory.value = articleGroups.value.data[0];
+        }
+    },
+    {
+        immediate: true,
+    },
+);
 </script>
 
 <style lang="scss" scoped>

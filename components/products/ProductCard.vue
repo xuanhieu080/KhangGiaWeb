@@ -3,10 +3,9 @@
         :ui="{ rounded: '', ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }"
         v-if="product"
         class="product-card relative">
-        <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-2 md:gap-4 w-full">
-            <div class="product-image relative bg-gray-100">
-                <button
-                    class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden flex">
+        <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-4 w-full">
+            <div class="product-image relative">
+                <button class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden flex">
                     <NuxtImg
                         class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain first-look"
                         :src="product.thumb_image[0]" />
@@ -19,9 +18,10 @@
             <div v-if="productColor" class="product-type flex items-center justify-start flex-wrap gap-2">
                 <button
                     v-for="(color, index) in productColor.attributes"
+                    v-show="index < 5"
                     class="product-type-item opacity-80"
-                    :style="{ 'background-color': color.attribute_color }"
-                    @click.stop.prevent="handleShowImage(color, index)"></button>
+                    :style="{ 'background-color': color.attribute_color }"></button>
+                <span v-if="productColor.attributes.length > 5" class="self-end text-xs text-blue-500">Xem thêm...</span>
             </div>
             <div class="product-details flex flex-col gap-2 w-full">
                 <div class="product-name">
@@ -68,8 +68,8 @@ const props = defineProps({
     product: Object,
 });
 const activeType = ref(0);
-const activeSilk = ref(0)
-const activeColor = ref(0)
+const activeSilk = ref(0);
+const activeColor = ref(0);
 const localePath = useLocalePath();
 
 const productColor = ref(null);
@@ -83,33 +83,33 @@ const productVariants = ref([]);
 // => Data {màu: A, mã màu A: ... , hình của màu A: []}
 
 let initialProduct = () => {
-    let productColorIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'mau-sac')
-    let productSizeIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'size')
-    let productSilkIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'chat-vai')
-    if(productColorIndex != -1) {
+    let productColorIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'mau-sac');
+    let productSizeIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'size');
+    let productSilkIndex = props.product.variantAttribute.findIndex((attr) => attr.slug == 'chat-vai');
+    if (productColorIndex != -1) {
         productColor.value = props.product.variantAttribute[productColorIndex];
-        productVariants.value = [...productVariants.value, ...productColor.value.attributes]
+        productVariants.value = [...productVariants.value, ...productColor.value.attributes];
     }
-    if(productSizeIndex != -1) {
+    if (productSizeIndex != -1) {
         productSize.value = props.product.variantAttribute[productSizeIndex];
-        productVariants.value = [...productVariants.value, ...productSize.value.attributes]
+        productVariants.value = [...productVariants.value, ...productSize.value.attributes];
     }
-    if(productSilkIndex != -1) {
+    if (productSilkIndex != -1) {
         productSilk.value = props.product.variantAttribute[productSilkIndex];
-        productVariants.value = [...productVariants.value, ...productSilk.value.attributes]
+        productVariants.value = [...productVariants.value, ...productSilk.value.attributes];
     }
-}
+};
 
 const handleShowImage = (colorItem, index) => {
-    let imageIndex = props.product.variants.findIndex(item => item.options.length > 0 && item.options.includes(colorItem.attribute_id))
-    let colorIndex = productColor.value.attributes.findIndex(item => item.attribute_id == colorItem.attribute_id)
-    if(imageIndex != -1) {
+    let imageIndex = props.product.variants.findIndex((item) => item.options.length > 0 && item.options.includes(colorItem.attribute_id));
+    let colorIndex = productColor.value.attributes.findIndex((item) => item.attribute_id == colorItem.attribute_id);
+    if (imageIndex != -1) {
         activeType.value = imageIndex;
     }
-    if(colorIndex != -1) {
+    if (colorIndex != -1) {
         activeColor.value = colorIndex;
     }
-}
+};
 
 function getProductItem() {
     // Duyệt qua từng phần tử trong mảng variants
@@ -124,10 +124,10 @@ function getProductItem() {
     return null;
 }
 onBeforeMount(() => {
-    if(props.product) {
+    if (props.product) {
         initialProduct();
     }
-})
+});
 
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
@@ -137,9 +137,6 @@ const formatPriceProduct = (item) => {
 .product-card {
     width: 100%;
     .product-image {
-        @media screen and (max-width: 991px) {
-            height: 180px;
-        }
         height: 300px;
         min-width: 1px;
         &:hover {
@@ -155,6 +152,9 @@ const formatPriceProduct = (item) => {
         }
         .second-look {
             display: none;
+        }
+        @media screen and (max-width: 768px) {
+            height: 200px;
         }
     }
     .product-type {

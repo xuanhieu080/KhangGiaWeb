@@ -37,17 +37,17 @@
             variant="ghost"
             color="none"
             size="lg"
-            class="prev-product-btn -translate-x-1/2  absolute top-1/2 left-2 lg:left-0 -translate-y-1/2 z-20 lg:z-0 hover:z-20"
+            class="prev-product-btn -translate-x-1/2  absolute top-1/2 left-2 lg:left-0 -translate-y-1/2 z-20 bg-gray-100 p-2 rounded-fullss lg:z-0 hover:z-20"
             :padded="false">
-            <UIcon class="text-[40px]" name="i-material-symbols-arrow-circle-left-rounded" dynamic />
+            <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
         </UButton>
         <UButton
             variant="ghost"
             color="none"
             size="lg"
-            class="next-product-btn translate-x-1/2 absolute top-1/2 right-2 md:right-0 -translate-y-1/2 z-20 lg:z-0 hover:z-20"
+            class="next-product-btn translate-x-1/2 absolute top-1/2 right-2 md:right-0 -translate-y-1/2 z-20 bg-gray-100 p-2 rounded-fullss lg:z-0 hover:z-20"
             :padded="false">
-            <UIcon class="text-[40px]" name="i-material-symbols-arrow-circle-right-rounded" dynamic />
+            <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
         </UButton>
     </div>
     <div v-else class="product-wrapper w-full flex items-center gap-4">

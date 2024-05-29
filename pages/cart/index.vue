@@ -61,7 +61,7 @@
                                         class="w-full custom-input"
                                         :placeholder="$t('Tỉnh/Thành phố')"
                                         option-attribute="name"
-                                        :uiMenu="{ container: '!fixed max-w-max' }"
+                                        :uiMenu="{ container: 'max-w-full' }"
                                         value-attribute="id"
                                         :loading="loadingCities"
                                         :ui="{ rounded: 'rounded-full' }">
@@ -81,7 +81,7 @@
                                         class="w-full custom-input"
                                         :placeholder="$t('Quận/Huyện')"
                                         option-attribute="full_name"
-                                        :uiMenu="{ container: '!fixed max-w-max' }"
+                                        :uiMenu="{ container: ' max-w-full' }"
                                         value-attribute="id"
                                         :disabled="!state.city"
                                         :ui="{ rounded: 'rounded-full' }">
@@ -100,7 +100,7 @@
                                         searchable-placeholder="Search a ward..."
                                         class="w-full custom-input"
                                         :placeholder="$t('Phường/Xã')"
-                                        :uiMenu="{ container: '!fixed max-w-max' }"
+                                        :uiMenu="{ container: 'max-w-full' }"
                                         option-attribute="full_name"
                                         value-attribute="id"
                                         :disabled="!state.city || !state.district"

@@ -55,10 +55,10 @@
                     </NuxtLink>
                     <template #item="{ item }">
                         <div v-show="item.products.length > 0" class="sub-menu">
-                            <div class="sub-menu-wrapper grid grid-cols-2 gap-4 w-max">
-                                <div class="flex flex-col items-start gap-y-6 p-6 border-r border-gray-300">
+                            <div class="sub-menu-wrapper grid gap-4 w-max" :class="item.products.length > 2 ? 'grid-cols-2' : ''">
+                                <div class="flex flex-col items-start gap-y-6 p-6 border-gray-300" :class="item.products.length > 2 ? 'border-r' : ''">
                                     <div
-                                        v-show="index1 < item.products.length - 2"
+                                        v-show="index1 < item.products.length - 2 || item.products.length < 2"
                                         v-for="(subMenu, index1) in item.products"
                                         class="text-gray-500">
                                         <NuxtLink
@@ -68,7 +68,7 @@
                                         </NuxtLink>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-4 py-6 pr-4">
+                                <div v-if="item.products.length > 1" class="grid grid-cols-2 gap-4 py-6 pr-4">
                                     <div
                                         v-show="index2 >= item.products.length - 2"
                                         v-for="(subMenu, index2) in item.products"
@@ -78,7 +78,7 @@
                                             class="product-item">
                                             <img
                                                 loading="lazy"
-                                                :src="'https://app.gak.vn/storage/media/product-variants/ao-ghi-le-1713426370UherAi32.jpg'"
+                                                :src="subMenu.image_url"
                                                 alt="" />
                                             <div class="product-content">{{ subMenu.name }}</div>
                                         </NuxtLink>
