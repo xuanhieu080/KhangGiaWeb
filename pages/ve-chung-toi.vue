@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="false" class="about-us-image relative">
+        <div class="about-us-image relative">
             <NuxtImg class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
@@ -29,6 +29,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
+                    :to="localePath({ name: 'van-hoa-gak' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
@@ -57,7 +58,7 @@
                 </UButton>
             </div>
         </div>
-        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
+        <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
                     <div class="grid lg:grid-cols-2 gap-6 lg:gap-4">

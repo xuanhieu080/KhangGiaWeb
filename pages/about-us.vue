@@ -19,7 +19,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                    :to="localePath({name: 'page-gak-story'})"
+                    :to="localePath({name: 've-chung-toi'})"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
@@ -34,7 +34,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                    :to="localePath({ name: 'page-van-hoa-gak' })"
+                    :to="localePath({ name: 'van-hoa-gak' })"
                     class="about-us-button !bg-white p-4  rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
@@ -48,7 +48,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({name: 'page-gak-be-kind'})"
+                    :to="localePath({name: 'dvkh-tan-tam'})"
                     color="none"
                     class="about-us-button !bg-white p-4  rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">

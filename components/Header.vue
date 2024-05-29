@@ -2,8 +2,11 @@
     <div class="site-header" :class="{ 'hidden-header': isScrollDown }">
         <div class="topbar">
             <div class="left-top-bar">
-                <NuxtLink :to="localePath({ name: 'index' })" class="logo">
-                    <NuxtImg class="h-full w-full object-contain" alt="Logo Site" :src="images.logo" />
+                <NuxtLink :to="localePath({ name: 'collection-slug',params: { slug: 'phan-quang' }  })" class="logo">
+                    SP Phản Quang
+                </NuxtLink>
+                <NuxtLink :to="localePath({ name: 'collection-slug',params: { slug: 'vai' }})" class="logo">
+                    SP Vải
                 </NuxtLink>
             </div>
             <div class="sub-nav">

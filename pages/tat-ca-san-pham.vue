@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="promotion-box bg-green-700 w-full px-6 py-4 flex flex-col items-center justify-center gap-6">
-                <div class="text-2xl text-white text-center">Bạn chưa tìm thấy ảo phản quang phù hợp?</div>
+                <div class="text-2xl text-white text-center">Bạn chưa tìm thấy áo phản quang phù hợp?</div>
                 <div class="flex flex-col md:flex-row gap-4 items-center justify-center w-full">
                     <UButton :to="localePath({name: 'dat-may'})" color="white" class="font-bold !uppercase text-green-700 w-full md:max-w-[300px] justify-center" size="xl">Đặt may</UButton>
                     <UButton variant="outline" color="none" class="font-bold !uppercase bg-green-700 text-white w-full md:max-w-[300px] justify-center" size="xl">Nhận tư vấn</UButton>

@@ -3,8 +3,8 @@
         :ui="{ rounded: '', ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }"
         v-if="product"
         class="product-card relative">
-        <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-4 w-full">
-            <div class="product-image relative">
+        <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-2 md:gap-4 w-full">
+            <div class="product-image relative bg-gray-100">
                 <button
                     class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden flex">
                     <NuxtImg
@@ -137,6 +137,9 @@ const formatPriceProduct = (item) => {
 .product-card {
     width: 100%;
     .product-image {
+        @media screen and (max-width: 991px) {
+            height: 180px;
+        }
         height: 300px;
         min-width: 1px;
         &:hover {

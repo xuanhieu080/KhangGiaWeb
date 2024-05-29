@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="false" class="about-us-image relative">
+        <div class="about-us-image relative">
             <NuxtImg
                 class="w-full h-[500px] object-cover"
                 loading="lazy"
@@ -16,7 +16,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                    :to="localePath({ name: 'page-gak-story' })"
+                    :to="localePath({ name: 've-chung-toi' })"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
@@ -30,7 +30,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({ name: 'page-van-hoa-gak' })"
+                    :to="localePath({ name: 'van-hoa-gak' })"
                     color="none"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
@@ -45,7 +45,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({ name: 'page-gak-be-kind' })"
+                    :to="localePath({ name: 'dvkh-tan-tam' })"
                     color="none"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
@@ -60,7 +60,7 @@
                 </UButton>
             </div>
         </div>
-        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
+        <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
                     <div class="grid lg:grid-cols-2 items-center gap-6 lg:gap-8">
@@ -184,7 +184,7 @@
                                 size="xl"
                                 variant="ghost"
                                 color="none"
-                                href="https://www.coolmate.me/lp/coolmate-101#recruitment-jobs"
+                                href="#"
                                 class="bg-white h-14 rounded-3xl px-8 text-black">
                                 Gia nhập ngay
                                 <UIcon name="i-heroicons-arrow-right"></UIcon>
@@ -259,7 +259,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -308,7 +307,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -357,7 +355,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -406,7 +403,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -455,7 +451,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -504,7 +499,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -553,7 +547,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -602,7 +595,6 @@
                                                 Fulltime
                                             </div>
                                             <a
-                                                href="https://www.coolmate.me/lp/coolmate-101#assistant-brand-manager"
                                                 rel-script="jobs-views"
                                                 class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
@@ -652,7 +644,6 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/coolmate-year-end-party-2023-mot-buoc-nhay-van-dam-bay-3746"
                                                             target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
@@ -666,7 +657,6 @@
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
                                                         <a
-                                                            href="https://www.coolmate.me/post/coolmate-year-end-party-2023-mot-buoc-nhay-van-dam-bay-3746"
                                                             target="_blank">
                                                             Coolmate Year End Party 2023 - Một bước nhảy, vạn dặm bay
                                                         </a>
@@ -677,7 +667,6 @@
                                                         những hoạt động và nội dung thú vị.
                                                     </p>
                                                     <a
-                                                        href="https://www.coolmate.me/post/coolmate-year-end-party-2023-mot-buoc-nhay-van-dam-bay-3746"
                                                         target="_blank"
                                                         class="recruitment-blog-grid__link">
                                                         Đọc thêm
@@ -690,7 +679,6 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/giang-sinh-2023-coolmate-co-gi-3498"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Giáng sinh 2023 Coolmate có gì?"
                                                         /></a>
@@ -702,7 +690,6 @@
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
                                                         <a
-                                                            href="https://www.coolmate.me/post/giang-sinh-2023-coolmate-co-gi-3498"
                                                             target="_blank">
                                                             Giáng sinh 2023 Coolmate có gì?
                                                         </a>
@@ -712,7 +699,6 @@
                                                         Cùng theo dõi tại bài viết dưới đây nhé!
                                                     </p>
                                                     <a
-                                                        href="https://www.coolmate.me/post/giang-sinh-2023-coolmate-co-gi-3498"
                                                         target="_blank"
                                                         class="recruitment-blog-grid__link">
                                                         Đọc thêm
@@ -725,7 +711,6 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/2010-chuc-mung-ngay-phu-nu-viet-nam-cung-coolmate-3022"
                                                             target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
@@ -739,7 +724,6 @@
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
                                                         <a
-                                                            href="https://www.coolmate.me/post/2010-chuc-mung-ngay-phu-nu-viet-nam-cung-coolmate-3022"
                                                             target="_blank">
                                                             20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Coolmate
                                                         </a>
@@ -750,7 +734,6 @@
                                                         nhà Coolmate đã có một chương trình 20/10 như thế nào nhé!
                                                     </p>
                                                     <a
-                                                        href="https://www.coolmate.me/post/2010-chuc-mung-ngay-phu-nu-viet-nam-cung-coolmate-3022"
                                                         target="_blank"
                                                         class="recruitment-blog-grid__link">
                                                         Đọc thêm
@@ -763,7 +746,6 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/vui-trung-thu-cung-coolmate-2786"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Vui Trung thu cùng Coolmate "
                                                         /></a>
@@ -775,7 +757,6 @@
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
                                                         <a
-                                                            href="https://www.coolmate.me/post/vui-trung-thu-cung-coolmate-2786"
                                                             target="_blank">
                                                             Vui Trung thu cùng Coolmate
                                                         </a>
@@ -785,7 +766,6 @@
                                                         Trung thu năm nay chúng mình có những chương trình thú vị gì nhé!
                                                     </p>
                                                     <a
-                                                        href="https://www.coolmate.me/post/vui-trung-thu-cung-coolmate-2786"
                                                         target="_blank"
                                                         class="recruitment-blog-grid__link">
                                                         Đọc thêm
@@ -798,7 +778,6 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/coolmate-company-trip-2023-better-me-better-coolmate-2307"
                                                             target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
@@ -812,7 +791,6 @@
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
                                                         <a
-                                                            href="https://www.coolmate.me/post/coolmate-company-trip-2023-better-me-better-coolmate-2307"
                                                             target="_blank">
                                                             Coolmate Company Trip 2023 - Better Me, Better Coolmate
                                                         </a>
@@ -823,7 +801,6 @@
                                                         gì thú vị nhé!
                                                     </p>
                                                     <a
-                                                        href="https://www.coolmate.me/post/coolmate-company-trip-2023-better-me-better-coolmate-2307"
                                                         target="_blank"
                                                         class="recruitment-blog-grid__link">
                                                         Đọc thêm
@@ -836,7 +813,6 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/coolmate-len-tu-tu-ban-ma-co-1466"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Coolmate lên tư -  Từ bạn mà có"
                                                         /></a>
@@ -848,7 +824,6 @@
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
                                                         <a
-                                                            href="https://www.coolmate.me/post/coolmate-len-tu-tu-ban-ma-co-1466"
                                                             target="_blank">
                                                             Coolmate lên tư - Từ bạn mà có
                                                         </a>
@@ -859,7 +834,6 @@
                                                         thi. Cùng chúng mình nhìn lại các chương trình thú vị qua bài viết này nhé!
                                                     </p>
                                                     <a
-                                                        href="https://www.coolmate.me/post/coolmate-len-tu-tu-ban-ma-co-1466"
                                                         target="_blank"
                                                         class="recruitment-blog-grid__link">
                                                         Đọc thêm
@@ -885,7 +859,6 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/ban-tin-coolmate-thang-03-2024-3989"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 03/2024"
                                                         /></a>
@@ -896,7 +869,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a href="https://www.coolmate.me/post/ban-tin-coolmate-thang-03-2024-3989">
+                                                        <a>
                                                             Bản tin Coolmate tháng 03/2024
                                                         </a>
                                                     </h3>
@@ -918,7 +891,6 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/ban-tin-coolmate-thang-02-2024-3858"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 02/2024"
                                                         /></a>
@@ -929,7 +901,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a href="https://www.coolmate.me/post/ban-tin-coolmate-thang-02-2024-3858">
+                                                        <a>
                                                             Bản tin Coolmate tháng 02/2024
                                                         </a>
                                                     </h3>
@@ -951,7 +923,6 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/ban-tin-coolmate-thang-01-2024-3762"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 01/2024"
                                                         /></a>
@@ -962,7 +933,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a href="https://www.coolmate.me/post/ban-tin-coolmate-thang-01-2024-3762">
+                                                        <a>
                                                             Bản tin Coolmate tháng 01/2024
                                                         </a>
                                                     </h3>
@@ -984,7 +955,6 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/ban-tin-coolmate-thang-12-2023-3591"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 12/2023"
                                                         /></a>
@@ -995,7 +965,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a href="https://www.coolmate.me/post/ban-tin-coolmate-thang-12-2023-3591">
+                                                        <a>
                                                             Bản tin Coolmate tháng 12/2023
                                                         </a>
                                                     </h3>
@@ -1018,7 +988,6 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/ban-tin-coolmate-thang-11-2023-3376"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 11/2023"
                                                         /></a>
@@ -1029,7 +998,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a href="https://www.coolmate.me/post/ban-tin-coolmate-thang-11-2023-3376">
+                                                        <a>
                                                             Bản tin Coolmate tháng 11/2023
                                                         </a>
                                                     </h3>
@@ -1053,7 +1022,6 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a
-                                                            href="https://www.coolmate.me/post/ban-tin-coolmate-thang-10-2023-3161"
                                                             target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 10/2023"
                                                         /></a>
@@ -1064,7 +1032,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a href="https://www.coolmate.me/post/ban-tin-coolmate-thang-10-2023-3161">
+                                                        <a>
                                                             Bản tin Coolmate tháng 10/2023
                                                         </a>
                                                     </h3>

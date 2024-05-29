@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <section v-if="false" class="running-video">
+        <section class="running-video">
             <video
                 id="banner-video"
                 poster="/images/produce-poster-video.jpg"
@@ -11,7 +11,7 @@
                 <source src="" />
             </video>
         </section>
-        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
+        <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg space-y-8">
                     <h2 class="cs-services__heading">TỰ CHỦ NGUỒN NGUYÊN LIỆU VÀ SẢN XUẤT</h2>
@@ -146,7 +146,7 @@
             <div class="workshop-section-background">
                 <span
                     class="workshop-section-background__bg"
-                    style="background-image: url('https://mcdn.coolmate.me/image/December2023/mceclip3_84.png')"></span>
+                    ></span>
                 <div class="container container--medium">
                     <div class="workshop-section-background__content flex flex-wrap items-center">
                         <h2 class="workshop-heading">
@@ -216,10 +216,10 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-scavi"><div class="workshop-box"></div></a>
+                            <a href="#"><div class="workshop-box"></div></a>
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-son-ha"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-2_2.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 1</h2>
@@ -227,7 +227,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-vitajeans"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-3_3.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 2</h2>
@@ -235,7 +235,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-nobland"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-4_4.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 3</h2>
@@ -243,7 +243,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-5_5.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 1</h2>
@@ -251,7 +251,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-6_6.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 2</h2>
@@ -259,7 +259,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-7_7.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 3</h2>
@@ -267,7 +267,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-8_8.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 4</h2>
@@ -275,7 +275,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-det-tat"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-9_9.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 5</h2>
@@ -283,7 +283,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-thien-son"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-10_10.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 1</h2>
@@ -291,7 +291,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-thien-son"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-11_11.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 2</h2>
@@ -299,7 +299,7 @@
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-thien-son"
+                            <a href="#"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-12_12.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 3</h2>

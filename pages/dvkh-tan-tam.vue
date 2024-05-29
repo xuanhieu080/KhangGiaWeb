@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="false" class="about-us-image relative">
+        <div class="about-us-image relative">
             <NuxtImg
                 class="w-full h-[500px] object-cover"
                 loading="lazy"
@@ -19,7 +19,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                    :to="localePath({ name: 've-chung-toi' })"
+                    :to="localePath({ name: 'van-hoa-gak' })"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
@@ -34,6 +34,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
+                    :to="localePath({ name: 've-chung-toi' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
@@ -62,7 +63,7 @@
                 </UButton>
             </div>
         </div>
-        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
+        <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-caption py-4">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-about__heading w-full text-center !my-6">CÔNG TY GAK XIN CHÀO !</h2>
