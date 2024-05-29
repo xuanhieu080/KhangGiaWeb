@@ -43,7 +43,7 @@
                     :popper="{ placement: 'bottom-start' }">
                     <NuxtLink
                         :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
-                        v-show="index < 3"
+                        v-show="index < 5"
                         class="main-nav-item"
                         @click="(e) => handleChangePage(e)"
                         @mouseleave="(e) => handleCloseSubMenu(e)"
