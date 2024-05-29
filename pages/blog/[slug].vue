@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="blog-page-content container mx-auto py-6 flex flex-col gap-4">
-                <div class="search-box w-4/5 max-w-[567px] mx-auto">
+                <div v-if="false" class="search-box w-4/5 max-w-[567px] mx-auto">
                     <UInput
                         size="lg"
                         :ui="{ rounded: 'rounded-2xl' }"
@@ -29,7 +29,7 @@
                         :options="articleGroups.data"
                         class="w-full max-w-[250px] custom-input"
                         option-attribute="name"
-                        :uiMenu="{option: {container: 'w-full'}}"
+                        :uiMenu="{ option: { container: 'w-full' } }"
                         :ui="{ rounded: 'rounded-full' }">
                         <template #label>
                             <span class="font-bold">{{ selectedCategory ? selectedCategory.name : '' }}</span>
@@ -71,9 +71,7 @@
                     <div class="title text-[28px] 2xl:text-[30px] font-bold py-3 px-5 bg-[#008000] text-white rounded-xl">
                         {{ $t('Bài viết về') + ' ' + selectedCategory.name }}
                     </div>
-                    <div
-                        v-if="articleNew.data && articleNew.data.length > 0"
-                        class="flex flex-wrap items-start justify-start gap-4 w-full">
+                    <div v-if="articleNew.data && articleNew.data.length > 0" class="flex flex-wrap items-start justify-start gap-4 w-full">
                         <div v-for="article in articleNew.data" class="blog-daily-item">
                             <ArticleCard :article="article" :is-view-count="false" :custom-height="400" />
                         </div>

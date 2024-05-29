@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="blog-page-content container mx-auto py-6 flex flex-col gap-4">
-                <div class="search-box w-4/5 max-w-[567px] mx-auto">
+                <div v-if="false" class="search-box w-4/5 max-w-[567px] mx-auto">
                     <UInput
                         size="lg"
                         :ui="{ rounded: 'rounded-2xl' }"
