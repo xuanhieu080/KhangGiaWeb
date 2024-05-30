@@ -19,6 +19,9 @@
                 @click="backToTop"></UButton>
         </div>
     </main>
+    <UCard v-if="articleSEO" class="m-6">
+        <div v-html="articleSEO"></div>
+    </UCard>
     <UNotifications class="prose-p:mt-0">
         <template #title="{ title }">
             <span class="font-bold" v-html="title" />
@@ -70,6 +73,7 @@ const router = useRouter();
 const { locale } = useI18n();
 const showBackToTop = ref(false);
 let lastScrollTop = 80;
+const articleSEO = ref(null)
 onMounted(() => {
     window.addEventListener('resize', handleHideHeader, false);
     window.addEventListener('scroll', controlHeaderShowing, false);

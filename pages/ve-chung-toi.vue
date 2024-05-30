@@ -35,7 +35,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">GAK <br />101</span>
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -69,7 +69,7 @@
                                     ra để làm gì?
                                 </h2>
                                 <div class="cs-about__image">
-                                    <img src="https://mcdn.coolmate.me/image/October2023/mceclip0_56.png" alt="" />
+                                    <img src="/images/company-banner-box.png" class="h-full w-full object-contain" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -88,10 +88,6 @@
                                     tự hào là nhà sản xuất đa dạng các sản phẩm bảo hộ lao động, vải, lưới, đồng phục có chất lượng dẫn đầu
                                     thị trường và đem lại sự thịnh vượng cho mọi khách hàng.
                                 </p>
-
-                                <div class="mobile--visible" style="display: none; max-width: 60%; margin: 0px auto">
-                                    <img src="https://mcdn.coolmate.me/image/October2023/mceclip0_56.png" alt="" />
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +110,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-5 grid--mobile-rev">
                         <div class="grid__column mobile--one-whole lg:col-span-2 p-4">
                             <div class="cs-story__image w-full h-full">
-                                <img src="/images/company-banner-box.png" class="w-full object-cover rounded-lg" alt="image" />
+                                <NuxtImg class="w-full " loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
                             </div>
                         </div>
                         <div class="grid__column mobile--one-whole my-auto col-span-3">

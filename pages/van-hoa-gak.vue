@@ -1,12 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div class="about-us-image relative">
-            <NuxtImg
-                class="w-full h-[500px] object-cover"
-                loading="lazy"
-                format="webp"
-                :src="'https://mcdn.coolmate.me/image/December2023/mceclip0_81.jpg'"
-                alt="" />
+            <NuxtImg class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
                 <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA GAK</h1>
@@ -37,7 +32,7 @@
                         <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">VĂN HÓA <br />GAK</span>
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
                     </div>
                     <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -180,12 +175,7 @@
                             </div>
                         </div>
                         <div class="recruitment-cta mt-8 lg:mt-16">
-                            <UButton
-                                size="xl"
-                                variant="ghost"
-                                color="none"
-                                href="#"
-                                class="bg-white h-14 rounded-3xl px-8 text-black">
+                            <UButton size="xl" variant="ghost" color="none" href="#" class="bg-white h-14 rounded-3xl px-8 text-black">
                                 Gia nhập ngay
                                 <UIcon name="i-heroicons-arrow-right"></UIcon>
                             </UButton>
@@ -258,9 +248,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -306,9 +294,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -354,9 +340,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -402,9 +386,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -450,9 +432,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -498,9 +478,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -546,9 +524,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -594,9 +570,7 @@
                                                 </svg>
                                                 Fulltime
                                             </div>
-                                            <a
-                                                rel-script="jobs-views"
-                                                class="job-grid__link">
+                                            <a rel-script="jobs-views" class="job-grid__link">
                                                 Chi tiết &amp; Ứng tuyển
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
@@ -626,7 +600,7 @@
                     </UButton>
                 </div>
             </section>
-            <section class="recruitment-blogs">
+            <section v-if="false" class="recruitment-blogs">
                 <div class="container container--medium">
                     <h2 class="recruitment-blogs__heading">Truyền thông nội bộ</h2>
                     <div class="grid lg:grid-cols-2 gap-4">
@@ -643,8 +617,7 @@
                                             <div class="recruitment-blog-grid">
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
                                                                 alt="Coolmate Year End Party 2023 - Một bước nhảy, vạn dặm bay"
@@ -656,21 +629,14 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a
-                                                            target="_blank">
-                                                            Coolmate Year End Party 2023 - Một bước nhảy, vạn dặm bay
-                                                        </a>
+                                                        <a target="_blank"> Coolmate Year End Party 2023 - Một bước nhảy, vạn dặm bay </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Để tổng kết lại năm cũ và lên tinh thần cho năm mới 2024 bùng nổ, anh chị em
                                                         Coolmate đã tham gia chương trình YEP 2023 tại 2 đầu cầu Nam - Bắc, với rất nhiều
                                                         những hoạt động và nội dung thú vị.
                                                     </p>
-                                                    <a
-                                                        target="_blank"
-                                                        class="recruitment-blog-grid__link">
-                                                        Đọc thêm
-                                                    </a>
+                                                    <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -678,8 +644,7 @@
                                             <div class="recruitment-blog-grid">
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Giáng sinh 2023 Coolmate có gì?"
                                                         /></a>
                                                     </div>
@@ -689,20 +654,13 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a
-                                                            target="_blank">
-                                                            Giáng sinh 2023 Coolmate có gì?
-                                                        </a>
+                                                        <a target="_blank"> Giáng sinh 2023 Coolmate có gì? </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Chúng mình đã cùng nhau trải qua một buổi Giáng sinh 2023 với rất nhiều tiếng cười.
                                                         Cùng theo dõi tại bài viết dưới đây nhé!
                                                     </p>
-                                                    <a
-                                                        target="_blank"
-                                                        class="recruitment-blog-grid__link">
-                                                        Đọc thêm
-                                                    </a>
+                                                    <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -710,8 +668,7 @@
                                             <div class="recruitment-blog-grid">
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
                                                                 alt="20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Coolmate "
@@ -723,21 +680,14 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a
-                                                            target="_blank">
-                                                            20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Coolmate
-                                                        </a>
+                                                        <a target="_blank"> 20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Coolmate </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Như thông lệ hằng năm, dịp để tôn vinh các chị em như ngày Phụ nữ Việt Nam 20/10 là
                                                         dịp mà các chàng trai nhà Coolmate không bao giờ bỏ lỡ. Cùng theo dõi xem các chị em
                                                         nhà Coolmate đã có một chương trình 20/10 như thế nào nhé!
                                                     </p>
-                                                    <a
-                                                        target="_blank"
-                                                        class="recruitment-blog-grid__link">
-                                                        Đọc thêm
-                                                    </a>
+                                                    <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -745,8 +695,7 @@
                                             <div class="recruitment-blog-grid">
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Vui Trung thu cùng Coolmate "
                                                         /></a>
                                                     </div>
@@ -756,20 +705,13 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a
-                                                            target="_blank">
-                                                            Vui Trung thu cùng Coolmate
-                                                        </a>
+                                                        <a target="_blank"> Vui Trung thu cùng Coolmate </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Một mùa Trung thu nữa lại về với anh em Coolmate. Cùng theo chân chúng mình đi xem
                                                         Trung thu năm nay chúng mình có những chương trình thú vị gì nhé!
                                                     </p>
-                                                    <a
-                                                        target="_blank"
-                                                        class="recruitment-blog-grid__link">
-                                                        Đọc thêm
-                                                    </a>
+                                                    <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -777,8 +719,7 @@
                                             <div class="recruitment-blog-grid">
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
                                                                 alt="Coolmate Company Trip 2023 - Better Me, Better Coolmate"
@@ -790,21 +731,14 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a
-                                                            target="_blank">
-                                                            Coolmate Company Trip 2023 - Better Me, Better Coolmate
-                                                        </a>
+                                                        <a target="_blank"> Coolmate Company Trip 2023 - Better Me, Better Coolmate </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Sau một năm làm việc chăm chỉ thì anh em Coolmate lại có dịp được du lịch cùng nhau
                                                         trong chuyến Company Trip. Cùng theo dõi xem chuyến đi 2 ngày 1 đêm năm nay có điều
                                                         gì thú vị nhé!
                                                     </p>
-                                                    <a
-                                                        target="_blank"
-                                                        class="recruitment-blog-grid__link">
-                                                        Đọc thêm
-                                                    </a>
+                                                    <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -812,8 +746,7 @@
                                             <div class="recruitment-blog-grid">
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Coolmate lên tư -  Từ bạn mà có"
                                                         /></a>
                                                     </div>
@@ -823,21 +756,14 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a
-                                                            target="_blank">
-                                                            Coolmate lên tư - Từ bạn mà có
-                                                        </a>
+                                                        <a target="_blank"> Coolmate lên tư - Từ bạn mà có </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Tháng 3 tưng bừng với chuỗi hoạt động chúc mừng sinh nhật Coolmate lên 4, hướng tới
                                                         việc gắn kết tất cả các thành viên và gia tăng kỹ năng quản lý đội nhóm qua các cuộc
                                                         thi. Cùng chúng mình nhìn lại các chương trình thú vị qua bài viết này nhé!
                                                     </p>
-                                                    <a
-                                                        target="_blank"
-                                                        class="recruitment-blog-grid__link">
-                                                        Đọc thêm
-                                                    </a>
+                                                    <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -858,8 +784,7 @@
                                             <div class="recruitment-blog-item">
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 03/2024"
                                                         /></a>
                                                     </div>
@@ -869,9 +794,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a>
-                                                            Bản tin Coolmate tháng 03/2024
-                                                        </a>
+                                                        <a> Bản tin Coolmate tháng 03/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         5 năm đồng hành, chân thành cùng bạn - Coolmate đã đón sinh nhật 5 tuổi cùng với
@@ -890,8 +813,7 @@
                                             <div class="recruitment-blog-item">
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 02/2024"
                                                         /></a>
                                                     </div>
@@ -901,9 +823,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a>
-                                                            Bản tin Coolmate tháng 02/2024
-                                                        </a>
+                                                        <a> Bản tin Coolmate tháng 02/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Tháng 2 đã đi qua, cùng chúng mình nhìn lại các tin tức, chương trình và hoạt động
@@ -922,8 +842,7 @@
                                             <div class="recruitment-blog-item">
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 01/2024"
                                                         /></a>
                                                     </div>
@@ -933,9 +852,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a>
-                                                            Bản tin Coolmate tháng 01/2024
-                                                        </a>
+                                                        <a> Bản tin Coolmate tháng 01/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Chào đón năm mới 2024 với nhiều chương trình và hoạt động thú vị. Cùng nhìn lại
@@ -954,8 +871,7 @@
                                             <div class="recruitment-blog-item">
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 12/2023"
                                                         /></a>
                                                     </div>
@@ -965,9 +881,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a>
-                                                            Bản tin Coolmate tháng 12/2023
-                                                        </a>
+                                                        <a> Bản tin Coolmate tháng 12/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Vậy là chúng ta đã cùng nhau đi qua tháng 12 - tháng cuối cùng của năm 2023 với rất
@@ -987,8 +901,7 @@
                                             <div class="recruitment-blog-item">
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 11/2023"
                                                         /></a>
                                                     </div>
@@ -998,9 +911,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a>
-                                                            Bản tin Coolmate tháng 11/2023
-                                                        </a>
+                                                        <a> Bản tin Coolmate tháng 11/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Giai đoạn nước rút của năm 2023, Coolmate cùng anh chị em Coolmaters đang tràn đầy
@@ -1021,8 +932,7 @@
                                             <div class="recruitment-blog-item">
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
-                                                        <a
-                                                            target="_blank"
+                                                        <a target="_blank"
                                                             ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 10/2023"
                                                         /></a>
                                                     </div>
@@ -1032,9 +942,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a>
-                                                            Bản tin Coolmate tháng 10/2023
-                                                        </a>
+                                                        <a> Bản tin Coolmate tháng 10/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Bắt đầu chạy đua chặng nước rút của Coolmate với tháng 10 - tháng đầu tiên của quý
