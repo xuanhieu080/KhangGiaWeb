@@ -286,7 +286,6 @@ watch(
             padding: 24px 0;
             .category-card {
                 .category-item {
-                    border: 1px solid rgb(229, 229, 229);
                     border-radius: 12px;
                     padding: 8px;
                     &.router-link-active {
