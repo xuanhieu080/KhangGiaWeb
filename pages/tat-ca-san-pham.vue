@@ -21,6 +21,7 @@
                     </div>
                     <UButton
                         variant="solid"
+                        :to="localePath({name:'tim-kiem-san-pham'})"
                         color="none"
                         size="xl"
                         class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
@@ -39,7 +40,9 @@
                     Sản phẩm
                     <span class="sub-title">{{ category.name }}</span>
                 </div>
-                <Banner :bannerList="[{ url: category.image_url }]" :autoPlay="true" />
+               <div class="md:h-[400px] h-[200px]">
+                   <Banner :bannerList="[{ url: category.image_url }]" :autoPlay="true" />
+               </div>
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
                     <div class="category-data flex flex-col gap-4 flex-1">
                         <div v-if="category.products.length > 0" class="category-data-list">
@@ -182,7 +185,7 @@ const { data: productCollection, pending: loadingProductCollection } = await use
     'product-category-hot',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
-            params: await getParamsCollection(),
+            params: {is_hot: 1, limit: 4},
         }),
     {
         default: () => [],

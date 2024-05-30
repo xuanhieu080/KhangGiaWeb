@@ -278,6 +278,24 @@ watch(
 //     () => collectionError.value,
 //     () => {},
 // );
+
+
+
+let title = collection.value.item.meta_title;
+let description = pcollection.value.item.meta_description;
+let seoMeta = {
+    image: collection.value.item.image_url,
+    ogImage: collection.value.item.image_url,
+    description: description,
+    ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: description,
+    keywords: collection.value.item.meta_key,
+};
+
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .category-page {

@@ -30,7 +30,7 @@
                     $t('Trang chủ')
                 }}</NuxtLink>
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'tat-ca-san-pham' })" @click="menuMobile = false">{{
-                    $t('Tất cả sản phẩm')
+                    $t('Sản phẩm')
                 }}</NuxtLink>
                 <UDropdown
                     v-if="categoryHeaders && categoryHeaders.length > 0 && !menuMobile"
