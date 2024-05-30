@@ -24,7 +24,6 @@
                             size="lg"
                             variant="ghost"
                             color="none"
-                            href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#mockup"
                             class="pod-banner__button scroll-to-step bg-white text-[#2f5acf] !text-lg px-6 rounded-2xl font-semibold">
                             Gửi yêu cầu
                         </UButton>
@@ -108,7 +107,6 @@
                             <div class="pod-activity__heading-cta mobile--hidden tablet--hidden">
                                 <p>Chưa bao giờ đơn giản đến thế.</p>
                                 <a
-                                    href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#mockup"
                                     class="btn btn--primary scroll-to-step"
                                     >Gửi yêu cầu</a
                                 >
@@ -166,7 +164,7 @@
                     </h2>
                     <div>
                         <h3 style="text-align: center; font-size: 16px; padding: 0px 30px">
-                            Coolxprint có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
+                            GAK có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
                         </h3>
                     </div>
                     <div class="tab-content">
@@ -334,7 +332,6 @@
                             </div>
                             <div class="loadmore-product" style="display: none">
                                 <a
-                                    href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#"
                                     data-show="10"
                                     data-page="2"
                                     class="btn btn--outline loadmore chidern"
@@ -344,7 +341,6 @@
                         </div>
                         <div class="loadmore-product" style="display: none">
                             <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#"
                                 data-show="10"
                                 data-page="2"
                                 class="btn btn--outline loadmore chidern"
@@ -1279,6 +1275,19 @@ const articleList = ref([
         view_count: '999',
     },
 ]);
+let title = 'Chính sách đặt may';
+// let description = "Chính sách bảo mật";
+let seoMeta = {
+    // description: description,
+    // ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    // twitterDescription: description,
+    keywords: 'Chính sách đặt may',
+};
+
+useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped>

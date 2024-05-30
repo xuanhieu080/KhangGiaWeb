@@ -207,6 +207,19 @@ const { data: productCollectionAll, pending: loadingProductCollectionAll } = awa
 //     () => collectionError.value,
 //     () => {},
 // );
+
+
+let title = 'Tất cả sản phẩm';
+// let description = "Chính sách bảo mật";
+let seoMeta = {
+    // description: description,
+    // ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    // twitterDescription: description,
+    keywords: title,
+};
 </script>
 <style lang="scss" scoped>
 .category-page {

@@ -282,7 +282,7 @@ watch(
 
 
 let title = collection.value.item.meta_title;
-let description = pcollection.value.item.meta_description;
+let description = collection.value.item.meta_description;
 let seoMeta = {
     image: collection.value.item.image_url,
     ogImage: collection.value.item.image_url,

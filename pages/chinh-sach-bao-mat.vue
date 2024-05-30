@@ -129,6 +129,20 @@ watchEffect(() => {
 //         ]
 //     })
 // ]);
+
+let title = 'Chính sách bảo mật';
+// let description = "Chính sách bảo mật";
+let seoMeta = {
+    // description: description,
+    // ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    // twitterDescription: description,
+    keywords: 'Chính sách bảo mật',
+};
+
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .page {

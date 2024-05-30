@@ -259,6 +259,19 @@ watch(
 //     () => collectionError.value,
 //     () => {},
 // );
+
+let title = 'Tìm kiếm sản phẩm';
+// let description = 'Tìm kiếm sản phẩm';
+let seoMeta = {
+    // description: description,
+    // ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    // twitterDescription: description,
+};
+
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .category-page {

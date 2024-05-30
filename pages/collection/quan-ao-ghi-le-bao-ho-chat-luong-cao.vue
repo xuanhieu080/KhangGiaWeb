@@ -132,212 +132,10 @@ defineComponent({
 
 const router = useRouter();
 const localePath = useLocalePath();
-const modules = [Scrollbar];
 const isLoadingData = ref(false);
 const showFullOption = ref(false);
 const tabIndex = ref(0);
-const categoryList = ref([
-    {
-        name: 'Áo các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo thun, áo polo và áo khoác',
-    },
-    {
-        name: 'Quần các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo shorts, Jogger, Kaki và Jeans',
-    },
-    {
-        name: 'Phụ kiện các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Tất/vớ, mũ và phụ kiện khác',
-    },
-    {
-        name: 'Áo các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo thun, áo polo và áo khoác',
-    },
-    {
-        name: 'Quần các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo shorts, Jogger, Kaki và Jeans',
-    },
-    {
-        name: 'Phụ kiện các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Tất/vớ, mũ và phụ kiện khác',
-    },
-]);
-const productList = ref([
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Xanh wash',
-                code: 'blue',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
-                ],
-            },
-            {
-                color: 'Xanh navi',
-                code: 'green',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Vàng',
-                code: 'yellow',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Xanh wash',
-                code: 'blue',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
-                ],
-            },
-            {
-                color: 'Xanh navi',
-                code: 'green',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Vàng',
-                code: 'yellow',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
-                ],
-            },
-        ],
-    },
-]);
+
 const filterList = ref([
     {
         name: 'Mới nhất',
@@ -363,102 +161,15 @@ const filterList = ref([
 
 const filter = ref(filterList.value[0]);
 
-const selectedForm = ref({});
-const selectedMaterial = ref({});
-const selectedColor = ref(null);
+
 const refreshData = ref(0);
-const selectedSize = ref({});
+
 const selectedAll = ref({});
 const removeAllFilter = () => {
     selectedAll.value = {};
     refreshData.value++;
 };
-const formFilter = ref([
-    {
-        name: 'Quần Trunk',
-        label: 'Quần Trunk',
-    },
-    {
-        name: 'Quần Tam Giác',
-        label: 'Quần Tam Giác',
-    },
-    {
-        name: 'Quần Boxer dài',
-        label: 'Quần Boxer dài',
-    },
-    {
-        name: 'Quần Long Leg',
-        label: 'Quần Long Leg',
-    },
-]);
 
-const materialFilter = ref([
-    {
-        name: 'Vải bamboo',
-        label: 'Vải bamboo (Sợi tre)',
-    },
-    {
-        name: 'Vải Café',
-        label: 'Vải Café',
-    },
-    {
-        name: 'Vải Cotton',
-        label: 'Vải Cotton',
-    },
-    {
-        name: 'Vải Ice Cooling',
-        label: 'Vải Ice Cooling',
-    },
-]);
-const sizeFilter = ref([
-    {
-        name: 'S',
-        label: 'S',
-    },
-    {
-        name: 'M',
-        label: 'M',
-    },
-    {
-        name: 'L',
-        label: 'L',
-    },
-    {
-        name: 'XL',
-        label: 'XL',
-    },
-    {
-        name: '2XL',
-        label: '2XL',
-    },
-]);
-const colourFilter = ref([
-    {
-        name: 'Đen',
-        label: 'Đen',
-        color: '#000',
-    },
-    {
-        name: 'Trắng',
-        label: 'Trắng',
-        color: '#fff',
-    },
-    {
-        name: 'Xanh navy',
-        label: 'Xanh navy',
-        color: 'blue',
-    },
-    {
-        name: 'Xám',
-        label: 'Xám',
-        color: 'gray',
-    },
-    {
-        name: 'Đỏ',
-        label: 'Đỏ',
-        color: 'red',
-    },
-]);
 
 const changeCategoryTab = (index) => {
     tabIndex.value = index;
@@ -534,6 +245,20 @@ const {
 // watch(() => collectionError.value, () => {
 
 // })
+
+let title = 'Quần áo ghile bảo hộ chất lượng cao';
+let description = 'Quần áo ghile bảo hộ chất lượng cao';
+let seoMeta = {
+    description: description,
+    ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: description,
+    keywords: 'Đồng phục công ty',
+};
+
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .category-page {

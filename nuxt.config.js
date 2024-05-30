@@ -59,7 +59,7 @@ export default defineNuxtConfig({
             type: 'Organization',
             name: process.env.NUXT_SITE_NAME,
             url: process.env.WEB_BASE_URL,
-            logo: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
+            logo: process.env.WEB_BASE_URL + '/logo.svg',
             email:process.env.NUXT_SITE_EMAIL,
             phone:process.env.NUXT_SITE_PHONE,
             telephone:process.env.NUXT_SITE_PHONE,

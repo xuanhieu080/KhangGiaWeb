@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div class="blog-page">
+        <div v-if="!loadingContent" class="blog-page">
             <div class="blog-page-image relative">
                 <NuxtImg
                     class="w-full h-[500px] object-cover"
@@ -94,208 +94,10 @@ import ArticleCard from '@@/components/articles/ArticleCard.vue';
 definePageMeta({ layout: false });
 const localePath = useLocalePath();
 const searchBlog = ref(null);
-
-const categoryBlog = ref([]);
-
-const articleList = ref([
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-]);
-const articleListBadge = ref([
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-]);
 const selectedCategory = ref(null);
-const selectedSecondCategory = ref(categoryBlog.value[0]);
-useSchemaOrg([
-    defineArticle({
-        type: 'BlogPosting',
-        headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-        title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-        description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-        image: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
-        datePublished: new Date(2024, 1, 1),
-        dateModified: new Date(2024, 1, 1),
-        author: [
-            {
-                name: 'Chung Ngô',
-                url: 'https://gak.vn',
-            },
-        ],
-    }),
-]);
+const { locale, t: trans } = useI18n();
+const router = useRouter();
+
 
 //data
 
@@ -320,13 +122,34 @@ const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData(
         },
     }),
 );
+
+
+const {
+    data: content,
+    pending: loadingContent,
+    error: errorGetCategory,
+} = await useLazyAsyncData(
+    'content',
+    async () =>
+        useOriginalFetch(`/api/v1/post-groups/${router.currentRoute.value.params.slug}`, {
+            query: {
+                code: router.currentRoute.value.query?.code,
+            },
+        }),
+    {
+        default: () => [],
+    },
+);
+if (errorGetCategory.value) {
+    router.push({ name: `index___${locale.value}` });
+}
+
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>
     useOriginalFetch('/api/v1/post-groups'),
 );
 // const { data: articleGroup, pending: loadingArticleGroup } = await useLazyAsyncData('articles-blog-group', () =>
 //     useOriginalFetch('/api/v1/post/groups'),
 // );
-const router = useRouter();
 watch(
     () => loadingArticleGroup.value,
     () => {
@@ -347,6 +170,22 @@ watch(
         immediate: true,
     },
 );
+
+let title = content.value.data.meta_title;
+let description = content.value.data.meta_description;
+let seoMeta = {
+    image: content.value.data.image_url,
+    ogImage: content.value.data.image_url,
+    description: description,
+    ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: description,
+    keywords: content.value.data.meta_key,
+};
+
+useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped>

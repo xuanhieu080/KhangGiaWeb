@@ -336,6 +336,17 @@ import images from '@@/assets/icons';
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
+let title = 'Nhà máy';
+// let description = "Chính sách bảo mật";
+let seoMeta = {
+    // description: description,
+    // ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    // twitterDescription: description,
+    keywords: title,
+};
 </script>
 
 <style lang="scss" scoped>

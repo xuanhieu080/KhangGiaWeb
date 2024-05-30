@@ -1056,6 +1056,18 @@ const slug = ref(router.currentRoute.value.params.slug);
 function renderBullet(index, className) {
     return '<div class="custom-bullet ' + className + '">' + (index + 1) + '</div>';
 }
+
+let title = 'Văn hoá GAK';
+// let description = "Chính sách bảo mật";
+let seoMeta = {
+    // description: description,
+    // ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    // twitterDescription: description,
+    keywords: title,
+};
 </script>
 
 <style lang="scss" scoped>

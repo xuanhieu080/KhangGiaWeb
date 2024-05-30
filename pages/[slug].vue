@@ -30,37 +30,51 @@ import { useHeader } from '~/store/useHeader';
 const useHeaderStore = useHeader();
 const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
 
-
+const router = useRouter();
 const route = useRoute();
 const slug = ref(route.params.slug)
+const { locale, t: trans } = useI18n();
 
 const content = ref();
 
-const { data: page, pending: loadingPage } = await useLazyAsyncData('pages', () =>
-    useOriginalFetch(`/api/v1/pages/${slug.value}`),
+const refreshData = ref(0);
+const {
+    data: page,
+    pending: loadingPage,
+    error: errorGetItem,
+} = await useLazyAsyncData(
+    'pages',
+    async () =>
+        useOriginalFetch(`/api/v1/pages/${route.params.slug}`),
+    {
+        default: () => [],
+        watch: [refreshData],
+    },
 );
+if (errorGetItem.value) {
+    router.push({ name: `index___${locale.value}` });
+}
+
 watchEffect(() => {
     if (!loadingPage.value) {
         isLoadingPage.value = false;
     }
 });
-// useSchemaOrg([
-//     defineArticle({
-//         type: 'Article',
-//         headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         image: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
-//         datePublished: new Date(2024, 1, 1),
-//         dateModified: new Date(2024, 1, 1),
-//         author: [
-//             {
-//                 name: 'Chung Ngô',
-//                 url: 'https://gak.vn',
-//             },
-//         ]
-//     })
-// ]);
+let title = page.value.data.meta_title;
+let description = page.value.data.meta_description;
+let seoMeta = {
+    image: page.value.data.image_url,
+    ogImage: page.value.data.image_url,
+    description: description,
+    ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: description,
+    keywords: page.value.data.meta_key,
+};
+
+useSeoMeta(seoMeta);
 </script>
 <style lang='scss' scoped>
 .page {
