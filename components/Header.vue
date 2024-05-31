@@ -89,8 +89,8 @@
                     </template>
                 </UDropdown>
                 <NuxtLink
-                    v-if="pageHeaders && pageHeaders.length > 0 && menuMobile"
-                    v-for="(category, index) in pageHeaders"
+                    v-if="pageHeaders && categoryHeaders.length > 0 && menuMobile"
+                    v-for="(category, index) in categoryHeaders"
                     :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
                     v-show="index < 4"
                     class="main-nav-item"
@@ -99,9 +99,9 @@
                     @mouseenter="(e) => handleAddSubMenu(e)">
                     {{ category.name }}
                 </NuxtLink>
-                <NuxtLink class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{
+                <div class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{
                     $t('Đặt may')
-                }}</NuxtLink>
+                }}</div>
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'van-hoa-gak' })" @click="menuMobile = false">{{
                     $t('Văn hoá GAK')
                 }}</NuxtLink>

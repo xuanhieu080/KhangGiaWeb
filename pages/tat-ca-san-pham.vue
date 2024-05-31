@@ -21,7 +21,7 @@
                     </div>
                     <UButton
                         variant="solid"
-                        :to="localePath({name:'tim-kiem-san-pham'})"
+                        :to="localePath({ name: 'tim-kiem-san-pham' })"
                         color="none"
                         size="xl"
                         class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
@@ -36,16 +36,33 @@
                 </div>
             </div>
             <div v-if="!loadingProductCollectionAll" v-for="category in productCollectionAll.data" class="category-product py-4">
-                <div class="product-category-title">
+                <div class="product-category-title md:!hidden">
                     Sản phẩm
                     <span class="sub-title">{{ category.name }}</span>
                 </div>
-               <div class="md:h-[400px] h-[200px]">
-                   <Banner :bannerList="[{ url: category.image_url }]" :autoPlay="true" />
-               </div>
-                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
+                <div class="h-[200px] md:hidden">
+                    <img :src="category.image_url" class="h-full w-full object-contain" />
+                </div>
+                <div class="hidden md:flex items-center justify-between w-full gap-4 bg-gray-100">
+                    <div class="container mx-auto flex items-center justify-between w-full gap-4">
+                        <div class="flex flex-col gap-4">
+                            <span class="text-2xl font-bold">{{ category.name }}</span>
+                            <span class="sub-title">{{ category.description }}</span>
+                            <UButton
+                                variant="solid"
+                                color="none"
+                                size="xl"
+                                class="flex w-full justify-center max-w-[300px] bg-green-700 mt-4"
+                                :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
+                                {{ 'Xem thêm' }}
+                            </UButton>
+                        </div>
+                        <img :src="category.image_url" class="w-1/2 h-[600px] object-contain" />
+                    </div>
+                </div>
+                <div v-if="category.products.length > 0" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
                     <div class="category-data flex flex-col gap-4 flex-1">
-                        <div v-if="category.products.length > 0" class="category-data-list">
+                        <div class="category-data-list">
                             <div
                                 v-for="product in category.products"
                                 class="category-data-item data-desktop hidden md:block border p-2 rounded-lg shadow-md"
@@ -60,16 +77,16 @@
                                 <ProductCard :product="product" />
                             </div>
                         </div>
-                        <UButton
-                            variant="solid"
-                            color="none"
-                            size="xl"
-                            class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
-                            :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
-                            {{ 'Xem thêm' }}
-                        </UButton>
                     </div>
                 </div>
+                <UButton
+                    variant="solid"
+                    color="none"
+                    size="xl"
+                    class="md:hidden flex mt-4 mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
+                    :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
+                    {{ 'Xem thêm' }}
+                </UButton>
             </div>
             <div v-else class="category-data-list my-4 p-4">
                 <div v-for="product in 4" class="category-data-item" :key="product">
@@ -185,7 +202,7 @@ const { data: productCollection, pending: loadingProductCollection } = await use
     'product-category-hot',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
-            params: {is_hot: 1, limit: 4},
+            params: { is_hot: 1, limit: 4 },
         }),
     {
         default: () => [],
@@ -207,7 +224,6 @@ const { data: productCollectionAll, pending: loadingProductCollectionAll } = awa
 //     () => collectionError.value,
 //     () => {},
 // );
-
 
 let title = 'Tất cả sản phẩm';
 // let description = "Chính sách bảo mật";

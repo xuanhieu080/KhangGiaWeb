@@ -1,5 +1,5 @@
 <template>
-    <div v-if="bannerList.length > 0" class="banner-wrapper relative">
+    <div v-if="bannerList.length > 0" class="banner-wrapper relative h-full ">
         <Swiper
             ref="bannerSwiper"
             :slidesPerView="1"

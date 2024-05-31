@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <section class="pod-banner">
+        <section v-if="false" class="pod-banner">
             <video
                 poster="/images/dat-may-background.jpg"
                 src="/images/dat-may-background.jpg"
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </section>
-        <div class="about-content pt-8 mx-auto bg-white">
+        <div  v-if="false" class="about-content pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty GAK</h2>
@@ -1084,12 +1084,12 @@
                         Tham gia hội săn Deal GAK- Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
                     </h2>
                     <span class="flex items-center justify-center flex-wrap gap-4">
-                        <UButton size="lg" class="text-[#2f5acf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
+                        <UButton size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
                             GAK OFFICIAL
                         </UButton>
                         <UButton
                             size="lg"
-                            class="border border-white bg-[#2f5acf] rounded-3xl text-white px-6 py-4"
+                            class="border border-white bg-[#22c55ebf] rounded-3xl text-white px-6 py-4"
                             variant="ghost"
                             color="none">
                             Mua quần áo giá cực rẻ tại TIKTOK Shop!
@@ -1850,7 +1850,7 @@ useSeoMeta(seoMeta);
         }
     }
     .cs-cta {
-        background-color: #2f5acf;
+        background-color: #22c55ebf;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;

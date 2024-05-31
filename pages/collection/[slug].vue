@@ -45,7 +45,7 @@
                                         <NuxtImg
                                             :src="category.image_url"
                                             format="webp"
-                                            class="w-full object-contain rounded-md h-4/5" />
+                                            class="w-full object-cover rounded-md h-[90%]" />
                                         <div class="category-name font-semibold">
                                             {{ category.name }}
                                         </div>
@@ -112,7 +112,7 @@
                         <div
                             v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
                             class="category-data-list">
-                            <div v-for="product in productCollection.data" class="category-data-item" :key="product">
+                            <div v-for="product in productCollection.data" class="category-data-item border p-2 rounded-lg shadow-md" :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
@@ -141,14 +141,6 @@
             class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
             {{ collectionError.data.message }}
             <UButton size="lg" :to="localePath({ name: 'index' })">{{ $t('Quay trở về') }}</UButton>
-        </div>
-        <div
-            v-if="loadingPageCollection"
-            class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
-            <div class="loading-wrapper">
-                <div class="loading"></div>
-                <div id="loading-text">Loading...</div>
-            </div>
         </div>
     </NuxtLayout>
 </template>

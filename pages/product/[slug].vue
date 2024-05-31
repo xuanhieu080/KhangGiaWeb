@@ -397,6 +397,7 @@
                         :modules="modulesSimilar"
                         :slidesPerView="1"
                         :slidesPerGroup="1"
+                        :autoHeight="true"
                         :grabCursor="true"
                         :loop="true"
                         :breakpoints="{
@@ -414,7 +415,7 @@
                             },
                         }"
                         class="similar-products-swiper relative">
-                        <SwiperSlide v-for="similarProduct in productHot.data">
+                        <SwiperSlide v-for="similarProduct in productHot.data" class="!h-full border p-2 rounded-lg shadow-md">
                             <ProductCard :product="similarProduct" />
                         </SwiperSlide>
                         <template v-slot:container-end>
