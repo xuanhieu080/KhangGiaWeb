@@ -47,8 +47,7 @@ const props = defineProps({
         position: absolute;
         left: 24px;
         @apply flex flex-col gap-4;
-        top: 50%;
-        transform: translateY(-35%);
+        top: 24px;
         @media screen and (min-width: 992px) {
             top: 50%;
             transform: translateY(-50%);

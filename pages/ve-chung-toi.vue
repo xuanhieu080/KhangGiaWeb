@@ -285,12 +285,12 @@
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-wrap gap-4">
-                        <UButton size="lg" class="text-[#2f5acf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
+                        <UButton size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
                             <b class="uppercase">đăng ký miễn phí</b> hoặc <b class="uppercase">Đăng nhập</b>
                         </UButton>
                         <UButton
                             size="lg"
-                            class="border border-white bg-[#2f5acf] rounded-3xl text-white px-6 py-4"
+                            class="border border-white bg-[#22c55e] rounded-3xl text-white px-6 py-4"
                             variant="ghost"
                             color="none">
                             Tìm hiểu đặc quyền Hội viên GAK
@@ -415,7 +415,7 @@ let seoMeta = {
         font-family: 'CriteriaCF';
     }
     .cs-thanks {
-        background-color: #2f5acf;
+        background-color: #22c55ebf;
         text-align: center;
         padding-top: 50px;
         padding-bottom: 50px;
@@ -429,7 +429,7 @@ let seoMeta = {
         }
     }
     .cs-cta {
-        background-color: #2f5acf;
+        background-color: #22c55ebf;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;

@@ -127,14 +127,14 @@ const bannerList = ref([
 
 const bannerBlock = ref({
     image_desktop: '/images/banner_3.jpg',
-    image_mobile: '/images/banner_3.jpg',
+    image_mobile: '/images/banner_3_mobile.jpg',
     title: 'Đồng phục',
     description: 'Công ty',
     link: 'dong-phuc',
 });
 const bannerBlock2 = ref({
     image_desktop: '/images/banner_4.jpg',
-    image_mobile: '/images/banner_4.jpg',
+    image_mobile: '/images/banner_4_mobile.jpg',
     title: 'Áo ghile kỹ sư',
     description: 'Chuyên dụng - Chất lượng - Uy tín',
     link: 'ao-ghile',
