@@ -43,7 +43,7 @@ const {
     data: content,
     pending: loadingArticle,
     error: errorGetItem,
-} = await useLazyAsyncData(
+} = await useAsyncData(
     'articles-details',
     async () =>
         useOriginalFetch(`/api/v1/posts/${router.currentRoute.value.params.slug}`),

@@ -121,7 +121,7 @@ let seoMeta = {
     title: title,
     twitterTitle: title,
     // twitterDescription: description,
-    keywords: 'Chính sách bảo mật',
+    keywords: title,
 };
 
 useSeoMeta(seoMeta);

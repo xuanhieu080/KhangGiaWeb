@@ -128,7 +128,7 @@ const {
     data: content,
     pending: loadingContent,
     error: errorGetCategory,
-} = await useLazyAsyncData(
+} = await useAsyncData(
     'content',
     async () =>
         useOriginalFetch(`/api/v1/post-groups/${router.currentRoute.value.params.slug}`, {

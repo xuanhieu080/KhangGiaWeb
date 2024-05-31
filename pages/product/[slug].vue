@@ -804,7 +804,7 @@ const {
     data: productItem,
     pending: loadingProduct,
     error: errorGetProduct,
-} = await useLazyAsyncData(
+} = await useAsyncData(
     'product-item',
     async () =>
         useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
@@ -1016,56 +1016,59 @@ const resetProductPage = (isRefresh = true) => {
         refreshData.value++;
     }
 };
-let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data.meta_title;
-let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data.meta_description;
+
+const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data.meta_title);
+const description = ref(productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description);
+const key = ref(productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key);
+const image = ref(productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url);
 let seoMeta = {
-    image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data.image_url,
-    ogImage: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data.image_url,
-    description: description,
-    ogDescription: description,
-    ogTitle: title,
-    title: title,
-    twitterTitle: title,
-    twitterDescription: description,
-    keywords: productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data.meta_key,
+    image: image.value,
+    ogImage: image.value,
+    description: description.value,
+    ogDescription: description.value,
+    ogTitle: title.value,
+    title: title.value,
+    twitterTitle: title.value,
+    twitterDescription: description.value,
+    keywords: key.value,
 };
 
 let review = {};
-if (productItem.value.data.reviews && productItem.value.data.reviews.length > 0) {
+if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 0) {
     review = {
         author: {
             // Thông tin của tác giả đánh giá
             '@type': 'Person',
-            name: productItem.value.data.reviews[0].customer_name,
+            name: productItem.value.data?.reviews[0].customer_name,
         },
         reviewRating: {
             // Đánh giá được tiến hành
             '@type': 'Rating',
             bestRating: '5', // Điểm tốt nhất có thể
-            ratingValue: productItem.value.data.reviews[0].rate, // Điểm đánh giá
+            ratingValue: productItem.value.data?.reviews[0].rate, // Điểm đánh giá
             worstRating: '1', // Điểm xấu nhất có thể
         },
-        reviewBody: productItem.value.data.reviews[0].description,
+        reviewBody: productItem.value.data?.reviews[0].description,
     }
 }
 useSeoMeta(seoMeta);
 useSchemaOrg([
     defineProduct({
-        name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data.name,
-        image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data.image_url,
-        description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data.meta_description,
+        name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
+        image: image.value,
+        description: description.value,
         offers: {
             offerCount: 5,
             lowPrice: productItemCurrent.value
                 ? productItemCurrent.value.price - productItemCurrent.value.price_discount
-                : productItem.value.data.price - productItem.value.data.price_discount,
-            highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data.price,
+                : productItem.value.data?.price - productItem.value.data?.price_discount,
+            highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
             priceCurrency: 'VND',
         },
         aggregateRating: {
-            ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data.average_rate,
+            ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
             bestRating: 5,
-            ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data.rate_count,
+            ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
         },
         review: [...reviewJson.value],
     }),
@@ -1090,21 +1093,21 @@ watch(
             });
             useSchemaOrg([
                 defineProduct({
-                    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data.name,
-                    image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data.image_url,
-                    description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data.meta_description,
+                    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
+                    image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url,
+                    description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description,
                     offers: {
                         offerCount: 5,
                         lowPrice: productItemCurrent.value
                             ? productItemCurrent.value.price - productItemCurrent.value.price_discount
-                            : productItem.value.data.price - productItem.value.data.price_discount,
-                        highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data.price,
+                            : productItem.value.data?.price - productItem.value.data?.price_discount,
+                        highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
                         priceCurrency: 'VND',
                     },
                     aggregateRating: {
-                        ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data.average_rate,
+                        ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
                         bestRating: 5,
-                        ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data.rate_count,
+                        ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
                     },
                     review: reviewJson.value,
                 }),

@@ -244,7 +244,7 @@ const {
     data: collection,
     pending: loadingCollection,
     error: collectionError,
-} = await useLazyAsyncData(
+} = await useAsyncData(
     'collection-category',
     async () =>
         useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`)

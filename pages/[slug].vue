@@ -42,7 +42,7 @@ const {
     data: page,
     pending: loadingPage,
     error: errorGetItem,
-} = await useLazyAsyncData(
+} = await useAsyncData(
     'pages',
     async () =>
         useOriginalFetch(`/api/v1/pages/${route.params.slug}`),
