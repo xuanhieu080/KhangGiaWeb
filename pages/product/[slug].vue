@@ -1094,8 +1094,8 @@ watch(
             useSchemaOrg([
                 defineProduct({
                     name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
-                    image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url,
-                    description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description,
+                    image: image.value,
+                    description: description.value,
                     offers: {
                         offerCount: 5,
                         lowPrice: productItemCurrent.value

@@ -118,7 +118,7 @@ watchEffect(() => {
 //         headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
 //         title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
 //         description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         image: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
+//         image: process.env.WEB_BASE_URL + '/logo.jpeg',
 //         datePublished: new Date(2024, 1, 1),
 //         dateModified: new Date(2024, 1, 1),
 //         author: [

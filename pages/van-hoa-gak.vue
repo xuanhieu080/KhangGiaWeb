@@ -1021,7 +1021,7 @@
             </section>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia GAK - Nhận ngay Voucher 15% + Hoàn tiền khi mua sắm</h2>
+                    <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-wrap gap-4">
                         <UButton size="lg" class="text-[#2f5acf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
                             <b class="uppercase">đăng ký miễn phí</b> hoặc <b class="uppercase">Đăng nhập</b>
