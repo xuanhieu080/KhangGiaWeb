@@ -7,14 +7,14 @@
                     <div v-if="productCollection.data && productCollection.data.length > 0" class="category-data-list">
                         <div
                             v-for="product in productCollection.data"
-                            class="category-data-item data-desktop hidden md:block border p-2 rounded-lg shadow-md"
+                            class="category-data-item data-desktop hidden md:block  p-2 rounded-lg"
                             :key="product">
                             <ProductCard :product="product" />
                         </div>
                         <div
                             v-for="(product, index) in productCollection.data"
                             :class="index > 1 ? '!hidden' : ''"
-                            class="category-data-item data-mobile block md:hidden border p-2 rounded-lg shadow-md"
+                            class="category-data-item data-mobile block md:hidden  p-2 rounded-lg"
                             :key="product">
                             <ProductCard :product="product" />
                         </div>
@@ -65,14 +65,14 @@
                         <div class="category-data-list">
                             <div
                                 v-for="product in category.products"
-                                class="category-data-item data-desktop hidden md:block border p-2 rounded-lg shadow-md"
+                                class="category-data-item data-desktop hidden md:block  p-2 rounded-lg"
                                 :key="product">
                                 <ProductCard :product="product" />
                             </div>
                             <div
                                 v-for="(product, index) in category.products"
                                 :class="index > 1 ? '!hidden' : ''"
-                                class="category-data-item data-mobile block md:hidden border p-2 rounded-lg shadow-md"
+                                class="category-data-item data-mobile block md:hidden  p-2 rounded-lg"
                                 :key="product">
                                 <ProductCard :product="product" />
                             </div>

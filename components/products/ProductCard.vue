@@ -13,6 +13,10 @@
                         v-if="product.thumb_image[1]"
                         class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain second-look"
                         :src="product.thumb_image[1]" />
+                    <NuxtImg
+                        v-else
+                        class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain second-look"
+                        :src="product.thumb_image[0]" />
                 </button>
             </div>
             <div v-if="productColor" class="product-type flex items-center justify-start flex-wrap gap-2">

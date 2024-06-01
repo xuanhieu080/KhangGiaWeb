@@ -34,9 +34,9 @@
                             <SwiperSlide
                                 v-for="(category, index) in collection.item.descendants"
                                 :key="product"
-                                class="!h-[300px] md:!h-[400px] w-[200px] mr-4">
+                                class="!h-[300px] xl:!h-[400px] w-[200px] mr-4">
                                 <UCard
-                                    :ui="{ wrapper: '', shadow: '', ring: '', body: { base: 'h-full', padding: 'p-2 sm:p-2' } }"
+                                    :ui="{ wrapper: '', shadow: '', ring: '', body: { base: 'h-full', padding: 'p-0 sm:p-2' } }"
                                     class="category-card h-full"
                                     @click="changeCategoryTab(index)">
                                     <NuxtLink
@@ -45,8 +45,8 @@
                                         <NuxtImg
                                             :src="category.image_url"
                                             format="webp"
-                                            class="w-full object-cover rounded-md h-[90%]" />
-                                        <div class="category-name font-semibold">
+                                            class="w-full object-contain object-bottom xl:object-left rounded-md h-[90%]" />
+                                        <div class="category-name text-center xl:text-left font-semibold">
                                             {{ category.name }}
                                         </div>
                                     </NuxtLink>
@@ -112,7 +112,7 @@
                         <div
                             v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
                             class="category-data-list">
-                            <div v-for="product in productCollection.data" class="category-data-item border p-2 rounded-lg shadow-md" :key="product">
+                            <div v-for="product in productCollection.data" class="category-data-item" :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
@@ -297,7 +297,7 @@ useSeoMeta(seoMeta);
             .category-card {
                 .category-item {
                     border-radius: 12px;
-                    padding: 8px;
+                    padding: 2px;
                     &.router-link-active {
                         @apply border-blue-700;
                     }
