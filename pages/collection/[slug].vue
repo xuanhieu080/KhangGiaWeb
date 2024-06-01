@@ -9,7 +9,7 @@
                     <div v-if="collection.item.descendants" class="category-tabs w-full">
                         <Swiper
                             :slidesPerView="2"
-                            :spaceBetween="16"
+                            :spaceBetween="4"
                             :slidesPerGroup="2"
                             :scrollbar="true"
                             :modules="modules"
@@ -34,7 +34,7 @@
                             <SwiperSlide
                                 v-for="(category, index) in collection.item.descendants"
                                 :key="product"
-                                class="!h-[400px] w-[200px] mr-4">
+                                class="!h-[300px] md:!h-[400px] w-[200px] mr-4">
                                 <UCard
                                     :ui="{ wrapper: '', shadow: '', ring: '', body: { base: 'h-full', padding: 'p-2 sm:p-2' } }"
                                     class="category-card h-full"

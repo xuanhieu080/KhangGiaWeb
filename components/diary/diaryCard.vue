@@ -1,6 +1,6 @@
 <template>
     <UCard :ui="{ ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }" v-if="diary" class="diary-card relative">
-        <div class="diary-card-wrapper w-full h-full cursor-pointer" @click="handleOpenDiaryProduct">
+        <div class="diary-card-wrapper w-full h-full cursor-pointer">
             <NuxtImg format="webp" class="w-full h-full object-cover" :src="diary.image_thumb" />
         </div>
     </UCard>

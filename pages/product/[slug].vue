@@ -154,16 +154,18 @@
                                 productItemCurrent ? productItemCurrent.name : productItem.data.name
                             }}</span>
                         </div>
-                        <div class="product-rate flex items-center gap-2 text-black">
+                        <div class="product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black">
                             <NuxtRating
                                 class="w-[220px]"
                                 :read-only="true"
                                 :ratingValue="productItem.data.average_rate"
                                 :active-color="'green'"
                                 rating-content="⭐" />
-                            <div class="fs-12">({{ productItem.data.rate_count }})</div>
-                            <div>|</div>
-                            <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data.qty_sold }}</div>
+                            <div class="flex items-center gap-2">
+                                <div class="fs-12">({{ productItem.data.rate_count }})</div>
+                                <div>|</div>
+                                <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data.qty_sold }}</div>
+                            </div>
                         </div>
 
                         <div v-if="productItemCurrent" class="product-price font-bold text-[22px]">
@@ -339,7 +341,7 @@
                             </div>
                         </div>
                         <UDivider />
-                        <div class="grid grid-cols-2 fs-14 gap-8">
+                        <div class="grid sm:grid-cols-2 fs-14 gap-8">
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-mdi-phone-return" dynamic />
                                 <span>Nội thành Hà Nội và HCM nhận hàng trong 1-2 ngày</span>
@@ -367,7 +369,7 @@
                     v-if="productItem.data.highlight"
                     class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
                     <h3 class="product-features__heading !text-2xl font-bold">Đặc điểm nổi bật</h3>
-                    <div class="product-details flex justify-between w-full">
+                    <div class="product-details flex flex-col-reverse sm:flex-row justify-between w-full">
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
                             <div v-html="productItem.data.highlight"></div>
@@ -1050,7 +1052,7 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
             worstRating: '1', // Điểm xấu nhất có thể
         },
         reviewBody: productItem.value.data?.reviews[0].description,
-    }
+    };
 }
 useSeoMeta(seoMeta);
 useSchemaOrg([
@@ -1073,7 +1075,7 @@ useSchemaOrg([
         },
         review: [...reviewJson.value],
     }),
-    defineReview(review)
+    defineReview(review),
 ]);
 watch(
     () => [reviewProduct.value, loadingReviewProduct.value],
@@ -1096,7 +1098,9 @@ watch(
                 defineProduct({
                     name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
                     image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url,
-                    description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description,
+                    description: productItemCurrent.value
+                        ? productItemCurrent.value.meta_description
+                        : productItem.value.data?.meta_description,
                     offers: {
                         offerCount: 5,
                         lowPrice: productItemCurrent.value
@@ -1106,7 +1110,9 @@ watch(
                         priceCurrency: 'VND',
                     },
                     aggregateRating: {
-                        ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
+                        ratingValue: productItemCurrent.value
+                            ? productItemCurrent.value.average_rate
+                            : productItem.value.data?.average_rate,
                         bestRating: 5,
                         ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
                     },

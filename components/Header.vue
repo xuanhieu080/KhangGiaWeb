@@ -2,12 +2,10 @@
     <div class="site-header" :class="{ 'hidden-header': isScrollDown }">
         <div class="topbar">
             <div class="left-top-bar">
-                <NuxtLink :to="localePath({ name: 'collection-slug',params: { slug: 'phan-quang' }  })" class="logo">
+                <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'phan-quang' } })" class="logo">
                     SP Phản Quang
                 </NuxtLink>
-                <NuxtLink :to="localePath({ name: 'collection-slug',params: { slug: 'vai' }})" class="logo">
-                    SP Vải
-                </NuxtLink>
+                <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'vai' } })" class="logo"> SP Vải </NuxtLink>
             </div>
             <div class="sub-nav">
                 <NuxtLink :to="localePath({ name: 'blog' })">{{ $t('Blog') }}</NuxtLink>
@@ -56,7 +54,9 @@
                     <template #item="{ item }">
                         <div v-show="item.products.length > 0" class="sub-menu">
                             <div class="sub-menu-wrapper grid gap-4 w-max" :class="item.products.length > 2 ? 'grid-cols-2' : ''">
-                                <div class="flex flex-col items-start gap-y-6 p-6 border-gray-300" :class="item.products.length > 2 ? 'border-r' : ''">
+                                <div
+                                    class="flex flex-col items-start gap-y-6 p-6 border-gray-300"
+                                    :class="item.products.length > 2 ? 'border-r' : ''">
                                     <div
                                         v-show="index1 < item.products.length - 2 || item.products.length < 2"
                                         v-for="(subMenu, index1) in item.products"
@@ -76,10 +76,7 @@
                                         <NuxtLink
                                             :to="localePath({ name: 'product-slug', params: { slug: subMenu.slug } })"
                                             class="product-item">
-                                            <img
-                                                loading="lazy"
-                                                :src="subMenu.image_url"
-                                                alt="" />
+                                            <img loading="lazy" :src="subMenu.image_url" alt="" />
                                             <div class="product-content">{{ subMenu.name }}</div>
                                         </NuxtLink>
                                     </div>
@@ -99,9 +96,7 @@
                     @mouseenter="(e) => handleAddSubMenu(e)">
                     {{ category.name }}
                 </NuxtLink>
-                <div class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{
-                    $t('Đặt may')
-                }}</div>
+                <div class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{ $t('Đặt may') }}</div>
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'van-hoa-gak' })" @click="menuMobile = false">{{
                     $t('Văn hoá GAK')
                 }}</NuxtLink>
@@ -143,7 +138,7 @@
                 </NuxtLink>
             </div>
             <div class="right-header-mobile flex justify-between items-center gap-6">
-                <UButton variant="ghost" color="none" :padded="false" class="search-mobile">
+                <UButton @click="handleOpenSearchSlideOver" variant="ghost" color="none" :padded="false" class="search-mobile">
                     <UIcon name="i-heroicons-magnifying-glass" class="fs-28 text-black" />
                 </UButton>
                 <NuxtLink :to="localePath({ name: 'index' })" class="logo">
@@ -258,6 +253,13 @@
         </USlideover>
         <USlideover v-model="openSearchSlide" :ui="{ wrapper: 'z-[999]', overlay: { background: 'bg-gray-600/75' } }">
             <div class="search-box flex flex-col gap-4 w-full p-4">
+                <UButton
+                    @click="openSearchSlide = false"
+                    icon="i-heroicons-x-mark-20-solid"
+                    variant="soft"
+                    color="gray"
+                    class="md:hidden self-end w-fit rounded-full">
+                </UButton>
                 <UInput
                     class="search-box max-w-[500px] rounded-[50px] overflow-hidden bg-gray-200"
                     name="search-box"
@@ -282,7 +284,7 @@
                     </template>
                 </UInput>
                 <NuxtLink
-                    :to="localePath({ name: 'tim-kiem-san-pham' , query: {search: searchItem}})"
+                    :to="localePath({ name: 'tim-kiem-san-pham', query: { search: searchItem } })"
                     v-if="searchItem !== '' && !loadingSearchProduct"
                     @click="handleSearchKeyword"
                     class="search-box-directly w-full py-2 px-6 !bg-gray-100 rounded-md text-sm cursor-pointer">

@@ -3,7 +3,7 @@
         <div v-if="!isLoadingPage" class="dashboard">
             <Banner :bannerList="bannerList" :autoPlay="true" />
             <div class="container mx-auto overflow-hidden lg:overflow-visible">
-                <div class="flex items-center gap-4 w-full my-4">
+                <div class="flex flex-wrap items-center gap-4 w-full my-4">
                     <UButton
                         @click="
                             () => {
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="banner-block h-full">
-                <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" />
+                <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" :isWhite="true" />
             </div>
             <div v-if="!loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
                 <ProductCollectionOther
