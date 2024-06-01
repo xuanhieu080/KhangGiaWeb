@@ -4,10 +4,10 @@
             <NuxtImg class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA GAK</h1>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA GAK</h1>
                 <span class="text-lg xl:text-xl">Tất cả những điều bạn muốn biết về GAK!</span>
             </div>
-            <div class="flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
+            <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
                     variant="ghost"
                     color="none"
@@ -55,6 +55,53 @@
                 </UButton>
             </div>
         </div>
+        <div class="lg:hidden flex flex-col justify-between gap-4 my-4 px-4">
+            <UButton
+                variant="ghost"
+                color="none"
+                :to="localePath({ name: 've-chung-toi' })"
+                class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
+                <div class="flex justify-center">
+                    <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
+                </div>
+                <div class="font-bold text-left flex-1 flex justify-start">
+                    <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                </div>
+                <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                    <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
+                </div>
+            </UButton>
+            <UButton
+                variant="ghost"
+                :to="localePath({ name: 'van-hoa-gak' })"
+                color="none"
+                class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
+                <div class="flex justify-center">
+                    <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
+                </div>
+                <div class="font-bold text-left flex-1 flex justify-start">
+                    <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                </div>
+                <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                    <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
+                </div>
+            </UButton>
+            <UButton
+                variant="ghost"
+                :to="localePath({ name: 'dvkh-tan-tam' })"
+                color="none"
+                class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
+                <div class="flex justify-center">
+                    <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
+                </div>
+                <div class="font-bold text-left flex-1 flex justify-start">
+                    <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                </div>
+                <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                    <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
+                </div>
+            </UButton>
+        </div>
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
@@ -81,7 +128,7 @@
             <section class="cs-caption">
                 <div class="cs-caption__wrapper w-full">
                     <div class="container container--medium text-white">
-                        <div class="grid grid-cols-2 gap-4 items-center">
+                        <div class="grid md:grid-cols-2 gap-4 items-center">
                             <div class="grid-column text-white text-left">
                                 <h2 class="cs-caption__heading !mb-0">VĂN HOÁ GAK</h2>
                                 <p class="max-w-[500px] leading-6 !ml-0">
@@ -95,8 +142,8 @@
                             </div>
                         </div>
                         <div class="recruitment-culture__ten-facts mt-8 lg:mt-16">
-                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                                <div class="grid__column">
+                            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">01</div>
                                         <div class="ten-facts__description">
@@ -105,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid__column">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">02</div>
                                         <div class="ten-facts__description">
@@ -114,7 +161,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid__column">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">03</div>
                                         <div class="ten-facts__description">
@@ -123,7 +170,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid__column">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">04</div>
                                         <div class="ten-facts__description">
@@ -133,7 +180,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid__column">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">05</div>
                                         <div class="ten-facts__description">
@@ -143,7 +190,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid__column">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">06</div>
                                         <div class="ten-facts__description">
@@ -152,7 +199,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid__column">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">07</div>
                                         <div class="ten-facts__description">
@@ -162,7 +209,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid__column">
+                                <div class="grid__column min-h-[150px]">
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">08</div>
                                         <div class="ten-facts__description">
@@ -191,9 +238,388 @@
                     </h4>
                     <div class="recruitment-job__swiper w-full mt-8 mb-4 relative">
                         <Swiper
-                            :slidesPerView="2"
-                            :spaceBetween="24"
-                            :slidesPerGroup="2"
+                            :slidesPerView="1"
+                            :spaceBetween="16"
+                            :slidesPerGroup="1"
+                            :modules="modules"
+                            :autoHeight="true"
+                            :pagination="{
+                                clickable: true,
+                            }"
+                            class="swiper diary-swiper min-w-0 md:!hidden relative z-10 !pb-14">
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            <SwiperSlide class="recruitment-jobs-slide">
+                                <div class="job-item">
+                                    <div class="job-grid__thumbnail" style="z-index: 9">
+                                        <div class="job-grid__image"><img src="/images/recruitment-job-1.png" alt="" /></div>
+                                    </div>
+                                    <div class="job-grid__content" style="position: relative; overflow: hidden">
+                                        <h3 class="job-grid__title">
+                                            <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
+                                                >NEW</span
+                                            >
+                                            Assistant Brand Manager
+                                        </h3>
+                                        <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
+                                        <ul class="!m-0 list-none p-0 text-left">
+                                            <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                        </ul>
+                                        <div class="job-grid__footer">
+                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                                <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
+                                                    <defs></defs>
+                                                    <title>Clock</title>
+                                                    <g id="Layer_2" data-name="Layer 2">
+                                                        <g id="Layer_1-2" data-name="Layer 1">
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.38,0A18.68,18.68,0,0,0,8,10h.36A5.65,5.65,0,0,1,12,11.28,14.43,14.43,0,0,1,24.38,4.17,14.7,14.7,0,0,1,38.92,19,14.72,14.72,0,0,1,24.38,33.87a14.42,14.42,0,0,1-8.26-2.61l-1.93,3.67A18.5,18.5,0,0,0,24.38,38,18.84,18.84,0,0,0,43,19,18.83,18.83,0,0,0,24.38,0Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M24.07,8A2.08,2.08,0,0,0,22,10.11v8.78A2.08,2.08,0,0,0,24.07,21h6.86a2.11,2.11,0,0,0,0-4.22H26.14V10.11A2.08,2.08,0,0,0,24.07,8Z"></path>
+                                                            <path
+                                                                fill="currentColor"
+                                                                d="M13.15,21.94l-2.89.44a.56.56,0,0,1-.63-.53V15.57a1.59,1.59,0,0,0-3-.76L.2,26.79a1.56,1.56,0,0,0,1.62,2.27l2.89-.44a.56.56,0,0,1,.63.53v6.28a1.59,1.59,0,0,0,3,.76l6.5-12a1.57,1.57,0,0,0-1.67-2.27Z"></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                Fulltime
+                                            </div>
+                                            <a rel-script="jobs-views" class="job-grid__link">
+                                                Chi tiết &amp; Ứng tuyển
+                                                <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        </Swiper>
+                        <Swiper
+                            :slidesPerView="3"
+                            :spaceBetween="16"
+                            :slidesPerGroup="3"
                             :modules="modules"
                             :grid="{
                                 rows: 2,
@@ -202,14 +628,7 @@
                                 clickable: true,
                                 renderBullet: (index, className) => renderBullet(index, className),
                             }"
-                            :breakpoints="{
-                                768: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 16,
-                                    slidesPerGroup: 3,
-                                },
-                            }"
-                            class="swiper diary-swiper min-w-0 h-[580px] relative z-10 !pb-12">
+                            class="swiper diary-swiper min-w-0 h-[580px] !hidden md:!block relative z-10 !pb-14">
                             <SwiperSlide class="recruitment-jobs-slide">
                                 <div class="job-item">
                                     <div class="job-grid__thumbnail" style="z-index: 9">
@@ -225,7 +644,7 @@
                                         <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
                                         <ul class="!m-0 list-none p-0 text-left">
                                             <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
                                             <div class="job-grid__time flex items-center gap-1 text-[12px]">
@@ -271,7 +690,7 @@
                                         <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
                                         <ul class="!m-0 list-none p-0 text-left">
                                             <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
                                             <div class="job-grid__time flex items-center gap-1 text-[12px]">
@@ -317,7 +736,7 @@
                                         <p class="job-grid__description">Trợ lý Quản lý Thương hiệu</p>
                                         <ul class="!m-0 list-none p-0 text-left">
                                             <li>Địa điểm: <span style="margin-left: 5px">Hà Nội</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
                                             <div class="job-grid__time flex items-center gap-1 text-[12px]">
@@ -1023,12 +1442,16 @@
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-wrap gap-4">
-                        <UButton size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
+                        <UButton
+                            size="lg"
+                            class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full sm:flex-row flex-col gap-2 justify-center"
+                            variant="ghost"
+                            color="none">
                             <b class="uppercase">đăng ký miễn phí</b> hoặc <b class="uppercase">Đăng nhập</b>
                         </UButton>
                         <UButton
                             size="lg"
-                            class="border border-white bg-[#22c55ebf] rounded-3xl text-white px-6 py-4"
+                            class="border border-white bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 w-full justify-center"
                             variant="ghost"
                             color="none">
                             Tìm hiểu đặc quyền Hội viên GAK
@@ -1102,6 +1525,10 @@ let seoMeta = {
         font-size: 40px;
         color: #000000;
         font-size: 3.5rem;
+        @media screen and (max-width: 567px) {
+            font-size: 3rem;
+            text-align: center;
+        }
     }
     .cs-caption__wrapper {
         background-color: #000000;
@@ -1188,12 +1615,18 @@ let seoMeta = {
             line-height: normal;
             text-transform: uppercase;
             padding: 0 6rem;
+            @media screen and (max-width: 767px) {
+                padding: 0 1rem;
+            }
         }
         .recruitment-send__description {
             text-align: center;
             font-size: 1rem;
             margin-bottom: 3rem;
             padding: 0 7rem;
+            @media screen and (max-width: 767px) {
+                padding: 0 1rem;
+            }
         }
     }
     .recruitment-blogs {
@@ -1321,6 +1754,9 @@ let seoMeta = {
             display: flex;
             background-color: #f9f86c;
             border-radius: 50px;
+            @media screen and (max-width: 767px) {
+                flex-direction: column-reverse;
+            }
             .about-card__content {
                 display: flex;
                 flex-flow: column;
@@ -1332,6 +1768,9 @@ let seoMeta = {
                     font-weight: 400;
                     font-size: 58px;
                     line-height: 1.15em;
+                    @media screen and (max-width: 767px) {
+                        margin: auto 0;
+                    }
                 }
             }
             .about-card__image {
@@ -1377,12 +1816,15 @@ let seoMeta = {
                 font-size: 18px;
                 padding-left: 40px;
                 padding-right: 50px;
-                height: calc((100% - 24px) / 2) !important;
+                height: calc((100% - 16px) / 2) !important;
                 border-radius: 12px;
                 /* Center slide text vertically */
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                @media screen and (max-width: 991px) {
+                    height: 100% !important;
+                }
                 .job-item {
                     border-radius: 16px;
                     display: flex;
@@ -1445,6 +1887,10 @@ let seoMeta = {
                             border-radius: 5px;
                             font-size: 12px;
                             margin: 0;
+                            @media screen and (max-width: 767px) {
+                                height: max-content;
+                                padding: 0 4px;
+                            }
                         }
                     }
                     .job-grid__footer {
@@ -1452,6 +1898,9 @@ let seoMeta = {
                         flex: 1;
                         justify-content: space-between;
                         align-items: flex-end;
+                        @media screen and (max-width: 767px) {
+                            flex-wrap: wrap;
+                        }
                         margin-top: 20px;
                         .job-grid__link {
                             display: flex;

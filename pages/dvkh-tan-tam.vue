@@ -9,13 +9,13 @@
                 alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY GAK</h1>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY GAK</h1>
                 <span class="text-lg xl:text-xl"
                     >Đây là chuyên mục giúp các bạn biết được GAK đã hình thành ra sao và chúng tôi muốn xây dựng một hình mẫu như thế
                     nào!</span
                 >
             </div>
-            <div class="flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
+            <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
                     variant="ghost"
                     color="none"
@@ -62,6 +62,53 @@
                     </div>
                 </UButton>
             </div>
+        </div>
+        <div class="lg:hidden flex flex-col justify-between gap-4 my-4 px-4">
+            <UButton
+                    variant="ghost"
+                    color="none"
+                    :to="localePath({ name: 've-chung-toi' })"
+                    class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
+                    <div class="flex justify-center">
+                        <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
+                    </div>
+                    <div class="font-bold text-left flex-1 flex justify-start">
+                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                    </div>
+                    <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                        <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
+                    </div>
+                </UButton>
+                <UButton
+                    variant="ghost"
+                    color="none"
+                    :to="localePath({ name: 'van-hoa-gak' })"
+                    class="about-us-button bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
+                    <div class="flex justify-center">
+                        <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
+                    </div>
+                    <div class="font-bold text-left flex-1 flex justify-start">
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                    </div>
+                    <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                        <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
+                    </div>
+                </UButton>
+                <UButton
+                    variant="ghost"
+                    :to="localePath({ name: 'dvkh-tan-tam' })"
+                    color="none"
+                    class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
+                    <div class="flex justify-center">
+                        <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/star-blink.png" />
+                    </div>
+                    <div class="font-bold text-left flex-1 flex justify-start">
+                        <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                    </div>
+                    <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                        <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
+                    </div>
+                </UButton>
         </div>
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-caption py-4">
@@ -250,6 +297,10 @@ useSeoMeta(seoMeta);
         font-size: 40px;
         color: #000000;
         font-size: 3.5rem;
+        @media screen and (max-width: 567px) {
+            font-size: 3rem;
+            text-align: center;
+        }
     }
     .cs-caption__wrapper {
         padding: 50px;
@@ -262,6 +313,9 @@ useSeoMeta(seoMeta);
             line-height: 1.5em;
             padding: 0 3rem;
             position: relative;
+            @media screen and (max-width: 567px) {
+                padding: 0;
+            }
             &:before {
                 content: '';
                 position: absolute;
@@ -271,9 +325,12 @@ useSeoMeta(seoMeta);
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-position: 20% top;
-                background-image: url(https://mcdn.coolmate.me/image/October2023/mceclip0_68.png);
+                background-image: url('/images/big-dash.png');
                 top: -50px;
                 left: 0;
+                @media screen and (max-width: 567px) {
+                    left: -24px;
+                }
             }
         }
     }
@@ -306,6 +363,9 @@ useSeoMeta(seoMeta);
         text-transform: uppercase;
         max-width: 400px;
         margin: auto 0;
+        @media screen and (max-width: 567px) {
+            line-height: 1.4;
+        }
     }
     .cs-services-info__order {
         color: #dedede;

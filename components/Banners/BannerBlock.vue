@@ -4,11 +4,11 @@
             <source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
             <img :src="bannerBlock.image_desktop" :alt="bannerBlock.title" style="width: 100%" />
         </picture>
-        <div v-if="!hideContent" class="banner-content" :class="splitBanner ? 'modify-position' : ''">
+        <div v-if="!hideContent" class="banner-content" :class="[splitBanner ? 'modify-position' : '', isWhite ? 'white-text' : '']">
             <div v-if="bannerBlock.subtitle" class="opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
-            <div class="title" :class="splitBanner ? 'custom-font' : ''">{{ bannerBlock.title }}</div>
+            <div class="title" :class="[splitBanner ? 'custom-font' : '', isWhite ? 'shadow-lg md:shadow-none' : '']">{{ bannerBlock.title }}</div>
             <div v-if="bannerBlock.description" class="description" v-html="bannerBlock.description"></div>
-            <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: bannerBlock.link}})">
+            <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: bannerBlock.link } })">
                 <UButton
                     size="xl"
                     color="none"
@@ -36,6 +36,10 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    isWhite: {
+        type: Boolean,
+        default: false,
+    }
 });
 </script>
 <style lang="scss" scoped>
@@ -45,9 +49,23 @@ const props = defineProps({
     .banner-content {
         color: black;
         position: absolute;
-        left: 24px;
         @apply flex flex-col gap-4;
-        top: 24px;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: black;
+        &.white-text {
+            color: white;
+            @media screen and (min-width: 768px) {
+                color: black;
+            }
+        }
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            left: 24px;
+            top: 24px;
+            transform: translateY(0);
+
+        }
         @media screen and (min-width: 992px) {
             top: 50%;
             transform: translateY(-50%);
@@ -67,7 +85,6 @@ const props = defineProps({
                 font-size: 3.75rem;
                 max-width: 350px;
             }
-            color: black;
             font-size: 2.25rem;
             text-transform: uppercase;
             font-weight: bold;
@@ -78,7 +95,6 @@ const props = defineProps({
             }
         }
         .description {
-            color: black;
             @media screen and (min-width: 1280px) {
                 font-size: 1.25rem;
             }

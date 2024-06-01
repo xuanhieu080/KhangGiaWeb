@@ -633,7 +633,6 @@ html {
   justify-content: center;
   align-items: center;
   color: var(--white);
-  background-color: transparent;
   opacity: 1; }
   .custom-bullet.swiper-pagination-bullet-active {
     color: white; }
