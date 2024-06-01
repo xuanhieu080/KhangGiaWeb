@@ -417,7 +417,7 @@
                             },
                         }"
                         class="similar-products-swiper relative">
-                        <SwiperSlide v-for="similarProduct in productHot.data" class="!h-full border p-2 rounded-lg shadow-md">
+                        <SwiperSlide v-for="similarProduct in productHot.data" class="!h-full p-2 rounded-lg">
                             <ProductCard :product="similarProduct" />
                         </SwiperSlide>
                         <template v-slot:container-end>

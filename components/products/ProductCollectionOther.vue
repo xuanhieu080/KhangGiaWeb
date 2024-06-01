@@ -2,7 +2,7 @@
     <div v-if="!loading && productList && productList.length > 0" class="flex flex-col gap-4 relative w-full">
         <div class="collection-title fs-20 font-bold uppercase">{{ collectionTitle }}</div>
         <div class="collection-wrapper">
-            <div v-for="product in productList" :key="product" class="collection-item border p-2 rounded-lg shadow-md">
+            <div v-for="product in productList" :key="product" class="collection-item">
                 <ProductCard :product="product" />
             </div>
         </div>

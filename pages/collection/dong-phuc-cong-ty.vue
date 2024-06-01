@@ -81,7 +81,7 @@
                         <div
                             v-else-if="!loadingCollectionProduct && collectionProduct.data && collectionProduct.data.length > 0"
                             class="category-data-list">
-                            <div v-for="product in collectionProduct.data" class="category-data-item border p-2 rounded-lg shadow-md" :key="product">
+                            <div v-for="product in collectionProduct.data" class="category-data-item border p-2 rounded-lg" :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
