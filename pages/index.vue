@@ -274,14 +274,7 @@ const { data: productUniform, pending: loadingProductUniform } = await useLazyAs
 );
 
 ///SEO
-const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
-    title: config.public.title,
-    description: config.public.description,
-    theme: '#ff0000',
-    colorMode: 'dark',
-});
 </script>
 <style lang="scss" scoped>
 .dashboard {

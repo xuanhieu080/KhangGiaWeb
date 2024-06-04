@@ -17,6 +17,7 @@ export default defineNuxtConfig({
             region: process.env.NUXT_SITE_ADDRESS_REGION,
             country: process.env.NUXT_SITE_ADDRESS_COUNTRY,
             postal: process.env.NUXT_SITE_POSTAL_CODE,
+            logo: process.env.WEB_BASE_URL + '/logo.jpeg',
             gtm: {
                 id: 'GTM-5MFK8NDW',
                 defer: false,

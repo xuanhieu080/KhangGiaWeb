@@ -109,6 +109,29 @@ const backToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 };
 
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: config.public.title,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+
+let seoMeta = {
+    description:  config.public.description,
+    ogDescription:  config.public.description,
+    ogTitle: config.public.title,
+    title: config.public.title,
+    twitterTitle: config.public.title,
+    twitterDescription:  config.public.description,
+};
+
+useSeoMeta(seoMeta);
+
 useSchemaOrg([
     definePlace({
         name: process.env.NUXT_SITE_NAME,
