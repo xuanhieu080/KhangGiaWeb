@@ -101,12 +101,12 @@ export default defineNuxtConfig({
                 name: 'Việt Nam',
                 file: 'vi.json',
             },
-            {
-                code: 'en',
-                iso: 'en-US',
-                name: 'English',
-                file: 'en.json',
-            },
+            // {
+            //     code: 'en',
+            //     iso: 'en-US',
+            //     name: 'English',
+            //     file: 'en.json',
+            // },
             
         ],
         detectBrowserLanguage: false,

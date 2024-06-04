@@ -1,33 +1,29 @@
 <template>
     <NuxtLayout name="main">
         <div class="category-page bg-white">
-            <Banner :bannerList="bannerList" :autoPlay="true" />
+            <div class="md:hidden">
+                <img src="/images/all-products/all-banner-1_1.jpg" class="h-full w-full object-contain" />
+            </div>
+            <div class="hidden md:block">
+                <img src="/images/all-products/all-banner-1.jpg" class="h-full w-full object-contain" />
+            </div>
             <div v-if="!loadingProductCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-8">
                 <div class="category-data flex flex-col gap-4 flex-1">
                     <div v-if="productCollection.data && productCollection.data.length > 0" class="category-data-list">
                         <div
                             v-for="product in productCollection.data"
-                            class="category-data-item data-desktop hidden md:block  p-2 rounded-lg"
+                            class="category-data-item data-desktop hidden md:block p-2 rounded-lg"
                             :key="product">
                             <ProductCard :product="product" />
                         </div>
                         <div
                             v-for="(product, index) in productCollection.data"
-                            :class="index > 1 ? '!hidden' : ''"
-                            class="category-data-item data-mobile block md:hidden  p-2 rounded-lg"
+                            :class="index > 3 ? '!hidden' : ''"
+                            class="category-data-item data-mobile block md:hidden p-2 rounded-lg"
                             :key="product">
                             <ProductCard :product="product" />
                         </div>
                     </div>
-                    <UButton
-                        variant="solid"
-                        :to="localePath({ name: 'tim-kiem-san-pham' })"
-                        color="none"
-                        size="xl"
-                        class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
-                        v-if="productCollection.meta.last_page > productCollection.meta.from"
-                        >{{ 'Xem thêm' }}</UButton
-                    >
                 </div>
             </div>
             <div v-else class="category-data-list my-4 p-4">
@@ -35,29 +31,41 @@
                     <ProductCard />
                 </div>
             </div>
-            <div v-if="!loadingProductCollectionAll" v-for="category in productCollectionAll.data" class="category-product py-4">
+            <div
+                v-show="index < 5"
+                v-if="!loadingProductCollectionAll"
+                v-for="(category, index) in productCollectionAll.data"
+                class="category-product py-4">
                 <div class="product-category-title md:!hidden">
                     Sản phẩm
-                    <span class="sub-title">{{ category.name }}</span>
+                    <span class="sub-title capitalize">{{ category.name }}</span>
                 </div>
-                <div class="h-[200px] md:hidden">
-                    <img :src="category.image_url" class="h-full w-full object-contain" />
+                <div class="md:hidden">
+                    <img v-if="index == 0" src="/images/all-products/all-banner-2_2.jpg" class="h-full w-full object-contain" />
+                    <img v-if="index == 1" src="/images/all-products/all-banner-3_3.jpg" class="h-full w-full object-contain" />
+                    <img v-if="index == 2" src="/images/all-products/all-banner-4_4.jpg" class="h-full w-full object-contain" />
+                    <img v-if="index == 3" src="/images/all-products/all-banner-5_5.jpg" class="h-full w-full object-contain" />
+                    <img v-if="index == 4" src="/images/all-products/all-banner-6_6.jpg" class="h-full w-full object-contain" />
                 </div>
                 <div class="hidden md:flex items-center justify-between w-full gap-4 bg-gray-100">
-                    <div class="container mx-auto flex items-center justify-between w-full gap-4">
-                        <div class="flex flex-col gap-4">
-                            <span class="text-2xl font-bold">{{ category.name }}</span>
+                    <div class="mx-auto flex items-center justify-between w-full gap-4 relative">
+                        <div class="flex flex-col gap-4 absolute top-1/2 left-[48px] 2xl:left-[136px] -translate-y-1/2">
+                            <span class="text-2xl font-bold capitalize">{{ category.name }}</span>
                             <span class="sub-title">{{ category.description }}</span>
                             <UButton
                                 variant="solid"
                                 color="none"
                                 size="xl"
-                                class="flex w-full justify-center max-w-[300px] bg-green-700 mt-4"
+                                class="h-14 flex justify-center w-[250px] bg-green-700 mt-4"
                                 :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
-                                {{ 'Xem thêm' }}
+                                {{ 'Tất cả sản phẩm' }}
                             </UButton>
                         </div>
-                        <img :src="category.image_url" class="w-1/2 h-[600px] object-contain" />
+                        <img v-if="index == 0" src="/images/all-products/all-banner-2.jpg" class="h-full w-full object-contain" />
+                        <img v-if="index == 1" src="/images/all-products/all-banner-3.jpg" class="h-full w-full object-contain" />
+                        <img v-if="index == 2" src="/images/all-products/all-banner-4.jpg" class="h-full w-full object-contain" />
+                        <img v-if="index == 3" src="/images/all-products/all-banner-5.jpg" class="h-full w-full object-contain" />
+                        <img v-if="index == 4" src="/images/all-products/all-banner-6.jpg" class="h-full w-full object-contain" />
                     </div>
                 </div>
                 <div v-if="category.products.length > 0" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
@@ -65,14 +73,14 @@
                         <div class="category-data-list">
                             <div
                                 v-for="product in category.products"
-                                class="category-data-item data-desktop hidden md:block  p-2 rounded-lg"
+                                class="category-data-item data-desktop hidden md:block p-2 rounded-lg"
                                 :key="product">
                                 <ProductCard :product="product" />
                             </div>
                             <div
-                                v-for="(product, index) in category.products"
-                                :class="index > 1 ? '!hidden' : ''"
-                                class="category-data-item data-mobile block md:hidden  p-2 rounded-lg"
+                                v-for="(product, indexProduct) in category.products"
+                                :class="indexProduct > 1 ? '!hidden' : ''"
+                                class="category-data-item data-mobile block md:hidden p-2 rounded-lg"
                                 :key="product">
                                 <ProductCard :product="product" />
                             </div>
@@ -83,7 +91,7 @@
                     variant="solid"
                     color="none"
                     size="xl"
-                    class="md:hidden flex mt-4 mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
+                    class="h-12 md:hidden rounded-2xl flex mt-4 mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
                     :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
                     {{ 'Xem thêm' }}
                 </UButton>
@@ -187,7 +195,7 @@ const changeCategoryTab = (index) => {
 
 const getParamsCollection = async () => {
     let params = {
-        limit: 4,
+        limit: 5,
     };
     return params;
 };
@@ -202,7 +210,7 @@ const { data: productCollection, pending: loadingProductCollection } = await use
     'product-category-hot',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
-            params: { is_hot: 1, limit: 4 },
+            params: { is_hot: 1, limit: 8 },
         }),
     {
         default: () => [],

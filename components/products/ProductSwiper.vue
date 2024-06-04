@@ -5,7 +5,6 @@
             :spaceBetween="16"
             :slidesPerGroup="1"
             :modules="modules"
-            :autoHeight="true"
             :loop="true"
             :autoplay="{
                 delay: 2500,
@@ -30,7 +29,7 @@
                 },
             }"
             class="swiper product-swiper min-w-0 relative z-10">
-            <SwiperSlide v-for="product in productList" :key="product" class="!h-full w-[300px] ">
+            <SwiperSlide v-for="product in productList" :key="product" class="h-full w-[300px] ">
                 <ProductCard :product="product" />
             </SwiperSlide>
         </Swiper>
@@ -51,8 +50,8 @@
             <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
         </UButton>
     </div>
-    <div v-else class="product-wrapper w-full flex items-center gap-4">
-        <div v-for="item in 4" :key="item" class="w-1/4">
+    <div v-else class="product-wrapper w-full grid grid-cols-2 md:flex md:items-center gap-4">
+        <div v-for="item in 4" :key="item" class="md:w-1/4">
             <ProductCard />
         </div>
     </div>

@@ -2,10 +2,10 @@
     <NuxtLayout name="main">
         <div v-if="!loadingProduct" class="product-page py-6 w-full">
             <div class="container mx-auto flex flex-col gap-4">
-                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative pt-12">
+                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
                     <UBreadcrumb
-                        class="w-fit absolute -top-2 left-2 lg:left-[96px]"
-                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1' }"
+                        class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]"
+                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate'}"
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
 
@@ -484,12 +484,12 @@
                         </div>
                         <div
                             v-else
-                            class="empty-review h-[224px] col-span-2 flex items-center justify-center border border-dashed border-gray-200 rounded-lg font-medium text-gray-500">
+                            class="empty-review h-[224px] px-4 col-span-2 flex items-center justify-center border border-dashed border-gray-200 rounded-lg font-medium text-gray-500">
                             {{ 'Chưa có đánh giá nào cho sản phẩm này' }}
                         </div>
                         <div
                             v-if="reviewProduct.data.length > 0 && pageTotal > 0"
-                            class="flex flex-wrap justify-between items-center w-full col-span-2">
+                            class="flex flex-wrap justify-between items-center gap-2 w-full col-span-2">
                             <div class="flex items-center gap-1.5">
                                 <span class="text-sm leading-5">{{ $t('Rows per page') }}:</span>
                                 <USelect v-model="pageCount" :options="[8, 25, 50]" class="me-2 w-20" size="xs" />
@@ -1149,6 +1149,7 @@ watch(
             }
         }
     }
+
     .product-image-swiper {
         .product-information {
             .product-size-list {
@@ -1212,6 +1213,16 @@ watch(
                             }
                         }
                     }
+                }
+            }
+        }
+        .main-product-swiper {
+            .swiper {
+                @media screen and (max-width: 767px) {
+                    height: 450px;
+                }
+                @media screen and (max-width: 419px) {
+                    height: 400px;
                 }
             }
         }

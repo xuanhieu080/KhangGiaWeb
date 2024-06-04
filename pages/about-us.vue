@@ -153,7 +153,7 @@
             </section>
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-services__heading">Câu chuyện mô hình doanh nghiệp CÓ TRÁCH NHIỆM Coolmate đang hướng tới</h2>
+                    <h2 class="cs-services__heading">Câu chuyện mô hình doanh nghiệp CÓ TRÁCH NHIỆM GAK đang hướng tới</h2>
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
@@ -292,7 +292,7 @@
                 <div class="grid lg:grid-cols-3 grid--aligned-center grid--three-columns grid--doubling">
                     <div class="grid__column">
                         <a href="https://coolmate.typeform.com/to/lU2oprGc" target="_blank"
-                            ><img src="https://mcdn.coolmate.me/image/October2023/mceclip1_45.png" alt="Tim hiểu thêm Coolmate"
+                            ><img src="https://mcdn.coolmate.me/image/October2023/mceclip1_45.png" alt="Tim hiểu thêm GAK"
                         /></a>
                     </div>
                     <div class="grid__column">

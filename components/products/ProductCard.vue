@@ -54,8 +54,8 @@
         </NuxtLink>
     </UCard>
     <UCard :ui="{ shadow: '', ring: '', body: { padding: '', base: 'flex flex-col gap-4' } }" v-else class="product-card w-full relative">
-        <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-[300px] w-full" />
-        <div class="flex flex-col gap-4">
+        <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-[200px] md:h-[300px] w-full" />
+        <div class="flex flex-col gap-2 md:gap-3">
             <div class="flex items-center gap-2">
                 <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-6 w-[48px]" />
                 <USkeleton :ui="{ background: 'bg-gray-300' }" class="h-6 w-[48px]" />
