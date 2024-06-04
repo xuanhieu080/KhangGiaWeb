@@ -62,18 +62,18 @@ watchEffect(() => {
         links.value[1].label = content.value.data.title
     }
 })
-let title = content.value.meta_title;
-let description = content.value.meta_description;
+let title = content.value.data.meta_title;
+let description = content.value.data.meta_description;
 let seoMeta = {
-    image: content.value.image_url,
-    ogImage: content.value.image_url,
+    image: content.value.data.image_url,
+    ogImage: content.value.data.image_url,
     description: description,
     ogDescription: description,
     ogTitle: title,
     title: title,
     twitterTitle: title,
     twitterDescription: description,
-    keywords: content.value.meta_key,
+    keywords: content.value.data.meta_key,
 };
 
 useSeoMeta(seoMeta);
