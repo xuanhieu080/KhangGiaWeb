@@ -1,5 +1,5 @@
 <template>
-    <div v-if="bannerBlock" class="banner-block my-4">
+    <div v-if="bannerBlock" class="banner-block">
         <picture class="w-full">
             <source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
             <img :src="bannerBlock.image_desktop" :alt="bannerBlock.title" style="width: 100%" />

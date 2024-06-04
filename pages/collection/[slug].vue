@@ -9,7 +9,7 @@
                     <div v-if="collection.item.descendants" class="category-tabs w-full">
                         <Swiper
                             :slidesPerView="2"
-                            :spaceBetween="4"
+                            :spaceBetween="8"
                             :slidesPerGroup="2"
                             :scrollbar="true"
                             :modules="modules"
@@ -34,7 +34,7 @@
                             <SwiperSlide
                                 v-for="(category, index) in collection.item.descendants"
                                 :key="product"
-                                class="!h-[300px] xl:!h-[400px] w-[200px] mr-4">
+                                class="!h-[250px] sm:!h-[300px] xl:!h-[400px] w-[200px] mr-4">
                                 <UCard
                                     :ui="{ wrapper: '', shadow: '', ring: '', body: { base: 'h-full', padding: 'p-0 sm:p-2' } }"
                                     class="category-card h-full"
@@ -45,8 +45,8 @@
                                         <NuxtImg
                                             :src="category.image_url"
                                             format="webp"
-                                            class="w-full object-contain object-bottom xl:object-left rounded-md h-[90%]" />
-                                        <div class="category-name text-center xl:text-left font-semibold">
+                                            class="w-full object-contain object-center xl:object-left rounded-md h-[90%]" />
+                                        <div class="category-name text-center xl:text-left font-semibold min-h-[40px] sm:min-h-0">
                                             {{ category.name }}
                                         </div>
                                     </NuxtLink>

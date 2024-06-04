@@ -298,8 +298,8 @@
             <section class="cs-thanks">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-thanks__heading">
-                        Trong cuộc sống có quá nhiều sự lựa chọn, <br />
-                        cảm ơn bạn đã lựa chọn GAK!
+                        Trong cuộc sống có nhiều sự lựa chọn, <br />
+                        cảm ơn bạn đã lựa chọn GAK! 
                     </h2>
                     <span class="flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="80" height="73" viewBox="0 0 118 73" fill="none">
@@ -328,16 +328,17 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
-                    <span class="flex items-center justify-center flex-wrap gap-4">
-                        <UButton size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
-                            <b class="uppercase">đăng ký miễn phí</b> hoặc <b class="uppercase">Đăng nhập</b>
+                    <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
+                        <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit no-underline uppercase" variant="ghost" color="none">
+                            Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
+                            :to="localePath({name: 'slug', params: {slug: 'van-hoa-cong-ty'}})"
                             size="lg"
-                            class="border border-white bg-[#22c55e] rounded-3xl text-white px-6 py-4"
+                            class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"
                             color="none">
-                            Tìm hiểu đặc quyền Hội viên GAK
+                            GAK OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -481,7 +482,7 @@ let seoMeta = {
         }
     }
     .cs-cta {
-        background-color: #22c55ebf;
+        background-color: #176c36;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;
