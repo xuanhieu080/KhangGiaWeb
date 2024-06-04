@@ -6,7 +6,7 @@ export default {
     locale: 'vi',
     messages: {
         vi,
-        en,
+        // en,
     },
     defaultLocale: 'vi'
 };
