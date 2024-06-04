@@ -18,21 +18,12 @@
                         </div>
                         <div
                             v-for="(product, index) in productCollection.data"
-                            :class="index > 1 ? '!hidden' : ''"
+                            :class="index > 3 ? '!hidden' : ''"
                             class="category-data-item data-mobile block md:hidden p-2 rounded-lg"
                             :key="product">
                             <ProductCard :product="product" />
                         </div>
                     </div>
-                    <UButton
-                        variant="solid"
-                        :to="localePath({ name: 'tim-kiem-san-pham' })"
-                        color="none"
-                        size="xl"
-                        class="mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
-                        v-if="productCollection.meta.last_page > productCollection.meta.from"
-                        >{{ 'Xem thêm' }}</UButton
-                    >
                 </div>
             </div>
             <div v-else class="category-data-list my-4 p-4">
@@ -65,9 +56,9 @@
                                 variant="solid"
                                 color="none"
                                 size="xl"
-                                class="flex w-full justify-center max-w-[300px] bg-green-700 mt-4"
+                                class="h-14 flex justify-center w-[250px] bg-green-700 mt-4"
                                 :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
-                                {{ 'Xem thêm' }}
+                                {{ 'Tất cả sản phẩm' }}
                             </UButton>
                         </div>
                         <img v-if="index == 0" src="/images/all-products/all-banner-2.jpg" class="h-full w-full object-contain" />
@@ -87,8 +78,8 @@
                                 <ProductCard :product="product" />
                             </div>
                             <div
-                                v-for="(product, index) in category.products"
-                                :class="index > 1 ? '!hidden' : ''"
+                                v-for="(product, indexProduct) in category.products"
+                                :class="indexProduct > 1 ? '!hidden' : ''"
                                 class="category-data-item data-mobile block md:hidden p-2 rounded-lg"
                                 :key="product">
                                 <ProductCard :product="product" />
@@ -100,7 +91,7 @@
                     variant="solid"
                     color="none"
                     size="xl"
-                    class="md:hidden flex mt-4 mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
+                    class="h-12 md:hidden rounded-2xl flex mt-4 mx-auto self-center w-full justify-center max-w-[300px] bg-green-700"
                     :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
                     {{ 'Xem thêm' }}
                 </UButton>
@@ -219,7 +210,7 @@ const { data: productCollection, pending: loadingProductCollection } = await use
     'product-category-hot',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
-            params: { is_hot: 1, limit: 4 },
+            params: { is_hot: 1, limit: 8 },
         }),
     {
         default: () => [],
