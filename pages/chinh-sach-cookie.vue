@@ -134,6 +134,7 @@ let seoMeta = {
     keywords: title,
 };
 useSeoMeta(seoMeta);
+</script>
 <style lang="scss" scoped>
 .page {
     @apply flex flex-col gap-6 w-full;
