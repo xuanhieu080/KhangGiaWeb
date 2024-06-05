@@ -275,9 +275,16 @@ watch(
 
 let title = collection.value.item.meta_title;
 let description = collection.value.item.meta_description;
+defineOgImageComponent('GAK', {
+    title: title,
+    description: description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  collection.value.item.image_url,
+});
 let seoMeta = {
-    image: collection.value.item.image_url,
-    ogImage: collection.value.item.image_url,
     description: description,
     ogDescription: description,
     ogTitle: title,

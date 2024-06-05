@@ -274,7 +274,27 @@ const { data: productUniform, pending: loadingProductUniform } = await useLazyAs
 );
 
 ///SEO
+const config = useRuntimeConfig();
+let pageTitle = 'Trang chủ';
 
+defineOgImageComponent('GAK', {
+    title: pageTitle,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+let seoMeta = {
+    description:  config.public.description,
+    ogDescription:  config.public.description,
+    ogTitle: pageTitle,
+    title: pageTitle,
+    twitterTitle: pageTitle,
+    twitterDescription:  config.public.description,
+};
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .dashboard {

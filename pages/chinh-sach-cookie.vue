@@ -113,19 +113,27 @@ watchEffect(() => {
     }
 })
 let title = 'Chính sách cookie';
-// let description = "Chính sách cookie";
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
 let seoMeta = {
-    // description: description,
-    // ogDescription: description,
+    description:  config.public.description,
+    ogDescription:  config.public.description,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    // twitterDescription: description,
-    keywords: 'Chính sách cookie',
+    twitterDescription:  config.public.description,
+    keywords: title,
 };
-
 useSeoMeta(seoMeta);
-</script>
 <style lang="scss" scoped>
 .page {
     @apply flex flex-col gap-6 w-full;

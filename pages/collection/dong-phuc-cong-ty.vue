@@ -226,16 +226,27 @@ const {
 
 let title = 'Các mẫu đồng phục công ty mới nhất';
 let description = 'Các mẫu đồng phục công ty mới nhất';
-let seoMeta = {
+
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
     description: description,
-    ogDescription: description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+let seoMeta = {
+    description:  description,
+    ogDescription:  description,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription: description,
+    twitterDescription:  description,
     keywords: 'Đồng phục công ty',
 };
-
 useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>

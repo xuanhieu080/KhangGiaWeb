@@ -110,27 +110,16 @@ const backToTop = () => {
 };
 
 const config = useRuntimeConfig();
+useHead({
+    templateParams: {
+        site: {
+            name: config.public.name,
+        },
+        separator: '|',
+    },
 
-defineOgImageComponent('GAK', {
-    title: config.public.title,
-    description: config.public.description,
-    theme: '#ff0000',
-    colorMode: 'dark',
-});
-defineOgImage({
-    url:  config.public.logo,
-});
-
-let seoMeta = {
-    description:  config.public.description,
-    ogDescription:  config.public.description,
-    ogTitle: config.public.title,
-    title: config.public.title,
-    twitterTitle: config.public.title,
-    twitterDescription:  config.public.description,
-};
-
-useSeoMeta(seoMeta);
+    titleTemplate: '%site.name %separator %s',
+})
 
 useSchemaOrg([
     definePlace({

@@ -173,9 +173,17 @@ watch(
 
 let title = content.value.data.meta_title;
 let description = content.value.data.meta_description;
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  content.value.data.image_url,
+});
 let seoMeta = {
-    image: content.value.data.image_url,
-    ogImage: content.value.data.image_url,
     description: description,
     ogDescription: description,
     ogTitle: title,

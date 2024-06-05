@@ -1024,9 +1024,17 @@ const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title
 const description = ref(productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description);
 const key = ref(productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key);
 const image = ref(productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url);
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url: image.value,
+});
 let seoMeta = {
-    image: image.value,
-    ogImage: image.value,
     description: description.value,
     ogDescription: description.value,
     ogTitle: title.value,

@@ -113,19 +113,27 @@ watchEffect(() => {
     }
 })
 let title = 'Điều khoản sử dụng';
-// let description = "Chính sách bảo mật";
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
 let seoMeta = {
-    // description: description,
-    // ogDescription: description,
+    description:  config.public.description,
+    ogDescription:  config.public.description,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    // twitterDescription: description,
+    twitterDescription:  config.public.description,
     keywords: title,
 };
-
 useSeoMeta(seoMeta);
-</script>
 <style lang="scss" scoped>
 .page {
     @apply flex flex-col gap-6 w-full;

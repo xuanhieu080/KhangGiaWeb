@@ -112,36 +112,29 @@ watchEffect(() => {
         items.value[defaultIndex.value].content = page.value.data.description
     }
 })
-// useSchemaOrg([
-//     defineArticle({
-//         type: 'Article',
-//         headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         image: process.env.WEB_BASE_URL + '/logo.jpeg',
-//         datePublished: new Date(2024, 1, 1),
-//         dateModified: new Date(2024, 1, 1),
-//         author: [
-//             {
-//                 name: 'Chung Ngô',
-//                 url: 'https://gak.vn',
-//             },
-//         ]
-//     })
-// ]);
 
+//SEO
 let title = 'Chính sách bảo mật';
-// let description = "Chính sách bảo mật";
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
 let seoMeta = {
-    // description: description,
-    // ogDescription: description,
+    description:  config.public.description,
+    ogDescription:  config.public.description,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    // twitterDescription: description,
-    keywords: 'Chính sách bảo mật',
+    twitterDescription:  config.public.description,
+    keywords: title,
 };
-
 useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>

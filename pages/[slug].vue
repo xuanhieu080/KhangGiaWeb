@@ -67,9 +67,17 @@ const title = ref(page.value.data?.meta_title);
 const description = ref(page.value.data?.meta_description);
 const image = ref(page.value.data?.image_url);
 const meta_key = ref(page.value.data?.meta_key);
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url: image.value,
+});
 const seoMeta = {
-    image: image.value,
-    ogImage: image.value,
     description: description.value,
     ogDescription: description.value,
     ogTitle: title.value,
