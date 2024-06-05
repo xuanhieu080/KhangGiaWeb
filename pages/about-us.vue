@@ -66,7 +66,7 @@
         <div v-if="false" class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
-                    <div class="grid lg:grid-cols-2 gap-6 lg:gap-4">
+                    <div class="grid lg:grid-cols-2 gap-6 lg:gap-12">
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">

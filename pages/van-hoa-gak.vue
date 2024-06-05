@@ -105,7 +105,7 @@
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
-                    <div class="grid lg:grid-cols-2 items-center gap-6 lg:gap-8">
+                    <div class="grid lg:grid-cols-2 items-center gap-6 lg:gap-12">
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">ĐI LÊN TỪ CHẤT LƯỢNG VÀ SỰ TỈ MỈ</h2>
@@ -1039,7 +1039,7 @@
                                                         <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
-                                                                alt="Coolmate Year End Party 2023 - Một bước nhảy, vạn dặm bay"
+                                                                alt="Gak Year End Party 2023 - Một bước nhảy, vạn dặm bay"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1048,11 +1048,11 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Coolmate Year End Party 2023 - Một bước nhảy, vạn dặm bay </a>
+                                                        <a target="_blank"> Gak Year End Party 2023 - Một bước nhảy, vạn dặm bay </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Để tổng kết lại năm cũ và lên tinh thần cho năm mới 2024 bùng nổ, anh chị em
-                                                        Coolmate đã tham gia chương trình YEP 2023 tại 2 đầu cầu Nam - Bắc, với rất nhiều
+                                                        Gak đã tham gia chương trình YEP 2023 tại 2 đầu cầu Nam - Bắc, với rất nhiều
                                                         những hoạt động và nội dung thú vị.
                                                     </p>
                                                     <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
@@ -1064,7 +1064,7 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Giáng sinh 2023 Coolmate có gì?"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Giáng sinh 2023 Gak có gì?"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1073,7 +1073,7 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Giáng sinh 2023 Coolmate có gì? </a>
+                                                        <a target="_blank"> Giáng sinh 2023 Gak có gì? </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Chúng mình đã cùng nhau trải qua một buổi Giáng sinh 2023 với rất nhiều tiếng cười.
@@ -1090,7 +1090,7 @@
                                                         <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
-                                                                alt="20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Coolmate "
+                                                                alt="20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Gak "
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1099,12 +1099,12 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> 20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Coolmate </a>
+                                                        <a target="_blank"> 20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Gak </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Như thông lệ hằng năm, dịp để tôn vinh các chị em như ngày Phụ nữ Việt Nam 20/10 là
-                                                        dịp mà các chàng trai nhà Coolmate không bao giờ bỏ lỡ. Cùng theo dõi xem các chị em
-                                                        nhà Coolmate đã có một chương trình 20/10 như thế nào nhé!
+                                                        dịp mà các chàng trai nhà Gak không bao giờ bỏ lỡ. Cùng theo dõi xem các chị em
+                                                        nhà Gak đã có một chương trình 20/10 như thế nào nhé!
                                                     </p>
                                                     <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
@@ -1115,7 +1115,7 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Vui Trung thu cùng Coolmate "
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Vui Trung thu cùng Gak "
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1124,10 +1124,10 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Vui Trung thu cùng Coolmate </a>
+                                                        <a target="_blank"> Vui Trung thu cùng Gak </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
-                                                        Một mùa Trung thu nữa lại về với anh em Coolmate. Cùng theo chân chúng mình đi xem
+                                                        Một mùa Trung thu nữa lại về với anh em Gak . Cùng theo chân chúng mình đi xem
                                                         Trung thu năm nay chúng mình có những chương trình thú vị gì nhé!
                                                     </p>
                                                     <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
@@ -1141,7 +1141,7 @@
                                                         <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
-                                                                alt="Coolmate Company Trip 2023 - Better Me, Better Coolmate"
+                                                                alt="Gak Company Trip 2023 - Better Me, Better Gak "
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1150,10 +1150,10 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Coolmate Company Trip 2023 - Better Me, Better Coolmate </a>
+                                                        <a target="_blank"> Gak Company Trip 2023 - Better Me, Better Gak </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
-                                                        Sau một năm làm việc chăm chỉ thì anh em Coolmate lại có dịp được du lịch cùng nhau
+                                                        Sau một năm làm việc chăm chỉ thì anh em Gak lại có dịp được du lịch cùng nhau
                                                         trong chuyến Company Trip. Cùng theo dõi xem chuyến đi 2 ngày 1 đêm năm nay có điều
                                                         gì thú vị nhé!
                                                     </p>
@@ -1166,7 +1166,7 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Coolmate lên tư -  Từ bạn mà có"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Gak lên tư -  Từ bạn mà có"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1175,10 +1175,10 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Coolmate lên tư - Từ bạn mà có </a>
+                                                        <a target="_blank"> Gak lên tư - Từ bạn mà có </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
-                                                        Tháng 3 tưng bừng với chuỗi hoạt động chúc mừng sinh nhật Coolmate lên 4, hướng tới
+                                                        Tháng 3 tưng bừng với chuỗi hoạt động chúc mừng sinh nhật Gak lên 4, hướng tới
                                                         việc gắn kết tất cả các thành viên và gia tăng kỹ năng quản lý đội nhóm qua các cuộc
                                                         thi. Cùng chúng mình nhìn lại các chương trình thú vị qua bài viết này nhé!
                                                     </p>
@@ -1204,7 +1204,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 03/2024"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 03/2024"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1213,10 +1213,10 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Coolmate tháng 03/2024 </a>
+                                                        <a> Bản tin Gak tháng 03/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
-                                                        5 năm đồng hành, chân thành cùng bạn - Coolmate đã đón sinh nhật 5 tuổi cùng với
+                                                        5 năm đồng hành, chân thành cùng bạn - Gak đã đón sinh nhật 5 tuổi cùng với
                                                         những chương trình hoạt động gì? Hãy cùng đón đọc ngay tại vài viết này nhé!
                                                     </p>
                                                     <a
@@ -1233,7 +1233,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 02/2024"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 02/2024"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1242,11 +1242,11 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Coolmate tháng 02/2024 </a>
+                                                        <a> Bản tin Gak tháng 02/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Tháng 2 đã đi qua, cùng chúng mình nhìn lại các tin tức, chương trình và hoạt động
-                                                        của nhà Coolmate qua bản tin tháng 2 dưới đây nha!
+                                                        của nhà Gak qua bản tin tháng 2 dưới đây nha!
                                                     </p>
                                                     <a
                                                         href="https://drive.google.com/file/d/16IeWWGG56y_oMETc5P20rkQYVovUIsKa/view?usp=sharing"
@@ -1262,7 +1262,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 01/2024"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 01/2024"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1271,7 +1271,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Coolmate tháng 01/2024 </a>
+                                                        <a> Bản tin Gak tháng 01/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Chào đón năm mới 2024 với nhiều chương trình và hoạt động thú vị. Cùng nhìn lại
@@ -1291,7 +1291,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 12/2023"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 12/2023"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1300,7 +1300,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Coolmate tháng 12/2023 </a>
+                                                        <a> Bản tin Gak tháng 12/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Vậy là chúng ta đã cùng nhau đi qua tháng 12 - tháng cuối cùng của năm 2023 với rất
@@ -1321,7 +1321,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 11/2023"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 11/2023"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1330,13 +1330,13 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Coolmate tháng 11/2023 </a>
+                                                        <a> Bản tin Gak tháng 11/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
-                                                        Giai đoạn nước rút của năm 2023, Coolmate cùng anh chị em Coolmaters đang tràn đầy
+                                                        Giai đoạn nước rút của năm 2023, Gak cùng anh chị em Gak rs đang tràn đầy
                                                         năng lượng với kỉ lục xử lý hơn 12.000 đơn hàng trong ngày 11/11, tiến thẳng tới mục
                                                         tiêu lớn của năm 2023. Cùng theo dõi các chương trình hoạt động và kết quả thú vị
-                                                        của Coolmate qua bản tin Coolmate tháng 11/2023 nhé!
+                                                        của Gak qua bản tin Gak tháng 11/2023 nhé!
                                                     </p>
                                                     <a
                                                         href="https://drive.google.com/file/d/1eslwXRKIvRL78g0CrPOi9YLPFXwmzkkI/view?usp=drive_link"
@@ -1352,7 +1352,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Coolmate tháng 10/2023"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 10/2023"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1361,10 +1361,10 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Coolmate tháng 10/2023 </a>
+                                                        <a> Bản tin Gak tháng 10/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
-                                                        Bắt đầu chạy đua chặng nước rút của Coolmate với tháng 10 - tháng đầu tiên của quý
+                                                        Bắt đầu chạy đua chặng nước rút của Gak với tháng 10 - tháng đầu tiên của quý
                                                         IV với rất nhiều hoạt động đặc biệt. Cùng theo dõi qua bản tin tháng 10 của chúng
                                                         mình nhé!
                                                     </p>

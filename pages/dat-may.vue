@@ -444,7 +444,7 @@
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none">
-                                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Coolmate còn hỗ trợ may riêng áo polo dành
+                                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành
                                                 cho nữ dù số lượng ít và sản phẩm không có sẵn . Rất tuyệt vời.
                                             </p>
                                         </div>
@@ -508,7 +508,7 @@
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none">
-                                                Với số lượng 250 áo, Coolmate hỗ trợ trong vòng 1 tuần, chất lượng áo rất tốt, form áo vừa
+                                                Với số lượng 250 áo, Gak hỗ trợ trong vòng 1 tuần, chất lượng áo rất tốt, form áo vừa
                                                 vặn với mọi người, được các anh chị tại công ty hưởng ứng rất nhiều.
                                             </p>
                                         </div>
@@ -657,7 +657,7 @@
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none">
-                                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Coolmate còn hỗ trợ may riêng áo polo dành
+                                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành
                                                 cho nữ dù số lượng ít và sản phẩm không có sẵn . Rất tuyệt vời.
                                             </p>
                                         </div>
@@ -721,7 +721,7 @@
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none">
-                                                Với số lượng 250 áo, Coolmate hỗ trợ trong vòng 1 tuần, chất lượng áo rất tốt, form áo vừa
+                                                Với số lượng 250 áo, Gak hỗ trợ trong vòng 1 tuần, chất lượng áo rất tốt, form áo vừa
                                                 vặn với mọi người, được các anh chị tại công ty hưởng ứng rất nhiều.
                                             </p>
                                         </div>
@@ -862,7 +862,7 @@
                                 </SwiperSlide>
                             </Swiper>
                             <p class="pod-customer__description active-description mobile--hidden">
-                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Coolmate còn hỗ trợ may riêng áo polo dành cho nữ dù số
+                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành cho nữ dù số
                                 lượng ít và sản phẩm không có sẵn . Rất tuyệt vời.
                             </p>
                         </div>
@@ -1258,7 +1258,7 @@ const articleList = ref([
         category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
         category_name: 'Độc lạ bình dương',
         created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
+        title: 'Gak 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
         description:
             'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
         view_count: '38',
@@ -1859,7 +1859,7 @@ useSeoMeta(seoMeta);
         }
     }
     .cs-cta {
-        background-color: #22c55ebf;
+        background-color: #176c36;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;

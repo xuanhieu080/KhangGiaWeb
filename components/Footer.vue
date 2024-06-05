@@ -11,6 +11,8 @@
                         </p>
                         <UButton
                             size="xl"
+                            to="https://jrsiigcg6eu.typeform.com/to/Fjpxmsmz"
+                            rel="nofollow"
                             class=" hover:bg-white hover:text-black transition ease-in-out px-6 duration-300 rounded-2xl">
                             Đóng góp ý kiến
                         </UButton>
@@ -109,12 +111,12 @@
                             style="max-height: 40px"
                     /></a>
                     <a href="#" style="margin-right: 10px"
-                        ><img src="https://static.coolmate.me/images/footer/Coolmate-info.png" alt="Coolmate info" width="39" height="40"
+                        ><img src="https://static.coolmate.me/images/footer/Coolmate-info.png" alt=" Gak info" width="39" height="40"
                     /></a>
                     <a
                         href="http://online.gov.vn/(X(1)S(3e0hkhscv5zs101mhuopx43a))/Home/WebDetails/53184?AspxAutoDetectCookieSupport=1"
                         target="_blank"
-                        ><img src="https://static.coolmate.me/images/footer/logoSaleNoti.png" alt="Coolmate info" width="106" height="40"
+                        ><img src="https://static.coolmate.me/images/footer/logoSaleNoti.png" alt=" Gak info" width="106" height="40"
                     /></a>
                 </div>
             </div>

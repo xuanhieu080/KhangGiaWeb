@@ -583,7 +583,7 @@ useSeoMeta(seoMeta);
         }
     }
     .cs-cta {
-        background-color: #22c55ebf;
+        background-color: #176c36;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;

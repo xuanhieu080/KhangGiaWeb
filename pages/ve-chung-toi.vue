@@ -108,7 +108,7 @@
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
-                    <div class="grid lg:grid-cols-2 gap-6 lg:gap-4">
+                    <div class="grid lg:grid-cols-2 gap-6 lg:gap-12">
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">
@@ -188,7 +188,7 @@
             </section>
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-services__heading">Câu chuyện mô hình doanh nghiệp CÓ TRÁCH NHIỆM Coolmate đang hướng tới</h2>
+                    <h2 class="cs-services__heading">Câu chuyện mô hình doanh nghiệp CÓ TRÁCH NHIỆM Gak đang hướng tới</h2>
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
@@ -479,7 +479,7 @@ useSeoMeta(seoMeta);
         font-family: 'CriteriaCF';
     }
     .cs-thanks {
-        background-color: #22c55ebf;
+        background-color: #176c36;
         text-align: center;
         padding-top: 50px;
         padding-bottom: 50px;
