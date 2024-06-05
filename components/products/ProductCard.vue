@@ -3,7 +3,7 @@
         :ui="{ rounded: '', ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }"
         v-if="product"
         class="product-card relative">
-        <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-4 w-full">
+        <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-4 w-full" @click="handleGoTop">
             <div class="product-image relative flex justify-center items-center bg-[#f1f1f1]">
                 <button class="h-full w-full product-image-item rounded-lg overflow-hidden aspect-square">
                     <NuxtImg class="h-full w-full rounded-lg object-contain first-look" :src="product.thumb_image[0]" />
@@ -122,6 +122,11 @@ function getProductItem() {
     }
     return null;
 }
+
+const handleGoTop = () => {
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+}
+
 onBeforeMount(() => {
     if (props.product) {
         initialProduct();
