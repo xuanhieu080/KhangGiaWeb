@@ -4,19 +4,14 @@
         v-if="product"
         class="product-card relative">
         <NuxtLink :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" class="flex flex-col gap-4 w-full">
-            <div class="product-image relative">
-                <button class="absolute left-0 top-0 z-30 h-full w-full product-image-item rounded-lg overflow-hidden flex">
-                    <NuxtImg
-                        class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain first-look"
-                        :src="product.thumb_image[0]" />
+            <div class="product-image relative flex justify-center items-center bg-[#f1f1f1]">
+                <button class="h-full w-full product-image-item rounded-lg overflow-hidden aspect-square">
+                    <NuxtImg class="h-full w-full rounded-lg object-contain first-look" :src="product.thumb_image[0]" />
                     <NuxtImg
                         v-if="product.thumb_image[1]"
-                        class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain second-look"
+                        class="h-full w-full rounded-lg object-contain second-look"
                         :src="product.thumb_image[1]" />
-                    <NuxtImg
-                        v-else
-                        class="absolute left-0 top-0 z-30 h-full w-full rounded-lg object-contain second-look"
-                        :src="product.thumb_image[0]" />
+                    <NuxtImg v-else class="h-full w-full rounded-lg object-contain second-look" :src="product.thumb_image[0]" />
                 </button>
             </div>
             <div v-if="productColor" class="product-type flex items-center justify-start flex-wrap gap-2">
@@ -142,7 +137,7 @@ const formatPriceProduct = (item) => {
     width: 100%;
     .product-image {
         height: 300px;
-        min-width: 1px;
+        border-radius: 8px;
         &:hover {
             .first-look {
                 display: none;

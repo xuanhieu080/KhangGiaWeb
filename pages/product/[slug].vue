@@ -115,7 +115,7 @@
                                 v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
                                 v-for="image in productItem.data.thumb_image"
                                 class="!flex justify-center !h-auto aspect-[3/4]">
-                                <img :src="image" loading="lazy" alt="" class="w-full h-full rounded-md object-contain" />
+                                <NuxtImg :src="image" loading="lazy" alt="" class="w-full h-full rounded-md object-contain" />
                             </SwiperSlide>
 
                             <SwiperSlide
