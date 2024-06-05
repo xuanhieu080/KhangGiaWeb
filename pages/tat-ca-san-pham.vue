@@ -7,7 +7,7 @@
             <div class="hidden md:block">
                 <img src="/images/all-products/all-banner-1.jpg" class="h-full w-full object-contain" />
             </div>
-            <div v-if="!loadingProductCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-8">
+            <div v-if="!loadingProductCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 px-5">
                 <div class="category-data flex flex-col gap-4 flex-1">
                     <div v-if="productCollection.data && productCollection.data.length > 0" class="category-data-list">
                         <div
@@ -37,8 +37,22 @@
                 v-for="(category, index) in productCollectionAll.data"
                 class="category-product py-4">
                 <div class="product-category-title md:!hidden">
-                    Sản phẩm
-                    <span class="sub-title capitalize">{{ category.name }}</span>
+                    {{ index != 4 ? 'Áo phản quang' : 'Áo đồng phục' }}
+                    <h2 v-if="index == 0" class="sub-title">
+                        {{ 'lưới thun 2 bên' }}
+                    </h2>
+                    <h2 v-if="index == 1" class="sub-title">
+                        {{ 'hà nội' }}
+                    </h2>
+                    <h2 v-if="index == 2" class="sub-title">
+                        {{ 'kiểu 3M' }}
+                    </h2>
+                    <h2 v-if="index == 3" class="sub-title">
+                        {{ 'Palize' }}
+                    </h2>
+                    <h2 v-if="index == 4" class="sub-title">
+                        {{ 'công nhân' }}
+                    </h2>
                 </div>
                 <div class="md:hidden">
                     <img v-if="index == 0" src="/images/all-products/all-banner-2_2.jpg" class="h-full w-full object-contain" />
@@ -49,14 +63,43 @@
                 </div>
                 <div class="hidden md:flex items-center justify-between w-full gap-4 bg-gray-100">
                     <div class="mx-auto flex items-center justify-between w-full gap-4 relative">
-                        <div class="flex flex-col gap-4 absolute top-1/2 left-[48px] 2xl:left-[136px] -translate-y-1/2">
-                            <span class="text-2xl font-bold capitalize">{{ category.name }}</span>
-                            <span class="sub-title">{{ category.description }}</span>
+                        <div
+                            class="flex flex-col gap-4 absolute top-1/2 left-[22px] -translate-y-1/2 max-w-xs lg:max-w-md 2xl:max-w-screen-sm">
+                            <h2 v-if="index == 0" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                                {{ 'Sản phẩm áo phản quang lưới thun 2 bên' }}
+                            </h2>
+                            <h2 v-if="index == 1" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                                {{ 'Sản phẩm áo phản quang hà nội' }}
+                            </h2>
+                            <h2 v-if="index == 2" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                                {{ 'Sản phẩm áo phản quang kiểu 3M' }}
+                            </h2>
+                            <h2 v-if="index == 3" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                                {{ 'Sản phẩm áo phản quang Palize' }}
+                            </h2>
+                            <h2 v-if="index == 4" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                                {{ 'Đồng phục công nhân' }}
+                            </h2>
+                            <h3 v-if="index == 0" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                                {{ 'Phù hợp mọi môi trường làm việc' }}
+                            </h3>
+                            <h3 v-if="index == 1" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                                {{ 'Dòng sản phẩm ưa chuộng ở thị trường phía bắc' }}
+                            </h3>
+                            <h3 v-if="index == 2" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                                {{ 'Mặc đẹp, đứng form, nổi tiếng' }}
+                            </h3>
+                            <h3 v-if="index == 3" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                                {{ 'Mặt hàng bán chạy số #2' }}
+                            </h3>
+                            <h3 v-if="index == 4" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                                {{ 'Vải kaki chéo 2-1 thoáng mát, giá tốt nhất thị trường' }}
+                            </h3>
                             <UButton
                                 variant="solid"
                                 color="none"
                                 size="xl"
-                                class="h-14 flex justify-center w-[250px] bg-green-700 mt-4"
+                                class="h-14 2xl:h-16 flex justify-center w-[300px] 2xl:w-[400px] rounded-2xl bg-green-700 mt-4"
                                 :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })">
                                 {{ 'Tất cả sản phẩm' }}
                             </UButton>
@@ -68,7 +111,7 @@
                         <img v-if="index == 4" src="/images/all-products/all-banner-6.jpg" class="h-full w-full object-contain" />
                     </div>
                 </div>
-                <div v-if="category.products.length > 0" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
+                <div v-if="category.products.length > 0" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 px-5">
                     <div class="category-data flex flex-col gap-4 flex-1">
                         <div class="category-data-list">
                             <div
@@ -80,7 +123,7 @@
                             <div
                                 v-for="(product, indexProduct) in category.products"
                                 :class="indexProduct > 1 ? '!hidden' : ''"
-                                class="category-data-item data-mobile block md:hidden p-2 rounded-lg"
+                                class="category-data-item data-mobile block md:hidden rounded-lg"
                                 :key="product">
                                 <ProductCard :product="product" />
                             </div>
@@ -259,16 +302,20 @@ useSeoMeta(seoMeta);
 <style lang="scss" scoped>
 .category-page {
     .category-main {
-        @apply container mx-auto;
+        @apply mx-auto;
         @media screen and (max-width: 767px) {
-            padding: 0 4px;
+            padding: 0 8px;
         }
     }
     .product-category-title {
-        @apply flex flex-col gap-4 font-bold text-2xl lg:text-4xl text-center bg-gray-300 p-4;
+        @apply flex flex-col gap-4 font-extrabold text-3xl text-center bg-gray-300 p-4;
         .sub-title {
             color: green;
-            @apply text-4xl lg:text-5xl;
+            margin: 0 !important;
+            font-size: 46px !important;
+            line-height: 1.4;
+            font-weight: 900;
+            text-transform: capitalize;
         }
     }
     .category-tabs {

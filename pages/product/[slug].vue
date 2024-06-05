@@ -5,107 +5,46 @@
                 <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
                     <UBreadcrumb
                         class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]"
-                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate'}"
+                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate' }"
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
 
-                    <Swiper
-                        v-if="!loadingProductItem"
-                        @swiper="setThumbsSwiper"
-                        :spaceBetween="16"
-                        :slidesPerView="4"
-                        :freeMode="true"
-                        :watchSlidesProgress="true"
-                        :modules="modules"
-                        :lazy="true"
-                        :direction="'vertical'"
-                        class="!hidden lg:!block !w-[60px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
-                        <SwiperSlide v-if="productItem.data.video_link" class="!h-[80px] w-full rounded-md relative">
-                            <video class="pointer-events-none">
-                                <source :src="productItem.data.video_link" />
-                            </video>
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
-                            v-for="(image, index) in productItemCurrent.thumb_image"
-                            v-show="!productItem.data.video_link ? index < 4 : index < 3"
-                            class="!h-[80px] w-full rounded-md relative">
-                            <span
-                                v-if="
-                                    (!productItem.data.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
-                                    (productItem.data.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
-                                "
-                                class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                                >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
-                            >
-                            <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                            class="!h-[80px] w-full rounded-md">
-                            <img
-                                :src="productItemCurrent ? productItemCurrent.image_url : ''"
-                                alt="No image"
-                                class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
-                            v-for="(image, index) in productItem.data.thumb_image"
-                            v-show="!productItem.data.video_link ? index < 4 : index < 3"
-                            class="!h-[80px] w-full rounded-md relative">
-                            <span
-                                v-if="
-                                    (!productItem.data.video_link && productItem.data.thumb_image.length > 4 && index == 3) ||
-                                    (productItem.data.video_link && productItem.data.thumb_image.length > 3 && index == 2)
-                                "
-                                class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                                >+{{ productItem.data.thumb_image.length - index - 1 }}</span
-                            >
-                            <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
-                            class="!h-[120px] w-full rounded-md">
-                            <img
-                                :src="productItem.data ? productItem.data.image_url : ''"
-                                alt="No image"
-                                class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                    </Swiper>
-                    <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
-                        <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
-                        <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
-                    </div>
-                    <div
-                        v-show="thumbsSwiper"
-                        class="main-product-swiper w-full lg:min-w-[540px] lg:w-[540px] lg:sticky top-2 bg-[#f1f1f1]">
+                    <div class="image-box flex items-start gap-4 w-full relative">
                         <Swiper
                             v-if="!loadingProductItem"
-                            :spaceBetween="10"
-                            :lazy="true"
-                            :navigation="{
-                                nextEl: '.main-product-swiper .next-product-btn',
-                                prevEl: '.main-product-swiper .prev-product-btn',
-                            }"
-                            :thumbs="{ swiper: thumbsSwiper }"
+                            @swiper="setThumbsSwiper"
+                            :spaceBetween="16"
+                            :slidesPerView="4"
+                            :freeMode="true"
+                            :watchSlidesProgress="true"
                             :modules="modules"
-                            class="!mx-0">
-                            <SwiperSlide v-if="productItem.data.video_link" class="!flex justify-center !h-auto">
-                                <video controls class="h-full w-full object-contain" autoplay muted>
-                                    <source
-                                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                                        type="video/mp4" />
+                            :key="'thumb-mobile'"
+                            :lazy="true"
+                            :direction="'vertical'"
+                            class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-6">
+                            <SwiperSlide v-if="productItem.data.video_link" class="!h-[80px] w-full rounded-md relative">
+                                <video class="pointer-events-none">
+                                    <source :src="productItem.data.video_link" />
                                 </video>
                             </SwiperSlide>
                             <SwiperSlide
                                 v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
-                                v-for="image in productItemCurrent.thumb_image"
-                                class="!flex justify-center !h-auto aspect-[3/4]">
-                                <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
+                                v-for="(image, index) in productItemCurrent.thumb_image"
+                                v-show="!productItem.data.video_link ? index < 4 : index < 3"
+                                class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
+                                <span
+                                    v-if="
+                                        (!productItem.data.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
+                                        (productItem.data.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
+                                    "
+                                    class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
+                                    >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                                >
+                                <img :src="image" loading="lazy" quality="80" alt="" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                                class="!h-[200px] w-full rounded-md">
+                                class="!h-[36px] lg:!h-[80px] w-full rounded-md">
                                 <img
                                     :src="productItemCurrent ? productItemCurrent.image_url : ''"
                                     alt="No image"
@@ -113,40 +52,109 @@
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
-                                v-for="image in productItem.data.thumb_image"
-                                class="!flex justify-center !h-auto aspect-[3/4]">
-                                <img :src="image" loading="lazy" alt="" class="w-full h-full rounded-md object-contain" />
+                                v-for="(image, index) in productItem.data.thumb_image"
+                                v-show="!productItem.data.video_link ? index < 4 : index < 3"
+                                class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
+                                <span
+                                    v-if="
+                                        (!productItem.data.video_link && productItem.data.thumb_image.length > 4 && index == 3) ||
+                                        (productItem.data.video_link && productItem.data.thumb_image.length > 3 && index == 2)
+                                    "
+                                    class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
+                                    >+{{ productItem.data.thumb_image.length - index - 1 }}</span
+                                >
+                                <img :src="image" loading="lazy" quality="80" alt="" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
-
                             <SwiperSlide
                                 v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
-                                class="!h-[120px] w-full rounded-md">
+                                class="!h-[42px] lg:!h-[100px] w-full rounded-md">
                                 <img
                                     :src="productItem.data ? productItem.data.image_url : ''"
                                     alt="No image"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
-                            <template v-slot:container-end>
-                                <UButton
-                                    variant="ghost"
-                                    color="none"
-                                    class="prev-product-btn w-[40px] h-[40px] absolute bottom-4 right-6 -translate-x-full z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
-                                    :padded="false">
-                                    <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
-                                </UButton>
-                                <UButton
-                                    variant="ghost"
-                                    color="none"
-                                    class="next-product-btn w-[40px] h-[40px] absolute bottom-4 right-4 z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
-                                    :padded="false">
-                                    <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
-                                </UButton>
-                            </template>
                         </Swiper>
-                    </div>
+                        <div v-show="!thumbsSwiper" class="hidden lg:flex loading-frame flex-col gap-4">
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                        </div>
+                        <div
+                            v-show="thumbsSwiper"
+                            class="main-product-swiper w-full lg:min-w-[540px] lg:w-[540px] relative lg:sticky z-0 top-2 bg-[#f1f1f1]">
+                            <Swiper
+                                v-if="!loadingProductItem"
+                                :spaceBetween="10"
+                                :lazy="true"
+                                :navigation="{
+                                    nextEl: '.main-product-swiper .next-product-btn',
+                                    prevEl: '.main-product-swiper .prev-product-btn',
+                                }"
+                                :thumbs="{ swiper: thumbsSwiper }"
+                                :zoom="true"
+                                :modules="modules"
+                                class="!mx-0">
+                                <SwiperSlide v-if="productItem.data.video_link" class="!flex justify-center !h-auto">
+                                    <video controls class="h-full w-full object-contain" autoplay muted>
+                                        <source
+                                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </SwiperSlide>
+                                <SwiperSlide
+                                    v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
+                                    v-for="image in productItemCurrent.thumb_image"
+                                    class="!flex justify-center !h-auto aspect-[3/4]">
+                                    <NuxtImg :src="image" loading="lazy" quality="80" alt="" class="rounded-md object-contain" />
+                                </SwiperSlide>
+                                <SwiperSlide
+                                    v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
+                                    class="flex justify-center !h-auto aspect-[3/4] w-full rounded-md">
+                                    <NuxtImg
+                                        :src="productItemCurrent ? productItemCurrent.image_url : ''"
+                                        alt="No image"
+                                        loading="lazy"
+                                        quality="80"
+                                        class="w-full h-full object-contain rounded-md" />
+                                </SwiperSlide>
+                                <SwiperSlide
+                                    v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
+                                    v-for="image in productItem.data.thumb_image"
+                                    class="flex justify-center items-center !h-full aspect-[3/4] w-full rounded-md">
+                                    <NuxtImg :src="image" loading="lazy" quality="80" alt="" class="w-full h-full rounded-md object-contain" />
+                                </SwiperSlide>
 
-                    <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
-                        <USkeleton class="min-w-[350px] w-[350px] h-[500px] rounded-md"></USkeleton>
+                                <SwiperSlide
+                                    v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
+                                    class="flex justify-center !h-auto aspect-[3/4] w-full rounded-md">
+                                    <NuxtImg
+                                        :src="productItem.data ? productItem.data.image_url : ''"
+                                        alt="No image"
+                                        loading="lazy"
+                                        quality="80"
+                                        class="w-full h-full object-contain rounded-md" />
+                                </SwiperSlide>
+                                <template v-slot:container-end>
+                                    <UButton
+                                        variant="ghost"
+                                        color="none"
+                                        class="prev-product-btn w-[40px] h-[40px] absolute bottom-4 right-6 -translate-x-full z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
+                                        :padded="false">
+                                        <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
+                                    </UButton>
+                                    <UButton
+                                        variant="ghost"
+                                        color="none"
+                                        class="next-product-btn w-[40px] h-[40px] absolute bottom-4 right-4 z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
+                                        :padded="false">
+                                        <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
+                                    </UButton>
+                                </template>
+                            </Swiper>
+                        </div>
+
+                        <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
+                            <USkeleton class="min-w-[350px] w-[350px] h-[500px] rounded-md"></USkeleton>
+                        </div>
                     </div>
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
@@ -545,7 +553,7 @@
 </template>
 <script setup>
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
-import { Navigation, Autoplay, Thumbs } from 'swiper/modules';
+import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
 
@@ -553,7 +561,7 @@ const route = useRoute();
 const router = useRouter();
 const toast = useToast();
 
-let modules = ref([Navigation, Thumbs]);
+let modules = ref([Navigation, Thumbs, Zoom]);
 let modulesSimilar = ref([Navigation]);
 
 const { locale, t: trans } = useI18n();
@@ -598,10 +606,14 @@ const loadingProductItem = ref(true);
 const selectedProductVariant = ref({});
 const imageList = computed(() => product.value.product_images[colorProductActive.value]);
 const thumbsSwiper = ref(null);
+const thumbsSwiperMobile = ref(null);
 let reviewJson = ref([]);
 
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;
+};
+const setThumbsSwiperMobile = (swiper) => {
+    thumbsSwiperMobile.value = swiper;
 };
 
 const setProductSize = (size, index) => {
@@ -1152,6 +1164,9 @@ watch(
     .thumb-product-swiper {
         .swiper-slide {
             opacity: 0.6;
+            @media screen and (max-width: 991px) {
+                opacity: 0.4;
+            }
             &.swiper-slide-thumb-active {
                 opacity: 1;
             }
@@ -1229,9 +1244,8 @@ watch(
                 @media screen and (max-width: 767px) {
                     height: 450px;
                 }
-                @media screen and (max-width: 419px) {
-                    height: 400px;
-                }
+            }
+            .preview-gallery {
             }
         }
     }
