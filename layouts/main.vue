@@ -19,8 +19,8 @@
                 @click="backToTop"></UButton>
         </div>
     </main>
-    <UCard v-if="articleSEO" class="m-6">
-        <div v-html="articleSEO"></div>
+    <UCard v-if="articleSEO && articleSEO.data && !loadingSeo" class="m-6">
+        <div v-html="articleSEO.data"></div>
     </UCard>
     <UNotifications class="prose-p:mt-0">
         <template #title="{ title }">

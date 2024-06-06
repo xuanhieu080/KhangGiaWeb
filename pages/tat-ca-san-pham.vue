@@ -262,7 +262,7 @@ const { data: productCollection, pending: loadingProductCollection } = await use
 );
 
 const { data: productCollectionAll, pending: loadingProductCollectionAll } = await useLazyAsyncData('product-category-all', async () =>
-    useOriginalFetch(`/api/v1/categories/search`, {
+    useOriginalFetch(`/api/v1/categories/search-all`, {
         params: await getParamsCollection(),
     }),
 );
