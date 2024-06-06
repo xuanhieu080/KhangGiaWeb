@@ -7,7 +7,7 @@
                         class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]"
                         :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate' }"
                         divider="/"
-                        :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
+                        :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data?.name }]" />
 
                     <div class="image-box flex items-start gap-4 w-full relative">
                         <Swiper
@@ -22,20 +22,20 @@
                             :lazy="true"
                             :direction="'vertical'"
                             class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-6">
-                            <SwiperSlide v-if="productItem.data.video_link" class="!h-[80px] w-full rounded-md relative">
+                            <SwiperSlide v-if="productItem.data?.video_link" class="!h-[80px] w-full rounded-md relative">
                                 <video class="pointer-events-none">
-                                    <source :src="productItem.data.video_link" />
+                                    <source :src="productItem.data?.video_link" />
                                 </video>
                             </SwiperSlide>
                             <SwiperSlide
                                 v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                                 v-for="(image, index) in productItemCurrent.thumb_image"
-                                v-show="!productItem.data.video_link ? index < 4 : index < 3"
+                                v-show="!productItem.data?.video_link ? index < 4 : index < 3"
                                 class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
                                 <span
                                     v-if="
-                                        (!productItem.data.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
-                                        (productItem.data.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
+                                        (!productItem.data?.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
+                                        (productItem.data?.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
                                     "
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
                                     >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
@@ -51,25 +51,25 @@
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
-                                v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
-                                v-for="(image, index) in productItem.data.thumb_image"
-                                v-show="!productItem.data.video_link ? index < 4 : index < 3"
+                                v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
+                                v-for="(image, index) in productItem.data?.thumb_image"
+                                v-show="!productItem.data?.video_link ? index < 4 : index < 3"
                                 class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
                                 <span
                                     v-if="
-                                        (!productItem.data.video_link && productItem.data.thumb_image.length > 4 && index == 3) ||
-                                        (productItem.data.video_link && productItem.data.thumb_image.length > 3 && index == 2)
+                                        (!productItem.data?.video_link && productItem.data?.thumb_image.length > 4 && index == 3) ||
+                                        (productItem.data?.video_link && productItem.data?.thumb_image.length > 3 && index == 2)
                                     "
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
-                                    >+{{ productItem.data.thumb_image.length - index - 1 }}</span
+                                    >+{{ productItem.data?.thumb_image.length - index - 1 }}</span
                                 >
                                 <img :src="image" loading="lazy" quality="80" alt="" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
-                                v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
+                                v-else-if="!productItemCurrent && productItem.data?.thumb_image.length <= 0"
                                 class="!h-[42px] lg:!h-[100px] w-full rounded-md">
                                 <img
-                                    :src="productItem.data ? productItem.data.image_url : ''"
+                                    :src="productItem.data ? productItem.data?.image_url : ''"
                                     alt="No image"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
@@ -93,7 +93,7 @@
                                 :zoom="true"
                                 :modules="modules"
                                 class="!mx-0">
-                                <SwiperSlide v-if="productItem.data.video_link" class="!flex justify-center !h-auto">
+                                <SwiperSlide v-if="productItem.data?.video_link" class="!flex justify-center !h-auto">
                                     <video controls class="h-full w-full object-contain" autoplay muted>
                                         <source
                                             src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
@@ -117,17 +117,17 @@
                                         class="w-full h-full object-contain rounded-md" />
                                 </SwiperSlide>
                                 <SwiperSlide
-                                    v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
-                                    v-for="image in productItem.data.thumb_image"
+                                    v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
+                                    v-for="image in productItem.data?.thumb_image"
                                     class="flex justify-center items-center !h-full aspect-[3/4] w-full rounded-md">
                                     <NuxtImg :src="image" loading="lazy" quality="80" alt="" class="w-full h-full rounded-md object-contain" />
                                 </SwiperSlide>
 
                                 <SwiperSlide
-                                    v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
+                                    v-else-if="!productItemCurrent && productItem.data?.thumb_image.length <= 0"
                                     class="flex justify-center !h-auto aspect-[3/4] w-full rounded-md">
                                     <NuxtImg
-                                        :src="productItem.data ? productItem.data.image_url : ''"
+                                        :src="productItem.data ? productItem.data?.image_url : ''"
                                         alt="No image"
                                         loading="lazy"
                                         quality="80"
@@ -159,20 +159,20 @@
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
                             <span class="font-bold text-[28px] lg:text-[32px]">{{
-                                productItemCurrent ? productItemCurrent.name : productItem.data.name
+                                productItemCurrent ? productItemCurrent.name : productItem.data?.name
                             }}</span>
                         </div>
                         <div class="product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black">
                             <NuxtRating
                                 class="w-[220px]"
                                 :read-only="true"
-                                :ratingValue="productItem.data.average_rate"
+                                :ratingValue="productItem.data?.average_rate"
                                 :active-color="'green'"
                                 rating-content="⭐" />
                             <div class="flex items-center gap-2">
-                                <div class="fs-12">({{ productItem.data.rate_count }})</div>
+                                <div class="fs-12">({{ productItem.data?.rate_count }})</div>
                                 <div>|</div>
-                                <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data.qty_sold }}</div>
+                                <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data?.qty_sold }}</div>
                             </div>
                         </div>
 
@@ -189,23 +189,23 @@
                             </div>
                         </div>
                         <div v-else class="product-price font-bold text-[22px]">
-                            <div v-if="productItem.data.percent == 0" class="original-price">
-                                {{ formatPriceProduct(productItem.data.price) + 'đ' }}
+                            <div v-if="productItem.data?.percent == 0" class="original-price">
+                                {{ formatPriceProduct(productItem.data?.price) + 'đ' }}
                             </div>
                             <div v-else class="discount-price">
                                 <div class="after-discount">
-                                    {{ formatPriceProduct(productItem.data.price_discount) + 'đ' }}
+                                    {{ formatPriceProduct(productItem.data?.price_discount) + 'đ' }}
                                 </div>
-                                <div class="original-price">{{ formatPriceProduct(productItem.data.price) + 'đ' }}</div>
-                                <div class="discount-tag">{{ productItem.data.percent + '%' }}</div>
+                                <div class="original-price">{{ formatPriceProduct(productItem.data?.price) + 'đ' }}</div>
+                                <div class="discount-tag">{{ productItem.data?.percent + '%' }}</div>
                             </div>
                         </div>
-                        <div v-if="productItem.data.compaign_name" class="product-compaign fs-14 text-blue-600 italic font-semibold">
+                        <div v-if="productItem.data?.compaign_name" class="product-compaign fs-14 text-blue-600 italic font-semibold">
                             {{ product.product_compaign_name }}
                         </div>
 
                         <div
-                            v-for="variantAttribute in productItem.data.variantAttribute"
+                            v-for="variantAttribute in productItem.data?.variantAttribute"
                             class="flex flex-col gap-2"
                             :class="{
                                 'product-color-list': variantAttribute.is_color,
@@ -282,8 +282,8 @@
                             <b>{{
                                 productItemCurrent && productItemCurrent.qty
                                     ? productItemCurrent.qty
-                                    : productItem.data.variants.length == 0 && productItem.data.variantAttribute.length == 0
-                                    ? productItem.data.qty
+                                    : productItem.data?.variants.length == 0 && productItem.data?.variantAttribute.length == 0
+                                    ? productItem.data?.qty
                                     : 0
                             }}</b></span
                         >
@@ -307,7 +307,7 @@
                                 </UButton>
                             </NuxtLink>
                         </div>
-                        <div v-else-if="productItem.data.variants.length == 0" class="product-add-to-cart mt-auto flex items-center gap-4">
+                        <div v-else-if="productItem.data?.variants.length == 0" class="product-add-to-cart mt-auto flex items-center gap-4">
                             <div
                                 class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
@@ -316,11 +316,11 @@
                             </div>
                             <NuxtLink
                                 class="flex flex-1 h-12 rounded-full justify-center"
-                                :class="productItem.data.qty > 0 ? '' : 'pointer-events-none'"
+                                :class="productItem.data?.qty > 0 ? '' : 'pointer-events-none'"
                                 @click="handleAddToCookie(productItem.data, false)"
                                 :to="localePath({ name: 'cart' })">
                                 <UButton
-                                    :class="productItem.data.qty > 0 ? '' : 'bg-gray-400'"
+                                    :class="productItem.data?.qty > 0 ? '' : 'bg-gray-400'"
                                     class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
@@ -374,27 +374,27 @@
                     </div>
                 </div>
                 <div
-                    v-if="productItem.data.highlight"
+                    v-if="productItem.data?.highlight"
                     class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
                     <h3 class="product-features__heading !text-2xl font-bold">Đặc điểm nổi bật</h3>
                     <div class="product-details flex flex-col-reverse sm:flex-row justify-between w-full">
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
-                            <div v-html="productItem.data.highlight"></div>
+                            <div v-html="productItem.data?.highlight"></div>
                             <!--                            <ul class="product-details-list !list-['-'] !mt-0 fs-14 font-semibold">-->
                             <!--                                <li v-for="feature in product.product_information" class="product-details__item pl-3">-->
                             <!--                                    {{ feature }}-->
                             <!--                                </li>-->
                             <!--                            </ul>-->
                         </div>
-                        <div v-if="productItem.data.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
-                            <img :src="productItem.data.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
+                        <div v-if="productItem.data?.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
+                            <img :src="productItem.data?.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
                         </div>
                     </div>
                 </div>
                 <div class="product-more-details">
                     <h3 class="!text-2xl font-extrabold">Chi tiết sản phẩm</h3>
-                    <div v-html="productItem.data.description"></div>
+                    <div v-html="productItem.data?.description"></div>
                 </div>
                 <div v-if="!loadingProductHot && productHot.data" class="product-similar my-8">
                     <h3 class="w-full text-center !text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
@@ -449,15 +449,15 @@
                 <div class="product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px]">
                     <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-max lg:sticky top-2">
                         <div class="uppercase font-bold">Đánh giá sản phẩm</div>
-                        <div class="font-bold text-[4rem]">{{ productItem.data.average_rate }}</div>
+                        <div class="font-bold text-[4rem]">{{ productItem.data?.average_rate }}</div>
                         <NuxtRating
                             class="w-[220px]"
                             :read-only="true"
-                            :ratingValue="productItem.data.average_rate"
+                            :ratingValue="productItem.data?.average_rate"
                             :active-color="'green'"
                             rating-content="⭐" />
-                        <div v-if="productItem.data.rate_count > 0" class="italic fs-14 leading-relaxed font-medium">
-                            {{ productItem.data.rate_count + ' ' + $t('Review') }}
+                        <div v-if="productItem.data?.rate_count > 0" class="italic fs-14 leading-relaxed font-medium">
+                            {{ productItem.data?.rate_count + ' ' + $t('Review') }}
                         </div>
                     </div>
                     <div v-if="!loadingReviewProduct" class="flex flex-col md:grid sm:grid-cols-2 flex-1 gap-8">
@@ -815,23 +815,23 @@ const handleAddToCookie = (item, variant = true) => {
 };
 //DATA
 const refreshData = ref(0);
+
 const {
     data: productItem,
     pending: loadingProduct,
-    error: errorGetProduct,
-} = await useAsyncData(
-    'product-item',
-    async () =>
-        useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
-            query: {
-                code: router.currentRoute.value.query?.code,
-            },
-        }),
+    error: errorGetProduct
+} = await useLazyAsyncData('post-groups', () =>
+    useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
+        query: {
+            code: router.currentRoute.value.query?.code,
+        },
+    }),
     {
         default: () => [],
         watch: [refreshData],
     },
 );
+
 if (errorGetProduct.value) {
     router.push({ name: `index___${locale.value}` });
 }
