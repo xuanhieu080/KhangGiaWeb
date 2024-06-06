@@ -74,7 +74,30 @@ const router = useRouter();
 const { locale } = useI18n();
 const showBackToTop = ref(false);
 let lastScrollTop = 80;
-const articleSEO = ref(null)
+const config = useRuntimeConfig();
+const refreshData = ref(0);
+const {
+    data: articleSEO,
+    pending: loadingSeo,
+    error: errorSeo,
+} = await useAsyncData(
+    'product-item',
+    async () =>
+        useOriginalFetch(`/api/v1/seo-contents`, {
+            params: {
+                link: `${config.public.Url}${router.currentRoute.value.fullPath}`
+            }
+        }),
+    {
+        default: () => [],
+        watch: [refreshData],
+    },
+);
+
+watch(() => router.currentRoute.value.fullPath, () => {
+    refreshData.value++
+});
+
 onMounted(() => {
     window.addEventListener('resize', handleHideHeader, false);
     window.addEventListener('scroll', controlHeaderShowing, false);

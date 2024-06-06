@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div class="prose prose-lg container max-w-screen-xl mx-auto p-6">
-            <template v-if="error.statusCode === 404">
+            <template v-if="error?.statusCode === 404">
                 <div class="flex flex-col md:flex-row items-center justify-center px-5 text-gray-700 w-full">
                     <div class="max-w-md">
                         <div class="text-5xl font-dark font-bold">404</div>
@@ -13,7 +13,7 @@
                         <p>
                             Hoặc bấm vào đây
                             <UButton size="lg" variant="outline" class="ml-4" @click="handleError"> Quay trở lại trang chính </UButton>
-                        </p>
+                        </p>ß
                     </div>
                     <div class="max-w-lg">
                         <img src="/images/404-image.svg" />
@@ -25,7 +25,7 @@
                     <div class="max-w-md">
                         <h1>Oops...</h1>
                         <p>
-                            <strong>{{ error.message }}</strong>
+                            <strong>{{ error?.message }}</strong>
                         </p>
                         <p>Có vấn đề xảy ra.</p>
                         <p>Xin lỗi về sự bất tiện này.</p>

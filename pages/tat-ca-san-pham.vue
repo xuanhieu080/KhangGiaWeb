@@ -38,61 +38,61 @@
                 class="category-product py-4">
                 <div class="product-category-title md:!hidden">
                     {{ index != 4 ? 'Áo phản quang' : 'Áo đồng phục' }}
-                    <h2 v-if="index == 0" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="sub-title">
                         {{ 'lưới thun 2 bên' }}
                     </h2>
-                    <h2 v-if="index == 1" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="sub-title">
                         {{ 'hà nội' }}
                     </h2>
-                    <h2 v-if="index == 2" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="sub-title">
                         {{ 'kiểu 3M' }}
                     </h2>
-                    <h2 v-if="index == 3" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="sub-title">
                         {{ 'Palize' }}
                     </h2>
-                    <h2 v-if="index == 4" class="sub-title">
+                    <h2 v-if="category.slug == 'dong-phuc-cong-nhan'" class="sub-title">
                         {{ 'công nhân' }}
                     </h2>
                 </div>
                 <div class="md:hidden">
-                    <img v-if="index == 0" src="/images/all-products/all-banner-2_2.jpg" class="h-full w-full object-contain" />
-                    <img v-if="index == 1" src="/images/all-products/all-banner-3_3.jpg" class="h-full w-full object-contain" />
-                    <img v-if="index == 2" src="/images/all-products/all-banner-4_4.jpg" class="h-full w-full object-contain" />
-                    <img v-if="index == 3" src="/images/all-products/all-banner-5_5.jpg" class="h-full w-full object-contain" />
-                    <img v-if="index == 4" src="/images/all-products/all-banner-6_6.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2_2.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phang-quang-ha-noi'" src="/images/all-products/all-banner-3_3.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phang-quang-kieu-3m'" src="/images/all-products/all-banner-4_4.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5_5.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6_6.jpg" class="h-full w-full object-contain" />
                 </div>
                 <div class="hidden md:flex items-center justify-between w-full gap-4 bg-gray-100">
                     <div class="mx-auto flex items-center justify-between w-full gap-4 relative">
                         <div
                             class="flex flex-col gap-4 absolute top-1/2 left-[22px] -translate-y-1/2 max-w-xs lg:max-w-md 2xl:max-w-screen-sm">
-                            <h2 v-if="index == 0" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang lưới thun 2 bên' }}
                             </h2>
-                            <h2 v-if="index == 1" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang hà nội' }}
                             </h2>
-                            <h2 v-if="index == 2" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang kiểu 3M' }}
                             </h2>
-                            <h2 v-if="index == 3" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang Palize' }}
                             </h2>
-                            <h2 v-if="index == 4" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Đồng phục công nhân' }}
                             </h2>
-                            <h3 v-if="index == 0" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
                                 {{ 'Phù hợp mọi môi trường làm việc' }}
                             </h3>
-                            <h3 v-if="index == 1" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
                                 {{ 'Dòng sản phẩm ưa chuộng ở thị trường phía bắc' }}
                             </h3>
-                            <h3 v-if="index == 2" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
                                 {{ 'Mặc đẹp, đứng form, nổi tiếng' }}
                             </h3>
-                            <h3 v-if="index == 3" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
                                 {{ 'Mặt hàng bán chạy số #2' }}
                             </h3>
-                            <h3 v-if="index == 4" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
                                 {{ 'Vải kaki chéo 2-1 thoáng mát, giá tốt nhất thị trường' }}
                             </h3>
                             <UButton
@@ -104,11 +104,11 @@
                                 {{ 'Tất cả sản phẩm' }}
                             </UButton>
                         </div>
-                        <img v-if="index == 0" src="/images/all-products/all-banner-2.jpg" class="h-full w-full object-contain" />
-                        <img v-if="index == 1" src="/images/all-products/all-banner-3.jpg" class="h-full w-full object-contain" />
-                        <img v-if="index == 2" src="/images/all-products/all-banner-4.jpg" class="h-full w-full object-contain" />
-                        <img v-if="index == 3" src="/images/all-products/all-banner-5.jpg" class="h-full w-full object-contain" />
-                        <img v-if="index == 4" src="/images/all-products/all-banner-6.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phang-quang-ha-noi'" src="/images/all-products/all-banner-3.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phang-quang-kieu-3m'" src="/images/all-products/all-banner-4.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6.jpg" class="h-full w-full object-contain" />
                     </div>
                 </div>
                 <div v-if="category.products.length > 0" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 px-5">
@@ -262,7 +262,7 @@ const { data: productCollection, pending: loadingProductCollection } = await use
 );
 
 const { data: productCollectionAll, pending: loadingProductCollectionAll } = await useLazyAsyncData('product-category-all', async () =>
-    useOriginalFetch(`/api/v1/categories/all`, {
+    useOriginalFetch(`/api/v1/categories/search`, {
         params: await getParamsCollection(),
     }),
 );
