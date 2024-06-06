@@ -276,6 +276,16 @@ const { data: productUniform, pending: loadingProductUniform } = await useLazyAs
 ///SEO
 const config = useRuntimeConfig();
 let pageTitle = 'Trang chủ';
+useHead({
+    templateParams: {
+        site: {
+            name: config.public.name,
+        },
+        separator: '|',
+    },
+
+    titleTemplate: '%site.name %separator %s',
+})
 
 defineOgImageComponent('GAK', {
     title: pageTitle,

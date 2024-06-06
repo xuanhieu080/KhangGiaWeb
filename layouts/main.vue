@@ -110,18 +110,6 @@ const backToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 };
 
-const config = useRuntimeConfig();
-useHead({
-    templateParams: {
-        site: {
-            name: config.public.name,
-        },
-        separator: '|',
-    },
-
-    titleTemplate: '%site.name %separator %s',
-})
-
 useSchemaOrg([
     definePlace({
         name: process.env.NUXT_SITE_NAME,
