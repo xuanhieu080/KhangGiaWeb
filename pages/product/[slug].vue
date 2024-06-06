@@ -1032,7 +1032,7 @@ const resetProductPage = (isRefresh = true) => {
     }
 };
 
-const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data.meta_title);
+const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data?.meta_title);
 const description = ref(productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description);
 const key = ref(productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key);
 const image = ref(productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url);
