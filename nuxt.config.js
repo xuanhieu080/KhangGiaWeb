@@ -242,8 +242,14 @@ export default defineNuxtConfig({
                 {
                     hid: 'gtmHead',
                     async: true,
+                    defer: true,
                     src: 'https://www.googletagmanager.com/gtag/js?id=GTM-5MFK8NDW',
                 },
+                // {
+                //     hid: 'gtmHead',
+                //     defer: true,
+                //     src: 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js',
+                // },
                 {
                     hid: 'gtmHead',
                     innerHTML:

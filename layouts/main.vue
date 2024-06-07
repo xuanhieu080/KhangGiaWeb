@@ -38,12 +38,12 @@
     <Footer />
     <div class="dmca-container">
         <a
-            href="//www.dmca.com/Protection/Status.aspx?ID=96e6318b-dec0-4669-9c13-a488589c8416"
+            href="//www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
             title="DMCA.com Protection Status"
             class="dmca-badge">
             <NuxtImg
                 format="webp"
-                src="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=96e6318b-dec0-4669-9c13-a488589c8416"
+                src="https://images.dmca.com/Badges/DMCA_logo-grn-btn100w.png?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
                 alt="DMCA.com Protection Status"
                 class="w-full h-full object-contain"
         /></a>
@@ -203,6 +203,12 @@ useSchemaOrg([
         ],
     }),
 ]);
+
+onMounted(() => {
+    const script = document.createElement('script');
+    script.src = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js';
+    document.body.appendChild(script);
+});
 </script>
 <style lang="scss" scoped>
 .loading-container {
