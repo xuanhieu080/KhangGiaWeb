@@ -287,9 +287,9 @@
                                     : 0
                             }}</b></span
                         >
-                        <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex items-center gap-4">
+                        <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex flex-col sm:flex-wrap sm:items-center gap-4">
                             <div
-                                class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                class="select-amount flex items-center justify-between sm:w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1)"></UIcon>
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1)"></UIcon>
@@ -307,9 +307,9 @@
                                 </UButton>
                             </NuxtLink>
                         </div>
-                        <div v-else-if="productItem.data?.variants.length == 0" class="product-add-to-cart mt-auto flex items-center gap-4">
+                        <div v-else-if="productItem.data?.variants.length == 0" class="product-add-to-cart mt-auto flex flex-col sm:flex-wrap sm:items-center gap-4">
                             <div
-                                class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                class="select-amount flex items-center justify-between sm:w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
@@ -381,11 +381,7 @@
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
                             <div v-html="productItem.data?.highlight"></div>
-                            <!--                            <ul class="product-details-list !list-['-'] !mt-0 fs-14 font-semibold">-->
-                            <!--                                <li v-for="feature in product.product_information" class="product-details__item pl-3">-->
-                            <!--                                    {{ feature }}-->
-                            <!--                                </li>-->
-                            <!--                            </ul>-->
+                            
                         </div>
                         <div v-if="productItem.data?.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
                             <img :src="productItem.data?.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
@@ -407,7 +403,6 @@
                         :modules="modulesSimilar"
                         :slidesPerView="1"
                         :slidesPerGroup="1"
-                        :autoHeight="true"
                         :grabCursor="true"
                         :loop="true"
                         :breakpoints="{
@@ -586,25 +581,9 @@ const productSize = ref(null);
 const productSilk = ref(null);
 const indexActive = ref(0);
 const indexActiveColor = ref(0);
-const product1 = ref({});
-const product = ref({
-    product_information: [
-        'Chất liệu 100% Polyester',
-        'Kiểu dệt Mini Square hạn chế sờn vải, tăng độ bền, ít bị rách hay thủng lỗ',
-        'Các lỗ nhỏ trên vải giúp thoáng khí hơn',
-        'Tính năng Wicking thấm hút vượt trội',
-        'Công nghệ Ex-Dry nhanh khô thoáng mát',
-        'Logo in phản quang trong bóng tối',
-        'Sản phẩm được đánh giá phù hợp với hoạt động chạy bộ bởi các Runner',
-        'Tự hào sản xuất tại Việt Nam',
-        'Người mẫu: 181cm - 76kg, mặc áo 2XL',
-    ],
-    product_for_example:
-        'https://media.coolmate.me/cdn-cgi/image/width=1426,height=2100,quality=80,format=auto/uploads/January2024/23CMAW.TT004.3D.3K.png',
-});
 const loadingProductItem = ref(true);
 const selectedProductVariant = ref({});
-const imageList = computed(() => product.value.product_images[colorProductActive.value]);
+const imageList = computed(() => null);
 const thumbsSwiper = ref(null);
 const thumbsSwiperMobile = ref(null);
 let reviewJson = ref([]);

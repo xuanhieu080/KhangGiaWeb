@@ -80,46 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="false" class="site-footer__after">
-                <div class="copyright">
-                    <h5 class="copyright__title">@ CÔNG TY TNHH FASTECH ASIA</h5>
-                    <p class="copyright__description">
-                        Mã số doanh nghiệp: 0108617038. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư TP Hà Nội cấp lần đầu
-                        ngày 20/02/2019.
-                    </p>
-                </div>
-                <div class="site-footer__logo">
-                    <a
-                        href="https://tinnhiemmang.vn/danh-ba-tin-nhiem/coolmateme-1646213826"
-                        title="Chung nhan Tin Nhiem Mang"
-                        target="_blank"
-                        style="margin-right: 10px"
-                        ><img
-                            src="https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/March2022/handle_cert.png"
-                            alt="Chung nhan Tin Nhiem Mang"
-                            style="max-height: 40px"
-                    /></a>
-                    <a
-                        href="https://www.dmca.com/Protection/Status.aspx?ID=c6fdbdee-127c-4cf1-923d-7efe75201df6&amp;refurl=https://www.coolmate.me/"
-                        title="DMCA.com Protection Status"
-                        target="_blank"
-                        class="dmca-badge"
-                        style="margin-right: 10px"
-                        ><img
-                            src="https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/March2022/dmca_protected_15_120.png"
-                            alt="DMCA.com Protection Status"
-                            style="max-height: 40px"
-                    /></a>
-                    <a href="#" style="margin-right: 10px"
-                        ><img src="https://static.coolmate.me/images/footer/Coolmate-info.png" alt=" Gak info" width="39" height="40"
-                    /></a>
-                    <a
-                        href="http://online.gov.vn/(X(1)S(3e0hkhscv5zs101mhuopx43a))/Home/WebDetails/53184?AspxAutoDetectCookieSupport=1"
-                        target="_blank"
-                        ><img src="https://static.coolmate.me/images/footer/logoSaleNoti.png" alt=" Gak info" width="106" height="40"
-                    /></a>
-                </div>
-            </div>
+            
         </div>
     </footer>
 </template>
