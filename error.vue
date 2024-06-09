@@ -64,6 +64,14 @@ const handleError = () => {
         redirect: '/',
     });
 };
+
+let seoMeta = {
+  title: 'Lỗi trang',
+  robots: 'nofollow, noindex',
+  bingbot: 'nofollow, noindex',
+  googlebot: 'nofollow, noindex',
+};
+useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped></style>

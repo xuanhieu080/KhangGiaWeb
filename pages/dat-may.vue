@@ -42,7 +42,7 @@
                 </div>
             </div>
         </section>
-        <div class="about-content pt-8 mx-auto bg-white">
+        <div class="about-content md:pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty GAK</h2>
@@ -117,7 +117,7 @@
                                     <div class="card__item__title">Tiếp nhận yêu cầu</div>
                                     <p class="card__item__description">
                                         Gửi yêu cầu trực tiếp qua Zalo hoặc qua <br />
-                                        Hotline: <a href="tel:1900 272 735">0569133339</a>
+                                        Hotline: <a href="tel:0569133339">0569133339</a>
                                     </p>
                                 </div>
                             </div>
@@ -343,14 +343,24 @@
                     <div class="pod-customer">
                         <div class="pod-customer__wrapper">
                             <h2 class="pod-customer__heading">Khách hàng của công ty GAK</h2>
-                            <Swiper :slidesPerView="6" :spaceBetween="24" :loop="true" class="swiper pod-customer-swiper relative z-10 !pb-12">
+                            <Swiper
+                                :slidesPerView="4"
+                                :spaceBetween="12"
+                                :loop="true"
+                                :breakpoints="{
+                                    1280: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 24,
+                                    },
+                                    768: {
+                                        slidesPerView: 5,
+                                        spaceBetween: 16,
+                                    },
+                                }"
+                                class="swiper pod-customer-swiper relative z-10 !pb-4 md:!pb-12">
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/Finhay.png"
-                                            alt=""
-                                            src="/images/brands/Finhay.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/Finhay.png" alt="" src="/images/brands/Finhay.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -359,11 +369,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/mekong.png"
-                                            alt=""
-                                            src="/images/brands/mekong.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/mekong.png" alt="" src="/images/brands/mekong.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -372,11 +378,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/vnpt.png"
-                                            alt=""
-                                            src="/images/brands/vnpt.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/vnpt.png" alt="" src="/images/brands/vnpt.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -440,11 +442,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/shopee.png"
-                                            alt=""
-                                            src="/images/brands/shopee.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/shopee.png" alt="" src="/images/brands/shopee.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none">
@@ -472,11 +470,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/matbao.png"
-                                            alt=""
-                                            src="/images/brands/matbao.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/matbao.png" alt="" src="/images/brands/matbao.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none">
@@ -488,11 +482,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/aka.png"
-                                            alt=""
-                                            src="/images/brands/aka.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/aka.png" alt="" src="/images/brands/aka.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none">
@@ -520,11 +510,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/boxme.png"
-                                            alt=""
-                                            src="/images/brands/boxme.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/boxme.png" alt="" src="/images/brands/boxme.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -546,18 +532,13 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/epson.png"
-                                            alt=""
-                                            src="/images/brands/epson.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/epson.png" alt="" src="/images/brands/epson.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
                                         </div>
                                     </div>
                                 </SwiperSlide>
-
                             </Swiper>
                             <p class="pod-customer__description active-description mobile--hidden">
                                 Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành cho nữ dù số lượng ít
@@ -682,11 +663,11 @@
             <section class="pod-factory">
                 <div class="pod-factory__banner">
                     <picture style="width: 100%"
-                        ><source
-                            class="hidden"
-                            media="(max-width: 781px)"
-                            srcset="/images/nha-may-background.png" />
-                        <img src="/images/nha-may-background.png" alt="Nha may" class="h-full w-full object-cover" />
+                        ><source class="hidden" media="(max-width: 781px)" srcset="/images/nha-may-background.png" />
+                        <img
+                            src="/images/nha-may-background.png"
+                            alt="Nha may"
+                            class="h-[300px] md:h-full w-full object-center object-cover" />
                     </picture>
                 </div>
                 <div class="pod-factory__info">
@@ -822,7 +803,7 @@
                                 variant="soft"
                                 class="border-b text-black !justify-between border-gray-200 dark:border-gray-700"
                                 :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
-                                <span class="text-xl">{{ index + 1 }}. {{ item.label }}</span>
+                                <span class="text-xl md:text-center text-left">{{ index + 1 }}. {{ item.label }}</span>
 
                                 <template #trailing>
                                     <UIcon
@@ -983,7 +964,7 @@ useSeoMeta(seoMeta);
     position: relative;
     height: calc(100vh - 120px);
     @media screen and (max-width: 991px) {
-        height: 100%;
+        height: auto
     }
     .pod-banner__content,
     .pod-banner__filter,
@@ -1004,6 +985,9 @@ useSeoMeta(seoMeta);
         justify-content: center;
         flex-flow: column;
         background-color: rgba(0, 0, 0, 0.5);
+        @media screen and (max-width: 991px) {
+            display: none;
+        }
         .pod-banner__heading {
             font-size: 500%;
             font-weight: 700;
@@ -1065,10 +1049,17 @@ useSeoMeta(seoMeta);
     .pod-why {
         margin-top: 2em;
         padding-bottom: 30px;
+        @media screen and (max-width:767px) {
+            margin-top: 0
+        }
         .pod-why__heading {
             font-weight: 500;
             font-size: 36px;
             text-align: center;
+            @media screen and (max-width:767px) {
+                margin-top: 0;
+                padding-top: 16px;
+            }
         }
         .pod-why__card {
             display: flex;
@@ -1143,6 +1134,11 @@ useSeoMeta(seoMeta);
                         color: #2f5acf;
                         line-height: 51px;
                         font-weight: 500;
+                        @media screen and (max-width: 991px) {
+                            font-size: 28px;
+                            line-height: 1.4;
+                            text-align: center;
+                        }
                     }
                     @media screen and (max-width: 1200px) {
                         width: 100%;
@@ -1323,6 +1319,10 @@ useSeoMeta(seoMeta);
             font-size: 36px;
             text-align: center;
             margin-bottom: 70px;
+
+            @media screen and (max-width: 991px) {
+                margin-bottom: 48px;
+            }
         }
         .pod-customer__content {
             max-width: 991px;
@@ -1347,6 +1347,9 @@ useSeoMeta(seoMeta);
                     opacity: 1;
                 }
             }
+            @media screen and (max-width: 767px) {
+                padding: 0 12px;
+            }
         }
         .pod-customer__description {
             font-size: 18px;
@@ -1354,6 +1357,10 @@ useSeoMeta(seoMeta);
             max-width: 820px;
             color: #3a4348;
             margin: 24px auto;
+
+            @media screen and (max-width: 767px) {
+                padding: 0 8px;
+            }
         }
     }
     .contact {
@@ -1375,6 +1382,9 @@ useSeoMeta(seoMeta);
             }
             @media screen and (max-width: 991px) {
                 padding: 32px;
+            }
+            @media screen and (max-width: 767px) {
+                padding: 24px;
             }
             .contact__content {
                 display: flex;
@@ -1398,8 +1408,11 @@ useSeoMeta(seoMeta);
                     gap: 16px;
                     max-width: 463px;
                     margin-bottom: 48px;
-                    @media (max-width: 991px) {
-                        @apply flex-wrap items-center justify-center;
+                    @media screen and (max-width: 991px) {
+                        @apply flex-wrap items-center w-full;
+                    }
+                    @media screen and (max-width: 374px) {
+                        @apply px-0;
                     }
                     .contact__content-info {
                         display: flex;
@@ -1411,6 +1424,9 @@ useSeoMeta(seoMeta);
                             font-size: 14px;
                             color: #aebbc1;
                             margin: 0;
+                        }
+                        @media screen and (max-width: 767px) {
+                            @apply pl-0;
                         }
                     }
                 }
@@ -1436,6 +1452,9 @@ useSeoMeta(seoMeta);
                             height: 32px;
                             object-fit: contain;
                         }
+                        @media screen and (max-width: 767px) {
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -1453,6 +1472,10 @@ useSeoMeta(seoMeta);
                     @media (min-width: 1201px) and (max-width: 1440px) {
                         padding: 50px 30px;
                     }
+                    @media screen and (max-width: 767px) {
+                        padding: 24px;
+                    }
+
                     .title {
                         color: #2f5acf;
                         font-size: 28px;
@@ -1489,17 +1512,23 @@ useSeoMeta(seoMeta);
                 @media screen and (max-width: 991px) {
                     font-size: 48px;
                 }
+                @media screen and (max-width: 767px) {
+                    font-size: 28px;
+                }
             }
             p {
                 font-size: 24px;
                 @media screen and (max-width: 991px) {
                     font-size: 16px;
+                    text-align: justify;
                 }
             }
             @media screen and (max-width: 767px) {
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
+                width: 100%;
+                padding: 8px 16px;
             }
         }
     }

@@ -1,6 +1,7 @@
 <template>
     <NuxtLayout name="main">
-        <section class="pod-banner">
+        <section class="pod-banner md:px-5">
+            <h1 class="font-bold px-4 md:px-0 !text-xl md:!text-3xl">SOCIAL MEDIA OFFICIAL</h1>
             <video
                 poster="/images/official-banner.jpg"
                 src="/images/official-banner.jpg"
@@ -12,9 +13,89 @@
                 style="pointer-events: none; display: none"></video>
             <img src="/images/official-banner.jpg" class="h-full w-full object-contain" />
         </section>
+        <section class="smo-content flex flex-col w-full px-5 bg-white py-8">
+            <h2 class="font-bold !text-2xl md:!text-4xl text-center">SOCIAL MEDIA</h2>
+            <div class="md:grid md:grid-cols-3 flex flex-col justify-center items-center w-full gap-4 md:gap-0">
+                <a href="https://www.facebook.com/GAKBHLD" target="_blank">
+                    <img src="/images/facebook-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
+                </a>
+                <a href="https://www.tiktok.com/@congtygak" target="_blank">
+                    <img src="/images/tiktok-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
+                </a>
+                <a href="https://twitter.com/congtygak" target="_blank">
+                    <img src="/images/youtube-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
+                </a>
+            </div>
+        </section>
+        <div v-if="false" class="gak-news flex flex-col gap-4 p-5 w-full">
+            <h3 class="font-bold !text-2xl md:!text-3xl">TIN TỨC</h3>
+            <Swiper
+                :spaceBetween="0"
+                :navigation="{
+                    nextEl: '.news-swiper .next-news-btn',
+                    prevEl: '.news-swiper .prev-news-btn',
+                }"
+                :modules="modules"
+                :slidesPerView="1"
+                :slidesPerGroup="1"
+                :grabCursor="true"
+                :loop="true"
+                :breakpoints="{
+                    1440: {
+                        slidesPerView: 5,
+                        spaceBetween: 16,
+                    },
+                    768: {
+                        slidesPerView: 4,
+                        spaceBetween: 16,
+                    },
+                    567: {
+                        slidesPerView: 2,
+                        spaceBetween: 16,
+                    },
+                }"
+                class="news-swiper relative">
+                <SwiperSlide v-for="article in articlesList" class="p-2 rounded-lg relative overflow-hidden !h-[300px] md:!h-[350px]">
+                    <img :src="article.image" class="h-full w-full object-cover rounded-lg" alt="" />
+                    <span
+                        class="bg-white px-4 py-3 font-medium text-xs sm:text-sm md:text-[16px] rounded-3xl absolute left-1/2 bottom-4 -translate-x-1/2 w-max"
+                        >{{ article.note }}</span
+                    >
+                </SwiperSlide>
+                <template v-slot:container-end>
+                    <UButton
+                        variant="ghost"
+                        color="none"
+                        class="prev-news-btn w-[40px] h-[40px] absolute top-1/2 left-0 -translate-y-1/2 z-[99] !bg-black text-white rounded-full justify-center"
+                        :padded="false">
+                        <UIcon class="text-[24px]" name="i-heroicons-arrow-left" dynamic />
+                    </UButton>
+                    <UButton
+                        variant="ghost"
+                        color="none"
+                        class="next-news-btn w-[40px] h-[40px] absolute top-1/2 right-0 -translate-y-1/2 z-[99] !bg-black text-white rounded-full justify-center"
+                        :padded="false">
+                        <UIcon class="text-[24px]" name="i-heroicons-arrow-right" dynamic />
+                    </UButton>
+                </template>
+            </Swiper>
+        </div>
+        <div class="gak-map flex flex-col gap-4 relative">
+            <h3 class="font-bold !text-2xl md:!text-3xl absolute top-4 left-1/2 -translate-x-1/2">Bản đồ GAK</h3>
+            <img src="/images/gak-map.jpg" class="h-[600px] md:h-[auto] md:max-h-[600px] object-bottom w-full object-cover" alt="" />
+            <div class="map-box w-full absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center justify-center p-6 md:p-0">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d823.936581647136!2d106.652818292957!3d10.786402732044506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752eca006bdbe5%3A0x9a8c008355ae6829!2zMTUgTMOqIE1pbmggWHXDom4sIFBoxrDhu51uZyA4LCBUw6JuIELDrG5oLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1717928335457!5m2!1svi!2s"
+                    width="600"
+                    height="450"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
         <div class="about-content pt-8 mx-auto bg-white">
-            
-            <section class="cs-cta">
+            <section v-if="false" class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
                         Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
@@ -40,7 +121,7 @@
                     </span>
                 </div>
             </section>
-            <div class="cs-faq-container py-8">
+            <div class="cs-faq-container py-8 bg-[#f1f1f1]">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-faq__heading text-center w-full">FAQ - Câu hỏi thường gặp</h2>
                     <UAccordion multiple :items="items" :ui="{ wrapper: 'flex flex-col w-full' }">
@@ -50,7 +131,7 @@
                                 variant="soft"
                                 class="border-b text-black !justify-between border-gray-200 dark:border-gray-700"
                                 :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
-                                <span class="text-xl">{{ index + 1 }}. {{ item.label }}</span>
+                                <span class="text-xl md:text-center text-left">{{ index + 1 }}. {{ item.label }}</span>
 
                                 <template #trailing>
                                     <UIcon
@@ -62,88 +143,66 @@
                         </template>
                         <template #item-1>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
-                                <p>
-                                    Hiện nay, có rất nhiều Xưởng may đồng phục giá rẻ tại Quận Tân Bình, TPHCM, toàn quốc..., đều có thể
-                                    cung cấp tới bạn những chiếc đồng phục có chi phí tốt. Tuy nhiên bạn sẽ cần lưu ý những điều này để tìm
-                                    ra công ty may in đồng phục có uy tín.
-                                </p>
-                                <ul class="marker:text-gray-700">
-                                    <li>Xem xét <b>địa chỉ xưởng may</b> có thông tin liên hệ rõ ràng</li>
-                                    <li>Xem xét <b>thời gian giao hàng</b> có đúng hẹn hay không</li>
-                                    <li>Xem xét <b>có hỗ trợ thiết kế lại logo và lên bản thiết kế sản phẩm</b> miễn phí hay không</li>
-                                    <li>
-                                        Xem xét <b>nhân viên CSKH</b> có tư vấn nhiệt tình trong suốt quá trình và sau bán hàng hay không
-                                    </li>
-                                    <li>Xem xét <b>chất liệu vải</b> may đồng phục mặc có mát, bền màu hay không</li>
-                                    <li>
-                                        Xem xét <b>đánh giá của khách hàng</b> về cảm nhận của họ sau khi sử dụng dịch vụ hay chất lượng áo
-                                        thun đồng phục sau một khoảng thời gian sử dụng
-                                    </li>
-                                </ul>
-                                <span>
-                                    Dựa theo những tiêu chí đánh giá địa chỉ xưởng may đồng phục uy tín bên trên, công ty GAK mong rằng nó
-                                    sẽ giúp bạn tìm thấy công ty may có uy tín.
-                                </span>
+                                <p>Địa chỉ: 15 Lê Minh Xuân, Phường 7, Tân Bình, Thành phố Hồ Chí Minh</p>
                             </div>
                         </template>
                         <template #item-2>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <p>
-                                    <b>Đồng phục công nhân giá rẻ, kém chất lượng</b> thường gây ảnh hưởng đến sức khoẻ người lao động. Vì
-                                    những bộ quần áo này được họ sử dụng hằng ngày và cơ sở giúp họ bảo vệ mình khi có tai nạn vô tình xảy
-                                    ra. Nên việc sử dụng nguồn vải kém chất lượng có thể gây ảnh hưởng tới hình ảnh của công ty và đặc biệt
-                                    nguy hại tới sức khoẻ của người lao động.
-                                </p>
-
-                                <p>
-                                    Tại GAK chúng tôi tự chủ sản xuất nguồn vải có chất lượng, đem lại sự an toàn, thoải mái khi vận động -
-                                    làm việc, khả năng thấm hút co giãn tốt. Đặc biệt nhờ vào hệ sinh thái khép kín từ sợi, dệt, nhuộm cho
-                                    tới in ấn chúng tôi luôn đảm bảo mọi bộ đồng phục công nhân luôn có chất lượng, giá thành cạnh tranh
-                                    nhất thị trường. Hãy tìm hiểu thêm các sản phẩm có sẵn của chúng tôi!
+                                    <b>Không bạn nhé</b>
                                 </p>
                             </div>
                         </template>
                         <template #item-3>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
-                                <p>
-                                    <b>In ấn đồng phục chất lượng cao</b> đang là giải pháp giúp công ty bạn tăng cường hình ảnh chuyên
-                                    nghiệp và xây dựng nhận diện thương hiệu cho doanh nghiệp của mình? Dưới đây là những lợi ích quan
-                                    trọng:
-                                </p>
-                                <ul class="marker:text-gray-700">
+                                <ul>
                                     <li>
-                                        Tạo ấn tượng chuyên nghiệp: Đồng phục là một cách hiệu quả để tạo ra một hình ảnh chuyên nghiệp và
-                                        đồng nhất cho toàn bộ đội ngũ của bạn. Với bề dày kinh nghiệm trong ngành may, GAK cam kết mang lại
-                                        những bộ đồng phục chất lượng, phản ánh sự chuyên nghiệp của doanh nghiệp.
+                                        Nền tảng Facebook:
+                                        <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="text-blue-500"
+                                            >Tại đây</a
+                                        >
                                     </li>
                                     <li>
-                                        Nâng cao nhận diện thương hiệu: Logo và thông điệp của thương hiệu được in trên đồng phục không chỉ
-                                        giúp khách hàng dễ dàng nhận ra bạn mà còn là một cách hiệu quả để quảng bá thương hiệu của bạn. GAK
-                                        sẽ giúp bạn thiết kế và in ấn các mẫu đồng phục độc đáo, thể hiện đầy đủ giá trị và phong cách của
-                                        thương hiệu.
+                                        Nền tảng Tiktok:
+                                        <a href="https://www.tiktok.com/@congtygak" target="_blank" class="text-blue-500"
+                                            >Tại đây</a
+                                        >
                                     </li>
                                     <li>
-                                        Tinh thần đồng đội: Đồng phục không chỉ là trang phục, mà còn là biểu tượng của sự đoàn kết và nhất
-                                        quán trong tổ chức. GAK hiểu rõ giá trị của việc tạo sự gắn kết giữa các thành viên, và chúng tôi
-                                        cam kết mang lại những bộ đồng phục đẹp mắt, tạo cảm giác kết nôi và đoàn kết cho nhân viên của bạn.
+                                        Nền tảng Zalo:
+                                        <a href="https://zalo.me/569133339" target="_blank" class="text-blue-500"
+                                            >Tại đây</a
+                                        >
                                     </li>
                                     <li>
-                                        Dịch vụ may đo cao cấp và chất lượng cao: GAK không chỉ cung cấp những mẫu đồng phục tiêu chuẩn mà
-                                        còn chú trọng đến sự tùy chỉnh theo yêu cầu của khách hàng - công ty. Chúng tôi cam kết sử dụng vật
-                                        liệu vải, khuy nút chất lượng cao và công nghệ in ấn tiên tiến để đảm bảo bạn nhận được sản phẩm
-                                        hoàn hảo nhất.
+                                        Nền tảng Instagram:
+                                        <a href="https://twitter.com/congtygak" target="_blank" class="text-blue-500"
+                                            >Tại đây</a
+                                        >
                                     </li>
                                     <li>
-                                        Giá trị hợp lý: GAK hiểu rằng việc đầu tư vào đồng phục cần phải hợp lý về chi phí. Với chính sách
-                                        giá cạnh tranh và chất lượng sản phẩm được hoàn thiện tỉ mỉ, chúng tôi cam kết mang lại giá trị tốt
-                                        nhất với mức chi phí bạn đã bỏ ra.
+                                        Nền tảng Twitter:
+                                        <a href="https://twitter.com/congtygak" target="_blank" class="text-blue-500"
+                                            >Tại đây</a
+                                        >
                                     </li>
                                 </ul>
-                                <span>
-                                    Hãy để GAK trở thành đối tác đáng tin cậy của bạn trong việc thiết kế trang phục cao cấp và may đồng
-                                    phục chất lượng . Liên hệ với chúng tôi ngay hôm nay để bắt đầu hành trình tạo ra một hình ảnh chuyên
-                                    nghiệp và thương hiệu ấn tượng cho doanh nghiệp của bạn!
-                                </span>
+                            </div>
+                        </template>
+                        <template #item-4>
+                            <div class="text-gray-900 dark:text-white px-3 text-lg">
+                                <ul>
+                                    <li>
+                                        Hotline 1:
+                                        <a href="tel:0569133339">056.913.33.39</a> 
+                                    </li>
+                                    <li>
+
+                                        Hotline 2:
+                                        <a href="tel:0947636569">094.763.65.69</a> <br />
+                                    </li>
+                                    
+                                </ul>
                             </div>
                         </template>
                     </UAccordion>
@@ -156,9 +215,9 @@
 <script setup>
 import images from '@@/assets/icons';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
-import { Grid } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import ArticleCard from '@/components/articles/ArticleCard.vue';
-let modules = ref([Grid]);
+let modules = ref([Navigation]);
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
@@ -166,6 +225,49 @@ defineComponent({
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
+
+const articlesList = ref([
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Bộ sưu tập trước',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Bộ sưu tập ',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Bộ sưu tập sau',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Bộ sưu tập Mới',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Áo ghile',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Quà tặng',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Giới hạn',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Tặng quà sinh nhật',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'New collection',
+    },
+    {
+        image: '/images/about-us-7.jpg',
+        note: 'Most popular',
+    },
+]);
 
 const items = [
     {
@@ -182,7 +284,7 @@ const items = [
         slot: 'item-3',
     },
     {
-        label: 'Những nền tảng mạng xã hội của GAK',
+        label: 'Hotline của công ty GAK gồm những số nào?',
         slot: 'item-4',
     },
 ];
@@ -288,485 +390,12 @@ useSeoMeta(seoMeta);
         }
     }
 }
+.gak-map {
+}
 .about-content {
     .container--medium {
         max-width: 1280px;
         margin: 0 auto;
-    }
-    .pod-why {
-        margin-top: 2em;
-        padding-bottom: 30px;
-        .pod-why__heading {
-            font-weight: 500;
-            font-size: 36px;
-            text-align: center;
-        }
-        .pod-why__card {
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            text-align: center;
-            background: #f1f1f1;
-            border-radius: 28px;
-            row-gap: 22px;
-            padding: 40px 35px;
-            height: 100%;
-            position: relative;
-            color: black;
-            @media (min-width: 1201px) and (max-width: 1440px) {
-                padding: 30px 23px;
-            }
-            .card__item__icon {
-                img {
-                    margin: 0;
-                }
-                @media (min-width: 1201px) and (max-width: 1440px) {
-                    width: 84px;
-                }
-            }
-            .card__item__title {
-                font-weight: 500;
-                font-size: 24px;
-                line-height: 1.4;
-            }
-            .card__item__description {
-                line-height: 20px;
-                font-size: 16px;
-                color: #6b818c;
-                margin-bottom: 0;
-                @media (min-width: 1201px) and (max-width: 1440px) {
-                    .card__item__description {
-                        font-size: 14px;
-                    }
-                }
-            }
-        }
-    }
-    .pod-activity {
-        .pod-activity__card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #2f5acf;
-            border-radius: 28px;
-            padding: 50px 30px;
-            @media screen and (max-width: 1200px) {
-                flex-direction: column;
-            }
-            .pod-activity__heading-card {
-                background: #fff;
-                border-radius: 28px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-flow: column;
-                padding: 50px 45px;
-                @media screen and (max-width: 1200px) {
-                    padding: 10px 20px;
-                    width: 100%;
-                    border-radius: 12px;
-                    margin-bottom: 1em;
-                }
-                .pod-activity__heading-top {
-                    width: 228px;
-                    h2 {
-                        font-size: 40px;
-                        color: #2f5acf;
-                        line-height: 51px;
-                        font-weight: 500;
-                    }
-                    @media screen and (max-width: 1200px) {
-                        width: 100%;
-                        text-align: center;
-                    }
-                }
-                .pod-activity__heading-cta {
-                    width: 100%;
-                    font-size: 16px;
-                    color: #6b818c;
-                    @media screen and (max-width: 1200px) {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                    }
-                    .btn--primary {
-                        background-color: #f9f86c;
-                        color: #000;
-                        border: 2px solid #f9f86c;
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 40px;
-                        border-radius: 16px;
-                        padding: 0 30px;
-                        transition: all 0.2s;
-                    }
-                }
-            }
-            .grid-item {
-                padding: 0 20px;
-                @media (min-width: 1201px) and (max-width: 1440px) {
-                    padding: 0;
-                    gap: 15px;
-                    row-gap: 30px;
-                    margin-left: 0;
-                }
-                @media (max-width: 1200px) {
-                    row-gap: 50px;
-                    padding: 0;
-                    margin-bottom: 1em;
-                    width: 100%;
-                }
-                .card__item {
-                    margin-right: 0;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    flex-flow: column;
-                    padding-left: 0;
-                    padding-right: 0;
-                    row-gap: 24px;
-                    @media (min-width: 1201px) and (max-width: 1440px) {
-                        margin-left: 0;
-                    }
-                    @media (max-width: 1200px) {
-                        margin-left: 0;
-                        text-align: center;
-                        row-gap: 0;
-                        flex-flow: row;
-                        gap: 20px;
-                    }
-                    .card__item__content {
-                        text-align: center;
-                        color: #fff;
-                        @media (max-width: 1200px) {
-                            font-size: 14px;
-                            text-align: left;
-                            flex: 1;
-                        }
-                    }
-                    &:not(:first-child):before {
-                        content: '';
-                        position: absolute;
-                        width: 24px;
-                        height: 24px;
-                        background-image: url('/images/chevron-right-yellow-circle.png');
-                        background-size: contain;
-                        background-position: 50%;
-                        left: -24px;
-                        top: calc(20% - 7px);
-                        @media (max-width: 1200px) {
-                            left: 50%;
-                            top: -45%;
-                            width: 20px;
-                            height: 20px;
-                            transform: rotate(90deg);
-                        }
-                    }
-                }
-            }
-            .card__item__title {
-                font-size: 24px;
-                font-weight: 700;
-                @media (min-width: 1201px) and (max-width: 1440px) {
-                    font-size: 20px;
-                }
-                @media (max-width: 1200px) {
-                    font-size: 14px;
-                    font-weight: 500;
-                }
-            }
-            .card__item__description {
-                padding: 0 70px;
-                @media (min-width: 1201px) and (max-width: 1440px) {
-                    padding: 0;
-                    font-size: 14px;
-                }
-                @media (max-width: 1200px) {
-                    padding: 0;
-                    br {
-                        display: none;
-                    }
-                    margin: 4px 0;
-                }
-            }
-        }
-    }
-    .pod-products {
-        margin-top: 3em;
-        background-color: white;
-        .pod-products__heading {
-            font-weight: 500;
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .tab-content {
-            .pod-grid {
-                height: 100%;
-                .pod-grid__inner {
-                    background-color: #f1f1f1;
-                    padding: 14px;
-                    height: 100%;
-                    border-radius: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    gap: 12px;
-                    .pod-grid__thumbnail {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        .pod-grid__image {
-                            position: relative;
-                            cursor: pointer;
-                            width: 90%;
-                        }
-                    }
-
-                    .pod-grid__tagline {
-                        font-size: 14px;
-                        line-height: 20px;
-                        color: #6b818c;
-                        text-align: center;
-                        span {
-                            font-size: 20px;
-                            display: block;
-                            color: #000;
-                            font-weight: 500;
-                            margin-bottom: 10px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .pod-customer {
-        background: #f3f5f6;
-        color: #000;
-        margin-top: 2em;
-        padding-top: 32px;
-        padding-bottom: 30px;
-        text-align: center;
-        border-radius: 24px;
-        .pod-customer__heading {
-            font-weight: 500;
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 70px;
-        }
-        .pod-customer__content {
-            max-width: 991px;
-            margin: 0 auto;
-            padding: 0 20px;
-            img {
-                width: 100%;
-                height: 70px;
-                margin: 0 auto 10px;
-                -o-object-fit: contain;
-                object-fit: contain;
-                cursor: pointer;
-                filter: grayscale(100%);
-                transition: all 0.3s;
-                opacity: 0.3;
-            }
-            &:hover,
-            &.active {
-                img {
-                    filter: grayscale(0);
-                    transition: all 0.3s;
-                    opacity: 1;
-                }
-            }
-        }
-        .pod-customer__description {
-            font-size: 18px;
-            text-align: center;
-            max-width: 820px;
-            color: #3a4348;
-            margin: 24px auto;
-        }
-    }
-    .contact {
-        background-color: #2f5acf;
-        border-radius: 24px;
-        position: relative;
-        .contact__wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0 auto;
-            padding: 80px 100px;
-            @media (min-width: 1201px) and (max-width: 1440px) {
-                padding: 30px;
-            }
-            @media screen and (max-width: 1200px) {
-                @apply flex-col-reverse gap-4;
-                padding: 64px;
-            }
-            @media screen and (max-width: 991px) {
-                padding: 32px;
-            }
-            .contact__content {
-                display: flex;
-                justify-content: space-between;
-                flex-flow: column;
-                max-width: 537px;
-                color: #fff;
-                @media screen and (max-width: 1200px) {
-                    max-width: 100%;
-                    @apply items-center flex-wrap;
-                }
-                .contact__content-title {
-                    font-size: 28px;
-                    margin-bottom: 48px;
-                    color: #fff;
-                }
-                .contact__content-hotline {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 16px;
-                    max-width: 463px;
-                    margin-bottom: 48px;
-                    @media (max-width: 991px) {
-                        @apply flex-wrap items-center justify-center;
-                    }
-                    .contact__content-info {
-                        display: flex;
-                        border-radius: 16px;
-                        gap: 8px;
-                        align-items: flex-end;
-                        padding: 4px 20px 4px 12px;
-                        p {
-                            font-size: 14px;
-                            color: #aebbc1;
-                            margin: 0;
-                        }
-                    }
-                }
-                .contact__content-contact {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 16px;
-                    @media (max-width: 991px) {
-                        @apply flex-wrap items-center justify-center;
-                    }
-                    max-width: 463px;
-                    .contact__content-social {
-                        border: 1px solid #fff;
-                        border-radius: 16px;
-                        padding: 10px 20px 10px 10px;
-                        width: 220px;
-                        font-size: 14px;
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        img {
-                            width: 32px;
-                            height: 32px;
-                            object-fit: contain;
-                        }
-                    }
-                }
-            }
-            .contact__form {
-                border-radius: 24px;
-                background: #fff;
-                max-width: 578px;
-                @media (max-width: 1200px) {
-                    max-width: 100%;
-                    width: 100%;
-                }
-                .xp-form {
-                    padding: 80px 58px;
-                    @apply flex flex-col gap-4;
-                    @media (min-width: 1201px) and (max-width: 1440px) {
-                        padding: 50px 30px;
-                    }
-                    .title {
-                        color: #2f5acf;
-                        font-size: 28px;
-                        margin: 0 0 14px;
-                        font-weight: bold;
-                    }
-                }
-            }
-        }
-    }
-    .pod-factory {
-        position: relative;
-        margin-top: 3em;
-        .pod-factory__banner {
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(105, 105, 105, 0.5);
-            }
-        }
-        .pod-factory__info {
-            position: absolute;
-            top: 25%;
-            left: 10%;
-            max-width: 768px;
-            color: #fff;
-            h2 {
-                font-size: 64px;
-                color: #fff;
-                @media screen and (max-width: 991px) {
-                    font-size: 48px;
-                }
-            }
-            p {
-                font-size: 24px;
-                @media screen and (max-width: 991px) {
-                    font-size: 16px;
-                }
-            }
-            @media screen and (max-width: 767px) {
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-            }
-        }
-    }
-    .pod-tech {
-        .pod-tech__heading {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-        .pod-tech-slide {
-            text-align: center;
-            font-size: 18px;
-            height: calc((100% - 24px) / 2) !important;
-            border-radius: 12px;
-            /* Center slide text vertically */
-            @apply flex flex-col gap-4 items-center justify-start;
-            img {
-                height: 150px;
-            }
-        }
-    }
-    .blogs-grid-slide {
-        padding: 0 60px;
-        margin-top: 2em;
-        border-radius: 20px;
-        @media screen and (max-width: 991px) {
-            padding: 0 16px;
-        }
-        .container {
-            background-color: rgb(249, 248, 108);
-        }
-        .blogs-grid-slide__heading {
-            font-size: 25px;
-            font-weight: 700;
-            padding: 24px;
-        }
     }
     .cs-cta {
         background-color: #176c36;
