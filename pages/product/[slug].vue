@@ -384,13 +384,13 @@
                     v-if="productItem.data?.highlight"
                     class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
                     <h3 class="product-features__heading !text-2xl font-bold">Đặc điểm nổi bật</h3>
-                    <div class="product-details flex flex-col-reverse sm:flex-row justify-between w-full">
+                    <div class="product-details flex flex-col-reverse sm:flex-row gap-4 sm:gap-2 justify-between w-full">
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
                             <div v-html="productItem.data?.highlight"></div>
                         </div>
-                        <div v-if="productItem.data?.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
-                            <img :src="productItem.data?.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
+                        <div v-if="productItem.data?.highlight_image_url" class="image-example sm:w-1/2 m-auto">
+                            <img :src="productItem.data?.highlight_image_url" class="max-h-[500px] sm:max-h-full sm:w-[300px] sm:h-[300px] object-contain" alt="" />
                         </div>
                     </div>
                 </div>
@@ -399,7 +399,7 @@
                     <div v-html="productItem.data?.description"></div>
                 </div>
                 <div v-if="!loadingProductHot && productHot.data" class="product-similar my-8">
-                    <h3 class="w-full text-center !text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
+                    <h3 class="w-full text-center !text-2xl md:!text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
                     <Swiper
                         :spaceBetween="0"
                         :navigation="{
@@ -447,8 +447,8 @@
                         </template>
                     </Swiper>
                 </div>
-                <div class="product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px]">
-                    <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-max lg:sticky top-2">
+                <div class="product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px] w-full">
+                    <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-full md:w-max lg:sticky top-2">
                         <div class="uppercase font-bold">Đánh giá sản phẩm</div>
                         <div class="font-bold text-[4rem]">{{ productItem.data?.average_rate }}</div>
                         <NuxtRating
