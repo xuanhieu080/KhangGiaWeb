@@ -157,6 +157,8 @@
                     <UButton
                         variant="outline"
                         color="none"
+                        target="_blank"
+                        to="https://zalo.me/0569133339"
                         class="font-bold !uppercase bg-green-700 text-white w-full md:max-w-[300px] justify-center"
                         size="xl"
                         >Nhận tư vấn</UButton
