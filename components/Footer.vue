@@ -82,15 +82,15 @@
                 <div class="site-footer__after">
                     <div class="copyright">
                         <h5 class="copyright__title">
-                            @ CÔNG TY TNHH FASTECH ASIA
+                            @ CÔNG TY TNHH TMDV SẢN XUẤT XUẤT NHẬP KHẨU GAK
                 </h5>
-                        <p class="copyright__description">Mã số doanh nghiệp: 0108617038. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư TP Hà Nội cấp lần đầu ngày 20/02/2019.</p>
+                        <p class="copyright__description">Mã số doanh nghiệp: 0317511532. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư Thành Phố Hồ Chí Minh cấp lần đầu ngày 07/10/2022.</p>
                     </div>
                     <div class="site-footer__logo">
                         <a
                             href="//www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
                             title="DMCA.com Protection Status"
-                            class="dmca-badge">
+                            class="dmca-badge mr-3">
                             <NuxtImg
                                 style="max-height: 40px;"
                                 format="webp"
@@ -98,6 +98,9 @@
                                 alt="DMCA.com Protection Status"
                                 class="w-full h-full object-contain"
                             />
+                        </a>
+                        <a target="_blank">
+                            <img src="/bo-cong-thuong.png" alt="GAK CO.,LTD" width="106" height="40">
                         </a>
                     </div>
                 </div>
