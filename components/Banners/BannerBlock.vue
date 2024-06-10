@@ -69,7 +69,11 @@ const props = defineProps({
         @media screen and (min-width: 992px) {
             top: 50%;
             transform: translateY(-50%);
-            left: 128px;
+            left: 72px;
+            max-width: 650px;
+        }
+        @media screen and (min-width: 1440px) {
+            left: 96px;
         }
         &.modify-position {
             top: 50%;
@@ -79,16 +83,16 @@ const props = defineProps({
         .title {
             @media screen and (min-width: 1660px) {
                 font-size: 80px;
-                max-width: 500px;
             }
             @media screen and (min-width: 1280px) and (max-width: 1659px) {
                 font-size: 3.75rem;
-                max-width: 350px;
+            }
+            @media screen and (max-width: 767px) {
+                max-width: 320px;
             }
             font-size: 2.25rem;
             text-transform: uppercase;
             font-weight: bold;
-            max-width: 300px;
             &.custom-font {
                 font-size: 2rem;
                 max-width: 250px;
