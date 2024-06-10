@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading && productList && productList.length > 0" class="flex flex-col gap-4 relative w-full">
-        <div class="collection-title fs-20 font-bold uppercase">{{ collectionTitle }}</div>
+        <div class="collection-title text-[28px] font-bold uppercase">{{ collectionTitle }}</div>
         <div class="collection-wrapper">
             <div v-for="product in productList" :key="product" class="collection-item">
                 <ProductCard :product="product" />

@@ -96,7 +96,7 @@
                     @mouseenter="(e) => handleAddSubMenu(e)">
                     {{ category.name }}
                 </NuxtLink>
-                <div class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{ $t('Đặt may') }}</div>
+                <NuxtLink class="main-nav-item" :to="localePath({ name: 'dat-may' })" @click="menuMobile = false">{{ $t('Đặt may') }}</NuxtLink>
                 <NuxtLink class="main-nav-item" :to="localePath({ name: 'van-hoa-gak' })" @click="menuMobile = false">{{
                     $t('Văn hoá GAK')
                 }}</NuxtLink>
