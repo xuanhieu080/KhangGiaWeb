@@ -98,14 +98,14 @@
                     <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
-                    <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
+                    <UIcon name="i-heroicons-arrow-right" class="text-grid lg:grid-cols-2 items-center gap-6 lg:gap-12lg text-black" />
                 </div>
             </UButton>
         </div>
-        <div class="about-content !pt-[5rem] mx-auto">
+        <div class="about-content pt-6 md:!pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
-                    <div class="grid lg:grid-cols-2 items-center gap-6 lg:gap-12">
+                    <div class="grid lg:grid-cols-2 items-center md:gap-12">
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">ĐI LÊN TỪ CHẤT LƯỢNG VÀ SỰ TỈ MỈ</h2>
@@ -1446,7 +1446,7 @@
                             Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'slug', params: {slug: 'van-hoa-cong-ty'}})"
+                            :to="localePath({name: 'gak-official'})"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"
@@ -1517,7 +1517,7 @@ useSeoMeta(seoMeta);
     }
 }
 .about-content {
-    background-color: white;
+    background-color: #f1f1f1;
     .cs-about,
     .cs-caption,
     .cs-story {
@@ -1758,6 +1758,7 @@ useSeoMeta(seoMeta);
     .recruitment-connect {
         padding-top: 30px;
         padding-bottom: 25px;
+        background-color: white;
         .about-card {
             display: flex;
             background-color: #f9f86c;

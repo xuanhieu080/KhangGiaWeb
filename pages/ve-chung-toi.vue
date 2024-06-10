@@ -105,7 +105,7 @@
                 </div>
             </UButton>
         </div>
-        <div class="about-content !pt-[5rem] mx-auto">
+        <div class="about-content pt-6 md:!pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
                     <div class="grid lg:grid-cols-2 gap-2 md:gap-6 lg:gap-12">
@@ -333,7 +333,7 @@
                             Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'slug', params: {slug: 'van-hoa-cong-ty'}})"
+                            :to="localePath({name: 'gak-official'})"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"

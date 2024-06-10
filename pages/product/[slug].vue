@@ -384,13 +384,13 @@
                     v-if="productItem.data?.highlight"
                     class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
                     <h3 class="product-features__heading !text-2xl font-bold">Đặc điểm nổi bật</h3>
-                    <div class="product-details flex flex-col-reverse sm:flex-row gap-4 sm:gap-2 justify-between w-full">
+                    <div class="product-details flex flex-col-reverse md:flex-row gap-4 md:gap-2 justify-between w-full">
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
                             <div v-html="productItem.data?.highlight"></div>
                         </div>
-                        <div v-if="productItem.data?.highlight_image_url" class="image-example sm:w-1/2 m-auto">
-                            <img :src="productItem.data?.highlight_image_url" class="max-h-[500px] sm:max-h-full sm:w-[300px] sm:h-[300px] object-contain" alt="" />
+                        <div v-if="productItem.data?.highlight_image_url" class="image-example flex justify-center md:w-1/2 m-auto">
+                            <img :src="productItem.data?.highlight_image_url" class="max-h-[500px] md:max-h-full md:w-[300px] md:h-[300px] object-contain" alt="" />
                         </div>
                     </div>
                 </div>

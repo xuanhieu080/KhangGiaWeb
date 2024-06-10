@@ -110,7 +110,7 @@
                     </div>
                 </UButton>
         </div>
-        <div class="about-content lg:!pt-[5rem] mx-auto">
+        <div class="about-content pt-6 md:!pt-[5rem] mx-auto">
             <section class="cs-caption pt-4 pb-8">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-about__heading w-full text-center !my-6">CÔNG TY GAK XIN CHÀO !</h2>
@@ -229,7 +229,7 @@
                             Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'slug', params: {slug: 'van-hoa-cong-ty'}})"
+                            :to="localePath({name: 'gak-official'})"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"

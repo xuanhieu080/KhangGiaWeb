@@ -111,7 +111,7 @@
                             Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
-                            :to="localePath({ name: 'slug', params: { slug: 'van-hoa-cong-ty' } })"
+                            :to="localePath({name: 'gak-official'})"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"
@@ -176,7 +176,7 @@
                                     </li>
                                     <li>
                                         Nền tảng Instagram:
-                                        <a href="https://twitter.com/congtygak" target="_blank" class="text-blue-500"
+                                        <a href="https://www.instagram.com/congtygak/" target="_blank" class="text-blue-500"
                                             >Tại đây</a
                                         >
                                     </li>
