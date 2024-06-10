@@ -152,7 +152,7 @@ useSchemaOrg([
         '@type': 'Organization',
         name: process.env.NUXT_SITE_NAME,
         url: process.env.WEB_BASE_URL,
-        logo: process.env.WEB_BASE_URL + '/logo.jpeg',
+        logo: process.env.WEB_BASE_URL + '/logo.jpg',
         email: process.env.NUXT_SITE_EMAIL,
         phone: process.env.NUXT_SITE_PHONE,
         telephone: process.env.NUXT_SITE_PHONE,
@@ -167,7 +167,7 @@ useSchemaOrg([
         '@type': 'Store',
         name: process.env.NUXT_SITE_NAME,
         url: process.env.WEB_BASE_URL,
-        logo: process.env.WEB_BASE_URL + '/logo.jpeg',
+        logo: process.env.WEB_BASE_URL + '/logo.jpg',
         email: process.env.NUXT_SITE_EMAIL,
         phone: process.env.NUXT_SITE_PHONE,
         telephone: process.env.NUXT_SITE_PHONE,
@@ -181,7 +181,7 @@ useSchemaOrg([
     defineLocalBusiness({
         name: process.env.NUXT_SITE_NAME,
         url: process.env.WEB_BASE_URL,
-        logo: process.env.WEB_BASE_URL + '/logo.jpeg',
+        logo: process.env.WEB_BASE_URL + '/logo.jpg',
         address: {
             addressCountry: process.env.NUXT_SITE_ADDRESS_COUNTRY,
             postalCode: process.env.NUXT_SITE_POSTAL_CODE,

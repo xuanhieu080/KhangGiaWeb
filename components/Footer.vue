@@ -79,6 +79,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="site-footer__after">
+                    <div class="copyright">
+                        <h5 class="copyright__title">
+                            @ CÔNG TY TNHH FASTECH ASIA
+                </h5>
+                        <p class="copyright__description">Mã số doanh nghiệp: 0108617038. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư TP Hà Nội cấp lần đầu ngày 20/02/2019.</p>
+                    </div>
+                    <div class="site-footer__logo">
+                        <a
+                            href="//www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
+                            title="DMCA.com Protection Status"
+                            class="dmca-badge">
+                            <NuxtImg
+                                style="max-height: 40px;"
+                                format="webp"
+                                src="https://images.dmca.com/Badges/DMCA_logo-grn-btn100w.png?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
+                                alt="DMCA.com Protection Status"
+                                class="w-full h-full object-contain"
+                            />
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

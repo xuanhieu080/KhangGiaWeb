@@ -17,7 +17,7 @@ export default defineNuxtConfig({
             region: process.env.NUXT_SITE_ADDRESS_REGION,
             country: process.env.NUXT_SITE_ADDRESS_COUNTRY,
             postal: process.env.NUXT_SITE_POSTAL_CODE,
-            logo: process.env.WEB_BASE_URL + '/logo.jpeg',
+            logo: process.env.WEB_BASE_URL + '/logo.jpg',
             gtm: {
                 id: 'GTM-5MFK8NDW',
                 defer: false,
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
             type: 'Organization',
             name: process.env.NUXT_SITE_NAME,
             url: process.env.WEB_BASE_URL,
-            logo: process.env.WEB_BASE_URL + '/logo.jpeg',
+            logo: process.env.WEB_BASE_URL + '/logo.jpg',
             email:process.env.NUXT_SITE_EMAIL,
             phone:process.env.NUXT_SITE_PHONE,
             telephone:process.env.NUXT_SITE_PHONE,
