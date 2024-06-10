@@ -582,7 +582,7 @@
                                     </div>
                                 </div>
                                 <div class="contact__content-contact">
-                                    <a href="http://zalo.me/0964807286" target="_blank" class="contact__content-social">
+                                    <a href="http://zalo.me/569133339" target="_blank" class="contact__content-social">
                                         <img src="/images/zalo.png" alt="zalo-podz" />
                                         <div>Liên hệ Sale GAK qua Zalo</div>
                                     </a>

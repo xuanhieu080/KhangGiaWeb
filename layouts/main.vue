@@ -68,7 +68,7 @@
     <Footer />
     <div class="dmca-container">
         <a
-            href="//www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
+            href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
             title="DMCA.com Protection Status"
             class="dmca-badge">
             <NuxtImg

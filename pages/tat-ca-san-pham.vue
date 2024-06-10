@@ -118,14 +118,14 @@
                                 v-for="product in category.products"
                                 class="category-data-item data-desktop hidden md:block p-2 rounded-lg"
                                 :key="product">
-                                <ProductCard :product="product" />
+                                <ProductVariantCard :product="product" />
                             </div>
                             <div
                                 v-for="(product, indexProduct) in category.products"
                                 :class="indexProduct > 1 ? '!hidden' : ''"
                                 class="category-data-item data-mobile block md:hidden rounded-lg"
                                 :key="product">
-                                <ProductCard :product="product" />
+                                <ProductVariantCard :product="product" />
                             </div>
                         </div>
                     </div>
@@ -173,6 +173,7 @@ import Banner from '@/components/Banners/Banner.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
+import ProductVariantCard from '@/components/products/ProductVariantCard.vue';
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],

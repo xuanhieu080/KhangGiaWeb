@@ -88,7 +88,7 @@
                     </div>
                     <div class="site-footer__logo">
                         <a
-                            href="//www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
+                            href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
                             title="DMCA.com Protection Status"
                             class="dmca-badge mr-3">
                             <NuxtImg
@@ -99,9 +99,9 @@
                                 class="w-full h-full object-contain"
                             />
                         </a>
-                        <a target="_blank">
-                            <img src="/bo-cong-thuong.png" alt="GAK CO.,LTD" width="106" height="40">
-                        </a>
+<!--                        <a target="_blank">-->
+<!--                            <img src="/bo-cong-thuong.png" alt="GAK CO.,LTD" width="106" height="40">-->
+<!--                        </a>-->
                     </div>
                 </div>
             </div>
