@@ -108,7 +108,7 @@
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-about">
                 <div class="container container--medium prose prose-lg lg:prose-2xl">
-                    <div class="grid lg:grid-cols-2 gap-6 lg:gap-12">
+                    <div class="grid lg:grid-cols-2 gap-2 md:gap-6 lg:gap-12">
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">
@@ -116,7 +116,7 @@
                                     ra để làm gì?
                                 </h2>
                                 <div class="cs-about__image">
-                                    <img src="/images/company-banner-box.png" class="h-full w-full object-contain" alt="" />
+                                    <img src="/images/company-banner-box.png" class="h-full w-full object-contain !mt-4" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -393,7 +393,7 @@ useSeoMeta(seoMeta);
     }
 }
 .about-content {
-    background-color: white;
+    background-color: #f1f1f1;
     .cs-about,
     .cs-caption,
     .cs-story {
@@ -404,15 +404,18 @@ useSeoMeta(seoMeta);
         margin: 0 auto;
     }
     .cs-about__heading {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 40px;
-        color: #000000;
         font-size: 3.5rem;
+        font-weight: 500;
+        color: #000000;
         @media screen and (max-width: 567px) {
             font-size: 3rem;
             text-align: center;
         }
+    }
+    .cs-about__description {
+        color: #000000;
+        font-size: 1rem;
+        font-weight: 500;
     }
     .cs-caption__wrapper {
         background-color: #000000;
@@ -451,8 +454,11 @@ useSeoMeta(seoMeta);
         font-size: 30px;
         line-height: 50px;
         position: relative;
-        padding-bottom: 15px;
         text-transform: uppercase;
+    }
+    .cs-services {
+        background-color: white;
+        padding: 32px 0;
     }
     .cs-services__heading {
         font-style: normal;
@@ -483,7 +489,6 @@ useSeoMeta(seoMeta);
         text-align: center;
         padding-top: 50px;
         padding-bottom: 50px;
-        margin-top: 30px;
         .cs-thanks__heading {
             font-style: normal;
             text-align: center;

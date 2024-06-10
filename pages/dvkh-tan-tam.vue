@@ -110,8 +110,8 @@
                     </div>
                 </UButton>
         </div>
-        <div class="about-content !pt-[5rem] mx-auto">
-            <section class="cs-caption py-4">
+        <div class="about-content lg:!pt-[5rem] mx-auto">
+            <section class="cs-caption pt-4 pb-8">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-about__heading w-full text-center !my-6">CÔNG TY GAK XIN CHÀO !</h2>
                     <div class="cs-caption__wrapper !bg-[#2f5acf]">
@@ -140,8 +140,7 @@
                     </div>
                 </div>
             </section>
-
-            <section class="cs-services mt-8 lg:mt-[128px]">
+            <section class="cs-services pt-6 lg:pt-[128px]">
                 <div class="container container--medium prose prose-lg space-y-16">
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling items-end">
                         <div class="grid__column my-auto">
@@ -291,7 +290,7 @@ useSeoMeta(seoMeta);
     }
 }
 .about-content {
-    background-color: white;
+    background-color: #f1f1f1;
     .cs-about,
     .cs-caption,
     .cs-story {
@@ -323,7 +322,7 @@ useSeoMeta(seoMeta);
             line-height: 1.5em;
             padding: 0 3rem;
             position: relative;
-            @media screen and (max-width: 567px) {
+            @media screen and (max-width: 767px) {
                 padding: 0;
             }
             &:before {
@@ -351,6 +350,9 @@ useSeoMeta(seoMeta);
         position: relative;
         padding-bottom: 15px;
         text-transform: uppercase;
+    }
+    .cs-services {
+        background-color: white;
     }
     .cs-services__heading {
         font-style: normal;
