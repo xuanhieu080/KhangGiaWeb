@@ -1,13 +1,13 @@
 <template>
     <div v-if="bannerBlock" class="banner-block">
-        <picture class="w-full">
+        <picture class="w-full banner-image">
             <source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
             <img :src="bannerBlock.image_desktop" :alt="bannerBlock.title" style="width: 100%" />
         </picture>
         <div v-if="!hideContent" class="banner-content" :class="[splitBanner ? 'modify-position' : '', isWhite ? 'white-text' : '']">
-            <div v-if="bannerBlock.subtitle" class="opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
-            <div class="title" :class="[splitBanner ? 'custom-font' : '', isWhite ? 'shadow-lg md:shadow-none' : '']">{{ bannerBlock.title }}</div>
-            <div v-if="bannerBlock.description" class="description" v-html="bannerBlock.description"></div>
+            <div v-if="bannerBlock.subtitle" :class="[splitBanner ? 'text-white md:text-black' : '']" class="opacity-85 md:opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
+            <div class="title" :class="[splitBanner ? 'custom-font' : '']">{{ bannerBlock.title }}</div>
+            <div v-if="bannerBlock.description" class="description" :class="[splitBanner ? 'custom-font' : '']" v-html="bannerBlock.description"></div>
             <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: bannerBlock.link } })">
                 <UButton
                     size="xl"
@@ -39,32 +39,40 @@ const props = defineProps({
     isWhite: {
         type: Boolean,
         default: false,
-    }
+    },
 });
 </script>
 <style lang="scss" scoped>
 .banner-block {
     width: 100%;
     position: relative;
+    .banner-image {
+        position: relative;
+        @media screen and (max-width: 768px) {
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.24);
+            }
+        }
+    }
     .banner-content {
         color: black;
         position: absolute;
         @apply flex flex-col gap-4;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
+        left: 24px;
+        top: 75%;
+        transform: translateY(-75%);
         color: black;
         &.white-text {
             color: white;
             @media screen and (min-width: 768px) {
                 color: black;
             }
-        }
-        @media screen and (min-width: 768px) and (max-width: 991px) {
-            left: 24px;
-            top: 24px;
-            transform: translateY(0);
-
         }
         @media screen and (min-width: 992px) {
             top: 50%;
@@ -79,6 +87,11 @@ const props = defineProps({
             top: 50%;
             transform: translateY(-50%);
             left: 36px;
+            @media screen and (max-width: 768px) {
+                top: 60%;
+                transform: translateY(-60%);
+                left: 24px;
+            }
         }
         .title {
             @media screen and (min-width: 1660px) {
@@ -96,11 +109,19 @@ const props = defineProps({
             &.custom-font {
                 font-size: 2rem;
                 max-width: 250px;
+                @media screen and (max-width: 767px) {
+                    color: white;
+                }
             }
         }
         .description {
             @media screen and (min-width: 1280px) {
                 font-size: 1.25rem;
+            }
+            &.custom-font {
+                @media screen and (max-width: 767px) {
+                    color: white;
+                }
             }
             font-weight: 500;
         }

@@ -99,7 +99,7 @@ import { storeToRefs } from 'pinia';
 
 const useHeaderStore = useHeader();
 
-const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
+const { isScrollDown, isLoadingPage, menuMobile } = storeToRefs(useHeaderStore);
 const router = useRouter();
 const { locale } = useI18n();
 const showBackToTop = ref(false);
@@ -133,7 +133,7 @@ watch(
 );
 
 onMounted(() => {
-    window.addEventListener('resize', handleHideHeader, false);
+    // window.addEventListener('resize', handleHideHeader, false);
     window.addEventListener('scroll', controlHeaderShowing, false);
     window.addEventListener('scroll', handleBackToTopButton, false);
 });
@@ -146,7 +146,7 @@ function handleHideHeader() {
     }
 }
 function controlHeaderShowing() {
-    if (window.innerWidth > 991) {
+    if (!menuMobile.value) {
         let st = window.pageYOffset || document.documentElement.scrollTop;
         if (st > lastScrollTop) {
             isScrollDown.value = true;
@@ -154,6 +154,8 @@ function controlHeaderShowing() {
             isScrollDown.value = false;
         }
         lastScrollTop = st <= 80 ? 80 : st;
+    } else {
+        isScrollDown.value = false;
     }
 }
 function handleBackToTopButton() {

@@ -73,7 +73,7 @@
                 <ProductList :productList="[]" />
             </div>
             <div class="banner-block h-full">
-                <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2" />
+                <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2"  :isWhite="true" />
             </div>
             <div v-if='!loadingProductDashboard' class='container mx-auto overflow-hidden lg:overflow-visible my-4'>
                 <ProductCollectionOther

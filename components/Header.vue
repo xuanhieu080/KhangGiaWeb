@@ -351,14 +351,13 @@ if (categoryHeaders.value.length == 0) {
 
 const useHeaderStore = useHeader();
 
-const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
+const { isScrollDown, isLoadingPage, menuMobile } = storeToRefs(useHeaderStore);
 const localePath = useLocalePath();
 
 const router = useRouter();
 const searchItem = ref('');
 const profileSide = ref(false);
 const openSearchSlide = ref(false);
-const menuMobile = ref(false);
 const openProfileSideBar = () => {
     profileSide.value = true;
 };
@@ -465,7 +464,7 @@ watch(
     font-size: 14px;
     background-color: white;
     @media screen and (max-width: 991px) {
-        transform: inherit;
+        transform: none;
     }
     &.hidden-header {
         transform: translateY(-100%);

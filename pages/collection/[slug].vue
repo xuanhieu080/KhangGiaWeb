@@ -4,9 +4,9 @@
             <div class="px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase text-2xl">{{ collection.item.name }}</h1>
+                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ collection.item.name }}</h1>
                     </div>
-                    <div v-if="collection.item.descendants" class="category-tabs w-full">
+                    <div v-if="collection.item.descendants.length > 0" class="category-tabs w-full">
                         <Swiper
                             :slidesPerView="2"
                             :spaceBetween="8"
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
-                    <div class="category-main-left w-full lg:max-w-[350px] px-4">
+                    <div class="category-main-left w-full lg:max-w-[350px] md:pr-4">
                         <div class="flex flex-col gap-4 justify-start w-full">
                             <div
                                 class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
@@ -73,16 +73,34 @@
                             </div>
                             <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
                                 <div v-for="variant in collection.variants" class="filter-option-item flex flex-col gap-4">
-                                    <div class="filter-option-title text-sm font-bold text-gray-500">
-                                        {{ variant.name }}
-                                    </div>
-                                    <UCheckbox
-                                        v-model="selectedAll[form.id]"
-                                        v-for="(form, index) in variant.attributes"
-                                        size="lg"
-                                        class="rounded-full"
-                                        :name="form.name"
-                                        :label="form.name" />
+                                    <UAccordion :items="[variant]" :key="variant" :defaultOpen="variant.attributes.length < 6 ? true : false">
+                                        <template #default="{ item, index, open }">
+                                            <UButton
+                                                color="none"
+                                                variant="ghost"
+                                                class="border-b border-gray-200 dark:border-gray-700 px-0"
+                                                :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
+                                                <span class="truncate text-gray-700">{{ item.name }} ({{item.attributes.length}})</span>
+                                                <template #trailing>
+                                                    <UIcon
+                                                        :name="open ? 'i-heroicons-minus' : 'i-heroicons-plus'"
+                                                        class="w-5 h-5 ms-auto transform transition-transform duration-200" />
+                                                </template>
+                                            </UButton>
+                                        </template>
+                                        <template #item="{ item }">
+                                            <div v-for="(form, index) in item.attributes" class="flex flex-col gap-4">
+                                                <p class="italic text-gray-900 dark:text-white text-center !mx-4">
+                                                    <UCheckbox
+                                                        v-model="selectedAll[form.id]"
+                                                        size="lg"
+                                                        class="rounded-full"
+                                                        :name="form.name"
+                                                        :label="form.name" />
+                                                </p>
+                                            </div>
+                                        </template>
+                                    </UAccordion>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +318,7 @@ useSeoMeta(seoMeta);
 .category-page {
     .category-tabs {
         .category-swiper {
-            padding: 24px 0;
+            padding-bottom: 24px;
             .category-card {
                 .category-item {
                     border-radius: 12px;

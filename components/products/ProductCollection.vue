@@ -40,7 +40,7 @@ const props = defineProps({
     .collection-item {
         width: 25%;
         @media screen and (max-width: 991px) {
-            width: calc(50% - 12px);
+            width: calc(50% - 8px);
         }
     }
 }

@@ -9,7 +9,7 @@
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data?.name }]" />
 
-                    <div class="image-box flex items-start gap-4 w-full relative">
+                    <div class="image-box flex items-start gap-4 w-full relative lg:sticky lg:top-6">
                         <Swiper
                             v-if="!loadingProductItem"
                             @swiper="setThumbsSwiper"
@@ -80,7 +80,7 @@
                         </div>
                         <div
                             v-show="thumbsSwiper"
-                            class="main-product-swiper w-full lg:min-w-[540px] lg:w-[540px] relative lg:sticky z-0 top-2 bg-[#f1f1f1]">
+                            class="main-product-swiper rounded-md w-full lg:min-w-[540px] lg:w-[540px] z-0 bg-[#f1f1f1]">
                             <Swiper
                                 v-if="!loadingProductItem"
                                 :spaceBetween="10"

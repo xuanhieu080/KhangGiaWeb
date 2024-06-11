@@ -65,34 +65,34 @@
                     <div class="mx-auto flex items-center justify-between w-full gap-4 relative">
                         <div
                             class="flex flex-col gap-4 absolute top-1/2 left-[22px] -translate-y-1/2 max-w-xs lg:max-w-md 2xl:max-w-screen-sm">
-                            <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang lưới thun 2 bên' }}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang hà nội' }}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang kiểu 3M' }}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang Palize' }}
                             </h2>
-                            <h2 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Đồng phục công nhân' }}
                             </h2>
-                            <h3 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Phù hợp mọi môi trường làm việc' }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Dòng sản phẩm ưa chuộng ở thị trường phía bắc' }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Mặc đẹp, đứng form, nổi tiếng' }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Mặt hàng bán chạy số #2' }}
                             </h3>
-                            <h3 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-xl lg:!text-3xl 2xl:!text-4xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Vải kaki chéo 2-1 thoáng mát, giá tốt nhất thị trường' }}
                             </h3>
                             <UButton
@@ -311,11 +311,11 @@ useSeoMeta(seoMeta);
         }
     }
     .product-category-title {
-        @apply flex flex-col gap-4 font-extrabold text-3xl text-center bg-gray-300 p-4;
+        @apply flex flex-col gap-4 font-extrabold text-2xl text-center bg-gray-300 p-4;
         .sub-title {
             color: green;
             margin: 0 !important;
-            font-size: 46px !important;
+            font-size: 36px !important;
             line-height: 1.4;
             font-weight: 900;
             text-transform: capitalize;
