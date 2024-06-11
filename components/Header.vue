@@ -459,7 +459,7 @@ watch(
     left: 0;
     width: 100%;
     height: auto;
-    z-index: 99;
+    z-index: 101;
     transition: all 0.3s;
     font-size: 14px;
     background-color: white;
@@ -530,13 +530,12 @@ watch(
             margin-right: 8px;
             @media screen and (max-width: 991px) {
                 @apply hidden flex-col;
-                position: fixed;
-                bottom: 0;
+                position: absolute;
+                top: var(--header-main);
                 left: 0;
                 width: 100%;
-                z-index: 999;
-                justify-content: unset;
-                align-items: unset;
+                justify-content: stretch;
+                align-items: stretch;
                 height: calc(100vh - var(--header-main));
                 z-index: 100;
                 background-color: #fff;

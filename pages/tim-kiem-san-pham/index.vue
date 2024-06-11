@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div v-if="!loadingPageCollection" class="category-page pt-8 bg-white">
-            <div class="px-8">
+            <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
                         <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ 'Tất cả sản phẩm' }}</h1>
@@ -49,7 +49,7 @@
                                             <UButton
                                                 color="none"
                                                 variant="ghost"
-                                                class="border-b border-gray-200 dark:border-gray-700 px-0"
+                                                class="border-b border-gray-200 dark:border-gray-700 pl-0"
                                                 :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
                                                 <span class="truncate text-gray-700">{{ item.name }} ({{item.attributes.length}})</span>
                                                 <template #trailing>
@@ -63,10 +63,12 @@
                                             <div v-for="(form, index) in item.attributes" class="flex flex-col gap-4">
                                                 <p class="italic text-gray-900 dark:text-white text-center !mx-4">
                                                     <UCheckbox
-                                                        v-model="selectedAll[form.id]"
+                                                        :modelValue="selectedAll[form.id]"
+                                                        @change="(e) => setFilterSelect(form.id, e)"
                                                         size="lg"
                                                         class="rounded-full"
                                                         :name="form.name"
+                                                        :ui="{ inner: 'w-full text-left' }"
                                                         :label="form.name" />
                                                 </p>
                                             </div>
@@ -188,6 +190,12 @@ const removeAllFilter = () => {
     refreshData.value++;
 };
 
+const setFilterSelect = (id, e) => {
+    selectedAll.value[id] = e;
+    if (!selectedAll.value[id]) delete selectedAll.value[id];
+    refreshData.value++;
+};
+
 const changeCategoryTab = (index) => {
     tabIndex.value = index;
     isLoadingData.value = true;
@@ -247,7 +255,7 @@ const { data: productCollection, pending: loadingProductCollection } = await use
         }),
     {
         default: () => [],
-        watch: [filter, selectedAll.value, refreshData],
+        watch: [filter, refreshData],
     },
 );
 

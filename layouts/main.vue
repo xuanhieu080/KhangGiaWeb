@@ -133,16 +133,13 @@ watch(
 );
 
 onMounted(() => {
-    // window.addEventListener('resize', handleHideHeader, false);
+    window.addEventListener('resize', handleCloseMenuMobile, false);
     window.addEventListener('scroll', controlHeaderShowing, false);
     window.addEventListener('scroll', handleBackToTopButton, false);
 });
-function handleHideHeader() {
-    if (window.innerWidth < 991) {
-        window.removeEventListener('scroll', controlHeaderShowing);
-        isScrollDown.value = false;
-    } else {
-        window.addEventListener('scroll', controlHeaderShowing, false);
+function handleCloseMenuMobile() {
+    if (window.innerWidth > 991 && menuMobile.value) {
+        menuMobile.value = false;
     }
 }
 function controlHeaderShowing() {

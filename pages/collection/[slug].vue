@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div v-if="!loadingCollection && !collectionError" class="category-page pt-8 bg-white">
-            <div class="px-8">
+            <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
                         <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ collection.item.name }}</h1>
@@ -60,7 +60,11 @@
                         <div class="flex flex-col gap-4 justify-start w-full">
                             <div
                                 class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
-                                {{ (!loadingProductCollection && productCollection.data ?  productCollection.data.length : '') + ' ' + $t('Kết quả') }}
+                                {{
+                                    (!loadingProductCollection && productCollection.data ? productCollection.data.length : '') +
+                                    ' ' +
+                                    $t('Kết quả')
+                                }}
                                 <UButton
                                     v-if="Object.keys(selectedAll).length > 0"
                                     size="lg"
@@ -73,14 +77,17 @@
                             </div>
                             <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
                                 <div v-for="variant in collection.variants" class="filter-option-item flex flex-col gap-4">
-                                    <UAccordion :items="[variant]" :key="variant" :defaultOpen="variant.attributes.length < 6 ? true : false">
+                                    <UAccordion
+                                        :items="[variant]"
+                                        :key="variant"
+                                        :defaultOpen="variant.attributes.length < 6 ? true : false">
                                         <template #default="{ item, index, open }">
                                             <UButton
                                                 color="none"
                                                 variant="ghost"
-                                                class="border-b border-gray-200 dark:border-gray-700 px-0"
+                                                class="border-b border-gray-200 dark:border-gray-700 pl-0"
                                                 :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
-                                                <span class="truncate text-gray-700">{{ item.name }} ({{item.attributes.length}})</span>
+                                                <span class="truncate text-gray-700">{{ item.name }} ({{ item.attributes.length }})</span>
                                                 <template #trailing>
                                                     <UIcon
                                                         :name="open ? 'i-heroicons-minus' : 'i-heroicons-plus'"
@@ -92,10 +99,12 @@
                                             <div v-for="(form, index) in item.attributes" class="flex flex-col gap-4">
                                                 <p class="italic text-gray-900 dark:text-white text-center !mx-4">
                                                     <UCheckbox
-                                                        v-model="selectedAll[form.id]"
+                                                        :modelValue="selectedAll[form.id]"
+                                                        @change="(e) => setFilterSelect(form.id, e)"
                                                         size="lg"
                                                         class="rounded-full"
                                                         :name="form.name"
+                                                        :ui="{ inner: 'w-full text-left' }"
                                                         :label="form.name" />
                                                 </p>
                                             </div>
@@ -135,7 +144,7 @@
                             </div>
                         </div>
                         <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length  == 0"
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
                             class="category-data-list">
                             <div
                                 class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
@@ -203,9 +212,15 @@ const selectedForm = ref({});
 const selectedMaterial = ref({});
 const selectedColor = ref(null);
 const refreshData = ref(0);
-const selectedAll = ref({});
+let selectedAll = ref({});
 const removeAllFilter = () => {
     selectedAll.value = {};
+    refreshData.value++;
+};
+
+const setFilterSelect = (id, e) => {
+    selectedAll.value[id] = e;
+    if (!selectedAll.value[id]) delete selectedAll.value[id];
     refreshData.value++;
 };
 
@@ -219,16 +234,16 @@ const changeCategoryTab = (index) => {
 
 const getParamsCollection = async () => {
     let params = {
-        category_slug: router.currentRoute.value.params.slug
+        category_slug: router.currentRoute.value.params.slug,
     };
-    let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({key, value}))
-    if(attribute.length > 0) {
-        attribute = attribute.filter(item => item.value == true)
+    let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
+    if (attribute.length > 0) {
+        attribute = attribute.filter((item) => item.value == true);
         attribute.forEach((item, index) => {
-            if(item.value) {
+            if (item.value) {
                 params[`attributes[${index}]`] = item.key;
             }
-        })
+        });
     }
     switch (filter.value.value) {
         case 0:
@@ -254,15 +269,8 @@ const {
     data: collection,
     pending: loadingCollection,
     error: collectionError,
-} = await useAsyncData(
-    'collection-category',
-    async () =>
-        useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`)
-);
-const {
-    data: productCollection,
-    pending: loadingProductCollection,
-} = await useLazyAsyncData(
+} = await useAsyncData('collection-category', async () => useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`));
+const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
     'product-category',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
@@ -270,7 +278,7 @@ const {
         }),
     {
         default: () => [],
-        watch: [filter, selectedAll.value, refreshData],
+        watch: [filter, refreshData],
     },
 );
 
@@ -289,8 +297,6 @@ watch(
 //     () => {},
 // );
 
-
-
 let title = collection.value.item.meta_title;
 let description = collection.value.item.meta_description;
 defineOgImageComponent('GAK', {
@@ -300,7 +306,7 @@ defineOgImageComponent('GAK', {
     colorMode: 'dark',
 });
 defineOgImage({
-    url:  collection.value.item.image_url,
+    url: collection.value.item.image_url,
 });
 let seoMeta = {
     description: description,

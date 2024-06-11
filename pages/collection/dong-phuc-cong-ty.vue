@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div class="category-page pt-8 bg-white">
-            <div class="px-8">
+            <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
                         <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT</h1>
@@ -50,10 +50,12 @@
                                             <div v-for="(form, index) in item.attributes" class="flex flex-col gap-4">
                                                 <p class="italic text-gray-900 dark:text-white text-center !mx-4">
                                                     <UCheckbox
-                                                        v-model="selectedAll[form.id]"
+                                                        :modelValue="selectedAll[form.id]"
+                                                        @change="(e) => setFilterSelect(form.id, e)"
                                                         size="lg"
                                                         class="rounded-full"
                                                         :name="form.name"
+                                                        :ui="{ inner: 'w-full text-left' }"
                                                         :label="form.name" />
                                                 </p>
                                             </div>
@@ -186,6 +188,12 @@ const removeAllFilter = () => {
     refreshData.value++;
 };
 
+const setFilterSelect = (id, e) => {
+    selectedAll.value[id] = e;
+    if (!selectedAll.value[id]) delete selectedAll.value[id];
+    refreshData.value++;
+};
+
 const getParamsCollection = async () => {
     let params = {
         is_uniform: 1,
@@ -234,7 +242,7 @@ const {
         }),
     {
         default: () => [],
-        watch: [filter, selectedAll.value, refreshData],
+        watch: [filter, refreshData],
     },
 );
 
