@@ -144,36 +144,36 @@ const bannerBlock3 = ref({
     image_mobile: '/images/banner_5.jpg',
     title: 'Nguyên phụ liệu',
     subtitle: 'Phản Quang Chất lượng cao',
-    link: 'articles',
+    link: 'vai',
 });
 const bannerBlock4 = ref({
     image_desktop: '/images/banner_6.jpg',
     image_mobile: '/images/banner_6.jpg',
     title: 'Nguyên phụ liệu',
     subtitle: 'Vải /lưới',
-    link: 'articles',
+    link: 'vai',
 });
 
 const categoryList = ref([
     {
         name: 'Tất cả sản phẩm',
         image: '/images/tat-ca-san-pham.jpg',
-        link: localePath({ name: 'collection-slug', params: { slug: 'tat-ca-san-pham' } }),
+        link: localePath({ name: 'tat-ca-san-pham' }),
     },
     {
         name: 'Đồ thể thao',
         image: '/images/phan_quang_2B.jpg',
-        link: localePath({ name: 'collection-slug', params: { slug: 'tat-ca-san-pham' } }),
+        link: localePath({ name: 'tat-ca-san-pham' }),
     },
     {
         name: 'Mặc hàng ngày',
         image: '/images/phan_quang_3M.jpg',
-        link: localePath({ name: 'collection-slug', params: { slug: 'tat-ca-san-pham' } }),
+        link: localePath({ name: 'tat-ca-san-pham' }),
     },
     {
         name: 'Đồ lót nam',
         image: '/images/phan_quang_palize.jpg',
-        link: localePath({ name: 'collection-slug', params: { slug: 'tat-ca-san-pham' } }),
+        link: localePath({ name: 'tat-ca-san-pham' }),
     },
 ]);
 const diaryList = ref([

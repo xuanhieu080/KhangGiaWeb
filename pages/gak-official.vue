@@ -149,7 +149,7 @@
                         <template #item-2>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <p>
-                                    <b>Không bạn nhé</b>
+                                    Công ty GAK chuyên cung cấp các sản phẩm vải, lưới, bảo hộ lao động, đồng phục công ty có chất lượng và giá thành phù hợp với ngân sách của công ty. Trong suốt quá trình hoạt động của mình, GAK được nhiều khách hàng, đối tác tin chọn hàng Việt Nam có chất lượng cao. Hiện nay, GAK đang trở thành nhà cung cấp, đối tác chiến lược của nhiều khu công nghiệp, nhà hàng, xây dựng, bất động sản... trên khắp Việt Nam. Chọn GAK chọn chất lượng, chọn giá tốt.
                                 </p>
                             </div>
                         </template>
