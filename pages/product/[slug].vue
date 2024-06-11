@@ -399,7 +399,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-more-details">
+                <div class="product-more-details prose prose-lg max-w-full">
                     <h3 class="!text-2xl font-extrabold">Chi tiết sản phẩm</h3>
                     <div v-html="productItem.data?.description"></div>
                 </div>

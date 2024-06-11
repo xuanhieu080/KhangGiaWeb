@@ -4,7 +4,7 @@
         v-if="category"
         class="category-card relative">
         <NuxtLink :to="category.link">
-            <NuxtImg :src="category.image" />
+            <NuxtImg :src="category.image" class="w-full h-full" />
         </NuxtLink>
     </UCard>
     <UCard :ui="{ body: { padding: '' } }" v-else class="product-card w-full relative">

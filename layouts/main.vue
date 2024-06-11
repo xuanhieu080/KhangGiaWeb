@@ -49,7 +49,7 @@
             </div>
         </div>
     </main>
-    <UCard v-if="articleSEO && articleSEO.data && !loadingSeo" class="m-6">
+    <UCard v-if="articleSEO && articleSEO.data && !loadingSeo" class="m-6 prose prose-lg max-w-full">
         <div v-html="articleSEO.data"></div>
     </UCard>
     <UNotifications class="prose-p:mt-0">

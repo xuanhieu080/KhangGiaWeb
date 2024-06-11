@@ -344,23 +344,20 @@
                         <div class="pod-customer__wrapper">
                             <h2 class="pod-customer__heading">Khách hàng của công ty GAK</h2>
                             <Swiper
-                                :slidesPerView="4"
+                                :slidesPerView="3"
                                 :spaceBetween="12"
+                                :slidesPerGroup="3"
                                 :loop="true"
                                 :breakpoints="{
-                                    1280: {
+                                    768: {
                                         slidesPerView: 6,
                                         spaceBetween: 24,
-                                    },
-                                    768: {
-                                        slidesPerView: 5,
-                                        spaceBetween: 16,
                                     },
                                 }"
                                 class="swiper pod-customer-swiper relative z-10 !pb-4 md:!pb-12">
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img data-src="/images/brands/Finhay.png" alt="" src="/images/brands/Finhay.png" class="lazyload" />
+                                        <img data-src="/images/brands/finhay.png" alt="" src="/images/brands/finhay.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -369,7 +366,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img data-src="/images/brands/mekong.png" alt="" src="/images/brands/mekong.png" class="lazyload" />
+                                        <img data-src="/images/brands/bcons.png" alt="" src="/images/brands/bcons.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -388,9 +385,9 @@
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
                                         <img
-                                            data-src="/images/brands/ninja_van.png"
+                                            data-src="/images/brands/khonggianluat.png"
                                             alt=""
-                                            src="/images/brands/ninja_van.png"
+                                            src="/images/brands/khonggianluat.png"
                                             class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
@@ -401,138 +398,19 @@
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
                                         <img
-                                            data-src="/images/brands/khuyennong_kiengiang.png"
+                                            data-src="/images/brands/ngoisaogiadinh.png"
                                             alt=""
-                                            src="/images/brands/khuyennong_kiengiang.png"
+                                            src="/images/brands/ngoisaogiadinh.png"
                                             class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/ladipage.png"
-                                            alt=""
-                                            src="/images/brands/ladipage.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/vtv_live.png"
-                                            alt=""
-                                            src="/images/brands/vtv_live.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành cho nữ
-                                                dù số lượng ít và sản phẩm không có sẵn . Rất tuyệt vời.
-                                            </p>
                                         </div>
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
                                         <img data-src="/images/brands/shopee.png" alt="" src="/images/brands/shopee.png" class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Áo của CoolxPrint mặc nhẹ, dễ cử động, nếu dùng để mặc hàng ngày mà hoạt động nhẹ thì okela
-                                                lắm nhé, chất liệu in căng, lên màu nét và chuẩn.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/ecomtek.png"
-                                            alt=""
-                                            src="/images/brands/ecomtek.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Mình đã thẩm áo rồi, đúng chất ngon - bổ - rẻ nhé. Cám ơn đội ngũ CoolxPrint đã hỗ trợ
-                                                Ecomtek ở nhà meeting với khách vẫn đảm bảo đẹp để nhận diện thương hiệu.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img data-src="/images/brands/matbao.png" alt="" src="/images/brands/matbao.png" class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Chất lượng vải mát, vải dày, mực in tốt, form áo sau 1 năm mặc vẫn giữ dáng tốt mặc dù nhân
-                                                viên mặc đi làm hàng ngày. Sắp tới sẽ đặt hàng tiếp cho công ty.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img data-src="/images/brands/aka.png" alt="" src="/images/brands/aka.png" class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Với số lượng 250 áo, Gak hỗ trợ trong vòng 1 tuần, chất lượng áo rất tốt, form áo vừa vặn
-                                                với mọi người, được các anh chị tại công ty hưởng ứng rất nhiều.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/saigonum.png"
-                                            alt=""
-                                            src="/images/brands/saigonum.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Chất liệu cotton mềm mại thấm hút rất phù hợp cho các fans thích di chuyển và ăn uống. Thật
-                                                sự rất ưng ý với đơn hàng này. Chúng tôi sẵn sàng giới thiệu CXP tới nhiều đối tác hơn.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img data-src="/images/brands/boxme.png" alt="" src="/images/brands/boxme.png" class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="/images/brands/cocoon_original_vietnam.png"
-                                            alt=""
-                                            src="/images/brands/cocoon_original_vietnam.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img data-src="/images/brands/epson.png" alt="" src="/images/brands/epson.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -582,14 +460,11 @@
                                     </div>
                                 </div>
                                 <div class="contact__content-contact">
-                                    <a href="http://zalo.me/569133339" target="_blank" class="contact__content-social">
+                                    <a href="https://zalo.me/1160130089290834053" target="_blank" class="contact__content-social">
                                         <img src="/images/zalo.png" alt="zalo-podz" />
                                         <div>Liên hệ Sale GAK qua Zalo</div>
                                     </a>
-                                    <a
-                                        href="https://www.facebook.com/coolxprintinaotheoyeucau/"
-                                        target="_blank"
-                                        class="contact__content-social"
+                                    <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="contact__content-social"
                                         ><img src="/images/facebook.png" alt="fb-pod" />
                                         <div>CSKH GAK</div></a
                                     >
@@ -682,65 +557,29 @@
                     </UButton>
                 </div>
             </section>
-            <section class="pod-tech">
+            <section class="pod-tech pt-8 pb-12">
                 <div class="container container--medium">
                     <h2 class="pod-tech__heading">Tập trung phát triển sản phẩm và công nghệ may mặc tiên tiến</h2>
-                    <Swiper
-                        :slidesPerView="2"
-                        :spaceBetween="24"
-                        :slidesPerGroup="2"
-                        :modules="modules"
-                        :grid="{
-                            rows: 2,
-                        }"
-                        class="swiper pod-tech-swiper h-[450px] lg:!hidden">
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl">
-                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
+                    <div class="flex md:grid md:grid-cols-3 flex-wrap items-center justify-center gap-4 w-full">
+                        <div class="pod-tech-slide">
+                            <div href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
+                            </div>
                             <span>Vải chất lượng cao</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"
-                                ><img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
+                        </div>
+                        <div class="pod-tech-slide">
+                            <div href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
+                            </div>
                             <span>Công nghệ may tiên tiến</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"
-                                ><img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
+                        </div>
+                        <div class="pod-tech-slide">
+                            <div href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
+                            </div>
                             <span>Công nghệ in/thêu đồng phục</span>
-                        </SwiperSlide>
-                    </Swiper>
-                    <Swiper
-                        :slidesPerView="3"
-                        :spaceBetween="24"
-                        :slidesPerGroup="3"
-                        :modules="modules"
-                        :grid="{
-                            rows: 2,
-                        }"
-                        class="swiper pod-tech-swiper min-w-0 h-[450px] !px-32 !hidden lg:!block">
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl">
-                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
-                            <span>Vải chất lượng cao</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"
-                                ><img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
-                            <span>Công nghệ may tiên tiến</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"
-                                ><img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
-                            <span>Công nghệ in/thêu đồng phục</span>
-                        </SwiperSlide>
-                    </Swiper>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section v-if="false" class="blogs-grid-slide mb-6">
@@ -782,7 +621,7 @@
                             Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'gak-official'})"
+                            :to="localePath({ name: 'gak-official' })"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"
@@ -911,7 +750,7 @@ import images from '@@/assets/icons';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Grid } from 'swiper/modules';
 import ArticleCard from '@/components/articles/ArticleCard.vue';
-let modules = ref([Grid]);
+let modules = ref([]);
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
@@ -964,7 +803,7 @@ useSeoMeta(seoMeta);
     position: relative;
     height: calc(100vh - 120px);
     @media screen and (max-width: 991px) {
-        height: auto
+        height: auto;
     }
     .pod-banner__content,
     .pod-banner__filter,
@@ -1049,14 +888,14 @@ useSeoMeta(seoMeta);
     .pod-why {
         margin-top: 2em;
         padding-bottom: 30px;
-        @media screen and (max-width:767px) {
-            margin-top: 0
+        @media screen and (max-width: 767px) {
+            margin-top: 0;
         }
         .pod-why__heading {
             font-weight: 500;
             font-size: 36px;
             text-align: center;
-            @media screen and (max-width:767px) {
+            @media screen and (max-width: 767px) {
                 margin-top: 0;
                 padding-top: 16px;
             }
@@ -1122,7 +961,7 @@ useSeoMeta(seoMeta);
                 flex-flow: column;
                 padding: 50px 45px;
                 @media screen and (max-width: 1200px) {
-                    padding: 10px 20px;
+                    padding: 24px;
                     width: 100%;
                     border-radius: 12px;
                     margin-bottom: 1em;
@@ -1182,6 +1021,9 @@ useSeoMeta(seoMeta);
                     margin-bottom: 1em;
                     width: 100%;
                 }
+                @media (max-width: 991px) {
+                    margin-bottom: 0;
+                }
                 .card__item {
                     margin-right: 0;
                     position: relative;
@@ -1222,9 +1064,9 @@ useSeoMeta(seoMeta);
                         top: calc(20% - 7px);
                         @media (max-width: 1200px) {
                             left: 50%;
-                            top: -45%;
-                            width: 20px;
-                            height: 20px;
+                            top: -35%;
+                            width: 24px; 
+                            height: 24px;
                             transform: rotate(90deg);
                         }
                     }
@@ -1338,6 +1180,11 @@ useSeoMeta(seoMeta);
                 filter: grayscale(100%);
                 transition: all 0.3s;
                 opacity: 0.3;
+                @media screen and (max-width: 767px) {
+                    filter: grayscale(0);
+                    transition: all 0.3s;
+                    opacity: 1;
+                }
             }
             &:hover,
             &.active {
@@ -1502,8 +1349,9 @@ useSeoMeta(seoMeta);
         }
         .pod-factory__info {
             position: absolute;
-            top: 25%;
-            left: 10%;
+            top: 50%;
+            transform: translate(-15%, -50%);
+            left: 15%;
             max-width: 768px;
             color: #fff;
             h2 {
@@ -1524,10 +1372,10 @@ useSeoMeta(seoMeta);
                 }
             }
             @media screen and (max-width: 767px) {
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
+                left: 24px;
+                transform: translate(24px, -50%);
                 width: 100%;
+                max-width: 80%;
                 padding: 8px 16px;
             }
         }
@@ -1541,13 +1389,9 @@ useSeoMeta(seoMeta);
         .pod-tech-slide {
             text-align: center;
             font-size: 18px;
-            height: calc((100% - 24px) / 2) !important;
             border-radius: 12px;
             /* Center slide text vertically */
             @apply flex flex-col gap-4 items-center justify-start;
-            img {
-                height: 150px;
-            }
         }
     }
     .blogs-grid-slide {

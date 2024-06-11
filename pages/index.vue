@@ -87,7 +87,7 @@
                 <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
                 <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
             </div>
-            <div class="container mx-auto w-full h-full my-4">
+            <div class="container mx-auto w-full h-full">
                 <CategoryBox :categoryList="categoryList" />
             </div>
             <div class="container mx-auto w-full my-4  overflow-hidden lg:overflow-visible">
@@ -178,42 +178,42 @@ const categoryList = ref([
 ]);
 const diaryList = ref([
     {
-        name: 'Quần đùi nam cá tính',
+        name: 'Áo phản quang thun 2 bên',
         slug: 'quan-dui-nam-ca-tinh',
-        image_thumb: '/images/phan_quang_2B.jpg',
-        image_sale: '/images/phan_quang_2B.jpg',
+        image_thumb: '/images/diary-phan-quang-thun-luoi.jpg',
+        image_sale: '/images/diary-phan-quang-thun-luoi.jpg',
         price: 200000,
         discount: 10,
     },
     {
-        name: 'Quần đùi nam cá tính',
+        name: 'Áo phản quang kiểu 3M',
         slug: 'quan-dui-nam-ca-tinh',
-        image_thumb: '/images/phan_quang_3M.jpg',
-        image_sale: '/images/phan_quang_3M.jpg',
+        image_thumb: '/images/diary-phan-quang-3M.jpg',
+        image_sale: '/images/diary-phan-quang-3M.jpg',
         price: 129000,
         discount: 16,
     },
     {
-        name: 'Quần đùi nam cá tính',
+        name: 'Áo phản quang Hà Nội',
         slug: 'quan-dui-nam-ca-tinh',
-        image_thumb: '/images/phan_quang_2B.jpg',
-        image_sale: '/images/phan_quang_2B.jpg',
+        image_thumb: '/images/diary-phan-quang-ha-noi.jpg',
+        image_sale: '/images/diary-phan-quang-ha-noi.jpg',
         price: 300000,
         discount: 25,
     },
     {
-        name: 'Quần đùi nam cá tính',
+        name: 'Áo phản quang Palize',
         slug: 'quan-dui-nam-ca-tinh',
-        image_thumb: '/images/phan_quang_3M.jpg',
-        image_sale: '/images/phan_quang_3M.jpg',
+        image_thumb: '/images/diary-phan-quang-palize.jpg',
+        image_sale: '/images/diary-phan-quang-palize.jpg',
         price: 299000,
         discount: 50,
     },
     {
-        name: 'Quần đùi nam cá tính',
+        name: 'Áo phản quang túi lưới',
         slug: 'quan-dui-nam-ca-tinh',
-        image_thumb: '/images/phan_quang_palize.jpg',
-        image_sale: '/images/phan_quang_palize.jpg',
+        image_thumb: '/images/diary-phan-quang-tui-luoi.jpg',
+        image_sale: '/images/diary-phan-quang-tui-luoi.jpg',
         price: 199000,
         discount: 0,
     },
