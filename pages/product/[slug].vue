@@ -9,7 +9,7 @@
                         divider="/"
                         :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data?.name }]" />
 
-                    <div class="image-box flex items-start gap-4 w-full relative lg:sticky lg:top-6">
+                    <div class="image-box flex items-start justify-center gap-4 w-full relative lg:sticky lg:top-6">
                         <Swiper
                             v-if="!loadingProductItem"
                             @swiper="setThumbsSwiper"
@@ -80,7 +80,7 @@
                         </div>
                         <div
                             v-show="thumbsSwiper"
-                            class="main-product-swiper rounded-md w-full lg:min-w-[540px] lg:w-[540px] z-0 bg-[#f1f1f1]">
+                            class="main-product-swiper rounded-md w-full xl:min-w-[540px] lg:w-[450px] xl:w-[540px] z-0 bg-[#f1f1f1]">
                             <Swiper
                                 v-if="!loadingProductItem"
                                 :spaceBetween="10"
@@ -292,9 +292,11 @@
                                     : 0
                             }}</b></span
                         >
-                        <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex flex-col sm:flex-wrap sm:items-center gap-4">
+                        <div
+                            v-if="productItemCurrent"
+                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
                             <div
-                                class="select-amount flex items-center justify-between sm:w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1)"></UIcon>
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1)"></UIcon>
@@ -314,9 +316,9 @@
                         </div>
                         <div
                             v-else-if="productItem.data?.variants.length == 0"
-                            class="product-add-to-cart mt-auto flex flex-col sm:flex-wrap sm:items-center gap-4">
+                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
                             <div
-                                class="select-amount flex items-center justify-between sm:w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
@@ -390,7 +392,10 @@
                             <div v-html="productItem.data?.highlight"></div>
                         </div>
                         <div v-if="productItem.data?.highlight_image_url" class="image-example flex justify-center md:w-1/2 m-auto">
-                            <img :src="productItem.data?.highlight_image_url" class="max-h-[500px] md:max-h-full md:w-[300px] md:h-[300px] object-contain" alt="" />
+                            <img
+                                :src="productItem.data?.highlight_image_url"
+                                class="max-h-[500px] md:max-h-full md:w-[300px] md:h-[300px] object-contain"
+                                alt="" />
                         </div>
                     </div>
                 </div>
@@ -1228,7 +1233,7 @@ watch(
         }
         .main-product-swiper {
             .swiper {
-                @media screen and (max-width: 767px) {
+                @media screen and (max-width: 991px) {
                     height: 450px;
                 }
             }
