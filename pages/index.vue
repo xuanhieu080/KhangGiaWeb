@@ -225,7 +225,7 @@ const diaryList = ref([
 const { data: productDashboard, pending: loadingProductDashboard } = await useLazyAsyncData('product-dashboard', async () =>
     useOriginalFetch('/api/v1/products',{
         params:{
-            category_slug:'ao_ghi_le',
+            category_slug:'ao-ghi-le',
             limit: 4,
         }
     }),
