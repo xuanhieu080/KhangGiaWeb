@@ -25,10 +25,20 @@
                     type="button"
                     class="sub-button zalo"
                     :class="showMenuChat ? 'show' : ''"
+                    href="https://zalo.me/1160130089290834053"
+                    target="_blank">
+                    <div class="sub-button-overlay">
+                        <img src="/images/zalo-gak.png" alt="" />
+                    </div>
+                </a>
+                <a
+                    type="button"
+                    class="sub-button zalo"
+                    :class="showMenuChat ? 'show' : ''"
                     href="https://zalo.me/0569133339"
                     target="_blank">
                     <div class="sub-button-overlay">
-                        <img src="/images/zalo.png" alt="" />
+                        <img src="/images/zalo-cskh.png" alt="" />
                     </div>
                 </a>
                 <button class="sub-button livechat" :class="showMenuChat ? 'show' : ''" rel-script="toggle-chat-box" data-id="livechat">
