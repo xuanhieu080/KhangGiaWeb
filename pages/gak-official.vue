@@ -22,7 +22,7 @@
                 <a href="https://www.tiktok.com/@congtygak" target="_blank">
                     <img src="/images/tiktok-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
                 </a>
-                <a href="https://twitter.com/congtygak" target="_blank">
+                <a href="https://www.youtube.com/@CongtyGAK" target="_blank">
                     <img src="/images/youtube-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
                 </a>
             </div>

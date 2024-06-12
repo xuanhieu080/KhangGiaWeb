@@ -81,7 +81,7 @@
                     :loading='loadingProductDashboard'
                     :productList="productDashboard?.data"
                     :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"
-                    :collectionLink="'/collection/quan-ao-ghi-le-bao-ho-chat-luong-cao'" />
+                    :collectionLink="'/collection/ao-ghi-le'" />
             </div>
             <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-6 md:gap-4 w-full h-full">
                 <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
@@ -118,10 +118,12 @@ const bannerList = ref([
     {
         url: '/images/banner_1.jpg',
         name: 'banner 1',
+        link: localePath({ name: 'tat-ca-san-pham' }),
     },
     {
         url: '/images/banner_2.jpg',
         name: 'banner 2',
+        link: localePath({ name: 'collection-slug', params: { slug: 'ao-ghi-le'} })
     },
 ]);
 
@@ -137,21 +139,21 @@ const bannerBlock2 = ref({
     image_mobile: '/images/banner_4_mobile.jpg',
     title: 'Áo ghile kỹ sư',
     description: 'Chuyên dụng - Chất lượng - Uy tín',
-    link: 'ao-ghile',
+    link: 'ao-ghi-le',
 });
 const bannerBlock3 = ref({
     image_desktop: '/images/banner_5.jpg',
     image_mobile: '/images/banner_5.jpg',
     title: 'Nguyên phụ liệu',
     subtitle: 'Phản Quang Chất lượng cao',
-    link: 'vai',
+    link: 'phan-quang'
 });
 const bannerBlock4 = ref({
     image_desktop: '/images/banner_6.jpg',
     image_mobile: '/images/banner_6.jpg',
     title: 'Nguyên phụ liệu',
     subtitle: 'Vải /lưới',
-    link: 'vai',
+    link: 'vai'
 });
 
 const categoryList = ref([
@@ -163,17 +165,17 @@ const categoryList = ref([
     {
         name: 'Đồ thể thao',
         image: '/images/phan_quang_2B.jpg',
-        link: localePath({ name: 'tat-ca-san-pham' }),
+        link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-thun-2-ben'} })
     },
     {
         name: 'Mặc hàng ngày',
         image: '/images/phan_quang_3M.jpg',
-        link: localePath({ name: 'tat-ca-san-pham' }),
+        link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-kieu-3m'} })
     },
     {
         name: 'Đồ lót nam',
         image: '/images/phan_quang_palize.jpg',
-        link: localePath({ name: 'tat-ca-san-pham' }),
+        link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-palize'} })
     },
 ]);
 const diaryList = ref([
@@ -223,7 +225,7 @@ const diaryList = ref([
 const { data: productDashboard, pending: loadingProductDashboard } = await useLazyAsyncData('product-dashboard', async () =>
     useOriginalFetch('/api/v1/products',{
         params:{
-            category_name:'ghi le',
+            category_slug:'ao_ghi_le',
             limit: 4,
         }
     }),
