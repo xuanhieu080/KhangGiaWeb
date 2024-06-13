@@ -1477,12 +1477,13 @@ function renderBullet(index, className) {
     return '<div class="custom-bullet ' + className + '">' + (index + 1) + '</div>';
 }
 
-let title = 'Văn hoá GAK';
+let title = 'Văn hoá công ty GAK';
+let pageDescription = 'Tử tế, chân thành và đoàn kết. Khám phá những điều chúng tôi làm, để tiến bước tới tương lai cùng chúng tôi.'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
     title: title,
-    description: config.public.description,
+    description: pageDescription,
     theme: '#ff0000',
     colorMode: 'dark',
 });
@@ -1490,12 +1491,12 @@ defineOgImage({
     url:  config.public.logo,
 });
 let seoMeta = {
-    description:  config.public.description,
-    ogDescription:  config.public.description,
+    description:  pageDescription,
+    ogDescription:  pageDescription,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription:  config.public.description,
+    twitterDescription:  pageDescription,
     keywords: title,
 };
 useSeoMeta(seoMeta);

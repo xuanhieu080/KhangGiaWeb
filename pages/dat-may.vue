@@ -774,12 +774,13 @@ const items = [
         slot: 'item-3',
     },
 ];
-let title = 'Chính sách đặt may';
+let title = 'Nhận đặt may theo yêu cầu tại TPHCM vả tốt | Đồng phục đẹp giá rẻ';
+let pageDescription = 'Công ty GAK mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
     title: title,
-    description: config.public.description,
+    description: pageDescription,
     theme: '#ff0000',
     colorMode: 'dark',
 });
@@ -787,12 +788,12 @@ defineOgImage({
     url: config.public.logo,
 });
 let seoMeta = {
-    description: config.public.description,
-    ogDescription: config.public.description,
+    description: pageDescription,
+    ogDescription: pageDescription,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription: config.public.description,
+    twitterDescription: pageDescription,
     keywords: title,
 };
 useSeoMeta(seoMeta);

@@ -353,12 +353,13 @@ import images from '@@/assets/icons';
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-let title = 'Về chúng tôi';
+let title = 'Về công ty GAK';
+let pageDescription = 'Được hình thành từ sự vượt khó của đội ngũ tận tâm, chúng tôi đã và đang tiến bước đến một tương lai mới mang lại giá trị cho khách hàng, đối tác của chúng tôi.'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
     title: title,
-    description: config.public.description,
+    description: pageDescription,
     theme: '#ff0000',
     colorMode: 'dark',
 });
@@ -366,12 +367,12 @@ defineOgImage({
     url:  config.public.logo,
 });
 let seoMeta = {
-    description:  config.public.description,
-    ogDescription:  config.public.description,
+    description:  pageDescription,
+    ogDescription:  pageDescription,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription:  config.public.description,
+    twitterDescription:  pageDescription,
     keywords: title,
 };
 useSeoMeta(seoMeta);

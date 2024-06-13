@@ -118,12 +118,12 @@ const bannerList = ref([
     {
         url: '/images/banner_1.jpg',
         name: 'banner 1',
-        link: localePath({ name: 'tat-ca-san-pham' }),
+        link: localePath({ name: 'collection-slug', params: { slug: 'ao-ghi-le'} })
     },
     {
         url: '/images/banner_2.jpg',
         name: 'banner 2',
-        link: localePath({ name: 'collection-slug', params: { slug: 'ao-ghi-le'} })
+        link: localePath({ name: 'tat-ca-san-pham' })
     },
 ]);
 
@@ -277,7 +277,8 @@ const { data: productUniform, pending: loadingProductUniform } = await useLazyAs
 
 ///SEO
 const config = useRuntimeConfig();
-let pageTitle = 'Trang chủ';
+let pageTitle = 'Công ty GAK | Xưởng sản xuất vải, lưới, quần áo bảo hộ, đồng phục giá gốc!';
+let pageDescription = 'Công ty GAK công ty chuyên cung cấp quần áo bảo hộ lao động, đồng phục, vải, lưới, phản quang giá sỉ, nguồn hàng sẵn có! Liên hệ GAK tư vấn tận tâm.';
 useHead({
     templateParams: {
         site: {
@@ -286,7 +287,7 @@ useHead({
         separator: '|',
     },
 
-    titleTemplate: '%site.name %separator %s',
+    titleTemplate: '%s',
 })
 
 defineOgImageComponent('GAK', {
@@ -299,12 +300,12 @@ defineOgImage({
     url:  config.public.logo,
 });
 let seoMeta = {
-    description:  config.public.description,
-    ogDescription:  config.public.description,
+    description:  pageDescription,
+    ogDescription:  pageDescription,
     ogTitle: pageTitle,
     title: pageTitle,
     twitterTitle: pageTitle,
-    twitterDescription:  config.public.description,
+    twitterDescription:  pageDescription,
 };
 useSeoMeta(seoMeta);
 </script>

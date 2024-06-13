@@ -299,6 +299,7 @@ watch(
 
 let title = collection.value.item.meta_title;
 let description = collection.value.item.meta_description;
+
 defineOgImageComponent('GAK', {
     title: title,
     description: description,

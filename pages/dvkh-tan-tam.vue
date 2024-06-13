@@ -250,12 +250,13 @@ const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
 
-let title = 'Dịch vụ khách hàng';
+let title = 'CSKH GAK tận tâm và hành trình mua sắm tận gốc!';
+let pageDescription = 'Cảm ơn bạn đã chọn GAK, chúng tôi ở đây là vì bạn, không ngừng cải thiện tất cả dịch vụ để bạn luôn hài lòng và có những trải nghiệm tốt nhất tại GAK.'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
     title: title,
-    description: config.public.description,
+    description: pageDescription,
     theme: '#ff0000',
     colorMode: 'dark',
 });
@@ -263,12 +264,12 @@ defineOgImage({
     url:  config.public.logo,
 });
 let seoMeta = {
-    description:  config.public.description,
-    ogDescription:  config.public.description,
+    description:  pageDescription,
+    ogDescription:  pageDescription,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription:  config.public.description,
+    twitterDescription:  pageDescription,
     keywords: title,
 };
 useSeoMeta(seoMeta);

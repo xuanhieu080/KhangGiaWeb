@@ -288,12 +288,13 @@ const items = [
         slot: 'item-4',
     },
 ];
-let title = 'GAK Official';
+let title = 'GAK MEDIA OFFICIAL';
+let pageDescription = 'GAK ở đâu, làm sao liên hệ tới công ty GAK? Hãy khám phá những Media Official của chúng tôi!';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
     title: title,
-    description: config.public.description,
+    description: pageDescription,
     theme: '#ff0000',
     colorMode: 'dark',
 });
@@ -301,12 +302,12 @@ defineOgImage({
     url: config.public.logo,
 });
 let seoMeta = {
-    description: config.public.description,
-    ogDescription: config.public.description,
+    description: pageDescription,
+    ogDescription: pageDescription,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription: config.public.description,
+    twitterDescription: pageDescription,
     keywords: title,
 };
 useSeoMeta(seoMeta);

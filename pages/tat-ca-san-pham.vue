@@ -279,12 +279,13 @@ const { data: productCollectionAll, pending: loadingProductCollectionAll } = awa
 //     () => {},
 // );
 
-let title = 'Tất cả sản phẩm';
+let title = 'Cửa hàng GAK | Sản Phẩm giá gốc không qua trung gian | Càng mua càng hời';
+let pageDescription = 'Khám phá các sản phẩm được sản xuất và may mặc bởi GAK. Chất lượng dẫn đầu, giá tốt mỗi ngày, may mặc tỉ mỉ nhớ GAK.';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
     title: title,
-    description: config.public.description,
+    description: pageDescription,
     theme: '#ff0000',
     colorMode: 'dark',
 });
@@ -292,12 +293,12 @@ defineOgImage({
     url:  config.public.logo,
 });
 let seoMeta = {
-    description:  config.public.description,
-    ogDescription:  config.public.description,
+    description:  pageDescription,
+    ogDescription:  pageDescription,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription:  config.public.description,
+    twitterDescription:  pageDescription,
     keywords: title,
 };
 useSeoMeta(seoMeta);
