@@ -222,17 +222,22 @@
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
                                     <button
-                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
                                         class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
                                         :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
                                         :style="{ backgroundColor: attribute.attribute_color }"
                                         @click="selectVariant(variantAttribute, attribute)"></button>
-                                    <button
-                                        v-else
-                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                        :style="{ backgroundColor: attribute.attribute_color }">
-                                        <div class="check-mark"></div>
-                                    </button>
+<!--                                    <button-->
+<!--                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"-->
+<!--                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"-->
+<!--                                        :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"-->
+<!--                                        :style="{ backgroundColor: attribute.attribute_color }"-->
+<!--                                        @click="selectVariant(variantAttribute, attribute)"></button>-->
+<!--                                    <button-->
+<!--                                        v-else-->
+<!--                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"-->
+<!--                                        :style="{ backgroundColor: attribute.attribute_color }">-->
+<!--                                        <div class="check-mark"></div>-->
+<!--                                    </button>-->
                                 </div>
                                 <UButton
                                     v-if="productItemCurrent"
@@ -255,30 +260,36 @@
                             </div>
                             <div v-else class="size-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes">
+<!--                                    <button-->
+<!--                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"-->
+<!--                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"-->
+<!--                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"-->
+<!--                                        @click="selectVariant(variantAttribute, attribute)">-->
+<!--                                        {{ attribute.attribute_name }}-->
+<!--                                    </button>-->
                                     <button
-                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
                                         :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
                                         class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                         @click="selectVariant(variantAttribute, attribute)">
                                         {{ attribute.attribute_name }}
                                     </button>
-                                    <button
-                                        v-else-if="
-                                            !checkEventNone(attribute.attribute_id, variantAttribute.id) &&
-                                            !variantAttribute.is_main &&
-                                            !productItemCurrent
-                                        "
-                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
-                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
-                                        @click="selectVariant(variantAttribute, attribute)">
-                                        {{ attribute.attribute_name }}
-                                    </button>
-                                    <button
-                                        v-else
-                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14">
-                                        {{ attribute.attribute_name }}
-                                        <div class="check-mark"></div>
-                                    </button>
+<!--                                    <button-->
+<!--                                        v-else-if="-->
+<!--                                            !checkEventNone(attribute.attribute_id, variantAttribute.id) &&-->
+<!--                                            !variantAttribute.is_main &&-->
+<!--                                            !productItemCurrent-->
+<!--                                        "-->
+<!--                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"-->
+<!--                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"-->
+<!--                                        @click="selectVariant(variantAttribute, attribute)">-->
+<!--                                        {{ attribute.attribute_name }}-->
+<!--                                    </button>-->
+<!--                                    <button-->
+<!--                                        v-else-->
+<!--                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14">-->
+<!--                                        {{ attribute.attribute_name }}-->
+<!--                                        <div class="check-mark"></div>-->
+<!--                                    </button>-->
                                 </div>
                             </div>
                         </div>
@@ -576,6 +587,7 @@ const colorProductActive = ref(0);
 const productSizeIndex = ref(null);
 const quantity = ref(1);
 const productVariants = ref([]);
+const productVariantNote = ref([]);
 const productVariantSlugs = ref({});
 const productItemCurrent = ref(null);
 const showAllColor = ref(false);
@@ -862,6 +874,7 @@ const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyn
 
 function selectVariant(group, attribute) {
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+    let productVariants1 = JSON.parse(JSON.stringify(productVariants.value));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
 
     if (index !== -1 && productVariants.value[index] !== undefined) {
@@ -876,6 +889,7 @@ function selectVariant(group, attribute) {
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
     let checkProduct = getProductItem();
+
     if (checkProduct && (!productItemCurrent.value || checkProduct.code != productItemCurrent.value.code)) {
         loadingProductItem.value = true;
         productItemCurrent.value = checkProduct;
@@ -893,6 +907,8 @@ function selectVariant(group, attribute) {
                 query: { code: productItemCurrent.value.code },
             });
         }
+    } else {
+        productVariants.value = productVariants1
     }
 }
 
@@ -1073,12 +1089,26 @@ useSchemaOrg([
         image: image.value,
         description: description.value,
         offers: {
+            url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
+            itemCondition: "https://schema.org/NewCondition",
+            availability: "https://schema.org/InStock",
             offerCount: 5,
-            lowPrice: productItemCurrent.value
-                ? productItemCurrent.value.price - productItemCurrent.value.price_discount
-                : productItem.value.data?.price - productItem.value.data?.price_discount,
+            lowPrice: productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
             highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
             priceCurrency: 'VND',
+            priceSpecification: {
+                "@type": "PriceSpecification",
+                "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+                "priceCurrency": "vnd"
+            },
+        },
+        "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "Vn",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30,
+            "returnMethod": "https://schema.org/ReturnInStore",
+            "returnFees": "https://schema.org/FreeReturn"
         },
         aggregateRating: {
             ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
@@ -1112,12 +1142,26 @@ watch(
                     image: image.value,
                     description: description.value,
                     offers: {
+                        url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
+                        itemCondition: "https://schema.org/NewCondition",
+                        availability: "https://schema.org/InStock",
                         offerCount: 5,
-                        lowPrice: productItemCurrent.value
-                            ? productItemCurrent.value.price - productItemCurrent.value.price_discount
-                            : productItem.value.data?.price - productItem.value.data?.price_discount,
+                        lowPrice: productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
                         highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
                         priceCurrency: 'VND',
+                        priceSpecification: {
+                            "@type": "PriceSpecification",
+                            "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+                            "priceCurrency": "vnd"
+                        },
+                    },
+                    "hasMerchantReturnPolicy": {
+                        "@type": "MerchantReturnPolicy",
+                        "applicableCountry": "Vn",
+                        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                        "merchantReturnDays": 30,
+                        "returnMethod": "https://schema.org/ReturnInStore",
+                        "returnFees": "https://schema.org/FreeReturn"
                     },
                     aggregateRating: {
                         ratingValue: productItemCurrent.value

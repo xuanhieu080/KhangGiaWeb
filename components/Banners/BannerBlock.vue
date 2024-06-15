@@ -22,6 +22,7 @@
     </div>
 </template>
 <script setup>
+
 const localePath = useLocalePath();
 const props = defineProps({
     bannerBlock: {
@@ -65,7 +66,7 @@ const props = defineProps({
         position: absolute;
         @apply flex flex-col gap-4;
         left: 24px;
-        top: 75%;
+        top: 85%;
         transform: translateY(-75%);
         color: black;
         &.white-text {
@@ -75,7 +76,7 @@ const props = defineProps({
             }
         }
         @media screen and (min-width: 992px) {
-            top: 50%;
+            top: 85%;
             transform: translateY(-50%);
             left: 72px;
             max-width: 650px;
@@ -111,6 +112,7 @@ const props = defineProps({
                 max-width: 250px;
                 @media screen and (max-width: 767px) {
                     color: white;
+                    font-size: 1.5rem;
                 }
             }
         }
@@ -120,6 +122,7 @@ const props = defineProps({
             }
             &.custom-font {
                 @media screen and (max-width: 767px) {
+                    font-size: 1rem;
                     color: white;
                 }
             }

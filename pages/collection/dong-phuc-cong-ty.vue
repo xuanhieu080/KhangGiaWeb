@@ -31,7 +31,7 @@
                                 :class="showFullOption ? 'h-full' : 'h-[170px] overflow-hidden'"
                                 class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
                                 <div v-for="variant in collection.data" class="filter-option-item flex flex-col gap-4">
-                                    <UAccordion :items="[variant]" :key="variant" :defaultOpen="variant.attributes.length < 6 ? true : false">
+                                    <UAccordion :items="[variant]" :key="variant" :defaultOpen="false && variant.attributes.length < 6 ? true : false">
                                         <template #default="{ item, index, open }">
                                             <UButton
                                                 color="none"

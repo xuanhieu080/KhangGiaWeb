@@ -330,6 +330,25 @@
                             </span>
                         </div>
                     </div>
+
+                    <div class="mt-8">
+                        <b>Thông qua ấn nút thanh toán bạn đã hiểu về các loại chính sách khi mua hàng tại website GAK.VN</b>
+                       <ul class="list-disc px-4">
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-bao-mat' })">Chính sách bảo mật</NuxtLink>
+                           </li>
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-giao-hang' })">Chính sách giao hàng</NuxtLink>
+                           </li>
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-khuyen-mai' })">Chính sách khuyến mãi</NuxtLink>
+                           </li>
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-hoan-tra-san-pham' })">Chính sách hoàn trả sản phảm</NuxtLink>
+                           </li>
+                       </ul>
+                        <p>Cảm ơn bạn đã tin chọn và mua sắm các sản phẩm tại GAK.VN</p>
+                    </div>
                 </div>
             </div>
             <div v-else class="loading-wrapper !mt-[128px]">

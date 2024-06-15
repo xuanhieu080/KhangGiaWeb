@@ -80,7 +80,7 @@
                                     <UAccordion
                                         :items="[variant]"
                                         :key="variant"
-                                        :defaultOpen="variant.attributes.length < 6 ? true : false">
+                                        :defaultOpen="false && variant.attributes.length < 6 ? true : false">
                                         <template #default="{ item, index, open }">
                                             <UButton
                                                 color="none"
@@ -175,6 +175,8 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
+import { useWindowSize } from '~/composables/useWindowSize';
+
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],

@@ -17,9 +17,9 @@
             class="swiper banner-swiper w-full h-full">
             <SwiperSlide v-for="item in bannerList" :key="item">
                 <NuxtLink :to="item.link" target="_blank" rel="noopener noreferrer">
-                    <NuxtImg fit="contain" class="w-full h-full object-contain" loading="lazy" format="webp" :src="item.url" alt="" />
+                    <NuxtImg fit="contain" class="w-full h-full object-contain banner-image" loading="lazy" format="webp" :src="isMobile ? item.url_mobile : item.url" alt="" />
+<!--                    <NuxtImg fit="contain" class="w-full h-full object-contain banner-image mobile" loading="lazy" format="webp" :src="item.url_mobile" alt="" />-->
                 </NuxtLink>
-                
             </SwiperSlide>
             <template v-slot:container-end>
                 <div class="navigation-btns flex flex-col absolute top-1/2 right-4 -translate-y-1/2 z-10">
@@ -45,6 +45,10 @@
 <script setup>
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay } from 'swiper/modules';
+import { useWindowSize } from '~/composables/useWindowSize';
+
+const { width } = useWindowSize();
+const isMobile = computed(() => width.value <= 768);
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
@@ -64,4 +68,18 @@ onBeforeMount(() => {
     }
 });
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.banner-image {
+    &.desktop {
+        @media screen and (max-width: 767px) {
+            display: none;
+        }
+    }
+    &.mobile {
+        display: none;
+        @media screen and (max-width: 767px) {
+           display: block;
+        }
+    }
+}
+</style>

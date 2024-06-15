@@ -117,11 +117,13 @@ const productIndex = ref(0);
 const bannerList = ref([
     {
         url: '/images/banner_1.jpg',
+        url_mobile: '/images/banner_mobile_1.jpg',
         name: 'banner 1',
         link: localePath({ name: 'collection-slug', params: { slug: 'ao-ghi-le'} })
     },
     {
         url: '/images/banner_2.jpg',
+        url_mobile: '/images/banner_mobile_2.jpg',
         name: 'banner 2',
         link: localePath({ name: 'tat-ca-san-pham' })
     },
@@ -131,7 +133,7 @@ const bannerBlock = ref({
     image_desktop: '/images/banner_3.jpg',
     image_mobile: '/images/banner_3_mobile.jpg',
     title: 'Đồng phục',
-    description: 'Công ty',
+    description: 'Công ty mẫu mã đẹp',
     link: 'dong-phuc',
 });
 const bannerBlock2 = ref({

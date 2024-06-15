@@ -120,8 +120,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid__column seven-twelfths mobile--one-whole">
-                            <div class="cs-about__description">
+                        <div class="grid__column seven-twelfths mobile--one-whole flex">
+                            <div class="cs-about__description flex flex-col justify-center items-center flex-nowrap">
                                 <p>
                                     Được hình thành trong những giai đoạn khó khăn nhất của nền kinh tế, chúng tôi đi lên từ chất lượng, sự
                                     tận tâm và không ngừng đeo đuổi những giá trị tốt nhất để cải thiện đời sống của con người Việt Nam.
@@ -415,7 +415,7 @@ useSeoMeta(seoMeta);
     }
     .cs-about__description {
         color: #000000;
-        font-size: 1rem;
+        font-size: 1.125rem;
         font-weight: 500;
     }
     .cs-caption__wrapper {
