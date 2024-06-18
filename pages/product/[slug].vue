@@ -40,14 +40,14 @@
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
                                     >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
                                 >
-                                <img :src="image" loading="lazy" quality="80" alt="" class="w-full h-full object-cover rounded-md" />
+                                <img :src="image" loading="lazy" quality="80" :alt="productItemCurrent.name" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
                                 class="!h-[36px] lg:!h-[80px] w-full rounded-md">
                                 <img
                                     :src="productItemCurrent ? productItemCurrent.image_url : ''"
-                                    alt="No image"
+                                    :alt="productItemCurrent.name"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
@@ -63,14 +63,14 @@
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
                                     >+{{ productItem.data?.thumb_image.length - index - 1 }}</span
                                 >
-                                <img :src="image" loading="lazy" quality="80" alt="" class="w-full h-full object-cover rounded-md" />
+                                <img :src="image" loading="lazy" quality="80" :alt="productItem.data.name" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="!productItemCurrent && productItem.data?.thumb_image.length <= 0"
                                 class="!h-[42px] lg:!h-[100px] w-full rounded-md">
                                 <img
                                     :src="productItem.data ? productItem.data?.image_url : ''"
-                                    alt="No image"
+                                    :alt="productItem.data.name"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                         </Swiper>
@@ -104,14 +104,14 @@
                                     v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                                     v-for="image in productItemCurrent.thumb_image"
                                     class="!flex justify-center !h-auto aspect-[3/4]">
-                                    <NuxtImg :src="image" loading="lazy" quality="80" alt="" class="rounded-md object-contain" />
+                                    <NuxtImg :src="image" loading="lazy" quality="80" :alt="productItemCurrent.name" class="rounded-md object-contain" />
                                 </SwiperSlide>
                                 <SwiperSlide
                                     v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
                                     class="flex justify-center !h-auto aspect-[3/4] w-full rounded-md">
                                     <NuxtImg
                                         :src="productItemCurrent ? productItemCurrent.image_url : ''"
-                                        alt="No image"
+                                        :alt="productItemCurrent.name"
                                         loading="lazy"
                                         quality="80"
                                         class="w-full h-full object-contain rounded-md" />
@@ -124,7 +124,7 @@
                                         :src="image"
                                         loading="lazy"
                                         quality="80"
-                                        alt=""
+                                        :alt="productItem.data.name"
                                         class="w-full h-full rounded-md object-contain" />
                                 </SwiperSlide>
 
@@ -133,7 +133,7 @@
                                     class="flex justify-center !h-auto aspect-[3/4] w-full rounded-md">
                                     <NuxtImg
                                         :src="productItem.data ? productItem.data?.image_url : ''"
-                                        alt="No image"
+                                        :alt="productItem.data.name"
                                         loading="lazy"
                                         quality="80"
                                         class="w-full h-full object-contain rounded-md" />
@@ -1116,6 +1116,10 @@ useSchemaOrg([
             ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
         },
         review: [...reviewJson.value],
+        brand: {
+            "@type": "Brand",
+            "name": "GAK"
+        }
     }),
     defineReview(review),
 ]);
