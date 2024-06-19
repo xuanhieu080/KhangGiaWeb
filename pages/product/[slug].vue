@@ -1064,7 +1064,7 @@ let seoMeta = {
     keywords: key.value,
 };
 
-let review = {};
+let review = null;
 if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 0) {
     review = {
         author: {
@@ -1083,6 +1083,11 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
     };
 }
 useSeoMeta(seoMeta);
+if (review) {
+    useSchemaOrg([
+        defineReview(review),
+    ])
+}
 useSchemaOrg([
     defineProduct({
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
@@ -1121,7 +1126,6 @@ useSchemaOrg([
             "name": "GAK"
         }
     }),
-    defineReview(review),
 ]);
 watch(
     () => [reviewProduct.value, loadingReviewProduct.value],
