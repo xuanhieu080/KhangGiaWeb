@@ -44,11 +44,18 @@
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                                class="!h-[36px] lg:!h-[80px] w-full rounded-md">
-                                <img
-                                    :src="productItemCurrent ? productItemCurrent.image_url : ''"
-                                    :alt="productItemCurrent.name"
-                                    class="w-full h-full object-cover rounded-md" />
+                                v-for="(image, index) in productItem.data?.thumb_image"
+                                v-show="!productItem.data?.video_link ? index < 4 : index < 3"
+                                class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
+                                <span
+                                    v-if="
+                                        (!productItem.data?.video_link && productItem.data?.thumb_image.length > 4 && index == 3) ||
+                                        (productItem.data?.video_link && productItem.data?.thumb_image.length > 3 && index == 2)
+                                    "
+                                    class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
+                                >+{{ productItem.data?.thumb_image.length - index - 1 }}</span
+                                >
+                                <img :src="image" loading="lazy" quality="80" :alt="productItemCurrent.name" class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
@@ -108,13 +115,14 @@
                                 </SwiperSlide>
                                 <SwiperSlide
                                     v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                                    class="flex justify-center !h-auto aspect-[3/4] w-full rounded-md">
+                                    v-for="image in productItem.data?.thumb_image"
+                                    class="flex justify-center items-center !h-full aspect-[3/4] w-full rounded-md">
                                     <NuxtImg
-                                        :src="productItemCurrent ? productItemCurrent.image_url : ''"
-                                        :alt="productItemCurrent.name"
+                                        :src="image"
                                         loading="lazy"
                                         quality="80"
-                                        class="w-full h-full object-contain rounded-md" />
+                                        :alt="productItemCurrent.name"
+                                        class="w-full h-full rounded-md object-contain" />
                                 </SwiperSlide>
                                 <SwiperSlide
                                     v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
@@ -217,7 +225,7 @@
                                 'product-size-list': !variantAttribute.is_color,
                             }">
                             <span class="text-[15px]"
-                                >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
+                                >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b> <i v-if="!getAttributeName(variantAttribute.id) &&  variantAttribute.is_color"> (Ấn chọn màu sắc để mua hàng)</i></span
                             >
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
@@ -930,17 +938,9 @@ function getProductItem() {
         return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
     });
 
-    if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image.length > 0) {
+    // if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image.length > 0) {
+    if (matchingVariant) {
         return matchingVariant;
-    } else if (matchingVariant) {
-        toast.add({
-            title: trans('Thông báo') + ' !',
-            description: trans('Sản phẩm đang tạm ngưng'),
-            timeout: 3000,
-            icon: 'i-heroicons-check-badge',
-            color: 'red',
-        });
-        return null;
     } else {
         return null;
     }
