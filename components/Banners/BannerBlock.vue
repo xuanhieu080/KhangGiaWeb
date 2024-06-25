@@ -76,7 +76,7 @@ const props = defineProps({
             }
         }
         @media screen and (min-width: 992px) {
-            top: 85%;
+            top: 75%;
             transform: translateY(-50%);
             left: 72px;
             max-width: 650px;

@@ -224,9 +224,10 @@
                                 'product-color-list': variantAttribute.is_color,
                                 'product-size-list': !variantAttribute.is_color,
                             }">
-                            <span class="text-[15px]"
-                                >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b> <i v-if="!getAttributeName(variantAttribute.id) &&  variantAttribute.is_color"> (Ấn chọn màu sắc để mua hàng)</i></span
-                            >
+                            <span class="text-[15px] flex gap-4"
+                                >{{ variantAttribute.name }}:
+                                <b>{{ getAttributeName(variantAttribute.id) }}</b> <i v-if="!getAttributeName(variantAttribute.id) &&  variantAttribute.is_color"> (Ấn chọn màu sắc để mua hàng)</i>
+                            </span>
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
                                     <button
@@ -300,6 +301,13 @@
 <!--                                    </button>-->
                                 </div>
                             </div>
+                            <UButton
+                                v-if="variantAttribute.link"
+                                :to="variantAttribute.link"
+                                variant="ghost"
+                                color="none"
+                                class="text-blue-500"
+                            >{{ variantAttribute.slug =='size' ? $t('Hướng dẫn chọn size') : $t('Đường dẫn') }}...</UButton>
                         </div>
                         <span class="fs-14"
                             >{{ $t('Số lượng còn') }}
@@ -334,21 +342,34 @@
                             </NuxtLink>
                         </div>
                         <div
-                            v-else-if="productItem.data?.variants.length == 0"
+                        v-else-if="productItem.data?.variants.length == 0"
+                        class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
+                        <div
+                            class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                            <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
+                            {{ quantity }}
+                            <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
+                        </div>
+                        <NuxtLink
+                            class="flex flex-1 h-12 rounded-full justify-center"
+                            :class="productItem.data?.qty > 0 ? '' : 'pointer-events-none'"
+                            @click="handleAddToCookie(productItem.data, false)"
+                            :to="localePath({ name: 'cart' })">
+                            <UButton
+                                :class="productItem.data?.qty > 0 ? '' : 'bg-gray-400'"
+                                class="flex-1 h-12 rounded-full justify-center">
+                                <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
+                                <span>Thêm vào giỏ hàng</span>
+                            </UButton>
+                        </NuxtLink>
+                    </div>
+                        <div
+                            v-else-if="productItem.data?.variants.length > 0 && isColor"
                             class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
-                            <div
-                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
-                                <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
-                                {{ quantity }}
-                                <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
-                            </div>
                             <NuxtLink
                                 class="flex flex-1 h-12 rounded-full justify-center"
-                                :class="productItem.data?.qty > 0 ? '' : 'pointer-events-none'"
-                                @click="handleAddToCookie(productItem.data, false)"
-                                :to="localePath({ name: 'cart' })">
+                                @click="addToCart()">
                                 <UButton
-                                    :class="productItem.data?.qty > 0 ? '' : 'bg-gray-400'"
                                     class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
@@ -598,6 +619,7 @@ const productVariants = ref([]);
 const productVariantNote = ref([]);
 const productVariantSlugs = ref({});
 const productItemCurrent = ref(null);
+const isColor = ref(false);
 const showAllColor = ref(false);
 
 const sort = ref({ direction: 'desc' });
@@ -761,6 +783,16 @@ let productLists = useCookie('products-cart', {
     default: () => [],
     maxAge: 60 * 60 * 24 * 7,
 });
+
+function addToCart() {
+    toast.add({
+        title: trans('Thông báo') + ' !',
+        description: trans('Bạn chưa chọn màu'),
+        timeout: 3000,
+        icon: 'i-heroicons-check-badge',
+        color: 'red',
+    });
+}
 const handleAddToCookie = (item, variant = true) => {
     if (productLists.value.length == 0) {
         if (item.id) {
@@ -1022,6 +1054,9 @@ function getAttributeName(attributeGroupId = null) {
         }, null);
 
         if (attribute) {
+            if (attribute.is_color) {
+                isColor.value = true;
+            }
             return attribute.attribute_name;
         } else {
             return null;
