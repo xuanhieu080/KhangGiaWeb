@@ -20,7 +20,7 @@ export const useMain = defineStore('main-store', {
           if (error.value) {
               console.log(error.value);
           } else {
-              this.pageHeaders = response.value.data
+              this.pageHeaders = response.value
           }
       },
         async getCategoryHeader() {
@@ -32,7 +32,7 @@ export const useMain = defineStore('main-store', {
             if (error.value) {
                 console.log(error.value);
             } else {
-                this.categoryHeaders = response.value.data
+                this.categoryHeaders = response.value
             }
           // if(response.value) {
           //     console.log( response.value.data);

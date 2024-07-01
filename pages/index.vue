@@ -65,7 +65,7 @@
                 <ProductCollectionOther
                     key="container-1"
                     :loading="loadingProductUniform"
-                    :productList="productUpcoming?.data"
+                    :productList="productUniform?.data"
                     :collectionLink="'/collection/dong-phuc-cong-ty'"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'" />
             </div>
@@ -290,7 +290,7 @@ async function getProductDashboard() {
     if (error.value) {
 
     } else {
-        productDashboard.value = response.value.data;
+        productDashboard.value = response.value;
         loadingProductDashboard.value = false;
     }
 }
@@ -311,7 +311,7 @@ async function getProductNew() {
     if (error.value) {
 
     } else {
-        productNew.value = response.value.data;
+        productNew.value = response.value;
         loadingProductNew.value = false;
     }
 }
@@ -333,7 +333,7 @@ async function getProductHot() {
     if (error.value) {
 
     } else {
-        productHot.value = response.value.data;
+        productHot.value = response.value;
         loadingProductHot.value = false;
     }
 }
@@ -355,7 +355,7 @@ async function getProductUpcoming() {
     if (error.value) {
 
     } else {
-        productUpcoming.value = response.value.data;
+        productUpcoming.value = response.value;
         loadingProductUpcoming.value = false;
     }
 }
@@ -377,7 +377,7 @@ async function getProductUniform() {
     if (error.value) {
 
     } else {
-        productUniform.value = response.value.data;
+        productUniform.value = response.value;
         loadingProductUniform.value = false;
     }
 }
