@@ -879,23 +879,45 @@ const {
 if (errorGetProduct.value) {
     router.push({ name: `index___${locale.value}` });
 }
-const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
-    'product-hot',
-    async () =>
-        useOriginalFetch('/api/v1/products', {
-            params: {
-                sort: {
-                    'desc[0]': 'id',
-                },
-                is_hot: 1,
-                limit: 20,
+
+const productHot = ref([]);
+const loadingProductHot = ref(true);
+
+async function getProductHot() {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
+        params: {
+            sort: {
+                'desc[0]': 'id',
             },
-        }),
-    {
-        default: () => [],
-        watch: [refreshData],
-    },
-);
+            is_hot: 1,
+            limit: 20,
+        },
+    })
+    if (error.value) {
+
+    } else {
+        productHot.value = response.value;
+        loadingProductHot.value = false;
+    }
+}
+getProductHot()
+// const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
+//     'product-hot',
+//     async () =>
+//         useOriginalFetch('/api/v1/products', {
+//             params: {
+//                 sort: {
+//                     'desc[0]': 'id',
+//                 },
+//                 is_hot: 1,
+//                 limit: 20,
+//             },
+//         }),
+//     {
+//         default: () => [],
+//         watch: [refreshData],
+//     },
+// );
 const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyncData(
     'product-review',
     async () =>

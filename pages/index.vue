@@ -224,16 +224,82 @@ const diaryList = ref([
 ]);
 
 //data
-const { data: productDashboard, pending: loadingProductDashboard } = await useLazyAsyncData('product-dashboard', async () =>
-    useOriginalFetch('/api/v1/products',{
-        params:{
+// const { data: productDashboard, pending: loadingProductDashboard } = await useLazyAsyncData('product-dashboard', async () =>
+//     useOriginalFetch('/api/v1/products',{
+//         params:{
+//             category_slug:'ao-ghi-le',
+//             limit: 4,
+//         }
+//     }),
+// );
+// const { data: productNew, pending: loadingProductNew } = await useLazyAsyncData('product-new', async () =>
+//     useOriginalFetch('/api/v1/products', {
+//         params: {
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_new: 1,
+//             limit: 20,
+//         },
+//     }),
+// );
+// const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData('product-hot', async () =>
+//     useOriginalFetch('/api/v1/products', {
+//         params: {
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_hot: 1,
+//             limit: 20,
+//         },
+//     }),
+// );
+// const { data: productUpcoming, pending: loadingProductUpcoming } = await useLazyAsyncData('product-upcoming', async () =>
+//     useOriginalFetch('/api/v1/products', {
+//         params: {
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_upcoming: 1,
+//             limit: 20,
+//         },
+//     }),
+// );
+// const { data: productUniform, pending: loadingProductUniform } = await useLazyAsyncData('product-uniform', async () =>
+//     useOriginalFetch('/api/v1/products', {
+//         params: {
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_uniform: 1,
+//             limit: 4,
+//         },
+//     }),
+// );
+
+const productDashboard = ref([]);
+const loadingProductDashboard = ref(true);
+
+async function getProductDashboard() {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
+        params: {
             category_slug:'ao-ghi-le',
             limit: 4,
-        }
-    }),
-);
-const { data: productNew, pending: loadingProductNew } = await useLazyAsyncData('product-new', async () =>
-    useOriginalFetch('/api/v1/products', {
+        },
+    })
+    if (error.value) {
+
+    } else {
+        productDashboard.value = response.value;
+        loadingProductDashboard.value = false;
+    }
+}
+getProductDashboard()
+
+const productNew = ref([]);
+const loadingProductNew = ref(true);
+async function getProductNew() {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
         params: {
             sort: {
                 'desc[0]': 'id',
@@ -241,10 +307,21 @@ const { data: productNew, pending: loadingProductNew } = await useLazyAsyncData(
             is_new: 1,
             limit: 20,
         },
-    }),
-);
-const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData('product-hot', async () =>
-    useOriginalFetch('/api/v1/products', {
+    })
+    if (error.value) {
+
+    } else {
+        productNew.value = response.value;
+        loadingProductNew.value = false;
+    }
+}
+getProductNew()
+
+const productHot = ref([]);
+const loadingProductHot = ref(true);
+
+async function getProductHot() {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
         params: {
             sort: {
                 'desc[0]': 'id',
@@ -252,10 +329,21 @@ const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
             is_hot: 1,
             limit: 20,
         },
-    }),
-);
-const { data: productUpcoming, pending: loadingProductUpcoming } = await useLazyAsyncData('product-upcoming', async () =>
-    useOriginalFetch('/api/v1/products', {
+    })
+    if (error.value) {
+
+    } else {
+        productHot.value = response.value;
+        loadingProductHot.value = false;
+    }
+}
+getProductHot()
+
+const productUpcoming = ref([]);
+const loadingProductUpcoming = ref(true);
+
+async function getProductUpcoming() {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
         params: {
             sort: {
                 'desc[0]': 'id',
@@ -263,10 +351,21 @@ const { data: productUpcoming, pending: loadingProductUpcoming } = await useLazy
             is_upcoming: 1,
             limit: 20,
         },
-    }),
-);
-const { data: productUniform, pending: loadingProductUniform } = await useLazyAsyncData('product-uniform', async () =>
-    useOriginalFetch('/api/v1/products', {
+    })
+    if (error.value) {
+
+    } else {
+        productUpcoming.value = response.value;
+        loadingProductUpcoming.value = false;
+    }
+}
+getProductUpcoming()
+
+const productUniform = ref([]);
+const loadingProductUniform = ref(true);
+
+async function getProductUniform() {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
         params: {
             sort: {
                 'desc[0]': 'id',
@@ -274,8 +373,15 @@ const { data: productUniform, pending: loadingProductUniform } = await useLazyAs
             is_uniform: 1,
             limit: 4,
         },
-    }),
-);
+    })
+    if (error.value) {
+
+    } else {
+        productUniform.value = response.value;
+        loadingProductUniform.value = false;
+    }
+}
+getProductUniform()
 
 ///SEO
 const config = useRuntimeConfig();
