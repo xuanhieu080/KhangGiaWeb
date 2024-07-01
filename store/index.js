@@ -8,7 +8,7 @@ export const useMain = defineStore('main-store', {
     }),
     actions: {
         async getPageGroup() {
-          const { data: response, error } = await useMyAsyncFetch(`/api/v1/page-groups`);
+          const { data: response, error } = await useMyFetch(`/api/v1/page-groups`);
           if (error.value) {
               console.log(error.value);
           } else {
@@ -16,7 +16,7 @@ export const useMain = defineStore('main-store', {
           }
       },
         async getPageHeader() {
-          const { data: response, error } = await useMyAsyncFetch(`/api/v1/pages/headers`);
+          const { data: response, error } = await useMyFetch(`/api/v1/pages/headers`);
           if (error.value) {
               console.log(error.value);
           } else {
@@ -24,15 +24,20 @@ export const useMain = defineStore('main-store', {
           }
       },
         async getCategoryHeader() {
-          const { data: response, error } = await useMyAsyncFetch(`/api/v1/categories/header`, {
+          const { data: response, error } = await useMyFetch(`/api/v1/categories/header`, {
             params: {
               limit: 5
             }
           });
-          if(response.value) {
-              console.log( response.value.data);
-            this.categoryHeaders = response.value.data
-          }
+            if (error.value) {
+                console.log(error.value);
+            } else {
+                this.categoryHeaders = response.value.data
+            }
+          // if(response.value) {
+          //     console.log( response.value.data);
+          //   this.categoryHeaders = response.value.data
+          // }
       }
     }
   })

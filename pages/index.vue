@@ -290,7 +290,7 @@ async function getProductDashboard() {
     if (error.value) {
 
     } else {
-        productDashboard.value = response.value;
+        productDashboard.value = response.value.data;
         loadingProductDashboard.value = false;
     }
 }
@@ -311,7 +311,7 @@ async function getProductNew() {
     if (error.value) {
 
     } else {
-        productNew.value = response.value;
+        productNew.value = response.value.data;
         loadingProductNew.value = false;
     }
 }
@@ -333,7 +333,7 @@ async function getProductHot() {
     if (error.value) {
 
     } else {
-        productHot.value = response.value;
+        productHot.value = response.value.data;
         loadingProductHot.value = false;
     }
 }
@@ -355,7 +355,7 @@ async function getProductUpcoming() {
     if (error.value) {
 
     } else {
-        productUpcoming.value = response.value;
+        productUpcoming.value = response.value.data;
         loadingProductUpcoming.value = false;
     }
 }
@@ -377,7 +377,7 @@ async function getProductUniform() {
     if (error.value) {
 
     } else {
-        productUniform.value = response.value;
+        productUniform.value = response.value.data;
         loadingProductUniform.value = false;
     }
 }
