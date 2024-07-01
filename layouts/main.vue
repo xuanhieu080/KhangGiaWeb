@@ -59,8 +59,8 @@
             </div>
         </div>
     </main>
-    <UCard v-if="articleSEO && articleSEO.data && !loadingSeo" class="m-6 prose prose-lg max-w-full">
-        <div v-html="articleSEO.data"></div>
+    <UCard v-if="articleSEO && articleSEO.data && articleSEO.data.description && !loadingSeo" class="m-6 prose prose-lg max-w-full">
+        <div v-html="articleSEO.data.description"></div>
     </UCard>
     <UNotifications class="prose-p:mt-0">
         <template #title="{ title }">
