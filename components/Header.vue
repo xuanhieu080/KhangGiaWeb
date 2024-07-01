@@ -421,7 +421,7 @@ const getProductSearch = async () => {
         },
     });
     if (response.value) {
-        searchProducts.value = response.value;
+        searchProducts.value = response.value.data;
         loadingSearchProduct.value = false;
     } else {
         searchProducts.value = [];
