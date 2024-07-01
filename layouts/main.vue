@@ -258,7 +258,7 @@ onMounted(() => {
     script.src = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js';
     document.body.appendChild(script);
 
-    let noscript = document.createElement('noscript');
+    const noscript = document.createElement('noscript');
     noscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MFK8NDW" height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
     document.body.prepend(noscript);
 });

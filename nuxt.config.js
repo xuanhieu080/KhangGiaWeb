@@ -239,22 +239,22 @@ export default defineNuxtConfig({
                 },
             ],
             script: [
-                // {
-                //     hid: 'gtmHead',
-                //     async: true,
-                //     defer: true,
-                //     src: 'https://www.googletagmanager.com/ns.html?id=GTM-5MFK8NDW',
-                // },
+                {
+                    hid: 'gtmHead',
+                    async: true,
+                    defer: true,
+                    src: 'https://www.googletagmanager.com/gtag/js?id=GTM-5MFK8NDW',
+                },
                 // {
                 //     hid: 'gtmHead',
                 //     defer: true,
                 //     src: 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js',
                 // },
-                // {
-                //     hid: 'gtmHead',
-                //     innerHTML:
-                //         "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'GTM-5MFK8NDW');",
-                // },
+                {
+                    hid: 'gtmHead',
+                    innerHTML:
+                        "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'GTM-5MFK8NDW');",
+                },
                 {
                     name: 'google-site-verification',
                     content: "6w3-X134SqCECM8aDFS_WmQg30hUbvRAYVVbYpAYiZk",
