@@ -53,7 +53,7 @@
                         <a href="https://www.instagram.com/congtygak/" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_instagram" alt="Footer Icon instar"
                         /></a>
-                        <a href="https://twitter.com/congtygak" target="_blank" class="footer-social__item"
+                        <a href="https://www.youtube.com/@CongtyGAK" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_youtube" alt="Footer Icon youtube"
                         /></a>
                     </div>
