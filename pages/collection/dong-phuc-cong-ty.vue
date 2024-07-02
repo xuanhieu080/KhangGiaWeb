@@ -120,8 +120,7 @@
             <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
                 <div class="container mx-auto md:max-w-[1280px] p-4">
                     <span class="text-gray-500 font-medium fs-20 leading-relaxed"
-                        >Dòng sản phẩm thể thao ứng dụng các chất liệu và thiết kế mới với nhiều tính năng ưu việt giúp bạn thoải mái và tập
-                        trung hơn vào các chuyển động của mình.
+                        >GAK tiên phong trong việc cung ứng các sản phẩm chất lượng, tuỳ biến chính xác theo nhu cầu khách hàng và không ngừng cải tiến chất lượng sản phẩm
                     </span>
                 </div>
             </div>
