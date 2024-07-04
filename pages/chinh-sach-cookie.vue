@@ -29,7 +29,7 @@
                             <NuxtLink :to="localePath({name: item.slug})"
                                 class="flex items-center justify-between gap-2 relative w-full h-12 font-bold hover:text-green-700"
                                 :class="selected ? 'text-green-700' : 'text-black'">
-                                <span class="capitalize">{{ item.label }}</span>
+                                <span class="capitalize text-start">{{ item.label }}</span>
                                 <UIcon name="i-heroicons-chevron-right-20-solid"></UIcon>
                             </NuxtLink>
                         </template>

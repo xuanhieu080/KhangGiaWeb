@@ -29,7 +29,7 @@
                             <NuxtLink :to="localePath({name: item.slug})"
                                 class="flex items-center justify-between gap-2 relative w-full h-12 font-bold hover:text-green-700"
                                 :class="selected ? 'text-green-700' : 'text-black'">
-                                <span class="capitalize">{{ item.label }}</span>
+                                <span class="capitalize text-start">{{ item.label }}</span>
                                 <UIcon name="i-heroicons-chevron-right-20-solid"></UIcon>
                             </NuxtLink>
                         </template>
@@ -74,7 +74,7 @@ import images from 'assets/icons';
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-const defaultIndex = ref(2)
+const defaultIndex = ref(5)
 const items = ref([
     {
         label: 'Điều khoản sử dụng',
@@ -104,12 +104,12 @@ const items = ref([
     {
         label: 'Chính sách hoàn trả sản phẩm',
         slug: 'chinh-sach-hoan-tra-san-pham',
-        content: 'Finally 2, this is the content for Tab3',
+        content: 'Finally 3, this is the content for Tab3',
     },
 ]);
 const content = ref();
-const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-khuyen-mai', () =>
-    useOriginalFetch(`/api/v1/pages/chinh-sach-khuyen-mai`),
+const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-hoan-tra-san-pham', () =>
+    useOriginalFetch(`/api/v1/pages/chinh-sach-hoan-tra-san-pham`),
 );
 
 watchEffect(() => {
