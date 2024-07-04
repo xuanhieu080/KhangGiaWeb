@@ -101,6 +101,11 @@ const items = ref([
         slug: 'chinh-sach-giao-hang',
         content: 'Finally 2, this is the content for Tab3',
     },
+    {
+        label: 'Chính sách hoàn trả sản phẩm',
+        slug: 'chinh-sach-hoan-tra-san-pham',
+        content: 'Finally 2, this is the content for Tab3',
+    }
 ]);
 const content = ref();
 const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-khuyen-mai', () =>
@@ -112,7 +117,7 @@ watchEffect(() => {
         items.value[defaultIndex.value].content = page.value.data.description
     }
 })
-let title = 'Chính sách bảo mật';
+let title = 'Chính sách khuyến mãi';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

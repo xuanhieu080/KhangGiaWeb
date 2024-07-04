@@ -344,7 +344,7 @@
                                <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-khuyen-mai' })">Chính sách khuyến mãi</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-hoan-tra-san-pham' })">Chính sách hoàn trả sản phảm</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-hoan-tra-san-pham' })">Chính sách hoàn trả sản phẩm</NuxtLink>
                            </li>
                        </ul>
                         <p>Cảm ơn bạn đã tin chọn và mua sắm các sản phẩm tại GAK.VN</p>

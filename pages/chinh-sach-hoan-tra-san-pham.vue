@@ -74,7 +74,7 @@ import images from 'assets/icons';
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-const defaultIndex = ref(4)
+const defaultIndex = ref(2)
 const items = ref([
     {
         label: 'Điều khoản sử dụng',
@@ -105,11 +105,11 @@ const items = ref([
         label: 'Chính sách hoàn trả sản phẩm',
         slug: 'chinh-sach-hoan-tra-san-pham',
         content: 'Finally 2, this is the content for Tab3',
-    }
+    },
 ]);
 const content = ref();
-const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-giao-hang', () =>
-    useOriginalFetch(`/api/v1/pages/chinh-sach-giao-hang`),
+const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-khuyen-mai', () =>
+    useOriginalFetch(`/api/v1/pages/chinh-sach-khuyen-mai`),
 );
 
 watchEffect(() => {
@@ -117,7 +117,7 @@ watchEffect(() => {
         items.value[defaultIndex.value].content = page.value.data.description
     }
 })
-let title = 'Chính sách giao hàng';
+let title = 'Chính sách hoàn trả sản phẩm';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

@@ -602,6 +602,7 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
+import YoutubeVideo from '~/components/YoutubeVideo.vue';
 
 const route = useRoute();
 const router = useRouter();
