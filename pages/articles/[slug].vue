@@ -43,7 +43,7 @@ const {
     data: content,
     pending: loadingArticle,
     error: errorGetItem,
-} = await useAsyncData(
+} = await useLazyAsyncData(
     'articles-details',
     async () =>
         useOriginalFetch(`/api/v1/posts/${router.currentRoute.value.params.slug}`),
@@ -59,12 +59,12 @@ if (errorGetItem.value) {
 
 watchEffect(() => {
     if(!loadingArticle.value) {
-        links.value[1].label = content.value.data.title
+        links.value[1].label = content.value?.data?.title
     }
 })
-let title = content.value.data.meta_title;
+let title = content.value?.data?.meta_title;
 
-let description = content.value.data.meta_description;
+let description = content.value?.data?.meta_description;
 defineOgImageComponent('GAK', {
     title: title,
     description: description,
@@ -72,7 +72,7 @@ defineOgImageComponent('GAK', {
     colorMode: 'dark',
 });
 defineOgImage({
-    url:  content.value.data.image_url,
+    url:  content.value?.data?.image_url,
 });
 let seoMeta = {
     description: description,
@@ -81,7 +81,7 @@ let seoMeta = {
     title: title,
     twitterTitle: title,
     twitterDescription: description,
-    keywords: content.value.data.meta_key,
+    keywords: content.value?.data?.meta_key,
 };
 
 useSeoMeta(seoMeta);
