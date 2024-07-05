@@ -284,7 +284,7 @@
                                                     <img src="/images/product-item-9.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo teambuilding</span> Số lượng tối thiểu: 100 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>Áo teambuilding</span> Số lượng tối thiểu: 50 chiếc</div>
                                         </div>
                                     </div>
                                 </div>
@@ -296,7 +296,7 @@
                                                     <img src="/images/product-item-10.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun công sở</span> Số lượng tối thiểu: 200 đôi</div>
+                                            <div class="pod-grid__tagline"><span>Áo thun công sở</span> Số lượng tối thiểu: 50 đôi</div>
                                         </div>
                                     </div>
                                 </div>
@@ -323,7 +323,7 @@
                                                     <img src="/images/product-item-12.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun thể thao</span> Số lượng tối thiểu: 200 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>Áo thun thể thao</span> Số lượng tối thiểu: 50 chiếc</div>
                                         </div>
                                     </div>
                                 </div>
