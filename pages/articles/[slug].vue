@@ -62,29 +62,29 @@ watchEffect(() => {
         links.value[1].label = content.value?.data?.title
     }
 })
-let title = content.value?.data?.meta_title;
+const title = ref(content.value?.data?.meta_title)
 
-let description = content.value?.data?.meta_description;
+const description = ref(content.value?.data?.meta_description);
 defineOgImageComponent('GAK', {
-    title: title,
-    description: description,
+    title: title.value,
+    description: description.value,
     theme: '#ff0000',
     colorMode: 'dark',
 });
 defineOgImage({
     url:  content.value?.data?.image_url,
 });
-let seoMeta = {
-    description: description,
-    ogDescription: description,
-    ogTitle: title,
-    title: title,
-    twitterTitle: title,
-    twitterDescription: description,
+const seoMeta = ref({
+    description: description.value,
+    ogDescription: description.value,
+    ogTitle: title.value,
+    title: title.value,
+    twitterTitle: title.value,
+    twitterDescription: description.value,
     keywords: content.value?.data?.meta_key,
-};
+});
 
-useSeoMeta(seoMeta);
+useSeoMeta(seoMeta.value);
 </script>
 
 <style lang="scss" scoped></style>
