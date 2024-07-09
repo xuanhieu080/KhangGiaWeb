@@ -102,7 +102,7 @@ const router = useRouter();
 //data
 
 const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData('articles-blog-hot-specific', () =>
-    useOriginalFetch('/api/v1/posts', {
+    useOriginalFetch('/api/v1/post-hots', {
         params: {
             is_hot: true,
         },

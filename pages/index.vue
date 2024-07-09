@@ -321,7 +321,7 @@ const productHot = ref([]);
 const loadingProductHot = ref(true);
 
 async function getProductHot() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/product-hots`, {
         params: {
             sort: {
                 'desc[0]': 'id',
@@ -343,7 +343,7 @@ const productUpcoming = ref([]);
 const loadingProductUpcoming = ref(true);
 
 async function getProductUpcoming() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/product-upcoming`, {
         params: {
             sort: {
                 'desc[0]': 'id',
@@ -365,7 +365,7 @@ const productUniform = ref([]);
 const loadingProductUniform = ref(true);
 
 async function getProductUniform() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
+    const { data: response, error } = await useMyAsyncFetch(`/api/v1/product-uniforms`, {
         params: {
             sort: {
                 'desc[0]': 'id',

@@ -34,7 +34,7 @@
                             <SwiperSlide
                                 v-for="(category, index) in collection.item.descendants"
                                 :key="product"
-                                class="!h-[250px] sm:!h-[300px] xl:!h-[400px] w-[200px] mr-4">
+                                class="!h-[300px] xl:!h-[400px] w-[200px] mr-4">
                                 <UCard
                                     :ui="{ wrapper: '', shadow: '', ring: '', body: { base: 'h-full', padding: 'p-0 sm:p-2' } }"
                                     class="category-card h-full"

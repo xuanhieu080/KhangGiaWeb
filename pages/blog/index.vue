@@ -96,11 +96,11 @@ const selectedCategory = ref(categoryBlog.value[0]);
 
 
 //data
-const { data: articlesList, pending: loadingAticlesList } = await useLazyAsyncData('articles-blog', () =>
-    useOriginalFetch('/api/v1/posts'),
-);
+// const { data: articlesList, pending: loadingAticlesList } = await useLazyAsyncData('articles-blog', () =>
+//     useOriginalFetch('/api/v1/posts'),
+// );
 const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData('articles-blog-hot', () =>
-    useOriginalFetch('/api/v1/posts', {
+    useOriginalFetch('/api/v1/post-hots', {
         params: {
             is_hot: true,
         },
@@ -114,7 +114,7 @@ const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncDa
     }),
 );
 const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-blog-new', () =>
-    useOriginalFetch('/api/v1/posts', {
+    useOriginalFetch('/api/v1/post-news', {
         params: {
             is_new: true,
         },

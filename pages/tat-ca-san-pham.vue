@@ -255,8 +255,8 @@ const {
 const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
     'product-category-hot',
     async () =>
-        useOriginalFetch(`/api/v1/products`, {
-            params: { is_hot: 1, limit: 8 },
+        useOriginalFetch(`/api/v1/product-hots`, {
+            params: { is_hot: 1, limit: 20 },
         }),
     {
         default: () => [],
