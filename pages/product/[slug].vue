@@ -127,8 +127,8 @@
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
                             <span class="font-bold text-[28px] lg:text-[32px]">{{
-                                productItemCurrent ? productItemCurrent.name : productItem.data?.name
-                            }}</span>
+                                    productItemCurrent ? productItemCurrent.name : productItem.data?.name
+                                }}</span>
                         </div>
                         <div class="product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black">
                             <NuxtRating
@@ -186,16 +186,11 @@
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
                                     <button
+                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
                                         class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
                                         :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
                                         :style="{ backgroundColor: attribute.attribute_color }"
                                         @click="selectVariant(variantAttribute, attribute)"></button>
-<!--                                    <button-->
-<!--                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"-->
-<!--                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"-->
-<!--                                        :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"-->
-<!--                                        :style="{ backgroundColor: attribute.attribute_color }"-->
-<!--                                        @click="selectVariant(variantAttribute, attribute)"></button>-->
 <!--                                    <button-->
 <!--                                        v-else-->
 <!--                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"-->
@@ -210,7 +205,7 @@
                                     color="blue"
                                     icon="i-heroicons-arrow-path"
                                     @click="resetProductPage(true)"
-                                    >{{ $t('Cài lại') }}</UButton
+                                >{{ $t('Cài lại') }}</UButton
                                 >
                                 <UButton
                                     v-if="variantAttribute.attributes.length > 3"
@@ -219,35 +214,29 @@
                                     color="none"
                                     class="text-blue-500"
                                     @click="showAllColor = !showAllColor"
-                                    >{{ showAllColor ? $t('Thu gọn') : $t('Xem thêm') }}...</UButton
+                                >{{ showAllColor ? $t('Thu gọn') : $t('Xem thêm') }}...</UButton
                                 >
                             </div>
                             <div v-else class="size-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes">
-<!--                                    <button-->
-<!--                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"-->
-<!--                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"-->
-<!--                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"-->
-<!--                                        @click="selectVariant(variantAttribute, attribute)">-->
-<!--                                        {{ attribute.attribute_name }}-->
-<!--                                    </button>-->
                                     <button
+                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
                                         :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
                                         class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
                                         @click="selectVariant(variantAttribute, attribute)">
                                         {{ attribute.attribute_name }}
                                     </button>
-<!--                                    <button-->
-<!--                                        v-else-if="-->
-<!--                                            !checkEventNone(attribute.attribute_id, variantAttribute.id) &&-->
-<!--                                            !variantAttribute.is_main &&-->
-<!--                                            !productItemCurrent-->
-<!--                                        "-->
-<!--                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"-->
-<!--                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"-->
-<!--                                        @click="selectVariant(variantAttribute, attribute)">-->
-<!--                                        {{ attribute.attribute_name }}-->
-<!--                                    </button>-->
+                                    <button
+                                        v-else-if="
+                                            !checkEventNone(attribute.attribute_id, variantAttribute.id) &&
+                                            !variantAttribute.is_main &&
+                                            !productItemCurrent
+                                        "
+                                        :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
+                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14"
+                                        @click="selectVariant(variantAttribute, attribute)">
+                                        {{ attribute.attribute_name }}
+                                    </button>
 <!--                                    <button-->
 <!--                                        v-else-->
 <!--                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14">-->
@@ -265,14 +254,14 @@
                             >{{ variantAttribute.slug =='size' ? $t('Hướng dẫn chọn size') : $t('Đường dẫn') }}...</UButton>
                         </div>
                         <span class="fs-14"
-                            >{{ $t('Số lượng còn') }}
+                        >{{ $t('Số lượng còn') }}
                             <b>{{
-                                productItemCurrent && productItemCurrent.qty
-                                    ? productItemCurrent.qty
-                                    : productItem.data?.variants.length == 0 && productItem.data?.variantAttribute.length == 0
-                                    ? productItem.data?.qty
-                                    : 0
-                            }}</b></span
+                                    productItemCurrent && productItemCurrent.qty
+                                        ? productItemCurrent.qty
+                                        : productItem.data?.variants.length == 0 && productItem.data?.variantAttribute.length == 0
+                                            ? productItem.data?.qty
+                                            : 0
+                                }}</b></span
                         >
                         <div
                             v-if="productItemCurrent"
@@ -557,7 +546,6 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
-import YoutubeVideo from '~/components/YoutubeVideo.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -892,7 +880,6 @@ const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyn
 
 function selectVariant(group, attribute) {
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
-    let productVariants1 = JSON.parse(JSON.stringify(productVariants.value));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
 
     if (index !== -1 && productVariants.value[index] !== undefined) {
@@ -907,7 +894,6 @@ function selectVariant(group, attribute) {
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
     let checkProduct = getProductItem();
-
     if (checkProduct && (!productItemCurrent.value || checkProduct.code != productItemCurrent.value.code)) {
         loadingProductItem.value = true;
         productItemCurrent.value = checkProduct;
@@ -925,8 +911,6 @@ function selectVariant(group, attribute) {
                 query: { code: productItemCurrent.value.code },
             });
         }
-    } else {
-        productVariants.value = productVariants1
     }
 }
 
@@ -948,9 +932,17 @@ function getProductItem() {
         return arraysMatch(variant.options, attributeIDs) && arraysMatch(variant.option_group, attributeGroupIDs);
     });
 
-    // if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image.length > 0) {
-    if (matchingVariant) {
+    if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image.length > 0) {
         return matchingVariant;
+    } else if (matchingVariant) {
+        toast.add({
+            title: trans('Thông báo') + ' !',
+            description: trans('Sản phẩm đang tạm ngưng'),
+            timeout: 3000,
+            icon: 'i-heroicons-check-badge',
+            color: 'red',
+        });
+        return null;
     } else {
         return null;
     }
@@ -1017,7 +1009,7 @@ function checkEventNone(attributeId, attributeGroupId) {
     });
 
     if (matchingVariant) {
-        return matchingVariant.out_of_stock == false;
+        return matchingVariant.thumb_image.length > 0;
     } else {
         return false;
     }
