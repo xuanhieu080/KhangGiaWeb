@@ -271,8 +271,8 @@ const {
 
 // })
 
-let title = 'Quần áo ghile bảo hộ chất lượng cao';
-let description = 'Quần áo ghile bảo hộ chất lượng cao';
+let title = 'Áo gile kỹ sư cao cấp';
+let description = 'Áo gile kỹ sư cao cấp';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

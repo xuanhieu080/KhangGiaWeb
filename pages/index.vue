@@ -80,7 +80,7 @@
                     key='container-2'
                     :loading='loadingProductDashboard'
                     :productList="productDashboard?.data"
-                    :collectionTitle="'QUẦN ÁO GHILE BẢO HỘ CHẤT LƯỢNG CAO'"
+                    :collectionTitle="'Áo gile kỹ sư cao cấp'"
                     :collectionLink="'/collection/ao-ghi-le'" />
             </div>
             <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-6 md:gap-4 w-full h-full">
@@ -277,111 +277,116 @@ const diaryList = ref([
 //     }),
 // );
 
-const productDashboard = ref([]);
-const loadingProductDashboard = ref(true);
+// const productDashboard = ref([]);
+// const loadingProductDashboard = ref(true);
 
-async function getProductDashboard() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
-        params: {
-            category_slug:'ao-ghi-le',
-            limit: 4,
-        },
-    })
-    if (error.value) {
 
-    } else {
-        productDashboard.value = response.value;
-        loadingProductDashboard.value = false;
-    }
-}
-getProductDashboard()
+const {
+    data: productDashboard,
+    pending: loadingProductDashboard,
+} = await useAsyncData(
+    'ao-ghi-le',
+    async () =>
+        useOriginalFetch(`/api/v1/products`,{
+            params: {
+                category_slug:'ao-ghi-le',
+                limit: 4,
+            },
+        }),
+    {
+        default: () => [],
+    },
+);
+// async function getProductDashboard() {
+//     const { data:response, error } = await useD(`/api/v1/products`, {
+//         params: {
+//             category_slug:'ao-ghi-le',
+//             limit: 4,
+//         },
+//     })
+//     console.log(response);
+//     if (response) {
+//         console.log(response);
+//         productDashboard.value = response;
+//         loadingProductDashboard.value = false;
+//     }
+// }
+// getProductDashboard()
 
-const productNew = ref([]);
-const loadingProductNew = ref(true);
-async function getProductNew() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/products`, {
-        params: {
+const {
+    data: productNew,
+    pending: loadingProductNew,
+} = await useAsyncData(
+    'product-new',
+    async () =>
+        useOriginalFetch(`/api/v1/product-news`,{
             sort: {
                 'desc[0]': 'id',
             },
             is_new: 1,
             limit: 20,
-        },
-    })
-    if (error.value) {
+        }),
+    {
+        default: () => [],
+    },
+);
 
-    } else {
-        productNew.value = response.value;
-        loadingProductNew.value = false;
-    }
-}
-getProductNew()
-
-const productHot = ref([]);
-const loadingProductHot = ref(true);
-
-async function getProductHot() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/product-hots`, {
-        params: {
+const {
+    data: productHot,
+    pending: loadingProductHot,
+} = await useAsyncData(
+    'product-hot',
+    async () =>
+        useOriginalFetch(`/api/v1/product-hots`,{
             sort: {
                 'desc[0]': 'id',
             },
             is_hot: 1,
             limit: 20,
-        },
-    })
-    if (error.value) {
+        }),
+    {
+        default: () => [],
+    },
+);
 
-    } else {
-        productHot.value = response.value;
-        loadingProductHot.value = false;
-    }
-}
-getProductHot()
 
-const productUpcoming = ref([]);
-const loadingProductUpcoming = ref(true);
-
-async function getProductUpcoming() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/product-upcoming`, {
-        params: {
+const {
+    data: productUpcoming,
+    pending: loadingProductUpcoming,
+} = await useAsyncData(
+    'product-upcoming',
+    async () =>
+        useOriginalFetch(`/api/v1/product-upcoming`,{
             sort: {
                 'desc[0]': 'id',
             },
             is_upcoming: 1,
             limit: 20,
-        },
-    })
-    if (error.value) {
+        }),
+    {
+        default: () => [],
+    },
+);
 
-    } else {
-        productUpcoming.value = response.value;
-        loadingProductUpcoming.value = false;
-    }
-}
-getProductUpcoming()
 
-const productUniform = ref([]);
-const loadingProductUniform = ref(true);
-
-async function getProductUniform() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/product-uniforms`, {
-        params: {
+const {
+    data: productUniform,
+    pending: loadingProductUniform,
+} = await useAsyncData(
+    'product-uniforms',
+    async () =>
+        useOriginalFetch(`/api/v1/product-uniforms`,{
             sort: {
                 'desc[0]': 'id',
             },
             is_uniform: 1,
             limit: 4,
-        },
-    })
-    if (error.value) {
+        }),
+    {
+        default: () => [],
+    },
+);
 
-    } else {
-        productUniform.value = response.value;
-        loadingProductUniform.value = false;
-    }
-}
-getProductUniform()
 
 ///SEO
 const config = useRuntimeConfig();

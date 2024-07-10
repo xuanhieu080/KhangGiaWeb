@@ -824,27 +824,26 @@ if (errorGetProduct.value) {
     router.push({ name: `index___${locale.value}` });
 }
 
-const productHot = ref([]);
-const loadingProductHot = ref(true);
 
-async function getProductHot() {
-    const { data: response, error } = await useMyAsyncFetch(`/api/v1/product-hots`, {
-        params: {
+const {
+    data: productHot,
+    pending: loadingProductHot,
+} = await useAsyncData(
+    'product-hot',
+    async () =>
+        useOriginalFetch(`/api/v1/product-hots`,{
             sort: {
                 'desc[0]': 'id',
             },
             is_hot: 1,
             limit: 20,
-        },
-    })
-    if (error.value) {
+        }),
+    {
+        default: () => [],
+    },
+);
 
-    } else {
-        productHot.value = response.value;
-        loadingProductHot.value = false;
-    }
-}
-getProductHot()
+
 // const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
 //     'product-hot',
 //     async () =>
