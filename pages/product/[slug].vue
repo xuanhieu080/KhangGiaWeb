@@ -186,7 +186,6 @@
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
                                     <button
-                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
                                         class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
                                         :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
                                         :style="{ backgroundColor: attribute.attribute_color }"
@@ -218,7 +217,11 @@
                                 >
                             </div>
                             <div v-else class="size-list flex items-center flex-wrap gap-4">
-                                <div v-for="(attribute, index) in variantAttribute.attributes">
+                                <div v-for="(attribute, index) in variantAttribute.attributes"
+                                     v-if="(checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main) || (!checkEventNone(attribute.attribute_id, variantAttribute.id) &&
+                                            !variantAttribute.is_main &&
+                                            !productItemCurrent)"
+                                >
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
                                         :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
