@@ -414,7 +414,6 @@ useSeoMeta(seoMeta);
         }
     }
     .cs-about__description {
-        color: #000000;
         font-size: 1.125rem;
         font-weight: 500;
     }

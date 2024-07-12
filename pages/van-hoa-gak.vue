@@ -1539,6 +1539,10 @@ useSeoMeta(seoMeta);
             text-align: center;
         }
     }
+    .cs-about__description {
+        font-size: 1.125rem;
+        font-weight: 500;
+    }
     .cs-caption__wrapper {
         background-color: #000000;
         padding-top: 50px;
