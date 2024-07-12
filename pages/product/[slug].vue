@@ -218,7 +218,7 @@
                             </div>
                             <div v-else class="size-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes"
-                                     v-if="(checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main) || (!checkEventNone(attribute.attribute_id, variantAttribute.id) &&
+                                     v-show="(checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main) || ( !checkEventNone(attribute.attribute_id, variantAttribute.id) &&
                                             !variantAttribute.is_main &&
                                             !productItemCurrent)"
                                 >
