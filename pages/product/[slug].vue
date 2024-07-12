@@ -882,6 +882,7 @@ const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyn
 
 function selectVariant(group, attribute) {
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+    let productVariants1 = JSON.parse(JSON.stringify(productVariants.value));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
 
     if (index !== -1 && productVariants.value[index] !== undefined) {
@@ -913,6 +914,8 @@ function selectVariant(group, attribute) {
                 query: { code: productItemCurrent.value.code },
             });
         }
+    } else {
+        productVariants.value = productVariants1
     }
 }
 
