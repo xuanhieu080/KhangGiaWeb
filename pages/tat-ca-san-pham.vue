@@ -41,10 +41,10 @@
                     <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="sub-title">
                         {{ 'lưới thun 2 bên' }}
                     </h2>
-                    <h2 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-ha-noi'" class="sub-title">
                         {{ 'hà nội' }}
                     </h2>
-                    <h2 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-kieu-3m'" class="sub-title">
                         {{ 'kiểu 3M' }}
                     </h2>
                     <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="sub-title">
@@ -56,8 +56,8 @@
                 </div>
                 <div class="md:hidden">
                     <img v-if="category.slug == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2_2.jpg" class="h-full w-full object-contain" />
-                    <img v-if="category.slug == 'ao-phang-quang-ha-noi'" src="/images/all-products/all-banner-3_3.jpg" class="h-full w-full object-contain" />
-                    <img v-if="category.slug == 'ao-phang-quang-kieu-3m'" src="/images/all-products/all-banner-4_4.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-ha-noi'" src="/images/all-products/all-banner-3_3.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-kieu-3m'" src="/images/all-products/all-banner-4_4.jpg" class="h-full w-full object-contain" />
                     <img v-if="category.slug == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5_5.jpg" class="h-full w-full object-contain" />
                     <img v-if="category.slug == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6_6.jpg" class="h-full w-full object-contain" />
                 </div>
@@ -68,10 +68,10 @@
                             <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang lưới thun 2 bên' }}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-ha-noi'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang hà nội' }}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-kieu-3m'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ 'Sản phẩm áo phản quang kiểu 3M' }}
                             </h2>
                             <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
@@ -83,10 +83,10 @@
                             <h3 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Phù hợp mọi môi trường làm việc' }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phang-quang-ha-noi'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-ha-noi'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Dòng sản phẩm ưa chuộng ở thị trường phía bắc' }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phang-quang-kieu-3m'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-kieu-3m'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ 'Mặc đẹp, đứng form, nổi tiếng' }}
                             </h3>
                             <h3 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
@@ -105,8 +105,8 @@
                             </UButton>
                         </div>
                         <img v-if="category.slug == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2.jpg" class="h-full w-full object-contain" />
-                        <img v-if="category.slug == 'ao-phang-quang-ha-noi'" src="/images/all-products/all-banner-3.jpg" class="h-full w-full object-contain" />
-                        <img v-if="category.slug == 'ao-phang-quang-kieu-3m'" src="/images/all-products/all-banner-4.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-ha-noi'" src="/images/all-products/all-banner-3.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-kieu-3m'" src="/images/all-products/all-banner-4.jpg" class="h-full w-full object-contain" />
                         <img v-if="category.slug == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5.jpg" class="h-full w-full object-contain" />
                         <img v-if="category.slug == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6.jpg" class="h-full w-full object-contain" />
                     </div>

@@ -1,4 +1,7 @@
 @charset "utf-8";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "./variables.scss";
 @import "./mixins.scss";
 @import "./ckeditor.scss";
