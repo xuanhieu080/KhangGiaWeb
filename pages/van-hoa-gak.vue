@@ -1912,10 +1912,10 @@ useSeoMeta(seoMeta);
                         flex: 1;
                         justify-content: space-between;
                         align-items: flex-end;
+                        margin-top: 20px;
                         @media screen and (max-width: 767px) {
                             flex-wrap: wrap;
                         }
-                        margin-top: 20px;
                         .job-grid__link {
                             display: flex;
                             align-items: center;

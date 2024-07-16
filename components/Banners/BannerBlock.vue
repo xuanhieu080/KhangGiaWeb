@@ -95,6 +95,9 @@ const props = defineProps({
             }
         }
         .title {
+            font-size: 2.25rem;
+            text-transform: uppercase;
+            font-weight: bold;
             @media screen and (min-width: 1660px) {
                 font-size: 80px;
             }
@@ -104,9 +107,6 @@ const props = defineProps({
             @media screen and (max-width: 767px) {
                 max-width: 320px;
             }
-            font-size: 2.25rem;
-            text-transform: uppercase;
-            font-weight: bold;
             &.custom-font {
                 font-size: 2rem;
                 max-width: 250px;
@@ -117,6 +117,7 @@ const props = defineProps({
             }
         }
         .description {
+            font-weight: 500;
             @media screen and (min-width: 1280px) {
                 font-size: 1.25rem;
             }
@@ -126,7 +127,6 @@ const props = defineProps({
                     color: white;
                 }
             }
-            font-weight: 500;
         }
     }
 }

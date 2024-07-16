@@ -470,14 +470,14 @@ watch(
         transform: translateY(-100%);
     }
     .topbar {
-        @apply flex items-center justify-between gap-6 w-full;
-        @media screen and (max-width: 991px) {
-            display: none;
-        }
         padding: 6px 30px;
         color: #1d1d1d;
         transition: all 0.3s;
         height: var(--header-topbar);
+        @apply flex items-center justify-between gap-6 w-full;
+        @media screen and (max-width: 991px) {
+            display: none;
+        }
         .left-top-bar {
             @apply flex items-center gap-4 w-full;
             .logo {
@@ -485,17 +485,13 @@ watch(
             }
         }
         .sub-nav {
-            @extend .topbar;
-            @apply justify-end gap-4;
             font-weight: 500;
             padding: 6px 0;
+            @extend .topbar;
+            @apply justify-end gap-4;
         }
     }
     .topbar-promotion {
-        @apply flex items-center justify-center;
-        @media screen and (max-width: 991px) {
-            display: none;
-        }
         background: #525252;
         color: #fff;
         font-style: normal;
@@ -504,6 +500,10 @@ watch(
         position: relative;
         padding-left: 30px;
         padding-right: 30px;
+        @apply flex items-center justify-center;
+        @media screen and (max-width: 991px) {
+            display: none;
+        }
     }
     .header {
         background-color: #f1f1f1;
@@ -515,21 +515,20 @@ watch(
         padding-right: 30px;
         @apply flex items-center justify-between w-full;
         .left-header {
+            margin-right: 8px;
             @apply flex items-center gap-4;
             @media screen and (max-width: 991px) {
                 display: none;
             }
-            margin-right: 8px;
             .logo {
                 height: 40px;
                 flex: 0 1 100px;
             }
         }
         .middle-header {
-            @apply flex items-center justify-center h-full;
             margin-right: 8px;
+            @apply flex items-center justify-center h-full;
             @media screen and (max-width: 991px) {
-                @apply hidden flex-col;
                 position: absolute;
                 top: var(--header-main);
                 left: 0;
@@ -540,6 +539,8 @@ watch(
                 z-index: 100;
                 background-color: #fff;
                 overflow: auto;
+
+                @apply hidden flex-col;
                 &.active-mobile {
                     @apply flex;
                 }

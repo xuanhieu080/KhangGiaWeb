@@ -1092,10 +1092,10 @@ useSeoMeta(seoMeta);
                 }
                 @media (max-width: 1200px) {
                     padding: 0;
+                    margin: 4px 0;
                     br {
                         display: none;
                     }
-                    margin: 4px 0;
                 }
             }
         }
@@ -1282,10 +1282,10 @@ useSeoMeta(seoMeta);
                     display: flex;
                     justify-content: space-between;
                     gap: 16px;
+                    max-width: 463px;
                     @media (max-width: 991px) {
                         @apply flex-wrap items-center justify-center;
                     }
-                    max-width: 463px;
                     .contact__content-social {
                         border: 1px solid #fff;
                         border-radius: 16px;

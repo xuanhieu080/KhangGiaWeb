@@ -10,13 +10,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap');
 
 * {
+    font-family:'Mulish', 'Roboto Slab', sans-serif;
     &::-webkit-scrollbar-thumb {
         background: #999;
     }
-
-    font-family:'Mulish',
-    'Roboto Slab',
-    sans-serif;
 }
 
 html {
@@ -27,6 +24,10 @@ html {
 
 
 .loading-wrapper {
+    margin: 40px auto;
+    width: 150px;
+    height: 150px;
+    position: relative;
     @keyframes rotate-loading {
         0% {
             transform: rotate(0deg);
@@ -242,11 +243,6 @@ html {
             opacity: 0
         }
     }
-
-    margin: 40px auto;
-    width: 150px;
-    height: 150px;
-    position: relative;
 
     .loading {
         height: 150px;

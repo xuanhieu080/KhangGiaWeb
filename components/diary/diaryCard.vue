@@ -128,8 +128,8 @@ const handleCloseDiaryProduct = () => {
             }
             .diary-product-price {
                 font-weight: bold;
-                @apply flex gap-3 items-center;
                 font-size: 14px;
+                @apply flex gap-3 items-center;
                 .original-price {
                     @apply text-gray-400/50;
                     text-decoration: line-through;
