@@ -89,7 +89,6 @@ const seoMeta = {
 
 useSeoMeta(seoMeta);
 
-
 </script>
 <style lang='scss' scoped>
 .page {
