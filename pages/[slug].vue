@@ -69,8 +69,8 @@ const image = ref(page.value.data?.image_url);
 const meta_key = ref(page.value.data?.meta_key);
 
 defineOgImageComponent('GAK', {
-    title: title,
-    description: description,
+    title: title.value,
+    description: description.value,
     theme: '#ff0000',
     colorMode: 'dark',
 });

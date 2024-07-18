@@ -1,5 +1,5 @@
 <template>
-    <footer class="site-footer mobile--hidden">
+    <footer v-if="pageGroups.length > 0" class="site-footer mobile--hidden">
         <div class="footer-container">
             <div class="site-footer__inner">
                 <div class="site-footer__sidebar">

@@ -12,7 +12,7 @@ node_modules
 # Logs
 logs
 *.log
-#yarn.lock
+yarn.lock
 package-lock.json
 
 # Misc

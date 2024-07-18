@@ -1056,8 +1056,8 @@ const key = ref(productItemCurrent.value ? productItemCurrent.value.meta_key : p
 const image = ref(productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url);
 
 defineOgImageComponent('GAK', {
-    title: title,
-    description: description,
+    title: title.value,
+    description: description.value,
     theme: '#ff0000',
     colorMode: 'dark',
 });

@@ -24,6 +24,7 @@
     "@vueuse/nuxt": "^10.5.0",
     "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
     "nuxt": "^3.12.3",
+    "nuxt-purgecss": "^2.0.0",
     "sass": "^1.77.8",
     "vue-router": "^4.2.5"
   },
