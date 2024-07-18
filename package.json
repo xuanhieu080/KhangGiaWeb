@@ -11,6 +11,7 @@
     "css-build": "node-sass --omit-source-map-url assets/scss/index.scss assets/css/index.css",
     "css-watch": "yarn css-build -- --watch"
   },
+
   "overrides": {
     "vue": "latest"
   },
