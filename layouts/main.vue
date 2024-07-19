@@ -126,7 +126,7 @@ const {
     async () =>
         useOriginalFetch(`/api/v1/seo-contents`, {
             params: {
-                link: `${config.public.Url}${router.currentRoute.value.fullPath}`,
+                link: `${config.public.apiURL}${router.currentRoute.value.fullPath}`,
             },
         }),
     {

@@ -54,14 +54,14 @@
                     <div
                         v-if="!loadingArticleHot && articlesHot.data && articlesHot.data.length > 0"
                         class="flex w-full md:w-1/2 md:max-w-[660px]">
-                        <ArticleSwiper :articleList="articlesHot.data" :title="'Bài viết nổi bật'" />
+                        <ArticleSwiper :articleList="articlesHot.data"  :title="'Bài viết nổi bật'" />
                     </div>
                     <div
                         v-if="!loadingArticleView && articlesView.data && articlesView.data.length > 0"
                         class="most-view flex flex-col gap-4 py-4 md:py-0 w-full md:w-2/5">
                         <div class="title text-[28px] 2xl:text-[36px] font-bold">{{ $t('Xem nhiều nhất') }}</div>
                         <div class="article-list flex flex-col gap-6 md:gap-3">
-                            <ArticleBadge v-for="article in articlesView.data" :article="article" />
+                            <ArticleBadge v-for="article in articlesView.data"  :article="article" />
                         </div>
                     </div>
                 </div>
@@ -74,6 +74,15 @@
                         class="flex flex-wrap items-start justify-start gap-4 w-full">
                         <div v-for="article in articleNew.data" class="blog-daily-item">
                             <ArticleCard :article="article" :is-view-count="false" :custom-height="400" />
+                        </div>
+
+                        <div
+                            v-if="articleNew.meta.total > articleNew.meta.to"
+                            class="m-auto opacity-100 transition duration-300 ease-in-out">
+                            <UButton
+                                @click="getArticle"
+                                class="rounded-2xl justify-center py-2.5 px-6"
+                               >   <span class="uppercase font-bold">{{ $t('Xem thêm') }}</span></UButton>
                         </div>
                     </div>
                 </div>
@@ -110,16 +119,39 @@ const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncDa
     useOriginalFetch('/api/v1/posts', {
         params: {
             sort: { desc: 'view' },
+            limit: 4
         },
     }),
 );
+
+
+const page = ref(1)
+
 const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-blog-new', () =>
-    useOriginalFetch('/api/v1/post-news', {
+    useOriginalFetch('/api/v1/posts', {
         params: {
-            is_new: true,
+            sort: { desc: 'created_at' },
+            limit: 12
         },
-    }),
+    })
 );
+
+async function getArticle() {
+    page.value++;
+    const { data: response, error } = await useMyFetch(`/api/v1/posts`, {
+        params: {
+            sort: { desc: 'created_at' },
+            limit: 12,
+            page: page.value
+        }
+    });
+
+    if (response.value) {
+        articleNew.value.data.push(...response.value.data)
+        articleNew.value.meta = response.value.meta
+    }
+}
+
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>
     useOriginalFetch('/api/v1/post-groups'),
 );

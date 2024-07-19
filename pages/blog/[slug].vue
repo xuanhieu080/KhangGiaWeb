@@ -75,6 +75,14 @@
                         <div v-for="article in articleNew.data" class="blog-daily-item">
                             <ArticleCard :article="article" :is-view-count="false" :custom-height="400" />
                         </div>
+                        <div
+                            v-if="articleNew.meta.total > articleNew.meta.to"
+                            class="m-auto opacity-100 transition duration-300 ease-in-out">
+                            <UButton
+                                @click="getArticle"
+                                class="rounded-2xl justify-center py-2.5 px-6"
+                            >   <span class="uppercase font-bold">{{ $t('Xem thêm') }}</span></UButton>
+                        </div>
                     </div>
                     <div
                         v-else
@@ -112,17 +120,37 @@ const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncDa
     useOriginalFetch('/api/v1/posts', {
         params: {
             sort: { desc: 'view' },
-        },
-    }),
-);
-const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-category-specific', () =>
-    useOriginalFetch('/api/v1/posts', {
-        params: {
-            group_slug: router.currentRoute.value.params?.slug,
+            limit: 4
         },
     }),
 );
 
+const page = ref(1)
+const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-category-specific', () =>
+    useOriginalFetch('/api/v1/posts', {
+        params: {
+            sort: { desc: 'created_at' },
+            group_slug: router.currentRoute.value.params?.slug,
+            limit: 12
+        },
+    }),
+);
+async function getArticle() {
+    page.value++;
+    const { data: response, error } = await useMyFetch(`/api/v1/posts`, {
+        params: {
+            sort: { desc: 'created_at' },
+            group_slug: router.currentRoute.value.params?.slug,
+            limit: 12,
+            page: page.value
+        }
+    });
+
+    if (response.value) {
+        articleNew.value.data.push(...response.value.data)
+        articleNew.value.meta = response.value.meta
+    }
+}
 
 const {
     data: content,

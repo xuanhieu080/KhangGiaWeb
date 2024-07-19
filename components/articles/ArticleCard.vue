@@ -17,7 +17,7 @@
                 </h3>
                 <div class="article-card__description" v-if="isDescription">
                     <p>
-                        {{article.description}}
+                        {{article.meta_description}}
                     </p>
                 </div>
                 <div class="article-card__viewcount text-[#8e8e8e] text-sm font-medium" v-if="isViewCount">{{ $t('Số lượt xem') }}: {{ article.view }}</div>
@@ -52,8 +52,16 @@ const prop = defineProps({
 @import '@/assets/scss/mixins.scss';
 .article-card {
     @apply flex flex-col;
-    .article-card_description {
+    .article-card__description {
         p {
+            font-size: 14px;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            margin-bottom: 9px;
+            margin-top: 12px;
+            overflow: hidden;
+            text-align: justify;
             @include text-overflow(3);
         }
     }

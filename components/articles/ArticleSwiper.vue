@@ -20,7 +20,7 @@
             :grabCursor="true"
             class="article-swiper w-full h-full">
             <SwiperSlide v-for="item in articleList" :key="item">
-                <ArticleCard :article="item" :custom-height="400"  />
+                <ArticleCard :article="item" :is-description='true' :custom-height="400"  />
             </SwiperSlide>
             <template v-slot:container-end>
                 <div class="navigation-btns flex flex-col absolute top-1/2 right-4 -translate-y-1/2 z-10" v-if="false">
