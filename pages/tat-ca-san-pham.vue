@@ -174,6 +174,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import ProductVariantCard from '@/components/products/ProductVariantCard.vue';
+import productHots from '~/api/product_hot.json';
+import productAll from '~/api/product_all.json';
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
@@ -247,28 +249,34 @@ const getParamsCollection = async () => {
 };
 
 //data
-const {
-    data: collection,
-    pending: loadingCollection,
-    error: collectionError,
-} = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`));
-const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
-    'product-category-hot',
-    async () =>
-        useOriginalFetch(`/api/v1/product-hots`, {
-            params: { is_hot: 1, limit: 20 },
-        }),
-    {
-        default: () => [],
-        watch: [filter, refreshData],
-    },
-);
+// const {
+//     data: collection,
+//     pending: loadingCollection,
+//     error: collectionError,
+// } = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`));
+// const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
+//     'product-category-hot',
+//     async () =>
+//         useOriginalFetch(`/api/v1/product-hots`, {
+//             params: { is_hot: 1, limit: 20 },
+//         }),
+//     {
+//         default: () => [],
+//         watch: [filter, refreshData],
+//     },
+// );
 
-const { data: productCollectionAll, pending: loadingProductCollectionAll } = await useLazyAsyncData('product-category-all', async () =>
-    useOriginalFetch(`/api/v1/categories/search-all`, {
-        params: await getParamsCollection(),
-    }),
-);
+const loadingProductCollection = ref(false)
+const productCollection = productHots
+
+const loadingProductCollectionAll = ref(false)
+const productCollectionAll = productAll
+
+// const { data: productCollectionAll, pending: loadingProductCollectionAll } = await useLazyAsyncData('product-category-all', async () =>
+//     useOriginalFetch(`/api/v1/categories/search-all`, {
+//         params: await getParamsCollection(),
+//     }),
+// );
 
 // const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
 //     useOriginalFetch(`/api/v1/categories`),

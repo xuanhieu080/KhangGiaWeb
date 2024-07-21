@@ -161,8 +161,8 @@ const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsync
 
 watch(
     () => loadingArticleGroup.value,
-    () => {
-        if (articleGroups.value.data?.length > 0) {
+    (value) => {
+        if (!value && articleGroups.value.data?.length > 0) {
             selectedCategory.value = articleGroups.value.data[0];
         }
     },

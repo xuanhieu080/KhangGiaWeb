@@ -98,6 +98,11 @@
 </template>
 <script setup>
 import { defineOrganization } from '@unhead/schema-org';
+import productHots from '~/api/product_hot.json'
+import productNews from '~/api/product_new.json'
+import productUpcomings from '~/api/product_upcoming.json'
+import aoGhiLe from '~/api/ao_ghi_le.json'
+import productUniforms from '~/api/product_uniform.json'
 
 definePageMeta({ layout: false, auth: false });
 import Banner from '@/components/Banners/Banner.vue';
@@ -281,22 +286,22 @@ const diaryList = ref([
 // const loadingProductDashboard = ref(true);
 
 
-const {
-    data: productDashboard,
-    pending: loadingProductDashboard,
-} = await useAsyncData(
-    'ao-ghi-le',
-    async () =>
-        useOriginalFetch(`/api/v1/products`,{
-            params: {
-                category_slug:'ao-ghi-le',
-                limit: 4,
-            },
-        }),
-    {
-        default: () => [],
-    },
-);
+// const {
+//     data: productDashboard,
+//     pending: loadingProductDashboard,
+// } = await useAsyncData(
+//     'ao-ghi-le',
+//     async () =>
+//         useOriginalFetch(`/api/v1/products`,{
+//             params: {
+//                 category_slug:'ao-ghi-le',
+//                 limit: 4,
+//             },
+//         }),
+//     {
+//         default: () => [],
+//     },
+// );
 // async function getProductDashboard() {
 //     const { data:response, error } = await useD(`/api/v1/products`, {
 //         params: {
@@ -313,79 +318,94 @@ const {
 // }
 // getProductDashboard()
 
-const {
-    data: productNew,
-    pending: loadingProductNew,
-} = await useAsyncData(
-    'product-new',
-    async () =>
-        useOriginalFetch(`/api/v1/product-news`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_new: 1,
-            limit: 20,
-        }),
-    {
-        default: () => [],
-    },
-);
-
-const {
-    data: productHot,
-    pending: loadingProductHot,
-} = await useAsyncData(
-    'product-hot',
-    async () =>
-        useOriginalFetch(`/api/v1/product-hots`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_hot: 1,
-            limit: 20,
-        }),
-    {
-        default: () => [],
-    },
-);
+// const {
+//     data: productNew,
+//     pending: loadingProductNew,
+// } = await useAsyncData(
+//     'product-new',
+//     async () =>
+//         useOriginalFetch(`/api/v1/product-news`,{
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_new: 1,
+//             limit: 20,
+//         }),
+//     {
+//         default: () => [],
+//     },
+// );
 
 
-const {
-    data: productUpcoming,
-    pending: loadingProductUpcoming,
-} = await useAsyncData(
-    'product-upcoming',
-    async () =>
-        useOriginalFetch(`/api/v1/product-upcoming`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_upcoming: 1,
-            limit: 20,
-        }),
-    {
-        default: () => [],
-    },
-);
+// const {
+//     data: productHot,
+//     pending: loadingProductHot,
+// } = await useAsyncData(
+//     'product-hot',
+//     async () =>
+//         useOriginalFetch(`/api/v1/product-hots`,{
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_hot: 1,
+//             limit: 20,
+//         }),
+//     {
+//         default: () => [],
+//     },
+// );
 
 
-const {
-    data: productUniform,
-    pending: loadingProductUniform,
-} = await useAsyncData(
-    'product-uniforms',
-    async () =>
-        useOriginalFetch(`/api/v1/product-uniforms`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_uniform: 1,
-            limit: 4,
-        }),
-    {
-        default: () => [],
-    },
-);
+// const {
+//     data: productUpcoming,
+//     pending: loadingProductUpcoming,
+// } = await useAsyncData(
+//     'product-upcoming',
+//     async () =>
+//         useOriginalFetch(`/api/v1/product-upcoming`,{
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_upcoming: 1,
+//             limit: 20,
+//         }),
+//     {
+//         default: () => [],
+//     },
+// );
+
+const loadingProductNew = ref(false)
+const productNew = productNews
+
+const loadingProductHot = ref(false)
+const productHot = productHots
+
+const loadingProductUpcoming = ref(false)
+const productUpcoming = productUpcomings
+
+const productDashboard = aoGhiLe
+const loadingProductDashboard = ref(false)
+
+const productUniform = productUniforms
+const loadingProductUniform = ref(false)
+
+// const {
+//     data: productUniform,
+//     pending: loadingProductUniform,
+// } = await useAsyncData(
+//     'product-uniforms',
+//     async () =>
+//         useOriginalFetch(`/api/v1/product-uniforms`,{
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_uniform: 1,
+//             limit: 4,
+//         }),
+//     {
+//         default: () => [],
+//     },
+// );
 
 
 ///SEO

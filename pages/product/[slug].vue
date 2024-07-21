@@ -549,6 +549,7 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
+import productHots from '~/api/product_hot.json';
 
 const route = useRoute();
 const router = useRouter();
@@ -567,6 +568,7 @@ const productVariantNote = ref([]);
 const productVariantSlugs = ref({});
 const productItemCurrent = ref(null);
 const isColor = ref(false);
+const selectColor = ref(false);
 const showAllColor = ref(false);
 
 const sort = ref({ direction: 'desc' });
@@ -679,6 +681,7 @@ let initialProduct = (product) => {
         if (findProduct) {
             productItemCurrent.value = { ...findProduct };
             productVariants.value = [...findProduct.option_all];
+            selectColor.value =true;
         } else {
             let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
                 if (!variant.is_color) {
@@ -828,23 +831,26 @@ if (errorGetProduct.value) {
 }
 
 
-const {
-    data: productHot,
-    pending: loadingProductHot,
-} = await useAsyncData(
-    'product-hot',
-    async () =>
-        useOriginalFetch(`/api/v1/product-hots`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_hot: 1,
-            limit: 20,
-        }),
-    {
-        default: () => [],
-    },
-);
+// const {
+//     data: productHot,
+//     pending: loadingProductHot,
+// } = await useAsyncData(
+//     'product-hot',
+//     async () =>
+//         useOriginalFetch(`/api/v1/product-hots`,{
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_hot: 1,
+//             limit: 20,
+//         }),
+//     {
+//         default: () => [],
+//     },
+// );
+
+const loadingProductHot = ref(false)
+const productHot = productHots
 
 
 // const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
@@ -884,6 +890,9 @@ function selectVariant(group, attribute) {
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
     let productVariants1 = JSON.parse(JSON.stringify(productVariants.value));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
+    if (!selectColor.value) {
+        selectColor.value = group.is_color
+    }
 
     if (index !== -1 && productVariants.value[index] !== undefined) {
         productVariants.value[index].attribute_id = attribute.attribute_id;
@@ -897,6 +906,7 @@ function selectVariant(group, attribute) {
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
     let checkProduct = getProductItem();
+
     if (checkProduct && (!productItemCurrent.value || checkProduct.code != productItemCurrent.value.code)) {
         loadingProductItem.value = true;
         productItemCurrent.value = checkProduct;
@@ -914,7 +924,8 @@ function selectVariant(group, attribute) {
                 query: { code: productItemCurrent.value.code },
             });
         }
-    } else {
+    } else if (selectColor.value) {
+        selectColor.value = false
         productVariants.value = productVariants1
     }
 }
@@ -1195,9 +1206,11 @@ watch(
     },
     { immediate: true },
 );
-watch(
+
+let stopWatch = watch(
     () => productItem.value,
     async () => {
+        console.log('df');
         if (Object.keys(productItem.value).length > 0 && productItem.value.data) {
             resetProductPage(false);
             let productCurrent = ref({ ...productItem.value.data });
@@ -1206,6 +1219,12 @@ watch(
     },
     { immediate: true },
 );
+
+onBeforeUnmount(() => {
+    if (stopWatch) {
+        stopWatch();
+    }
+});
 </script>
 <style lang="scss" scoped>
 .product-page {

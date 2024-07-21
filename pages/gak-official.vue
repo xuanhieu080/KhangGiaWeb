@@ -105,7 +105,7 @@
                             to="https://www.facebook.com/groups/1587962561968530"
                             target="_blank"
                             size="lg"
-                            class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit no-underline uppercase"
+                            class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase"
                             variant="ghost"
                             color="none">
                             Tham gia hội săn Deal GAK
@@ -113,7 +113,7 @@
                         <UButton
                             :to="localePath({name: 'gak-official'})"
                             size="lg"
-                            class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
+                            class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
                             GAK OFFICIAL

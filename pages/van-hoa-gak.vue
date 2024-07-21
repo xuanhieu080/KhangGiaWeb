@@ -1786,13 +1786,13 @@
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
-                        <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit no-underline uppercase" variant="ghost" color="none">
+                        <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
                             Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
                             :to="localePath({name: 'gak-official'})"
                             size="lg"
-                            class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
+                            class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
                             GAK OFFICIAL
