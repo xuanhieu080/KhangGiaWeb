@@ -46,16 +46,16 @@
                     </UButton>
                 </div>
                 <div v-if="!loadingProductNew && productIndex === 0" class="product-box my-4">
-                    <ProductList :productList="productNew?.data" />
+                    <ProductList :productList="productNew" />
                 </div>
                 <div v-else-if="loadingProductNew" class="product-box my-4">
                     <ProductList :productList="[]" />
                 </div>
                 <div v-if="!loadingProductHot && productIndex === 1" class="product-box my-4">
-                    <ProductList :productList="productHot?.data" />
+                    <ProductList :productList="productHot" />
                 </div>
                 <div v-if="!loadingProductUpcoming && productIndex === 2" class="product-box my-4">
-                    <ProductList :productList="productUpcoming?.data" />
+                    <ProductList :productList="productUpcoming" />
                 </div>
             </div>
             <div class="banner-block h-full">
@@ -65,7 +65,7 @@
                 <ProductCollectionOther
                     key="container-1"
                     :loading="loadingProductUniform"
-                    :productList="productUniform?.data"
+                    :productList="productUniform"
                     :collectionLink="'/collection/dong-phuc-cong-ty'"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'" />
             </div>
@@ -79,7 +79,7 @@
                 <ProductCollectionOther
                     key='container-2'
                     :loading='loadingProductDashboard'
-                    :productList="productDashboard?.data"
+                    :productList="productDashboard"
                     :collectionTitle="'Áo gile kỹ sư cao cấp'"
                     :collectionLink="'/collection/ao-ghi-le'" />
             </div>
