@@ -182,6 +182,7 @@ useHead({
         }
     ]
 })
+
 useSchemaOrg([
     definePlace({
         name: process.env.NUXT_SITE_NAME,
