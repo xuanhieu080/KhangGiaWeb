@@ -42,6 +42,11 @@ export default defineNuxtConfig({
           return { x: 0, y: 0 };
       },
   },
+    vue: {
+        compilerOptions: {
+            isCustomElement: (tag) => tag === 'iconify-icon',
+        },
+    },
 
   routeRules: {
       // '/articles/**': { ssr: false },
