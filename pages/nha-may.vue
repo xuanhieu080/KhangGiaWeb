@@ -1,16 +1,24 @@
 <template>
     <NuxtLayout name="main">
-        <section class="running-video">
-            <video
-                id="banner-video"
-                poster="/images/produce-poster-video.jpg"
-                autoplay="autoplay"
-                muted="muted"
-                playsinline=""
-                loop="loop">
-                <source src="" />
-            </video>
-        </section>
+        <div>
+            <NuxtImg
+                class="w-full h-[500px] object-cover"
+                loading="lazy"
+                format="webp"
+                src="/images/produce-poster-video.jpg"
+                alt="" />
+        </div>
+<!--        <section class="running-video">-->
+<!--            <video-->
+<!--                id="banner-video"-->
+<!--                poster="/images/produce-poster-video.jpg"-->
+<!--                autoplay="autoplay"-->
+<!--                muted="muted"-->
+<!--                playsinline=""-->
+<!--                loop="loop">-->
+<!--                <source src="" />-->
+<!--            </video>-->
+<!--        </section>-->
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg space-y-8">
@@ -202,108 +210,108 @@
                     </div>
                     <div class="grid lg:grid-cols-3 gap-10 grid--doubling">
                         <div class="hidden lg:block grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box"><div class="workshop-box__thumbnail"></div></div
-                            ></a>
+                            ></div>
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-1_1.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng chính</h2>
                                     <p class="workshop-box__desc">Hệ sinh thái toàn vẹn từ Dệt, Nhuộm, May, In ấn</p>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"><div class="workshop-box"></div></a>
+                            <div class="cursor-pointer"><div class="workshop-box"></div></div>
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-2_2.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 1</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-3_3.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 2</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-4_4.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 3</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-5_5.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 1</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-6_6.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 2</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-7_7.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 3</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-8_8.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 4</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-9_9.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 5</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-10_10.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 1</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-11_11.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 2</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-12_12.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 3</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                     </div>
