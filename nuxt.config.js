@@ -49,7 +49,7 @@ export default defineNuxtConfig({
       // '/en/app/**': { ssr: false },
   },
 
-  modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', '@nuxt-alt/auth', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo', '@zadigetvoltaire/nuxt-gtm'],
+  modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo', '@zadigetvoltaire/nuxt-gtm'],
 
   site: {
       indexable: true,

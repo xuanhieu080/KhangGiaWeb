@@ -91,7 +91,6 @@
 </template>
 <script setup>
 import { useI18n } from 'vue-i18n';
-import '@vueform/multiselect/themes/default.css';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
