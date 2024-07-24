@@ -23,9 +23,7 @@
                             :direction="'vertical'"
                             class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-6">
                             <SwiperSlide v-if="productItem.data?.video_link" class="!h-[80px] w-full rounded-md relative">
-                                <video class="pointer-events-none">
-                                    <source :src="productItem.data?.video_link" />
-                                </video>
+                                <YoutubeVideo :url="productItem.data?.video_link" />
                             </SwiperSlide>
                             <SwiperSlide
                                 v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
@@ -78,11 +76,7 @@
                                 :modules="modules"
                                 class="!mx-0">
                                 <SwiperSlide v-if="productItem.data?.video_link" class="!flex justify-center !h-auto">
-                                    <video controls class="h-full w-full object-contain" autoplay muted>
-                                        <source
-                                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                                            type="video/mp4" />
-                                    </video>
+                                    <YoutubeVideo :url="productItem.data?.video_link" />
                                 </SwiperSlide>
                                 <SwiperSlide
                                     v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
@@ -1210,7 +1204,6 @@ watch(
 let stopWatch = watch(
     () => productItem.value,
     async () => {
-        console.log('df');
         if (Object.keys(productItem.value).length > 0 && productItem.value.data) {
             resetProductPage(false);
             let productCurrent = ref({ ...productItem.value.data });

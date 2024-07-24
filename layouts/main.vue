@@ -6,8 +6,8 @@
             <div id="loading-text">Welcome...</div>
         </div>
     </div>
-    <main v-else class="wrapper-desktop relative w-full min-h-screen">
-        <div class="w-full relative main">
+    <main class="wrapper-desktop relative w-full min-h-screen">
+        <div v-if="!isLoadingPage" class="w-full relative main">
             <slot />
         </div>
         <div
@@ -141,11 +141,7 @@ watch(
     },
 );
 
-onMounted(() => {
-    window.addEventListener('resize', handleCloseMenuMobile, false);
-    window.addEventListener('scroll', controlHeaderShowing, false);
-    window.addEventListener('scroll', handleBackToTopButton, false);
-});
+
 function handleCloseMenuMobile() {
     if (window.innerWidth > 991 && menuMobile.value) {
         menuMobile.value = false;
@@ -181,7 +177,6 @@ useHead({
         }
     ]
 })
-
 useSchemaOrg([
     definePlace({
         name: process.env.NUXT_SITE_NAME,
@@ -254,6 +249,9 @@ useSchemaOrg([
 ]);
 
 onMounted(() => {
+    window.addEventListener('resize', handleCloseMenuMobile, false);
+    window.addEventListener('scroll', controlHeaderShowing, false);
+    window.addEventListener('scroll', handleBackToTopButton, false);
     const script = document.createElement('script');
     script.src = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js';
     document.body.appendChild(script);
