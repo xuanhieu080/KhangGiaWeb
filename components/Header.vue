@@ -133,15 +133,15 @@
                     <UIcon name='i-mdi-account-circle-outline' class='text-green-500 fs-28' dynamic />
                 </UButton>
                 <UButton v-else-if='false' class='login-btn' variant='ghost' color='none'>
-                    <nuxt-link type='button' to=''>
+                    <div type='button'>
                         <img :src='images.person' class='filter-white' alt='' />
-                    </nuxt-link>
+                    </div>
                 </UButton>
                 <NuxtLink :to="localePath({ name: 'cart' })" class='flex-grow-0 flex-shrink-0'>
                     <UButton type='button' class='cart-btn' variant='ghost' color='none'>
-                        <nuxt-link type='button' to='' class=''>
+                        <div type='button' to='' class=''>
                             <img :src='images.cart' class='' alt='' />
-                        </nuxt-link>
+                        </div>
                         <div class='count-item'>{{ cartNumber }}</div>
                     </UButton>
                 </NuxtLink>

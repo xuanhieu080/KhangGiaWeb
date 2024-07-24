@@ -1,10 +1,10 @@
 <template>
-    <footer v-if="pageGroups.length > 0" class="site-footer mobile--hidden">
+    <div v-if="pageGroups.length > 0" class="site-footer mobile--hidden">
         <div class="footer-container">
             <div class="site-footer__inner">
                 <div class="site-footer__sidebar">
                     <div class="footer-about mb-6">
-                        <h4 class="site-footer__title">Công ty GAK tận tâm & tử tế trên từng sản phẩm</h4>
+                        <div class="site-footer__title">Công ty GAK tận tâm & tử tế trên từng sản phẩm</div>
                         <p class="site-footer__description">
                             Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm
                             dịch vụ và sản phẩm tốt hơn nữa.
@@ -62,7 +62,7 @@
                     <div class="footer-menu">
                         <div v-for="pageGroup in pageGroups" class="footer-menu__item">
                                <div v-for="item in pageGroup">
-                                   <h4 class="footer-menu__title">{{item.name}}</h4>
+                                   <div class="footer-menu__title">{{item.name}}</div>
                                       <ul>
                                           <li v-for="page in item.details">
                                               <NuxtLink v-if="page.is_button" :to="localePath( page.link )">{{page.name}}</NuxtLink>
@@ -72,7 +72,7 @@
                                </div>
                         </div>
                         <div class="footer-menu__item">
-                            <h4 class="footer-menu__title">Địa chỉ liên hệ</h4>
+                            <div class="footer-menu__title">Địa chỉ liên hệ</div>
                             <p class="footer-menu__desciption">
                                 <u>Văn phòng Tp HCM:</u> 15 Lê Minh Xuân, Phường 7, Tân Bình, Thành phố Hồ Chí Minh 700000
                             </p>
@@ -99,14 +99,11 @@
                                 class="w-full h-full object-contain"
                             />
                         </a>
-<!--                        <a target="_blank">-->
-<!--                            <img src="/bo-cong-thuong.png" alt="GAK CO.,LTD" width="106" height="40">-->
-<!--                        </a>-->
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 </template>
 <script setup>
 import images from '@/assets/icons/index';

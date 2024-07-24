@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Autoplay, Pagination } from 'swiper/modules';
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
