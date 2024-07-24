@@ -174,7 +174,6 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
-import { useWindowSize } from '~/composables/useWindowSize';
 
 
 defineComponent({

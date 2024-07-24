@@ -233,9 +233,9 @@
             <div class="recruitment-jobs p-6">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="recruitment-jobs__heading !text-3xl">Cơ hội để chúng ta gặp nhau</h2>
-                    <h4 class="recruitment-jobs__sub-heading text-center text-white font-medium">
+                    <div class="recruitment-jobs__sub-heading text-center text-white font-medium">
                         Hãy đồng hành cùng GAK đi xa và bền vững hơn<br />Tìm hiểu về các vị trí đang tuyển dụng mới nhất!
-                    </h4>
+                    </div>
                     <div class="recruitment-job__swiper w-full mt-8 mb-4 relative">
                         <Swiper
                             :slidesPerView="1"

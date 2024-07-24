@@ -88,7 +88,9 @@
                 <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
             </div>
             <div class="container mx-auto w-full h-full">
-                <CategoryBox :categoryList="categoryList" />
+                <ClientOnly>
+                    <CategoryBox :categoryList="categoryList" />
+                </ClientOnly>
             </div>
             <div class="container mx-auto w-full my-4  overflow-hidden lg:overflow-visible">
                 <DiaryWrapper :diaryList="diaryList" :autoPlay="true" />
@@ -108,7 +110,6 @@ definePageMeta({ layout: false, auth: false });
 import Banner from '@/components/Banners/Banner.vue';
 import BannerBlock from '@/components/Banners/BannerBlock.vue';
 import ProductList from '@/components/products/ProductSwiper';
-import ProductCollection from '@/components/products/ProductCollection';
 import ProductCollectionOther from '@/components/products/ProductCollectionOther.vue';
 import CategoryBox from '@/components/categories/CategoryBox.vue';
 import DiaryWrapper from '@/components/diary/diaryWrapper.vue';

@@ -105,6 +105,11 @@ const items = ref([
         label: 'Chính sách hoàn trả sản phẩm',
         slug: 'chinh-sach-hoan-tra-san-pham',
         content: 'Finally 2, this is the content for Tab3',
+    },
+    {
+        label: 'Hỏi đáp - FAQs',
+        slug: 'faqs',
+        content: 'Finally 3, this is the content for Tab3',
     }
 ]);
 const content = ref();

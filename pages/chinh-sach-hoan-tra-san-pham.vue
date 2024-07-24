@@ -106,6 +106,11 @@ const items = ref([
         slug: 'chinh-sach-hoan-tra-san-pham',
         content: 'Finally 3, this is the content for Tab3',
     },
+    {
+        label: 'Hỏi đáp - FAQs',
+        slug: 'faqs',
+        content: 'Finally 3, this is the content for Tab3',
+    }
 ]);
 const content = ref();
 const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-hoan-tra-san-pham', () =>
