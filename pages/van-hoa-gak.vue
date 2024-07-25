@@ -1847,6 +1847,7 @@ useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/mixins.scss';
 .about-us-image {
     position: relative;
     &:after {

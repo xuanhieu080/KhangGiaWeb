@@ -139,6 +139,7 @@ const formatPriceProduct = (item) => {
 };
 </script>
 <style lang="scss" scoped>
+@import '@/assets/scss/mixins.scss';
 .product-card {
     width: 100%;
     .product-image {
