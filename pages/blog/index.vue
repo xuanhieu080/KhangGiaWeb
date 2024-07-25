@@ -159,7 +159,7 @@ const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsync
 //     useOriginalFetch('/api/v1/post/groups'),
 // );
 
-watch(
+let stopWatch = watch(
     () => loadingArticleGroup.value,
     (value) => {
         if (!value && articleGroups.value.data?.length > 0) {
@@ -170,6 +170,12 @@ watch(
         immediate: true,
     },
 );
+
+onBeforeUnmount(() => {
+    if (stopWatch) {
+        stopWatch();
+    }
+});
 
 let title = 'Tất cả bài viết';
 const config = useRuntimeConfig();
