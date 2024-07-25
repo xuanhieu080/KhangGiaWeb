@@ -49,7 +49,6 @@ export default defineNuxtConfig({
         '@nuxt/ui',
         '@pinia/nuxt',
         'nuxt-rating',
-        'nuxt-purgecss',
         '@nuxt/image',
         '@nuxtjs/seo',
         '@zadigetvoltaire/nuxt-gtm',
@@ -150,11 +149,6 @@ export default defineNuxtConfig({
 
     colorMode: {
         preference: 'light',
-    },
-    vite: {
-        server: {
-            hmr: false
-        }
     },
     app: {
         head: {
