@@ -46,16 +46,16 @@
                     </UButton>
                 </div>
                 <div v-if="!loadingProductNew && productIndex === 0" class="product-box my-4">
-                    <ProductList :productList="productNew" />
+                    <ProductList :productList="productNew.data" />
                 </div>
                 <div v-else-if="loadingProductNew" class="product-box my-4">
                     <ProductList :productList="[]" />
                 </div>
                 <div v-if="!loadingProductHot && productIndex === 1" class="product-box my-4">
-                    <ProductList :productList="productHot" />
+                    <ProductList :productList="productHot.data" />
                 </div>
                 <div v-if="!loadingProductUpcoming && productIndex === 2" class="product-box my-4">
-                    <ProductList :productList="productUpcoming" />
+                    <ProductList :productList="productUpcoming.data" />
                 </div>
             </div>
             <div class="banner-block h-full">
@@ -65,8 +65,8 @@
                 <ProductCollectionOther
                     key="container-1"
                     :loading="loadingProductUniform"
-                    :productList="productUniform"
-                    :collectionLink="'/collection/dong-phuc-cong-ty'"
+                    :productList="productUniform.data"
+                    :collectionLink="'/collection/dong-phuc'"
                     :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'" />
             </div>
             <div v-else-if="loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
@@ -79,7 +79,7 @@
                 <ProductCollectionOther
                     key='container-2'
                     :loading='loadingProductDashboard'
-                    :productList="productDashboard"
+                    :productList="productDashboard.data"
                     :collectionTitle="'Áo gile kỹ sư cao cấp'"
                     :collectionLink="'/collection/ao-ghi-le'" />
             </div>
@@ -287,126 +287,112 @@ const diaryList = ref([
 // const loadingProductDashboard = ref(true);
 
 
-// const {
-//     data: productDashboard,
-//     pending: loadingProductDashboard,
-// } = await useAsyncData(
-//     'ao-ghi-le',
-//     async () =>
-//         useOriginalFetch(`/api/v1/products`,{
-//             params: {
-//                 category_slug:'ao-ghi-le',
-//                 limit: 4,
-//             },
-//         }),
-//     {
-//         default: () => [],
-//     },
-// );
-// async function getProductDashboard() {
-//     const { data:response, error } = await useD(`/api/v1/products`, {
-//         params: {
-//             category_slug:'ao-ghi-le',
-//             limit: 4,
-//         },
-//     })
-//     console.log(response);
-//     if (response) {
-//         console.log(response);
-//         productDashboard.value = response;
-//         loadingProductDashboard.value = false;
-//     }
-// }
-// getProductDashboard()
-
-// const {
-//     data: productNew,
-//     pending: loadingProductNew,
-// } = await useAsyncData(
-//     'product-new',
-//     async () =>
-//         useOriginalFetch(`/api/v1/product-news`,{
-//             sort: {
-//                 'desc[0]': 'id',
-//             },
-//             is_new: 1,
-//             limit: 20,
-//         }),
-//     {
-//         default: () => [],
-//     },
-// );
+const {
+    data: productDashboard,
+    pending: loadingProductDashboard,
+} = await useAsyncData(
+    'ao-ghi-le',
+    async () =>
+        useOriginalFetch(`/api/v1/products`,{
+            params: {
+                category_slug:'ao-ghi-le',
+                limit: 4,
+            },
+        }),
+    {
+        default: () => [],
+    },
+);
 
 
-// const {
-//     data: productHot,
-//     pending: loadingProductHot,
-// } = await useAsyncData(
-//     'product-hot',
-//     async () =>
-//         useOriginalFetch(`/api/v1/product-hots`,{
-//             sort: {
-//                 'desc[0]': 'id',
-//             },
-//             is_hot: 1,
-//             limit: 20,
-//         }),
-//     {
-//         default: () => [],
-//     },
-// );
+const {
+    data: productNew,
+    pending: loadingProductNew,
+} = await useAsyncData(
+    'product-new',
+    async () =>
+        useOriginalFetch(`/api/v1/product-news`,{
+            sort: {
+                'desc[0]': 'id',
+            },
+            is_new: 1,
+            limit: 20,
+        }),
+    {
+        default: () => [],
+    },
+);
 
 
-// const {
-//     data: productUpcoming,
-//     pending: loadingProductUpcoming,
-// } = await useAsyncData(
-//     'product-upcoming',
-//     async () =>
-//         useOriginalFetch(`/api/v1/product-upcoming`,{
-//             sort: {
-//                 'desc[0]': 'id',
-//             },
-//             is_upcoming: 1,
-//             limit: 20,
-//         }),
-//     {
-//         default: () => [],
-//     },
-// );
+const {
+    data: productHot,
+    pending: loadingProductHot,
+} = await useAsyncData(
+    'product-hot',
+    async () =>
+        useOriginalFetch(`/api/v1/product-hots`,{
+            sort: {
+                'desc[0]': 'id',
+            },
+            is_hot: 1,
+            limit: 20,
+        }),
+    {
+        default: () => [],
+    },
+);
 
-const loadingProductNew = ref(false)
-const productNew = productNews
 
-const loadingProductHot = ref(false)
-const productHot = productHots
+const {
+    data: productUpcoming,
+    pending: loadingProductUpcoming,
+} = await useAsyncData(
+    'product-upcoming',
+    async () =>
+        useOriginalFetch(`/api/v1/product-upcoming`,{
+            sort: {
+                'desc[0]': 'id',
+            },
+            is_upcoming: 1,
+            limit: 20,
+        }),
+    {
+        default: () => [],
+    },
+);
 
-const loadingProductUpcoming = ref(false)
-const productUpcoming = productUpcomings
+// const loadingProductNew = ref(false)
+// const productNew = productNews
+//
+// const loadingProductHot = ref(false)
+// const productHot = productHots
+//
+// const loadingProductUpcoming = ref(false)
+// const productUpcoming = productUpcomings
+//
+// const productDashboard = aoGhiLe
+// const loadingProductDashboard = ref(false)
 
-const productDashboard = aoGhiLe
-const loadingProductDashboard = ref(false)
+// const productUniform = productUniforms
+// const loadingProductUniform = ref(false)
 
-const productUniform = productUniforms
-const loadingProductUniform = ref(false)
-
-// const {
-//     data: productUniform,
-//     pending: loadingProductUniform,
-// } = await useAsyncData(
-//     'product-uniforms',
-//     async () =>
-//         useOriginalFetch(`/api/v1/product-uniforms`,{
-//             sort: {
-//                 'desc[0]': 'id',
-//             },
-//             is_uniform: 1,
-//             limit: 4,
-//         }),
-//     {
-//         default: () => [],
-//     },
-// );
+const {
+    data: productUniform,
+    pending: loadingProductUniform,
+} = await useAsyncData(
+    'product-uniforms',
+    async () =>
+        useOriginalFetch(`/api/v1/product-uniforms`,{
+            sort: {
+                'desc[0]': 'id',
+            },
+            is_uniform: 1,
+            limit: 4,
+        }),
+    {
+        default: () => [],
+    },
+);
 
 
 ///SEO

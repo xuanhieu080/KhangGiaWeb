@@ -843,27 +843,27 @@ if (errorGetProduct.value) {
 //     },
 // );
 
-const loadingProductHot = ref(false)
-const productHot = productHots
+// const loadingProductHot = ref(false)
+// const productHot = productHots
 
 
-// const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
-//     'product-hot',
-//     async () =>
-//         useOriginalFetch('/api/v1/products', {
-//             params: {
-//                 sort: {
-//                     'desc[0]': 'id',
-//                 },
-//                 is_hot: 1,
-//                 limit: 20,
-//             },
-//         }),
-//     {
-//         default: () => [],
-//         watch: [refreshData],
-//     },
-// );
+const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
+    'product-hot',
+    async () =>
+        useOriginalFetch('/api/v1/products', {
+            params: {
+                sort: {
+                    'desc[0]': 'id',
+                },
+                is_hot: 1,
+                limit: 20,
+            },
+        }),
+    {
+        default: () => [],
+        watch: [refreshData],
+    },
+);
 const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyncData(
     'product-review',
     async () =>

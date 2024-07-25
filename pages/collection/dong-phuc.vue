@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div v-if="loadingCollectionProduct" class="category-data-list">
-                            <div v-for="product in 6" class="category-data-item" :key="product">
+                            <div v-for="product in 4" class="category-data-item" :key="product">
                                 <ProductCard />
                             </div>
                         </div>
@@ -195,7 +195,7 @@ const setFilterSelect = (id, e) => {
 
 const getParamsCollection = async () => {
     let params = {
-        is_uniform: 1,
+        category_name: 'dong phuc',
         limit: 20,
     };
     let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
