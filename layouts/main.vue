@@ -1,51 +1,52 @@
 <template>
-    <Header />
-    <div v-if="isLoadingPage" class="loading-container">
-        <div class="loading-wrapper">
-            <div class="loading"></div>
-            <div id="loading-text">Welcome...</div>
+    <div>
+        <Header />
+        <div v-if="isLoadingPage" class="loading-container">
+            <div class="loading-wrapper">
+                <div class="loading"></div>
+                <div id="loading-text">Welcome...</div>
+            </div>
         </div>
-    </div>
-    <main class="wrapper-desktop relative w-full min-h-screen">
-        <div v-if="!isLoadingPage" class="w-full relative main">
-            <slot />
-        </div>
-        <div
-            class="scroll-to-top fixed bottom-8 left-4 z-[99] hidden lg:block"
-            :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">
-            <UButton
-                class="back-to-top rounded-full w-[50px] h-[50px] justify-center"
-                icon="i-heroicons-chevron-up"
-                @click="backToTop"></UButton>
-        </div>
-        <div class="circle-button" id="chat-box-widgets">
-            <button class="main-button" :class="showMenuChat ? 'active' : ''" @click="showMenuChat = !showMenuChat"></button>
-            <div class="sub-buttons" :class="showMenuChat ? 'show' : 'hide'">
-                <a
-                    type="button"
-                    class="sub-button zalo"
-                    :class="showMenuChat ? 'show' : ''"
-                    href="https://zalo.me/1160130089290834053"
-                    target="_blank">
-                    <div class="sub-button-overlay">
-                        <img src="/images/zalo-gak.png" alt="" />
-                    </div>
-                </a>
-                <a
-                    type="button"
-                    class="sub-button zalo"
-                    :class="showMenuChat ? 'show' : ''"
-                    href="https://zalo.me/0569133339"
-                    target="_blank">
-                    <div class="sub-button-overlay">
-                        <img src="/images/zalo-cskh.png" alt="" />
-                    </div>
-                </a>
-                <button class="sub-button livechat" :class="showMenuChat ? 'show' : ''" rel-script="toggle-chat-box" data-id="livechat">
-                    <a href="tel:0569133339" ga-tracking-label="Gọi hotline">
-                        <img src="/images/phone-hotline-icon.png" alt="" />
+        <main class="wrapper-desktop relative w-full min-h-screen">
+            <div v-if="!isLoadingPage" class="w-full relative main">
+                <slot />
+            </div>
+            <div
+                class="scroll-to-top fixed bottom-8 left-4 z-[99] hidden lg:block"
+                :class="showBackToTop ? 'opacity-100 transition duration-300 ease-in-out' : 'opacity-0 transition duration-300 ease-in-out'">
+                <UButton
+                    class="back-to-top rounded-full w-[50px] h-[50px] justify-center"
+                    icon="i-heroicons-chevron-up"
+                    @click="backToTop"></UButton>
+            </div>
+            <div class="circle-button" id="chat-box-widgets">
+                <button class="main-button" :class="showMenuChat ? 'active' : ''" @click="showMenuChat = !showMenuChat"></button>
+                <div class="sub-buttons" :class="showMenuChat ? 'show' : 'hide'">
+                    <a
+                        type="button"
+                        class="sub-button zalo"
+                        :class="showMenuChat ? 'show' : ''"
+                        href="https://zalo.me/1160130089290834053"
+                        target="_blank">
+                        <div class="sub-button-overlay">
+                            <img src="/images/zalo-gak.png" alt="" />
+                        </div>
                     </a>
-                    <a href="tel:0569133339" class="sub-button-tooltip" ga-tracking-label="Gọi hotline">
+                    <a
+                        type="button"
+                        class="sub-button zalo"
+                        :class="showMenuChat ? 'show' : ''"
+                        href="https://zalo.me/0569133339"
+                        target="_blank">
+                        <div class="sub-button-overlay">
+                            <img src="/images/zalo-cskh.png" alt="" />
+                        </div>
+                    </a>
+                    <button class="sub-button livechat" :class="showMenuChat ? 'show' : ''" rel-script="toggle-chat-box" data-id="livechat">
+                        <a href="tel:0569133339" ga-tracking-label="Gọi hotline">
+                            <img src="/images/phone-hotline-icon.png" alt="" />
+                        </a>
+                        <a href="tel:0569133339" class="sub-button-tooltip" ga-tracking-label="Gọi hotline">
                         <span class="sub-button-tooltip__hotline flex items-center gap-2 w-max">
                             <svg width="12" height="12" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -54,39 +55,42 @@
                             </svg>
                             <span class="sub-button-tooltip__number text-sm">0569133339</span>
                         </span>
-                    </a>
-                </button>
+                        </a>
+                    </button>
+                </div>
             </div>
+        </main>
+        <UCard v-if="articleSEO && articleSEO.data && articleSEO.data.description && !loadingSeo" class="m-6 prose prose-lg max-w-full">
+            <div v-html="articleSEO.data.description"></div>
+        </UCard>
+        <client-only>
+            <UNotifications class="prose-p:mt-0">
+                <template #title="{ title }">
+                    <span class="font-bold" v-html="title" />
+                </template>
+                <template #description="{ description }">
+                    <ul v-if="typeof description == 'object'" class="flex flex-col gap-4 !px-0 text-red-500 prose prose-li:!my-0">
+                        <li class="px-0 list-disc" v-for="item in Object.values(description)">{{ item[0] }}</li>
+                    </ul>
+                    <div class="w-fit" v-else>
+                        {{ description }}
+                    </div>
+                </template>
+            </UNotifications>
+        </client-only>
+        <Footer />
+        <div class="dmca-container">
+            <a
+                href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
+                title="DMCA.com Protection Status"
+                class="dmca-badge">
+                <NuxtImg
+                    format="webp"
+                    src="https://images.dmca.com/Badges/DMCA_logo-grn-btn100w.png?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
+                    alt="DMCA.com Protection Status"
+                    class="w-full h-full object-contain"
+                /></a>
         </div>
-    </main>
-    <UCard v-if="articleSEO && articleSEO.data && articleSEO.data.description && !loadingSeo" class="m-6 prose prose-lg max-w-full">
-        <div v-html="articleSEO.data.description"></div>
-    </UCard>
-    <UNotifications class="prose-p:mt-0">
-        <template #title="{ title }">
-            <span class="font-bold" v-html="title" />
-        </template>
-        <template #description="{ description }">
-            <ul v-if="typeof description == 'object'" class="flex flex-col gap-4 !px-0 text-red-500 prose prose-li:!my-0">
-                <li class="px-0 list-disc" v-for="item in Object.values(description)">{{ item[0] }}</li>
-            </ul>
-            <div class="w-fit" v-else>
-                {{ description }}
-            </div>
-        </template>
-    </UNotifications>
-    <Footer />
-    <div class="dmca-container">
-        <a
-            href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
-            title="DMCA.com Protection Status"
-            class="dmca-badge">
-            <NuxtImg
-                format="webp"
-                src="https://images.dmca.com/Badges/DMCA_logo-grn-btn100w.png?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
-                alt="DMCA.com Protection Status"
-                class="w-full h-full object-contain"
-        /></a>
     </div>
 </template>
 <script setup>
