@@ -9,7 +9,7 @@
             </div>
             <div v-if="!loadingProductCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 px-5">
                 <div class="category-data flex flex-col gap-4 flex-1">
-                    <div v-if="productCollection && productCollection.length > 0" class="category-data-list">
+                    <div v-if="productCollection && productCollection.data.length > 0" class="category-data-list">
                         <div
                             v-for="product in productCollection.data"
                             class="category-data-item data-desktop hidden md:block p-2 rounded-lg"
@@ -17,7 +17,7 @@
                             <ProductCard :product="product" />
                         </div>
                         <div
-                            v-for="(product, index) in productCollection"
+                            v-for="(product, index) in productCollection.data"
                             :class="index > 3 ? '!hidden' : ''"
                             class="category-data-item data-mobile block md:hidden p-2 rounded-lg"
                             :key="product">

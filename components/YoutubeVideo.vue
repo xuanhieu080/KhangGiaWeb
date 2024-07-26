@@ -5,6 +5,7 @@
                class="l-youtube-item"
                :videoid="id"
                :title="props.label"
+               aspectRatio="9:16"
            ></lite-youtube>
     </div>
 </template>

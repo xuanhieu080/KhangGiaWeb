@@ -22,19 +22,13 @@
                             :lazy="true"
                             :direction="'vertical'"
                             class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-6">
-                            <SwiperSlide v-if="productItem.data?.video_link" class="!h-[80px] w-full rounded-md relative">
-                                <YoutubeVideo :url="productItem.data?.video_link" />
-                            </SwiperSlide>
                             <SwiperSlide
                                 v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                                 v-for="(image, index) in productItemCurrent.thumb_image"
-                                v-show="!productItem.data?.video_link ? index < 4 : index < 3"
+                                v-show="index < 4"
                                 class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
                                 <span
-                                    v-if="
-                                        (!productItem.data?.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
-                                        (productItem.data?.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
-                                    "
+                                    v-if="productItemCurrent.thumb_image.length > 4 && index == 3"
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
                                     >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
                                 >
@@ -43,13 +37,10 @@
                             <SwiperSlide
                                 v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
                                 v-for="(image, index) in productItem.data?.thumb_image"
-                                v-show="!productItem.data?.video_link ? index < 4 : index < 3"
+                                v-show="index < 4"
                                 class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
                                 <span
-                                    v-if="
-                                        (!productItem.data?.video_link && productItem.data?.thumb_image.length > 4 && index == 3) ||
-                                        (productItem.data?.video_link && productItem.data?.thumb_image.length > 3 && index == 2)
-                                    "
+                                    v-if="productItem.data?.thumb_image.length > 4 && index == 3"
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
                                     >+{{ productItem.data?.thumb_image.length - index - 1 }}</span
                                 >
@@ -75,9 +66,6 @@
                                 :zoom="true"
                                 :modules="modules"
                                 class="!mx-0">
-                                <SwiperSlide v-if="productItem.data?.video_link" class="!flex justify-center !h-auto">
-                                    <YoutubeVideo :url="productItem.data?.video_link" />
-                                </SwiperSlide>
                                 <SwiperSlide
                                     v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                                     v-for="image in productItemCurrent.thumb_image"
