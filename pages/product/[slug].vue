@@ -400,7 +400,7 @@
                             },
                         }"
                         class="similar-products-swiper relative">
-                        <SwiperSlide v-for="similarProduct in productHot" class="!h-full p-2 rounded-lg">
+                        <SwiperSlide v-for="similarProduct in productHot.data" class="!h-full p-2 rounded-lg">
                             <ProductCard :product="similarProduct" />
                         </SwiperSlide>
                         <template v-slot:container-end>
@@ -835,21 +835,39 @@ if (errorGetProduct.value) {
 // const productHot = productHots
 
 
-const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
+// const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
+//     'product-hot',
+//     async () =>
+//         useOriginalFetch('/api/v1/products', {
+//             params: {
+//                 sort: {
+//                     'desc[0]': 'id',
+//                 },
+//                 is_hot: 1,
+//                 limit: 20,
+//             },
+//         }),
+//     {
+//         default: () => [],
+//         watch: [refreshData],
+//     },
+// );
+
+const {
+    data: productHot,
+    pending: loadingProductHot,
+} = await useAsyncData(
     'product-hot',
     async () =>
-        useOriginalFetch('/api/v1/products', {
-            params: {
-                sort: {
-                    'desc[0]': 'id',
-                },
-                is_hot: 1,
-                limit: 20,
+        useOriginalFetch(`/api/v1/product-hots`,{
+            sort: {
+                'desc[0]': 'id',
             },
+            is_hot: 1,
+            limit: 20,
         }),
     {
         default: () => [],
-        watch: [refreshData],
     },
 );
 const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyncData(
@@ -1053,9 +1071,12 @@ defineOgImageComponent('GAK', {
     description: description.value,
     theme: '#ff0000',
     colorMode: 'dark',
+    url: image.value,
+    image: image.value,
 });
 defineOgImage({
     url: image.value,
+    image: image.value,
 });
 let seoMeta = {
     description: description.value,
@@ -1065,6 +1086,9 @@ let seoMeta = {
     twitterTitle: title.value,
     twitterDescription: description.value,
     keywords: key.value,
+    image: image.value,
+    ogImage: image.value,
+    ogImageAlt:  title.value,
 };
 
 let review = null;
