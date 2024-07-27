@@ -1119,14 +1119,16 @@ useSchemaOrg([
     defineProduct({
         name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
         image: image.value,
+        price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
         description: description.value,
         offers: {
             url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
             itemCondition: "https://schema.org/NewCondition",
             availability: "https://schema.org/InStock",
             offerCount: 5,
-            lowPrice: productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+            lowPrice: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
             highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
+            price: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
             priceCurrency: 'VND',
             priceSpecification: {
                 "@type": "PriceSpecification",
