@@ -372,7 +372,7 @@
                     <h3 class="!text-2xl font-extrabold">Chi tiết sản phẩm</h3>
                     <div v-html="productItem.data?.description"></div>
                 </div>
-                <div v-if="!loadingProductHot && productHot" class="product-similar my-8">
+                <div v-if="!loadingProductHot && productHot.data" class="product-similar my-8">
                     <h3 class="w-full text-center !text-2xl md:!text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
                     <Swiper
                         :spaceBetween="0"
