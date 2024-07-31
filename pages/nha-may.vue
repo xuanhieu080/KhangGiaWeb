@@ -1,8 +1,8 @@
 <template>
     <NuxtLayout name="main">
-        <div>
+        <div class="w-full">
             <NuxtImg
-                class="w-full h-[500px] object-cover"
+                class="w-full h-[500px] md:h-full object-cover"
                 loading="lazy"
                 format="webp"
                 src="/images/produce-poster-video.jpg"
