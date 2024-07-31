@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!isLoadingPage" class="dashboard">
+        <div class="dashboard">
             <Banner :bannerList="bannerList" :autoPlay="true" />
             <div class="container mx-auto overflow-hidden lg:overflow-visible">
                 <div class="flex flex-wrap items-center gap-4 w-full my-4">
@@ -99,13 +99,6 @@
     </NuxtLayout>
 </template>
 <script setup>
-import { defineOrganization } from '@unhead/schema-org';
-import productHots from '~/api/product_hot.json'
-import productNews from '~/api/product_new.json'
-import productUpcomings from '~/api/product_upcoming.json'
-import aoGhiLe from '~/api/ao_ghi_le.json'
-import productUniforms from '~/api/product_uniform.json'
-
 definePageMeta({ layout: false, auth: false });
 import Banner from '@/components/Banners/Banner.vue';
 import BannerBlock from '@/components/Banners/BannerBlock.vue';

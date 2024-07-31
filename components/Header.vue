@@ -13,7 +13,7 @@
                     <NuxtLink v-if="page.is_button" :to="localePath(page.link)">{{ page.name }}</NuxtLink>
                     <NuxtLink v-else :to="localePath({ name: 'slug', params: { slug: page.slug } })">{{ page.name }} </NuxtLink>
                 </div>
-                <NuxtLink to="https://zalo.me/1160130089290834053">{{ $t('Trung tâm CSKH') }}</NuxtLink>
+                <NuxtLink to="https://zalo.me/1160130089290834053" target="_blank">{{ $t('Trung tâm CSKH') }}</NuxtLink>
             </div>
         </div>
         <div class="header">

@@ -65,7 +65,10 @@
 </template>
 <script setup>
 const props = defineProps({
-    product: Object,
+    product: {
+        type: Object,
+        default: null,
+    },
 });
 const activeType = ref(0);
 const activeSilk = ref(0);

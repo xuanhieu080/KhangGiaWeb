@@ -4,6 +4,7 @@
             ref="bannerSwiper"
             :slidesPerView="1"
             :modules="modules"
+            v-show="finishLoadBanner"
             :loop="true"
             :autoplay="{
                 delay: 2500,
@@ -13,6 +14,7 @@
                 nextEl: '.next-banner-btn',
                 prevEl: '.prev-banner-btn',
             }"
+            @swiper="loadSwiper"
             :grabCursor="true"
             class="swiper banner-swiper w-full h-full">
             <SwiperSlide v-for="item in bannerList" :key="item">
@@ -43,6 +45,7 @@
                 </div>
             </template>
         </Swiper>
+        <USkeleton v-show="!finishLoadBanner" class="h-[600px] w-full min-h-screen lg:min-h-0"></USkeleton>
     </div>
 </template>
 <script setup>
@@ -60,6 +63,7 @@ const props = defineProps({
     },
 });
 const localePath = useLocalePath();
+const finishLoadBanner = ref(false);
 let modules = ref([Navigation]);
 const bannerSwiper = ref(null);
 onBeforeMount(() => {
@@ -67,6 +71,10 @@ onBeforeMount(() => {
         modules.value.push(Autoplay);
     }
 });
+
+const loadSwiper = () => {
+    finishLoadBanner.value = true;
+}
 </script>
 <style lang="scss" scoped>
 .banner-image {

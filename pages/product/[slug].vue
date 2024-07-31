@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingProduct" class="product-page py-6 w-full">
+        <div v-if="loadingChangeProduct" class="product-page py-6 w-full">
             <div class="container mx-auto flex flex-col gap-4">
                 <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
                     <UBreadcrumb
@@ -11,7 +11,7 @@
 
                     <div class="image-box flex items-start justify-center gap-4 w-full relative lg:sticky lg:top-6">
                         <Swiper
-                            v-if="!loadingProductItem"
+                            v-show="!loadingProductItem"
                             @swiper="setThumbsSwiper"
                             :spaceBetween="16"
                             :slidesPerView="4"
@@ -32,7 +32,12 @@
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
                                     >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
                                 >
-                                <img :src="image" loading="lazy" quality="80" :alt="productItemCurrent.name" class="w-full h-full object-cover rounded-md" />
+                                <img
+                                    :src="image"
+                                    loading="lazy"
+                                    quality="80"
+                                    :alt="productItemCurrent.name"
+                                    class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
                                 v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
@@ -44,18 +49,25 @@
                                     class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
                                     >+{{ productItem.data?.thumb_image.length - index - 1 }}</span
                                 >
-                                <img :src="image" loading="lazy" quality="80" :alt="productItem.data.name" class="w-full h-full object-cover rounded-md" />
+                                <img
+                                    :src="image"
+                                    loading="lazy"
+                                    quality="80"
+                                    :alt="productItem.data.name"
+                                    class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                         </Swiper>
-                        <div v-show="!thumbsSwiper" class="hidden lg:flex loading-frame flex-col gap-4">
+                        <div v-show="loadingProductItem" class="hidden lg:flex loading-frame flex-col gap-4">
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
                             <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
                             <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
                         </div>
                         <div
-                            v-show="thumbsSwiper"
+                            v-show="!loadingProductItem"
                             class="main-product-swiper rounded-md w-full xl:min-w-[540px] lg:w-[450px] xl:w-[540px] z-0 bg-[#f1f1f1]">
                             <Swiper
-                                v-if="!loadingProductItem"
+                                v-show="!loadingProductItem"
                                 :spaceBetween="10"
                                 :lazy="true"
                                 :navigation="{
@@ -65,12 +77,18 @@
                                 :thumbs="{ swiper: thumbsSwiper }"
                                 :zoom="true"
                                 :modules="modules"
+                                @swiper="handleMainImageSwiper"
                                 class="!mx-0">
                                 <SwiperSlide
                                     v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
                                     v-for="image in productItemCurrent.thumb_image"
                                     class="!flex justify-center !h-auto aspect-[3/4]">
-                                    <NuxtImg :src="image" loading="lazy" quality="80" :alt="productItemCurrent.name" class="rounded-md object-contain" />
+                                    <NuxtImg
+                                        :src="image"
+                                        loading="lazy"
+                                        quality="80"
+                                        :alt="productItemCurrent.name"
+                                        class="rounded-md object-contain" />
                                 </SwiperSlide>
                                 <SwiperSlide
                                     v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
@@ -102,15 +120,15 @@
                             </Swiper>
                         </div>
 
-                        <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
-                            <USkeleton class="min-w-[350px] w-[350px] h-[500px] rounded-md"></USkeleton>
+                        <div v-show="loadingProductItem" class="loading-frame flex flex-col gap-4 md:w-4/5">
+                            <USkeleton class="min-w-[350px] w-full h-[500px] md:h-[700px] rounded-md"></USkeleton>
                         </div>
                     </div>
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
                             <span class="font-bold text-[28px] lg:text-[32px]">{{
-                                    productItemCurrent ? productItemCurrent.name : productItem.data?.name
-                                }}</span>
+                                productItemCurrent ? productItemCurrent.name : productItem.data?.name
+                            }}</span>
                         </div>
                         <div class="product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black">
                             <NuxtRating
@@ -162,8 +180,10 @@
                                 'product-size-list': !variantAttribute.is_color,
                             }">
                             <span class="text-[15px] flex gap-4"
-                                >{{ variantAttribute.name }}:
-                                <b>{{ getAttributeName(variantAttribute.id) }}</b> <i v-if="!getAttributeName(variantAttribute.id) &&  variantAttribute.is_color"> (Ấn chọn màu sắc để mua hàng)</i>
+                                >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b>
+                                <i v-if="!getAttributeName(variantAttribute.id) && variantAttribute.is_color">
+                                    (Ấn chọn màu sắc để mua hàng)</i
+                                >
                             </span>
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
                                 <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
@@ -172,12 +192,12 @@
                                         :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
                                         :style="{ backgroundColor: attribute.attribute_color }"
                                         @click="selectVariant(variantAttribute, attribute)"></button>
-<!--                                    <button-->
-<!--                                        v-else-->
-<!--                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"-->
-<!--                                        :style="{ backgroundColor: attribute.attribute_color }">-->
-<!--                                        <div class="check-mark"></div>-->
-<!--                                    </button>-->
+                                    <!--                                    <button-->
+                                    <!--                                        v-else-->
+                                    <!--                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"-->
+                                    <!--                                        :style="{ backgroundColor: attribute.attribute_color }">-->
+                                    <!--                                        <div class="check-mark"></div>-->
+                                    <!--                                    </button>-->
                                 </div>
                                 <UButton
                                     v-if="productItemCurrent"
@@ -186,7 +206,7 @@
                                     color="blue"
                                     icon="i-heroicons-arrow-path"
                                     @click="resetProductPage(true)"
-                                >{{ $t('Cài lại') }}</UButton
+                                    >{{ $t('Cài lại') }}</UButton
                                 >
                                 <UButton
                                     v-if="variantAttribute.attributes.length > 3"
@@ -195,15 +215,18 @@
                                     color="none"
                                     class="text-blue-500"
                                     @click="showAllColor = !showAllColor"
-                                >{{ showAllColor ? $t('Thu gọn') : $t('Xem thêm') }}...</UButton
+                                    >{{ showAllColor ? $t('Thu gọn') : $t('Xem thêm') }}...</UButton
                                 >
                             </div>
                             <div v-else class="size-list flex items-center flex-wrap gap-4">
-                                <div v-for="(attribute, index) in variantAttribute.attributes"
-                                     v-show="(checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main) || ( !checkEventNone(attribute.attribute_id, variantAttribute.id) &&
+                                <div
+                                    v-for="(attribute, index) in variantAttribute.attributes"
+                                    v-show="
+                                        (checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main) ||
+                                        (!checkEventNone(attribute.attribute_id, variantAttribute.id) &&
                                             !variantAttribute.is_main &&
-                                            !productItemCurrent)"
-                                >
+                                            !productItemCurrent)
+                                    ">
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
                                         :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
@@ -222,12 +245,6 @@
                                         @click="selectVariant(variantAttribute, attribute)">
                                         {{ attribute.attribute_name }}
                                     </button>
-<!--                                    <button-->
-<!--                                        v-else-->
-<!--                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14">-->
-<!--                                        {{ attribute.attribute_name }}-->
-<!--                                        <div class="check-mark"></div>-->
-<!--                                    </button>-->
                                 </div>
                             </div>
                             <UButton
@@ -236,17 +253,18 @@
                                 variant="ghost"
                                 color="none"
                                 class="text-blue-500"
-                            >{{ variantAttribute.slug =='size' ? $t('Hướng dẫn chọn size') : $t('Đường dẫn') }}...</UButton>
+                                >{{ variantAttribute.slug == 'size' ? $t('Hướng dẫn chọn size') : $t('Đường dẫn') }}...</UButton
+                            >
                         </div>
                         <span class="fs-14"
-                        >{{ $t('Số lượng còn') }}
+                            >{{ $t('Số lượng còn') }}
                             <b>{{
-                                    productItemCurrent && productItemCurrent.qty
-                                        ? productItemCurrent.qty
-                                        : productItem.data?.variants.length == 0 && productItem.data?.variantAttribute.length == 0
-                                            ? productItem.data?.qty
-                                            : 0
-                                }}</b></span
+                                productItemCurrent && productItemCurrent.qty
+                                    ? productItemCurrent.qty
+                                    : productItem.data?.variants.length == 0 && productItem.data?.variantAttribute.length == 0
+                                    ? productItem.data?.qty
+                                    : 0
+                            }}</b></span
                         >
                         <div
                             v-if="productItemCurrent"
@@ -271,35 +289,32 @@
                             </NuxtLink>
                         </div>
                         <div
-                        v-else-if="productItem.data?.variants.length == 0"
-                        class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
-                        <div
-                            class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
-                            <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
-                            {{ quantity }}
-                            <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
+                            v-else-if="productItem.data?.variants.length == 0"
+                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
+                            <div
+                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
+                                {{ quantity }}
+                                <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
+                            </div>
+                            <NuxtLink
+                                class="flex flex-1 h-12 rounded-full justify-center"
+                                :class="productItem.data?.qty > 0 ? '' : 'pointer-events-none'"
+                                @click="handleAddToCookie(productItem.data, false)"
+                                :to="localePath({ name: 'cart' })">
+                                <UButton
+                                    :class="productItem.data?.qty > 0 ? '' : 'bg-gray-400'"
+                                    class="flex-1 h-12 rounded-full justify-center">
+                                    <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
+                                    <span>Thêm vào giỏ hàng</span>
+                                </UButton>
+                            </NuxtLink>
                         </div>
-                        <NuxtLink
-                            class="flex flex-1 h-12 rounded-full justify-center"
-                            :class="productItem.data?.qty > 0 ? '' : 'pointer-events-none'"
-                            @click="handleAddToCookie(productItem.data, false)"
-                            :to="localePath({ name: 'cart' })">
-                            <UButton
-                                :class="productItem.data?.qty > 0 ? '' : 'bg-gray-400'"
-                                class="flex-1 h-12 rounded-full justify-center">
-                                <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
-                                <span>Thêm vào giỏ hàng</span>
-                            </UButton>
-                        </NuxtLink>
-                    </div>
                         <div
                             v-else-if="productItem.data?.variants.length > 0 && isColor"
                             class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
-                            <NuxtLink
-                                class="flex flex-1 h-12 rounded-full justify-center"
-                                @click="addToCart()">
-                                <UButton
-                                    class="flex-1 h-12 rounded-full justify-center">
+                            <NuxtLink class="flex flex-1 h-12 rounded-full justify-center" @click="addToCart()">
+                                <UButton class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
                                 </UButton>
@@ -531,8 +546,6 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
-import productHots from '~/api/product_hot.json';
-
 const route = useRoute();
 const router = useRouter();
 const toast = useToast();
@@ -566,6 +579,7 @@ const productSilk = ref(null);
 const indexActive = ref(0);
 const indexActiveColor = ref(0);
 const loadingProductItem = ref(true);
+const loadingChangeProduct = ref(true);
 const selectedProductVariant = ref({});
 const imageList = computed(() => null);
 const thumbsSwiper = ref(null);
@@ -574,6 +588,11 @@ let reviewJson = ref([]);
 
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;
+    console.log('Reloading swiper 1...');
+};
+const handleMainImageSwiper = () => {
+    loadingProductItem.value = false;
+    console.log('Reloading swiper 2...');
 };
 const setThumbsSwiperMobile = (swiper) => {
     thumbsSwiperMobile.value = swiper;
@@ -663,7 +682,7 @@ let initialProduct = (product) => {
         if (findProduct) {
             productItemCurrent.value = { ...findProduct };
             productVariants.value = [...findProduct.option_all];
-            selectColor.value =true;
+            selectColor.value = true;
         } else {
             let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
                 if (!variant.is_color) {
@@ -683,7 +702,7 @@ let initialProduct = (product) => {
             productVariants.value = [...filteredAttributes];
             router.push({ path: router.currentRoute.value.path });
         }
-        loadingProductItem.value = false;
+        // loadingProductItem.value = false;
     } else {
         let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
             if (!variant.is_color) {
@@ -701,12 +720,13 @@ let initialProduct = (product) => {
         }, []);
 
         productVariants.value = [...filteredAttributes];
-        loadingProductItem.value = false;
+        // loadingProductItem.value = false;
         // let attributeIds = product.variantAttribute.map((item) =>
         //     item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined,
         // );
         // findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
+    loadingChangeProduct.value = true;
 };
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
@@ -792,7 +812,7 @@ const refreshData = ref(0);
 
 const {
     data: productItem,
-    pending: loadingProduct,
+    status: loadingProduct,
     error: errorGetProduct,
 } = await useLazyAsyncData(
     'post-groups',
@@ -811,7 +831,6 @@ const {
 if (errorGetProduct.value) {
     router.push({ name: `index___${locale.value}` });
 }
-
 
 // const {
 //     data: productHot,
@@ -834,7 +853,6 @@ if (errorGetProduct.value) {
 // const loadingProductHot = ref(false)
 // const productHot = productHots
 
-
 // const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
 //     'product-hot',
 //     async () =>
@@ -853,13 +871,10 @@ if (errorGetProduct.value) {
 //     },
 // );
 
-const {
-    data: productHot,
-    pending: loadingProductHot,
-} = await useAsyncData(
+const { data: productHot, pending: loadingProductHot } = await useAsyncData(
     'product-hot',
     async () =>
-        useOriginalFetch(`/api/v1/product-hots`,{
+        useOriginalFetch(`/api/v1/product-hots`, {
             sort: {
                 'desc[0]': 'id',
             },
@@ -891,7 +906,7 @@ function selectVariant(group, attribute) {
     let productVariants1 = JSON.parse(JSON.stringify(productVariants.value));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
     if (!selectColor.value) {
-        selectColor.value = group.is_color
+        selectColor.value = group.is_color;
     }
 
     if (index !== -1 && productVariants.value[index] !== undefined) {
@@ -925,8 +940,8 @@ function selectVariant(group, attribute) {
             });
         }
     } else if (selectColor.value) {
-        selectColor.value = false
-        productVariants.value = productVariants1
+        selectColor.value = false;
+        productVariants.value = productVariants1;
     }
 }
 
@@ -1055,7 +1070,8 @@ function getAttributeName(attributeGroupId = null) {
 const resetProductPage = (isRefresh = true) => {
     productItemCurrent.value = null;
     thumbsSwiper.value = null;
-    loadingProductItem.value = loadingProduct.value;
+    // loadingProductItem.value = true;
+    showAllColor.value = false;
     if (isRefresh == true) {
         refreshData.value++;
     }
@@ -1088,7 +1104,7 @@ let seoMeta = {
     keywords: key.value,
     image: image.value,
     ogImage: image.value,
-    ogImageAlt:  title.value,
+    ogImageAlt: title.value,
 };
 
 let review = null;
@@ -1111,9 +1127,7 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
 }
 useSeoMeta(seoMeta);
 if (review) {
-    useSchemaOrg([
-        defineReview(review),
-    ])
+    useSchemaOrg([defineReview(review)]);
 }
 useSchemaOrg([
     defineProduct({
@@ -1122,27 +1136,27 @@ useSchemaOrg([
         price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
         description: description.value,
         offers: {
-            url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
-            itemCondition: "https://schema.org/NewCondition",
-            availability: "https://schema.org/InStock",
+            url: 'https://gak.vn/vi/chinh-sach-hoan-tra-san-pham',
+            itemCondition: 'https://schema.org/NewCondition',
+            availability: 'https://schema.org/InStock',
             offerCount: 5,
             lowPrice: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
             highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
             price: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
             priceCurrency: 'VND',
             priceSpecification: {
-                "@type": "PriceSpecification",
-                "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
-                "priceCurrency": "vnd"
+                '@type': 'PriceSpecification',
+                price: productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+                priceCurrency: 'vnd',
             },
         },
-        "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "Vn",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-            "merchantReturnDays": 30,
-            "returnMethod": "https://schema.org/ReturnInStore",
-            "returnFees": "https://schema.org/FreeReturn"
+        hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'Vn',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays: 30,
+            returnMethod: 'https://schema.org/ReturnInStore',
+            returnFees: 'https://schema.org/FreeReturn',
         },
         aggregateRating: {
             ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
@@ -1151,9 +1165,9 @@ useSchemaOrg([
         },
         review: [...reviewJson.value],
         brand: {
-            "@type": "Brand",
-            "name": "GAK"
-        }
+            '@type': 'Brand',
+            name: 'GAK',
+        },
     }),
 ]);
 watch(
@@ -1179,26 +1193,30 @@ watch(
                     image: image.value,
                     description: description.value,
                     offers: {
-                        url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
-                        itemCondition: "https://schema.org/NewCondition",
-                        availability: "https://schema.org/InStock",
+                        url: 'https://gak.vn/vi/chinh-sach-hoan-tra-san-pham',
+                        itemCondition: 'https://schema.org/NewCondition',
+                        availability: 'https://schema.org/InStock',
                         offerCount: 5,
-                        lowPrice: productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+                        lowPrice: productItemCurrent.value
+                            ? productItemCurrent.value.price_discount
+                            : productItem.value.data?.price_discount,
                         highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
                         priceCurrency: 'VND',
                         priceSpecification: {
-                            "@type": "PriceSpecification",
-                            "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
-                            "priceCurrency": "vnd"
+                            '@type': 'PriceSpecification',
+                            price: productItemCurrent.value
+                                ? productItemCurrent.value.price_discount
+                                : productItem.value.data?.price_discount,
+                            priceCurrency: 'vnd',
                         },
                     },
-                    "hasMerchantReturnPolicy": {
-                        "@type": "MerchantReturnPolicy",
-                        "applicableCountry": "Vn",
-                        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-                        "merchantReturnDays": 30,
-                        "returnMethod": "https://schema.org/ReturnInStore",
-                        "returnFees": "https://schema.org/FreeReturn"
+                    hasMerchantReturnPolicy: {
+                        '@type': 'MerchantReturnPolicy',
+                        applicableCountry: 'Vn',
+                        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+                        merchantReturnDays: 30,
+                        returnMethod: 'https://schema.org/ReturnInStore',
+                        returnFees: 'https://schema.org/FreeReturn',
                     },
                     aggregateRating: {
                         ratingValue: productItemCurrent.value
@@ -1215,23 +1233,29 @@ watch(
     { immediate: true },
 );
 
-let stopWatch = watch(
+watch(
     () => productItem.value,
-    async () => {
-        if (Object.keys(productItem.value).length > 0 && productItem.value.data) {
-            resetProductPage(false);
-            let productCurrent = ref({ ...productItem.value.data });
-            initialProduct(productCurrent.value);
+    () => {
+        if (router.currentRoute.value.name == `product-slug___${locale.value}`) {
+            if (Object.keys(productItem.value).length > 0 && productItem.value.data) {
+                resetProductPage(false);
+                let productCurrent = ref({ ...productItem.value.data });
+                initialProduct(productCurrent.value);
+            }
         }
     },
     { immediate: true },
 );
 
-onBeforeUnmount(() => {
-    if (stopWatch) {
-        stopWatch();
-    }
-});
+watch(
+    () => router.currentRoute.value.params.slug,
+    () => {
+        if (router.currentRoute.value.name == `product-slug___${locale.value}`) {
+            loadingChangeProduct.value = false;
+            loadingProductItem.value = true;
+        }
+    },
+);
 </script>
 <style lang="scss" scoped>
 .product-page {

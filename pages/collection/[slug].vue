@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingCollection && !collectionError" class="category-page pt-8 bg-white">
+        <div v-if="loadingCollection == 'success' && !collectionError" class="category-page pt-8 bg-white">
             <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
@@ -61,7 +61,7 @@
                             <div
                                 class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
                                 {{
-                                    (!loadingProductCollection && productCollection.data ? productCollection.data.length : '') +
+                                    (loadingProductCollection == 'success' && productCollection.data ? productCollection.data.length : '') +
                                     ' ' +
                                     $t('Kết quả')
                                 }}
@@ -131,20 +131,20 @@
                                 </USelectMenu>
                             </div>
                         </div>
-                        <div v-if="loadingProductCollection" class="category-data-list">
-                            <div v-for="product in 6" class="category-data-item" :key="product">
+                        <div v-if="loadingProductCollection == 'pending'" class="category-data-list">
+                            <div v-for="product in 8" class="category-data-item" :key="product">
                                 <ProductCard />
                             </div>
                         </div>
                         <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
+                            v-else-if="loadingProductCollection == 'success' && productCollection.data && productCollection.data.length > 0"
                             class="category-data-list">
                             <div v-for="product in productCollection.data" class="category-data-item" :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
                         <div
-                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
+                            v-else-if="loadingProductCollection == 'success' && productCollection.data && productCollection.data.length == 0"
                             class="category-data-list">
                             <div
                                 class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
@@ -267,10 +267,10 @@ const getParamsCollection = async () => {
 //data
 const {
     data: collection,
-    pending: loadingCollection,
+    status: loadingCollection,
     error: collectionError,
 } = await useAsyncData('collection-category', async () => useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`));
-const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
+const { data: productCollection, status: loadingProductCollection } = await useLazyAsyncData(
     'product-category',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
@@ -282,12 +282,12 @@ const { data: productCollection, pending: loadingProductCollection } = await use
     },
 );
 
-watch(
-    () => loadingCollection.value,
-    () => {
-        if (!loadingCollection.value) loadingPageCollection.value = false;
-    },
-);
+// watch(
+//     () => loadingCollection.value,
+//     () => {
+//         if (loadingCollection.value == 'pending') loadingPageCollection.value = false;
+//     },
+// );
 // const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
 //     useOriginalFetch(`/api/v1/categories`),
 // );
