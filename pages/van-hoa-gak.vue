@@ -1893,7 +1893,6 @@ useSeoMeta(seoMeta);
         padding-top: 50px;
         padding-bottom: 50px;
         text-align: center;
-        font-family: 'CriteriaCF';
         padding: 3rem 3rem;
         .cs-caption__heading {
             text-transform: initial;
@@ -1919,7 +1918,6 @@ useSeoMeta(seoMeta);
                     color: #2f5acf;
                     font-size: 2.5rem;
                     font-weight: 700;
-                    font-family: CriteriaCF;
                     line-height: normal;
                 }
                 .ten-facts__description {
@@ -1959,7 +1957,6 @@ useSeoMeta(seoMeta);
         line-height: 35px;
         color: #2f5acf;
         text-transform: uppercase;
-        font-family: 'CriteriaCF';
     }
     .recruitment-send {
         background-color: hsla(0, 0%, 92.2%, 0.5);
