@@ -33,15 +33,9 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
 .collection-wrapper {
-    @apply w-full flex justify-start gap-4;
+    @apply w-full grid grid-cols-4 gap-4;
     @media screen and (max-width: 991px) {
-        @apply flex-wrap;
-    }
-    .collection-item {
-        width: 25%;
-        @media screen and (max-width: 991px) {
-            width: calc(50% - 8px);
-        }
+        @apply grid-cols-2;
     }
 }
 </style>
