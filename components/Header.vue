@@ -430,7 +430,7 @@ onMounted(() => {
     }
     setTimeout(() => {
         getCategoryHeader();
-    }, 4000);
+    }, 3000);
 });
 const deboundTime = ref({
     timeOut: null,
