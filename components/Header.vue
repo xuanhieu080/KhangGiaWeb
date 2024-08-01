@@ -428,9 +428,9 @@ onMounted(() => {
     } else {
         cartNumber.value = 0;
     }
-    // setTimeout(() => {
-    //     getCategoryHeader();
-    // }, 4000);
+    setTimeout(() => {
+        getCategoryHeader();
+    }, 4000);
 });
 const deboundTime = ref({
     timeOut: null,
