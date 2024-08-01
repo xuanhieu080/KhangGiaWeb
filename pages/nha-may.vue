@@ -1,8 +1,8 @@
 <template>
     <NuxtLayout name="main">
-        <div>
+        <div class="w-full">
             <NuxtImg
-                class="w-full h-[500px] object-cover"
+                class="w-full h-[500px] md:h-full object-cover"
                 loading="lazy"
                 format="webp"
                 src="/images/produce-poster-video.jpg"
@@ -432,7 +432,6 @@ useSeoMeta(seoMeta);
         padding-top: 50px;
         padding-bottom: 50px;
         text-align: center;
-        font-family: 'CriteriaCF';
         border-radius: 1.5rem;
         padding: 3rem 3rem;
         .cs-caption__heading {
@@ -485,7 +484,6 @@ useSeoMeta(seoMeta);
         line-height: normal;
         color: #000;
         text-transform: uppercase;
-        font-family: 'CriteriaCF';
     }
     .cs-services__description {
         font-size: 16px;
@@ -494,7 +492,6 @@ useSeoMeta(seoMeta);
         font-size: 28px;
         font-weight: bold;
         margin-left: 0;
-        font-family: 'CriteriaCF';
     }
     .workshop-section-background {
         position: relative;

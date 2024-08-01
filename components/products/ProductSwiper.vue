@@ -1,6 +1,7 @@
 <template>
     <div v-if="productList.length > 0" class="product-wrapper relative">
         <Swiper
+            v-show="finishLoadingSwiper"
             :slidesPerView="2"
             :spaceBetween="16"
             :slidesPerGroup="1"
@@ -10,6 +11,7 @@
                 delay: 2500,
                 disableOnInteraction: false,
             }"
+            @swiper="handleSwiper"
             :navigation="{
                 nextEl: '.product-wrapper .next-product-btn',
                 prevEl: '.product-wrapper .prev-product-btn',
@@ -37,6 +39,7 @@
             variant="ghost"
             color="none"
             size="lg"
+            v-show="finishLoadingSwiper" 
             class="prev-product-btn -translate-x-1/2 rounded-full  absolute top-1/2 left-2 lg:left-0 -translate-y-1/2 z-20 bg-gray-100 p-2 rounded-fullss lg:z-0 hover:z-20"
             :padded="false">
             <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
@@ -45,16 +48,18 @@
             variant="ghost"
             color="none"
             size="lg"
+            v-show="finishLoadingSwiper" 
             class="next-product-btn translate-x-1/2 rounded-full absolute top-1/2 right-2 md:right-0 -translate-y-1/2 z-20 bg-gray-100 p-2 rounded-fullss lg:z-0 hover:z-20"
             :padded="false">
             <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
         </UButton>
-    </div>
-    <div v-else class="product-wrapper w-full grid grid-cols-2 md:flex md:items-center gap-4">
-        <div v-for="item in 4" :key="item" class="md:w-1/4">
-            <ProductCard />
+        <div v-show="!finishLoadingSwiper" class="product-wrapper w-full grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div v-for="item in 5" :key="item">
+                <ProductCard />
+            </div>
         </div>
     </div>
+    
 </template>
 <script setup>
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
@@ -74,10 +79,17 @@ const props = defineProps({
     },
 });
 let modules = ref([Navigation]);
+
+const finishLoadingSwiper = ref(false);
+const handleSwiper = () => {
+    finishLoadingSwiper.value = true;
+}
+
 onBeforeMount(() => {
     if (props.autoPlay) {
         modules.value.push(Autoplay);
     }
 });
+
 </script>
 <style lang="scss" scoped></style>

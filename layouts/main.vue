@@ -1,14 +1,8 @@
 <template>
     <div>
         <Header />
-        <div v-if="isLoadingPage" class="loading-container">
-            <div class="loading-wrapper">
-                <div class="loading"></div>
-                <div id="loading-text">Welcome...</div>
-            </div>
-        </div>
         <main class="wrapper-desktop relative w-full min-h-screen">
-            <div v-if="!isLoadingPage" class="w-full relative main">
+            <div class="w-full relative main">
                 <slot />
             </div>
             <div
