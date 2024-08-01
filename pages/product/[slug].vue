@@ -570,7 +570,7 @@ const selectedProductVariant = ref({});
 const imageList = computed(() => null);
 const thumbsSwiper = ref(null);
 const thumbsSwiperMobile = ref(null);
-let reviewJson = ref([]);
+const reviewJson = ref([]);
 
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;
@@ -1115,47 +1115,54 @@ if (review) {
         defineReview(review),
     ])
 }
+
+const productSEO = ref({
+    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
+    image: image.value,
+    price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
+    description: description.value,
+    offers: {
+        url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
+        itemCondition: "https://schema.org/NewCondition",
+        availability: "https://schema.org/InStock",
+        offerCount: 5,
+        lowPrice: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
+        highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
+        price: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
+        priceCurrency: 'VND',
+        priceSpecification: {
+            "@type": "PriceSpecification",
+            "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+            "priceCurrency": "vnd"
+        },
+    },
+    "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "Vn",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnInStore",
+        "returnFees": "https://schema.org/FreeReturn"
+    },
+    aggregateRating: {
+        ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
+        bestRating: 5,
+        ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
+    },
+    // review: [...reviewJson.value],
+    brand: {
+        "@type": "Brand",
+        "name": "GAK"
+    }
+})
+
+if (reviewJson.value.length > 0) {
+    productSEO.value.review = reviewJson.value
+}
 useSchemaOrg([
-    defineProduct({
-        name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
-        image: image.value,
-        price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
-        description: description.value,
-        offers: {
-            url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
-            itemCondition: "https://schema.org/NewCondition",
-            availability: "https://schema.org/InStock",
-            offerCount: 5,
-            lowPrice: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
-            highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
-            price: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
-            priceCurrency: 'VND',
-            priceSpecification: {
-                "@type": "PriceSpecification",
-                "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
-                "priceCurrency": "vnd"
-            },
-        },
-        "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "Vn",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-            "merchantReturnDays": 30,
-            "returnMethod": "https://schema.org/ReturnInStore",
-            "returnFees": "https://schema.org/FreeReturn"
-        },
-        aggregateRating: {
-            ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
-            bestRating: 5,
-            ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
-        },
-        review: [...reviewJson.value],
-        brand: {
-            "@type": "Brand",
-            "name": "GAK"
-        }
-    }),
+    defineProduct(productSEO.value),
 ]);
+
 watch(
     () => [reviewProduct.value, loadingReviewProduct.value],
     () => {

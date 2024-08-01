@@ -26,6 +26,7 @@
                         <h1>Oops...</h1>
                         <p>
                             <strong>{{ error?.message }}</strong>
+                            <strong>{{error}}</strong>
                         </p>
                         <p>Có vấn đề xảy ra.</p>
                         <p>Xin lỗi về sự bất tiện này.</p>
@@ -51,12 +52,12 @@ const localePath = useLocalePath();
 const timeout = ref(10);
 
 const backHomepage = setInterval(() => {
-    if (timeout.value == 0) {
-        clearInterval(backHomepage);
-        router.push(localePath({ name: 'index' }));
-    } else {
-        timeout.value--;
-    }
+    // if (timeout.value == 0) {
+    //     clearInterval(backHomepage);
+    //     router.push(localePath({ name: 'index' }));
+    // } else {
+    //     timeout.value--;
+    // }
 }, 1000);
 
 const handleError = () => {
