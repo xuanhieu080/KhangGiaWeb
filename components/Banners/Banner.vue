@@ -1,9 +1,10 @@
 <template>
-    <div v-if="bannerList.length > 0" class="banner-wrapper relative">
+    <div v-if="bannerList.length > 0" class="banner-wrapper relative h-full ">
         <Swiper
             ref="bannerSwiper"
             :slidesPerView="1"
             :modules="modules"
+            v-show="finishLoadBanner"
             :loop="true"
             :autoplay="{
                 delay: 2500,
@@ -13,11 +14,16 @@
                 nextEl: '.next-banner-btn',
                 prevEl: '.prev-banner-btn',
             }"
+            @swiper="loadSwiper"
             :grabCursor="true"
             class="swiper banner-swiper w-full h-full">
             <SwiperSlide v-for="item in bannerList" :key="item">
-                <NuxtLink :to="localePath({name: 'index'})" target="_blank" rel="noopener noreferrer">
-                    <NuxtImg fit="contain" class="w-full h-full" loading="lazy" format="webp" :src="item.url" alt="" />
+                <NuxtLink :to="item.link" target="_blank" rel="noopener noreferrer">
+                    <picture class="w-full h-full object-contain banner-image">
+                        <source media="(min-width:768px)" :srcset="item.url">
+                        <source media="(max-width:767px)" :srcset="item.url_mobile">
+                        <img class="w-full h-full object-contain banner-image" :src="item.url" loading="lazy" alt="">
+                    </picture>
                 </NuxtLink>
             </SwiperSlide>
             <template v-slot:container-end>
@@ -39,11 +45,13 @@
                 </div>
             </template>
         </Swiper>
+        <USkeleton v-show="!finishLoadBanner" class="h-[600px] w-full min-h-screen lg:min-h-0"></USkeleton>
     </div>
 </template>
 <script setup>
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay } from 'swiper/modules';
+
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
@@ -55,6 +63,7 @@ const props = defineProps({
     },
 });
 const localePath = useLocalePath();
+const finishLoadBanner = ref(false);
 let modules = ref([Navigation]);
 const bannerSwiper = ref(null);
 onBeforeMount(() => {
@@ -62,5 +71,23 @@ onBeforeMount(() => {
         modules.value.push(Autoplay);
     }
 });
+
+const loadSwiper = () => {
+    finishLoadBanner.value = true;
+}
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.banner-image {
+    &.desktop {
+        @media screen and (max-width: 767px) {
+            display: none;
+        }
+    }
+    &.mobile {
+        display: none;
+        @media screen and (max-width: 767px) {
+           display: block;
+        }
+    }
+}
+</style>

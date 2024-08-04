@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="false" class="about-us-image relative">
+        <div class="about-us-image relative">
             <NuxtImg
                 class="w-full h-[500px] object-cover"
                 loading="lazy"
@@ -9,13 +9,13 @@
                 alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY GAK</h1>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY GAK</h1>
                 <span class="text-lg xl:text-xl"
                     >Đây là chuyên mục giúp các bạn biết được GAK đã hình thành ra sao và chúng tôi muốn xây dựng một hình mẫu như thế
                     nào!</span
                 >
             </div>
-            <div class="flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
+            <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
                     variant="ghost"
                     color="none"
@@ -34,12 +34,13 @@
                 <UButton
                     variant="ghost"
                     color="none"
+                    :to="localePath({ name: 'van-hoa-gak' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">GAK <br />101</span>
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -62,8 +63,55 @@
                 </UButton>
             </div>
         </div>
-        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
-            <section class="cs-caption py-4">
+        <div class="lg:hidden flex flex-col justify-between gap-4 my-4 px-4">
+            <UButton
+                    variant="ghost"
+                    color="none"
+                    :to="localePath({ name: 've-chung-toi' })"
+                    class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
+                    <div class="flex justify-center">
+                        <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
+                    </div>
+                    <div class="font-bold text-left flex-1 flex justify-start">
+                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                    </div>
+                    <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                        <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
+                    </div>
+                </UButton>
+                <UButton
+                    variant="ghost"
+                    color="none"
+                    :to="localePath({ name: 'van-hoa-gak' })"
+                    class="about-us-button bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
+                    <div class="flex justify-center">
+                        <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
+                    </div>
+                    <div class="font-bold text-left flex-1 flex justify-start">
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                    </div>
+                    <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                        <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
+                    </div>
+                </UButton>
+                <UButton
+                    variant="ghost"
+                    :to="localePath({ name: 'dvkh-tan-tam' })"
+                    color="none"
+                    class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
+                    <div class="flex justify-center">
+                        <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/star-blink.png" />
+                    </div>
+                    <div class="font-bold text-left flex-1 flex justify-start">
+                        <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                    </div>
+                    <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
+                        <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
+                    </div>
+                </UButton>
+        </div>
+        <div class="about-content pt-6 md:!pt-[5rem] mx-auto">
+            <section class="cs-caption pt-4 pb-8">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-about__heading w-full text-center !my-6">CÔNG TY GAK XIN CHÀO !</h2>
                     <div class="cs-caption__wrapper !bg-[#2f5acf]">
@@ -92,8 +140,7 @@
                     </div>
                 </div>
             </section>
-
-            <section class="cs-services mt-8 lg:mt-[128px]">
+            <section class="cs-services pt-6 lg:pt-[128px]">
                 <div class="container container--medium prose prose-lg space-y-16">
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling items-end">
                         <div class="grid__column my-auto">
@@ -177,16 +224,17 @@
                     <h2 class="cs-cta__heading">
                         Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
                     </h2>
-                    <span class="flex items-center justify-center flex-wrap gap-4">
-                        <UButton size="lg" class="text-[#2f5acf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
-                            <b class="uppercase">đăng ký miễn phí</b> hoặc <b class="uppercase">Đăng nhập</b>
+                    <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
+                        <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
+                            Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
+                            :to="localePath({name: 'gak-official'})"
                             size="lg"
-                            class="border border-white bg-[#2f5acf] rounded-3xl text-white px-6 py-4"
+                            class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
-                            Tìm hiểu đặc quyền Hội viên GAK
+                            GAK OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -201,6 +249,30 @@ import images from '@@/assets/icons';
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
+
+let title = 'CSKH GAK tận tâm và hành trình mua sắm tận gốc!';
+let pageDescription = 'Cảm ơn bạn đã chọn GAK, chúng tôi ở đây là vì bạn, không ngừng cải thiện tất cả dịch vụ để bạn luôn hài lòng và có những trải nghiệm tốt nhất tại GAK.'
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: pageDescription,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+let seoMeta = {
+    description:  pageDescription,
+    ogDescription:  pageDescription,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription:  pageDescription,
+    keywords: title,
+};
+useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped>
@@ -219,7 +291,7 @@ const slug = ref(router.currentRoute.value.params.slug);
     }
 }
 .about-content {
-    background-color: white;
+    background-color: #f1f1f1;
     .cs-about,
     .cs-caption,
     .cs-story {
@@ -235,6 +307,10 @@ const slug = ref(router.currentRoute.value.params.slug);
         font-size: 40px;
         color: #000000;
         font-size: 3.5rem;
+        @media screen and (max-width: 567px) {
+            font-size: 3rem;
+            text-align: center;
+        }
     }
     .cs-caption__wrapper {
         padding: 50px;
@@ -247,6 +323,9 @@ const slug = ref(router.currentRoute.value.params.slug);
             line-height: 1.5em;
             padding: 0 3rem;
             position: relative;
+            @media screen and (max-width: 767px) {
+                padding: 0;
+            }
             &:before {
                 content: '';
                 position: absolute;
@@ -256,9 +335,12 @@ const slug = ref(router.currentRoute.value.params.slug);
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-position: 20% top;
-                background-image: url(https://mcdn.coolmate.me/image/October2023/mceclip0_68.png);
+                background-image: url('/images/big-dash.png');
                 top: -50px;
                 left: 0;
+                @media screen and (max-width: 567px) {
+                    left: -24px;
+                }
             }
         }
     }
@@ -269,6 +351,9 @@ const slug = ref(router.currentRoute.value.params.slug);
         position: relative;
         padding-bottom: 15px;
         text-transform: uppercase;
+    }
+    .cs-services {
+        background-color: white;
     }
     .cs-services__heading {
         font-style: normal;
@@ -291,6 +376,9 @@ const slug = ref(router.currentRoute.value.params.slug);
         text-transform: uppercase;
         max-width: 400px;
         margin: auto 0;
+        @media screen and (max-width: 567px) {
+            line-height: 1.4;
+        }
     }
     .cs-services-info__order {
         color: #dedede;
@@ -342,7 +430,7 @@ const slug = ref(router.currentRoute.value.params.slug);
         }
     }
     .cs-cta {
-        background-color: #2f5acf;
+        background-color: #176c36;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;

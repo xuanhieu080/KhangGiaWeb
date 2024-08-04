@@ -1,23 +1,24 @@
 <template>
     <NuxtLayout name='main'>
-
-        <div v-if="page && page.data" class="page">
-            <div v-if="!page.data.is_button && page.data.image_url" class="about-us-image relative">
+        <div v-if='page && page.data' class='page'>
+            <div v-if='!page.data.is_button && page.data.image_url' class='about-us-image relative'>
                 <NuxtImg
-                    v-if="page.data.image_url"
-                    class="w-full h-[500px] object-cover"
-                    loading="lazy"
-                    format="webp"
-                    :src="page.data.image_url"
-                    alt="" />
+                    v-if='page.data.image_url'
+                    class='w-full h-[500px] object-cover'
+                    loading='lazy'
+                    format='webp'
+                    :src='page.data.image_url'
+                    alt='' />
                 <div
-                    class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center">
-                    <h1 v-if="page.data.title" class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">{{page.data.title}}</h1>
-                    <span v-if="page.data.description_short" class="text-lg xl:text-xl">{{page.data.description_short}}</span>
+                    class='about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center'>
+                    <h1 v-if='page.data.title' class='font-bold !text-[54px] 2xl:!text-[64px] !my-2'>
+                        {{ page.data.title }}</h1>
+                    <span v-if='page.data.description_short'
+                          class='text-lg xl:text-xl'>{{ page.data.description_short }}</span>
                 </div>
             </div>
-            <div class="about-content !py-12 container mx-auto">
-                <div class="prose max-w-full" v-html="page.data.description"></div>
+            <div class='about-content !py-12 container mx-auto'>
+                <div class='prose max-w-full' v-html='page.data.description'></div>
             </div>
         </div>
     </NuxtLayout>
@@ -27,40 +28,67 @@
 import images from 'assets/icons';
 import { storeToRefs } from 'pinia';
 import { useHeader } from '~/store/useHeader';
+
 const useHeaderStore = useHeader();
 const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
 
-
+const router = useRouter();
 const route = useRoute();
-const slug = ref(route.params.slug)
+const slug = ref(route.params.slug);
+const { locale, t: trans } = useI18n();
 
 const content = ref();
 
-const { data: page, pending: loadingPage } = await useLazyAsyncData('pages', () =>
-    useOriginalFetch(`/api/v1/pages/${slug.value}`),
+const refreshData = ref(0);
+const {
+    data: page,
+    pending: loadingPage,
+    error: errorGetItem,
+} = await useAsyncData(
+    'pages',
+    async () =>
+        useOriginalFetch(`/api/v1/pages/${route.params.slug}`),
+    {
+        default: () => [],
+        watch: [refreshData],
+    },
 );
+if (errorGetItem.value) {
+    router.push({ name: `index___${locale.value}` });
+}
+
 watchEffect(() => {
     if (!loadingPage.value) {
         isLoadingPage.value = false;
     }
 });
-// useSchemaOrg([
-//     defineArticle({
-//         type: 'Article',
-//         headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         image: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
-//         datePublished: new Date(2024, 1, 1),
-//         dateModified: new Date(2024, 1, 1),
-//         author: [
-//             {
-//                 name: 'Chung Ngô',
-//                 url: 'https://gak.vn',
-//             },
-//         ]
-//     })
-// ]);
+
+const title = ref(page.value.data?.meta_title);
+const description = ref(page.value.data?.meta_description);
+const image = ref(page.value.data?.image_url);
+const meta_key = ref(page.value.data?.meta_key);
+
+defineOgImageComponent('GAK', {
+    title: title.value,
+    description: description.value,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url: image.value,
+});
+const seoMeta = {
+    description: description.value,
+    ogDescription: description.value,
+    ogTitle: title.value,
+    title: title.value,
+    twitterTitle: title.value,
+    twitterDescription: description.value,
+    keywords: meta_key.value,
+};
+
+useSeoMeta(seoMeta);
+
 </script>
 <style lang='scss' scoped>
 .page {

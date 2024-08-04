@@ -1,14 +1,14 @@
 <template>
     <NuxtLayout name="main">
         <div class="category-page pt-8 bg-white">
-            <div class="px-8">
+            <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase text-2xl">CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT</h1>
+                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT</h1>
                     </div>
                 </div>
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
-                    <div v-if="!loadingCollection" class="category-main-left w-full lg:max-w-[350px] px-4">
+                    <div v-if="!loadingCollection" class="category-main-left w-full lg:max-w-[350px] md:pr-4">
                         <div class="flex flex-col gap-4 justify-start w-full sticky top-8">
                             <div
                                 class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
@@ -31,19 +31,40 @@
                                 :class="showFullOption ? 'h-full' : 'h-[170px] overflow-hidden'"
                                 class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
                                 <div v-for="variant in collection.data" class="filter-option-item flex flex-col gap-4">
-                                    <div class="filter-option-title text-sm font-bold text-gray-500">
-                                        {{ variant.name }}
-                                    </div>
-                                    <UCheckbox
-                                        v-model="selectedAll[form.id]"
-                                        v-for="(form, index) in variant.attributes"
-                                        size="lg"
-                                        class="rounded-full"
-                                        :name="form.name"
-                                        :label="form.name" />
+                                    <UAccordion :items="[variant]" :key="variant" :defaultOpen="false && variant.attributes.length < 6 ? true : false">
+                                        <template #default="{ item, index, open }">
+                                            <UButton
+                                                color="none"
+                                                variant="ghost"
+                                                class="border-b border-gray-200 dark:border-gray-700 px-0"
+                                                :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
+                                                <span class="truncate text-gray-700">{{ item.name }} ({{item.attributes.length}})</span>
+                                                <template #trailing>
+                                                    <UIcon
+                                                        :name="open ? 'i-heroicons-minus' : 'i-heroicons-plus'"
+                                                        class="w-5 h-5 ms-auto transform transition-transform duration-200" />
+                                                </template>
+                                            </UButton>
+                                        </template>
+                                        <template #item="{ item }">
+                                            <div v-for="(form, index) in item.attributes" class="flex flex-col gap-4">
+                                                <p class="italic text-gray-900 dark:text-white text-center !mx-4">
+                                                    <UCheckbox
+                                                        :modelValue="selectedAll[form.id]"
+                                                        @change="(e) => setFilterSelect(form.id, e)"
+                                                        size="lg"
+                                                        class="rounded-full"
+                                                        :name="form.name"
+                                                        :ui="{ inner: 'w-full text-left' }"
+                                                        :label="form.name" />
+                                                </p>
+                                            </div>
+                                        </template>
+                                    </UAccordion>
                                 </div>
                             </div>
                             <UButton
+                                v-if="false"
                                 variant="outline"
                                 color="none"
                                 @click="showFullOption = !showFullOption"
@@ -81,7 +102,7 @@
                         <div
                             v-else-if="!loadingCollectionProduct && collectionProduct.data && collectionProduct.data.length > 0"
                             class="category-data-list">
-                            <div v-for="product in collectionProduct.data" class="category-data-item" :key="product">
+                            <div v-for="product in collectionProduct.data" class="category-data-item border p-2 rounded-lg" :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
@@ -99,8 +120,7 @@
             <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
                 <div class="container mx-auto md:max-w-[1280px] p-4">
                     <span class="text-gray-500 font-medium fs-20 leading-relaxed"
-                        >Dòng sản phẩm thể thao ứng dụng các chất liệu và thiết kế mới với nhiều tính năng ưu việt giúp bạn thoải mái và tập
-                        trung hơn vào các chuyển động của mình.
+                        >GAK tiên phong trong việc cung ứng các sản phẩm chất lượng, tuỳ biến chính xác theo nhu cầu khách hàng và không ngừng cải tiến chất lượng sản phẩm
                     </span>
                 </div>
             </div>
@@ -132,212 +152,10 @@ defineComponent({
 
 const router = useRouter();
 const localePath = useLocalePath();
-const modules = [Scrollbar];
 const isLoadingData = ref(false);
-const showFullOption = ref(false);
+const showFullOption = ref(true);
 const tabIndex = ref(0);
-const categoryList = ref([
-    {
-        name: 'Áo các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo thun, áo polo và áo khoác',
-    },
-    {
-        name: 'Quần các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo shorts, Jogger, Kaki và Jeans',
-    },
-    {
-        name: 'Phụ kiện các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Tất/vớ, mũ và phụ kiện khác',
-    },
-    {
-        name: 'Áo các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo thun, áo polo và áo khoác',
-    },
-    {
-        name: 'Quần các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Áo shorts, Jogger, Kaki và Jeans',
-    },
-    {
-        name: 'Phụ kiện các loại',
-        image: 'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-        description: 'Tất/vớ, mũ và phụ kiện khác',
-    },
-]);
-const productList = ref([
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Xanh wash',
-                code: 'blue',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
-                ],
-            },
-            {
-                color: 'Xanh navi',
-                code: 'green',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Vàng',
-                code: 'yellow',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 1,
-        product_name: 'Áo polo nam dài tay thể thao',
-        product_slug: 'ao-polo-nam-dai-tay-the-thao',
-        product_category_id: 1,
-        product_category_name: 'Áo thun',
-        product_category_slug: 'ao-thun',
-        product_introduction: 'Co giãn',
-        product_price: 159000,
-        product_discount: 0,
-        product_compaign_id: 1,
-        product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-        product_images: [
-            {
-                color: 'Đen',
-                code: '#000',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/January2024/aoexcuwwebjoggerut_copy_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/December2023/joggerut.10.jpg',
-                ],
-            },
-            {
-                color: 'Trắng',
-                code: '#fff',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/November2023/23CMCW.QD006.s.1_71.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 2,
-        product_name: 'Quần jeans nam Basics',
-        product_slug: 'quan-jeans-nam-basics',
-        product_category_id: 2,
-        product_category_name: 'Quần dài',
-        product_category_slug: 'quan-dai',
-        product_introduction: 'Dáng Straight',
-        product_price: 299000,
-        product_discount: 10,
-        product_compaign_id: null,
-        product_compaign_name: null,
-        product_images: [
-            {
-                color: 'Xanh wash',
-                code: 'blue',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.14_2.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.QD006.s.11_15.jpg',
-                ],
-            },
-            {
-                color: 'Xanh navi',
-                code: 'green',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang1.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/February2024/joggerutdanang3.jpg',
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        product_name: 'Áo bảo hộ thi công',
-        product_slug: 'ao-bao-ho-thi-cong',
-        product_category_id: 22,
-        product_category_name: 'Áo bảo hộ',
-        product_category_slug: 'ao-bao-ho',
-        product_introduction: 'Thoáng mát / Nhanh khô',
-        product_price: 199000,
-        product_discount: 10,
-        product_compaign_id: 2,
-        product_compaign_name: 'Giảm 10% cho thành viên mới',
-        product_images: [
-            {
-                color: 'Vàng',
-                code: 'yellow',
-                list: [
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.7_72.jpg',
-                    'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/November2023/23CMCW.JE002.9_33.jpg',
-                ],
-            },
-        ],
-    },
-]);
+
 const filterList = ref([
     {
         name: 'Mới nhất',
@@ -363,102 +181,20 @@ const filterList = ref([
 
 const filter = ref(filterList.value[0]);
 
-const selectedForm = ref({});
-const selectedMaterial = ref({});
-const selectedColor = ref(null);
+
 const refreshData = ref(0);
-const selectedSize = ref({});
+
 const selectedAll = ref({});
 const removeAllFilter = () => {
     selectedAll.value = {};
     refreshData.value++;
 };
-const formFilter = ref([
-    {
-        name: 'Quần Trunk',
-        label: 'Quần Trunk',
-    },
-    {
-        name: 'Quần Tam Giác',
-        label: 'Quần Tam Giác',
-    },
-    {
-        name: 'Quần Boxer dài',
-        label: 'Quần Boxer dài',
-    },
-    {
-        name: 'Quần Long Leg',
-        label: 'Quần Long Leg',
-    },
-]);
 
-const materialFilter = ref([
-    {
-        name: 'Vải bamboo',
-        label: 'Vải bamboo (Sợi tre)',
-    },
-    {
-        name: 'Vải Café',
-        label: 'Vải Café',
-    },
-    {
-        name: 'Vải Cotton',
-        label: 'Vải Cotton',
-    },
-    {
-        name: 'Vải Ice Cooling',
-        label: 'Vải Ice Cooling',
-    },
-]);
-const sizeFilter = ref([
-    {
-        name: 'S',
-        label: 'S',
-    },
-    {
-        name: 'M',
-        label: 'M',
-    },
-    {
-        name: 'L',
-        label: 'L',
-    },
-    {
-        name: 'XL',
-        label: 'XL',
-    },
-    {
-        name: '2XL',
-        label: '2XL',
-    },
-]);
-const colourFilter = ref([
-    {
-        name: 'Đen',
-        label: 'Đen',
-        color: '#000',
-    },
-    {
-        name: 'Trắng',
-        label: 'Trắng',
-        color: '#fff',
-    },
-    {
-        name: 'Xanh navy',
-        label: 'Xanh navy',
-        color: 'blue',
-    },
-    {
-        name: 'Xám',
-        label: 'Xám',
-        color: 'gray',
-    },
-    {
-        name: 'Đỏ',
-        label: 'Đỏ',
-        color: 'red',
-    },
-]);
+const setFilterSelect = (id, e) => {
+    selectedAll.value[id] = e;
+    if (!selectedAll.value[id]) delete selectedAll.value[id];
+    refreshData.value++;
+};
 
 const changeCategoryTab = (index) => {
     tabIndex.value = index;
@@ -527,19 +263,43 @@ const {
         }),
     {
         default: () => [],
-        watch: [filter,selectedAll.value, refreshData],
+        watch: [filter, refreshData],
     },
 );
 
 // watch(() => collectionError.value, () => {
 
 // })
+
+let title = 'Áo gile kỹ sư cao cấp';
+let description = 'Áo gile kỹ sư cao cấp';
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+let seoMeta = {
+    description:  description,
+    ogDescription:  description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription:  description,
+    keywords: 'Đồng phục công ty',
+};
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .category-page {
     .category-tabs {
         .category-swiper {
-            padding: 24px 0;
+            padding-bottom: 24px;
             .category-card {
                 .category-item {
                     border: 2px solid transparent;

@@ -1,169 +1,147 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingProduct" class="product-page py-6 w-full">
+        <div v-if="loadingChangeProduct" class="product-page py-6 w-full">
             <div class="container mx-auto flex flex-col gap-4">
-                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative pt-12">
+                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
                     <UBreadcrumb
-                        class="w-full absolute -top-2 left-2 lg:left-[96px]"
-                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0' }"
+                        class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]"
+                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate' }"
                         divider="/"
-                        :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data.name }]" />
+                        :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data?.name }]" />
 
-                    <Swiper
-                        v-if="!loadingProductItem"
-                        @swiper="setThumbsSwiper"
-                        :spaceBetween="16"
-                        :slidesPerView="4"
-                        :freeMode="true"
-                        :watchSlidesProgress="true"
-                        :modules="modules"
-                        :lazy="true"
-                        :direction="'vertical'"
-                        class="!hidden lg:!block !w-[60px] !mx-0 !shrink-0 thumb-product-swiper !sticky top-2.5">
-                        <SwiperSlide v-if="productItem.data.video_link" class="!h-[80px] w-full rounded-md relative">
-                            <video class="pointer-events-none">
-                                <source :src="productItem.data.video_link" />
-                            </video>
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
-                            v-for="(image, index) in productItemCurrent.thumb_image"
-                            v-show="!productItem.data.video_link ? index < 4 : index < 3"
-                            class="!h-[80px] w-full rounded-md relative">
-                            <span
-                                v-if="
-                                    (!productItem.data.video_link && productItemCurrent.thumb_image.length > 4 && index == 3) ||
-                                    (productItem.data.video_link && productItemCurrent.thumb_image.length > 3 && index == 2)
-                                "
-                                class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                                >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
-                            >
-                            <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                            class="!h-[80px] w-full rounded-md">
-                            <img
-                                :src="productItemCurrent ? productItemCurrent.image_url : ''"
-                                alt="No image"
-                                class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
-                            v-for="(image, index) in productItem.data.thumb_image"
-                            v-show="!productItem.data.video_link ? index < 4 : index < 3"
-                            class="!h-[80px] w-full rounded-md relative">
-                            <span
-                                v-if="
-                                    (!productItem.data.video_link && productItem.data.thumb_image.length > 4 && index == 3) ||
-                                    (productItem.data.video_link && productItem.data.thumb_image.length > 3 && index == 2)
-                                "
-                                class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-lg"
-                                >+{{ productItem.data.thumb_image.length - index - 1 }}</span
-                            >
-                            <img :src="image" loading="lazy" alt="" class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                        <SwiperSlide
-                            v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
-                            class="!h-[120px] w-full rounded-md">
-                            <img
-                                :src="productItem.data ? productItem.data.image_url : ''"
-                                alt="No image"
-                                class="w-full h-full object-cover rounded-md" />
-                        </SwiperSlide>
-                    </Swiper>
-                    <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
-                        <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
-                        <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
-                    </div>
-                    <div
-                        v-show="thumbsSwiper"
-                        class="main-product-swiper w-full lg:min-w-[540px] lg:w-[540px] lg:sticky top-2 bg-[#f1f1f1]">
+                    <div class="image-box flex items-start justify-center gap-4 w-full relative lg:sticky lg:top-6">
                         <Swiper
-                            v-if="!loadingProductItem"
-                            :spaceBetween="10"
-                            :lazy="true"
-                            :navigation="{
-                                nextEl: '.main-product-swiper .next-product-btn',
-                                prevEl: '.main-product-swiper .prev-product-btn',
-                            }"
-                            :thumbs="{ swiper: thumbsSwiper }"
+                            v-show="!loadingProductItem"
+                            @swiper="setThumbsSwiper"
+                            :spaceBetween="16"
+                            :slidesPerView="4"
+                            :freeMode="true"
+                            :watchSlidesProgress="true"
                             :modules="modules"
-                            class="!mx-0">
-                            <SwiperSlide v-if="productItem.data.video_link" class="!flex justify-center !h-auto">
-                                <video controls class="h-full w-full object-contain" autoplay muted>
-                                    <source
-                                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                                        type="video/mp4" />
-                                </video>
-                            </SwiperSlide>
+                            :key="'thumb-mobile'"
+                            :lazy="true"
+                            :direction="'vertical'"
+                            class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-6">
                             <SwiperSlide
                                 v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
-                                v-for="image in productItemCurrent.thumb_image"
-                                class="!flex justify-center !h-auto aspect-[3/4]">
-                                <img :src="image" loading="lazy" alt="" class="rounded-md object-contain" />
-                            </SwiperSlide>
-                            <SwiperSlide
-                                v-else-if="productItemCurrent && productItemCurrent.thumb_image.length <= 0"
-                                class="!h-[200px] w-full rounded-md">
+                                v-for="(image, index) in productItemCurrent.thumb_image"
+                                v-show="index < 4"
+                                class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
+                                <span
+                                    v-if="productItemCurrent.thumb_image.length > 4 && index == 3"
+                                    class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
+                                    >+{{ productItemCurrent.thumb_image.length - index - 1 }}</span
+                                >
                                 <img
-                                    :src="productItemCurrent ? productItemCurrent.image_url : ''"
-                                    alt="No image"
+                                    :src="image"
+                                    loading="lazy"
+                                    quality="80"
+                                    :alt="productItemCurrent.name"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
                             <SwiperSlide
-                                v-else-if="!productItemCurrent && productItem.data.thumb_image.length > 0"
-                                v-for="image in productItem.data.thumb_image"
-                                class="!flex justify-center !h-auto aspect-[3/4]">
-                                <img :src="image" loading="lazy" alt="" class="w-full h-full rounded-md object-contain" />
-                            </SwiperSlide>
-
-                            <SwiperSlide
-                                v-else-if="!productItemCurrent && productItem.data.thumb_image.length <= 0"
-                                class="!h-[120px] w-full rounded-md">
+                                v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
+                                v-for="(image, index) in productItem.data?.thumb_image"
+                                v-show="index < 4"
+                                class="!h-[36px] lg:!h-[80px] w-full rounded-md relative">
+                                <span
+                                    v-if="productItem.data?.thumb_image.length > 4 && index == 3"
+                                    class="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
+                                    >+{{ productItem.data?.thumb_image.length - index - 1 }}</span
+                                >
                                 <img
-                                    :src="productItem.data ? productItem.data.image_url : ''"
-                                    alt="No image"
+                                    :src="image"
+                                    loading="lazy"
+                                    quality="80"
+                                    :alt="productItem.data.name"
                                     class="w-full h-full object-cover rounded-md" />
                             </SwiperSlide>
-                            <template v-slot:container-end>
-                                <UButton
-                                    variant="ghost"
-                                    color="none"
-                                    class="prev-product-btn w-[40px] h-[40px] absolute bottom-4 right-6 -translate-x-full z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
-                                    :padded="false">
-                                    <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
-                                </UButton>
-                                <UButton
-                                    variant="ghost"
-                                    color="none"
-                                    class="next-product-btn w-[40px] h-[40px] absolute bottom-4 right-4 z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
-                                    :padded="false">
-                                    <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
-                                </UButton>
-                            </template>
                         </Swiper>
-                    </div>
+                        <div v-show="loadingProductItem" class="hidden lg:flex loading-frame flex-col gap-4">
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                            <USkeleton class="min-w-[60px] h-[80px] rounded-md"></USkeleton>
+                        </div>
+                        <div
+                            v-show="!loadingProductItem"
+                            class="main-product-swiper rounded-md w-full xl:min-w-[540px] lg:w-[450px] xl:w-[540px] z-0 bg-[#f1f1f1]">
+                            <Swiper
+                                v-show="!loadingProductItem"
+                                :spaceBetween="10"
+                                :lazy="true"
+                                :navigation="{
+                                    nextEl: '.main-product-swiper .next-product-btn',
+                                    prevEl: '.main-product-swiper .prev-product-btn',
+                                }"
+                                :thumbs="{ swiper: thumbsSwiper }"
+                                :zoom="true"
+                                :modules="modules"
+                                @swiper="handleMainImageSwiper"
+                                class="!mx-0">
+                                <SwiperSlide
+                                    v-if="productItemCurrent && productItemCurrent.thumb_image.length > 0"
+                                    v-for="image in productItemCurrent.thumb_image"
+                                    class="!flex justify-center !h-auto aspect-[3/4]">
+                                    <NuxtImg
+                                        :src="image"
+                                        loading="lazy"
+                                        quality="80"
+                                        :alt="productItemCurrent.name"
+                                        class="rounded-md object-contain" />
+                                </SwiperSlide>
+                                <SwiperSlide
+                                    v-else-if="!productItemCurrent && productItem.data?.thumb_image.length > 0"
+                                    v-for="image in productItem.data?.thumb_image"
+                                    class="flex justify-center items-center !h-full aspect-[3/4] w-full rounded-md">
+                                    <NuxtImg
+                                        :src="image"
+                                        loading="lazy"
+                                        quality="80"
+                                        :alt="productItem.data.name"
+                                        class="w-full h-full rounded-md object-contain" />
+                                </SwiperSlide>
+                                <template v-slot:container-end>
+                                    <UButton
+                                        variant="ghost"
+                                        color="none"
+                                        class="prev-product-btn w-[40px] h-[40px] absolute bottom-4 right-6 -translate-x-full z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
+                                        :padded="false">
+                                        <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
+                                    </UButton>
+                                    <UButton
+                                        variant="ghost"
+                                        color="none"
+                                        class="next-product-btn w-[40px] h-[40px] absolute bottom-4 right-4 z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
+                                        :padded="false">
+                                        <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
+                                    </UButton>
+                                </template>
+                            </Swiper>
+                        </div>
 
-                    <div v-show="!thumbsSwiper" class="loading-frame flex flex-col gap-4">
-                        <USkeleton class="min-w-[350px] w-[350px] h-[500px] rounded-md"></USkeleton>
+                        <div v-show="loadingProductItem" class="loading-frame flex flex-col gap-4 md:w-4/5">
+                            <USkeleton class="min-w-[350px] w-full h-[500px] md:h-[700px] rounded-md"></USkeleton>
+                        </div>
                     </div>
                     <div class="product-information flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
                             <span class="font-bold text-[28px] lg:text-[32px]">{{
-                                productItemCurrent ? productItemCurrent.name : productItem.data.name
+                                productItemCurrent ? productItemCurrent.name : productItem.data?.name
                             }}</span>
                         </div>
-                        <div class="product-rate flex items-center gap-2 text-black">
+                        <div class="product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black">
                             <NuxtRating
                                 class="w-[220px]"
                                 :read-only="true"
-                                :ratingValue="productItem.data.average_rate"
+                                :ratingValue="productItem.data?.average_rate"
                                 :active-color="'green'"
                                 rating-content="⭐" />
-                            <div class="fs-12">({{ productItem.data.rate_count }})</div>
-                            <div>|</div>
-                            <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data.qty_sold }}</div>
+                            <div class="flex items-center gap-2">
+                                <div class="fs-12">({{ productItem.data?.rate_count }})</div>
+                                <div>|</div>
+                                <div class="fs-12">{{ $t('Sold') + ' (web): ' + productItem.data?.qty_sold }}</div>
+                            </div>
                         </div>
 
                         <div v-if="productItemCurrent" class="product-price font-bold text-[22px]">
@@ -179,45 +157,47 @@
                             </div>
                         </div>
                         <div v-else class="product-price font-bold text-[22px]">
-                            <div v-if="productItem.data.percent == 0" class="original-price">
-                                {{ formatPriceProduct(productItem.data.price) + 'đ' }}
+                            <div v-if="productItem.data?.percent == 0" class="original-price">
+                                {{ formatPriceProduct(productItem.data?.price) + 'đ' }}
                             </div>
                             <div v-else class="discount-price">
                                 <div class="after-discount">
-                                    {{ formatPriceProduct(productItem.data.price_discount) + 'đ' }}
+                                    {{ formatPriceProduct(productItem.data?.price_discount) + 'đ' }}
                                 </div>
-                                <div class="original-price">{{ formatPriceProduct(productItem.data.price) + 'đ' }}</div>
-                                <div class="discount-tag">{{ productItem.data.percent + '%' }}</div>
+                                <div class="original-price">{{ formatPriceProduct(productItem.data?.price) + 'đ' }}</div>
+                                <div class="discount-tag">{{ productItem.data?.percent + '%' }}</div>
                             </div>
                         </div>
-                        <div v-if="productItem.data.compaign_name" class="product-compaign fs-14 text-blue-600 italic font-semibold">
+                        <div v-if="productItem.data?.compaign_name" class="product-compaign fs-14 text-blue-600 italic font-semibold">
                             {{ product.product_compaign_name }}
                         </div>
 
                         <div
-                            v-for="variantAttribute in productItem.data.variantAttribute"
+                            v-for="variantAttribute in productItem.data?.variantAttribute"
                             class="flex flex-col gap-2"
                             :class="{
                                 'product-color-list': variantAttribute.is_color,
                                 'product-size-list': !variantAttribute.is_color,
                             }">
-                            <span class="text-[15px]"
-                                >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b></span
-                            >
+                            <span class="text-[15px] flex gap-4"
+                                >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b>
+                                <i v-if="!getAttributeName(variantAttribute.id) && variantAttribute.is_color">
+                                    (Ấn chọn màu sắc để mua hàng)</i
+                                >
+                            </span>
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
-                                <div v-for="(attribute, index) in variantAttribute.attributes">
+                                <div v-for="(attribute, index) in variantAttribute.attributes" v-show="index < 4 || showAllColor">
                                     <button
-                                        v-if="checkEventNone(attribute.attribute_id, variantAttribute.id)"
                                         class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
                                         :class="{ '!ring-green-500': checkActive(attribute.attribute_id) }"
                                         :style="{ backgroundColor: attribute.attribute_color }"
                                         @click="selectVariant(variantAttribute, attribute)"></button>
-                                    <button
-                                        v-else
-                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                        :style="{ backgroundColor: attribute.attribute_color }">
-                                        <div class="check-mark"></div>
-                                    </button>
+                                    <!--                                    <button-->
+                                    <!--                                        v-else-->
+                                    <!--                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"-->
+                                    <!--                                        :style="{ backgroundColor: attribute.attribute_color }">-->
+                                    <!--                                        <div class="check-mark"></div>-->
+                                    <!--                                    </button>-->
                                 </div>
                                 <UButton
                                     v-if="productItemCurrent"
@@ -228,9 +208,25 @@
                                     @click="resetProductPage(true)"
                                     >{{ $t('Cài lại') }}</UButton
                                 >
+                                <UButton
+                                    v-if="variantAttribute.attributes.length > 3"
+                                    :to="localePath({ name: 'product-slug', params: { slug: router.currentRoute.value.params.slug } })"
+                                    variant="ghost"
+                                    color="none"
+                                    class="text-blue-500"
+                                    @click="showAllColor = !showAllColor"
+                                    >{{ showAllColor ? $t('Thu gọn') : $t('Xem thêm') }}...</UButton
+                                >
                             </div>
-                            <div v-else class="size-list flex items-center gap-4">
-                                <div v-for="(attribute, index) in variantAttribute.attributes">
+                            <div v-else class="size-list flex items-center flex-wrap gap-4">
+                                <div
+                                    v-for="(attribute, index) in variantAttribute.attributes"
+                                    v-show="
+                                        (checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main) ||
+                                        (!checkEventNone(attribute.attribute_id, variantAttribute.id) &&
+                                            !variantAttribute.is_main &&
+                                            !productItemCurrent)
+                                    ">
                                     <button
                                         v-if="checkEventNone(attribute.attribute_id, variantAttribute.id) && !variantAttribute.is_main"
                                         :class="{ '!bg-black !text-white': checkActive(attribute.attribute_id) }"
@@ -249,28 +245,32 @@
                                         @click="selectVariant(variantAttribute, attribute)">
                                         {{ attribute.attribute_name }}
                                     </button>
-                                    <button
-                                        v-else
-                                        class="size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14">
-                                        {{ attribute.attribute_name }}
-                                        <div class="check-mark"></div>
-                                    </button>
                                 </div>
                             </div>
+                            <UButton
+                                v-if="variantAttribute.link"
+                                :to="variantAttribute.link"
+                                variant="ghost"
+                                color="none"
+                                class="text-blue-500"
+                                >{{ variantAttribute.slug == 'size' ? $t('Hướng dẫn chọn size') : $t('Đường dẫn') }}...</UButton
+                            >
                         </div>
                         <span class="fs-14"
                             >{{ $t('Số lượng còn') }}
                             <b>{{
                                 productItemCurrent && productItemCurrent.qty
                                     ? productItemCurrent.qty
-                                    : productItem.data.variants.length == 0 && productItem.data.variantAttribute.length == 0
-                                    ? productItem.data.qty
+                                    : productItem.data?.variants.length == 0 && productItem.data?.variantAttribute.length == 0
+                                    ? productItem.data?.qty
                                     : 0
                             }}</b></span
                         >
-                        <div v-if="productItemCurrent" class="product-add-to-cart mt-auto flex items-center gap-4">
+                        <div
+                            v-if="productItemCurrent"
+                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
                             <div
-                                class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1)"></UIcon>
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1)"></UIcon>
@@ -288,21 +288,33 @@
                                 </UButton>
                             </NuxtLink>
                         </div>
-                        <div v-else-if="productItem.data.variants.length == 0" class="product-add-to-cart mt-auto flex items-center gap-4">
+                        <div
+                            v-else-if="productItem.data?.variants.length == 0"
+                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
                             <div
-                                class="select-amount flex items-center justify-between w-1/4 max-w-[200px] border h-12 px-4 rounded-3xl border-black">
+                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black">
                                 <UIcon name="i-heroicons-minus" @click="handleQuantity(-1, false)"></UIcon>
                                 {{ quantity }}
                                 <UIcon name="i-heroicons-plus" @click="handleQuantity(1, false)"></UIcon>
                             </div>
                             <NuxtLink
                                 class="flex flex-1 h-12 rounded-full justify-center"
-                                :class="productItem.data.qty > 0 ? '' : 'pointer-events-none'"
+                                :class="productItem.data?.qty > 0 ? '' : 'pointer-events-none'"
                                 @click="handleAddToCookie(productItem.data, false)"
                                 :to="localePath({ name: 'cart' })">
                                 <UButton
-                                    :class="productItem.data.qty > 0 ? '' : 'bg-gray-400'"
+                                    :class="productItem.data?.qty > 0 ? '' : 'bg-gray-400'"
                                     class="flex-1 h-12 rounded-full justify-center">
+                                    <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
+                                    <span>Thêm vào giỏ hàng</span>
+                                </UButton>
+                            </NuxtLink>
+                        </div>
+                        <div
+                            v-else-if="productItem.data?.variants.length > 0 && isColor"
+                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full">
+                            <NuxtLink class="flex flex-1 h-12 rounded-full justify-center" @click="addToCart()">
+                                <UButton class="flex-1 h-12 rounded-full justify-center">
                                     <UIcon name="i-heroicons-shopping-bag" class="text-xl"></UIcon>
                                     <span>Thêm vào giỏ hàng</span>
                                 </UButton>
@@ -330,7 +342,7 @@
                             </div>
                         </div>
                         <UDivider />
-                        <div class="grid grid-cols-2 fs-14 gap-8">
+                        <div class="grid sm:grid-cols-2 fs-14 gap-8">
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-mdi-phone-return" dynamic />
                                 <span>Nội thành Hà Nội và HCM nhận hàng trong 1-2 ngày</span>
@@ -342,7 +354,7 @@
                             <div class="flex items-center gap-4">
                                 <UIcon class="text-[32px] shrink-0" name="i-fluent-phone-checkmark-20-regular" dynamic />
                                 <span
-                                    >Hotline <a href="tel: 0569133339">056.913.33.39</a> hoặc <a href="tel: 0947636569">094.763.65.69</a> hỗ
+                                    >Hotline <a href="tel:0569133339">056.913.33.39</a> hoặc <a href="tel:0947636569">094.763.65.69</a> hỗ
                                     trợ từ 8h00 - 17h30 mỗi ngày</span
                                 >
                             </div>
@@ -355,30 +367,28 @@
                     </div>
                 </div>
                 <div
-                    v-if="productItem.data.highlight"
+                    v-if="productItem.data?.highlight"
                     class="product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]">
                     <h3 class="product-features__heading !text-2xl font-bold">Đặc điểm nổi bật</h3>
-                    <div class="product-details flex justify-between w-full">
+                    <div class="product-details flex flex-col-reverse md:flex-row gap-4 md:gap-2 justify-between w-full">
                         <div class="information flex flex-col gap-4">
                             <h3 class="font-bold !m-0">Thông tin sản phẩm</h3>
-                            <div v-html="productItem.data.highlight"></div>
-                            <!--                            <ul class="product-details-list !list-['-'] !mt-0 fs-14 font-semibold">-->
-                            <!--                                <li v-for="feature in product.product_information" class="product-details__item pl-3">-->
-                            <!--                                    {{ feature }}-->
-                            <!--                                </li>-->
-                            <!--                            </ul>-->
+                            <div v-html="productItem.data?.highlight"></div>
                         </div>
-                        <div v-if="productItem.data.highlight_image_url" class="image-example w-1/2 max-w-[300px] m-auto">
-                            <img :src="productItem.data.highlight_image_url" class="w-[300px] h-[300px] object-contain" alt="" />
+                        <div v-if="productItem.data?.highlight_image_url" class="image-example flex justify-center md:w-1/2 m-auto">
+                            <img
+                                :src="productItem.data?.highlight_image_url"
+                                class="max-h-[500px] md:max-h-full md:w-[300px] md:h-[300px] object-contain"
+                                alt="" />
                         </div>
                     </div>
                 </div>
-                <div class="product-more-details">
+                <div class="product-more-details prose prose-lg max-w-full">
                     <h3 class="!text-2xl font-extrabold">Chi tiết sản phẩm</h3>
-                    <div v-html="productItem.data.description"></div>
+                    <div v-html="productItem.data?.description"></div>
                 </div>
                 <div v-if="!loadingProductHot && productHot.data" class="product-similar my-8">
-                    <h3 class="w-full text-center !text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
+                    <h3 class="w-full text-center !text-2xl md:!text-3xl !mb-8 font-extrabold">SẢN PHẨM BẠN CÓ THỂ THÍCH</h3>
                     <Swiper
                         :spaceBetween="0"
                         :navigation="{
@@ -405,7 +415,7 @@
                             },
                         }"
                         class="similar-products-swiper relative">
-                        <SwiperSlide v-for="similarProduct in productHot.data">
+                        <SwiperSlide v-for="similarProduct in productHot.data" class="!h-full p-2 rounded-lg">
                             <ProductCard :product="similarProduct" />
                         </SwiperSlide>
                         <template v-slot:container-end>
@@ -426,21 +436,21 @@
                         </template>
                     </Swiper>
                 </div>
-                <div class="product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px]">
-                    <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-max lg:sticky top-2">
+                <div class="product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px] w-full">
+                    <div class="product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-full md:w-max lg:sticky top-2">
                         <div class="uppercase font-bold">Đánh giá sản phẩm</div>
-                        <div class="font-bold text-[4rem]">{{ productItem.data.average_rate }}</div>
+                        <div class="font-bold text-[4rem]">{{ productItem.data?.average_rate }}</div>
                         <NuxtRating
                             class="w-[220px]"
                             :read-only="true"
-                            :ratingValue="productItem.data.average_rate"
+                            :ratingValue="productItem.data?.average_rate"
                             :active-color="'green'"
                             rating-content="⭐" />
-                        <div v-if="productItem.data.rate_count > 0" class="italic fs-14 leading-relaxed font-medium">
-                            {{ productItem.data.rate_count + ' ' + $t('Review') }}
+                        <div v-if="productItem.data?.rate_count > 0" class="italic fs-14 leading-relaxed font-medium">
+                            {{ productItem.data?.rate_count + ' ' + $t('Review') }}
                         </div>
                     </div>
-                    <div v-if="!loadingReviewProduct" class="grid grid-cols-1 sm:grid-cols-2 flex-1 gap-8">
+                    <div v-if="!loadingReviewProduct" class="flex flex-col md:grid sm:grid-cols-2 flex-1 gap-8">
                         <div
                             v-if="reviewProduct.data.length > 0"
                             v-for="review in reviewProduct.data"
@@ -472,24 +482,24 @@
                         </div>
                         <div
                             v-else
-                            class="empty-review h-[224px] col-span-2 flex items-center justify-center border border-dashed border-gray-200 rounded-lg font-medium text-gray-500">
+                            class="empty-review h-[224px] px-4 col-span-2 flex items-center justify-center border border-dashed border-gray-200 rounded-lg font-medium text-gray-500">
                             {{ 'Chưa có đánh giá nào cho sản phẩm này' }}
                         </div>
                         <div
                             v-if="reviewProduct.data.length > 0 && pageTotal > 0"
-                            class="flex flex-wrap justify-between items-center w-full col-span-2">
+                            class="flex flex-wrap justify-between items-center gap-2 w-full col-span-2">
                             <div class="flex items-center gap-1.5">
                                 <span class="text-sm leading-5">{{ $t('Rows per page') }}:</span>
                                 <USelect v-model="pageCount" :options="[8, 25, 50]" class="me-2 w-20" size="xs" />
                             </div>
-                            <div>
+                            <div class="hidden md:block">
                                 <span class="text-sm leading-5">
                                     Hiển thị
-                                    <span class="font-medium">{{ pageFrom }}</span>
+                                    <span class="font-bold">{{ pageFrom }}</span>
                                     đến
-                                    <span class="font-medium">{{ pageTo }}</span>
+                                    <span class="font-bold">{{ pageTo }}</span>
                                     trong
-                                    <span class="font-medium">{{ pageTotal }}</span>
+                                    <span class="font-bold">{{ pageTotal }}</span>
                                     tổng số
                                 </span>
                             </div>
@@ -533,15 +543,16 @@
 </template>
 <script setup>
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
-import { Navigation, Autoplay, Thumbs } from 'swiper/modules';
+import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
+import productHots from '~/api/product_hot.json';
 
 const route = useRoute();
 const router = useRouter();
 const toast = useToast();
 
-let modules = ref([Navigation, Thumbs]);
+let modules = ref([Navigation, Thumbs, Zoom]);
 let modulesSimilar = ref([Navigation]);
 
 const { locale, t: trans } = useI18n();
@@ -550,8 +561,12 @@ const colorProductActive = ref(0);
 const productSizeIndex = ref(null);
 const quantity = ref(1);
 const productVariants = ref([]);
+const productVariantNote = ref([]);
 const productVariantSlugs = ref({});
 const productItemCurrent = ref(null);
+const isColor = ref(false);
+const selectColor = ref(false);
+const showAllColor = ref(false);
 
 const sort = ref({ direction: 'desc' });
 const page = ref(1);
@@ -565,30 +580,22 @@ const productSize = ref(null);
 const productSilk = ref(null);
 const indexActive = ref(0);
 const indexActiveColor = ref(0);
-const product1 = ref({});
-const product = ref({
-    product_information: [
-        'Chất liệu 100% Polyester',
-        'Kiểu dệt Mini Square hạn chế sờn vải, tăng độ bền, ít bị rách hay thủng lỗ',
-        'Các lỗ nhỏ trên vải giúp thoáng khí hơn',
-        'Tính năng Wicking thấm hút vượt trội',
-        'Công nghệ Ex-Dry nhanh khô thoáng mát',
-        'Logo in phản quang trong bóng tối',
-        'Sản phẩm được đánh giá phù hợp với hoạt động chạy bộ bởi các Runner',
-        'Tự hào sản xuất tại Việt Nam',
-        'Người mẫu: 181cm - 76kg, mặc áo 2XL',
-    ],
-    product_for_example:
-        'https://media.coolmate.me/cdn-cgi/image/width=1426,height=2100,quality=80,format=auto/uploads/January2024/23CMAW.TT004.3D.3K.png',
-});
 const loadingProductItem = ref(true);
+const loadingChangeProduct = ref(true);
 const selectedProductVariant = ref({});
-const imageList = computed(() => product.value.product_images[colorProductActive.value]);
+const imageList = computed(() => null);
 const thumbsSwiper = ref(null);
-let reviewJson = ref([]);
+const thumbsSwiperMobile = ref(null);
+const reviewJson = ref([]);
 
 const setThumbsSwiper = (swiper) => {
     thumbsSwiper.value = swiper;
+};
+const handleMainImageSwiper = () => {
+    loadingProductItem.value = false;
+};
+const setThumbsSwiperMobile = (swiper) => {
+    thumbsSwiperMobile.value = swiper;
 };
 
 const setProductSize = (size, index) => {
@@ -675,6 +682,7 @@ let initialProduct = (product) => {
         if (findProduct) {
             productItemCurrent.value = { ...findProduct };
             productVariants.value = [...findProduct.option_all];
+            selectColor.value = true;
         } else {
             let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
                 if (!variant.is_color) {
@@ -694,7 +702,7 @@ let initialProduct = (product) => {
             productVariants.value = [...filteredAttributes];
             router.push({ path: router.currentRoute.value.path });
         }
-        loadingProductItem.value = false;
+        // loadingProductItem.value = false;
     } else {
         let filteredAttributes = product.variantAttribute.reduce((acc, variant) => {
             if (!variant.is_color) {
@@ -712,12 +720,13 @@ let initialProduct = (product) => {
         }, []);
 
         productVariants.value = [...filteredAttributes];
-        loadingProductItem.value = false;
+        // loadingProductItem.value = false;
         // let attributeIds = product.variantAttribute.map((item) =>
         //     item.attributes && item.attributes.length > 0 ? item.attributes[0].attribute_id : undefined,
         // );
         // findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
+    loadingChangeProduct.value = true;
 };
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
@@ -726,6 +735,16 @@ let productLists = useCookie('products-cart', {
     default: () => [],
     maxAge: 60 * 60 * 24 * 7,
 });
+
+function addToCart() {
+    toast.add({
+        title: trans('Thông báo') + ' !',
+        description: trans('Bạn chưa chọn màu'),
+        timeout: 3000,
+        icon: 'i-heroicons-check-badge',
+        color: 'red',
+    });
+}
 const handleAddToCookie = (item, variant = true) => {
     if (productLists.value.length == 0) {
         if (item.id) {
@@ -790,13 +809,14 @@ const handleAddToCookie = (item, variant = true) => {
 };
 //DATA
 const refreshData = ref(0);
+
 const {
     data: productItem,
-    pending: loadingProduct,
+    status: loadingProduct,
     error: errorGetProduct,
 } = await useLazyAsyncData(
-    'product-item',
-    async () =>
+    'post-groups',
+    () =>
         useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
             query: {
                 code: router.currentRoute.value.query?.code,
@@ -807,24 +827,63 @@ const {
         watch: [refreshData],
     },
 );
+
 if (errorGetProduct.value) {
     router.push({ name: `index___${locale.value}` });
 }
-const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
+
+// const {
+//     data: productHot,
+//     pending: loadingProductHot,
+// } = await useAsyncData(
+//     'product-hot',
+//     async () =>
+//         useOriginalFetch(`/api/v1/product-hots`,{
+//             sort: {
+//                 'desc[0]': 'id',
+//             },
+//             is_hot: 1,
+//             limit: 20,
+//         }),
+//     {
+//         default: () => [],
+//     },
+// );
+
+// const loadingProductHot = ref(false)
+// const productHot = productHots
+
+
+// const { data: productHot, pending: loadingProductHot } = await useLazyAsyncData(
+//     'product-hot',
+//     async () =>
+//         useOriginalFetch('/api/v1/products', {
+//             params: {
+//                 sort: {
+//                     'desc[0]': 'id',
+//                 },
+//                 is_hot: 1,
+//                 limit: 20,
+//             },
+//         }),
+//     {
+//         default: () => [],
+//         watch: [refreshData],
+//     },
+// );
+
+const { data: productHot, pending: loadingProductHot } = await useAsyncData(
     'product-hot',
     async () =>
-        useOriginalFetch('/api/v1/products', {
-            params: {
-                sort: {
-                    'desc[0]': 'id',
-                },
-                is_hot: 1,
-                limit: 20,
+        useOriginalFetch(`/api/v1/product-hots`, {
+            sort: {
+                'desc[0]': 'id',
             },
+            is_hot: 1,
+            limit: 20,
         }),
     {
         default: () => [],
-        watch: [refreshData],
     },
 );
 const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyncData(
@@ -845,7 +904,11 @@ const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyn
 
 function selectVariant(group, attribute) {
     // let findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(optionsFirst.sort()));
+    let productVariants1 = JSON.parse(JSON.stringify(productVariants.value));
     let index = productVariants.value.findIndex((item) => item.attribute_group_id === group.id);
+    if (!selectColor.value) {
+        selectColor.value = group.is_color;
+    }
 
     if (index !== -1 && productVariants.value[index] !== undefined) {
         productVariants.value[index].attribute_id = attribute.attribute_id;
@@ -859,6 +922,7 @@ function selectVariant(group, attribute) {
 
     productVariantSlugs.value[group.slug] = attribute.attribute_slug;
     let checkProduct = getProductItem();
+
     if (checkProduct && (!productItemCurrent.value || checkProduct.code != productItemCurrent.value.code)) {
         loadingProductItem.value = true;
         productItemCurrent.value = checkProduct;
@@ -876,6 +940,9 @@ function selectVariant(group, attribute) {
                 query: { code: productItemCurrent.value.code },
             });
         }
+    } else if (selectColor.value) {
+        selectColor.value = false;
+        productVariants.value = productVariants1;
     }
 }
 
@@ -974,7 +1041,7 @@ function checkEventNone(attributeId, attributeGroupId) {
     });
 
     if (matchingVariant) {
-        return matchingVariant.out_of_stock == false;
+        return matchingVariant.thumb_image.length > 0;
     } else {
         return false;
     }
@@ -989,6 +1056,9 @@ function getAttributeName(attributeGroupId = null) {
         }, null);
 
         if (attribute) {
+            if (attribute.is_color) {
+                isColor.value = true;
+            }
             return attribute.attribute_name;
         } else {
             return null;
@@ -1001,45 +1071,113 @@ function getAttributeName(attributeGroupId = null) {
 const resetProductPage = (isRefresh = true) => {
     productItemCurrent.value = null;
     thumbsSwiper.value = null;
-    loadingProductItem.value = loadingProduct.value;
+    // loadingProductItem.value = true;
+    showAllColor.value = false;
     if (isRefresh == true) {
         refreshData.value++;
     }
 };
-let title = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.meta_title;
-let description = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description;
+
+const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data?.meta_title);
+const description = ref(productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description);
+const key = ref(productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key);
+const image = ref(productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url);
+
+defineOgImageComponent('GAK', {
+    title: title.value,
+    description: description.value,
+    theme: '#ff0000',
+    colorMode: 'dark',
+    url: image.value,
+    image: image.value,
+});
+defineOgImage({
+    url: image.value,
+    image: image.value,
+});
 let seoMeta = {
-    description: description,
-    ogDescription: description,
-    ogTitle: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
-    title: title,
-    twitterTitle: title,
-    twitterDescription: description,
-    keywords: productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.meta_key,
+    description: description.value,
+    ogDescription: description.value,
+    ogTitle: title.value,
+    title: title.value,
+    twitterTitle: title.value,
+    twitterDescription: description.value,
+    keywords: key.value,
+    image: image.value,
+    ogImage: image.value,
+    ogImageAlt: title.value,
 };
 
+let review = null;
+if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 0) {
+    review = {
+        author: {
+            // Thông tin của tác giả đánh giá
+            '@type': 'Person',
+            name: productItem.value.data?.reviews[0].customer_name,
+        },
+        reviewRating: {
+            // Đánh giá được tiến hành
+            '@type': 'Rating',
+            bestRating: '5', // Điểm tốt nhất có thể
+            ratingValue: productItem.value.data?.reviews[0].rate, // Điểm đánh giá
+            worstRating: '1', // Điểm xấu nhất có thể
+        },
+        reviewBody: productItem.value.data?.reviews[0].description,
+    };
+}
 useSeoMeta(seoMeta);
+if (review) {
+    useSchemaOrg([defineReview(review)]);
+}
+
+const productSEO = ref({
+    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
+    image: image.value,
+    price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
+    description: description.value,
+    offers: {
+        url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
+        itemCondition: "https://schema.org/NewCondition",
+        availability: "https://schema.org/InStock",
+        offerCount: 5,
+        lowPrice: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
+        highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
+        price: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
+        priceCurrency: 'VND',
+        priceSpecification: {
+            "@type": "PriceSpecification",
+            "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+            "priceCurrency": "vnd"
+        },
+    },
+    "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "Vn",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnInStore",
+        "returnFees": "https://schema.org/FreeReturn"
+    },
+    aggregateRating: {
+        ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.data?.average_rate,
+        bestRating: 5,
+        ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
+    },
+    // review: [...reviewJson.value],
+    brand: {
+        "@type": "Brand",
+        "name": "GAK"
+    }
+})
+
+if (reviewJson.value.length > 0) {
+    productSEO.value.review = reviewJson.value
+}
 useSchemaOrg([
-    defineProduct({
-        name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
-        image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.image_url,
-        description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description,
-        offers: {
-            offerCount: 5,
-            lowPrice: productItemCurrent.value
-                ? productItemCurrent.value.price - productItemCurrent.value.price_discount
-                : productItem.value.price - productItem.value.price_discount,
-            highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.price,
-            priceCurrency: 'VND',
-        },
-        aggregateRating: {
-            ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.average_rate,
-            bestRating: 5,
-            ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.rate_count,
-        },
-        review: [...reviewJson.value],
-    }),
+    defineProduct(productSEO.value),
 ]);
+
 watch(
     () => [reviewProduct.value, loadingReviewProduct.value],
     () => {
@@ -1059,21 +1197,37 @@ watch(
             });
             useSchemaOrg([
                 defineProduct({
-                    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.name,
-                    image: productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.image_url,
-                    description: productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.meta_description,
+                    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
+                    image: image.value,
+                    description: description.value,
                     offers: {
+                        url: "https://gak.vn/vi/chinh-sach-hoan-tra-san-pham",
+                        itemCondition: "https://schema.org/NewCondition",
+                        availability: "https://schema.org/InStock",
                         offerCount: 5,
-                        lowPrice: productItemCurrent.value
-                            ? productItemCurrent.value.price - productItemCurrent.value.price_discount
-                            : productItem.value.price - productItem.value.price_discount,
-                        highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.price,
+                        lowPrice: productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+                        highPrice: productItemCurrent.value ? productItemCurrent.value.price : productItem.value.data?.price,
                         priceCurrency: 'VND',
+                        priceSpecification: {
+                            "@type": "PriceSpecification",
+                            "price": productItemCurrent.value ? productItemCurrent.value.price_discount : productItem.value.data?.price_discount,
+                            "priceCurrency": "vnd"
+                        },
+                    },
+                    "hasMerchantReturnPolicy": {
+                        "@type": "MerchantReturnPolicy",
+                        "applicableCountry": "Vn",
+                        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                        "merchantReturnDays": 30,
+                        "returnMethod": "https://schema.org/ReturnInStore",
+                        "returnFees": "https://schema.org/FreeReturn"
                     },
                     aggregateRating: {
-                        ratingValue: productItemCurrent.value ? productItemCurrent.value.average_rate : productItem.value.average_rate,
+                        ratingValue: productItemCurrent.value
+                            ? productItemCurrent.value.average_rate
+                            : productItem.value.data?.average_rate,
                         bestRating: 5,
-                        ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.rate_count,
+                        ratingCount: productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
                     },
                     review: reviewJson.value,
                 }),
@@ -1082,16 +1236,29 @@ watch(
     },
     { immediate: true },
 );
+
 watch(
     () => productItem.value,
-    async () => {
-        if (Object.keys(productItem.value).length > 0 && productItem.value.data) {
-            resetProductPage(false);
-            let productCurrent = ref({ ...productItem.value.data });
-            initialProduct(productCurrent.value);
+    () => {
+        if (router.currentRoute.value.name == `product-slug___${locale.value}`) {
+            if (Object.keys(productItem.value).length > 0 && productItem.value.data) {
+                resetProductPage(false);
+                let productCurrent = ref({ ...productItem.value.data });
+                initialProduct(productCurrent.value);
+            }
         }
     },
     { immediate: true },
+);
+
+watch(
+    () => router.currentRoute.value.params.slug,
+    () => {
+        if (router.currentRoute.value.name == `product-slug___${locale.value}`) {
+            loadingChangeProduct.value = false;
+            loadingProductItem.value = true;
+        }
+    },
 );
 </script>
 <style lang="scss" scoped>
@@ -1105,11 +1272,15 @@ watch(
     .thumb-product-swiper {
         .swiper-slide {
             opacity: 0.6;
+            @media screen and (max-width: 991px) {
+                opacity: 0.4;
+            }
             &.swiper-slide-thumb-active {
                 opacity: 1;
             }
         }
     }
+
     .product-image-swiper {
         .product-information {
             .product-size-list {
@@ -1174,6 +1345,15 @@ watch(
                         }
                     }
                 }
+            }
+        }
+        .main-product-swiper {
+            .swiper {
+                @media screen and (max-width: 991px) {
+                    height: 450px;
+                }
+            }
+            .preview-gallery {
             }
         }
     }

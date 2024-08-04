@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading && productList && productList.length > 0" class="flex flex-col gap-4 relative w-full">
-        <div class="collection-title fs-20 font-bold uppercase">{{ collectionTitle }}</div>
+        <div class="collection-title text-[28px] font-bold uppercase">{{ collectionTitle }}</div>
         <div class="collection-wrapper">
             <div v-for="product in productList" :key="product" class="collection-item">
                 <ProductCard :product="product" />
@@ -33,15 +33,9 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
 .collection-wrapper {
-    @apply w-full flex justify-start gap-4;
+    @apply w-full grid grid-cols-4 gap-4;
     @media screen and (max-width: 991px) {
-        @apply flex-wrap;
-    }
-    .collection-item {
-        width: 25%;
-        @media screen and (max-width: 991px) {
-            width: calc(50% - 12px);
-        }
+        @apply grid-cols-2;
     }
 }
 </style>

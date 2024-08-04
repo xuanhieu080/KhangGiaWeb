@@ -61,7 +61,7 @@
                                         class="w-full custom-input"
                                         :placeholder="$t('Tỉnh/Thành phố')"
                                         option-attribute="name"
-                                        :uiMenu="{ container: '!fixed max-w-max' }"
+                                        :uiMenu="{ container: 'max-w-full' }"
                                         value-attribute="id"
                                         :loading="loadingCities"
                                         :ui="{ rounded: 'rounded-full' }">
@@ -81,7 +81,7 @@
                                         class="w-full custom-input"
                                         :placeholder="$t('Quận/Huyện')"
                                         option-attribute="full_name"
-                                        :uiMenu="{ container: '!fixed max-w-max' }"
+                                        :uiMenu="{ container: ' max-w-full' }"
                                         value-attribute="id"
                                         :disabled="!state.city"
                                         :ui="{ rounded: 'rounded-full' }">
@@ -100,7 +100,7 @@
                                         searchable-placeholder="Search a ward..."
                                         class="w-full custom-input"
                                         :placeholder="$t('Phường/Xã')"
-                                        :uiMenu="{ container: '!fixed max-w-max' }"
+                                        :uiMenu="{ container: 'max-w-full' }"
                                         option-attribute="full_name"
                                         value-attribute="id"
                                         :disabled="!state.city || !state.district"
@@ -330,6 +330,25 @@
                             </span>
                         </div>
                     </div>
+
+                    <div class="mt-8">
+                        <b>Thông qua ấn nút thanh toán bạn đã hiểu về các loại chính sách khi mua hàng tại website GAK.VN</b>
+                       <ul class="list-disc px-4">
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-bao-mat' })">Chính sách bảo mật</NuxtLink>
+                           </li>
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-giao-hang' })">Chính sách giao hàng</NuxtLink>
+                           </li>
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-khuyen-mai' })">Chính sách khuyến mãi</NuxtLink>
+                           </li>
+                           <li>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-hoan-tra-san-pham' })">Chính sách hoàn trả sản phẩm</NuxtLink>
+                           </li>
+                       </ul>
+                        <p>Cảm ơn bạn đã tin chọn và mua sắm các sản phẩm tại GAK.VN</p>
+                    </div>
                 </div>
             </div>
             <div v-else class="loading-wrapper !mt-[128px]">
@@ -425,120 +444,6 @@ const colorProductActive = ref(0);
 const productSize = ref(null);
 const productSizeIndex = ref(null);
 const quantity = ref(1);
-const product = ref({
-    id: 1,
-    product_name: 'Áo polo nam dài tay thể thao',
-    product_slug: 'ao-polo-nam-dai-tay-the-thao',
-    product_category_id: 1,
-    product_category_name: 'Áo thun',
-    product_category_slug: 'ao-thun',
-    product_introduction: 'Co giãn',
-    product_price: 159000,
-    product_discount: 0,
-    product_sold: 32,
-    product_compaign_id: 1,
-    product_rating: {
-        number: 4.5,
-        reviews: [
-            {
-                name: 'Hoàng Lâm',
-                product_selected: 'Đen',
-                product_size: 'S',
-                review_date: '04/02/2024',
-                rating: 3,
-                feedback:
-                    'Coolmate xin cảm ơn anh đã tin tưởng, ủng hộ, đặt hàng và đánh giá sản phẩm khách quan. Coolmate biết tất cả sản phẩm và dịch vụ của mình chưa phải là hoàn hảo và tốt nhất. Nhưng Cool sẽ luôn cố gắng và cải thiện mỗi ngày để hoàn thiện hơn. Nên hơn hết, Coolmate rất trân trọng những phản hồi và góp ý thẳng thắn của các anh để nâng cao trải nghiệm khách hàng. Có rất nhiều sự lựa chọn, một lần nữa, xin cảm ơn anh đã tin tưởng chọn Coolmate ạ!',
-                description:
-                    'Quần bị nhỏ hơn 1 size, dù mua theo hướng dẫn. 2 túi bên dưới vô dụng khi co gối lên, dễ rớt điện thoại. Chất liệu ổn, trượt nước nhẹ, sẽ cân nhắc mua thêm.',
-            },
-            {
-                name: 'Bùi Quang',
-                product_selected: null,
-                product_size: 'M',
-                review_date: '04/02/2024',
-                rating: 5,
-                feedback: null,
-                description: 'Tốt',
-            },
-            {
-                name: 'Khải kiện lao',
-                product_selected: 'Trắng',
-                product_size: 'XL',
-                review_date: '04/02/2024',
-                feedback: null,
-                rating: 4,
-                description:
-                    'Chất liệu vải khá tốt. Túi ngang gối chỉ phù hợp chứa vật nhỏ nhẹ, đồ mà to xíu thì nó khá vướng khi ngồi / co gối',
-            },
-            {
-                name: 'Điền Quân',
-                product_selected: 'Xanh Navi',
-                product_size: 'XL',
-                review_date: '04/02/2024',
-                feedback: null,
-                rating: 5,
-                description: 'Xuất sắc, đẹp hết chê!',
-            },
-        ],
-    },
-    product_compaign_name: 'Mua 2 bất kỳ giảm thêm 10%',
-    product_sizes: [
-        {
-            name: 'S',
-            description: '(1m55-1m59 | 48kg-54kg)',
-            quantity: 2,
-        },
-        {
-            name: 'M',
-            description: '(1m60-1m65 | 55kg-61kg)',
-            quantity: 0,
-        },
-        {
-            name: 'L',
-            description: '(1m66-1m72 | 62kg-68kg)',
-            quantity: 2,
-        },
-
-        {
-            name: 'XL',
-            description: '(1m72-1m77 | 69kg-75kg)',
-            quantity: 2,
-        },
-    ],
-    product_images: [
-        {
-            color: 'Đen',
-            code: '#000',
-            list: [
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-5_17.jpg',
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80/uploads/October2023/ao-khoac-mu-daily-wear-den-7_87.jpg',
-            ],
-        },
-        {
-            color: 'Trắng',
-            code: '#f3f3f3',
-            list: [
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/sCM006.thumb1.2.jpg',
-                'https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=85,format=auto/uploads/October2023/CM006.thumb1.3_35.jpg',
-            ],
-        },
-    ],
-    product_information: [
-        'Chất liệu 100% Polyester',
-        'Kiểu dệt Mini Square hạn chế sờn vải, tăng độ bền, ít bị rách hay thủng lỗ',
-        'Các lỗ nhỏ trên vải giúp thoáng khí hơn',
-        'Tính năng Wicking thấm hút vượt trội',
-        'Công nghệ Ex-Dry nhanh khô thoáng mát',
-        'Logo in phản quang trong bóng tối',
-        'Sản phẩm được đánh giá phù hợp với hoạt động chạy bộ bởi các Runner',
-        'Tự hào sản xuất tại Việt Nam',
-        'Người mẫu: 181cm - 76kg, mặc áo 2XL',
-    ],
-    product_for_example:
-        'https://media.coolmate.me/cdn-cgi/image/width=1426,height=2100,quality=80,format=auto/uploads/January2024/23CMAW.TT004.3D.3K.png',
-});
-const productList = ref([product.value, product.value, product.value]);
-const imageList = computed(() => product.value.product_images[colorProductActive.value]);
 const thumbsSwiper = ref(null);
 
 const setThumbsSwiper = (swiper) => {

@@ -1,7 +1,8 @@
 <template>
     <UCard :ui="{ ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }" v-if="diary" class="diary-card relative">
-        <div class="diary-card-wrapper w-full h-full cursor-pointer" @click="handleOpenDiaryProduct">
-            <NuxtImg format="webp" class="w-full h-full object-cover" :src="diary.image_thumb" />
+        <div class="diary-card-wrapper w-full h-full cursor-pointer">
+            <span class="absolute left-5 top-4 font-bold diary-name">{{diary.name}}</span>
+            <img class="w-full object-contain object-left" :src="diary.image_thumb" />
         </div>
     </UCard>
     <UCard :ui="{ body: { padding: '' } }" v-else class="product-card w-full relative">
@@ -63,10 +64,10 @@ const handleCloseDiaryProduct = () => {
 <style lang="scss" scoped>
 .diary-card {
     width: 100%;
+    height: 100%;
     .diary-card-wrapper {
         position: relative;
         &:after {
-            content: '';
             position: absolute;
             width: 30px;
             height: 30px;
@@ -75,6 +76,34 @@ const handleCloseDiaryProduct = () => {
             background-image: url('/images/cart-circle-btn.png');
             background-repeat: no-repeat;
             background-size: 30px;
+        }
+        .diary-name {
+            font-size: 20px;
+            width: 150px;
+            @media screen and (min-width: 768px) and (max-width: 991px) {
+                font-size: 32px;
+                width: 250px;
+                top: 24px;
+                left: 24px;
+            }
+            @media screen and (min-width: 640px) and (max-width: 767px) {
+                font-size: 28px;
+                width: 250px;
+                top: 24px;
+                left: 24px;
+            }
+            @media screen and (min-width: 420px) and (max-width: 567px) {
+                font-size: 36px;
+                width: 330px;
+                top: 24px;
+                left: 24px;
+            }
+            @media screen and  (max-width: 419px) {
+                font-size: 24px;
+                width: 180px;
+                top: 24px;
+                left: 24px;
+            }
         }
     }
 }
@@ -99,8 +128,8 @@ const handleCloseDiaryProduct = () => {
             }
             .diary-product-price {
                 font-weight: bold;
-                @apply flex gap-3 items-center;
                 font-size: 14px;
+                @apply flex gap-3 items-center;
                 .original-price {
                     @apply text-gray-400/50;
                     text-decoration: line-through;

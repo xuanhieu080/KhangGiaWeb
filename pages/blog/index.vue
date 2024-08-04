@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="blog-page-content container mx-auto py-6 flex flex-col gap-4">
-                <div class="search-box w-4/5 max-w-[567px] mx-auto">
+                <div v-if="false" class="search-box w-4/5 max-w-[567px] mx-auto">
                     <UInput
                         size="lg"
                         :ui="{ rounded: 'rounded-2xl' }"
@@ -29,12 +29,15 @@
                         :options="articleGroups.data"
                         class="w-full max-w-[250px] custom-input"
                         option-attribute="name"
+                        :uiMenu="{option: {container: 'w-full'}}"
                         :ui="{ rounded: 'rounded-full' }">
                         <template #label>
                             <span class="font-bold">{{ selectedCategory ? selectedCategory.name : '' }}</span>
                         </template>
                         <template #option="{ option: category }">
-                            <span>{{ category.name }}</span>
+                            <NuxtLink class="min-h-8 flex items-center w-full" :to="localePath({ name: 'blog-slug', params: { slug: category.slug } })">
+                                <span>{{ category.name }}</span>
+                            </NuxtLink>
                         </template>
                     </USelectMenu>
                     <NuxtLink :to="localePath({ name: 'index' })">
@@ -51,14 +54,14 @@
                     <div
                         v-if="!loadingArticleHot && articlesHot.data && articlesHot.data.length > 0"
                         class="flex w-full md:w-1/2 md:max-w-[660px]">
-                        <ArticleSwiper :articleList="articlesHot.data" :title="'Bài viết nổi bật'" />
+                        <ArticleSwiper :articleList="articlesHot.data"  :title="'Bài viết nổi bật'" />
                     </div>
                     <div
                         v-if="!loadingArticleView && articlesView.data && articlesView.data.length > 0"
                         class="most-view flex flex-col gap-4 py-4 md:py-0 w-full md:w-2/5">
                         <div class="title text-[28px] 2xl:text-[36px] font-bold">{{ $t('Xem nhiều nhất') }}</div>
                         <div class="article-list flex flex-col gap-6 md:gap-3">
-                            <ArticleBadge v-for="article in articlesView.data" :article="article" />
+                            <ArticleBadge v-for="article in articlesView.data"  :article="article" />
                         </div>
                     </div>
                 </div>
@@ -71,6 +74,15 @@
                         class="flex flex-wrap items-start justify-start gap-4 w-full">
                         <div v-for="article in articleNew.data" class="blog-daily-item">
                             <ArticleCard :article="article" :is-view-count="false" :custom-height="400" />
+                        </div>
+
+                        <div
+                            v-if="articleNew.meta.total > articleNew.meta.to"
+                            class="m-auto opacity-100 transition duration-300 ease-in-out">
+                            <UButton
+                                @click="getArticle"
+                                class="rounded-2xl justify-center py-2.5 px-6"
+                               >   <span class="uppercase font-bold">{{ $t('Xem thêm') }}</span></UButton>
                         </div>
                     </div>
                 </div>
@@ -89,243 +101,104 @@ const searchBlog = ref(null);
 
 const categoryBlog = ref([]);
 
-const articleList = ref([
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-]);
-const articleListBadge = ref([
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-]);
 const selectedCategory = ref(categoryBlog.value[0]);
-const selectedSecondCategory = ref(categoryBlog.value[0]);
-useSchemaOrg([
-    defineArticle({
-        type: 'BlogPosting',
-        headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-        title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-        description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-        image: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
-        datePublished: new Date(2024, 1, 1),
-        dateModified: new Date(2024, 1, 1),
-        author: [
-            {
-                name: 'Chung Ngô',
-                url: 'https://gak.vn',
-            },
-        ],
-    }),
-]);
+
 
 //data
-const { data: articlesList, pending: loadingAticlesList } = await useLazyAsyncData('articles-blog', () =>
-    useOriginalFetch('/api/v1/posts'),
-);
+// const { data: articlesList, pending: loadingAticlesList } = await useLazyAsyncData('articles-blog', () =>
+//     useOriginalFetch('/api/v1/posts'),
+// );
 const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData('articles-blog-hot', () =>
-    useOriginalFetch('/api/v1/posts', {
+    useOriginalFetch('/api/v1/post-hots', {
         params: {
             is_hot: true,
-        }
+        },
     }),
 );
 const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncData('articles-blog-view', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
-            sort:{desc:'view'},
-        }
+            sort: { desc: 'view' },
+            limit: 4
+        },
     }),
 );
+
+
+const page = ref(1)
+
 const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData('articles-blog-new', () =>
     useOriginalFetch('/api/v1/posts', {
         params: {
-            is_new: true,
-        }
-    }),
+            sort: { desc: 'created_at' },
+            limit: 12
+        },
+    })
 );
+
+async function getArticle() {
+    page.value++;
+    const { data: response, error } = await useMyFetch(`/api/v1/posts`, {
+        params: {
+            sort: { desc: 'created_at' },
+            limit: 12,
+            page: page.value
+        }
+    });
+
+    if (response.value) {
+        articleNew.value.data.push(...response.value.data)
+        articleNew.value.meta = response.value.meta
+    }
+}
+
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>
-    useOriginalFetch('/api/v1/post-groups')
+    useOriginalFetch('/api/v1/post-groups'),
 );
 // const { data: articleGroup, pending: loadingArticleGroup } = await useLazyAsyncData('articles-blog-group', () =>
 //     useOriginalFetch('/api/v1/post/groups'),
 // );
 
-if (!loadingArticleGroup.value) {
-    if(articleGroups.value.data?.length > 0) {
-        selectedCategory.value = articleGroups.value.data[0]
+let stopWatch = watch(
+    () => loadingArticleGroup.value,
+    (value) => {
+        if (!value && articleGroups.value.data?.length > 0) {
+            selectedCategory.value = articleGroups.value.data[0];
+        }
+    },
+    {
+        immediate: true,
+    },
+);
+
+onBeforeUnmount(() => {
+    if (stopWatch) {
+        stopWatch();
     }
-}
+});
+
+let title = 'Tất cả bài viết';
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+let seoMeta = {
+    description:  config.public.description,
+    ogDescription:  config.public.description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription:  config.public.description,
+    keywords: title,
+};
+useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped>

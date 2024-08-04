@@ -1,17 +1,25 @@
 <template>
     <NuxtLayout name="main">
-        <section v-if="false" class="running-video">
-            <video
-                id="banner-video"
-                poster="/images/produce-poster-video.jpg"
-                autoplay="autoplay"
-                muted="muted"
-                playsinline=""
-                loop="loop">
-                <source src="" />
-            </video>
-        </section>
-        <div v-if="false" class="about-content !pt-[5rem] mx-auto">
+        <div class="w-full">
+            <NuxtImg
+                class="w-full h-[500px] md:h-full object-cover"
+                loading="lazy"
+                format="webp"
+                src="/images/produce-poster-video.jpg"
+                alt="" />
+        </div>
+<!--        <section class="running-video">-->
+<!--            <video-->
+<!--                id="banner-video"-->
+<!--                poster="/images/produce-poster-video.jpg"-->
+<!--                autoplay="autoplay"-->
+<!--                muted="muted"-->
+<!--                playsinline=""-->
+<!--                loop="loop">-->
+<!--                <source src="" />-->
+<!--            </video>-->
+<!--        </section>-->
+        <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg space-y-8">
                     <h2 class="cs-services__heading">TỰ CHỦ NGUỒN NGUYÊN LIỆU VÀ SẢN XUẤT</h2>
@@ -146,7 +154,7 @@
             <div class="workshop-section-background">
                 <span
                     class="workshop-section-background__bg"
-                    style="background-image: url('https://mcdn.coolmate.me/image/December2023/mceclip3_84.png')"></span>
+                    ></span>
                 <div class="container container--medium">
                     <div class="workshop-section-background__content flex flex-wrap items-center">
                         <h2 class="workshop-heading">
@@ -202,108 +210,108 @@
                     </div>
                     <div class="grid lg:grid-cols-3 gap-10 grid--doubling">
                         <div class="hidden lg:block grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box"><div class="workshop-box__thumbnail"></div></div
-                            ></a>
+                            ></div>
                         </div>
                         <div class="grid__column">
-                            <a href="#"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-1_1.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng chính</h2>
                                     <p class="workshop-box__desc">Hệ sinh thái toàn vẹn từ Dệt, Nhuộm, May, In ấn</p>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-scavi"><div class="workshop-box"></div></a>
+                            <div class="cursor-pointer"><div class="workshop-box"></div></div>
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-son-ha"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-2_2.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 1</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-vitajeans"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-3_3.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 2</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-nobland"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-4_4.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng may 3</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-5_5.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 1</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-6_6.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 2</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-7_7.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 3</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-dovitec"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-8_8.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 4</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-det-tat"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-9_9.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Nhà in 5</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-thien-son"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-10_10.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 1</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-thien-son"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-11_11.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 2</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                         <div class="grid__column">
-                            <a href="https://www.coolmate.me/page/nha-may-thien-son"
+                            <div class="cursor-pointer"
                                 ><div class="workshop-box">
                                     <div class="workshop-box__thumbnail"><img src="/images/produce-store-12_12.jpg" alt="Xưởng dệt" /></div>
                                     <h2 class="workshop-box__title font-bold">Xưởng dệt 3</h2>
-                                </div></a
+                                </div></div
                             >
                         </div>
                     </div>
@@ -311,17 +319,18 @@
             </div>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia GAK - Nhận ngay Voucher 15% + Hoàn tiền khi mua sắm</h2>
-                    <span class="flex items-center justify-center flex-wrap gap-4">
-                        <UButton size="lg" class="text-[#2f5acf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
-                            <b class="uppercase">đăng ký miễn phí</b> hoặc <b class="uppercase">Đăng nhập</b>
+                    <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
+                        <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
+                            Tham gia hội săn Deal GAK
                         </UButton>
                         <UButton
+                            :to="localePath({name: 'gak-official'})"
                             size="lg"
-                            class="border border-white bg-[#2f5acf] rounded-3xl text-white px-6 py-4"
+                            class="!text-white border bg-[#22c55ebf] rounded-3xl px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
-                            Tìm hiểu đặc quyền Hội viên GAK
+                            GAK OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -336,6 +345,29 @@ import images from '@@/assets/icons';
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
+let title = 'Chào mừng bạn đến với nhà máy GAK | Nơi sản phẩm được tạo ra';
+let pageDescription = '3000m2 cơ sở sản xuất của chúng tôi là một niềm tự hào GAK, nơi tạo ra những sản phẩm chất lượng, gắn kết đời sống của hàng trăm con người lao động.'
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: pageDescription,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+let seoMeta = {
+    description:  pageDescription,
+    ogDescription:  pageDescription,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription:  pageDescription,
+    keywords: title,
+};
+useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped>
@@ -400,7 +432,6 @@ const slug = ref(router.currentRoute.value.params.slug);
         padding-top: 50px;
         padding-bottom: 50px;
         text-align: center;
-        font-family: 'CriteriaCF';
         border-radius: 1.5rem;
         padding: 3rem 3rem;
         .cs-caption__heading {
@@ -453,7 +484,6 @@ const slug = ref(router.currentRoute.value.params.slug);
         line-height: normal;
         color: #000;
         text-transform: uppercase;
-        font-family: 'CriteriaCF';
     }
     .cs-services__description {
         font-size: 16px;
@@ -462,7 +492,6 @@ const slug = ref(router.currentRoute.value.params.slug);
         font-size: 28px;
         font-weight: bold;
         margin-left: 0;
-        font-family: 'CriteriaCF';
     }
     .workshop-section-background {
         position: relative;
@@ -561,7 +590,7 @@ const slug = ref(router.currentRoute.value.params.slug);
         }
     }
     .cs-cta {
-        background-color: #2f5acf;
+        background-color: #176c36;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;

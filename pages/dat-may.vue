@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <section  v-if="false" class="pod-banner">
+        <section class="pod-banner">
             <video
                 poster="/images/dat-may-background.jpg"
                 src="/images/dat-may-background.jpg"
@@ -24,8 +24,8 @@
                             size="lg"
                             variant="ghost"
                             color="none"
-                            href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#mockup"
-                            class="pod-banner__button scroll-to-step bg-white text-[#2f5acf] !text-lg px-6 rounded-2xl font-semibold">
+                            to="#offer-box"
+                            class="pod-banner__button scroll-to-step bg-white text-[#2f5acf] !text-lg px-6 rounded-2xl font-semibold !no-underline">
                             Gửi yêu cầu
                         </UButton>
                     </div>
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </section>
-        <div v-if="false" class="about-content pt-8 mx-auto bg-white">
+        <div class="about-content md:pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty GAK</h2>
@@ -107,11 +107,7 @@
                             </div>
                             <div class="pod-activity__heading-cta mobile--hidden tablet--hidden">
                                 <p>Chưa bao giờ đơn giản đến thế.</p>
-                                <a
-                                    href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#mockup"
-                                    class="btn btn--primary scroll-to-step"
-                                    >Gửi yêu cầu</a
-                                >
+                                <a class="btn btn--primary scroll-to-step">Gửi yêu cầu</a>
                             </div>
                         </div>
                         <div class="pod-activity__card grid-item">
@@ -121,7 +117,7 @@
                                     <div class="card__item__title">Tiếp nhận yêu cầu</div>
                                     <p class="card__item__description">
                                         Gửi yêu cầu trực tiếp qua Zalo hoặc qua <br />
-                                        Hotline: <a href="tel:1900 272 735">0569133339</a>
+                                        Hotline: <a href="tel:0569133339">0569133339</a>
                                     </p>
                                 </div>
                             </div>
@@ -166,7 +162,7 @@
                     </h2>
                     <div>
                         <h3 style="text-align: center; font-size: 16px; padding: 0px 30px">
-                            Coolxprint có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
+                            GAK có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
                         </h3>
                     </div>
                     <div class="tab-content">
@@ -177,7 +173,7 @@
                                         <div class="pod-grid__inner">
                                             <div class="pod-grid__thumbnail">
                                                 <div rel-script="popup-grid__popup" data-product="thun" class="pod-grid__image">
-                                                    <img src="/images/product-item-1.jpg" alt="images" />
+                                                    <img src="/images/product-item-1.png" alt="images" />
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline"><span>Áo thun </span> Số lượng tối thiểu: 50 chiếc</div>
@@ -288,7 +284,7 @@
                                                     <img src="/images/product-item-9.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo teambuilding</span> Số lượng tối thiểu: 100 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>Áo teambuilding</span> Số lượng tối thiểu: 50 chiếc</div>
                                         </div>
                                     </div>
                                 </div>
@@ -300,7 +296,7 @@
                                                     <img src="/images/product-item-10.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun công sở</span> Số lượng tối thiểu: 200 đôi</div>
+                                            <div class="pod-grid__tagline"><span>Áo thun công sở</span> Số lượng tối thiểu: 50 đôi</div>
                                         </div>
                                     </div>
                                 </div>
@@ -327,29 +323,17 @@
                                                     <img src="/images/product-item-12.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun thể thao</span> Số lượng tối thiểu: 200 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>Áo thun thể thao</span> Số lượng tối thiểu: 50 chiếc</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="loadmore-product" style="display: none">
-                                <a
-                                    href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#"
-                                    data-show="10"
-                                    data-page="2"
-                                    class="btn btn--outline loadmore chidern"
-                                    >Xem thêm</a
-                                >
+                                <a data-show="10" data-page="2" class="btn btn--outline loadmore chidern">Xem thêm</a>
                             </div>
                         </div>
                         <div class="loadmore-product" style="display: none">
-                            <a
-                                href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#"
-                                data-show="10"
-                                data-page="2"
-                                class="btn btn--outline loadmore chidern"
-                                >Xem thêm</a
-                            >
+                            <a data-show="10" data-page="2" class="btn btn--outline loadmore chidern">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -359,13 +343,51 @@
                     <div class="pod-customer">
                         <div class="pod-customer__wrapper">
                             <h2 class="pod-customer__heading">Khách hàng của công ty GAK</h2>
-                            <Swiper :slidesPerView="6" :spaceBetween="24" class="swiper pod-customer-swiper relative z-10 !pb-12">
+                            <Swiper
+                                :slidesPerView="3"
+                                :spaceBetween="12"
+                                :slidesPerGroup="3"
+                                :loop="true"
+                                :breakpoints="{
+                                    768: {
+                                        slidesPerView: 6,
+                                        spaceBetween: 24,
+                                    },
+                                }"
+                                class="swiper pod-customer-swiper relative z-10 !pb-4 md:!pb-12">
+                                <SwiperSlide>
+                                    <div class="pod-customer__content">
+                                        <img data-src="/images/brands/finhay.png" alt="" src="/images/brands/finhay.png" class="lazyload" />
+                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
+                                        <div class="pod-customer__reviews">
+                                            <p class="pod-customer__description" style="display: none"></p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div class="pod-customer__content">
+                                        <img data-src="/images/brands/bcons.png" alt="" src="/images/brands/bcons.png" class="lazyload" />
+                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
+                                        <div class="pod-customer__reviews">
+                                            <p class="pod-customer__description" style="display: none"></p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div class="pod-customer__content">
+                                        <img data-src="/images/brands/vnpt.png" alt="" src="/images/brands/vnpt.png" class="lazyload" />
+                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
+                                        <div class="pod-customer__reviews">
+                                            <p class="pod-customer__description" style="display: none"></p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
                                         <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip38_59.png"
+                                            data-src="/images/brands/khonggianluat.png"
                                             alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip38_59.png"
+                                            src="/images/brands/khonggianluat.png"
                                             class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
@@ -376,9 +398,9 @@
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
                                         <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip39_30.png"
+                                            data-src="/images/brands/ngoisaogiadinh.png"
                                             alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip39_30.png"
+                                            src="/images/brands/ngoisaogiadinh.png"
                                             class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
@@ -388,476 +410,7 @@
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip40_12.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip40_12.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip41.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip41.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip43.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip43.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip44.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip44.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip31.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip31.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Coolmate còn hỗ trợ may riêng áo polo dành
-                                                cho nữ dù số lượng ít và sản phẩm không có sẵn . Rất tuyệt vời.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip36.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip36.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Áo của CoolxPrint mặc nhẹ, dễ cử động, nếu dùng để mặc hàng ngày mà hoạt động nhẹ thì okela
-                                                lắm nhé, chất liệu in căng, lên màu nét và chuẩn.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip37.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip37.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Mình đã thẩm áo rồi, đúng chất ngon - bổ - rẻ nhé. Cám ơn đội ngũ CoolxPrint đã hỗ trợ
-                                                Ecomtek ở nhà meeting với khách vẫn đảm bảo đẹp để nhận diện thương hiệu.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip38.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip38.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Chất lượng vải mát, vải dày, mực in tốt, form áo sau 1 năm mặc vẫn giữ dáng tốt mặc dù nhân
-                                                viên mặc đi làm hàng ngày. Sắp tới sẽ đặt hàng tiếp cho công ty.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip39.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip39.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Với số lượng 250 áo, Coolmate hỗ trợ trong vòng 1 tuần, chất lượng áo rất tốt, form áo vừa
-                                                vặn với mọi người, được các anh chị tại công ty hưởng ứng rất nhiều.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip40.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip40.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Chất liệu cotton mềm mại thấm hút rất phù hợp cho các fans thích di chuyển và ăn uống. Thật
-                                                sự rất ưng ý với đơn hàng này. Chúng tôi sẵn sàng giới thiệu CXP tới nhiều đối tác hơn.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip35.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip35.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip36_94.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip36_94.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip37_4.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip37_4.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip38_59.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip38_59.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip39_30.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip39_30.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip40_12.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip40_12.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip41.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip41.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip43.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip43.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip44.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip44.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip31.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip31.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Coolmate còn hỗ trợ may riêng áo polo dành
-                                                cho nữ dù số lượng ít và sản phẩm không có sẵn . Rất tuyệt vời.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip36.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip36.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Áo của CoolxPrint mặc nhẹ, dễ cử động, nếu dùng để mặc hàng ngày mà hoạt động nhẹ thì okela
-                                                lắm nhé, chất liệu in căng, lên màu nét và chuẩn.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip37.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip37.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Mình đã thẩm áo rồi, đúng chất ngon - bổ - rẻ nhé. Cám ơn đội ngũ CoolxPrint đã hỗ trợ
-                                                Ecomtek ở nhà meeting với khách vẫn đảm bảo đẹp để nhận diện thương hiệu.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip38.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip38.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Chất lượng vải mát, vải dày, mực in tốt, form áo sau 1 năm mặc vẫn giữ dáng tốt mặc dù nhân
-                                                viên mặc đi làm hàng ngày. Sắp tới sẽ đặt hàng tiếp cho công ty.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip39.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip39.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Với số lượng 250 áo, Coolmate hỗ trợ trong vòng 1 tuần, chất lượng áo rất tốt, form áo vừa
-                                                vặn với mọi người, được các anh chị tại công ty hưởng ứng rất nhiều.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://mcdn.coolmate.me/image/February2023/mceclip40.png"
-                                            alt=""
-                                            src="https://mcdn.coolmate.me/image/February2023/mceclip40.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none">
-                                                Chất liệu cotton mềm mại thấm hút rất phù hợp cho các fans thích di chuyển và ăn uống. Thật
-                                                sự rất ưng ý với đơn hàng này. Chúng tôi sẵn sàng giới thiệu CXP tới nhiều đối tác hơn.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip35.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip35.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip36_94.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip36_94.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip37_4.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip37_4.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip38_59.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip38_59.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip39_30.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip39_30.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip40_12.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip40_12.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip41.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip41.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip43.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip43.png"
-                                            class="lazyload" />
-                                        <h2 class="pod-customer__name" style="font-size: 18px"></h2>
-                                        <div class="pod-customer__reviews">
-                                            <p class="pod-customer__description" style="display: none"></p>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div class="pod-customer__content">
-                                        <img
-                                            data-src="https://media.coolmate.me/image/February2023/mceclip44.png"
-                                            alt=""
-                                            src="https://media.coolmate.me/image/February2023/mceclip44.png"
-                                            class="lazyload" />
+                                        <img data-src="/images/brands/shopee.png" alt="" src="/images/brands/shopee.png" class="lazyload" />
                                         <h2 class="pod-customer__name" style="font-size: 18px"></h2>
                                         <div class="pod-customer__reviews">
                                             <p class="pod-customer__description" style="display: none"></p>
@@ -866,28 +419,29 @@
                                 </SwiperSlide>
                             </Swiper>
                             <p class="pod-customer__description active-description mobile--hidden">
-                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Coolmate còn hỗ trợ may riêng áo polo dành cho nữ dù số
-                                lượng ít và sản phẩm không có sẵn . Rất tuyệt vời.
+                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành cho nữ dù số lượng ít
+                                và sản phẩm không có sẵn . Rất tuyệt vời.
                             </p>
                         </div>
                         <UButton
                             variant="ghost"
                             color="none"
                             size="lg"
-                            href="https://www.coolmate.me/lp/coolxprint-mo-hinh-dat-san-xuat-theo-yeu-cau?itm_source=navbar#mockup"
-                            class="bg-[#2f5acf] text-white px-8 rounded-3xl"
+                            to="#offer-box"
+                            class="bg-[#2f5acf] text-white px-8 rounded-3xl !no-underline"
                             >Gửi yêu cầu
                         </UButton>
                     </div>
                 </div>
             </section>
-            <section id="mockup" class="mt-8">
+            <section id="offer-box" class="mt-8">
                 <div class="container container--medium">
                     <div class="contact">
                         <div class="contact__wrapper">
                             <div class="contact__content">
                                 <h2 class="contact__content-title">
-                                    Bạn đang cần được tư vấn cho đồng phục công ty, may quần áo bảo hộ lao động, đồng phục công nhân? Hãy để chúng tôi tư vấn cho bạn
+                                    Bạn đang cần được tư vấn cho đồng phục công ty, may quần áo bảo hộ lao động, đồng phục công nhân? Hãy để
+                                    chúng tôi tư vấn cho bạn
                                 </h2>
                                 <div class="contact__content-hotline">
                                     <div class="contact__content-info">
@@ -906,21 +460,18 @@
                                     </div>
                                 </div>
                                 <div class="contact__content-contact">
-                                    <a href="http://zalo.me/0964807286" target="_blank" class="contact__content-social">
+                                    <a href="https://zalo.me/1160130089290834053" target="_blank" class="contact__content-social">
                                         <img src="/images/zalo.png" alt="zalo-podz" />
                                         <div>Liên hệ Sale GAK qua Zalo</div>
                                     </a>
-                                    <a
-                                        href="https://www.facebook.com/coolxprintinaotheoyeucau/"
-                                        target="_blank"
-                                        class="contact__content-social"
+                                    <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="contact__content-social"
                                         ><img src="/images/facebook.png" alt="fb-pod" />
                                         <div>CSKH GAK</div></a
                                     >
                                 </div>
                             </div>
                             <div class="contact__form">
-                                <form action="https://www.coolmate.me/cxp" method="POST" class="xp-form">
+                                <form action="" method="POST" class="xp-form">
                                     <h2 class="title">Gửi yêu cầu tư vấn may đồng phục cho GAK</h2>
                                     <UFormGroup class="form-group" label="Sản phẩm và số lượng dự kiến bạn cần" required>
                                         <UInput
@@ -987,11 +538,11 @@
             <section class="pod-factory">
                 <div class="pod-factory__banner">
                     <picture style="width: 100%"
-                        ><source
-                            class="hidden"
-                            media="(max-width: 781px)"
-                            srcset="https://mcdn.coolmate.me/image/February2023/mceclip35.jpg" />
-                        <img src="/images/nha-may-background.png" alt="Nha may" class="h-full w-full object-cover" />
+                        ><source class="hidden" media="(max-width: 781px)" srcset="/images/nha-may-background.png" />
+                        <img
+                            src="/images/nha-may-background.png"
+                            alt="Nha may"
+                            class="h-[300px] md:h-full w-full object-center object-cover" />
                     </picture>
                 </div>
                 <div class="pod-factory__info">
@@ -1006,60 +557,32 @@
                     </UButton>
                 </div>
             </section>
-            <section class="pod-tech">
+            <section class="pod-tech pt-8 pb-12">
                 <div class="container container--medium">
                     <h2 class="pod-tech__heading">Tập trung phát triển sản phẩm và công nghệ may mặc tiên tiến</h2>
-                    <Swiper
-                        :slidesPerView="2"
-                        :spaceBetween="24"
-                        :slidesPerGroup="2"
-                        :modules="modules"
-                        :grid="{
-                            rows: 2,
-                        }"
-                        class="swiper pod-tech-swiper h-[450px] lg:!hidden">
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl">
-                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
+                    <div class="flex md:grid md:grid-cols-3 flex-wrap items-center justify-center gap-4 w-full">
+                        <div class="pod-tech-slide">
+                            <div href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
+                            </div>
                             <span>Vải chất lượng cao</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
+                        </div>
+                        <div class="pod-tech-slide">
+                            <div href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
+                            </div>
                             <span>Công nghệ may tiên tiến</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
+                        </div>
+                        <div class="pod-tech-slide">
+                            <div href="#" class="rounded-xl">
+                                <img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
+                            </div>
                             <span>Công nghệ in/thêu đồng phục</span>
-                        </SwiperSlide>
-                    </Swiper>
-                    <Swiper
-                        :slidesPerView="3"
-                        :spaceBetween="24"
-                        :slidesPerGroup="3"
-                        :modules="modules"
-                        :grid="{
-                            rows: 2,
-                        }"
-                        class="swiper pod-tech-swiper min-w-0 h-[450px] !px-32 !hidden lg:!block">
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl">
-                                <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy"
-                            /></a>
-                            <span>Vải chất lượng cao</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
-                            <span>Công nghệ may tiên tiến</span>
-                        </SwiperSlide>
-                        <SwiperSlide class="pod-tech-slide">
-                            <a href="#" class="rounded-xl"><img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy" /></a>
-                            <span>Công nghệ in/thêu đồng phục</span>
-                        </SwiperSlide>
-                    </Swiper>
+                        </div>
+                    </div>
                 </div>
             </section>
-            <section class="blogs-grid-slide mb-6">
+            <section v-if="false" class="blogs-grid-slide mb-6">
                 <div class="container container--medium px-6 py-4 rounded-2xl">
                     <div class="blogs-grid-slide__heading">Cẩm nang kiến thức về may đồng phục</div>
                     <div class="blogs-grid-slide__slide container px-8">
@@ -1085,18 +608,25 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Tham gia hội săn Deal GAK- Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
+                        Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
                     </h2>
-                    <span class="flex items-center justify-center flex-wrap gap-4">
-                        <UButton size="lg" class="text-[#2f5acf] bg-white rounded-3xl px-6 py-4" variant="ghost" color="none">
-                            GAK OFFICIAL
-                        </UButton>
+                    <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton
+                            to="https://www.facebook.com/groups/1587962561968530"
+                            target="_blank"
                             size="lg"
-                            class="border border-white bg-[#2f5acf] rounded-3xl text-white px-6 py-4"
+                            class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit no-underline uppercase"
                             variant="ghost"
                             color="none">
-                            Mua quần áo giá cực rẻ tại TIKTOK Shop!
+                            Tham gia hội săn Deal GAK
+                        </UButton>
+                        <UButton
+                            :to="localePath({ name: 'gak-official' })"
+                            size="lg"
+                            class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
+                            variant="ghost"
+                            color="none">
+                            GAK OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -1112,7 +642,7 @@
                                 variant="soft"
                                 class="border-b text-black !justify-between border-gray-200 dark:border-gray-700"
                                 :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
-                                <span class="text-xl">{{ index + 1 }}. {{ item.label }}</span>
+                                <span class="text-xl md:text-center text-left">{{ index + 1 }}. {{ item.label }}</span>
 
                                 <template #trailing>
                                     <UIcon
@@ -1220,7 +750,7 @@ import images from '@@/assets/icons';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Grid } from 'swiper/modules';
 import ArticleCard from '@/components/articles/ArticleCard.vue';
-let modules = ref([Grid]);
+let modules = ref([]);
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
@@ -1244,41 +774,29 @@ const items = [
         slot: 'item-3',
     },
 ];
-const articleList = ref([
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/September2023/9_31.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Kinh nghiệm hay',
-        created_at: '26.09.2023',
-        title: '[Cập Nhật Liên Tục] 30+ Giải Chạy Marathon 2024',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '36235',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/June2023/giai-dap-y-nghia-cac-con-so-trong-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Độc lạ bình dương',
-        created_at: '26.10.2023',
-        title: 'Coolmate 5 tuổi - Điểm danh bộ sưu tập sinh nhật có gì mới và hấp dẫn?',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '38',
-    },
-    {
-        link: 'https://www.coolmate.me/post/giai-chay-marathon-2024-2745',
-        image: 'https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/May2023/tho-hay-ve-tinh-yeu.jpg',
-        category_link: 'https://www.coolmate.me/blog/kinh-nghiem-hay',
-        category_name: 'Trend mới',
-        created_at: '26.11.2023',
-        title: 'Cùng thưởng thức 7 bản hit của ông hoàng nhạc phim Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh Phan Mạnh Quỳnh',
-        description:
-            'Nếu là tín đồ đam mê chạy bộ, hãy cùng khám phá thông tin các giải chạy marathon 2024 sắp diễn ra. Cùng khám phá chi tiết để dễ dàng lên kế hoạch tham gia chạy giải nhé!',
-        view_count: '999',
-    },
-]);
+let title = 'Nhận đặt may theo yêu cầu tại TPHCM vả tốt | Đồng phục đẹp giá rẻ';
+let pageDescription = 'Công ty GAK mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: pageDescription,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url: config.public.logo,
+});
+let seoMeta = {
+    description: pageDescription,
+    ogDescription: pageDescription,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: pageDescription,
+    keywords: title,
+};
+useSeoMeta(seoMeta);
 </script>
 
 <style lang="scss" scoped>
@@ -1286,7 +804,7 @@ const articleList = ref([
     position: relative;
     height: calc(100vh - 120px);
     @media screen and (max-width: 991px) {
-        height: 100%;
+        height: auto;
     }
     .pod-banner__content,
     .pod-banner__filter,
@@ -1307,6 +825,9 @@ const articleList = ref([
         justify-content: center;
         flex-flow: column;
         background-color: rgba(0, 0, 0, 0.5);
+        @media screen and (max-width: 991px) {
+            display: none;
+        }
         .pod-banner__heading {
             font-size: 500%;
             font-weight: 700;
@@ -1368,10 +889,17 @@ const articleList = ref([
     .pod-why {
         margin-top: 2em;
         padding-bottom: 30px;
+        @media screen and (max-width: 767px) {
+            margin-top: 0;
+        }
         .pod-why__heading {
             font-weight: 500;
             font-size: 36px;
             text-align: center;
+            @media screen and (max-width: 767px) {
+                margin-top: 0;
+                padding-top: 16px;
+            }
         }
         .pod-why__card {
             display: flex;
@@ -1434,7 +962,7 @@ const articleList = ref([
                 flex-flow: column;
                 padding: 50px 45px;
                 @media screen and (max-width: 1200px) {
-                    padding: 10px 20px;
+                    padding: 24px;
                     width: 100%;
                     border-radius: 12px;
                     margin-bottom: 1em;
@@ -1446,6 +974,11 @@ const articleList = ref([
                         color: #2f5acf;
                         line-height: 51px;
                         font-weight: 500;
+                        @media screen and (max-width: 991px) {
+                            font-size: 28px;
+                            line-height: 1.4;
+                            text-align: center;
+                        }
                     }
                     @media screen and (max-width: 1200px) {
                         width: 100%;
@@ -1489,6 +1022,9 @@ const articleList = ref([
                     margin-bottom: 1em;
                     width: 100%;
                 }
+                @media (max-width: 991px) {
+                    margin-bottom: 0;
+                }
                 .card__item {
                     margin-right: 0;
                     position: relative;
@@ -1522,16 +1058,16 @@ const articleList = ref([
                         position: absolute;
                         width: 24px;
                         height: 24px;
-                        background-image: url(https://mcdn.coolmate.me/image/February2023/mceclip9_32.png);
+                        background-image: url('/images/chevron-right-yellow-circle.png');
                         background-size: contain;
                         background-position: 50%;
                         left: -24px;
                         top: calc(20% - 7px);
                         @media (max-width: 1200px) {
                             left: 50%;
-                            top: -45%;
-                            width: 20px;
-                            height: 20px;
+                            top: -35%;
+                            width: 24px; 
+                            height: 24px;
                             transform: rotate(90deg);
                         }
                     }
@@ -1556,10 +1092,10 @@ const articleList = ref([
                 }
                 @media (max-width: 1200px) {
                     padding: 0;
+                    margin: 4px 0;
                     br {
                         display: none;
                     }
-                    margin: 4px 0;
                 }
             }
         }
@@ -1626,6 +1162,10 @@ const articleList = ref([
             font-size: 36px;
             text-align: center;
             margin-bottom: 70px;
+
+            @media screen and (max-width: 991px) {
+                margin-bottom: 48px;
+            }
         }
         .pod-customer__content {
             max-width: 991px;
@@ -1641,6 +1181,11 @@ const articleList = ref([
                 filter: grayscale(100%);
                 transition: all 0.3s;
                 opacity: 0.3;
+                @media screen and (max-width: 767px) {
+                    filter: grayscale(0);
+                    transition: all 0.3s;
+                    opacity: 1;
+                }
             }
             &:hover,
             &.active {
@@ -1650,6 +1195,9 @@ const articleList = ref([
                     opacity: 1;
                 }
             }
+            @media screen and (max-width: 767px) {
+                padding: 0 12px;
+            }
         }
         .pod-customer__description {
             font-size: 18px;
@@ -1657,6 +1205,10 @@ const articleList = ref([
             max-width: 820px;
             color: #3a4348;
             margin: 24px auto;
+
+            @media screen and (max-width: 767px) {
+                padding: 0 8px;
+            }
         }
     }
     .contact {
@@ -1678,6 +1230,9 @@ const articleList = ref([
             }
             @media screen and (max-width: 991px) {
                 padding: 32px;
+            }
+            @media screen and (max-width: 767px) {
+                padding: 24px;
             }
             .contact__content {
                 display: flex;
@@ -1701,8 +1256,11 @@ const articleList = ref([
                     gap: 16px;
                     max-width: 463px;
                     margin-bottom: 48px;
-                    @media (max-width: 991px) {
-                        @apply flex-wrap items-center justify-center;
+                    @media screen and (max-width: 991px) {
+                        @apply flex-wrap items-center w-full;
+                    }
+                    @media screen and (max-width: 374px) {
+                        @apply px-0;
                     }
                     .contact__content-info {
                         display: flex;
@@ -1715,16 +1273,19 @@ const articleList = ref([
                             color: #aebbc1;
                             margin: 0;
                         }
+                        @media screen and (max-width: 767px) {
+                            @apply pl-0;
+                        }
                     }
                 }
                 .contact__content-contact {
                     display: flex;
                     justify-content: space-between;
                     gap: 16px;
+                    max-width: 463px;
                     @media (max-width: 991px) {
                         @apply flex-wrap items-center justify-center;
                     }
-                    max-width: 463px;
                     .contact__content-social {
                         border: 1px solid #fff;
                         border-radius: 16px;
@@ -1738,6 +1299,9 @@ const articleList = ref([
                             width: 32px;
                             height: 32px;
                             object-fit: contain;
+                        }
+                        @media screen and (max-width: 767px) {
+                            width: 100%;
                         }
                     }
                 }
@@ -1756,6 +1320,10 @@ const articleList = ref([
                     @media (min-width: 1201px) and (max-width: 1440px) {
                         padding: 50px 30px;
                     }
+                    @media screen and (max-width: 767px) {
+                        padding: 24px;
+                    }
+
                     .title {
                         color: #2f5acf;
                         font-size: 28px;
@@ -1782,8 +1350,9 @@ const articleList = ref([
         }
         .pod-factory__info {
             position: absolute;
-            top: 25%;
-            left: 10%;
+            top: 50%;
+            transform: translate(-15%, -50%);
+            left: 15%;
             max-width: 768px;
             color: #fff;
             h2 {
@@ -1792,17 +1361,23 @@ const articleList = ref([
                 @media screen and (max-width: 991px) {
                     font-size: 48px;
                 }
+                @media screen and (max-width: 767px) {
+                    font-size: 28px;
+                }
             }
             p {
                 font-size: 24px;
                 @media screen and (max-width: 991px) {
                     font-size: 16px;
+                    text-align: justify;
                 }
             }
             @media screen and (max-width: 767px) {
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
+                left: 24px;
+                transform: translate(24px, -50%);
+                width: 100%;
+                max-width: 80%;
+                padding: 8px 16px;
             }
         }
     }
@@ -1815,13 +1390,9 @@ const articleList = ref([
         .pod-tech-slide {
             text-align: center;
             font-size: 18px;
-            height: calc((100% - 24px) / 2) !important;
             border-radius: 12px;
             /* Center slide text vertically */
             @apply flex flex-col gap-4 items-center justify-start;
-            img {
-                height: 150px;
-            }
         }
     }
     .blogs-grid-slide {
@@ -1841,7 +1412,7 @@ const articleList = ref([
         }
     }
     .cs-cta {
-        background-color: #2f5acf;
+        background-color: #176c36;
         text-align: center;
         padding-top: 30px;
         padding-bottom: 40px;

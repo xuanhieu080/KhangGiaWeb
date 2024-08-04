@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading && productList.products && productList.products.length > 0" class="flex flex-col gap-4 relative w-full">
-        <div class="collection-title fs-20 font-bold uppercase">{{ collectionTitle }}</div>
+        <div class="collection-title text-3xl font-bold uppercase">{{ collectionTitle }}</div>
         <div class="collection-wrapper">
             <div v-for="product in productList.products" :key="product" class="collection-item">
                 <ProductCard :product="product" />
@@ -40,7 +40,7 @@ const props = defineProps({
     .collection-item {
         width: 25%;
         @media screen and (max-width: 991px) {
-            width: calc(50% - 12px);
+            width: calc(50% - 8px);
         }
     }
 }

@@ -1,14 +1,14 @@
 <template>
-    <div v-if="bannerBlock" class="banner-block my-4">
-        <picture class="w-full">
+    <div v-if="bannerBlock" class="banner-block">
+        <picture class="w-full banner-image">
             <source :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
             <img :src="bannerBlock.image_desktop" :alt="bannerBlock.title" style="width: 100%" />
         </picture>
-        <div v-if="!hideContent" class="banner-content" :class="splitBanner ? 'modify-position' : ''">
-            <div v-if="bannerBlock.subtitle" class="opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
-            <div class="title" :class="splitBanner ? 'custom-font' : ''">{{ bannerBlock.title }}</div>
-            <div v-if="bannerBlock.description" class="description" v-html="bannerBlock.description"></div>
-            <NuxtLink :to="localePath({name: 'collection-slug', params: {slug: bannerBlock.link}})">
+        <div v-if="!hideContent" class="banner-content" :class="[splitBanner ? 'modify-position' : '', isWhite ? 'white-text' : '']">
+            <div v-if="bannerBlock.subtitle" :class="[splitBanner ? 'text-white md:text-black' : '']" class="opacity-85 md:opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>
+            <div class="title" :class="[splitBanner ? 'custom-font' : '']">{{ bannerBlock.title }}</div>
+            <div v-if="bannerBlock.description" class="description" :class="[splitBanner ? 'custom-font' : '']" v-html="bannerBlock.description"></div>
+            <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: bannerBlock.link } })">
                 <UButton
                     size="xl"
                     color="none"
@@ -22,6 +22,7 @@
     </div>
 </template>
 <script setup>
+
 const localePath = useLocalePath();
 const props = defineProps({
     bannerBlock: {
@@ -36,54 +37,96 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    isWhite: {
+        type: Boolean,
+        default: false,
+    },
 });
 </script>
 <style lang="scss" scoped>
 .banner-block {
     width: 100%;
     position: relative;
+    .banner-image {
+        position: relative;
+        @media screen and (max-width: 768px) {
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.24);
+            }
+        }
+    }
     .banner-content {
         color: black;
         position: absolute;
-        left: 24px;
         @apply flex flex-col gap-4;
-        top: 50%;
-        transform: translateY(-35%);
+        left: 24px;
+        top: 85%;
+        transform: translateY(-75%);
+        color: black;
+        &.white-text {
+            color: white;
+            @media screen and (min-width: 768px) {
+                color: black;
+            }
+        }
         @media screen and (min-width: 992px) {
-            top: 50%;
+            top: 75%;
             transform: translateY(-50%);
-            left: 128px;
+            left: 72px;
+            max-width: 650px;
+        }
+        @media screen and (min-width: 1440px) {
+            left: 96px;
         }
         &.modify-position {
             top: 50%;
             transform: translateY(-50%);
             left: 36px;
+            @media screen and (max-width: 768px) {
+                top: 60%;
+                transform: translateY(-60%);
+                left: 24px;
+            }
         }
         .title {
-            @media screen and (min-width: 1660px) {
-                font-size: 80px;
-                max-width: 500px;
-            }
-            @media screen and (min-width: 1280px) and (max-width: 1659px) {
-                font-size: 3.75rem;
-                max-width: 350px;
-            }
-            color: black;
             font-size: 2.25rem;
             text-transform: uppercase;
             font-weight: bold;
-            max-width: 300px;
+            @media screen and (min-width: 1660px) {
+                font-size: 80px;
+            }
+            @media screen and (min-width: 1280px) and (max-width: 1659px) {
+                font-size: 3.75rem;
+            }
+            @media screen and (max-width: 767px) {
+                max-width: 320px;
+            }
             &.custom-font {
                 font-size: 2rem;
                 max-width: 250px;
+                @media screen and (max-width: 767px) {
+                    color: white;
+                    font-size: 1.5rem;
+                }
             }
         }
         .description {
-            color: black;
+            font-weight: 500;
             @media screen and (min-width: 1280px) {
                 font-size: 1.25rem;
             }
-            font-weight: 500;
+            &.custom-font {
+                @media screen and (max-width: 767px) {
+                    font-size: 1rem;
+                    color: white;
+                }
+            }
         }
     }
 }

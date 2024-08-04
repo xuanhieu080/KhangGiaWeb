@@ -1,16 +1,18 @@
 <template>
-    <footer class="site-footer mobile--hidden">
+    <div v-if="pageGroups.length > 0" class="site-footer mobile--hidden">
         <div class="footer-container">
             <div class="site-footer__inner">
                 <div class="site-footer__sidebar">
                     <div class="footer-about mb-6">
-                        <h4 class="site-footer__title">Công ty GAK tận tâm & tử tế trên từng sản phẩm</h4>
+                        <div class="site-footer__title">Công ty GAK tận tâm & tử tế trên từng sản phẩm</div>
                         <p class="site-footer__description">
                             Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm
                             dịch vụ và sản phẩm tốt hơn nữa.
                         </p>
                         <UButton
                             size="xl"
+                            to="https://jrsiigcg6eu.typeform.com/to/Fjpxmsmz"
+                            rel="nofollow"
                             class=" hover:bg-white hover:text-black transition ease-in-out px-6 duration-300 rounded-2xl">
                             Đóng góp ý kiến
                         </UButton>
@@ -51,7 +53,7 @@
                         <a href="https://www.instagram.com/congtygak/" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_instagram" alt="Footer Icon instar"
                         /></a>
-                        <a href="https://twitter.com/congtygak" target="_blank" class="footer-social__item"
+                        <a href="https://www.youtube.com/@CongtyGAK" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_youtube" alt="Footer Icon youtube"
                         /></a>
                     </div>
@@ -60,7 +62,7 @@
                     <div class="footer-menu">
                         <div v-for="pageGroup in pageGroups" class="footer-menu__item">
                                <div v-for="item in pageGroup">
-                                   <h4 class="footer-menu__title">{{item.name}}</h4>
+                                   <div class="footer-menu__title">{{item.name}}</div>
                                       <ul>
                                           <li v-for="page in item.details">
                                               <NuxtLink v-if="page.is_button" :to="localePath( page.link )">{{page.name}}</NuxtLink>
@@ -70,56 +72,38 @@
                                </div>
                         </div>
                         <div class="footer-menu__item">
-                            <h4 class="footer-menu__title">Địa chỉ liên hệ</h4>
+                            <div class="footer-menu__title">Địa chỉ liên hệ</div>
                             <p class="footer-menu__desciption">
                                 <u>Văn phòng Tp HCM:</u> 15 Lê Minh Xuân, Phường 7, Tân Bình, Thành phố Hồ Chí Minh 700000
                             </p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div v-if="false" class="site-footer__after">
-                <div class="copyright">
-                    <h5 class="copyright__title">@ CÔNG TY TNHH FASTECH ASIA</h5>
-                    <p class="copyright__description">
-                        Mã số doanh nghiệp: 0108617038. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư TP Hà Nội cấp lần đầu
-                        ngày 20/02/2019.
-                    </p>
-                </div>
-                <div class="site-footer__logo">
-                    <a
-                        href="https://tinnhiemmang.vn/danh-ba-tin-nhiem/coolmateme-1646213826"
-                        title="Chung nhan Tin Nhiem Mang"
-                        target="_blank"
-                        style="margin-right: 10px"
-                        ><img
-                            src="https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/March2022/handle_cert.png"
-                            alt="Chung nhan Tin Nhiem Mang"
-                            style="max-height: 40px"
-                    /></a>
-                    <a
-                        href="https://www.dmca.com/Protection/Status.aspx?ID=c6fdbdee-127c-4cf1-923d-7efe75201df6&amp;refurl=https://www.coolmate.me/"
-                        title="DMCA.com Protection Status"
-                        target="_blank"
-                        class="dmca-badge"
-                        style="margin-right: 10px"
-                        ><img
-                            src="https://media2.coolmate.me/cdn-cgi/image/quality=80,format=auto/uploads/March2022/dmca_protected_15_120.png"
-                            alt="DMCA.com Protection Status"
-                            style="max-height: 40px"
-                    /></a>
-                    <a href="#" style="margin-right: 10px"
-                        ><img src="https://static.coolmate.me/images/footer/Coolmate-info.png" alt="Coolmate info" width="39" height="40"
-                    /></a>
-                    <a
-                        href="http://online.gov.vn/(X(1)S(3e0hkhscv5zs101mhuopx43a))/Home/WebDetails/53184?AspxAutoDetectCookieSupport=1"
-                        target="_blank"
-                        ><img src="https://static.coolmate.me/images/footer/logoSaleNoti.png" alt="Coolmate info" width="106" height="40"
-                    /></a>
+                <div class="site-footer__after">
+                    <div class="copyright">
+                        <h5 class="copyright__title">
+                            @ CÔNG TY TNHH TMDV SẢN XUẤT XUẤT NHẬP KHẨU GAK
+                </h5>
+                        <p class="copyright__description">Mã số doanh nghiệp: 0317511532. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư Thành Phố Hồ Chí Minh cấp lần đầu ngày 07/10/2022.</p>
+                    </div>
+                    <div class="site-footer__logo">
+                        <a
+                            href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
+                            title="DMCA.com Protection Status"
+                            class="dmca-badge mr-3">
+                            <NuxtImg
+                                style="max-height: 40px;"
+                                format="webp"
+                                src="https://images.dmca.com/Badges/DMCA_logo-grn-btn100w.png?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
+                                alt="DMCA.com Protection Status"
+                                class="w-full h-full object-contain"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 </template>
 <script setup>
 import images from '@/assets/icons/index';

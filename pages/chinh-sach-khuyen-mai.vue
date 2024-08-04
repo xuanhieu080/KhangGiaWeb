@@ -29,7 +29,7 @@
                             <NuxtLink :to="localePath({name: item.slug})"
                                 class="flex items-center justify-between gap-2 relative w-full h-12 font-bold hover:text-green-700"
                                 :class="selected ? 'text-green-700' : 'text-black'">
-                                <span class="capitalize">{{ item.label }}</span>
+                                <span class="capitalize text-start">{{ item.label }}</span>
                                 <UIcon name="i-heroicons-chevron-right-20-solid"></UIcon>
                             </NuxtLink>
                         </template>
@@ -101,6 +101,16 @@ const items = ref([
         slug: 'chinh-sach-giao-hang',
         content: 'Finally 2, this is the content for Tab3',
     },
+    {
+        label: 'Chính sách hoàn trả sản phẩm',
+        slug: 'chinh-sach-hoan-tra-san-pham',
+        content: 'Finally 2, this is the content for Tab3',
+    },
+    {
+        label: 'Hỏi đáp - FAQs',
+        slug: 'faqs',
+        content: 'Finally 3, this is the content for Tab3',
+    },
 ]);
 const content = ref();
 const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-khuyen-mai', () =>
@@ -112,23 +122,28 @@ watchEffect(() => {
         items.value[defaultIndex.value].content = page.value.data.description
     }
 })
-// useSchemaOrg([
-//     defineArticle({
-//         type: 'Article',
-//         headline: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         title: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         description: 'Tại sao nên chọn hãng máy bay uy tín Vietravel Airlines cho dịp Tết',
-//         image: process.env.WEB_BASE_URL + '/__og-image__/image/og.png',
-//         datePublished: new Date(2024, 1, 1),
-//         dateModified: new Date(2024, 1, 1),
-//         author: [
-//             {
-//                 name: 'Chung Ngô',
-//                 url: 'https://gak.vn',
-//             },
-//         ]
-//     })
-// ]);
+let title = 'Chính sách khuyến mãi';
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: config.public.description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url:  config.public.logo,
+});
+let seoMeta = {
+    description:  config.public.description,
+    ogDescription:  config.public.description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription:  config.public.description,
+    keywords: title,
+};
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .page {
