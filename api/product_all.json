@@ -540,7 +540,7 @@
         "description": null,
         "is_active": true,
         "created_at": "3 months ago",
-        "updated_at": "1 week ago",
+        "updated_at": "2 weeks ago",
         "_lft": 7,
         "_rgt": 8,
         "parent_id": 4,
