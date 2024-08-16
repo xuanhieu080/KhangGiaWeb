@@ -992,15 +992,15 @@ function getProductItem(showAlert = false) {
     if (matchingVariant && matchingVariant.image_url && matchingVariant.thumb_image.length > 0) {
         return matchingVariant;
     } else if (matchingVariant) {
-        if(showAlert) {
-            toast.add({
-                title: trans('Thông báo') + ' !',
-                description: trans('Sản phẩm đang tạm ngưng nên đã chuyển qua mẫu khác'),
-                timeout: 3000,
-                icon: 'i-heroicons-check-badge',
-                color: 'red',
-            });
-        }
+        // if(showAlert) {
+        //     toast.add({
+        //         title: trans('Thông báo') + ' !',
+        //         description: trans('Sản phẩm đang tạm ngưng nên đã chuyển qua mẫu khác'),
+        //         timeout: 3000,
+        //         icon: 'i-heroicons-check-badge',
+        //         color: 'red',
+        //     });
+        // }
         return null;
     } else {
         return null;
