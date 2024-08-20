@@ -93,7 +93,6 @@
                     v-if='pageHeaders && categoryHeaders.length > 0 && menuMobile'
                     v-for='(category, index) in categoryHeaders'
                     :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
-                    v-show='index < 4'
                     class='main-nav-item'
                     @click='(e) => handleChangePage(e)'
                     @mouseleave='(e) => handleCloseSubMenu(e)'
