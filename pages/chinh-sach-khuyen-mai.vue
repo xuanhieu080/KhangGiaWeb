@@ -111,6 +111,16 @@ const items = ref([
         slug: 'faqs',
         content: 'Finally 3, this is the content for Tab3',
     },
+    {
+        label: 'Quy định thanh toán',
+        slug: 'quy-dinh-thanh-toan',
+        content: 'Finally 3, this is the content for Tab3',
+    },
+    {
+        label: 'Chính sách kiểm hàng',
+        slug: 'chinh-sach-kiem-hang',
+        content: 'Finally 3, this is the content for Tab3',
+    }
 ]);
 const content = ref();
 const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-khuyen-mai', () =>

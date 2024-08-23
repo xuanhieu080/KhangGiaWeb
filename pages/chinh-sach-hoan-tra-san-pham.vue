@@ -110,6 +110,16 @@ const items = ref([
         label: 'Hỏi đáp - FAQs',
         slug: 'faqs',
         content: 'Finally 3, this is the content for Tab3',
+    },
+    {
+        label: 'Quy định thanh toán',
+        slug: 'quy-dinh-thanh-toan',
+        content: 'Finally 3, this is the content for Tab3',
+    },
+    {
+        label: 'Chính sách kiểm hàng',
+        slug: 'chinh-sach-kiem-hang',
+        content: 'Finally 3, this is the content for Tab3',
     }
 ]);
 const content = ref();

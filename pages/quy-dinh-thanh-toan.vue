@@ -44,7 +44,7 @@
                 <div class="contact__content-hotline mx-auto">
                     <div class="contact__content-info">
                         <img
-                            src="/images/phone-icon.svg"
+                            src='/images/phone-icon.svg'
                             class="bg-gray-200 p-2 rounded-full !border border-solid border-gray-300"
                             alt="" />
                         <div>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="contact__content-info">
                         <img
-                            src="/images/sms-notification.svg"
+                            src='/images/sms-notification.svg'
                             class="bg-gray-200 p-2 rounded-full !border border-solid border-gray-300"
                             alt="" />
                         <div>
@@ -68,13 +68,13 @@
     </NuxtLayout>
 </template>
 <script setup>
-import EditorBox from '@@/components/EditorBox.vue';
+import EditorBox from '~/components/EditorBox.vue';
 import images from 'assets/icons';
 
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-const defaultIndex = ref(6)
+const defaultIndex = ref(7)
 const items = ref([
     {
         label: 'Điều khoản sử dụng',
@@ -124,7 +124,7 @@ const items = ref([
 ]);
 const content = ref();
 const { data: page, pending: loadingPage } = await useLazyAsyncData('faqs', () =>
-    useOriginalFetch(`/api/v1/pages/faqs`),
+    useOriginalFetch(`/api/v1/pages/quy-dinh-thanh-toan`),
 );
 
 watchEffect(() => {
@@ -132,7 +132,7 @@ watchEffect(() => {
         items.value[defaultIndex.value].content = page.value.data.description
     }
 })
-let title = 'Hỏi đáp - FAQs';
+let title = 'Quy định thanh toán';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
