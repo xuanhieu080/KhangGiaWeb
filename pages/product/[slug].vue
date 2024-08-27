@@ -1212,6 +1212,22 @@ const productSEO = ref({
     image: productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data?.thumb_image,
     price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
     description: description.value,
+    "itemReviewed": {
+        "@type": "Store",
+        "name": title.value,
+        telephone: process.env.NUXT_SITE_PHONE,
+        address: {
+            "@type": "PostalAddress",
+            addressCountry: process.env.NUXT_SITE_ADDRESS_COUNTRY,
+            postalCode: process.env.NUXT_SITE_POSTAL_CODE,
+            addressLocality: process.env.NUXT_SITE_ADDRESS_LOCALITY,
+            addressRegion: process.env.NUXT_SITE_ADDRESS_REGION,
+            streetAddress: process.env.NUXT_SITE_STREET_ADDRESS,
+        },
+    },
+    bestRating: '5', // Điểm tốt nhất có thể
+    ratingValue: productItem.value.data?.reviews[0].rate, // Điểm đánh giá
+    "ratingCount": productItem.value.data?.reviews.length,
     offers: {
         url: 'https://gak.vn/vi/chinh-sach-hoan-tra-san-pham',
         itemCondition: 'https://schema.org/NewCondition',
