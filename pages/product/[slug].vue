@@ -1209,7 +1209,7 @@ if (review) {
 
 const productSEO = ref({
     name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
-    image: productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data.thumb_image,
+    image: productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data?.thumb_image,
     price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
     description: description.value,
     offers: {
