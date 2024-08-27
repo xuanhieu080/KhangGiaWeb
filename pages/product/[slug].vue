@@ -1203,7 +1203,7 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
 }
 useSeoMeta(seoMeta);
 if (review) {
-    useSchemaOrg([defineReview(review)]);
+    // useSchemaOrg([defineReview(review)]);
     useSchemaOrg([aggregateRating]);
 }
 
