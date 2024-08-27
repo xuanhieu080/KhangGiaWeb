@@ -1163,6 +1163,7 @@ let seoMeta = {
 };
 
 let review = null;
+let aggregateRating = null;
 if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 0) {
     review = {
         author: {
@@ -1179,15 +1180,36 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
         },
         reviewBody: productItem.value.data?.reviews[0].description,
     };
+    aggregateRating = {
+        "@context": "https://schema.org/",
+        "@type": "AggregateRating",
+        "itemReviewed": {
+            "@type": "Store",
+            "name": title.value,
+            telephone: process.env.NUXT_SITE_PHONE,
+            address: {
+                "@type": "PostalAddress",
+                addressCountry: process.env.NUXT_SITE_ADDRESS_COUNTRY,
+                postalCode: process.env.NUXT_SITE_POSTAL_CODE,
+                addressLocality: process.env.NUXT_SITE_ADDRESS_LOCALITY,
+                addressRegion: process.env.NUXT_SITE_ADDRESS_REGION,
+                streetAddress: process.env.NUXT_SITE_STREET_ADDRESS,
+            },
+        },
+        bestRating: '5', // Điểm tốt nhất có thể
+        ratingValue: productItem.value.data?.reviews[0].rate, // Điểm đánh giá
+        "ratingCount": productItem.value.data?.reviews.length
+    }
 }
 useSeoMeta(seoMeta);
 if (review) {
     useSchemaOrg([defineReview(review)]);
+    useSchemaOrg([aggregateRating]);
 }
 
 const productSEO = ref({
     name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
-    image: image.value,
+    image: productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data.thumb_image,
     price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
     description: description.value,
     offers: {

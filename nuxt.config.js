@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     debug: false,
+    devtools: {
+        enabled: false,
+        timeline: {
+            enabled: false
+        }
+    },
     runtimeConfig: {
         public: {
             baseURL: process.env.BASE_URL,
