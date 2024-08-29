@@ -1200,7 +1200,7 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
         },
         bestRating: '5', // Điểm tốt nhất có thể
         ratingValue: rate.value, // Điểm đánh giá
-        "ratingCount": productItem.value.data?.reviews.length
+        "ratingCount": productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count
     }
 }
 useSeoMeta(seoMeta);
@@ -1237,7 +1237,7 @@ const productSEO = ref({
     },
     bestRating: '5', // Điểm tốt nhất có thể
     ratingValue: rate.value, // Điểm đánh giá
-    "ratingCount": productItem.value.data?.reviews.length,
+    "ratingCount": productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count,
     offers: {
         url: 'https://gak.vn/vi/chinh-sach-hoan-tra-san-pham',
         itemCondition: 'https://schema.org/NewCondition',
