@@ -1209,9 +1209,17 @@ if (review) {
     useSchemaOrg([aggregateRating]);
 }
 const images = ref(productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data?.thumb_image);
+const productName = ref(productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name)
 const productSEO = ref({
-    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
-    image: [...images.value],
+    name: productName,
+    image:{
+        "@type": "ImageObject",
+        "caption": productName.value,
+        "contentUrl": image.value,
+        "inLanguage": "vi",
+        "url": image.value,
+    },
+    images: [...images.value],
     price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
     description: description.value,
     "itemReviewed": {
@@ -1289,10 +1297,19 @@ watch(
                     },
                 });
             });
+
+            productName.value = productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name;
             useSchemaOrg([
                 defineProduct({
-                    name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
-                    image: image.value,
+                    name: productName,
+                    image:{
+                        "@type": "ImageObject",
+                        "caption": productName.value,
+                        "contentUrl": image.value,
+                        "inLanguage": "vi",
+                        "url": image.value,
+                    },
+                    images: [...images.value],
                     description: description.value,
                     offers: {
                         url: 'https://gak.vn/vi/chinh-sach-hoan-tra-san-pham',
