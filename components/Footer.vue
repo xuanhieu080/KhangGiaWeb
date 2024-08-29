@@ -86,17 +86,26 @@
                 </h5>
                         <p class="copyright__description">Mã số doanh nghiệp: 0317511532. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư Thành Phố Hồ Chí Minh cấp lần đầu ngày 07/10/2022.</p>
                     </div>
-                    <div class="site-footer__logo">
+                    <div class='site-footer__logo'>
+
+                        <a
+                        href='http://online.gov.vn/Home/WebDetails/120677'
+                        target='_blank'>
+                            <NuxtImg src='/bo-cong-thuong.png'
+                                                 class="mr-3"
+                                             alt='GAK' width='106' height='40' />
+                        </a>
                         <a
                             href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
                             title="DMCA.com Protection Status"
                             class="dmca-badge mr-3">
                             <NuxtImg
                                 style="max-height: 40px;"
+                                width='106' height='40'
                                 format="webp"
                                 src="https://images.dmca.com/Badges/DMCA_logo-grn-btn100w.png?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2"
                                 alt="DMCA.com Protection Status"
-                                class="w-full h-full object-contain"
+                                class="w-full object-contain h-[40px]"
                             />
                         </a>
                     </div>

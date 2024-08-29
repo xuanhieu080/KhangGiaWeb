@@ -1164,7 +1164,9 @@ let seoMeta = {
 
 let review = null;
 let aggregateRating = null;
+const rate = ref(0);
 if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 0) {
+    rate.value = productItem.value.data?.reviews[0]?.rate
     review = {
         author: {
             // Thông tin của tác giả đánh giá
@@ -1175,7 +1177,7 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
             // Đánh giá được tiến hành
             '@type': 'Rating',
             bestRating: '5', // Điểm tốt nhất có thể
-            ratingValue: productItem.value.data?.reviews[0].rate, // Điểm đánh giá
+            ratingValue: rate.value, // Điểm đánh giá
             worstRating: '1', // Điểm xấu nhất có thể
         },
         reviewBody: productItem.value.data?.reviews[0].description,
@@ -1197,7 +1199,7 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
             },
         },
         bestRating: '5', // Điểm tốt nhất có thể
-        ratingValue: productItem.value.data?.reviews[0].rate, // Điểm đánh giá
+        ratingValue: rate.value, // Điểm đánh giá
         "ratingCount": productItem.value.data?.reviews.length
     }
 }
@@ -1206,10 +1208,10 @@ if (review) {
     // useSchemaOrg([defineReview(review)]);
     useSchemaOrg([aggregateRating]);
 }
-
+const images = ref(productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data?.thumb_image);
 const productSEO = ref({
     name: productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name,
-    image: productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data?.thumb_image,
+    image: [...images.value],
     price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
     description: description.value,
     "itemReviewed": {
@@ -1226,7 +1228,7 @@ const productSEO = ref({
         },
     },
     bestRating: '5', // Điểm tốt nhất có thể
-    ratingValue: productItem.value.data?.reviews[0].rate, // Điểm đánh giá
+    ratingValue: rate.value, // Điểm đánh giá
     "ratingCount": productItem.value.data?.reviews.length,
     offers: {
         url: 'https://gak.vn/vi/chinh-sach-hoan-tra-san-pham',

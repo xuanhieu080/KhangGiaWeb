@@ -24,10 +24,10 @@
                 <div class="flex flex-col md:flex-row items-center justify-center px-5 text-gray-700 w-full">
                     <div class="max-w-md">
                         <h1>Oops...</h1>
-                        <p>
-                            <strong>{{ error?.message }}</strong>
-                            <strong>{{error}}</strong>
-                        </p>
+<!--                        <p>-->
+<!--                            <strong>{{ error?.message }}</strong>-->
+<!--                            <strong>{{error}}</strong>-->
+<!--                        </p>-->
                         <p>Có vấn đề xảy ra.</p>
                         <p>Xin lỗi về sự bất tiện này.</p>
                         <p>Quay trở lại trang chính sau {{ timeout }} giây</p>
