@@ -774,7 +774,7 @@ const items = [
         slot: 'item-3',
     },
 ];
-let title = 'Nhận đặt may theo yêu cầu tại TPHCM vả tốt | Đồng phục đẹp giá rẻ';
+let title = 'Nhận đặt may theo yêu cầu tại TPHCM vải tốt | Đồng phục đẹp giá rẻ';
 let pageDescription = 'Công ty GAK mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
 const config = useRuntimeConfig();
 
