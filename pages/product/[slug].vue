@@ -1209,6 +1209,7 @@ if (review) {
     useSchemaOrg([aggregateRating]);
 }
 const images = ref(productItemCurrent.value ? productItemCurrent.value.thumb_image : productItem.value.data?.thumb_image);
+
 const productName = ref(productItemCurrent.value ? productItemCurrent.value.name : productItem.value.data?.name)
 const productSEO = ref({
     name: productName,
@@ -1219,7 +1220,7 @@ const productSEO = ref({
         "inLanguage": "vi",
         "url": image.value,
     },
-    images: [...images.value],
+    images: images.value,
     price: productItemCurrent.value ? productItemCurrent.value.pricce_discount : productItem.value.data?.price_discount,
     description: description.value,
     "itemReviewed": {
@@ -1309,7 +1310,7 @@ watch(
                         "inLanguage": "vi",
                         "url": image.value,
                     },
-                    images: [...images.value],
+                    images: images.value,
                     description: description.value,
                     offers: {
                         url: 'https://gak.vn/vi/chinh-sach-hoan-tra-san-pham',
