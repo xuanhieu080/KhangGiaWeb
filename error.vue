@@ -1,5 +1,5 @@
 <template>
-    <NuxtLayout name="main">
+    <NuxtLayout name="error">
         <div class="prose prose-lg container max-w-screen-xl mx-auto p-6">
             <template v-if="error?.statusCode === 404">
                 <div class="flex flex-col md:flex-row items-center justify-center px-5 text-gray-700 w-full">
@@ -13,7 +13,7 @@
                         <p>
                             Hoặc bấm vào đây
                             <UButton size="lg" variant="outline" class="ml-4" @click="handleError"> Quay trở lại trang chính </UButton>
-                        </p>ß
+                        </p>
                     </div>
                     <div class="max-w-lg">
                         <img src="/images/404-image.svg" />
@@ -24,10 +24,10 @@
                 <div class="flex flex-col md:flex-row items-center justify-center px-5 text-gray-700 w-full">
                     <div class="max-w-md">
                         <h1>Oops...</h1>
-<!--                        <p>-->
-<!--                            <strong>{{ error?.message }}</strong>-->
-<!--                            <strong>{{error}}</strong>-->
-<!--                        </p>-->
+                        <p>
+                            <strong>{{ error?.message }}</strong>
+                            <strong>{{error}}</strong>
+                        </p>
                         <p>Có vấn đề xảy ra.</p>
                         <p>Xin lỗi về sự bất tiện này.</p>
                         <p>Quay trở lại trang chính sau {{ timeout }} giây</p>
@@ -51,18 +51,22 @@ const router = useRouter();
 const localePath = useLocalePath();
 const timeout = ref(10);
 
-const backHomepage = setInterval(() => {
-    // if (timeout.value == 0) {
-    //     clearInterval(backHomepage);
-    //     router.push(localePath({ name: 'index' }));
-    // } else {
-    //     timeout.value--;
-    // }
-}, 1000);
+const { locale, t: trans } = useI18n();
+
+onMounted(() => {
+    const backHomepage = setInterval(() => {
+        if (timeout.value == 0) {
+            clearInterval(backHomepage);
+            router.push(localePath({ name: 'index' }));
+        } else {
+            timeout.value--;
+        }
+    }, 1000);
+})
 
 const handleError = () => {
     clearError({
-        redirect: '/',
+        redirect: `/${locale.value}`,
     });
 };
 

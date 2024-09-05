@@ -169,7 +169,7 @@ const {
     },
 );
 if (errorGetCategory.value) {
-    router.push({ name: `index___${locale.value}` });
+    navigateTo({ path: `/${locale.value}/404`, statusCode: 301, replace: true });
 }
 
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>

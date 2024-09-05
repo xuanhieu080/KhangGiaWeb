@@ -211,6 +211,10 @@ export default defineNuxtConfig({
             __dangerouslyDisableSanitizers: ['script'],
         },
     },
-
+    nitro: {
+        prerender: {
+            routes: ['/404']
+        }
+    },
     compatibilityDate: '2024-07-25',
 });

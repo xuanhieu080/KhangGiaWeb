@@ -506,7 +506,7 @@ const handleProcessOrder = async () => {
         isOrdered.value = true;
         productLists.value = null;
         setTimeout(() => {
-            router.push({ name: `index___${locale.value}` });
+            navigateTo({ path: `/${locale.value}/404`, statusCode: 301, replace: true });
         }, 3000);
     } else {
         if (error.value.statusCode === 422) {
