@@ -169,7 +169,7 @@ const {
     },
 );
 if (errorGetCategory.value) {
-    navigateTo({ path: `/${locale.value}/404`, statusCode: 301, replace: true });
+    navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
 }
 
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>

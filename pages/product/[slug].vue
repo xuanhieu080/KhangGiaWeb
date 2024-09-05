@@ -140,8 +140,8 @@
                                 rating-content='⭐' />
                             <div class='flex items-center gap-2'>
                                 <div class='fs-12'>({{ productItem.data?.rate_count }})</div>
-                                <div>|</div>
-                                <div class='fs-12'>{{ $t('Sold') + ' (web): ' + productItem.data?.qty_sold }}</div>
+<!--                                <div>|</div>-->
+<!--                                <div class='fs-12'>{{ $t('Sold') + ' (web): ' + productItem.data?.qty_sold }}</div>-->
                             </div>
                         </div>
 
@@ -458,7 +458,7 @@
                         <div class='uppercase font-bold'>Đánh giá sản phẩm</div>
                         <div class='font-bold text-[4rem]'>{{ productItem.data?.average_rate }}</div>
                         <NuxtRating
-                            class='w-[220px]'
+                            class='w-[220px] justify-center'
                             :read-only='true'
                             :ratingValue='productItem.data?.average_rate'
                             :active-color="'green'"
@@ -849,7 +849,7 @@ const {
 );
 
 if (errorGetProduct.value) {
-    navigateTo({ path: `/${locale.value}/404`, statusCode: 301, replace: true });
+    navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
 }
 
 // const {

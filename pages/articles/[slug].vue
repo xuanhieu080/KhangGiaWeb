@@ -54,7 +54,7 @@ const {
 );
 
 if (errorGetItem.value) {
-    navigateTo({ path: `/${locale.value}/404`, statusCode: 301, replace: true });
+    navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
 }
 
 watchEffect(() => {
