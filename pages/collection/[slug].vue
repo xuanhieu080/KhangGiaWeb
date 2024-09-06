@@ -162,12 +162,6 @@
                 </div>
             </div>
         </div>
-        <div
-            v-if="collectionError"
-            class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
-            {{ collectionError.data.message }}
-            <UButton size="lg" :to="localePath({ name: 'index' })">{{ $t('Quay trở về') }}</UButton>
-        </div>
     </NuxtLayout>
 </template>
 <script setup>
@@ -179,6 +173,8 @@ import ProductCard from '@/components/products/ProductCard';
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
+
+const { locale, t: trans } = useI18n();
 
 const router = useRouter();
 const localePath = useLocalePath();
@@ -281,6 +277,10 @@ const { data: productCollection, status: loadingProductCollection } = await useL
         watch: [filter, refreshData],
     },
 );
+
+if (collectionError.value) {
+    navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
+}
 
 // watch(
 //     () => loadingCollection.value,

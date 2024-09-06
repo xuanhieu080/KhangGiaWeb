@@ -774,13 +774,16 @@
     </NuxtLayout>
 </template>
 <script setup>
-import EditorBox from '@@/components/EditorBox.vue';
 import images from '@@/assets/icons';
+
+const { locale, t: trans } = useI18n();
 
 const router = useRouter();
 const slug = ref(router.currentRoute.value.params.slug);
 
 const content = ref();
+
+navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
 
 </script>
 <style lang="scss" scoped>
