@@ -401,7 +401,7 @@
                     <h3 class='!text-2xl font-extrabold'>Chi tiết sản phẩm</h3>
                     <div v-html='productItem.data?.description'></div>
                 </div>
-                <div v-if='!loadingProductHot && productHot.data' class='product-similar my-8'>
+                <div v-if='productHot' class='product-similar my-8'>
                     <h3 class='w-full text-center !text-2xl md:!text-3xl !mb-8 font-extrabold'>SẢN PHẨM BẠN CÓ THỂ
                         THÍCH</h3>
                     <Swiper
@@ -430,7 +430,7 @@
                             },
                         }'
                         class='similar-products-swiper relative'>
-                        <SwiperSlide v-for='similarProduct in productHot.data' class='!h-full p-2 rounded-lg'>
+                        <SwiperSlide v-for='similarProduct in productHot' class='!h-full p-2 rounded-lg'>
                             <ProductCard :product='similarProduct' />
                         </SwiperSlide>
                         <template v-slot:container-end>
@@ -564,6 +564,7 @@ import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
 import productHots from '~/api/product_hot.json';
+import page_headers from '~/api/page_header.json';
 
 const route = useRoute();
 const router = useRouter();
@@ -847,9 +848,24 @@ const {
         watch: [refreshData],
     },
 );
-
+const productHot = ref([])
 if (errorGetProduct.value) {
     navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
+}
+
+async function getProductCategory() {
+    const { data: response, error } = await useMyFetch(`/api/v1/products`, {
+        params: {
+            sort: {
+                'desc[0]': 'id',
+            },
+            category_id: productItem.value.data.category_id,
+            limit: 20
+        }
+    });
+
+    console.log(response);
+    productHot.value = response.value.data
 }
 
 // const {
@@ -892,20 +908,7 @@ if (errorGetProduct.value) {
 //     },
 // );
 
-const { data: productHot, pending: loadingProductHot } = await useAsyncData(
-    'product-hot',
-    async () =>
-        useOriginalFetch(`/api/v1/products`, {
-            sort: {
-                'desc[0]': 'id',
-            },
-            category_id: productItem.value.data.category_id,
-            limit: 20,
-        }),
-    {
-        default: () => [],
-    },
-);
+
 const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyncData(
     'product-review',
     async () =>
@@ -1131,6 +1134,9 @@ const resetProductPage = (isRefresh = true) => {
         refreshData.value++;
     }
 };
+
+
+getProductCategory();
 
 const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data?.meta_title);
 const description = ref(productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description);
