@@ -1,5 +1,4 @@
 import { defineNuxtPlugin } from '#app';
-
 export default defineNuxtPlugin(nuxtApp => {
     // Đảm bảo thư viện đã được tải
     if (typeof window !== 'undefined') {

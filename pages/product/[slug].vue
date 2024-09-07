@@ -895,11 +895,11 @@ if (errorGetProduct.value) {
 const { data: productHot, pending: loadingProductHot } = await useAsyncData(
     'product-hot',
     async () =>
-        useOriginalFetch(`/api/v1/product-hots`, {
+        useOriginalFetch(`/api/v1/products`, {
             sort: {
                 'desc[0]': 'id',
             },
-            is_hot: 1,
+            category_id: productItem.value.data.category_id,
             limit: 20,
         }),
     {
