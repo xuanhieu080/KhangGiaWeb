@@ -65,26 +65,33 @@ watchEffect(() => {
 const title = ref(content.value?.data?.meta_title)
 
 const description = ref(content.value?.data?.meta_description);
+const key = ref(content.value?.data?.meta_key);
+const image = ref(content.value?.data?.image_url);
+
 defineOgImageComponent('GAK', {
     title: title.value,
     description: description.value,
     theme: '#ff0000',
     colorMode: 'dark',
+    url: image.value,
+    image: image.value,
 });
 defineOgImage({
-    url:  content.value?.data?.image_url,
+    url: image.value,
+    image: image.value,
 });
-const seoMeta = ref({
+let seoMeta = {
     description: description.value,
     ogDescription: description.value,
     ogTitle: title.value,
     title: title.value,
     twitterTitle: title.value,
     twitterDescription: description.value,
-    keywords: content.value?.data?.meta_key,
-});
-
-useSeoMeta(seoMeta.value);
+    keywords: key.value,
+    image: image.value,
+    ogImage: image.value,
+    ogImageAlt: title.value,
+};
 </script>
 
 <style lang="scss" scoped></style>

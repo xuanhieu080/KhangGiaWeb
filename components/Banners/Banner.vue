@@ -20,9 +20,10 @@
             <SwiperSlide v-for="item in bannerList" :key="item">
                 <NuxtLink :to="item.link" target="_blank" rel="noopener noreferrer">
                     <picture class="w-full h-full object-contain banner-image">
-                        <source media="(min-width:768px)" :srcset="item.url">
-                        <source media="(max-width:767px)" :srcset="item.url_mobile">
-                        <img class="w-full h-full object-contain banner-image" :src="item.url" loading="lazy" alt="">
+                        <source v-if='isMobile' media="(max-width:767px)" :srcset="item.url_mobile">
+                        <source v-else media="(min-width:768px)" :srcset="item.url">
+                        <NuxtImg v-if='isMobile' class="w-full h-full object-contain banner-image" :src="item.url_mobile" loading="lazy" alt="GAK" />
+                        <NuxtImg v-else class="w-full h-full object-contain banner-image" :src="item.url" loading="lazy" alt="GAK" />
                     </picture>
                 </NuxtLink>
             </SwiperSlide>
@@ -55,6 +56,9 @@ import { Navigation, Autoplay } from 'swiper/modules';
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
+
+const { isMobile } = useDevice()
+
 const props = defineProps({
     bannerList: Array,
     autoPlay: {

@@ -1,6 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     debug: false,
+    build: {
+        extractCSS: true,
+        optimization: {
+            splitChunks: {
+                layouts: true,
+                pages: true,
+                commons: true
+            }
+        },
+        analyze: true,
+        filenames: {
+            app: ({ isDev }) => isDev ? '[name].js' : '[name].[contenthash].js'
+        }
+    },
     devtools: {
         enabled: false,
         timeline: {
@@ -49,15 +63,7 @@ export default defineNuxtConfig({
         // '/en/app/**': { ssr: false },
     },
 
-    modules: [
-        '@nuxtjs/i18n',
-        '@nuxt/ui',
-        '@pinia/nuxt',
-        'nuxt-rating',
-        '@nuxt/image',
-        '@nuxtjs/seo',
-        '@zadigetvoltaire/nuxt-gtm',
-    ],
+    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo', '@zadigetvoltaire/nuxt-gtm', '@nuxtjs/device'],
 
     site: {
         indexable: true,
