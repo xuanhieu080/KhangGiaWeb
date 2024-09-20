@@ -181,7 +181,7 @@ const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsync
 watch(
     () => loadingArticleGroup.value,
     () => {
-        if (articleGroups.value.data?.length > 0) {
+        if (articleGroups.value?.data?.length > 0) {
             if (router.currentRoute.value.params.slug) {
                 let findIndex = articleGroups.value.data.findIndex((article) => article.slug == router.currentRoute.value.params.slug);
                 if (findIndex != -1) {

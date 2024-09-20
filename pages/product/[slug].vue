@@ -864,7 +864,6 @@ async function getProductCategory() {
         }
     });
 
-    console.log(response);
     productHot.value = response.value.data
 }
 
@@ -1136,8 +1135,9 @@ const resetProductPage = (isRefresh = true) => {
 };
 
 
-getProductCategory();
-
+if (router.currentRoute.value.query?.code && productItem.value.data?.variantMainDetail) {
+    productItemCurrent.value = productItem.value.data?.variantMainDetail;
+}
 const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data?.meta_title);
 const description = ref(productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description);
 const key = ref(productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key);
@@ -1161,6 +1161,8 @@ let seoMeta = {
     ogTitle: title.value,
     title: title.value,
     twitterTitle: title.value,
+    twitterImage: image.value,
+    twitterImageAlt: title.value,
     twitterDescription: description.value,
     keywords: key.value,
     image: image.value,
@@ -1364,6 +1366,7 @@ watch(
                 let productCurrent = ref({ ...productItem.value.data });
                 initialProduct(productCurrent.value);
             }
+            getProductCategory();
         }
     },
     { immediate: true },
