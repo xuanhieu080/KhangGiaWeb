@@ -132,7 +132,7 @@ watchEffect(() => {
         items.value[defaultIndex.value].content = page.value.data.description
     }
 })
-let title = 'Chiính sách kiểm hàng';
+let title = 'Chính sách kiểm hàng';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
