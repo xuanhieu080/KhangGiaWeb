@@ -127,9 +127,9 @@
                     </div>
                     <div class='product-information flex flex-col gap-4 px-4'>
                         <div class='product-name flex flex-col gap-2'>
-                            <span class='font-bold text-[28px] lg:text-[32px]'>{{
+                            <h1 class='font-bold text-[28px] lg:text-[32px]'>{{
                                     productItemCurrent ? productItemCurrent.name : productItem.data?.name
-                                }}</span>
+                                }}</h1>
                         </div>
                         <div class='product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black'>
                             <NuxtRating
