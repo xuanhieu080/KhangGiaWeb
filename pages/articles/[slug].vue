@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name='main'>
-        <div v-if='!loadingArticle && !error' class='article-details'>
+        <div v-if='content && content.data' class='article-details'>
             <div class='container mx-auto prose prose-lg max-w-screen-xl py-8'>
                 <UBreadcrumb :ui="{ol: 'gap-0 max-w-fit mt-0 pl-0'}" :links='links' />
                 <h1 class='article-title'>
@@ -31,12 +31,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div
-            class='container mx-auto prose prose-lg max-w-screen-xl mt-[128px] text-center flex flex-col items-center gap-8'
-            v-else-if='!loadingArticle && error'>
-            {{ 'Không tìm thấy bài viết' }}
-            <UButton size='lg' :to="localePath({ name: 'index' })" class='no-underline'>Quay về trang chủ</UButton>
         </div>
     </NuxtLayout>
 </template>
