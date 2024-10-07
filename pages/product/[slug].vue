@@ -333,7 +333,7 @@
                             <button class='flex items-center gap-2'>
                                 <img src='https://page.widget.zalo.me/static/images/2.0/Logo.svg'
                                      class='h-8 w-8 object-contain' alt='' />
-                                <a href='https://zalo.me/569133339' class='text-blue-700 fs-14 font-bold'
+                                <a href='https://zalo.me/0569133339' class='text-blue-700 fs-14 font-bold'
                                 >Chat với GAK để được tư vấn ngay ( 08:00 - 17:30)</a
                                 >
                                 <UIcon class='text-[22px]' name='i-heroicons-arrow-long-right' dynamic />

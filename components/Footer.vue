@@ -44,7 +44,7 @@
                         <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_facebook" alt="Footer Icon facebook"
                         /></a>
-                        <a href="https://zalo.me/569133339" target="_blank" class="footer-social__item"
+                        <a href="https://zalo.me/0569133339" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_zalo" alt="Footer Icon Zalo"
                         /></a>
                         <a href="https://www.tiktok.com/@congtygak" target="_blank" class="footer-social__item"

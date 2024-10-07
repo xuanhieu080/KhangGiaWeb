@@ -333,6 +333,7 @@ onMounted(() => {
             visibility: visible;
             opacity: 1;
             transform: translateX(-50%) translateY(-5px);
+            height: 223px;
         }
     }
     .sub-button {

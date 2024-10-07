@@ -170,7 +170,7 @@
                                     </li>
                                     <li>
                                         Nền tảng Zalo:
-                                        <a href="https://zalo.me/569133339" target="_blank" class="text-blue-500"
+                                        <a href="https://zalo.me/0569133339" target="_blank" class="text-blue-500"
                                             >Tại đây</a
                                         >
                                     </li>
