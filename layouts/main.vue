@@ -15,7 +15,7 @@
             </div>
             <div class="circle-button" id="chat-box-widgets">
                 <button class="main-button" :class="showMenuChat ? 'active' : ''" @click="showMenuChat = !showMenuChat"></button>
-                <div class="sub-buttons" :class="showMenuChat ? 'show' : 'hide'">
+                <div class="sub-buttons flex flex-col gap-2" :class="showMenuChat ? 'show' : 'hide'">
                     <a
                         type="button"
                         class="sub-button zalo"
@@ -333,7 +333,6 @@ onMounted(() => {
             visibility: visible;
             opacity: 1;
             transform: translateX(-50%) translateY(-5px);
-            height: 223px;
         }
     }
     .sub-button {
@@ -346,7 +345,6 @@ onMounted(() => {
         transform: translateY(50px);
         opacity: 0;
         padding: 0;
-        margin: 6px;
         &.show {
             transform: translateY(0px);
             opacity: 1;
