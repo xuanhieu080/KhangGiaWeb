@@ -147,6 +147,7 @@ let seoMeta = {
     ogImage: image.value,
     ogImageAlt: title.value,
 };
+useSeoMeta(seoMeta);
 </script>
 
 <style lang='scss' scoped>
