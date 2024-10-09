@@ -54,9 +54,7 @@
                 </div>
             </div>
         </main>
-        <UCard v-if="articleSEO && articleSEO.data && articleSEO.data.description && !loadingSeo" class="m-6 prose prose-lg max-w-full">
-            <div v-html="articleSEO.data.description"></div>
-        </UCard>
+
         <client-only>
             <UNotifications class="prose-p:mt-0">
                 <template #title="{ title }">
@@ -114,23 +112,6 @@ let lastScrollTop = 80;
 const config = useRuntimeConfig();
 const showMenuChat = ref(false);
 const refreshData = ref(0);
-const {
-    data: articleSEO,
-    pending: loadingSeo,
-    error: errorSeo,
-} = await useAsyncData(
-    'product-item',
-    async () =>
-        useOriginalFetch(`/api/v1/seo-contents`, {
-            params: {
-                link: `${config.public.Url}${router.currentRoute.value.fullPath}`,
-            },
-        }),
-    {
-        default: () => [],
-        watch: [refreshData],
-    },
-);
 
 watch(
     () => router.currentRoute.value.fullPath,

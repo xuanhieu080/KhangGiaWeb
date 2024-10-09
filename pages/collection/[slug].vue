@@ -162,6 +162,9 @@
                 </div>
             </div>
         </div>
+        <UCard v-if="loadingCollection == 'success' && !collectionError && collection?.item?.content_seo" class="m-6 prose prose-lg max-w-full">
+            <div v-html="collection.item.content_seo"></div>
+        </UCard>
     </NuxtLayout>
 </template>
 <script setup>
