@@ -92,6 +92,7 @@
                 <NuxtLink
                     v-if='pageHeaders && categoryHeaders.length > 0 && menuMobile'
                     v-for='(category, index) in categoryHeaders'
+                    v-show='index < 5'
                     :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
                     class='main-nav-item'
                     @click='(e) => handleChangePage(e)'

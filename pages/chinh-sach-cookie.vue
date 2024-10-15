@@ -132,26 +132,30 @@ watchEffect(() => {
         items.value[defaultIndex.value].content = page.value.data.description
     }
 })
-let title = 'Chính sách cookie';
-const config = useRuntimeConfig();
+
+//SEO
+const title = ref(page.value.data?.meta_title);
+const description = ref(page.value.data?.meta_description);
+const image = ref(page.value.data?.image_url);
+const meta_key = ref(page.value.data?.meta_key);
 
 defineOgImageComponent('GAK', {
-    title: title,
-    description: config.public.description,
+    title: title.value,
+    description: description.value,
     theme: '#ff0000',
     colorMode: 'dark',
 });
 defineOgImage({
-    url:  config.public.logo,
+    url: image.value,
 });
-let seoMeta = {
-    description:  config.public.description,
-    ogDescription:  config.public.description,
-    ogTitle: title,
-    title: title,
-    twitterTitle: title,
-    twitterDescription:  config.public.description,
-    keywords: title,
+const seoMeta = {
+    description: description.value,
+    ogDescription: description.value,
+    ogTitle: title.value,
+    title: title.value,
+    twitterTitle: title.value,
+    twitterDescription: description.value,
+    keywords: meta_key.value,
 };
 useSeoMeta(seoMeta);
 </script>
