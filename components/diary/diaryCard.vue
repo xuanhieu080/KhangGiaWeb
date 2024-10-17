@@ -2,7 +2,7 @@
     <UCard :ui="{ ring: '', shadow: '', background: 'bg-transparent', body: { padding: '' } }" v-if="diary" class="diary-card relative">
         <div class="diary-card-wrapper w-full h-full cursor-pointer">
             <span class="absolute left-5 top-4 font-bold diary-name">{{diary.name}}</span>
-            <img class="w-full object-contain object-left" :src="diary.image_thumb" />
+            <img class="w-full object-contain object-left" :src="diary.image_thumb" :alt="diary.name" />
         </div>
     </UCard>
     <UCard :ui="{ body: { padding: '' } }" v-else class="product-card w-full relative">

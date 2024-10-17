@@ -16,7 +16,7 @@
                         </p>
                     </div>
                     <div class="max-w-lg">
-                        <img src="/images/404-image.svg" />
+                        <img src="/images/404-image.svg" alt="404-img" />
                     </div>
                 </div>
             </template>
@@ -37,7 +37,7 @@
                         </p>
                     </div>
                     <div class="max-w-lg">
-                        <img src="/images/404-image.svg" />
+                        <img src="/images/404-image.svg" alt="404-img" />
                     </div>
                 </div>
             </template>
