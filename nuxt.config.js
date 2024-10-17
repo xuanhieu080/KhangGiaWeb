@@ -49,8 +49,23 @@ export default defineNuxtConfig({
         // '/en/app/**': { ssr: false },
     },
 
-    modules: ['@nuxtjs/i18n', '@nuxt/ui', '@pinia/nuxt', 'nuxt-rating', '@nuxt/image', '@nuxtjs/seo', '@zadigetvoltaire/nuxt-gtm', '@nuxtjs/device'],
-
+    modules: [
+        'nuxt-delay-hydration',
+        '@nuxtjs/i18n',
+        '@nuxt/ui',
+        '@pinia/nuxt',
+        'nuxt-rating',
+        '@nuxt/image',
+        '@nuxtjs/seo',
+        '@zadigetvoltaire/nuxt-gtm',
+        '@nuxtjs/device',
+    ],
+    delayHydration: {
+        // enables nuxt-delay-hydration in dev mode for testing
+        // NOTE: you should disable this once you've finished testing, it will break HMR
+        debug: false,
+        mode: 'mount'
+    },
     site: {
         indexable: true,
         url: process.env.WEB_BASE_URL,
