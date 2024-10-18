@@ -565,6 +565,7 @@ import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
 import productHots from '~/api/product_hot.json';
 import page_headers from '~/api/page_header.json';
+import { watchOnce } from '@vueuse/core';
 
 const route = useRoute();
 const router = useRouter();
@@ -695,6 +696,60 @@ const handleQuantity = (index, variant = true) => {
 //     loadingProductItem.value = false;
 // };
 
+//DATA
+const refreshData = ref(0);
+
+const {
+    data: productItem,
+    status: loadingProduct,
+    error: errorGetProduct,
+} = await useLazyAsyncData(
+    'post-groups',
+    () =>
+        useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
+            query: {
+                code: router.currentRoute.value.query?.code,
+            },
+        }),
+    {
+        default: () => [],
+        watch: [refreshData],
+    },
+);
+
+const title = ref('');
+const description = ref('');
+const key = ref('');
+const image = ref('');
+const seoMeta = ref({})
+
+watchEffect((value) => {
+        if (loadingProduct.value === 'success') {
+            title.value = productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data?.meta_title;
+            description.value = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description;
+            key.value = productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key;
+            image.value = productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url;
+
+            seoMeta.value = {
+                description: description.value,
+                ogDescription: description.value,
+                ogTitle: title.value,
+                title: title.value,
+                twitterTitle: title.value,
+                twitterImage: image.value,
+                twitterImageAlt: title.value,
+                twitterDescription: description.value,
+                keywords: key.value,
+                image: image.value,
+                ogImage: image.value,
+                ogImageAlt: title.value,
+            }
+
+            useSeoMeta(seoMeta.value);
+            loadingProduct.value = 'pending'
+        }
+    });
+
 let initialProduct = (product) => {
     let findProduct = null;
     if (router.currentRoute.value.query?.code) {
@@ -747,6 +802,8 @@ let initialProduct = (product) => {
         // findProduct = product.variants.find((item) => JSON.stringify(item.options.sort()) == JSON.stringify(attributeIds.sort()));
     }
     loadingChangeProduct.value = true;
+
+    getProductCategory();
 };
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
@@ -828,30 +885,11 @@ const handleAddToCookie = (item, variant = true) => {
         }
     }
 };
-//DATA
-const refreshData = ref(0);
-
-const {
-    data: productItem,
-    status: loadingProduct,
-    error: errorGetProduct,
-} = await useLazyAsyncData(
-    'post-groups',
-    () =>
-        useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
-            query: {
-                code: router.currentRoute.value.query?.code,
-            },
-        }),
-    {
-        default: () => [],
-        watch: [refreshData],
-    },
-);
 const productHot = ref([])
 if (errorGetProduct.value) {
     navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
 }
+
 
 async function getProductCategory() {
     const { data: response, error } = await useMyFetch(`/api/v1/products`, {
@@ -1138,10 +1176,6 @@ const resetProductPage = (isRefresh = true) => {
 if (router.currentRoute.value.query?.code && productItem.value.data?.variantMainDetail) {
     productItemCurrent.value = productItem.value.data?.variantMainDetail;
 }
-const title = ref(productItemCurrent.value ? productItemCurrent.value.meta_title : productItem.value.data?.meta_title);
-const description = ref(productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description);
-const key = ref(productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key);
-const image = ref(productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url);
 
 defineOgImageComponent('GAK', {
     title: title.value,
@@ -1155,20 +1189,7 @@ defineOgImage({
     url: image.value,
     image: image.value,
 });
-let seoMeta = {
-    description: description.value,
-    ogDescription: description.value,
-    ogTitle: title.value,
-    title: title.value,
-    twitterTitle: title.value,
-    twitterImage: image.value,
-    twitterImageAlt: title.value,
-    twitterDescription: description.value,
-    keywords: key.value,
-    image: image.value,
-    ogImage: image.value,
-    ogImageAlt: title.value,
-};
+
 
 let review = null;
 let aggregateRating = null;
@@ -1211,7 +1232,6 @@ if (productItem.value.data?.reviews && productItem.value.data?.reviews.length > 
         "ratingCount": productItemCurrent.value ? productItemCurrent.value.rate_count : productItem.value.data?.rate_count
     }
 }
-useSeoMeta(seoMeta);
 if (review) {
     // useSchemaOrg([defineReview(review)]);
     useSchemaOrg([aggregateRating]);
@@ -1366,7 +1386,6 @@ watch(
                 let productCurrent = ref({ ...productItem.value.data });
                 initialProduct(productCurrent.value);
             }
-            getProductCategory();
         }
     },
     { immediate: true },
@@ -1381,6 +1400,7 @@ watch(
         }
     },
 );
+useSeoMeta(seoMeta.value);
 </script>
 <style lang='scss' scoped>
 .product-page {
