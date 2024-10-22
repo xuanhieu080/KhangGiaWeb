@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="!loadingContent" class="blog-page">
+        <div class="blog-page">
             <div class="blog-page-image relative">
                 <NuxtImg
                     class="w-full h-[500px] object-cover"
@@ -154,7 +154,7 @@ async function getArticle() {
 
 const {
     data: content,
-    pending: loadingContent,
+    status: loadingContent,
     error: errorGetCategory,
 } = await useAsyncData(
     'content',
@@ -199,29 +199,50 @@ watch(
     },
 );
 
-let title = content.value.data.meta_title;
-let description = content.value.data.meta_description;
+const title = ref('');
+const description = ref('');
+const key = ref('');
+const image = ref();
+const seoMeta = ref({})
 
-defineOgImageComponent('GAK', {
-    title: title,
-    description: description,
-    theme: '#ff0000',
-    colorMode: 'dark',
-});
-defineOgImage({
-    url:  content.value.data.image_url,
-});
-let seoMeta = {
-    description: description,
-    ogDescription: description,
-    ogTitle: title,
-    title: title,
-    twitterTitle: title,
-    twitterDescription: description,
-    keywords: content.value.data.meta_key,
-};
+watchEffect((value) => {
+    if (loadingContent.value === 'success') {
+        title.value = content.value.data?.meta_title;
+        description.value =  content.value.data?.meta_description;
+        key.value = content.value.data?.meta_key;
+        image.value =  content.value.data?.image_url;
 
-useSeoMeta(seoMeta);
+        seoMeta.value = {
+            description: description.value,
+            ogDescription: description.value,
+            ogTitle: title.value,
+            title: title.value,
+            twitterTitle: title.value,
+            twitterImage: image.value,
+            twitterImageAlt: title.value,
+            twitterDescription: description.value,
+            keywords: key.value,
+            image: image.value,
+            ogImage: image.value,
+            ogImageAlt: title.value,
+        }
+        defineOgImageComponent('GAK', {
+            title: title.value,
+            description: description.value,
+            theme: '#ff0000',
+            colorMode: 'dark',
+            url: image.value,
+            image: image.value,
+        });
+        defineOgImage({
+            url: image.value,
+            image: image.value,
+        });
+
+        useSeoMeta(seoMeta.value);
+        loadingContent.value = 'pending'
+    }
+});
 </script>
 
 <style lang="scss" scoped>

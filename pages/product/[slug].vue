@@ -720,7 +720,7 @@ const {
 const title = ref('');
 const description = ref('');
 const key = ref('');
-const image = ref('');
+const image = ref();
 const seoMeta = ref({})
 
 watchEffect((value) => {

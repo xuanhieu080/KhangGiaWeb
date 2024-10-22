@@ -8,7 +8,7 @@
                     <span class="text-lg xl:text-xl">GAK có thể giúp gì cho bạn?</span>
                 </div>
             </div>
-            <div v-if="!loadingPage" class="about-content !py-12 container mx-auto">
+            <div class="about-content !py-12 container mx-auto">
                 <div class="flex items-start justify-between w-full gap-8">
                     <UTabs
                         variant="ghost"
@@ -122,42 +122,58 @@ const items = ref([
         content: 'Finally 3, this is the content for Tab3',
     }
 ]);
-const content = ref();
-const { data: page, pending: loadingPage } = await useLazyAsyncData('chinh-sach-bao-mat', () =>
+
+const { data: page, status: loadingPage } = await useLazyAsyncData('chinh-sach-bao-mat', () =>
     useOriginalFetch(`/api/v1/pages/chinh-sach-bao-mat`),
 );
 
-watchEffect(() => {
-    if(!loadingPage.value && page.value && page.value.data) {
+
+const title = ref('');
+const description = ref('');
+const key = ref('');
+const image = ref();
+const seoMeta = ref({})
+
+watchEffect((value) => {
+    if (loadingPage.value === 'success' && page.value && page.value.data) {
+
         items.value[defaultIndex.value].content = page.value.data.description
+        title.value = page.value.data?.meta_title;
+        description.value =  page.value.data?.meta_description;
+        key.value = page.value.data?.meta_key;
+        image.value =  page.value.data?.image_url;
+
+        seoMeta.value = {
+            description: description.value,
+            ogDescription: description.value,
+            ogTitle: title.value,
+            title: title.value,
+            twitterTitle: title.value,
+            twitterImage: image.value,
+            twitterImageAlt: title.value,
+            twitterDescription: description.value,
+            keywords: key.value,
+            image: image.value,
+            ogImage: image.value,
+            ogImageAlt: title.value,
+        }
+        defineOgImageComponent('GAK', {
+            title: title.value,
+            description: description.value,
+            theme: '#ff0000',
+            colorMode: 'dark',
+            url: image.value,
+            image: image.value,
+        });
+        defineOgImage({
+            url: image.value,
+            image: image.value,
+        });
+
+        useSeoMeta(seoMeta.value);
+        loadingPage.value = 'pending'
     }
-})
-
-//SEO
-const title = ref(page.value.data?.meta_title);
-const description = ref(page.value.data?.meta_description);
-const image = ref(page.value.data?.image_url);
-const meta_key = ref(page.value.data?.meta_key);
-
-defineOgImageComponent('GAK', {
-    title: title.value,
-    description: description.value,
-    theme: '#ff0000',
-    colorMode: 'dark',
 });
-defineOgImage({
-    url: image.value,
-});
-const seoMeta = {
-    description: description.value,
-    ogDescription: description.value,
-    ogTitle: title.value,
-    title: title.value,
-    twitterTitle: title.value,
-    twitterDescription: description.value,
-    keywords: meta_key.value,
-};
-useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .page {

@@ -48,7 +48,7 @@ const links = ref([]);
 const refreshData = ref(0);
 const {
     data: content,
-    pending: loadingArticle,
+    status: loadingArticle,
     error: errorGetItem,
 } = await useLazyAsyncData(
     'articles-details',
@@ -116,38 +116,53 @@ onMounted(() => {
         getArticle();
     },100)
 })
-const title = ref(content.value?.data?.meta_title);
-
-const description = ref(content.value?.data?.meta_description);
-const key = ref(content.value?.data?.meta_key);
-const image = ref(content.value?.data?.image_url);
 
 
-defineOgImageComponent('GAK', {
-    title: title.value,
-    description: description.value,
-    theme: '#ff0000',
-    colorMode: 'dark',
-    url: image.value,
-    image: image.value,
+const title = ref('');
+const description = ref('');
+const key = ref('');
+const image = ref();
+const seoMeta = ref({})
+
+watchEffect((value) => {
+    if (loadingArticle.value === 'success') {
+        title.value = content.value.data?.meta_title;
+        description.value =  content.value.data?.meta_description;
+        key.value = content.value.data?.meta_key;
+        image.value =  content.value.data?.image_url;
+
+        seoMeta.value = {
+            description: description.value,
+            ogDescription: description.value,
+            ogTitle: title.value,
+            title: title.value,
+            twitterTitle: title.value,
+            twitterImage: image.value,
+            twitterImageAlt: title.value,
+            twitterDescription: description.value,
+            keywords: key.value,
+            image: image.value,
+            ogImage: image.value,
+            ogImageAlt: title.value,
+        }
+        defineOgImageComponent('GAK', {
+            title: title.value,
+            description: description.value,
+            theme: '#ff0000',
+            colorMode: 'dark',
+            url: image.value,
+            image: image.value,
+        });
+        defineOgImage({
+            url: image.value,
+            image: image.value,
+        });
+
+        useSeoMeta(seoMeta.value);
+        loadingArticle.value = 'pending'
+    }
 });
-defineOgImage({
-    url: image.value,
-    image: image.value,
-});
-let seoMeta = {
-    description: description.value,
-    ogDescription: description.value,
-    ogTitle: title.value,
-    title: title.value,
-    twitterTitle: title.value,
-    twitterDescription: description.value,
-    keywords: key.value,
-    image: image.value,
-    ogImage: image.value,
-    ogImageAlt: title.value,
-};
-useSeoMeta(seoMeta);
+
 </script>
 
 <style lang='scss' scoped>

@@ -30,19 +30,15 @@ import { storeToRefs } from 'pinia';
 import { useHeader } from '~/store/useHeader';
 
 const useHeaderStore = useHeader();
-const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);
+const { isLoadingPage } = storeToRefs(useHeaderStore);
 
-const router = useRouter();
 const route = useRoute();
-const slug = ref(route.params.slug);
 const { locale, t: trans } = useI18n();
-
-const content = ref();
 
 const refreshData = ref(0);
 const {
     data: page,
-    pending: loadingPage,
+    status: loadingPage,
     error: errorGetItem,
 } = await useAsyncData(
     'pages',
@@ -54,41 +50,53 @@ const {
     },
 );
 if (errorGetItem.value) {
-    navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
+    navigateTo({ path: `/${locale.value}/404` }, { redirectCode: 301, replace: true });
 }
 
-watchEffect(() => {
-    if (!loadingPage.value) {
-        isLoadingPage.value = false;
+const title = ref('');
+const description = ref('');
+const key = ref('');
+const image = ref();
+const seoMeta = ref({})
+
+watchEffect((value) => {
+    if (loadingPage.value === 'success') {
+        title.value = page.value.data?.meta_title;
+        description.value = page.value.data?.meta_description;
+        key.value = page.value.data?.meta_key;
+        image.value = page.value.data?.image_url;
+
+        seoMeta.value = {
+            description: description.value,
+            ogDescription: description.value,
+            ogTitle: title.value,
+            title: title.value,
+            twitterTitle: title.value,
+            twitterImage: image.value,
+            twitterImageAlt: title.value,
+            twitterDescription: description.value,
+            keywords: key.value,
+            image: image.value,
+            ogImage: image.value,
+            ogImageAlt: title.value,
+        }
+        defineOgImageComponent('GAK', {
+            title: title.value,
+            description: description.value,
+            theme: '#ff0000',
+            colorMode: 'dark',
+            url: image.value,
+            image: image.value,
+        });
+        defineOgImage({
+            url: image.value,
+            image: image.value,
+        });
+
+        useSeoMeta(seoMeta.value);
+        loadingPage.value = 'pending'
     }
 });
-
-const title = ref(page.value.data?.meta_title);
-const description = ref(page.value.data?.meta_description);
-const image = ref(page.value.data?.image_url);
-const meta_key = ref(page.value.data?.meta_key);
-
-defineOgImageComponent('GAK', {
-    title: title.value,
-    description: description.value,
-    theme: '#ff0000',
-    colorMode: 'dark',
-});
-defineOgImage({
-    url: image.value,
-});
-const seoMeta = {
-    description: description.value,
-    ogDescription: description.value,
-    ogTitle: title.value,
-    title: title.value,
-    twitterTitle: title.value,
-    twitterDescription: description.value,
-    keywords: meta_key.value,
-};
-
-useSeoMeta(seoMeta);
-
 </script>
 <style lang='scss' scoped>
 .page {

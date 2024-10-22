@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="loadingCollection == 'success' && !collectionError" class="category-page pt-8 bg-white">
+        <div class="category-page pt-8 bg-white">
             <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
@@ -162,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <UCard v-if="loadingCollection == 'success' && !collectionError && collection?.item?.content_seo" class="m-6 prose prose-lg max-w-full">
+        <UCard v-if="collection?.item?.content_seo" class="m-6 prose prose-lg max-w-full">
             <div v-html="collection.item.content_seo"></div>
         </UCard>
     </NuxtLayout>
@@ -284,45 +284,50 @@ const { data: productCollection, status: loadingProductCollection } = await useL
 if (collectionError.value) {
     navigateTo({ path: `/${locale.value}/404`}, {redirectCode: 301, replace: true });
 }
+const title = ref('');
+const description = ref('');
+const key = ref('');
+const image = ref();
+const seoMeta = ref({})
 
-// watch(
-//     () => loadingCollection.value,
-//     () => {
-//         if (loadingCollection.value == 'pending') loadingPageCollection.value = false;
-//     },
-// );
-// const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
-//     useOriginalFetch(`/api/v1/categories`),
-// );
+watchEffect((value) => {
+    if (loadingCollection.value === 'success') {
+        title.value = collection.value.item?.meta_title;
+        description.value =  collection.value.item?.meta_description;
+        key.value = collection.value.item?.meta_key;
+        image.value =  collection.value.item?.image_url;
 
-// watch(
-//     () => collectionError.value,
-//     () => {},
-// );
+        seoMeta.value = {
+            description: description.value,
+            ogDescription: description.value,
+            ogTitle: title.value,
+            title: title.value,
+            twitterTitle: title.value,
+            twitterImage: image.value,
+            twitterImageAlt: title.value,
+            twitterDescription: description.value,
+            keywords: key.value,
+            image: image.value,
+            ogImage: image.value,
+            ogImageAlt: title.value,
+        }
+        defineOgImageComponent('GAK', {
+            title: title.value,
+            description: description.value,
+            theme: '#ff0000',
+            colorMode: 'dark',
+            url: image.value,
+            image: image.value,
+        });
+        defineOgImage({
+            url: image.value,
+            image: image.value,
+        });
 
-let title = collection.value.item.meta_title;
-let description = collection.value.item.meta_description;
-
-defineOgImageComponent('GAK', {
-    title: title,
-    description: description,
-    theme: '#ff0000',
-    colorMode: 'dark',
+        useSeoMeta(seoMeta.value);
+        loadingCollection.value = 'pending'
+    }
 });
-defineOgImage({
-    url: collection.value.item.image_url,
-});
-let seoMeta = {
-    description: description,
-    ogDescription: description,
-    ogTitle: title,
-    title: title,
-    twitterTitle: title,
-    twitterDescription: description,
-    keywords: collection.value.item.meta_key,
-};
-
-useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .category-page {
