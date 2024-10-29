@@ -223,5 +223,8 @@ export default defineNuxtConfig({
             routes: ['/404']
         }
     },
+    seo: {
+        redirectToCanonicalSiteUrl: true
+    },
     compatibilityDate: '2024-07-25',
 });
