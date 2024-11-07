@@ -728,6 +728,31 @@ watch(
     },
     { immediate: true },
 );
+
+
+let title = 'Giỏ hàng';
+let description = 'Hoàn tất quá trình thanh toán mua sắm online của bạn tại công ty GAK. Minh bạch các thông tin giao nhận, đổi trả và hơn thế nữa.';
+const config = useRuntimeConfig();
+
+defineOgImageComponent('GAK', {
+    title: title,
+    description: description,
+    theme: '#ff0000',
+    colorMode: 'dark',
+});
+defineOgImage({
+    url: config.public.logo,
+});
+let seoMeta = {
+    description: description,
+    ogDescription: description,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
+    twitterDescription: description,
+    keywords: title,
+};
+useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
 .cart-page {
