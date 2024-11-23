@@ -365,9 +365,9 @@ if (pageHeaders.value.length == 0) {
 }
 categoryHeaders.value = categories;
 
-// if (categoryHeaders.value.length == 0) {
-//     getCategoryHeader();
-// }
+if (categoryHeaders.value.length == 0) {
+    getCategoryHeader();
+}
 
 const useHeaderStore = useHeader();
 
@@ -428,9 +428,6 @@ onMounted(() => {
     } else {
         cartNumber.value = 0;
     }
-    setTimeout(() => {
-        getCategoryHeader();
-    }, 3000);
 });
 const deboundTime = ref({
     timeOut: null,
