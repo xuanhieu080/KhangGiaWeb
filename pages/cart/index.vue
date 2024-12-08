@@ -749,7 +749,7 @@ let seoMeta = {
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription: description,
+    twitterDescription: description ,
     keywords: title,
 };
 useSeoMeta(seoMeta);

@@ -481,6 +481,7 @@
                                             variant="none"
                                             id="product"
                                             name="product"
+                                            v-model="form.description"
                                             placeholder="vd: Đồng phục Shopee"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
@@ -492,6 +493,7 @@
                                             variant="none"
                                             id="product"
                                             name="product"
+                                            v-model="form.name"
                                             placeholder="vd: Nguyễn Văn A"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
@@ -503,6 +505,7 @@
                                             variant="none"
                                             id="product"
                                             name="product"
+                                            v-model="form.phone"
                                             placeholder="vd: 0912345678"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
@@ -514,6 +517,7 @@
                                             variant="none"
                                             id="product"
                                             name="product"
+                                            v-model="form.email"
                                             placeholder="vd: dobaoho@gak.vn"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
@@ -524,7 +528,8 @@
                                             variant="ghost"
                                             color="none"
                                             size="lg"
-                                            type="submit"
+                                            type="button"
+                                            @click="submit"
                                             class="bg-[#2f5acf] text-white px-8 rounded-3xl"
                                             >Gửi yêu cầu
                                         </UButton>
@@ -759,6 +764,13 @@ const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
 
+const form = ref({
+    phone: '',
+    email: '',
+    description: '',
+    name: '',
+})
+
 const items = [
     {
         label: 'Cần lưu ý gì khi chọn xưởng may đồng phục giá rẻ?',
@@ -774,6 +786,44 @@ const items = [
         slot: 'item-3',
     },
 ];
+
+const toast = useToast();
+
+async function submit() {
+    const { data: response, error } = await useMyFetch('/api/v1/tickets', {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        params: form,
+    });
+    if (response.value) {
+        toast.add({
+            title: 'Gửi yêu cầu thành công !',
+            description: 'Nhân viên kinh doanh sẽ sớm liên hệ tới bạn!',
+            timeout: 5000,
+            icon: 'i-heroicons-check-badge',
+            color: 'green',
+        });
+    } else {
+        if (error.value.statusCode === 422) {
+            let errors = error.value.data.errors;
+            toast.add({
+                title: `<p class="text-red-500"> Lỗi! </p>`,
+                description: errors,
+                timeout: 10000,
+                icon: 'i-heroicons-check-badge',
+                color: 'red',
+            });
+        } else {
+            toast.add({
+                title: `<p class="text-red-500"> Lỗi! </p>`,
+                description: 'Oops, Xảy ra lỗi!. Vui lòng thử lại sau',
+                timeout: 10000,
+                icon: 'i-heroicons-check-badge',
+                color: 'red',
+            });
+        }
+    }
+}
 let title = 'Nhận đặt may theo yêu cầu tại TPHCM vải tốt | Đồng phục đẹp giá rẻ';
 let pageDescription = 'Công ty GAK mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
 const config = useRuntimeConfig();
