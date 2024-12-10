@@ -471,7 +471,7 @@
                                 </div>
                             </div>
                             <div class="contact__form">
-                                <form action="" method="POST" class="xp-form">
+                                <UForm @submit="submit" class="xp-form">
                                     <h2 class="title">Gửi yêu cầu tư vấn may đồng phục cho GAK</h2>
                                     <UFormGroup class="form-group" label="Sản phẩm và số lượng dự kiến bạn cần" required>
                                         <UInput
@@ -482,6 +482,7 @@
                                             id="product"
                                             name="product"
                                             v-model="form.description"
+                                            required
                                             placeholder="vd: Đồng phục Shopee"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
@@ -494,6 +495,7 @@
                                             id="product"
                                             name="product"
                                             v-model="form.name"
+                                            required
                                             placeholder="vd: Nguyễn Văn A"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
@@ -506,6 +508,7 @@
                                             id="product"
                                             name="product"
                                             v-model="form.phone"
+                                            required
                                             placeholder="vd: 0912345678"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
@@ -517,6 +520,7 @@
                                             variant="none"
                                             id="product"
                                             name="product"
+                                            required
                                             v-model="form.email"
                                             placeholder="vd: dobaoho@gak.vn"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
@@ -528,13 +532,12 @@
                                             variant="ghost"
                                             color="none"
                                             size="lg"
-                                            type="button"
-                                            @click="submit"
+                                            type="submit"
                                             class="bg-[#2f5acf] text-white px-8 rounded-3xl"
                                             >Gửi yêu cầu
                                         </UButton>
                                     </div>
-                                </form>
+                                </UForm>
                             </div>
                         </div>
                     </div>
@@ -793,7 +796,12 @@ async function submit() {
     const { data: response, error } = await useMyFetch('/api/v1/tickets', {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
-        params: form,
+        params: {
+            phone: form.value.phone,
+            email: form.value.email,
+            name: form.value.name,
+            description: form.value.description,
+        },
     });
     if (response.value) {
         toast.add({
