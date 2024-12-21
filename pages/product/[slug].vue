@@ -366,7 +366,7 @@
                                 <UIcon class='text-[32px] shrink-0' name='i-fluent-phone-checkmark-20-regular'
                                        dynamic />
                                 <span
-                                >Hotline <a href='tel:0569133339'>056.913.33.39</a> hoặc <a href='tel:0947636569'>094.763.65.69</a> hỗ
+                                >Hotline <a href='tel:0569133339'>056.913.33.39</a> hỗ
                                     trợ từ 8h00 - 17h30 mỗi ngày</span
                                 >
                             </div>

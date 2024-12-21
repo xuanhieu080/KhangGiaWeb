@@ -25,7 +25,7 @@
                             <div class="footer-info__content">
                                 <span class="footer-info__title"> Hotline </span>
                                 <p class="footer-info__desciption">
-                                    <a href="tel: 0569133339">056.913.33.39</a> - <a href="tel: 0947636569">094.763.65.69</a> <br />
+                                    <a href="tel: 0569133339">056.913.33.39</a><br />
                                     <span>(8:00 - 17:30)</span>
                                 </p>
                             </div>

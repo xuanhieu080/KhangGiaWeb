@@ -193,13 +193,8 @@
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <ul>
                                     <li>
-                                        Hotline 1:
+                                        Hotline:
                                         <a href="tel:0569133339">056.913.33.39</a> 
-                                    </li>
-                                    <li>
-
-                                        Hotline 2:
-                                        <a href="tel:0947636569">094.763.65.69</a> <br />
                                     </li>
                                     
                                 </ul>
