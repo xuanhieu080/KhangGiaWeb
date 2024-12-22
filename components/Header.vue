@@ -41,7 +41,7 @@
                     :key='category'
                     :ui="{
                         width: 'w-max',
-                        container: category.products.length > 0 ? '' : 'hidden',
+                        container: category.children.length > 0 ? '' : 'hidden',
                         item: { active: '', base: 'cursor-default', disabled: 'cursor-text select-text' },
                     }"
                     :popper="{ placement: 'bottom-start' }">
@@ -55,30 +55,30 @@
                         {{ category.name }}
                     </NuxtLink>
                     <template #item='{ item }'>
-                        <div v-show='item.products.length > 0' class='sub-menu'>
+                        <div v-show='item.children.length > 0' class='sub-menu'>
                             <div class='sub-menu-wrapper grid gap-4 w-max'
-                                 :class="item.products.length > 2 ? 'grid-cols-2' : ''">
+                                 :class="item.children.length > 2 ? 'grid-cols-2' : ''">
                                 <div
                                     class='flex flex-col items-start gap-y-6 p-6 border-gray-300'
-                                    :class="item.products.length > 2 ? 'border-r' : ''">
+                                    :class="item.children.length > 2 ? 'border-r' : ''">
                                     <div
-                                        v-show='index1 < item.products.length - 2 || item.products.length < 2'
-                                        v-for='(subMenu, index1) in item.products'
+                                        v-show='index1 < item.children.length - 2 || item.children.length < 2'
+                                        v-for='(subMenu, index1) in item.children'
                                         class='text-gray-500'>
                                         <NuxtLink
-                                            :to="localePath({ name: 'product-slug', params: { slug: subMenu.slug } })"
+                                            :to="localePath({ name: 'collection-slug', params: { slug: subMenu.slug } })"
                                             class='uppercase font-bold text-black hover:text-green-700'>
                                             {{ subMenu.name }}
                                         </NuxtLink>
                                     </div>
                                 </div>
-                                <div v-if='item.products.length > 1' class='grid grid-cols-2 gap-4 py-6 pr-4'>
+                                <div v-if='item.children.length > 1' class='grid grid-cols-2 gap-4 py-6 pr-4'>
                                     <div
-                                        v-show='index2 >= item.products.length - 2'
-                                        v-for='(subMenu, index2) in item.products'
+                                        v-show='index2 >= item.children.length - 2'
+                                        v-for='(subMenu, index2) in item.children'
                                         class='product-random-box max-w-[300px] max-h-[200px]'>
                                         <NuxtLink
-                                            :to="localePath({ name: 'product-slug', params: { slug: subMenu.slug } })"
+                                            :to="localePath({ name: 'collection-slug', params: { slug: subMenu.slug } })"
                                             class='product-item'>
                                             <img loading='lazy' :src='subMenu.image_url' alt='' />
                                             <div class='product-content'>{{ subMenu.name }}</div>
@@ -353,7 +353,7 @@ import { useHeader } from '@@/store/useHeader';
 import { storeToRefs } from 'pinia';
 import { useMain } from '@@/store/index';
 
-import categories from '~/api/category_header.json';
+// import categories from '~/api/category_header.json';
 
 const useMainStore = useMain();
 const { getPageHeader, getCategoryHeader } = useMain();
@@ -363,7 +363,6 @@ const { pageHeaders, categoryHeaders, cartNumber } = storeToRefs(useMainStore);
 if (pageHeaders.value.length == 0) {
     getPageHeader();
 }
-categoryHeaders.value = categories;
 
 if (categoryHeaders.value.length == 0) {
     getCategoryHeader();
