@@ -3,16 +3,26 @@
         <div class='topbar'>
             <div class='left-top-bar'>
                 <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'phan-quang' } })" class='logo'>
+                    <div class="w-max">
                     SP Phản Quang
+                    </div>
                 </NuxtLink>
-                <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'vai' } })" class='logo'> SP Vải
+                <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'vai' } })" class='logo'>
+                    <div class="w-max">SP Vải</div>
                 </NuxtLink>
             </div>
             <div class='sub-nav'>
-                <NuxtLink :to="localePath({ name: 'blog' })">{{ $t('Blog') }}</NuxtLink>
+                <NuxtLink :to="localePath({ name: 'blog' })">
+                    <div class="w-max">
+                        {{ $t('Blog') }}
+                    </div>
+                </NuxtLink>
                 <div v-for='page in pageHeaders'>
-                    <NuxtLink v-if='page.is_button' :to='localePath(page.link)'>{{ page.name }}</NuxtLink>
-                    <NuxtLink v-else :to="localePath({ name: 'slug', params: { slug: page.slug } })">{{ page.name }}
+                    <NuxtLink v-if='page.is_button' :to='localePath(page.link)'>
+                        <div class="w-max">{{ page.name }}</div>
+                    </NuxtLink>
+                    <NuxtLink v-else :to="localePath({ name: 'slug', params: { slug: page.slug } })">
+                        <div class="w-max">{{ page.name }}</div>
                     </NuxtLink>
                 </div>
                 <NuxtLink to='https://zalo.me/1160130089290834053' target='_blank'>{{ $t('Trung tâm CSKH') }}</NuxtLink>
@@ -504,7 +514,7 @@ watch(
         }
 
         .left-top-bar {
-            @apply flex items-center gap-4 w-full;
+            @apply flex items-center gap-4;
             .logo {
                 height: 14px;
             }

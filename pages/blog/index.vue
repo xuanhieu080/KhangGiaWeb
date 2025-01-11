@@ -95,7 +95,12 @@ import images from '@@/assets/icons/index';
 import ArticleSwiper from '@@/components/articles/ArticleSwiper.vue';
 import ArticleBadge from '@@/components/articles/ArticleBadge.vue';
 import ArticleCard from '@@/components/articles/ArticleCard.vue';
-definePageMeta({ layout: false });
+definePageMeta({
+    layout: false,
+    seo: {
+        canonical: false,
+    },
+});
 const localePath = useLocalePath();
 const searchBlog = ref(null);
 

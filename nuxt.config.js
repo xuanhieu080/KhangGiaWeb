@@ -182,7 +182,7 @@ export default defineNuxtConfig({
                 },
                 {
                     property: 'og:locale:alternate',
-                    content: 'en_US',
+                    content: 'vi_VN',
                 },
                 {
                     property: 'og:type',
@@ -222,9 +222,6 @@ export default defineNuxtConfig({
         prerender: {
             routes: ['/404']
         }
-    },
-    seo: {
-        redirectToCanonicalSiteUrl: true
     },
     compatibilityDate: '2024-07-25',
 });

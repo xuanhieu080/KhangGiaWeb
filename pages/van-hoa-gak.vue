@@ -1757,7 +1757,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/facebook.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Fanpage</div>
-                                    <a href="" class="recruitment-social__link"> Life at GAK </a>
+                                    <a href="https://www.facebook.com/GAKBHLD" class="recruitment-social__link"> Life at GAK </a>
                                 </div>
                             </div>
                         </div>
@@ -1766,7 +1766,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/linkedin.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Linkedin</div>
-                                    <a href="" class="recruitment-social__link"> GAK VN </a>
+                                    <a href="https://www.linkedin.com/company/cong-ty-gak" class="recruitment-social__link"> GAK VN </a>
                                 </div>
                             </div>
                         </div>
@@ -1775,7 +1775,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/tiktok.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Tiktok</div>
-                                    <a href="" class="recruitment-social__link"> Life at GAK </a>
+                                    <a href="https://www.tiktok.com/@congtygak" class="recruitment-social__link"> Life at GAK </a>
                                 </div>
                             </div>
                         </div>
