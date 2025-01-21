@@ -67,7 +67,7 @@
                     :loading="loadingProductUniform"
                     :productList="productUniform.data"
                     :collectionLink="'/collection/dong-phuc'"
-                    :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT'" />
+                    :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY MADE BY GAK'" />
             </div>
             <div v-else-if="loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
                 <ProductList :productList="[]" />
