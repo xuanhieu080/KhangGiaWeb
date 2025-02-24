@@ -127,7 +127,7 @@
                     </div>
                     <div class='product-information flex flex-col gap-4 px-4'>
                         <div class='product-name flex flex-col gap-2'>
-                            <h1 class='font-bold text-[28px] lg:text-[32px]'>{{
+                            <h1 class='font-bold text-[20px] lg:text-[32px]'>{{
                                     productItemCurrent ? productItemCurrent.name : productItem.data?.name
                                 }}</h1>
                         </div>
@@ -145,7 +145,7 @@
                             </div>
                         </div>
 
-                        <div v-if='productItemCurrent' class='product-price font-bold text-[22px]'>
+                        <div v-if='productItemCurrent' class='product-price font-bold text-[19px] lg:text-[22px]'>
                             <div v-if='productItemCurrent.percent == 0' class='original-price'>
                                 {{ formatPriceProduct(productItemCurrent.price) + 'đ' }}
                             </div>
@@ -158,7 +158,7 @@
                                 <div class='discount-tag'>{{ productItemCurrent.percent + '%' }}</div>
                             </div>
                         </div>
-                        <div v-else class='product-price font-bold text-[22px]'>
+                        <div v-else class='product-price font-bold text-[19px] lg:text-[22px]'>
                             <div v-if='productItem.data?.percent == 0' class='original-price'>
                                 {{ formatPriceProduct(productItem.data?.price) + 'đ' }}
                             </div>
