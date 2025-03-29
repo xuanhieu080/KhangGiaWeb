@@ -75,7 +75,7 @@
                                     >{{ $t('Xóa lọc') }}</UButton
                                 >
                             </div>
-                            <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:flex-col gap-4">
+                            <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex hidden lg:flex-wrap lg:flex-col gap-4">
                                 <div v-for="variant in collection.variants" class="filter-option-item flex flex-col gap-4">
                                     <UAccordion
                                         :items="[variant]"
