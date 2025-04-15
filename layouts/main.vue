@@ -20,6 +20,16 @@
                         type="button"
                         class="sub-button zalo"
                         :class="showMenuChat ? 'show' : ''"
+                        href="https://m.me/gakbhld"
+                        target="_blank">
+                        <div class="sub-button-overlay">
+                            <img src="/images/messenger.png" alt="" />
+                        </div>
+                    </a>
+                    <a
+                        type="button"
+                        class="sub-button zalo"
+                        :class="showMenuChat ? 'show' : ''"
                         href="https://zalo.me/1160130089290834053"
                         target="_blank">
                         <div class="sub-button-overlay">
