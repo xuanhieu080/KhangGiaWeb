@@ -116,16 +116,6 @@ export default defineNuxtConfig({
         langDir: 'locales',
         strategy: 'prefix',
         customRoutes: 'config',
-        // pages: {
-        //     'app/Job/CreateJob': {
-        //         vi: '/app/job/create',
-        //         en: '/app/job/create',
-        //     },
-        //     'app/Notification': {
-        //         vi: '/app/notification',
-        //         en: '/app/notification',
-        //     },
-        // },
         locales: [
             {
                 code: 'vi',
@@ -133,16 +123,31 @@ export default defineNuxtConfig({
                 name: 'Việt Nam',
                 file: 'vi.json',
             },
-            // {
-            //     code: 'en',
-            //     iso: 'en-US',
-            //     name: 'English',
-            //     file: 'en.json',
-            // },
+            {
+                code: 'en',
+                iso: 'en-US',
+                name: 'English',
+                file: 'en.json',
+            },
         ],
         detectBrowserLanguage: false,
         defaultLocale: 'vi',
         vueI18n: './nuxt-i18n.js',
+        pages: {
+            'product/search': {
+                vi: '/tim-kiem-san-pham',
+                en: '/product-search'
+            },
+
+            'about-us': {
+                vi: false,
+                en: '/about-us'
+            },
+            'all-products': {
+                vi: false,
+                en: '/all-products'
+            },
+        }
     },
     tailwindcss: {
         cssPath: ["@/assets/css/index.css"],

@@ -4,11 +4,9 @@
             <NuxtImg class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY GAK</h1>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">GAK COMPANY STORY</h1>
                 <span class="text-lg xl:text-xl"
-                    >Đây là chuyên mục giúp các bạn biết được GAK đã hình thành ra sao và chúng tôi muốn xây dựng một hình mẫu như thế
-                    nào!</span
-                >
+                    >This category helps you know how GAK was formed and what kind of model we want to build!</span>
             </div>
             <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
@@ -20,7 +18,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                        <span class="max-w-[150px] text-lg">GAK Story</span>
                     </div>
                     <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -35,7 +33,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                        <span class="max-w-[150px] text-lg">Culture GAK</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -50,7 +48,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                        <span class="max-w-[150px] text-lg">Customer journey <br />98% satisfaction</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -68,7 +66,7 @@
                     <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                    <span class="max-w-[150px] text-lg">GAK Story</span>
                 </div>
                 <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -83,7 +81,7 @@
                     <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                    <span class="max-w-[150px] text-lg">Culture GAK</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -98,7 +96,7 @@
                     <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                    <span class="max-w-[150px] text-lg">Customer journey <br />98% satisfaction</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -112,8 +110,8 @@
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">
-                                    GAK sinh <br />
-                                    ra để làm gì?
+                                    What is <br />
+                                    GAK born for?
                                 </h2>
                                 <div class="cs-about__image">
                                     <img src="/images/company-banner-box.png" class="h-full w-full object-contain !mt-4" alt="" />
@@ -123,17 +121,13 @@
                         <div class="grid__column seven-twelfths mobile--one-whole flex">
                             <div class="cs-about__description flex flex-col justify-center items-center flex-nowrap">
                                 <p>
-                                    Được hình thành trong những giai đoạn khó khăn nhất của nền kinh tế, chúng tôi đi lên từ chất lượng, sự
-                                    tận tâm và không ngừng đeo đuổi những giá trị tốt nhất để cải thiện đời sống của con người Việt Nam.
+                                    Formed during some of the most challenging periods of the economy, we have risen through quality, dedication, and an unwavering pursuit of the highest values to improve the lives of the Vietnamese people.
                                 </p>
                                 <p>
-                                    Mô hình phát triển bền vững của chúng tôi gói gọn trong 3 chữ GAK tinh hoa của Gia - An - Khang là một
-                                    nơi mà không chỉ hướng tới người lao động mà còn đem lại giá trị bền vững cho phía đối tác.
+                                    Our sustainable development model is encapsulated in the three core letters GAK—representing Gia (Family), An (Peace), and Khang (Prosperity)—a philosophy that not only focuses on the well-being of our employees but also delivers long-term value to our partners.
                                 </p>
                                 <p>
-                                    Thông qua những hành động thực tế và cách cư xử tử tế trên nhiều phương diện, để ngày hôm nay chúng tôi
-                                    tự hào là nhà sản xuất đa dạng các sản phẩm bảo hộ lao động, vải, lưới, đồng phục có chất lượng dẫn đầu
-                                    thị trường và đem lại sự thịnh vượng cho mọi khách hàng.
+                                    Through practical actions and genuine kindness across all areas of our work, we are proud to stand today as a leading manufacturer of a wide range of high-quality products, including personal protective equipment, fabrics, nets, and uniforms—bringing prosperity to every customer we serve.
                                 </p>
                             </div>
                         </div>
@@ -144,11 +138,9 @@
                 <div class="container container--medium prose prose-lg">
                     <div class="cs-caption__wrapper">
                         <h2 class="cs-caption__heading">
-                            <span>“</span>Chúng tôi tin rằng việc xây dựng công ty theo mô hình doanh nghiệp có trách nhiệm, sự tử tế và cân
-                            bằng để mang tới quyền lợi tốt nhất cho người lao động, khách hàng, đối tác sẽ tạo ra hệ sinh thái phát triển
-                            bền vững không chỉ riêng cho chúng tôi. <span>“</span>
+                            <span>“</span>We believe that building a company based on responsibility, kindness, and balance—where the best interests of employees, customers, and partners are prioritized—will foster a sustainable ecosystem that extends far beyond our organization.<span>“</span>
                         </h2>
-                        <span class="cs-caption__author"> Công ty GAK </span>
+                        <span class="cs-caption__author">GAK CO.,LTD</span>
                     </div>
                 </div>
             </section>
@@ -165,20 +157,13 @@
                                 <h2 class="cs-story__heading">WHO WE ARE!</h2>
                                 <div class="ca-story__description">
                                     <p>
-                                        Công ty GAK là ước mơ ấp ủ của những con người vượt khó, nuôi dưỡng ước mơ thương hiệu Việt vươn tầm
-                                        năm châu. Với quan niệm sự tử tế trong kinh doanh và tập trung vào chất lượng sản phẩm. Thế nên,
-                                        nguồn sản phẩm chủ lực của chúng tôi dần chiếm lĩnh thị trường quần áo bảo hộ lao động, vải, lưới và
-                                        đồng phục.
+                                        GAK is the realization of a dream nurtured by resilient individuals who aspire to elevate a Vietnamese brand to the global stage. Guided by the principles of integrity in business and a relentless focus on product quality, we have gradually established a strong foothold in the markets for workwear, fabric, netting, and uniforms.
                                     </p>
                                     <p>
-                                        Với định hướng phát triển D2C, chúng tôi tin rằng những hành động trong hành trình kế tiếp của mình
-                                        sẽ đem lại lợi ích tối đa cho khách hàng từ sự hài lòng cho đến lòng tin của khách hàng ở những sản
-                                        phẩm cốt lõi của chúng tôi.
+                                        With a clear direction toward a Direct-to-Consumer (D2C) model, we are confident that our next steps will deliver maximum value to our customers—earning not only their satisfaction but also their trust in our core products.
                                     </p>
                                     <p>
-                                        Và chắc chắn không dừng ở đó, hiện nay với quy trình sản xuất khép kín từ dệt - nhuộm vải cho đến
-                                        xưởng may gần 3000m2 và hệ thống kho bãi tại Hồ Chí Minh. Công ty GAK tin rằng chúng tôi có cơ sở về
-                                        GIÁ TỐT và năng lực sản xuất tại thị trường Việt Nam và xuất khẩu Quốc Tế!
+                                        And we’re only just beginning. With a fully integrated production process—from fabric weaving and dyeing to a nearly 3,000-square-meter garment factory and warehouse system based in Ho Chi Minh City—GAK is well-positioned to offer competitive pricing and robust production capacity for both the domestic and international markets.
                                     </p>
                                 </div>
                             </div>
@@ -188,21 +173,17 @@
             </section>
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-services__heading">Câu chuyện mô hình doanh nghiệp CÓ TRÁCH NHIỆM Gak đang hướng tới</h2>
+                    <h2 class="cs-services__heading">The story of the RESPONSIBLE business model Gak is aiming for</h2>
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">#1 TỬ TẾ VỚI KHÁCH HÀNG</h3>
+                                <h3 class="cs-services__title">#1 BE KIND TO CUSTOMERS</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Công ty GAK cam kết những sản phẩm có giá hợp lý và chất lượng cao bởi sự may đo của những người thợ
-                                        may giàu kinh nghiệm, cùng chuỗi cung ứng khép kín từ gốc (với ngành may mặc đó là từ sợi, dệt,
-                                        nhuộm và may).
+                                        GAK is committed to delivering high-quality products at reasonable prices—crafted by skilled and experienced tailors, supported by a fully integrated supply chain from the very source (in the garment industry: yarn, weaving, dyeing, and sewing).
                                     </p>
                                     <p>
-                                        Ngoài ra mô hình bán hàng trực tiếp (Ecommerce D2C) cho phép GAK tập trung vào nghiên cứu, sản xuất
-                                        và cải tiến sản phẩm hơn là giảm giá vốn như các mô hình truyền thống! Bởi vì điều đó hơn 21% khách
-                                        hàng đã dần trở thành đại lý phân phối sản phẩm của chúng tôi và cùng thịnh vượng.
+                                        Moreover, our Direct-to-Consumer (D2C) ecommerce model allows us to focus on research, production, and continuous product improvement rather than simply cutting costs as in traditional models. As a result, more than 21% of our customers have gradually become distribution partners—growing and prospering alongside us.
                                     </p>
                                 </div>
                             </div>
@@ -216,13 +197,10 @@
                     <div id="services2" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column lg:order-2 my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">#2. TỬ TẾ VỚI NGƯỜI LAO ĐỘNG</h3>
+                                <h3 class="cs-services__title">#2. BE KIND WITH EMPLOYEE</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Công ty GAK hoạt động dựa trên một tập thể đoàn kết, chia sẻ và tử tế với nhau để không ngừng xây
-                                        dựng văn hóa doanh nghiệp, Mà ở đó các bạn trẻ, người lao động sẽ được đào tạo, trao quyền và lộ
-                                        trình phát triển nghề nghiệp xứng đáng. Cùng sự ghi nhận và mức phần thưởng cho sự cố gắng từng năm
-                                        rõ ràng và minh bạch.
+                                        GAK operates on the foundation of a united, compassionate, and collaborative team—continuously building a strong corporate culture. Here, young talents and workers are empowered through training, career development opportunities, and clear, transparent recognition and reward systems that honor their efforts year after year.
                                     </p>
                                 </div>
                             </div>
@@ -236,13 +214,10 @@
                     <div id="services3" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">#3. TỬ TẾ VỚI ĐỐI TÁC</h3>
+                                <h3 class="cs-services__title">#3. BE KIND TO OUR PARTNER</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Chúng tôi xem đối tác không chỉ là những nhà phân phối thương mại mà còn là nhân tố đồng hành trong
-                                        hành trình phát triển đến sự thịnh vượng chung. Bằng chính cam kết xây dựng một môi trường hợp tác
-                                        chặt chẽ, minh bạch và lâu dài. Mỗi một đối tác - đại lý - doanh nghiệp khi hợp tác cùng chúng tôi
-                                        là sự tôn trọng và trân trọng để cùng nhau tạo ra giá trị và thành công bền vững.
+                                        We view our partners not merely as commercial distributors, but as long-term companions on the journey toward shared prosperity. With a firm commitment to fostering close, transparent, and lasting collaboration, we treat every partner—whether a distributor or business—as a valued ally. Together, we strive to create lasting value and sustainable success.
                                     </p>
                                 </div>
                             </div>
@@ -259,10 +234,7 @@
                                 <h3 class="cs-services__title">#4. TỬ TẾ VỚI MÔI TRƯỜNG</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Công ty GAK cam kết không chỉ tạo ra giá trị cho cộng đồng và đối tác mà còn bảo vệ và gìn giữ môi
-                                        trường. Chúng tôi nhận thức rõ ràng bảo vệ môi trường không chỉ là trách nhiệm của mỗi cá nhân mà
-                                        còn là nhiệm vụ cho tươi lai của hàng triệu đứa trẻ. Qua hành động luôn tìm kiếm các vật liệu sợi
-                                        mới và công nghệ tiến tiến để giảm thiểu lượng rác thải và ô nhiễm môi trường.
+                                        GAK is dedicated not only to creating value for the community and our partners but also to protecting and preserving the environment. We recognize that environmental protection is not only an individual responsibility but also a collective duty to safeguard the future for millions of children. Through our ongoing efforts to explore innovative fiber materials and advanced technologies, we aim to reduce waste and minimize environmental impact.
                                     </p>
                                 </div>
                             </div>
@@ -276,13 +248,10 @@
                     <div id="services5" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">#5. TỬ TẾ VỚI CỘNG ĐỒNG</h3>
+                                <h3 class="cs-services__title">#5. BE KIND TO THE COMMUNITY</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Công ty GAK cam kết hỗ trợ và tạo ra những ảnh hưởng tích cực cho cộng đồng xung quanh thông qua các
-                                        chương trình thiện nguyện từ tâm và dự án xã hội. Không ngừng tìm kiếm các cơ hội đầu tư vào giáo
-                                        dục, văn hóa, và tạo hàng ngàn việc làm mỗi năm, giúp cho người lao động cải thiện cuộc sống và nâng
-                                        cao chuyên môn nghề nghiệp qua từng năm.
+                                        We are also committed to making a positive impact on the communities around us through heartfelt charitable initiatives and meaningful social projects. GAK continuously seeks opportunities to invest in education, culture, and job creation—providing thousands of employment opportunities each year and helping workers improve their quality of life and professional skills over time.
                                     </p>
                                 </div>
                             </div>
@@ -298,8 +267,8 @@
             <section class="cs-thanks">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-thanks__heading">
-                        Trong cuộc sống có nhiều sự lựa chọn, <br />
-                        cảm ơn bạn đã lựa chọn GAK! 
+                        In life there are many choices, <br />
+                        thank you for choosing GAK!
                     </h2>
                     <span class="flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="80" height="73" viewBox="0 0 118 73" fill="none">
@@ -327,15 +296,15 @@
             </section>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Join the GAK Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal GAK
+                            Join the GAK Deal Hunters group
                         </UButton>
                         <UButton
                             :to="localePath({name: 'gak-official'})"
                             size="lg"
-                            class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
+                            class="!text-white border bg-[#22c55ebf] rounded-3xl px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
                             GAK OFFICIAL
@@ -354,8 +323,8 @@ const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-let title = 'Về công ty GAK';
-let pageDescription = 'Được hình thành từ sự vượt khó của đội ngũ tận tâm, chúng tôi đã và đang tiến bước đến một tương lai mới mang lại giá trị cho khách hàng, đối tác của chúng tôi.'
+let title = 'About GAK';
+let pageDescription = 'Born from the perseverance of a dedicated team, we continue moving toward a new future — one that brings value to our customers and partners.'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

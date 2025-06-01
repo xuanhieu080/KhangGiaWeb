@@ -4,17 +4,16 @@
             <div class="site-footer__inner">
                 <div class="site-footer__sidebar">
                     <div class="footer-about mb-6">
-                        <div class="site-footer__title">Công ty GAK tận tâm & tử tế trên từng sản phẩm</div>
+                        <div class="site-footer__title">{{trans('GAK is dedicated & thoughtful in every product')}}</div>
                         <p class="site-footer__description">
-                            Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm
-                            dịch vụ và sản phẩm tốt hơn nữa.
+                            {{trans('We always appreciate and welcome all customer feedback to help us improve our service and product experience.')}}
                         </p>
                         <UButton
                             size="xl"
                             to="https://jrsiigcg6eu.typeform.com/to/Fjpxmsmz"
                             rel="nofollow"
                             class=" hover:bg-white hover:text-black transition ease-in-out px-6 duration-300 rounded-2xl">
-                            Đóng góp ý kiến
+                            {{trans('Give Feedback')}}
                         </UButton>
                     </div>
                     <div class="footer-contact">
@@ -72,9 +71,9 @@
                                </div>
                         </div>
                         <div class="footer-menu__item">
-                            <div class="footer-menu__title">Địa chỉ liên hệ</div>
+                            <div class="footer-menu__title">{{trans('Contact Address')}}</div>
                             <p class="footer-menu__desciption">
-                                <u>Văn phòng Tp HCM:</u> 15 Lê Minh Xuân, Phường 7, Tân Bình, Thành phố Hồ Chí Minh 700000
+                                <u>{{trans('Ho Chi Minh City Office')}}:</u> {{trans('15 Le Minh Xuan, Ward 7, Tan Binh, Ho Chi Minh City, Vietnam')}} 700000
                             </p>
                         </div>
                     </div>
@@ -82,9 +81,9 @@
                 <div class="site-footer__after">
                     <div class="copyright">
                         <h5 class="copyright__title">
-                            @ CÔNG TY TNHH TMDV SẢN XUẤT XUẤT NHẬP KHẨU GAK
+                            @ {{trans('GAK TRADING - SERVICE - MANUFACTURING - IMPORT EXPORT CO., LTD')}}
                 </h5>
-                        <p class="copyright__description">Mã số doanh nghiệp: 0317511532. Giấy chứng nhận đăng ký doanh nghiệp do Sở Kế hoạch và Đầu tư Thành Phố Hồ Chí Minh cấp lần đầu ngày 07/10/2022.</p>
+                        <p class="copyright__description">{{trans('Business Registration Number: 0317511532. The business registration certificate was first issued by the Ho Chi Minh City Department of Planning and Investment on October 7, 2022.')}}</p>
                     </div>
                     <div class='site-footer__logo'>
 
@@ -122,6 +121,8 @@ import { storeToRefs } from 'pinia';
 const useMainStore = useMain();
 const {getPageGroup} = useMain();
 const localePath = useLocalePath();
+
+const { locale, t: trans, setLocale } = useI18n()
 
 const {pageGroups} = storeToRefs(useMainStore)
 

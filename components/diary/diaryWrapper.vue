@@ -1,7 +1,7 @@
 <template>
     <div class="diary-container">
-        <div class="diary-title text-center text-3xl font-bold leading-relaxed">Nhật ký GAK</div>
-        <div class="diary-subtitle text-xl text-center">Chia sẻ diện mạo mới nhất của bạn cùng với Hashtag #GAKVN</div>
+        <div class="diary-title text-center text-3xl font-bold leading-relaxed">{{trans('GAK Journal')}}</div>
+        <div class="diary-subtitle text-xl text-center">{{trans('Share your latest look with hashtag #GAKVN')}}</div>
         <div v-if="diaryList.length > 0" class="diary-wrapper w-full my-4 relative">
             <Swiper
                 :slidesPerView="1"
@@ -65,6 +65,9 @@ import DiaryCard from '@/components/diary/diaryCard';
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
+
+const { locale, t: trans } = useI18n();
+
 const props = defineProps({
     diaryList: {
         type: Array,

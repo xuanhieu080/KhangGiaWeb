@@ -8,7 +8,7 @@
         <div class="article-card__content w-full py-4">
             <div class="article-card__wrapper">
                 <div class="article-card__category mb-4 text-sm text-[#8e8e8e] font-semibold">
-                    <div> {{ article.category_name ? article.category_name + '| ' : '' }} {{ $t('Ngày đăng')  }}: {{ article.created_at }} </div>
+                    <div> {{ article.category_name ? article.category_name + '| ' : '' }} {{trans('Posted date')  }}: {{ article.created_at }} </div>
                 </div>
                 <h3 class="article-card__title text-[24px] font-bold mb-3">
                     <NuxtLink :to="localePath({name: 'articles-slug', params: {slug: article.slug}})" class="article-link">
@@ -20,7 +20,7 @@
                         {{article.meta_description}}
                     </p>
                 </div>
-                <div class="article-card__viewcount text-[#8e8e8e] text-sm font-medium" v-if="isViewCount">{{ $t('Số lượt xem') }}: {{ article.view }}</div>
+                <div class="article-card__viewcount text-[#8e8e8e] text-sm font-medium" v-if="isViewCount">{{ trans('Views') }}: {{ article.view }}</div>
             </div>
         </div>
     </div>
@@ -28,6 +28,7 @@
 
 <script setup>
 const localePath = useLocalePath();
+const { locale, t: trans } = useI18n();
 const prop = defineProps({
     article: {
         type: Object,

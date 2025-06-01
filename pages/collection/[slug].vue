@@ -63,7 +63,7 @@
                                 {{
                                     (loadingProductCollection == 'success' && productCollection.data ? productCollection.data.length : '') +
                                     ' ' +
-                                    $t('Kết quả')
+                                    trans('Result')
                                 }}
                                 <UButton
                                     v-if="Object.keys(selectedAll).length > 0"
@@ -72,7 +72,7 @@
                                     color="none"
                                     class="border rounded-3xl border-black font-bold"
                                     @click="removeAllFilter"
-                                    >{{ $t('Xóa lọc') }}</UButton
+                                    >{{ trans('Clear filtering') }}</UButton
                                 >
                             </div>
                             <div class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex hidden lg:flex-wrap lg:flex-col gap-4">
@@ -117,10 +117,10 @@
                     <div class="category-data flex flex-col gap-4 flex-1">
                         <div class="flex justify-between gap-6 w-full">
                             <div class="category-filter-data flex items-center z-50 w-full gap-4">
-                                <span class="uppercase text-gray-500 fs-14 font-medium">Phân loại</span>
+                                <span class="uppercase text-gray-500 fs-14 font-medium">{{trans('Classification')}}</span>
                                 <USelectMenu v-model="filter" :options="filterList" option-attribute="name" class="w-full max-w-[200px]">
                                     <UButton size="lg" color="gray" class="flex-1 justify-between">
-                                        {{ filter ? filter.name : $t('Sắp xếp theo') }}
+                                        {{ filter ? filter.name : trans('Sort by') }}
                                         <UIcon
                                             name="i-heroicons-chevron-right-20-solid"
                                             class="w-5 h-5 transition-transform transform rotate-90 text-gray-400 dark:text-gray-500" />
@@ -148,7 +148,7 @@
                             class="category-data-list">
                             <div
                                 class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
-                                {{ 'Không có sản phẩm trong danh mục này' }}
+                                {{ trans('There are no products in this category') }}
                             </div>
                         </div>
                     </div>
@@ -156,8 +156,8 @@
             </div>
             <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
                 <div class="container mx-auto md:max-w-[1280px] p-4">
-                    <span class="text-gray-500 font-medium fs-20 leading-relaxed"
-                        >GAK tiên phong trong việc cung ứng các sản phẩm chất lượng, tuỳ biến chính xác theo nhu cầu khách hàng và không ngừng cải tiến chất lượng sản phẩm
+                    <span class="text-gray-500 font-medium fs-20 leading-relaxed">
+                        {{trans('GAK is a pioneer in delivering high-quality, precisely customized products tailored to customer needs, with a steadfast commitment to continuous improvement')}}
                     </span>
                 </div>
             </div>
@@ -188,19 +188,19 @@ const tabIndex = ref(0);
 
 const filterList = ref([
     {
-        name: 'Mới nhất',
+        name: trans('Latest'),
         value: 0,
     },
     {
-        name: 'Cũ nhất',
+        name: trans('Oldest'),
         value: 1,
     },
     {
-        name: 'Giá thấp đến cao',
+        name: trans('Price: Low to High'),
         value: 2,
     },
     {
-        name: 'Giá cao đến thấp',
+        name: trans('Price: High to Low'),
         value: 3,
     },
 ]);

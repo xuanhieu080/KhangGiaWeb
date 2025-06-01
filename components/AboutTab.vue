@@ -4,6 +4,7 @@ import images from '@@/assets/icons';
 
 const router = useRouter();
 const localePath = useLocalePath();
+const { locale, t: trans } = useI18n();
 </script>
 
 <template>
@@ -17,7 +18,7 @@ const localePath = useLocalePath();
                 <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
             </div>
             <div class="font-bold text-left flex-1 flex justify-start">
-                <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                <span class="max-w-[150px] text-lg">{{ trans('Gak Story') }}</span>
             </div>
             <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                 <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -47,7 +48,7 @@ const localePath = useLocalePath();
                 <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
             </div>
             <div class="font-bold text-left flex-1 flex justify-start">
-                <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                <span class="max-w-[150px] text-lg">{{trans('Customer journey')}} <br />{{trans('98% satisfaction')}}</span>
             </div>
             <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                 <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />

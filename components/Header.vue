@@ -4,17 +4,39 @@
             <div class='left-top-bar'>
                 <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'phan-quang' } })" class='logo'>
                     <div class="w-max">
-                    SP Phản Quang
+                        {{trans('Reflective Product')}}
                     </div>
                 </NuxtLink>
                 <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: 'vai' } })" class='logo'>
-                    <div class="w-max">SP Vải</div>
+                    <div class="w-max">{{trans('Fabric Product')}}</div>
                 </NuxtLink>
+                <div class="flex rounded">
+                    <button
+                        class="px-3 rounded-l py-1 text-xs font-bold transition-all"
+                        :class="locale == 'vi'
+                            ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600 active'
+                            : 'bg-white text-gray-800 border border-gray-300 hover:bg-gray-100'"
+                        id="btn-vi"
+                        @click="setLocaleLanguage('vi')"
+                    >
+                        VI
+                    </button>
+                    <button
+                        class="px-3 py-1 rounded-r text-xs font-bold transition-all"
+                        id="btn-en"
+                        :class="locale == 'en'
+                        ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600 active'
+                        : 'bg-white text-gray-800 border border-gray-300 hover:bg-gray-100'"
+                        @click="setLocaleLanguage('en')"
+                    >
+                        EN
+                    </button>
+                </div>
             </div>
             <div class='sub-nav'>
                 <NuxtLink :to="localePath({ name: 'blog' })">
                     <div class="w-max">
-                        {{ $t('Blog') }}
+                        {{ trans('Blog') }}
                     </div>
                 </NuxtLink>
                 <div v-for='page in pageHeaders'>
@@ -25,7 +47,7 @@
                         <div class="w-max">{{ page.name }}</div>
                     </NuxtLink>
                 </div>
-                <NuxtLink to='https://zalo.me/1160130089290834053' target='_blank'>{{ $t('Trung tâm CSKH') }}</NuxtLink>
+                <NuxtLink to='https://zalo.me/1160130089290834053' target='_blank'>{{ trans('Customer Service Center') }}</NuxtLink>
             </div>
         </div>
         <div class='header'>
@@ -37,11 +59,11 @@
             <div class='mobile-header'></div>
             <div class='middle-header' :class="menuMobile ? 'active-mobile' : ''">
                 <NuxtLink class='main-nav-item' :to="localePath({ name: 'index' })" @click='menuMobile = false'
-                >{{ $t('Trang chủ') }}
+                >{{ trans('Home') }}
                 </NuxtLink>
                 <NuxtLink class='main-nav-item' :to="localePath({ name: 'tat-ca-san-pham' })"
                           @click='menuMobile = false'
-                >{{ $t('Sản phẩm') }}
+                >{{ trans('Product') }}
                 </NuxtLink>
                 <UDropdown
                     v-if='categoryHeaders && categoryHeaders.length > 0 && !menuMobile'
@@ -111,10 +133,10 @@
                     {{ category.name }}
                 </NuxtLink>
                 <NuxtLink class='main-nav-item' :to="localePath({ name: 'dat-may' })" @click='menuMobile = false'>
-                    {{ $t('Đặt may') }}
+                    {{ trans('Custom order') }}
                 </NuxtLink>
                 <NuxtLink class='main-nav-item' :to="localePath({ name: 'van-hoa-gak' })" @click='menuMobile = false'
-                >{{ $t('Văn hoá GAK') }}
+                >{{ trans('GAK Culture') }}
                 </NuxtLink>
             </div>
             <div class='right-header'>
@@ -128,7 +150,7 @@
                     :ui="{ icon: { trailing: { pointer: '' } } }"
                     autocomplete='off'
                     @click='handleOpenSearchSlideOver'
-                    placeholder='Tìm kiếm sản phẩm'>
+                    :placeholder="trans('Search products')">
                 </UInput>
                 <UButton
                     v-if='false'
@@ -364,6 +386,7 @@ import { storeToRefs } from 'pinia';
 import { useMain } from '@@/store/index';
 
 // import categories from '~/api/category_header.json';
+const { locale, t: trans, setLocale } = useI18n()
 
 const useMainStore = useMain();
 const { getPageHeader, getCategoryHeader } = useMain();
@@ -379,6 +402,11 @@ if (categoryHeaders.value.length == 0) {
 }
 
 const useHeaderStore = useHeader();
+
+import { useLanguageLink } from '~/store/languageLink';
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
 
 const { isScrollDown, isLoadingPage, menuMobile } = storeToRefs(useHeaderStore);
 const localePath = useLocalePath();
@@ -460,6 +488,13 @@ const getProductSearch = async () => {
         loadingSearchProduct.value = false;
     }
 };
+
+function setLocaleLanguage(language) {
+    setLocale(language)
+
+    const newLink = localePath(link.value, language)
+    router.push(newLink)
+}
 
 watch(
     () => searchItem.value,

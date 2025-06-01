@@ -8,7 +8,7 @@
         </div>
         <NuxtLink v-if="collectionLink" :to="localePath(collectionLink)" class="see-more-btn mx-auto mt-4">
             <UButton size="lg" variant="outline" color="none" class="rounded-2xl h-12 w-[200px] justify-center ring-2">
-                <span class="uppercase font-bold">{{ $t('Xem thêm') }}</span>
+                <span class="uppercase font-bold">{{ trans('Load more') }}</span>
             </UButton>
         </NuxtLink>
     </div>
@@ -21,6 +21,7 @@
 <script setup>
 import ProductCard from '@/components/products/ProductCard';
 const localePath = useLocalePath();
+const { locale, t: trans } = useI18n();
 const props = defineProps({
     productList: Array,
     collectionTitle: String,

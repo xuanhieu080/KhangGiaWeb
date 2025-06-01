@@ -4,8 +4,8 @@
             <NuxtImg class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA GAK</h1>
-                <span class="text-lg xl:text-xl">Tất cả những điều bạn muốn biết về GAK!</span>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">GAK CULTURE</h1>
+                <span class="text-lg xl:text-xl">Everything you wanted to know about GAK!</span>
             </div>
             <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
@@ -17,7 +17,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                        <span class="max-w-[150px] text-lg">Gak Story</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -32,7 +32,7 @@
                         <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                        <span class="max-w-[150px] text-lg">Culture GAK</span>
                     </div>
                     <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -47,7 +47,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                        <span class="max-w-[150px] text-lg">Customer journey <br />98% satisfaction</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -65,7 +65,7 @@
                     <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                    <span class="max-w-[150px] text-lg">Gak Story</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -80,7 +80,7 @@
                     <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                    <span class="max-w-[150px] text-lg">Culture GAK</span>
                 </div>
                 <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -95,7 +95,7 @@
                     <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                    <span class="max-w-[150px] text-lg">Customer journey <br />98% satisfaction</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-grid lg:grid-cols-2 items-center gap-6 lg:gap-12lg text-black" />
@@ -108,7 +108,7 @@
                     <div class="grid lg:grid-cols-2 items-center md:gap-12">
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
-                                <h2 class="cs-about__heading">ĐI LÊN TỪ CHẤT LƯỢNG VÀ SỰ TỈ MỈ</h2>
+                                <h2 class="cs-about__heading">GO UP FROM QUALITY AND DETAILS</h2>
                                 <div class="cs-about__image">
                                     <img src="/images/company-banner-box.png" alt="" />
                                 </div>
@@ -117,8 +117,7 @@
                         <div class="grid__column seven-twelfths mobile--one-whole">
                             <div class="cs-about__description">
                                 <p>
-                                    Cùng chúng tôi tìm hiểu văn hoá tại công ty GAK và những mục tiêu mà chúng tôi đang hoàn thiện ngày một
-                                    tốt hơn.
+                                    Join us to learn about the culture at GAK and the goals we are working towards to become better and better.
                                 </p>
                             </div>
                         </div>
@@ -130,11 +129,9 @@
                     <div class="container container--medium text-white">
                         <div class="grid md:grid-cols-2 gap-4 items-center">
                             <div class="grid-column text-white text-left">
-                                <h2 class="cs-caption__heading !mb-0">VĂN HOÁ GAK</h2>
+                                <h2 class="cs-caption__heading !mb-0">Culture at GAK</h2>
                                 <p class="max-w-[500px] leading-6 !ml-0">
-                                    Tại GAK, văn hóa không chỉ là một chuỗi các quy tắc, mà nó được coi là tinh thần sống động và nguồn động
-                                    lực cho mỗi cá nhân trong công ty. Văn hóa của chúng tôi là một phần không thể tách rời trong mỗi hoạt
-                                    động hàng ngày, từ sản xuất đến dịch vụ khách hàng để hoà trộn sự tự tế trên nhiều phương diện:
+                                    At GAK, culture is not merely a set of rules—it is a vibrant spirit and a driving force for every individual in the company. Our culture is deeply embedded in every aspect of our daily operations, from production to customer service, seamlessly blending kindness and integrity across all dimensions.
                                 </p>
                             </div>
                             <div class="grid-column">
@@ -147,8 +144,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">01</div>
                                         <div class="ten-facts__description">
-                                            Tận Tâm và Chất Lượng: Chúng tôi cam kết mang đến sản phẩm và dịch vụ chất lượng nhất, từ tinh
-                                            thần nhiệt huyết và tâm huyết của mỗi nhân viên.
+                                            Dedication and Quality: We are committed to delivering the highest quality products and services, driven by the passion and wholehearted dedication of every team member.
                                         </div>
                                     </div>
                                 </div>
@@ -156,8 +152,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">02</div>
                                         <div class="ten-facts__description">
-                                            Sự Đoàn Kết và Hỗ Trợ: Tại GAK, chúng tôi là một gia đình. Chúng tôi luôn hỗ trợ và động viên
-                                            lẫn nhau, xây dựng một môi trường làm việc tích cực và đầy sức mạnh tập thể
+                                            Unity and Support: At GAK, we are a family. We consistently support and encourage one another, fostering a positive work environment built on collective strength and team spirit.
                                         </div>
                                     </div>
                                 </div>
@@ -165,8 +160,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">03</div>
                                         <div class="ten-facts__description">
-                                            Sáng Tạo và Phát Triển: Chúng tôi khuyến khích sự sáng tạo và đổi mới ở mọi cấp độ. Mỗi ý kiến
-                                            đóng góp được đánh giá cao và nhân viên được khuyến khích trau dồi chuyên môn qua từng năm.
+                                            Creativity and Development: We foster creativity and innovation at every level of the organization. Every contribution is valued, and employees are encouraged to continuously develop their professional skills year after year.
                                         </div>
                                     </div>
                                 </div>
@@ -174,9 +168,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">04</div>
                                         <div class="ten-facts__description">
-                                            Trách Nhiệm Xã Hội và Môi Trường: Chúng tôi cùng nhau cam kết hành động trách nhiệm với cộng
-                                            đồng và môi trường. Tập thể nhân viên tại GAK luôn sẽ cùng nhau tìm cách để góp phần vào sự phát
-                                            triển bền vững của xã hội và đất nước.
+                                            Social and Environmental Responsibility: We are collectively committed to acting responsibly toward both the community and the environment. At GAK, our team continually seeks ways to contribute to the sustainable development of society and the nation.
                                         </div>
                                     </div>
                                 </div>
@@ -184,9 +176,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">05</div>
                                         <div class="ten-facts__description">
-                                            Tôn Trọng và Trung Thực: Tôn trọng và trung thực là giá trị cốt lõi của từng con người tại công
-                                            ty GAK. Chúng tôi đánh giá cao mỗi mối quan hệ và cam kết đối xử công bằng và trung thực trong
-                                            mọi tình huống.
+                                            Respect and Integrity: Respect and integrity are core values upheld by every individual at GAK. We value every relationship and are committed to fairness and honesty in all circumstances.
                                         </div>
                                     </div>
                                 </div>
@@ -194,8 +184,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">06</div>
                                         <div class="ten-facts__description">
-                                            Hạnh phúc: Chúng tôi xây dựng một môi trường làm việc tích cực, hoà nhã và tập trung sự ổn định
-                                            việc làm cho tất cả cán bộ công ty.
+                                            HHappiness: We strive to create a positive, harmonious work environment that emphasizes job stability for all employees.
                                         </div>
                                     </div>
                                 </div>
@@ -203,9 +192,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">07</div>
                                         <div class="ten-facts__description">
-                                            Lắng nghe và thấu hiểu: Chúng tôi xây dựng một công ty của sự đồng cảm, đặt mình vào vị thế của
-                                            đồng nghiệp, khách hàng, lắng nghe không phán xét để thấu hiểu mọi người và cởi mở bằng cả trái
-                                            tim.
+                                            Listening and Empathy: We are building a company rooted in empathy—where we put ourselves in the shoes of colleagues and customers, listen without judgment, seek to understand others deeply, and remain open-hearted in every interaction.
                                         </div>
                                     </div>
                                 </div>
@@ -213,9 +200,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">08</div>
                                         <div class="ten-facts__description">
-                                            Học tập và trau dồi tính chuyên môn: Chúng tôi trao quyền và tạo cơ hội học tập cho mọi con
-                                            người nhằm giúp họ cải thiện cuộc sống của chính mình. Chỉ có học tập và sự ủng hộ học tập mới
-                                            giúp cho mọi người cùng tốt hơn.
+                                            Learning and Professional Growth: We empower and provide learning opportunities for everyone to improve their own lives. We believe that only through continuous learning and a culture that supports it can we all grow and thrive together.
                                         </div>
                                     </div>
                                 </div>
@@ -223,7 +208,7 @@
                         </div>
                         <div class="recruitment-cta mt-8 lg:mt-16">
                             <UButton size="xl" variant="ghost" color="none" href="#" class="bg-white h-14 rounded-3xl px-8 text-black">
-                                Gia nhập ngay
+                                Join Us
                                 <UIcon name="i-heroicons-arrow-right"></UIcon>
                             </UButton>
                         </div>
@@ -232,9 +217,9 @@
             </section>
             <div class="recruitment-jobs p-6">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="recruitment-jobs__heading !text-3xl">Cơ hội để chúng ta gặp nhau</h2>
+                    <h2 class="recruitment-jobs__heading !text-3xl">A chance for us to meet</h2>
                     <div class="recruitment-jobs__sub-heading text-center text-white font-medium">
-                        Hãy đồng hành cùng GAK đi xa và bền vững hơn<br />Tìm hiểu về các vị trí đang tuyển dụng mới nhất!
+                        Join GAK to go further and more sustainably<br />Find out about our latest job openings!
                     </div>
                     <div class="recruitment-job__swiper w-full mt-8 mb-4 relative">
                         <Swiper
@@ -257,11 +242,11 @@
                                             <span class="menu-tag menu-tag--new" style="transform: translateY(-2px); display: inline-block"
                                                 >NEW</span
                                             >
-                                            Content Marketing Intern
+                                            Design Specialist
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
                                             <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
@@ -285,7 +270,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -305,11 +290,11 @@
                                             Marketing Executive
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -330,7 +315,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -350,11 +335,11 @@
                                             Marketing Leader
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -375,7 +360,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -395,11 +380,11 @@
                                             Marketing Manager
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -420,7 +405,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -440,11 +425,11 @@
                                             Director of Marketing
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -465,7 +450,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -485,11 +470,11 @@
                                             Chief Marketing Officer - CMO
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -510,7 +495,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -530,11 +515,11 @@
                                             Design Specialist
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -555,7 +540,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -575,11 +560,11 @@
                                             Tuyển dụng thợ may
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -600,7 +585,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -620,11 +605,11 @@
                                             SEO Specialist
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -645,7 +630,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -665,11 +650,11 @@
                                             Warehouse staff
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -690,7 +675,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -710,11 +695,11 @@
                                             Product Photographer
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -735,7 +720,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -755,11 +740,11 @@
                                             Senior Advertising Operator
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -780,7 +765,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -814,11 +799,11 @@
                                             Content Marketing Intern
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -839,7 +824,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -859,11 +844,11 @@
                                             Marketing Executive
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -884,7 +869,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -904,11 +889,11 @@
                                             Marketing Leader
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li class="!mt-2">Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -929,7 +914,7 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
                                             ></a>
                                         </div>
@@ -949,11 +934,11 @@
                                             Marketing Manager
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -974,9 +959,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -994,11 +979,11 @@
                                             Director of Marketing
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1019,9 +1004,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1039,11 +1024,11 @@
                                             Chief Marketing Officer - CMO
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1064,9 +1049,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1084,11 +1069,11 @@
                                             Design Specialist
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1109,9 +1094,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1129,11 +1114,11 @@
                                             Tuyển dụng thợ may
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1154,9 +1139,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1174,11 +1159,11 @@
                                             SEO Specialist
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1199,9 +1184,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1219,11 +1204,11 @@
                                             Warehouse staff
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1244,9 +1229,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1264,11 +1249,11 @@
                                             Product Photographer
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1289,9 +1274,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1309,11 +1294,11 @@
                                             Senior Advertising Operator
                                         </h3>
                                         <ul class="!m-0 list-none p-0 text-left">
-                                            <li>Địa điểm: <span style="margin-left: 5px">Thành phố Hồ Chí Minh</span></li>
-                                            <li>Thu nhập: <span style="margin-left: 5px">Thương lượng</span></li>
+                                            <li>Location: <span style="margin-left: 5px">HCMC</span></li>
+                                            <li class="!mt-2">Income: <span style="margin-left: 5px">Negotiate</span></li>
                                         </ul>
                                         <div class="job-grid__footer">
-                                            <div class="job-grid__time flex items-center gap-1 text-[12px]">
+                                            <div class="job-grid__time flex flex-wrap items-center gap-1 text-[12px]">
                                                 <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43 38">
                                                     <defs></defs>
                                                     <title>Clock</title>
@@ -1334,9 +1319,9 @@
                                                 Fulltime
                                             </div>
                                             <a rel-script="jobs-views" class="job-grid__link">
-                                                Chi tiết &amp; Ứng tuyển
+                                                Details & Apply
                                                 <UIcon name="i-heroicons-arrow-right" class="text-xs text-black ml-1 font-bold"></UIcon
-                                            ></a>
+                                                ></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1347,10 +1332,9 @@
             </div>
             <section class="recruitment-send">
                 <div class="container container--medium prose prose-lg flex flex-col">
-                    <h2 class="recruitment-send__heading">Cảm ơn bạn đã chọn công ty GAK</h2>
+                    <h2 class="recruitment-send__heading">Thank you for choosing GAK company.</h2>
                     <p class="recruitment-send__description">
-                        Nếu các vị trí đang mở chưa phù hợp với bạn, nhưng bạn lại muốn cùng GAK thực hiện những ước mơ lớn, hãy cứ tự tin
-                        gửi CV cho GAK nhé. Phòng HR sẽ liên hệ với bạn sớm!
+                        If the open positions are not suitable for you, but you want to fulfill your big dreams with GAK, please feel free to send your CV to GAK. The HR department will contact you soon!
                     </p>
                     <UButton
                         variant="ghost"
@@ -1358,7 +1342,7 @@
                         to="#"
                         target="_blank"
                         class="mx-auto justify-center h-16 px-[50px] !bg-[#2f5acf] !text-white text-lg no-underline rounded-full">
-                        Gửi CV ngay
+                       Send CV
                         <UIcon name="i-heroicons-arrow-right"></UIcon>
                     </UButton>
                 </div>
@@ -1733,15 +1717,15 @@
                     <div class="about-card">
                         <div class="about-card__content">
                             <h2 class="about-card__heading">
-                                Trở thành<br />
-                                một nhân tố tốt hơn
+                                Become<br />
+                                a better factor
                             </h2>
                             <div class="about-card__description">
-                                <p>Trưởng thành từ những công việc thiết thực, được học hỏi và trau đồi kiến thức để sống có ý nghĩa!</p>
+                                <p>Grow up from practical work, learn and cultivate knowledge to live meaningfully!</p>
                             </div>
                             <div class="about-card__button">
                                 <UButton variant="ghost" color="none" to="" class="bg-white text-black h-10 px-8 rounded-full">
-                                    Gia nhập ngay
+                                    Join Now
                                 </UButton>
                             </div>
                         </div>
@@ -1784,15 +1768,15 @@
             </section>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Join the GAK Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal GAK
+                            Join the GAK Deal Hunters group
                         </UButton>
                         <UButton
                             :to="localePath({name: 'gak-official'})"
                             size="lg"
-                            class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
+                            class="!text-white border bg-[#22c55ebf] rounded-3xl px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
                             GAK OFFICIAL
@@ -1822,8 +1806,8 @@ function renderBullet(index, className) {
     return '<div class="custom-bullet ' + className + '">' + (index + 1) + '</div>';
 }
 
-let title = 'Văn hoá công ty GAK';
-let pageDescription = 'Tử tế, chân thành và đoàn kết. Khám phá những điều chúng tôi làm, để tiến bước tới tương lai cùng chúng tôi.'
+let title = 'GAK Company Culture';
+let pageDescription = 'Kindness, sincerity, and unity. Discover what we do as we move toward the future together.'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
@@ -2189,6 +2173,7 @@ useSeoMeta(seoMeta);
                     height: 100%;
                     position: relative;
                     font-weight: 500;
+                    width: 100%;
                     .job-grid__thumbnail {
                         position: absolute;
                         top: 20px;

@@ -21,7 +21,7 @@
                     v-show="index < 5"
                     class="product-type-item opacity-80"
                     :style="{ 'background-color': color.attribute_color }"></button>
-                <span v-if="productColor.attributes.length > 5" class="self-end text-xs text-blue-500">Xem thêm...</span>
+                <span v-if="productColor.attributes.length > 5" class="self-end text-xs text-blue-500">{{trans('Load more')}}...</span>
             </div>
             <div class="product-details flex flex-col gap-2 w-full">
                 <div class="product-name">
@@ -33,13 +33,13 @@
                 </div>
                 <div class="product-price">
                     <div v-if="product.percent == 0" class="original-price">
-                        {{ formatPriceProduct(product.price) + 'đ' }}
+                        {{ formatPriceProduct(product.price) + trans('price_name') }}
                     </div>
                     <div v-else class="discount-price">
                         <div class="after-discount">
-                            {{ formatPriceProduct(product.price_discount) + 'đ' }}
+                            {{ formatPriceProduct(product.price_discount) + trans('price_name') }}
                         </div>
-                        <div class="original-price">{{ formatPriceProduct(product.price) + 'đ' }}</div>
+                        <div class="original-price">{{ formatPriceProduct(product.price) + trans('price_name') }}</div>
                         <div class="discount-tag">{{ product.percent + '%' }}</div>
                     </div>
                 </div>
@@ -64,6 +64,9 @@
 const props = defineProps({
     product: Object,
 });
+
+const { locale, t: trans } = useI18n();
+
 const activeType = ref(0);
 const activeSilk = ref(0);
 const activeColor = ref(0);

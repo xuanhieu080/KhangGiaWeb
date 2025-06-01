@@ -26,14 +26,14 @@
                             {{ diary.name }}
                         </div>
                         <div v-if="diary.discount == 0" class="diary-product-price">
-                            {{ formatPriceProduct(diary.price) + 'đ' }}
+                            {{ formatPriceProduct(diary.price) + trans('price_name') }}
                         </div>
                         <div v-else class="diary-product-price">
                             <div class="discount-price">
-                                {{ (formatPriceProduct(diary.price* diary.discount / 100) ) + 'đ' }}
+                                {{ (formatPriceProduct(diary.price* diary.discount / 100) ) + trans('price_name') }}
                             </div>
                             <div class="original-price">
-                                {{ formatPriceProduct(diary.price) + 'đ' }}
+                                {{ formatPriceProduct(diary.price) + trans('price_name') }}
                             </div>
                             <div class="discount-tag">-{{ diary.discount }}%</div>
                         </div>
@@ -48,6 +48,8 @@
 const props = defineProps({
     diary: Object,
 });
+
+const { locale, t: trans } = useI18n();
 const activeType = ref(0);
 
 const formatPriceProduct = (item) => {

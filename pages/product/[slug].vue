@@ -8,7 +8,7 @@
                         class='w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]'
                         :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate' }"
                         divider='/'
-                        :links="[{ label: $t('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data?.name }]" />
+                        :links="[{ label: trans('Home'), to: localePath({ name: 'index' }) }, { label: productItem.data?.name }]" />
 
                     <div class='image-box flex items-start justify-center gap-4 w-full relative lg:sticky lg:top-6'>
                         <Swiper
@@ -147,26 +147,26 @@
 
                         <div v-if='productItemCurrent' class='product-price font-bold text-[19px] lg:text-[22px]'>
                             <div v-if='productItemCurrent.percent == 0' class='original-price'>
-                                {{ formatPriceProduct(productItemCurrent.price) + 'đ' }}
+                                {{ formatPriceProduct(productItemCurrent.price) + trans('price_name') }}
                             </div>
                             <div v-else class='discount-price'>
                                 <div class='after-discount'>
-                                    {{ formatPriceProduct(productItemCurrent.price_discount) + 'đ' }}
+                                    {{ formatPriceProduct(productItemCurrent.price_discount) + trans('price_name') }}
                                 </div>
-                                <div class='original-price'>{{ formatPriceProduct(productItemCurrent.price) + 'đ' }}
+                                <div class='original-price'>{{ formatPriceProduct(productItemCurrent.price) + trans('price_name') }}
                                 </div>
                                 <div class='discount-tag'>{{ productItemCurrent.percent + '%' }}</div>
                             </div>
                         </div>
                         <div v-else class='product-price font-bold text-[19px] lg:text-[22px]'>
                             <div v-if='productItem.data?.percent == 0' class='original-price'>
-                                {{ formatPriceProduct(productItem.data?.price) + 'đ' }}
+                                {{ formatPriceProduct(productItem.data?.price) + trans('price_name') }}
                             </div>
                             <div v-else class='discount-price'>
                                 <div class='after-discount'>
-                                    {{ formatPriceProduct(productItem.data?.price_discount) + 'đ' }}
+                                    {{ formatPriceProduct(productItem.data?.price_discount) + trans('price_name') }}
                                 </div>
-                                <div class='original-price'>{{ formatPriceProduct(productItem.data?.price) + 'đ' }}
+                                <div class='original-price'>{{ formatPriceProduct(productItem.data?.price) + trans('price_name') }}
                                 </div>
                                 <div class='discount-tag'>{{ productItem.data?.percent + '%' }}</div>
                             </div>
@@ -186,7 +186,7 @@
                             <span class='text-[15px] flex gap-4'
                             >{{ variantAttribute.name }}: <b>{{ getAttributeName(variantAttribute.id) }}</b>
                                 <i v-if='!getAttributeName(variantAttribute.id) && variantAttribute.is_color'>
-                                    (Ấn chọn màu sắc để mua hàng)</i
+                                    ({{trans('Select a color to purchase')}})</i
                                 >
                             </span>
                             <div v-if='variantAttribute.is_color' class='color-list flex items-center flex-wrap gap-4'>
@@ -211,7 +211,7 @@
                                     color='blue'
                                     icon='i-heroicons-arrow-path'
                                     @click='resetProductPage(true)'
-                                >{{ $t('Cài lại') }}
+                                >{{trans('Reset')}}
                                 </UButton
                                 >
                                 <UButton
@@ -221,7 +221,7 @@
                                     color='none'
                                     class='text-blue-500'
                                     @click='showAllColor = !showAllColor'
-                                >{{ showAllColor ? $t('Thu gọn') : $t('Xem thêm') }}...
+                                >{{ showAllColor ? trans('Collapse') : trans('Load more') }}...
                                 </UButton
                                 >
                             </div>
@@ -260,12 +260,12 @@
                                 variant='ghost'
                                 color='none'
                                 class='text-blue-500'
-                            >{{ variantAttribute.slug == 'size' ? $t('Hướng dẫn chọn size') : $t('Đường dẫn') }}...
+                            >{{ variantAttribute.slug == 'size' ? trans('Size Guide') : trans('Link') }}...
                             </UButton
                             >
                         </div>
                         <span class='fs-14'
-                        >{{ $t('Số lượng còn') }}
+                        >{{ trans('Quantity remaining') }}
                             <b>{{
                                     productItemCurrent && productItemCurrent.qty
                                         ? productItemCurrent.qty
@@ -292,7 +292,7 @@
                                     :class="productItemCurrent.qty > 0 ? '' : 'bg-gray-400'"
                                     class='flex-1 h-12 rounded-full justify-center'>
                                     <UIcon name='i-heroicons-shopping-bag' class='text-xl'></UIcon>
-                                    <span>Thêm vào giỏ hàng</span>
+                                    <span>{{trans('Add to cart')}}</span>
                                 </UButton>
                             </NuxtLink>
                         </div>
@@ -314,7 +314,7 @@
                                     :class="productItem.data?.qty > 0 ? '' : 'bg-gray-400'"
                                     class='flex-1 h-12 rounded-full justify-center'>
                                     <UIcon name='i-heroicons-shopping-bag' class='text-xl'></UIcon>
-                                    <span>Thêm vào giỏ hàng</span>
+                                    <span>{{trans('Add to cart')}}</span>
                                 </UButton>
                             </NuxtLink>
                         </div>
@@ -324,7 +324,7 @@
                             <NuxtLink class='flex flex-1 h-12 rounded-full justify-center' @click='addToCart()'>
                                 <UButton class='flex-1 h-12 rounded-full justify-center'>
                                     <UIcon name='i-heroicons-shopping-bag' class='text-xl'></UIcon>
-                                    <span>Thêm vào giỏ hàng</span>
+                                    <span>{{trans('Add to cart')}}</span>
                                 </UButton>
                             </NuxtLink>
                         </div>
@@ -334,21 +334,21 @@
                                 <img src='https://page.widget.zalo.me/static/images/2.0/Logo.svg'
                                      class='h-8 w-8 object-contain' alt='' />
                                 <a href='https://zalo.me/0569133339' class='text-blue-700 fs-14 font-bold'
-                                >Chat với GAK để được tư vấn ngay ( 08:00 - 17:30)</a
+                                >{{trans('Chat with GAK for instant support')}} ( 08:00 - 17:30)</a
                                 >
                                 <UIcon class='text-[22px]' name='i-heroicons-arrow-long-right' dynamic />
                             </button>
                             <div
                                 class='delivery-information p-6 bg-gray-200 rounded-lg flex flex-col gap-4 fs-14 font-medium'>
-                                <span class='font-bold'>Giao hàng toàn quốc nhanh chóng tiện lợi</span>
+                                <span class='font-bold'>{{trans('Fast and convenient nationwide delivery')}}</span>
                                 <div class='flex items-center gap-2'>
                                     <UIcon class='text-[24px] text-green-500' name='i-mdi-clock-fast' dynamic />
-                                    <span>Nội thành Hà Nội và HCM nhận hàng trong 1-2 ngày</span>
+                                    <span>{{trans('Delivery within 1–2 days in central Hanoi and Ho Chi Minh City')}}</span>
                                 </div>
                                 <div class='flex items-center gap-2'>
                                     <UIcon class='text-[24px] text-green-500' name='i-mdi-truck-delivery-outline'
                                            dynamic />
-                                    <span>Ở tỉnh thành khác nhận hàng từ 2-5 ngày</span>
+                                    <span>{{trans('Delivery in other provinces takes 2–5 days')}}</span>
                                 </div>
                             </div>
                         </div>
@@ -356,23 +356,22 @@
                         <div class='grid sm:grid-cols-2 fs-14 gap-8'>
                             <div class='flex items-center gap-4'>
                                 <UIcon class='text-[32px] shrink-0' name='i-mdi-phone-return' dynamic />
-                                <span>Nội thành Hà Nội và HCM nhận hàng trong 1-2 ngày</span>
+                                <span>{{trans('Delivery within 1–2 days in central Hanoi and Ho Chi Minh City')}}</span>
                             </div>
                             <div class='flex items-center gap-4'>
                                 <UIcon class='text-[32px] shrink-0' name='i-game-icons-return-arrow' dynamic />
-                                <span>30 ngày đổi trả hàng (Hàng trơn chưa dùng)</span>
+                                <span>{{trans('30-day return policy (Unused plain items only)')}}</span>
                             </div>
                             <div class='flex items-center gap-4'>
                                 <UIcon class='text-[32px] shrink-0' name='i-fluent-phone-checkmark-20-regular'
                                        dynamic />
                                 <span
-                                >Hotline <a href='tel:0569133339'>056.913.33.39</a> hỗ
-                                    trợ từ 8h00 - 17h30 mỗi ngày</span
+                                >Hotline <a href='tel:0569133339'>056.913.33.39</a> {{trans('Support available daily from 8:00 AM to 5:30 PM')}}</span
                                 >
                             </div>
                             <div class='flex items-center gap-4'>
                                 <UIcon class='text-[32px] shrink-0' name='i-ph-clock-clockwise-bold' dynamic />
-                                <span>Tiếp nhận đơn hàng và phản hồi trong vòng 1 tiếng</span>
+                                <span>{{trans('Orders received and responded to within 1 hour')}}</span>
                             </div>
                         </div>
                         <UDivider />
@@ -381,11 +380,11 @@
                 <div
                     v-if='productItem.data?.highlight'
                     class='product-features p-4 md:p-6 bg-gray-200 rounded-md flex flex-col gap-6 mt-[80px]'>
-                    <h3 class='product-features__heading !text-2xl font-bold'>Đặc điểm nổi bật</h3>
+                    <h3 class='product-features__heading !text-2xl font-bold'>{{trans('Key features')}}</h3>
                     <div
                         class='product-details flex flex-col-reverse md:flex-row gap-4 md:gap-2 justify-between w-full'>
                         <div class='information flex flex-col gap-4'>
-                            <h3 class='font-bold !m-0'>Thông tin sản phẩm</h3>
+                            <h3 class='font-bold !m-0'>{{trans('Product information')}}</h3>
                             <div v-html='productItem.data?.highlight'></div>
                         </div>
                         <div v-if='productItem.data?.highlight_image_url'
@@ -398,12 +397,11 @@
                     </div>
                 </div>
                 <div class='product-more-details prose prose-lg max-w-full'>
-                    <h3 class='!text-2xl font-extrabold'>Chi tiết sản phẩm</h3>
+                    <h3 class='!text-2xl font-extrabold'>{{trans('Product details')}}</h3>
                     <div v-html='productItem.data?.description'></div>
                 </div>
                 <div v-if='productHot' class='product-similar my-8'>
-                    <h3 class='w-full text-center !text-2xl md:!text-3xl !mb-8 font-extrabold'>SẢN PHẨM BẠN CÓ THỂ
-                        THÍCH</h3>
+                    <h3 class='w-full text-center !text-2xl md:!text-3xl !mb-8 font-extrabold uppercase'>{{trans('You may also like')}}</h3>
                     <Swiper
                         :spaceBetween='0'
                         :navigation="{
@@ -455,7 +453,7 @@
                     class='product-reviews flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-[48px] w-full'>
                     <div
                         class='product-rating flex flex-col gap-4 items-center bg-gray-100 rounded-md p-8 w-full md:w-max lg:sticky top-2'>
-                        <div class='uppercase font-bold'>Đánh giá sản phẩm</div>
+                        <div class='uppercase font-bold'>{{trans('Product reviews')}}</div>
                         <div class='font-bold text-[4rem]'>{{ productItem.data?.average_rate }}</div>
                         <NuxtRating
                             class='w-[220px] justify-center'
@@ -464,7 +462,7 @@
                             :active-color="'green'"
                             rating-content='⭐' />
                         <div v-if='productItem.data?.rate_count > 0' class='italic fs-14 leading-relaxed font-medium'>
-                            {{ productItem.data?.rate_count + ' ' + $t('Review') }}
+                            {{ productItem.data?.rate_count + ' ' + trans('Review') }}
                         </div>
                     </div>
                     <div v-if='!loadingReviewProduct' class='flex flex-col md:grid sm:grid-cols-2 flex-1 gap-8'>
@@ -500,13 +498,13 @@
                         <div
                             v-else
                             class='empty-review h-[224px] px-4 col-span-2 flex items-center justify-center border border-dashed border-gray-200 rounded-lg font-medium text-gray-500'>
-                            {{ 'Chưa có đánh giá nào cho sản phẩm này' }}
+                            {{ trans('No reviews yet for this product') }}
                         </div>
                         <div
                             v-if='reviewProduct.data.length > 0 && pageTotal > 0'
                             class='flex flex-wrap justify-between items-center gap-2 w-full col-span-2'>
                             <div class='flex items-center gap-1.5'>
-                                <span class='text-sm leading-5'>{{ $t('Rows per page') }}:</span>
+                                <span class='text-sm leading-5'>{{ trans('Rows per page') }}:</span>
                                 <USelect v-model='pageCount' :options='[8, 25, 50]' class='me-2 w-20' size='xs' />
                             </div>
                             <div class='hidden md:block'>
@@ -815,8 +813,8 @@ let productLists = useCookie('products-cart', {
 
 function addToCart() {
     toast.add({
-        title: trans('Thông báo') + ' !',
-        description: trans('Bạn chưa chọn màu'),
+        title: trans('Notification') + ' !',
+        description: trans("You haven't selected a color"),
         timeout: 3000,
         icon: 'i-heroicons-check-badge',
         color: 'red',
@@ -841,8 +839,8 @@ const handleAddToCookie = (item, variant = true) => {
             }
 
             toast.add({
-                title: trans('Chúc mừng') + ' !',
-                description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
+                title: trans('Congratulations') + ' !',
+                description: trans('The product has been added to your cart'),
                 timeout: 3000,
                 icon: 'i-heroicons-check-badge',
                 color: 'green',
@@ -867,8 +865,8 @@ const handleAddToCookie = (item, variant = true) => {
                 });
             }
             toast.add({
-                title: trans('Chúc mừng') + ' !',
-                description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
+                title: trans('Congratulations') + ' !',
+                description: trans('The product has been added to your cart'),
                 timeout: 3000,
                 icon: 'i-heroicons-check-badge',
                 color: 'green',
@@ -876,8 +874,8 @@ const handleAddToCookie = (item, variant = true) => {
         } else {
             productLists.value[productIndex].quantity += quantity.value;
             toast.add({
-                title: trans('Chúc mừng') + ' !',
-                description: trans('Sản phẩm đã được thêm vào giỏ hàng'),
+                title: trans('Congratulations') + ' !',
+                description: trans('The product has been added to your cart'),
                 timeout: 3000,
                 icon: 'i-heroicons-check-badge',
                 color: 'green',
@@ -1034,7 +1032,7 @@ function getProductItem(showAlert = false) {
     } else if (matchingVariant) {
         // if(showAlert) {
         //     toast.add({
-        //         title: trans('Thông báo') + ' !',
+        //         title: trans('Notification') + ' !',
         //         description: trans('Sản phẩm đang tạm ngưng nên đã chuyển qua mẫu khác'),
         //         timeout: 3000,
         //         icon: 'i-heroicons-check-badge',

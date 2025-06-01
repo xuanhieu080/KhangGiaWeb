@@ -13,7 +13,7 @@
                 <div v-if='articles.data && articles.data.length > 0' class='blog-daily flex flex-col gap-4 w-full mt-2'>
                     <div
                         class='title text-[28px] 2xl:text-[30px] font-bold py-3 px-5 bg-[#008000] text-white rounded-xl'>
-                        {{ $t('Bài viết khác') }}
+                        {{ trans('Other articles') }}
                     </div>
                     <div
                          class='flex flex-wrap items-start justify-start gap-4 w-full'>
@@ -26,7 +26,7 @@
                             <UButton
                                 @click='getArticle'
                                 class='rounded-2xl justify-center py-2.5 px-6'
-                            ><span class='uppercase font-bold'>{{ $t('Xem thêm') }}</span></UButton>
+                            ><span class='uppercase font-bold'>{{ trans('Load more') }}</span></UButton>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ onMounted(() => {
     setTimeout(() => {
         links.value = [
             {
-                label: 'Trang chủ',
+                label: trans('Home'),
                 icon: 'i-heroicons-home',
                 to: localePath({ name: 'index' }),
             },
@@ -100,7 +100,7 @@ onMounted(() => {
         if (content.value?.data?.category_slug) {
             links.value = [
                 {
-                    label: 'Trang chủ',
+                    label: trans('Home'),
                     icon: 'i-heroicons-home',
                     to: localePath({ name: 'index' }),
                 },

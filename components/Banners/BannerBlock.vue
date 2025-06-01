@@ -17,14 +17,14 @@
                     variant="ghost"
                     :class="splitBanner ? 'h-[48px] px-6 mt-auto hover:bg-gray-200/80' : ' px-10 h-[54px]  hover:bg-black hover:text-white'"
                     class="rounded-3xl bg-white text-black transition ease-in-out duration-300">
-                    <span class="uppercase">Khám phá ngay</span>
+                    <span class="uppercase">{{trans('Discover now')}}</span>
                 </UButton>
             </NuxtLink>
         </div>
     </div>
 </template>
 <script setup>
-
+const { locale, t: trans } = useI18n();
 const { isMobile } = useDevice()
 
 const localePath = useLocalePath();

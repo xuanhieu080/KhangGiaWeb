@@ -14,10 +14,10 @@
             <div class="pod-banner__filter"></div>
             <div v-if="true" class="container container--medium prose prose-lg h-full">
                 <div class="pod-banner__content">
-                    <h1 class="pod-banner__heading">Đặt may đồng phục</h1>
+                    <h1 class="pod-banner__heading">{{trans('Custom Uniform Orders')}}</h1>
                     <p class="pod-banner__description">
-                        May đo các loại đồng phục tận tâm<br />
-                        100% sự hài lòng
+                        {{trans('Tailored uniforms with dedication')}}<br />
+                        {{trans('100% satisfaction guaranteed')}}
                     </p>
                     <div class="pod-banner__policy">
                         <UButton
@@ -26,17 +26,16 @@
                             color="none"
                             to="#offer-box"
                             class="pod-banner__button scroll-to-step bg-white text-[#2f5acf] !text-lg px-6 rounded-2xl font-semibold !no-underline">
-                            Gửi yêu cầu
+                           {{trans('Send request')}}
                         </UButton>
                     </div>
                     <div class="pod-banner__featured">
                         <div class="pod-banner__featured-wrapper">
-                            <div href="#" class="pod-banner__featured-item">Đặt càng nhiều<br />May càng rẻ</div>
+                            <div href="#" class="pod-banner__featured-item">{{trans('The more you order')}}<br />{{trans('The cheaper it gets')}}</div>
                             <div href="#" class="pod-banner__featured-item">
-                                Giá cả <br />
-                                cạnh tranh
+                               {{trans('Competitive pricing')}}
                             </div>
-                            <div href="#" class="pod-banner__featured-item">Dự kiến giao<br />trong vòng 30 ngày</div>
+                            <div href="#" class="pod-banner__featured-item">{{trans('Estimated delivery within 30 days')}}</div>
                         </div>
                     </div>
                 </div>
@@ -45,16 +44,15 @@
         <div class="about-content md:pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty GAK</h2>
+                    <h2 class="pod-why__heading">Why should you order at GAK factory?</h2>
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="grid__column three-twelfths mobile--one-half">
                             <div class="pod-why__card">
                                 <div class="card__item__icon"><img src="/images/booking-step-1.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Chi phí tốt nhất trên thị trường</div>
+                                    <div class="card__item__title">Good price from manufacturer</div>
                                     <p class="card__item__description">
-                                        Các sản phẩm đồng phục được gia công tại công ty GAK luôn có sự tỉ mỉ và giá thành tốt nhất. Bởi
-                                        chúng tôi là nhà sản xuất vải, nhuộm, may đồng phục, in ấn khép kín
+                                        The uniform products processed at GAK company always have the meticulousness and the best price. Because we are a manufacturer of fabric, dyeing, uniform sewing, and closed printing.
                                     </p>
                                 </div>
                             </div>
@@ -63,10 +61,9 @@
                             <div class="pod-why__card">
                                 <div class="card__item__icon"><img src="/images/booking-step-2.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Dịch vụ tận tâm</div>
+                                    <div class="card__item__title">Dedicated Tailoring Service</div>
                                     <p class="card__item__description">
-                                        GAK luôn chú trọng sự tận tâm trên từng sản phẩm, bởi những người thợ giàu kinh nghiệm cần thận trên
-                                        từng đường may mũi chỉ và sản phẩm chất lượng cao đang tạo nên thương hiệu của chúng tôi.
+                                        At GAK, we always prioritize dedication in every product. Our experienced craftsmen take great care with every seam, and it is this commitment to quality that defines our brand.
                                     </p>
                                 </div>
                             </div>
@@ -75,10 +72,9 @@
                             <div class="pod-why__card">
                                 <div class="card__item__icon"><img src="/images/booking-step-3.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Chi phí in ấn đồng phục tốt nhất thị trường</div>
+                                    <div class="card__item__title">Best uniform printing cost on the market</div>
                                     <p class="card__item__description">
-                                        Nhờ năng lực sản xuất mạnh và linh hoạt, công ty GAK tự tin vào chất lượng tất cả bản in ấn. Hãy đặt
-                                        niềm tin vào chúng tôi thương hiệu của bạn sẽ luôn chỉn chu trên từng bộ đồng phục.
+                                        Thanks to its strong and flexible production capacity, GAK is confident in the quality of all its prints. Trust us and your brand will always be perfect on every uniform.
                                     </p>
                                 </div>
                             </div>
@@ -87,10 +83,9 @@
                             <div class="pod-why__card">
                                 <div class="card__item__icon"><img src="/images/booking-step-4.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Biết ngày giao hàng!</div>
+                                    <div class="card__item__title">Fast delivery</div>
                                     <p class="card__item__description">
-                                        Nhờ vào khả năng sản xuất và in khép kín. Giúp công ty GAK có thể đảm bảo tiến độ may và giao hàng
-                                        cho khách hàng. Nếu bạn đã có số lượng dự kiến, bản mẫu chúng tôi sẽ báo với bạn ngày giao hàng!
+                                        Thanks to the ability to produce from the factory and print in-house. Helps GAK company to ensure the progress of sewing and delivery to customers. If you already have the expected quantity, our sample will inform you of the delivery date!
                                     </p>
                                 </div>
                             </div>
@@ -103,51 +98,51 @@
                     <div class="pod-activity__card">
                         <div class="pod-activity__heading-card">
                             <div class="pod-activity__heading-top">
-                                <h2>Quy trình<br />may đồng phục tại Công ty GAK<br />như thế nào?</h2>
+                                <h2>How to order uniforms at GAK</h2>
                             </div>
                             <div class="pod-activity__heading-cta mobile--hidden tablet--hidden">
-                                <p>Chưa bao giờ đơn giản đến thế.</p>
-                                <a class="btn btn--primary scroll-to-step">Gửi yêu cầu</a>
+                                <p>It's never been so simple.</p>
+                                <a class="btn btn--primary scroll-to-step">Get order</a>
                             </div>
                         </div>
                         <div class="pod-activity__card grid-item">
                             <div class="card__item">
                                 <div class="card__item__icon"><img src="/images/booking-process-1.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Tiếp nhận yêu cầu</div>
+                                    <div class="card__item__title">Receive requests</div>
                                     <p class="card__item__description">
-                                        Gửi yêu cầu trực tiếp qua Zalo hoặc qua <br />
-                                        Hotline: <a href="tel:0569133339">0569133339</a>
+                                        Send requests directly via Zalo or via <br />
+                                        Hotline: <a href="tel:0569133339">+84569133339</a>
                                     </p>
                                 </div>
                             </div>
                             <div class="card__item">
                                 <div class="card__item__icon"><img src="/images/booking-process-2.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Tư vấn thiết kế</div>
+                                    <div class="card__item__title">Customer service</div>
                                     <p class="card__item__description">
-                                        Lên thiết kế miễn phí, chào mẫu theo yêu cầu <br />
-                                        để khách hàng duyệt mẫu
+                                        Free design consultation, sample on request <br />
+                                        for customers to review samples
                                     </p>
                                 </div>
                             </div>
                             <div class="card__item">
                                 <div class="card__item__icon"><img src="/images/booking-process-3.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Gửi báo giá</div>
+                                    <div class="card__item__title">Quote Price</div>
                                     <p class="card__item__description">
-                                        Được gửi ngay sau khi khách hàng đồng ý mẫu thiết kế <br />
-                                        (Trong vòng 8 tiếng)
+                                        ĐSent immediately after customer approves design <br />
+                                        (Within 8 hours)
                                     </p>
                                 </div>
                             </div>
                             <div class="card__item">
                                 <div class="card__item__icon"><img src="/images/booking-process-4.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Giao hàng và cám ơn</div>
+                                    <div class="card__item__title">Delivery and thanks</div>
                                     <p class="card__item__description">
-                                        Giao hàng miễn phí trong nội thành <br />
-                                        hoặc tính phí giao vận thông qua bưu cục địa phương
+                                        FFree delivery within city <br />
+                                        or charge shipping through local post office
                                     </p>
                                 </div>
                             </div>
@@ -158,11 +153,11 @@
             <section id="products" class="pod-products">
                 <div class="container container--medium">
                     <h2 class="pod-products__heading" style="margin-bottom: 10px">
-                        Các mẫu đồng phục đẹp giá tốt đang được khách hàng tin chọn
+                        Professional uniform models at good prices are being trusted by customers
                     </h2>
                     <div>
                         <h3 style="text-align: center; font-size: 16px; padding: 0px 30px">
-                            GAK có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
+                            GAK has the ability to diversify production according to customers' specific requirements.
                         </h3>
                     </div>
                     <div class="tab-content">
@@ -176,7 +171,7 @@
                                                     <img src="/images/product-item-1.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun </span> Số lượng tối thiểu: 50 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>T-shirt </span> Minimum Quantity: 50 pieces</div>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +183,7 @@
                                                     <img src="/images/product-item-2.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun polo</span> Số lượng tối thiểu: 50 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>Polo T-shirt</span> Minimum Quantity: 50 pieces</div>
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +196,7 @@
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline">
-                                                <span>Quần áo bảo hộ lao động</span> Số lượng tối thiểu: 50 chiếc
+                                                <span>Technical Gile</span> Minimum Quantity: 50 pieces
                                             </div>
                                         </div>
                                     </div>
@@ -215,7 +210,7 @@
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline">
-                                                <span>Đồng phục công nhân</span> Số lượng tối thiểu: 50 chiếc
+                                                <span>Worker Uniform</span> Minimum Quantity: 50 pieces
                                             </div>
                                         </div>
                                     </div>
@@ -229,7 +224,7 @@
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline">
-                                                <span>Áo đồng phục công sở</span> Số lượng tối thiểu: 50 chiếc
+                                                <span>Office shirts</span> Minimum Quantity: 50 pieces
                                             </div>
                                         </div>
                                     </div>
@@ -243,7 +238,7 @@
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline">
-                                                <span>Áo đồng phục công ty</span> Số lượng tối thiểu: 50 chiếc
+                                                <span>Company uniform t-shirts</span> Minimum Quantity: 50 pieces
                                             </div>
                                         </div>
                                     </div>
@@ -257,7 +252,7 @@
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline">
-                                                <span>Áo thun phản quang</span> Số lượng tối thiểu: 50 chiếc
+                                                <span>Reflective t-shirt</span> Minimum Quantity: 50 pieces
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +266,7 @@
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline">
-                                                <span>Áo đồng phục học sinh</span> Số lượng tối thiểu: 50 chiếc
+                                                <span>School uniform</span> Minimum Quantity: 50 pieces
                                             </div>
                                         </div>
                                     </div>
@@ -284,7 +279,7 @@
                                                     <img src="/images/product-item-9.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo teambuilding</span> Số lượng tối thiểu: 50 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>Teambuilding T-shirts</span> Minimum Quantity: 50 pieces</div>
                                         </div>
                                     </div>
                                 </div>
@@ -296,7 +291,7 @@
                                                     <img src="/images/product-item-10.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun công sở</span> Số lượng tối thiểu: 50 đôi</div>
+                                            <div class="pod-grid__tagline"><span>Office t-shirt</span> Minimum Quantity: 50 piecesi</div>
                                         </div>
                                     </div>
                                 </div>
@@ -309,8 +304,8 @@
                                                 </div>
                                             </div>
                                             <div class="pod-grid__tagline">
-                                                <span>Áo thun quảng cáo - sự kiện</span>
-                                                Số lượng tối thiểu: 50 chiếc
+                                                <span>Promotional T-shirts - events</span>
+                                                Minimum Quantity: 50 pieces
                                             </div>
                                         </div>
                                     </div>
@@ -323,17 +318,17 @@
                                                     <img src="/images/product-item-12.png" alt="images" />
                                                 </div>
                                             </div>
-                                            <div class="pod-grid__tagline"><span>Áo thun thể thao</span> Số lượng tối thiểu: 50 chiếc</div>
+                                            <div class="pod-grid__tagline"><span>Sports t-shirt</span> Minimum Quantity: 50 pieces</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="loadmore-product" style="display: none">
-                                <a data-show="10" data-page="2" class="btn btn--outline loadmore chidern">Xem thêm</a>
+                                <a data-show="10" data-page="2" class="btn btn--outline loadmore chidern">Load more</a>
                             </div>
                         </div>
                         <div class="loadmore-product" style="display: none">
-                            <a data-show="10" data-page="2" class="btn btn--outline loadmore chidern">Xem thêm</a>
+                            <a data-show="10" data-page="2" class="btn btn--outline loadmore chidern">Load more</a>
                         </div>
                     </div>
                 </div>
@@ -342,7 +337,7 @@
                 <div class="container container--medium">
                     <div class="pod-customer">
                         <div class="pod-customer__wrapper">
-                            <h2 class="pod-customer__heading">Khách hàng của công ty GAK</h2>
+                            <h2 class="pod-customer__heading">Our Customer</h2>
                             <Swiper
                                 :slidesPerView="3"
                                 :spaceBetween="12"
@@ -419,8 +414,7 @@
                                 </SwiperSlide>
                             </Swiper>
                             <p class="pod-customer__description active-description mobile--hidden">
-                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành cho nữ dù số lượng ít
-                                và sản phẩm không có sẵn . Rất tuyệt vời.
+                                Trusted by clients for customized uniform solutions — from promotional samples to discreet bespoke services. Contact GAK today to create uniforms tailored exclusively for your company.
                             </p>
                         </div>
                         <UButton
@@ -429,7 +423,7 @@
                             size="lg"
                             to="#offer-box"
                             class="bg-[#2f5acf] text-white px-8 rounded-3xl !no-underline"
-                            >Gửi yêu cầu
+                            >Send order
                         </UButton>
                     </div>
                 </div>
@@ -440,8 +434,7 @@
                         <div class="contact__wrapper">
                             <div class="contact__content">
                                 <h2 class="contact__content-title">
-                                    Bạn đang cần được tư vấn cho đồng phục công ty, may quần áo bảo hộ lao động, đồng phục công nhân? Hãy để
-                                    chúng tôi tư vấn cho bạn
+                                    Do you need advice on company uniforms, workwear, and worker uniforms? Let us advise you.
                                 </h2>
                                 <div class="contact__content-hotline">
                                     <div class="contact__content-info">
@@ -462,18 +455,18 @@
                                 <div class="contact__content-contact">
                                     <a href="https://zalo.me/1160130089290834053" target="_blank" class="contact__content-social">
                                         <img src="/images/zalo.png" alt="zalo-podz" />
-                                        <div>Liên hệ Sale GAK qua Zalo</div>
+                                        <div>Contact us on ZALO APP</div>
                                     </a>
                                     <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="contact__content-social"
                                         ><img src="/images/facebook.png" alt="fb-pod" />
-                                        <div>CSKH GAK</div></a
+                                        <div>CUSTOMER CARE ON FACEBOOK</div></a
                                     >
                                 </div>
                             </div>
                             <div class="contact__form">
                                 <UForm @submit="submit" class="xp-form">
-                                    <h2 class="title">Gửi yêu cầu tư vấn may đồng phục cho GAK</h2>
-                                    <UFormGroup class="form-group" label="Sản phẩm và số lượng dự kiến bạn cần" required>
+                                    <h2 class="title">Send request for uniform sewing consultation to GAK</h2>
+                                    <UFormGroup class="form-group" label="Products and estimated quantities you need" required>
                                         <UInput
                                             size="xl"
                                             type="text"
@@ -486,7 +479,7 @@
                                             placeholder="vd: Đồng phục Shopee"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
-                                    <UFormGroup class="form-group" label="Họ và tên của bạn" required>
+                                    <UFormGroup class="form-group" label="Your name" required>
                                         <UInput
                                             size="xl"
                                             type="text"
@@ -499,7 +492,7 @@
                                             placeholder="vd: Nguyễn Văn A"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
-                                    <UFormGroup class="form-group" label="Số điện thoại của bạn" required>
+                                    <UFormGroup class="form-group" label="Phone number" required>
                                         <UInput
                                             size="xl"
                                             type="text"
@@ -512,7 +505,7 @@
                                             placeholder="vd: 0912345678"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
-                                    <UFormGroup class="form-group" label="Email của bạn" required>
+                                    <UFormGroup class="form-group" label="Your email" required>
                                         <UInput
                                             size="xl"
                                             type="email"
@@ -534,7 +527,7 @@
                                             size="lg"
                                             type="submit"
                                             class="bg-[#2f5acf] text-white px-8 rounded-3xl"
-                                            >Gửi yêu cầu
+                                            >Send order
                                         </UButton>
                                     </div>
                                 </UForm>
@@ -554,38 +547,36 @@
                     </picture>
                 </div>
                 <div class="pod-factory__info">
-                    <h2>Nhà máy của chúng tôi</h2>
+                    <h2>Our factory</h2>
                     <p>
-                        Để có một bộ đồng phục đẹp, hay một chiếc áo thun công ty chất lượng đều cần đến nguồn nguyên liệu chất lượng. Chỉ
-                        có sự lựa chọn nguồn sợi, quy trình dệt cho đến kỹ thuật may đo tiên tiến mới tạo ra những sản phẩm xứng đáng để in
-                        lên logo công ty bạn!
+                        To create a beautiful uniform or a high-quality company t-shirt, it all starts with premium materials. Only by carefully selecting the right fibers, using advanced weaving processes, and applying expert tailoring techniques can we produce garments worthy of carrying your company logo.
                     </p>
                     <UButton variant="ghost" color="none" size="lg" type="submit" class="bg-[#2f5acf] text-white px-8 rounded-3xl">
-                        Năng lực Công ty GAK
+                        GAK Company Capabilities
                     </UButton>
                 </div>
             </section>
             <section class="pod-tech pt-8 pb-12">
                 <div class="container container--medium">
-                    <h2 class="pod-tech__heading">Tập trung phát triển sản phẩm và công nghệ may mặc tiên tiến</h2>
+                    <h2 class="pod-tech__heading">Focus on developing advanced garment products and technology</h2>
                     <div class="flex md:grid md:grid-cols-3 flex-wrap items-center justify-center gap-4 w-full">
                         <div class="pod-tech-slide">
                             <div href="#" class="rounded-xl">
                                 <img alt="" src="/images/silk-tech-1.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
                             </div>
-                            <span>Vải chất lượng cao</span>
+                            <span>High quality fabric</span>
                         </div>
                         <div class="pod-tech-slide">
                             <div href="#" class="rounded-xl">
                                 <img alt="" src="/images/silk-tech-2.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
                             </div>
-                            <span>Công nghệ may tiên tiến</span>
+                            <span>Advanced sewing technology</span>
                         </div>
                         <div class="pod-tech-slide">
                             <div href="#" class="rounded-xl">
                                 <img alt="" src="/images/silk-tech-3.png" class="w-full h-full object-cover rounded-xl" loading="lazy" />
                             </div>
-                            <span>Công nghệ in/thêu đồng phục</span>
+                            <span>Uniform printing/embroidery technology</span>
                         </div>
                     </div>
                 </div>
@@ -616,7 +607,7 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
+                        Join the GAK Deal Club - Get information about promotions, warehouse clearance and live streams to give away shocking gifts!!!
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton
@@ -626,7 +617,7 @@
                             class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit no-underline uppercase"
                             variant="ghost"
                             color="none">
-                            Tham gia hội săn Deal GAK
+                            Deal Club
                         </UButton>
                         <UButton
                             :to="localePath({ name: 'gak-official' })"
@@ -641,8 +632,8 @@
             </section>
             <div class="cs-faq-container py-8">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-faq__heading text-center w-full">FAQ MAY ĐỒNG PHỤC</h2>
-                    <p class="text-center w-full">Bạn có câu hỏi GAK xin trả lời ạ!</p>
+                    <h2 class="cs-faq__heading text-center w-full">FAQ UNIFORM SEWING</h2>
+                    <p class="text-center w-full">If you have any questions, please answer them!</p>
                     <UAccordion multiple :items="items" :ui="{ wrapper: 'flex flex-col w-full' }">
                         <template #default="{ item, index, open }">
                             <UButton
@@ -663,86 +654,60 @@
                         <template #item-1>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <p>
-                                    Hiện nay, có rất nhiều Xưởng may đồng phục giá rẻ tại Quận Tân Bình, TPHCM, toàn quốc..., đều có thể
-                                    cung cấp tới bạn những chiếc đồng phục có chi phí tốt. Tuy nhiên bạn sẽ cần lưu ý những điều này để tìm
-                                    ra công ty may in đồng phục có uy tín.
+                                    Currently, there are many affordable uniform sewing factories in Tan Binh District, Ho Chi Minh City, and across the country that can offer competitive pricing. However, to ensure quality and reliability, you need to pay close attention to a few key factors when choosing a reputable uniform sewing and printing company.
                                 </p>
                                 <ul class="marker:text-gray-700">
-                                    <li>Xem xét <b>địa chỉ xưởng may</b> có thông tin liên hệ rõ ràng</li>
-                                    <li>Xem xét <b>thời gian giao hàng</b> có đúng hẹn hay không</li>
-                                    <li>Xem xét <b>có hỗ trợ thiết kế lại logo và lên bản thiết kế sản phẩm</b> miễn phí hay không</li>
+                                    <li>Review <b>Garment factory address</b> have clear contact information</li>
+                                    <li>Review <b>delivery time</b> is it on time or not</li>
+                                    <li>Ponder <b>Support logo redesign and product design</b> free or not</li>
                                     <li>
-                                        Xem xét <b>nhân viên CSKH</b> có tư vấn nhiệt tình trong suốt quá trình và sau bán hàng hay không
+                                        Review <b>customer staff</b> Is there enthusiastic advice during and after sales?
                                     </li>
-                                    <li>Xem xét <b>chất liệu vải</b> may đồng phục mặc có mát, bền màu hay không</li>
+                                    <li>Consider <b>fabric material</b> Is the uniform cool and colorfast?</li>
                                     <li>
-                                        Xem xét <b>đánh giá của khách hàng</b> về cảm nhận của họ sau khi sử dụng dịch vụ hay chất lượng áo
-                                        thun đồng phục sau một khoảng thời gian sử dụng
+                                        Double check <b>Customer reviews</b> about their feelings after using the service or the quality of the uniform t-shirts after a period of use.
                                     </li>
                                 </ul>
                                 <span>
-                                    Dựa theo những tiêu chí đánh giá địa chỉ xưởng may đồng phục uy tín bên trên, công ty GAK mong rằng nó
-                                    sẽ giúp bạn tìm thấy công ty may có uy tín.
+                                   Based on the above criteria for evaluating reputable uniform sewing factory addresses, GAK company hopes that it will help you find a reputable sewing company.
                                 </span>
                             </div>
                         </template>
                         <template #item-2>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <p>
-                                    <b>Đồng phục công nhân giá rẻ, kém chất lượng</b> thường gây ảnh hưởng đến sức khoẻ người lao động. Vì
-                                    những bộ quần áo này được họ sử dụng hằng ngày và cơ sở giúp họ bảo vệ mình khi có tai nạn vô tình xảy
-                                    ra. Nên việc sử dụng nguồn vải kém chất lượng có thể gây ảnh hưởng tới hình ảnh của công ty và đặc biệt
-                                    nguy hại tới sức khoẻ của người lao động.
+                                    <b>Cheap, poor quality worker uniforms</b> Uniforms often directly impact the health of workers, as they are worn daily and serve as a layer of protection in case of accidents. Therefore, using low-quality fabrics not only risks the well-being of employees but can also negatively affect the company's image
                                 </p>
 
                                 <p>
-                                    Tại GAK chúng tôi tự chủ sản xuất nguồn vải có chất lượng, đem lại sự an toàn, thoải mái khi vận động -
-                                    làm việc, khả năng thấm hút co giãn tốt. Đặc biệt nhờ vào hệ sinh thái khép kín từ sợi, dệt, nhuộm cho
-                                    tới in ấn chúng tôi luôn đảm bảo mọi bộ đồng phục công nhân luôn có chất lượng, giá thành cạnh tranh
-                                    nhất thị trường. Hãy tìm hiểu thêm các sản phẩm có sẵn của chúng tôi!
+                                    At GAK, we take pride in being self-sufficient in producing high-quality fabrics that prioritize safety, comfort in movement and work, excellent absorbency, and elasticity. Thanks to our fully integrated ecosystem—from yarn production, weaving, dyeing to printing—we ensure that every set of worker uniforms meets the highest quality standards while maintaining the most competitive prices in the market. Discover more about our available products today!
                                 </p>
                             </div>
                         </template>
                         <template #item-3>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <p>
-                                    <b>In ấn đồng phục chất lượng cao</b> đang là giải pháp giúp công ty bạn tăng cường hình ảnh chuyên
-                                    nghiệp và xây dựng nhận diện thương hiệu cho doanh nghiệp của mình? Dưới đây là những lợi ích quan
-                                    trọng:
+                                    <b>High quality uniform printing</b> is the solution to help your company enhance its professional image and build brand recognition for your business? Here are the important benefits:
                                 </p>
                                 <ul class="marker:text-gray-700">
                                     <li>
-                                        Tạo ấn tượng chuyên nghiệp: Đồng phục là một cách hiệu quả để tạo ra một hình ảnh chuyên nghiệp và
-                                        đồng nhất cho toàn bộ đội ngũ của bạn. Với bề dày kinh nghiệm trong ngành may, GAK cam kết mang lại
-                                        những bộ đồng phục chất lượng, phản ánh sự chuyên nghiệp của doanh nghiệp.
+                                        Create a professional impression: Uniforms are an effective way to create a professional and consistent image for your entire team. With extensive experience in the garment industry, GAK is committed to providing quality uniforms that reflect the professionalism of the business.
                                     </li>
                                     <li>
-                                        Nâng cao nhận diện thương hiệu: Logo và thông điệp của thương hiệu được in trên đồng phục không chỉ
-                                        giúp khách hàng dễ dàng nhận ra bạn mà còn là một cách hiệu quả để quảng bá thương hiệu của bạn. GAK
-                                        sẽ giúp bạn thiết kế và in ấn các mẫu đồng phục độc đáo, thể hiện đầy đủ giá trị và phong cách của
-                                        thương hiệu.
+                                        Enhance Brand Recognition: Logos and brand messages printed on uniforms not only make it easier for customers to recognize your business, but also serve as a powerful tool for brand promotion. At GAK, we specialize in designing and printing distinctive uniforms that reflect the core values and style of your brand—helping you stand out with every impression.
                                     </li>
                                     <li>
-                                        Tinh thần đồng đội: Đồng phục không chỉ là trang phục, mà còn là biểu tượng của sự đoàn kết và nhất
-                                        quán trong tổ chức. GAK hiểu rõ giá trị của việc tạo sự gắn kết giữa các thành viên, và chúng tôi
-                                        cam kết mang lại những bộ đồng phục đẹp mắt, tạo cảm giác kết nôi và đoàn kết cho nhân viên của bạn.
+                                        Team Spirit Uniforms are more than just clothing—they symbolize unity and consistency within an organization. At GAK, we understand the importance of building strong team cohesion. That’s why we’re committed to delivering well-designed uniforms that foster a sense of connection and pride among your employees.
                                     </li>
                                     <li>
-                                        Dịch vụ may đo cao cấp và chất lượng cao: GAK không chỉ cung cấp những mẫu đồng phục tiêu chuẩn mà
-                                        còn chú trọng đến sự tùy chỉnh theo yêu cầu của khách hàng - công ty. Chúng tôi cam kết sử dụng vật
-                                        liệu vải, khuy nút chất lượng cao và công nghệ in ấn tiên tiến để đảm bảo bạn nhận được sản phẩm
-                                        hoàn hảo nhất.
+                                        Premium & High-Quality Tailoring Service At GAK, we don’t just offer standard uniform designs — we specialize in customized tailoring to meet the unique needs of each business. From premium fabrics and buttons to advanced printing technologies, every detail is carefully crafted to deliver uniforms that are not only stylish but also of exceptional quality.
                                     </li>
                                     <li>
-                                        Giá trị hợp lý: GAK hiểu rằng việc đầu tư vào đồng phục cần phải hợp lý về chi phí. Với chính sách
-                                        giá cạnh tranh và chất lượng sản phẩm được hoàn thiện tỉ mỉ, chúng tôi cam kết mang lại giá trị tốt
-                                        nhất với mức chi phí bạn đã bỏ ra.
+                                        Reasonable Value At GAK, we understand that investing in uniforms should be cost-effective. With our competitive pricing and meticulous attention to product quality, we are committed to delivering the best value for every amount you spend.
                                     </li>
                                 </ul>
                                 <span>
-                                    Hãy để GAK trở thành đối tác đáng tin cậy của bạn trong việc thiết kế trang phục cao cấp và may đồng
-                                    phục chất lượng . Liên hệ với chúng tôi ngay hôm nay để bắt đầu hành trình tạo ra một hình ảnh chuyên
-                                    nghiệp và thương hiệu ấn tượng cho doanh nghiệp của bạn!
+                                    Let GAK be your trusted partner in designing premium apparel and tailoring high-quality uniforms. Contact us today to begin your journey toward building a professional image and a strong, impressive brand for your business!
                                 </span>
                             </div>
                         </template>
@@ -777,16 +742,16 @@ const form = ref({
 
 const items = [
     {
-        label: 'Cần lưu ý gì khi chọn xưởng may đồng phục giá rẻ?',
+        label: 'What should be noted when choosing a cheap uniform factory?',
         slot: 'item-1',
         defaultOpen: true,
     },
     {
-        label: 'Đồng phục công nhân giá rẻ liệu có tốt không?',
+        label: 'Are cheap worker uniforms any good?',
         slot: 'item-2',
     },
     {
-        label: 'Lợi ích khi đặt may - in ấn đồng phục',
+        label: 'Benefits of ordering uniforms - printing from factory GAK',
         slot: 'item-3',
     },
 ];
@@ -806,8 +771,8 @@ async function submit() {
     });
     if (response.value) {
         toast.add({
-            title: 'Gửi yêu cầu thành công !',
-            description: 'Nhân viên kinh doanh sẽ sớm liên hệ tới bạn!',
+            title: 'Request sent successfully!',
+            description: 'Our sales team will contact you soon!',
             timeout: 5000,
             icon: 'i-heroicons-check-badge',
             color: 'green',
@@ -816,7 +781,7 @@ async function submit() {
         if (error.value.statusCode === 422) {
             let errors = error.value.data.errors;
             toast.add({
-                title: `<p class="text-red-500"> Lỗi! </p>`,
+                title: `<p class="text-red-500"> Error! </p>`,
                 description: errors,
                 timeout: 10000,
                 icon: 'i-heroicons-check-badge',
@@ -825,7 +790,7 @@ async function submit() {
         } else {
             toast.add({
                 title: `<p class="text-red-500"> Lỗi! </p>`,
-                description: 'Oops, Xảy ra lỗi!. Vui lòng thử lại sau',
+                description: 'Oops, an error occurred. Please try again later.',
                 timeout: 10000,
                 icon: 'i-heroicons-check-badge',
                 color: 'red',
@@ -833,8 +798,8 @@ async function submit() {
         }
     }
 }
-let title = 'Nhận đặt may theo yêu cầu tại TPHCM vải tốt | Đồng phục đẹp giá rẻ';
-let pageDescription = 'Công ty GAK mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
+let title = 'Custom uniform orders in HCMC | High-quality fabric, affordable prices';
+let pageDescription = 'GAK offers custom-made uniform solutions, from fabric selection to advanced tailoring techniques for company uniforms, t-shirts, polos, and dresses. We accept sample orders from just 1 piece!'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
@@ -923,7 +888,11 @@ useSeoMeta(seoMeta);
                     position: relative;
                     flex: 1;
                     margin: 0 15px;
-                    height: 100%;
+                    //height: 100%;
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+                    align-items: center;
                     border-radius: 16px;
                     color: #000;
                     text-align: center;

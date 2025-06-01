@@ -9,10 +9,9 @@
                 alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY GAK</h1>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">GAK STORY</h1>
                 <span class="text-lg xl:text-xl"
-                    >Đây là chuyên mục giúp các bạn biết được GAK đã hình thành ra sao và chúng tôi muốn xây dựng một hình mẫu như thế
-                    nào!</span
+                    >This section helps you understand how GAK came to be and what kind of model we want to build!</span
                 >
             </div>
             <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
@@ -25,7 +24,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                        <span class="max-w-[150px] text-lg">Gak Story</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -40,7 +39,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                        <span class="max-w-[150px] text-lg">Culture GAK</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -55,7 +54,7 @@
                         <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/star-blink.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                        <span class="max-w-[150px] text-lg">Customer journey <br />98% satisfaction</span>
                     </div>
                     <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -73,7 +72,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                        <span class="max-w-[150px] text-lg">Gak Story</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -88,7 +87,7 @@
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                        <span class="max-w-[150px] text-lg">Culture GAK</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -103,7 +102,7 @@
                         <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/star-blink.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
+                        <span class="max-w-[150px] text-lg">Customer journey <br />98% satisfaction</span>
                     </div>
                     <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -113,29 +112,24 @@
         <div class="about-content pt-6 md:!pt-[5rem] mx-auto">
             <section class="cs-caption pt-4 pb-8">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-about__heading w-full text-center !my-6">CÔNG TY GAK XIN CHÀO !</h2>
+                    <h2 class="cs-about__heading w-full text-center !my-6">WELCOME GAK</h2>
                     <div class="cs-caption__wrapper !bg-[#2f5acf]">
                         <div class="cs-content">
                             <p>
-                                Bạn ơi, chúng mình cảm ơn bạn đã lựa chọn các sản phẩm công ty GAK. Bạn biết không nhờ vào sự tin yêu và tấm
-                                lòng của bạn đã và đang giúp các nhân viên tại GAK có cuộc sống tốt hơn từng ngày.
+                                Dear valued customer, Thank you so much for choosing GAK's products. Your trust and support truly make a difference—it is because of kind customers like you that our team at GAK continues to build better lives every single day.
                             </p>
                             <p>
-                                Chúng tớ biết mặc dù thương mại điện tử thật sự đang phổ biến, nhưng vẫn có một chút sự phức tạp khi bấm vào
-                                nút đặt hàng. Bạn xinh yêu ơi, nếu bạn đang gặp khó khăn trong hành trình mua hàng của mình, hãy liên hệ tới
-                                đội CSKH của GAK nha.
+                                We understand that while e-commerce is becoming increasingly popular, clicking that "Order" button can still feel a little complicated at times. If you’re facing any difficulties during your shopping journey, please don’t hesitate to reach out to our GAK Customer Support Team—we’re always here to help you.
                             </p>
                             <p>
-                                À bạn ơi, mỗi một sản phẩm trên gian hàng của GAK đều là ảnh sản phẩm thực tế, nhưng đôi lúc cũng có một
-                                chút sai lệch về màu sắc, nên nếu bạn cảm thấy không giống những gì mình hình dung hãy hỏi GAK nha. Chúng tớ
-                                luôn và luôn luôn bên bạn trước và sau bán hàng ạ.
+                                Also, please note that all product images on GAK’s online store are real photos of the actual items. However, due to lighting and screen differences, slight color variations may occur. If something doesn’t look quite like what you imagined, feel free to reach out and ask—we’re happy to assist before and after your purchase.
                             </p>
                             <p>
-                                Tại GAK chúng tớ đi lên bởi sự tử tế, tỉ mỉ và không ngừng tập trung cải thiện sản phẩm, từ nguồn sợi, cho
-                                đến công nghệ may mặc. Bởi chỉ có sự tận tâm và gia tăng giá trị sản phẩm mới đem lại sự tin yêu của khách
-                                hàng và làm hài lòng những người bạn đang đồng hành cùng chúng tớ. Cảm ơn bạn đã chọn Công ty GAK!!!!
+                                At GAK, our foundation is built on kindness, precision, and continuous improvement—from the sourcing of materials to the tailoring technology we use. We believe that only through dedication and adding real value to each product can we earn the trust and satisfaction of our customers and long-term partners.
+
+
                             </p>
-                            <strong class="text-white"> Khám phá hành trình mua sắm Online tại GAK nhé </strong>
+                            <strong class="text-white"> Thank you once again for choosing GAK! We invite you to enjoy a smooth and meaningful online shopping journey with us. </strong>
                         </div>
                     </div>
                 </div>
@@ -145,16 +139,14 @@
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling items-end">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">ĐẶT HÀNG ONLINE THÔNG TIN RÕ RÀNG</h3>
+                                <h3 class="cs-services__title">ORDER ONLINE CLEAR INFORMATION</h3>
                                 <div class="cs-services__description">
-                                    <p>Chúng tớ tin rằng sự minh bạch và đạo đức là nền tảng của một mối quan hệ kinh doanh thành công.</p>
+                                    <p>We believe that transparency and integrity are the foundation of a successful business relationship.</p>
                                     <p>
-                                        Đó là lý do tại sao chúng tớ luôn cam kết cung cấp thông tin rõ ràng và minh bạch đến từng khách
-                                        hàng, từ mỗi giao dịch đặt hàng online cho đến những đơn hàng theo dự án.
+                                        That’s why we are committed to providing clear and transparent information to every customer—whether it’s an individual online order or a large-scale project.
                                     </p>
                                     <p>
-                                        Khi bạn chọn GAK, bạn không chỉ nhận được sản phẩm chất lượng, mà còn được trải nghiệm một quy trình
-                                        mua sắm trực tuyến mượt mà và đáng tin cậy.
+                                        When you choose GAK, you're not only receiving high-quality products, but also experiencing a smooth and trustworthy online shopping process.
                                     </p>
                                 </div>
                                 <div class="cs-services-info__order">01</div>
@@ -169,12 +161,10 @@
                     <div id="services2" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling items-end">
                         <div class="grid__column lg:order-2">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">CHĂM SÓC ĐƠN ĐẶT HÀNG</h3>
+                                <h3 class="cs-services__title">ORDER CARE</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Tại GAK chúng tớ tin rằng sự ân cần và tận tâm là nguồn động lực giúp thể hiện tinh thần tử tế. Mỗi
-                                        khi bạn đặt hàng, chúng tớ sử dụng thông tin đơn hàng sẽ kết nối tới bạn để tư vấn và hướng dẫn bạn
-                                        thủ tục thanh toán để lên đơn hàng nhanh chóng .
+                                        At GAK, we believe that thoughtfulness and dedication are the driving forces behind genuine kindness. Every time you place an order, we use your order information to connect with you—offering consultation and guiding you through the payment process to ensure your order is processed quickly and smoothly.
                                     </p>
                                 </div>
                                 <div class="cs-services-info__order !text-left">02</div>
@@ -189,11 +179,10 @@
                     <div id="services3" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling items-end">
                         <div class="grid__column">
                             <div class="cs-services__content flex flex-col gap-2">
-                                <h3 class="cs-services__title">VĂN HOÁ BE KIND CẨN THẬN VÀ TỈ MỈ</h3>
+                                <h3 class="cs-services__title">BE KIND CULTURE CAREFUL AND MECHANICAL</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Chúng tớ cam kết với bạn rằng, từng sản phẩm mà đặt mua đều được đối xử tích cực, từ khi nó được may
-                                        mặc ra, in ấn, đóng gói - vận chuyển để đến tay bạn với sự chỉn chu nhất có thể.
+                                        We assure you that every product you order is treated with care and integrity — from the moment it is tailored, printed, and packaged, to the moment it is delivered to your hands — with the utmost attention to detail.
                                     </p>
                                 </div>
                                 <div class="cs-services-info__order mt-auto">03</div>
@@ -210,7 +199,7 @@
             <section class="services-thankyou mt-8 lg:mt-[128px]">
                 <div class="services-thankyou__wrapper">
                     <h2 class="services-thankyou__heading">THANK YOU!</h2>
-                    <div class="services-thankyou__content">Trong cuộc sống có quá nhiều sự lựa chọn, cảm ơn bạn đã chọn GAK!</div>
+                    <div class="services-thankyou__content">In a world full of choices, thank you for choosing GAK!</div>
                 </div>
                 <div class="services-thankyou__image">
                     <picture style="width: 100%"
@@ -222,11 +211,11 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
+                        Join the GAK Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal GAK
+                            Join the GAK Deal Hunters group
                         </UButton>
                         <UButton
                             :to="localePath({name: 'gak-official'})"
@@ -251,8 +240,8 @@ const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
 
-let title = 'CSKH GAK tận tâm và hành trình mua sắm tận gốc!';
-let pageDescription = 'Cảm ơn bạn đã chọn GAK, chúng tôi ở đây là vì bạn, không ngừng cải thiện tất cả dịch vụ để bạn luôn hài lòng và có những trải nghiệm tốt nhất tại GAK.'
+let title = 'GAK’s dedicated customer service and a direct-to-source shopping journey!';
+let pageDescription = 'Thank you for choosing GAK. We’re here for you — constantly improving our services so you’re always satisfied and have the best experience with us.'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

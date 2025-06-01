@@ -4,15 +4,15 @@
             <div v-if="!isLoadingPage" class="container mx-auto flex flex-col-reverse lg:flex-row items-start w-full gap-4">
                 <div class="cart-information-user flex flex-col gap-6 w-full lg:w-1/2 border-r border-gray-300 pr-4">
                     <div class="flex flex-col gap-2 font-medium">
-                        <div class="text-3xl font-bold">Chào {{ 'quý khách' }}</div>
+                        <div class="text-3xl font-bold">{{ trans('Hello guests') }}</div>
                         <span>
-                            {{ $t('Tổng tiền') }} ({{ cartNumber + ' ' + $t('sản phẩm') }})
-                            <b class="text-blue-600">{{ getPaidPrice() }}đ</b>
+                            {{ trans('totalAmount', { count: cartNumber }) }}
+                            <b class="text-blue-600">{{ getPaidPrice() }}{{trans('price_name')}}</b>
                         </span>
                     </div>
                     <div class="flex flex-col gap-4 w-full">
                         <div class="flex items-center justify-between">
-                            <div class="font-bold text-2xl">{{ $t('Thông tin vận chuyển') }}</div>
+                            <div class="font-bold text-2xl">{{ trans('Shipping information') }}</div>
                         </div>
                         <UForm ref="form" :schema="schema" :state="state" class="flex flex-col gap-4 w-full">
                             <div class="flex items-center justify-between gap-4 w-full">
@@ -21,7 +21,7 @@
                                         v-model="state.name"
                                         size="xl"
                                         class="w-full custom-input"
-                                        :placeholder="$t('Họ tên')"
+                                        :placeholder="trans('Full name')"
                                         :ui="{ rounded: 'rounded-full' }" />
                                 </UFormGroup>
                                 <UFormGroup label="" name="User Phone" class="w-full">
@@ -29,7 +29,7 @@
                                         v-model="state.phone"
                                         size="xl"
                                         class="w-full custom-input"
-                                        :placeholder="$t('Số điện thoại')"
+                                        :placeholder="trans('Phone')"
                                         :ui="{ rounded: 'rounded-full' }" />
                                 </UFormGroup>
                             </div>
@@ -38,7 +38,7 @@
                                     v-model="state.email"
                                     size="xl"
                                     class="w-full custom-input"
-                                    :placeholder="$t('Email')"
+                                    :placeholder="trans('Email')"
                                     :ui="{ rounded: 'rounded-full' }" />
                             </UFormGroup>
                             <UFormGroup label="" name="User address" class="w-full">
@@ -46,11 +46,11 @@
                                     v-model="state.address"
                                     size="xl"
                                     class="w-full custom-input"
-                                    :placeholder="$t('Địa chỉ')"
+                                    :placeholder="trans('Address')"
                                     :ui="{ rounded: 'rounded-full' }" />
                             </UFormGroup>
                             <div class="flex items-center gap-2 w-full flex-wrap xl:flex-nowrap">
-                                <UFormGroup v-if="!loadingCities" label="" name="Tỉnh/Thành phố" class="w-full xl:w-1/3">
+                                <UFormGroup v-if="!loadingCities" label="" :name="trans('Province/City')" class="w-full xl:w-1/3">
                                     <USelectMenu
                                         v-model="state.city"
                                         size="xl"
@@ -59,7 +59,7 @@
                                         clear-search-on-close
                                         searchable-placeholder="Search a city..."
                                         class="w-full custom-input"
-                                        :placeholder="$t('Tỉnh/Thành phố')"
+                                        :placeholder="trans('Province/City')"
                                         option-attribute="name"
                                         :uiMenu="{ container: 'max-w-full' }"
                                         value-attribute="id"
@@ -70,7 +70,7 @@
                                         </template>
                                     </USelectMenu>
                                 </UFormGroup>
-                                <UFormGroup label="" name="Quận/Huyện" class="w-full xl:w-1/3">
+                                <UFormGroup label="" :name="trans('District')" class="w-full xl:w-1/3">
                                     <USelectMenu
                                         v-model="state.district"
                                         size="xl"
@@ -79,7 +79,7 @@
                                         clear-search-on-close
                                         searchable-placeholder="Search a district..."
                                         class="w-full custom-input"
-                                        :placeholder="$t('Quận/Huyện')"
+                                        :placeholder="trans('District')"
                                         option-attribute="full_name"
                                         :uiMenu="{ container: ' max-w-full' }"
                                         value-attribute="id"
@@ -90,7 +90,7 @@
                                         </template>
                                     </USelectMenu>
                                 </UFormGroup>
-                                <UFormGroup label="" name="Phường/Xã" class="w-full xl:w-1/3">
+                                <UFormGroup label="" :name="trans('Ward')" class="w-full xl:w-1/3">
                                     <USelectMenu
                                         v-model="state.ward"
                                         size="xl"
@@ -99,7 +99,7 @@
                                         clear-search-on-close
                                         searchable-placeholder="Search a ward..."
                                         class="w-full custom-input"
-                                        :placeholder="$t('Phường/Xã')"
+                                        :placeholder="trans('Ward')"
                                         :uiMenu="{ container: 'max-w-full' }"
                                         option-attribute="full_name"
                                         value-attribute="id"
@@ -116,7 +116,7 @@
                                     v-model="state.note"
                                     size="xl"
                                     class="w-full custom-input"
-                                    :placeholder="$t('Ghi chú thêm(Ví dụ: Giao hàng giờ hành chính,...)')"
+                                    :placeholder="trans('Additional notes (Example: Delivery during business hours,...)')"
                                     :ui="{ rounded: 'rounded-full' }" />
                             </UFormGroup>
                         </UForm>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="flex flex-col gap-4 w-full">
                         <div class="flex items-center justify-between">
-                            <div class="font-bold text-2xl">{{ $t('Hình thức thanh toán') }}</div>
+                            <div class="font-bold text-2xl">{{ trans('Payment method') }}</div>
                         </div>
                         <UCheckbox
                             @click="setCheckBox(1)"
@@ -146,7 +146,7 @@
                                     <UIcon name="i-eva-car-fill" class="text-4xl text-gray-500" dynamic></UIcon>
                                     <div class="flex flex-col gap-2">
                                         <span>COD</span>
-                                        <span class="text-xs">Thanh toán khi nhận hàng</span>
+                                        <span class="text-xs">{{trans('Cash on Delivery')}}</span>
                                     </div>
                                 </div>
                             </template>
@@ -166,7 +166,7 @@
                                 <div class="flex items-center gap-4">
                                     <img src="/images/momo-icon.webp" class="h-8 w-8 object-contain" />
                                     <div class="flex flex-col gap-2">
-                                        <span>Thanh toán Momo</span>
+                                        <span>{{trans('Momo payment')}}</span>
                                     </div>
                                 </div>
                             </template>
@@ -186,7 +186,7 @@
                                 <div class="flex items-center gap-4">
                                     <img src="/images/zalo-icon.svg" class="h-12 w-12 object-contain" />
                                     <div class="flex flex-col gap-2">
-                                        <span>Thanh toán Zalopay</span>
+                                        <span>{{trans('Payment Zalopay')}}</span>
                                     </div>
                                 </div>
                             </template>
@@ -206,7 +206,7 @@
                                 <div class="flex items-center gap-4">
                                     <img src="/images/shopee-pay-logo.png" class="h-8 w-8 object-contain" />
                                     <div class="flex flex-col gap-2">
-                                        <span>Ví ShopeePay</span>
+                                        <span>{{trans('ShopeePay Wallet')}}</span>
                                     </div>
                                 </div>
                             </template>
@@ -226,16 +226,16 @@
                                 <div class="flex items-center gap-4">
                                     <img src="/images/vnpay-logo.webp" class="h-8 w-8 object-contain" />
                                     <div class="flex flex-col gap-2">
-                                        <span>Ví điện tử VNPAY/ VNPAY QR</span>
+                                        <span>{{trans('VNPAY/ VNPAY QR e-wallet')}}</span>
                                     </div>
                                 </div>
                             </template>
                         </UCheckbox>
                     </div>
                     <div class="text-sm font-medium">
-                        {{ $t('Nếu bạn không hài lòng với sản phẩm của chúng tôi? Bạn hoàn toàn có thể trả lại sản phẩm. Tìm hiểu thêm') }}
+                        {{ trans('If you are not satisfied with our product? You can return it. Learn more') }}
                         <NuxtLink :to="localePath({ name: 'index' })">
-                            <b>{{ $t('tại đây.') }}</b>
+                            <b>{{ trans('here') }}.</b>
                         </NuxtLink>
                     </div>
                     <UButton
@@ -251,15 +251,15 @@
                         :loading="false"
                         @click="handleProcessOrder"
                         block>
-                        {{ $t('Thanh toán') + '(COD)' }}
+                        {{trans('Pay') + '(COD)' }}
                     </UButton>
                 </div>
                 <div class="cart-product flex flex-col gap-4 w-full lg:w-1/2">
-                    <div class="text-3xl font-bold">{{ $t('Giỏ hàng') }}</div>
+                    <div class="text-3xl font-bold">{{ trans('Shopping cart') }}</div>
                     <div
                         class="font-medium uppercase text-gray-400 text-sm pb-4 border-b border-gray-300 w-full flex items-center justify-between">
-                        <span>{{ $t('Mô tả sản phẩm') }}</span>
-                        <span>{{ $t('Giá') }}</span>
+                        <span>{{ trans('Product description') }}</span>
+                        <span>{{ trans('Price') }}</span>
                     </div>
                     <div v-if="listCart.length > 0" class="product-list flex flex-col gap-4 divide-y divide-gray-300">
                         <div class="product-list-item w-full flex gap-4 pt-4" v-for="(item, index) in listCart">
@@ -278,7 +278,7 @@
                                 </NuxtLink>
                                 <div
                                     class="flex flex-col md:flex-wrap md:flex-row items-start gap-4 md:items-center justify-between w-full h-full md:gap-2">
-                                    {{ $t('Số Lượng') + ': ' + findQuantity(item) }}
+                                    {{ trans('Quantity') + ': ' + findQuantity(item) }}
                                     <div class="product-price">
                                         <div v-if="item.percent == 0" class="original-price">
                                             {{ formatPriceProduct(item.price) + 'đ' }}
@@ -294,60 +294,60 @@
                                 </div>
                                 <button class="delete-product flex items-center gap-2" @click="handleDeleteCartItem(item, index)">
                                     <UIcon name="i-material-symbols-delete-outline" class="text-xl" dynamic />
-                                    {{ $t('Xóa') }}
+                                    {{ trans('Remove') }}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div v-else class="product-list-empty h-24 border border-dashed rounded-lg flex items-center justify-center">
-                        {{ $t('Không có sản phẩm nào trong giỏ hàng') }}
+                        {{ trans('There are no products in the cart') }}
                     </div>
                     <UDivider />
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
-                        <div>{{ $t('Tạm tính') }}</div>
+                        <div>{{trans('Subtotal')}}</div>
                         <div class="total-price flex flex-col items-end gap-2">
                             {{ getFullTotalPrice() }}đ
                             <span v-if="true" class="italic text-xs">
-                                ({{ $t('Tiết kiệm') }} <span class="text-blue-600">{{ getFullDiscountPrice() + 'k' }} </span>)
+                                ({{ trans('Saving') }} <span class="text-blue-600">{{ getFullDiscountPrice() + trans('price_name') }} </span>)
                             </span>
                         </div>
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
-                        <div>{{ $t('Giảm giá') }}</div>
+                        <div>{{ trans('Discount') }}</div>
                         <div class="discount-price flex flex-col items-end gap-2">{{ getFullDiscountPrice(false) }}đ</div>
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
-                        <div>{{ $t('Phí giao hàng') }}</div>
-                        <div class="discount-price flex flex-col items-end gap-2">{{ 'Miễn phí' }}</div>
+                        <div>{{ trans('Shipping fee') }}</div>
+                        <div class="discount-price flex flex-col items-end gap-2">{{ trans('Free') }}</div>
                     </div>
                     <UDivider />
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
-                        <div>{{ $t('Tổng') }}</div>
+                        <div>{{trans('Total')}}</div>
                         <div class="discount-price flex flex-col items-end gap-2 text-2xl">
                             {{ getPaidPrice() }}đ
                             <span v-if="getFullDiscountPrice() > 0" class="italic text-xs text-red-500">
-                                ({{ $t('Đã giảm') + ' ' + getFullDiscountPrice() + 'k' + ' ' + $t('trên giá gốc') }})
+                                ({{ trans('discountLabel', { price: getFullDiscountPrice() }) }})
                             </span>
                         </div>
                     </div>
 
                     <div class="mt-8">
-                        <b>Thông qua ấn nút thanh toán bạn đã hiểu về các loại chính sách khi mua hàng tại website GAK.VN</b>
+                        <b>{{trans('By clicking the payment button, you have understood the policies when purchasing at the website GAK.VN')}}</b>
                        <ul class="list-disc px-4">
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-bao-mat' })">Chính sách bảo mật</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-bao-mat' })">{{trans('Privacy policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-giao-hang' })">Chính sách giao hàng</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-giao-hang' })">{{trans('Delivery policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-khuyen-mai' })">Chính sách khuyến mãi</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-khuyen-mai' })">{{trans('Promotion policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-hoan-tra-san-pham' })">Chính sách hoàn trả sản phẩm</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-hoan-tra-san-pham' })">{{trans('Product return policy')}}</NuxtLink>
                            </li>
                        </ul>
-                        <p>Cảm ơn bạn đã tin chọn và mua sắm các sản phẩm tại GAK.VN</p>
+                        <p>{{trans('Thank you for choosing and purchasing products at GAK.VN')}}</p>
                     </div>
                 </div>
             </div>
@@ -497,8 +497,8 @@ const handleProcessOrder = async () => {
     });
     if (response.value) {
         toast.add({
-            title: trans('Đặt hàng thành công') + ' !',
-            description: trans('Đơn hàng của bạn đã đặt thành công, Nhân viên kinh doanh sẽ sớm liên hệ tới bạn!'),
+            title: trans('Order successful') + ' !',
+            description: trans('Your order has been placed successfully, Sales staff will contact you soon!'),
             timeout: 5000,
             icon: 'i-heroicons-check-badge',
             color: 'green',
@@ -521,7 +521,7 @@ const handleProcessOrder = async () => {
         } else {
             toast.add({
                 title: `<p class="text-red-500"> ${trans('Warning')} </p>`,
-                description: trans('Oops, Xảy ra lỗi!. Vui lòng thử lại sau'),
+                description: trans('Oops, An error occurred! Please try again later'),
                 timeout: 10000,
                 icon: 'i-heroicons-check-badge',
                 color: 'red',
@@ -730,8 +730,8 @@ watch(
 );
 
 
-let title = 'Giỏ hàng';
-let description = 'Hoàn tất quá trình thanh toán mua sắm online của bạn tại công ty GAK. Minh bạch các thông tin giao nhận, đổi trả và hơn thế nữa.';
+let title = trans('Shopping cart');
+let description = 'Complete your online shopping at GAK. Transparent delivery, returns and more.';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

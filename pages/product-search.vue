@@ -1,21 +1,34 @@
 <template>
     <NuxtLayout name="main">
-        <div class="category-page pt-8 bg-white">
+        <div v-if="!loadingPageCollection" class="category-page pt-8 bg-white">
             <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">CÁC MẪU ĐỒNG PHỤC CÔNG TY 2024 MỚI NHẤT</h1>
+                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ trans('All products') }}</h1>
                     </div>
+                    <UInput
+                        class="search-box max-w-[500px] rounded-[50px] bg-white"
+                        name="search-box"
+                        size="xl"
+                        color="white"
+                        variant="outline"
+                        icon="i-heroicons-magnifying-glass-20-solid"
+                        :loading="loadingProductCollection"
+                        v-model="searchItem"
+                        :ui="{ icon: { trailing: { pointer: '' } } }"
+                        autocomplete="off"
+                        :placeholder="trans('Search products')">
+                    </UInput>
                 </div>
-                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 mt-12">
-                    <div v-if="!loadingCollection" class="category-main-left w-full lg:max-w-[350px] md:pr-4">
-                        <div class="flex flex-col gap-4 justify-start w-full sticky top-8">
+                <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
+                    <div class="category-main-left w-full lg:max-w-[350px] md:pr-4">
+                        <div class="flex flex-col gap-4 justify-start w-full">
                             <div
                                 class="filter-result text-sm font-semibold w-full pb-2 border-b border-gray-400 flex items-center justify-between gap-4">
                                 {{
-                                    (!loadingCollectionProduct && collectionProduct.data ? collectionProduct.data.length : '') +
+                                    (!loadingProductCollection && productCollection.data ? productCollection.data.length : '') +
                                     ' ' +
-                                    $t('Kết quả')
+                                    trans('Result')
                                 }}
                                 <UButton
                                     v-if="Object.keys(selectedAll).length > 0"
@@ -24,19 +37,19 @@
                                     color="none"
                                     class="border rounded-3xl border-black font-bold"
                                     @click="removeAllFilter"
-                                    >{{ $t('Xóa lọc') }}
-                                </UButton>
+                                    >{{ trans('Clear filtering') }}</UButton
+                                >
                             </div>
                             <div
                                 :class="showFullOption ? 'h-full' : 'h-[170px] overflow-hidden'"
                                 class="filter-options grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-4">
                                 <div v-for="variant in collection.data" class="filter-option-item flex flex-col gap-4">
-                                    <UAccordion :items="[variant]" :key="variant" :defaultOpen="false && variant.attributes.length < 6 ? true : false">
+                                    <UAccordion :items="[variant]" :key="variant" :defaultOpen="variant.attributes.length < 6 ? true : false">
                                         <template #default="{ item, index, open }">
                                             <UButton
                                                 color="none"
                                                 variant="ghost"
-                                                class="border-b border-gray-200 dark:border-gray-700 px-0"
+                                                class="border-b border-gray-200 dark:border-gray-700 pl-0"
                                                 :ui="{ rounded: 'rounded-none', padding: { sm: 'p-3' } }">
                                                 <span class="truncate text-gray-700">{{ item.name }} ({{item.attributes.length}})</span>
                                                 <template #trailing>
@@ -69,7 +82,7 @@
                                 color="none"
                                 @click="showFullOption = !showFullOption"
                                 class="show-option-btn border text-gray-500 border-gray-400 ring-0 justify-center">
-                                {{ showFullOption ? 'Thu gọn' : 'Mở rộng' }}
+                                {{ showFullOption ? trans('Collapse') : trans('Expand') }}
                                 <UIcon
                                     class="text-sm"
                                     :name="showFullOption ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
@@ -83,7 +96,7 @@
                                 <span class="uppercase text-gray-500 fs-14 font-medium">Phân loại</span>
                                 <USelectMenu v-model="filter" :options="filterList" option-attribute="name" class="w-full max-w-[200px]">
                                     <UButton size="lg" color="gray" class="flex-1 justify-between">
-                                        {{ filter ? filter.name : $t('Sắp xếp theo') }}
+                                        {{ filter ? filter.name : trans('Sort by') }}
                                         <UIcon
                                             name="i-heroicons-chevron-right-20-solid"
                                             class="w-5 h-5 transition-transform transform rotate-90 text-gray-400 dark:text-gray-500" />
@@ -94,45 +107,32 @@
                                 </USelectMenu>
                             </div>
                         </div>
-                        <div v-if="loadingCollectionProduct" class="category-data-list">
-                            <div v-for="product in 4" class="category-data-item" :key="product">
+                        <div v-if="loadingProductCollection" class="category-data-list">
+                            <div v-for="product in 6" class="category-data-item" :key="product">
                                 <ProductCard />
                             </div>
                         </div>
                         <div
-                            v-else-if="!loadingCollectionProduct && collectionProduct.data && collectionProduct.data.length > 0"
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length > 0"
                             class="category-data-list">
-                            <div v-for="product in collectionProduct.data" class="category-data-item border p-2 rounded-lg" :key="product">
+                            <div v-for="product in productCollection.data" class="category-data-item" :key="product">
                                 <ProductCard :product="product" />
                             </div>
                         </div>
                         <div
-                            v-else-if="!loadingCollectionProduct && collectionProduct.data && collectionProduct.data.length == 0"
+                            v-else-if="!loadingProductCollection && productCollection.data && productCollection.data.length == 0"
                             class="category-data-list">
                             <div
                                 class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
-                                {{ 'Không có sản phẩm trong danh mục này' }}
+                                {{ trans('There are no products in this category') }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
-                <div class="container mx-auto md:max-w-[1280px] p-4">
-                    <span class="text-gray-500 font-medium fs-20 leading-relaxed"
-                        >GAK tiên phong trong việc cung ứng các sản phẩm chất lượng, tuỳ biến chính xác theo nhu cầu khách hàng và không ngừng cải tiến chất lượng sản phẩm
-                    </span>
-                </div>
-            </div>
         </div>
         <div
-            v-if="collectionError"
-            class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
-            {{ collectionError.data.message }}
-            <UButton size="lg" :to="localePath({ name: 'index' })">{{ $t('Quay trở về') }}</UButton>
-        </div>
-        <div
-            v-if="loadingCollection"
+            v-if="loadingPageCollection"
             class="category-page container mx-auto mt-[128px] flex flex-col gap-8 items-center justify-center w-full">
             <div class="loading-wrapper">
                 <div class="loading"></div>
@@ -150,36 +150,41 @@ defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
 
+const { locale, t: trans } = useI18n();
+
 const router = useRouter();
 const localePath = useLocalePath();
-
+const modules = [Scrollbar];
+const isLoadingData = ref(false);
+const loadingPageCollection = ref(true);
 const showFullOption = ref(true);
+const tabIndex = ref(0);
+const searchItem = ref(router.currentRoute.value.query ? router.currentRoute.value.query.search : null);
 
 const filterList = ref([
     {
-        name: 'Mới nhất',
-        value: 'newest',
+        name: trans('Latest'),
+        value: 0,
     },
     {
-        name: 'Cũ nhất',
-        value: 'oldest',
+        name: trans('Oldest'),
+        value: 1,
     },
     {
-        name: 'Bán chạy',
-        value: 'best_sale',
+        name: trans('Price: Low to High'),
+        value: 2,
     },
     {
-        name: 'Giá thấp đến cao',
-        value: 'Price increasement',
-    },
-    {
-        name: 'Giá cao đến thấp',
-        value: 'Price decreasement',
+        name: trans('Price: High to Low'),
+        value: 3,
     },
 ]);
 
 const filter = ref(filterList.value[0]);
 
+const selectedForm = ref({});
+const selectedMaterial = ref({});
+const selectedColor = ref(null);
 const refreshData = ref(0);
 const selectedAll = ref({});
 const removeAllFilter = () => {
@@ -193,11 +198,20 @@ const setFilterSelect = (id, e) => {
     refreshData.value++;
 };
 
+const changeCategoryTab = (index) => {
+    tabIndex.value = index;
+    isLoadingData.value = true;
+    setTimeout(() => {
+        isLoadingData.value = false;
+    }, 500);
+};
+
+const deboundTime = ref({
+    timeOut: null,
+});
+
 const getParamsCollection = async () => {
-    let params = {
-        category_name: 'dong phuc',
-        limit: 20,
-    };
+    let params = {};
     let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
     if (attribute.length > 0) {
         attribute = attribute.filter((item) => item.value == true);
@@ -206,6 +220,9 @@ const getParamsCollection = async () => {
                 params[`attributes[${index}]`] = item.key;
             }
         });
+    }
+    if (router.currentRoute.value.query) {
+        params.search = searchItem.value;
     }
     switch (filter.value.value) {
         case 0:
@@ -226,15 +243,14 @@ const getParamsCollection = async () => {
     return params;
 };
 
-const { data: collection, pending: loadingCollection } = await useLazyAsyncData('all-attribute-group', async () =>
-    useOriginalFetch(`/api/v1/attribute-groups`),
-);
+//data
 const {
-    data: collectionProduct,
-    pending: loadingCollectionProduct,
+    data: collection,
+    pending: loadingCollection,
     error: collectionError,
-} = await useLazyAsyncData(
-    'collection-dong-phuc',
+} = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`));
+const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
+    'product-category-all',
     async () =>
         useOriginalFetch(`/api/v1/products`, {
             params: await getParamsCollection(),
@@ -245,33 +261,52 @@ const {
     },
 );
 
+watch(
+    () => loadingCollection.value,
+    () => {
+        if (!loadingCollection.value) loadingPageCollection.value = false;
+    },
+);
+
+watch(
+    () => searchItem.value,
+    async () => {
+        clearTimeout(deboundTime.value.timeOut);
+        deboundTime.value.timeOut = setTimeout(() => {
+            refreshData.value++;
+            deboundTime.value.timeOut = null;
+        }, 500);
+    },
+);
+// const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
+//     useOriginalFetch(`/api/v1/categories`),
+// );
+
 // watch(
 //     () => collectionError.value,
 //     () => {},
 // );
 
-let title = 'Các mẫu đồng phục công ty mới nhất';
-let description = 'Các mẫu đồng phục công ty mới nhất';
-
+let title = 'Tìm kiếm sản phẩm';
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
     title: title,
-    description: description,
+    description: config.public.description,
     theme: '#ff0000',
     colorMode: 'dark',
 });
 defineOgImage({
-    url:  config.public.logo,
+    url: config.public.logo,
 });
 let seoMeta = {
-    description:  description,
-    ogDescription:  description,
+    description: config.public.description,
+    ogDescription: config.public.description,
     ogTitle: title,
     title: title,
     twitterTitle: title,
-    twitterDescription:  description,
-    keywords: 'Đồng phục công ty',
+    twitterDescription: config.public.description,
+    keywords: title,
 };
 useSeoMeta(seoMeta);
 </script>

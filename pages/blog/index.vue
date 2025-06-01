@@ -20,7 +20,7 @@
                         :ui="{ rounded: 'rounded-2xl' }"
                         v-model="searchBlog"
                         name="search-box-blog"
-                        :placeholder="$t('Tìm kiếm bài viết...')" />
+                        :placeholder="trans('Search articles...')" />
                 </div>
                 <div v-if="!loadingArticleGroup" class="filter-category-blog flex flex-wrap items-center gap-6 w-full">
                     <USelectMenu
@@ -46,7 +46,7 @@
                             class="rounded-full h-11 px-6 font-bold border border-gray-300 shadow-sm"
                             variant="ghost"
                             color="none"
-                            >{{ $t('Gak có gì mới?') }}
+                            >{{ trans("What's new in Gak?") }}
                         </UButton>
                     </NuxtLink>
                 </div>
@@ -54,12 +54,12 @@
                     <div
                         v-if="!loadingArticleHot && articlesHot.data && articlesHot.data.length > 0"
                         class="flex w-full md:w-1/2 md:max-w-[660px]">
-                        <ArticleSwiper :articleList="articlesHot.data"  :title="'Bài viết nổi bật'" />
+                        <ArticleSwiper :articleList="articlesHot.data" :title="trans('Featured article')" />
                     </div>
                     <div
                         v-if="!loadingArticleView && articlesView.data && articlesView.data.length > 0"
                         class="most-view flex flex-col gap-4 py-4 md:py-0 w-full md:w-2/5">
-                        <div class="title text-[28px] 2xl:text-[36px] font-bold">{{ $t('Xem nhiều nhất') }}</div>
+                        <div class="title text-[28px] 2xl:text-[36px] font-bold">{{ trans('Most viewed') }}</div>
                         <div class="article-list flex flex-col gap-6 md:gap-3">
                             <ArticleBadge v-for="article in articlesView.data"  :article="article" />
                         </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="blog-daily flex flex-col gap-4 w-full">
                     <div class="title text-[28px] 2xl:text-[30px] font-bold py-3 px-5 bg-[#008000] text-white rounded-xl">
-                        {{ $t('Bài mới mỗi ngày') }}
+                        {{ trans('New articles every day') }}
                     </div>
                     <div
                         v-if="!loadingArticleNew && articleNew.data && articleNew.data.length > 0"
@@ -82,7 +82,7 @@
                             <UButton
                                 @click="getArticle"
                                 class="rounded-2xl justify-center py-2.5 px-6"
-                               >   <span class="uppercase font-bold">{{ $t('Xem thêm') }}</span></UButton>
+                               >   <span class="uppercase font-bold">{{ trans('Load more') }}</span></UButton>
                         </div>
                     </div>
                 </div>
@@ -101,6 +101,8 @@ definePageMeta({
         canonical: false,
     },
 });
+
+const { locale, t: trans } = useI18n();
 const localePath = useLocalePath();
 const searchBlog = ref(null);
 
@@ -182,7 +184,7 @@ onBeforeUnmount(() => {
     }
 });
 
-let title = 'Tất cả bài viết';
+let title = trans('All articles');
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

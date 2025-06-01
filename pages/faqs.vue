@@ -4,8 +4,8 @@
             <div class="about-us-image relative">
                 <div
                     class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center">
-                    <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">Xin chào</h1>
-                    <span class="text-lg xl:text-xl">GAK có thể giúp gì cho bạn?</span>
+                    <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">{{trans('Hello')}}</h1>
+                    <span class="text-lg xl:text-xl">{{trans('How can GAK assist you?')}}</span>
                 </div>
             </div>
             <div class="about-content !py-12 container mx-auto">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="footer-policy-page flex flex-col gap-4 items-center mt-auto">
-                <h3>Bạn có muốn tìm thêm thông tin gì không?</h3>
+                <h3>{{trans('Would you like to find more information?')}}</h3>
                 <div class="contact__content-hotline mx-auto">
                     <div class="contact__content-info">
                         <img
@@ -71,53 +71,54 @@
 import EditorBox from '@@/components/EditorBox.vue';
 import images from 'assets/icons';
 
+const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
 const defaultIndex = ref(6)
 const items = ref([
     {
-        label: 'Điều khoản sử dụng',
+        label: trans('Terms of Use'),
         slug: 'dieu-khoan-su-dung',
         content: 'This is the content shown for Tab1',
     },
     {
-        label: 'Chính sách Cookie',
+        label: trans('Cookie Policy'),
         slug: 'chinh-sach-cookie',
         content: 'And, this is the content for Tab2',
     },
     {
-        label: 'Chính sách khuyến mãi',
+        label: trans('Promotional Policy'),
         slug: 'chinh-sach-khuyen-mai',
         content: 'Finally, this is the content for Tab3',
     },
     {
-        label: 'Chính sách bảo mật',
+        label: trans('Privacy Policy'),
         slug: 'chinh-sach-bao-mat',
         content: 'Finally 1, this is the content for Tab3',
     },
     {
-        label: 'Chính sách giao hàng',
+        label: trans('Shipping Policy'),
         slug: 'chinh-sach-giao-hang',
         content: 'Finally 2, this is the content for Tab3',
     },
     {
-        label: 'Chính sách hoàn trả sản phẩm',
+        label: trans('Return Policy'),
         slug: 'chinh-sach-hoan-tra-san-pham',
         content: 'Finally 3, this is the content for Tab3',
     },
     {
-        label: 'Hỏi đáp - FAQs',
+        label: trans('FAQs'),
         slug: 'faqs',
         content: 'Finally 3, this is the content for Tab3',
     },
     {
-        label: 'Quy định thanh toán',
+        label: trans('Payment Regulations'),
         slug: 'quy-dinh-thanh-toan',
         content: 'Finally 3, this is the content for Tab3',
     },
     {
-        label: 'Chính sách kiểm hàng',
+        label: trans('Inspection Policy'),
         slug: 'chinh-sach-kiem-hang',
         content: 'Finally 3, this is the content for Tab3',
     }

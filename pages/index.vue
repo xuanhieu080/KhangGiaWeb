@@ -108,6 +108,20 @@ import CategoryBox from '@/components/categories/CategoryBox.vue';
 import DiaryWrapper from '@/components/diary/diaryWrapper.vue';
 const localePath = useLocalePath();
 
+import { storeToRefs } from 'pinia';
+import { useLanguageLink } from '~/store/languageLink';
+
+const { locale, t: trans } = useI18n()
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+if (locale.value == 'vi') {
+    link.value = 'en';
+} else {
+    link.value = 'en';
+}
+
 import { useHeader } from '@@/store/useHeader';
 const useHeaderStore = useHeader();
 const { isScrollDown, isLoadingPage } = storeToRefs(useHeaderStore);

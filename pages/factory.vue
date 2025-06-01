@@ -22,30 +22,22 @@
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg space-y-8">
-                    <h2 class="cs-services__heading">TỰ CHỦ NGUỒN NGUYÊN LIỆU VÀ SẢN XUẤT</h2>
+                    <h2 class="cs-services__heading">AUTONOMY IN RAW MATERIALS AND PRODUCTION</h2>
                     <div
                         id="services1"
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column lg:order-2 my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">CÂU CHUYỆN TỰ HÀO HÀNG VIỆT NAM</h3>
+                                <h3 class="cs-services__title">STORY OF PROUD VIETNAMESE PRODUCTS</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Nghề may mặc của Việt Nam đã được cả thế giới biết đến nhờ sự tỉ mỉ, tinh tế và chất lượng cao của
-                                        những bộ quần áo được tạo ra bởi các thợ may lành nghề người Việt. Chính từ những tinh hoa này đã
-                                        giúp ngành dệt may Việt Nam trở thành điểm sáng trong mắt bạn bè quốc tế.
+                                        Vietnam’s garment industry has gained global recognition for the meticulous craftsmanship, precision, and high quality embedded in every stitch. Behind each piece of clothing lies the dedication of skilled Vietnamese tailors — artisans who bring both tradition and innovation to life.
                                     </p>
                                     <p>
-                                        Trong hành trình của mình, chúng tôi đã đi đến nhiều nơi, học hỏi và áp dụng nhiều quy trình may mặc
-                                        tiên tiến để tạo ra những sản phẩm chất lượng như áo đồng phục và áo bảo hộ. Tuy nhiên, điều khiến
-                                        chúng tôi ấn tượng nhất là sự yêu thích và đón nhận từ khắp năm châu dành cho các sản phẩm đồng phục
-                                        mang thương hiệu GAK.
+                                        Throughout our journey, we at GAK have traveled far and wide, learning and implementing advanced manufacturing techniques to create world-class uniforms and protective workwear. Yet, what touches us most deeply is the genuine admiration and trust our GAK-branded products have received from customers across five continents.
                                     </p>
                                     <p>
-                                        Từ niềm tự hào về hàng Việt Nam, chúng tôi đã trở về và tập trung phân phối sản phẩm trong nước với
-                                        mong muốn mang đến cho người dân quê hương những sản phẩm chất lượng từ thương hiệu GAK. Chúng tôi
-                                        hy vọng những bộ đồng phục và các sản phẩm khác của GAK sẽ mang đến giá trị tích cực, đồng thời cung
-                                        cấp cho mọi người cơ hội sở hữu những sản phẩm chất lượng với mức giá hợp lý nhất.
+                                        Fueled by pride in Vietnamese craftsmanship, we’ve returned to our roots — delivering these international-quality products back to the hands of our own people. We believe that every Vietnamese deserves access to well-made, durable uniforms and workwear at a fair price.
                                     </p>
                                 </div>
                             </div>
@@ -61,17 +53,13 @@
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">CỐT LÕI TỪ SỢI, VẢI VÓC VÀ TỰ CHỦ NGUỒN LỰC SẢN XUẤT</h3>
+                                <h3 class="cs-services__title">CORE FROM FIBERS, FABRICS AND SELF-CONTROL OF PRODUCTION RESOURCES</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Đem đến những sản phẩm quần áo đẹp, ổn định và đồng đều qua từng thời kỳ là một thách thức lớn đối
-                                        với bất kỳ công ty may mặc nào. Tuy nhiên, tại GAK, chúng tôi tập trung toàn bộ nguồn lực vào việc
-                                        xây dựng từ gốc, từ khâu tuyển chọn sợi, công nghệ dệt - nhuộm đến nguồn nguyên phụ liệu.
+                                        Creating garments that are consistently beautiful, stable in quality, and reliable across time is a true challenge for any apparel manufacturer. At GAK, we take this challenge seriously — by building our foundation from the very core. From carefully selecting yarns to applying advanced weaving and dyeing technologies, and sourcing premium raw materials and accessories, every stage is part of our deliberate strategy to ensure excellence.
                                     </p>
                                     <p>
-                                        Ngay tại thời điểm này, chúng tôi đã tạo ra một hệ sinh thái may mặc bền vững, quản lý chặt chẽ toàn
-                                        bộ quy trình sản xuất từ đầu đến cuối. Chúng tôi cam kết chất lượng của từng sản phẩm MADE BY GAK,
-                                        đảm bảo mọi chi tiết đều được chăm chút tỉ mỉ để mang lại trải nghiệm tốt nhất cho khách hàng.
+                                        Today, GAK proudly operates a fully integrated and sustainable garment ecosystem. We maintain tight control over the entire production process — from design to the final stitch — ensuring that every product stamped MADE BY GAK is crafted with precision and pride. Every detail is refined with care, so that the experience you receive isn’t just a piece of clothing — it’s the embodiment of our values, dedication, and Vietnamese craftsmanship at its best.
                                     </p>
                                 </div>
                             </div>
@@ -87,18 +75,13 @@
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column lg:order-2 my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">NHỮNG NGƯỜI THỢ HẠNH PHÚC</h3>
+                                <h3 class="cs-services__title">HAPPY WORKERS</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Lao động mang lại hạnh phúc, và mỗi con người đều nỗ lực làm việc để cống hiến tuổi trẻ và sức khỏe
-                                        nhằm tạo ra nguồn thu nhập chăm lo cho gia đình. Tại GAK, tất cả các nhân viên, từ thợ may, thợ
-                                        nhuộm, thợ máy đến người nhân viên dọn dẹp đều tận tâm với công việc của mình. Chính sự hỗ trợ từ
-                                        các đối tác và khách hàng đã giúp họ giữ được công việc ổn định và điều kiện để chăm sóc gia đình.
+                                        Work brings happiness. Every individual strives to contribute their youth and energy to earn an income that supports and nurtures their family. At GAK, every team member — from tailors and dyers to technicians and housekeeping staff — is dedicated to their craft with sincerity and heart. It is thanks to the ongoing trust and collaboration from our partners and customers that these workers can maintain stable jobs and provide for their loved ones with dignity and security.
                                     </p>
                                     <p>
-                                        Mỗi ngày, GAK tập trung duy trì vai trò nghiên cứu, sản xuất và xây dựng mối quan hệ chiến lược với
-                                        khách hàng. Bởi chỉ có làm tốt vai trò cốt lõi và không ngừng tiến lên mới có thể mang đến hạnh phúc
-                                        cho người lao động tại GAK.
+                                        Each day, GAK remains focused on its core mission: innovating, producing, and strengthening strategic relationships with clients. We believe that only by excelling in our foundational roles and constantly moving forward can we create a workplace that truly supports the well-being and happiness of every employee.
                                     </p>
                                 </div>
                             </div>
@@ -116,11 +99,9 @@
                     <div class="workshop-card__item">
                         <div class="workshop-card__content">
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-1.png" alt="" /></span>
-                            <h3 class="workshop-card__title">Tử tế</h3>
+                            <h3 class="workshop-card__title">Kind</h3>
                             <p class="workshop-card__desc">
-                                GAK tin rằng sự tự tế mang nhiều nghĩa hơn trong cuộc sống này, từ việc tạo ra việc làm, phúc lợi, đạo đức
-                                kinh doanh... cho tới sự hoàn thiện tỉ mỉ từng sản phẩm, nó là điểm mấu chốt mà GAK tập trung trong sự phát
-                                triển của mình
+                                GAK believes that kindness has more meanings in this life, from job creation, welfare, business ethics... to meticulous perfection of each product, it is the key point that GAK focuses on in its development.
                             </p>
                         </div>
                     </div>
@@ -129,10 +110,9 @@
                     <div class="workshop-card__item">
                         <div class="workshop-card__content">
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-2.png" alt="" /></span>
-                            <h3 class="workshop-card__title">Đoàn kết &amp; tương trợ</h3>
+                            <h3 class="workshop-card__title">Solidarity & Mutual Support</h3>
                             <p class="workshop-card__desc">
-                                GAK mong rằng mỗi một đối tác là người bạn, sự tương trợ, chia sẻ và thấu hiểu nhau để sáng tạo các giải
-                                pháp tốt nhất cho tương lai phát triển bền vững
+                                GAK hopes that each partner is a friend, supporting, sharing and understanding each other to create the best solutions for a sustainable future development.
                             </p>
                         </div>
                     </div>
@@ -141,11 +121,9 @@
                     <div class="workshop-card__item">
                         <div class="workshop-card__content">
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-3.png" alt="" /></span>
-                            <h3 class="workshop-card__title">HƯỚNG TỚI MỐI QUAN HỆ LÂU DÀI</h3>
+                            <h3 class="workshop-card__title">TOWARDS LONG-TERM RELATIONSHIP</h3>
                             <p class="workshop-card__desc">
-                                GAK tập trung vào xây dựng giá trị lâu dài với đối tác. GAK tin rằng qua thời gian dài làm việc cùng nhau,
-                                sẽ hiểu nhau sâu hơn và tạo ra nhiều giá trị hơn. Có những đối tác đã đồng hành từ khi bắt đầu và vẫn tiếp
-                                tục hợp tác đến hiện tại.
+                                GAK focuses on building long-term value with partners. GAK believes that through long-term working together, we will understand each other more deeply and create more value. There are partners who have been with us since the beginning and continue to cooperate until now.
                             </p>
                         </div>
                     </div>
@@ -158,42 +136,40 @@
                 <div class="container container--medium">
                     <div class="workshop-section-background__content flex flex-wrap items-center">
                         <h2 class="workshop-heading">
-                            CHÚNG TÔI ĐÃ CÙNG NHAU <br />
-                            TẠO SỰ THAY ĐỔI
+                            WE WERE TOGETHER <br />
+                            MAKE A CHANGE
                         </h2>
                         <div class="workshop-description">
                             <p>
-                                Mỗi sản phẩm GAK được sản xuất đều mang một câu chuyện riêng, chúng tôi gửi đến bạn những hình ảnh chân thực
-                                nhất để tạo nên những sản phẩm chất lượng đến tay bạn. &ZeroWidthSpace;Và cùng nhau chúng tôi đã làm được
-                                những điều ấn tượng: #GAKFactories
+                                Each product crafted by GAK carries its own story. Behind every stitch is the dedication, skill, and pride of our people. We share with you the most authentic glimpses into our production journey — where quality is built not just from materials, but from heart. Together, we’ve created something truly remarkable. #GAKFactories
                             </p>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-6 lg:gap-0 lg:grid-cols-12">
                         <div class="grid__column lg:col-span-2 mobile--one-half">
                             <div class="workshop-number">
-                                <span class="workshop-number__count">3000m2</span> <span class="workshop-number__title">Xưởng chính</span>
+                                <span class="workshop-number__count">3000m2</span> <span class="workshop-number__title">Factory</span>
                             </div>
                         </div>
                         <div class="grid__column lg:col-span-2 mobile--one-half">
                             <div class="workshop-number">
-                                <span class="workshop-number__count">03</span> <span class="workshop-number__title">Xưởng may</span>
+                                <span class="workshop-number__count">03</span> <span class="workshop-number__title">Garment workshop</span>
                             </div>
                         </div>
                         <div class="grid__column lg:col-span-2 mobile--one-half">
                             <div class="workshop-number">
-                                <span class="workshop-number__count">05</span> <span class="workshop-number__title">Nhà In</span>
+                                <span class="workshop-number__count">05</span> <span class="workshop-number__title">Printing house</span>
                             </div>
                         </div>
                         <div class="grid__column lg:col-span-3 mobile--one-half">
                             <div class="workshop-number">
-                                <span class="workshop-number__count">05</span> <span class="workshop-number__title">Xưởng dệt</span>
+                                <span class="workshop-number__count">05</span> <span class="workshop-number__title">Weaving workshop</span>
                             </div>
                         </div>
                         <div class="grid__column lg:col-span-3 mobile--one-half">
                             <div class="workshop-number">
                                 <span class="workshop-number__count">250K+</span>
-                                <span class="workshop-number__title">Sản phẩm được sản xuất mỗi tháng</span>
+                                <span class="workshop-number__title">Products Manufactured Monthly</span>
                             </div>
                         </div>
                     </div>
@@ -201,11 +177,10 @@
             </div>
             <div id="nha-may" class="workshop-section-white mb-6">
                 <div class="container container--medium">
-                    <h2 class="workshop-heading text-center">CÁC NHÀ MÁY SẢN XUẤT</h2>
+                    <h2 class="workshop-heading text-center">MANUFACTURING FACTORIES</h2>
                     <div class="mb-8 lg:mb-[96px]">
                         <p class="workshop-description text--center" style="text-align: center !important; max-width: unset">
-                            Cùng GAK khám phá những xưởng sản xuất đặc biệt đã luôn đồng hành để tạo ra những sản phẩm tốt nhất dành cho
-                            bạn.
+                            Join GAK to discover the special factories that have always accompanied to create the best products for you.
                         </p>
                     </div>
                     <div class="grid lg:grid-cols-3 gap-10 grid--doubling">
@@ -217,9 +192,9 @@
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-1_1.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Xưởng chính</h2>
-                                    <p class="workshop-box__desc">Hệ sinh thái toàn vẹn từ Dệt, Nhuộm, May, In ấn</p>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-1_1.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Factory</h2>
+                                    <p class="workshop-box__desc">Complete ecosystem from Weaving, Dyeing, Sewing, Printing</p>
                                 </div></div
                             >
                         </div>
@@ -229,88 +204,88 @@
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-2_2.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Xưởng may 1</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-2_2.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Garment workshop 1</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-3_3.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Xưởng may 2</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-3_3.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Garment workshop 2</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-4_4.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Xưởng may 3</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-4_4.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Garment workshop 3</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-5_5.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Nhà in 1</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-5_5.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Printing house 1</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-6_6.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Nhà in 2</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-6_6.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Printing house 2</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-7_7.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Nhà in 3</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-7_7.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Printing house 3</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-8_8.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Nhà in 4</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-8_8.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Printing house 4</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-9_9.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Nhà in 5</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-9_9.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Printing house 5</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-10_10.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Xưởng dệt 1</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-10_10.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Textile workshop 1</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-11_11.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Xưởng dệt 2</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-11_11.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Textile workshop 2</h2>
                                 </div></div
                             >
                         </div>
                         <div class="grid__column">
                             <div class="cursor-pointer"
                                 ><div class="workshop-box">
-                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-12_12.jpg" alt="Xưởng dệt" /></div>
-                                    <h2 class="workshop-box__title font-bold">Xưởng dệt 3</h2>
+                                    <div class="workshop-box__thumbnail"><img src="/images/produce-store-12_12.jpg" alt="Textile workshop" /></div>
+                                    <h2 class="workshop-box__title font-bold">Textile workshop 3</h2>
                                 </div></div
                             >
                         </div>
@@ -319,10 +294,10 @@
             </div>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Join the GAK Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal GAK
+                            Join the GAK Deal Hunters group
                         </UButton>
                         <UButton
                             :to="localePath({name: 'gak-official'})"
@@ -346,8 +321,8 @@ const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-let title = 'Welcome to the GAK Factory | Where products are made';
-let pageDescription = 'Our 3000m² manufacturing facility is a source of pride for GAK — a place where quality products are created and the lives of hundreds of workers are connected.'
+let title = 'Chào mừng bạn đến với nhà máy GAK | Nơi sản phẩm được tạo ra';
+let pageDescription = '3000m2 cơ sở sản xuất của chúng tôi là một niềm tự hào GAK, nơi tạo ra những sản phẩm chất lượng, gắn kết đời sống của hàng trăm con người lao động.'
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

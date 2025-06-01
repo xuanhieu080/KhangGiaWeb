@@ -81,7 +81,7 @@
             </Swiper>
         </div>
         <div class="gak-map flex flex-col gap-4 relative">
-            <h3 class="font-bold !text-2xl md:!text-3xl absolute top-4 left-1/2 -translate-x-1/2">Bản đồ GAK</h3>
+            <h3 class="font-bold !text-2xl md:!text-3xl absolute top-4 left-1/2 -translate-x-1/2">{{trans('GAK Map')}}</h3>
             <img src="/images/gak-map.jpg" class="h-[600px] md:h-[auto] md:max-h-[600px] object-bottom w-full object-cover" alt="" />
             <div class="map-box w-full absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center justify-center p-6 md:p-0">
                 <iframe
@@ -98,7 +98,7 @@
             <section v-if="false" class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
+                     {{trans('Join the GAK Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!')}}
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton
@@ -108,7 +108,7 @@
                             class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase"
                             variant="ghost"
                             color="none">
-                            Tham gia hội săn Deal GAK
+                            {{trans('Join the GAK Deal Hunters group')}}
                         </UButton>
                         <UButton
                             :to="localePath({name: 'gak-official'})"
@@ -123,7 +123,7 @@
             </section>
             <div class="cs-faq-container py-8 bg-[#f1f1f1]">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-faq__heading text-center w-full">FAQ - Câu hỏi thường gặp</h2>
+                    <h2 class="cs-faq__heading text-center w-full">{{trans('FAQ - Frequently Asked Questions')}}</h2>
                     <UAccordion multiple :items="items" :ui="{ wrapper: 'flex flex-col w-full' }">
                         <template #default="{ item, index, open }">
                             <UButton
@@ -143,13 +143,13 @@
                         </template>
                         <template #item-1>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
-                                <p>Địa chỉ: 15 Lê Minh Xuân, Phường 7, Tân Bình, Thành phố Hồ Chí Minh</p>
+                                <p>{{trans('Address: 15 Le Minh Xuan, Ward 7, Tan Binh, Ho Chi Minh City, Vietnam')}}</p>
                             </div>
                         </template>
                         <template #item-2>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <p>
-                                    Công ty GAK chuyên cung cấp các sản phẩm vải, lưới, bảo hộ lao động, đồng phục công ty có chất lượng và giá thành phù hợp với ngân sách của công ty. Trong suốt quá trình hoạt động của mình, GAK được nhiều khách hàng, đối tác tin chọn hàng Việt Nam có chất lượng cao. Hiện nay, GAK đang trở thành nhà cung cấp, đối tác chiến lược của nhiều khu công nghiệp, nhà hàng, xây dựng, bất động sản... trên khắp Việt Nam. Chọn GAK chọn chất lượng, chọn giá tốt.
+                                    {{trans("GAK Company specializes in providing fabric, mesh, labor protection products, and company uniforms with quality and prices suitable for the company's budget. During its operation, GAK has been trusted by many customers and partners to choose high-quality Vietnamese products. Currently, GAK is becoming a supplier and strategic partner of many industrial parks, restaurants, construction, real estate... throughout Vietnam. Choose GAK to choose quality, choose good prices.")}}
                                 </p>
                             </div>
                         </template>
@@ -157,33 +157,33 @@
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <ul>
                                     <li>
-                                        Nền tảng Facebook:
+                                        {{trans('GAKPlatforms', {platform: "Facebook"})}}
                                         <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="text-blue-500"
-                                            >Tại đây</a
+                                            >{{trans('Here')}}</a
                                         >
                                     </li>
                                     <li>
-                                        Nền tảng Tiktok:
+                                        {{trans('GAKPlatforms', {platform: "Tiktok"})}}
                                         <a href="https://www.tiktok.com/@congtygak" target="_blank" class="text-blue-500"
-                                            >Tại đây</a
+                                            >{{trans('Here')}}</a
                                         >
                                     </li>
                                     <li>
-                                        Nền tảng Zalo:
+                                        {{trans('GAKPlatforms', {platform: "Zalo"})}}
                                         <a href="https://zalo.me/0569133339" target="_blank" class="text-blue-500"
-                                            >Tại đây</a
+                                            >{{trans('Here')}}</a
                                         >
                                     </li>
                                     <li>
-                                        Nền tảng Instagram:
+                                        {{trans('GAKPlatforms', {platform: "Instagram"})}}
                                         <a href="https://www.instagram.com/congtygak/" target="_blank" class="text-blue-500"
-                                            >Tại đây</a
+                                            >{{trans('Here')}}</a
                                         >
                                     </li>
                                     <li>
-                                        Nền tảng Twitter:
+                                        {{trans('GAKPlatforms', {platform: "Twitter"})}}
                                         <a href="https://twitter.com/congtygak" target="_blank" class="text-blue-500"
-                                            >Tại đây</a
+                                            >{{trans('Here')}}</a
                                         >
                                     </li>
                                 </ul>
@@ -217,6 +217,8 @@ let modules = ref([Navigation]);
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
+
+const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
@@ -266,25 +268,25 @@ const articlesList = ref([
 
 const items = [
     {
-        label: 'Địa chỉ công ty GAK',
+        label: trans('GAK company address'),
         slot: 'item-1',
         defaultOpen: true,
     },
     {
-        label: 'Công ty GAK có lừa đảo không',
+        label: trans('Is GAK company a scam?'),
         slot: 'item-2',
     },
     {
-        label: 'Những nền tảng mạng xã hội của GAK',
+        label: trans("GAK's social media platforms"),
         slot: 'item-3',
     },
     {
-        label: 'Hotline của công ty GAK gồm những số nào?',
+        label: trans("What are the hotline numbers of GAK company?"),
         slot: 'item-4',
     },
 ];
 let title = 'GAK MEDIA OFFICIAL';
-let pageDescription = 'GAK ở đâu, làm sao liên hệ tới công ty GAK? Hãy khám phá những Media Official của chúng tôi!';
+let pageDescription = trans('Where is GAK and how can you contact us? Explore our official media channels!');
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

@@ -4,7 +4,7 @@
             <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ 'Tất cả sản phẩm' }}</h1>
+                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ trans('All products') }}</h1>
                     </div>
                     <UInput
                         class="search-box max-w-[500px] rounded-[50px] bg-white"
@@ -17,7 +17,7 @@
                         v-model="searchItem"
                         :ui="{ icon: { trailing: { pointer: '' } } }"
                         autocomplete="off"
-                        placeholder="Tìm kiếm sản phẩm">
+                        :placeholder="trans('Search products')">
                     </UInput>
                 </div>
                 <div class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 py-12">
@@ -28,7 +28,7 @@
                                 {{
                                     (!loadingProductCollection && productCollection.data ? productCollection.data.length : '') +
                                     ' ' +
-                                    $t('Kết quả')
+                                    trans('Result')
                                 }}
                                 <UButton
                                     v-if="Object.keys(selectedAll).length > 0"
@@ -37,7 +37,7 @@
                                     color="none"
                                     class="border rounded-3xl border-black font-bold"
                                     @click="removeAllFilter"
-                                    >{{ $t('Xóa lọc') }}</UButton
+                                    >{{ trans('Clear filtering') }}</UButton
                                 >
                             </div>
                             <div
@@ -82,7 +82,7 @@
                                 color="none"
                                 @click="showFullOption = !showFullOption"
                                 class="show-option-btn border text-gray-500 border-gray-400 ring-0 justify-center">
-                                {{ showFullOption ? 'Thu gọn' : 'Mở rộng' }}
+                                {{ showFullOption ? trans('Collapse') : trans('Expand') }}
                                 <UIcon
                                     class="text-sm"
                                     :name="showFullOption ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
@@ -96,7 +96,7 @@
                                 <span class="uppercase text-gray-500 fs-14 font-medium">Phân loại</span>
                                 <USelectMenu v-model="filter" :options="filterList" option-attribute="name" class="w-full max-w-[200px]">
                                     <UButton size="lg" color="gray" class="flex-1 justify-between">
-                                        {{ filter ? filter.name : $t('Sắp xếp theo') }}
+                                        {{ filter ? filter.name : trans('Sort by') }}
                                         <UIcon
                                             name="i-heroicons-chevron-right-20-solid"
                                             class="w-5 h-5 transition-transform transform rotate-90 text-gray-400 dark:text-gray-500" />
@@ -124,7 +124,7 @@
                             class="category-data-list">
                             <div
                                 class="h-48 w-full text-center p-6 border border-dashed border-gray-400 rounded-lg flex items-center justify-center">
-                                {{ 'Không có sản phẩm trong danh mục này' }}
+                                {{ trans('There are no products in this category') }}
                             </div>
                         </div>
                     </div>
@@ -150,6 +150,8 @@ defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
 
+const { locale, t: trans } = useI18n();
+
 const router = useRouter();
 const localePath = useLocalePath();
 const modules = [Scrollbar];
@@ -161,19 +163,19 @@ const searchItem = ref(router.currentRoute.value.query ? router.currentRoute.val
 
 const filterList = ref([
     {
-        name: 'Mới nhất',
+        name: trans('Latest'),
         value: 0,
     },
     {
-        name: 'Cũ nhất',
+        name: trans('Oldest'),
         value: 1,
     },
     {
-        name: 'Giá thấp đến cao',
+        name: trans('Price: Low to High'),
         value: 2,
     },
     {
-        name: 'Giá cao đến thấp',
+        name: trans('Price: High to Low'),
         value: 3,
     },
 ]);

@@ -8,11 +8,11 @@
                         <p>
 
                         </p>
-                        <p> Xin lỗi, Chúng tôi không tìm thấy trang này ngay lúc này</p>
-                        <p>Quay trở lại trang chính sau {{ timeout }} giây</p>
+                        <p>{{trans("Sorry, we can't find this page right now")}}</p>
+                        <p>{{trans('return_in_seconds', {timeout: timeout})}}</p>
                         <p>
-                            Hoặc bấm vào đây
-                            <UButton size="lg" variant="outline" class="ml-4" @click="handleError"> Quay trở lại Homepage </UButton>
+                            {{trans('Or click here')}}
+                            <UButton size="lg" variant="outline" class="ml-4" @click="handleError"> {{trans('Back to homepage')}} </UButton>
                         </p>
                     </div>
                     <div class="max-w-lg">
@@ -50,7 +50,7 @@ const handleError = () => {
 };
 
 let seoMeta = {
-    title: 'Lỗi trang',
+    title: trans('Not found'),
     robots: 'nofollow, noindex',
     bingbot: 'nofollow, noindex',
     googlebot: 'nofollow, noindex',
