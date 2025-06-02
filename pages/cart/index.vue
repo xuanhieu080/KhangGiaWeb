@@ -335,16 +335,16 @@
                         <b>{{trans('By clicking the payment button, you have understood the policies when purchasing at the website GAK.VN')}}</b>
                        <ul class="list-disc px-4">
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-bao-mat' })">{{trans('Privacy policy')}}</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'privacy-policy' })">{{trans('Privacy policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-giao-hang' })">{{trans('Delivery policy')}}</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'shipping-policy' })">{{trans('Delivery policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-khuyen-mai' })">{{trans('Promotion policy')}}</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'promotional-policy' })">{{trans('Promotion policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'chinh-sach-hoan-tra-san-pham' })">{{trans('Product return policy')}}</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'return-policy' })">{{trans('Product return policy')}}</NuxtLink>
                            </li>
                        </ul>
                         <p>{{trans('Thank you for choosing and purchasing products at GAK.VN')}}</p>
@@ -365,6 +365,7 @@ import ProductCard from '@/components/products/ProductCard';
 import { ArraySchema, object, string } from 'yup';
 import { storeToRefs } from 'pinia';
 import { useMain } from '@@/store/index';
+import { useLanguageLink } from '~/store/languageLink';
 const useMainStore = useMain();
 const { cartNumber } = storeToRefs(useMainStore);
 
@@ -375,6 +376,16 @@ const { t: trans, locale } = useI18n();
 
 const toast = useToast();
 const router = useRouter();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
+
+if (locale.value == 'en') {
+    link.value = `/vi/cart`;
+} else {
+    link.value = '/en/cart'
+}
 
 const isLoadingPage = ref(false);
 const isOrdered = ref(false);
@@ -490,6 +501,8 @@ const handleProcessOrder = async () => {
     if (state.value.note) {
         params.note = state.value.note;
     }
+    params.lang = locale.value
+
     const { data: response, error } = await useMyFetch('/api/v1/orders', {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
@@ -613,7 +626,9 @@ const handleDeleteCartItem = (product, index) => {
 
 const getCheckCarts = async (items) => {
     listCart.value = [];
-    let params = {};
+    let params = {
+        lang: locale.value
+    };
     if (items.length > 0) {
         items.forEach((ele, index) => {
             params[`items[${index}][product_id]`] = ele.product_id;
@@ -667,6 +682,7 @@ const { data: cities, pending: loadingCities } = await useLazyAsyncData('cities-
     useOriginalFetch('/api/v1/provinces', {
         params: {
             limit: 999,
+            lang: locale.value
         },
     }),
 );
@@ -676,6 +692,7 @@ const getDistrict = async (city) => {
         params: {
             limit: 999,
             province_id: city,
+            lang: locale.value
         },
     });
     if (response.value) {
@@ -689,6 +706,7 @@ const getWard = async (district) => {
         params: {
             limit: 999,
             district_id: district,
+            lang: locale.value
         },
     });
     if (response.value) {

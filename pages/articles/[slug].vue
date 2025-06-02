@@ -38,10 +38,15 @@
 <script setup>
 
 import ArticleCard from '~/components/articles/ArticleCard.vue';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const localePath = useLocalePath();
 const router = useRouter();
 const { locale, t: trans } = useI18n();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
 
 const articles = ref({ data: [] });
 const links = ref([]);
@@ -53,7 +58,11 @@ const {
 } = await useLazyAsyncData(
     'articles-details',
     async () =>
-        useOriginalFetch(`/api/v1/posts/${router.currentRoute.value.params.slug}`),
+        useOriginalFetch(`/api/v1/posts/${router.currentRoute.value.params.slug}`, {
+            params: {
+                lang: locale.value
+            }
+        }),
     {
         default: () => [],
         watch: [refreshData],
@@ -75,6 +84,7 @@ async function getArticle() {
             not_id: content.value?.data?.id,
             limit: 12,
             page: page.value,
+            lang: locale.value
         },
     });
     if (response.value) {
@@ -123,13 +133,20 @@ const description = ref('');
 const key = ref('');
 const image = ref();
 const seoMeta = ref({})
-
+link.value = null
 watchEffect((value) => {
     if (loadingArticle.value === 'success') {
         title.value = content.value.data?.meta_title;
         description.value =  content.value.data?.meta_description;
         key.value = content.value.data?.meta_key;
         image.value =  content.value.data?.image_url;
+        if (content.value.data?.slug_other) {
+            if (locale.value == 'vi') {
+                link.value = `/en/articles/${content.value.data?.slug_other}`;
+            } else {
+                link.value = `/vi/articles/${content.value.data?.slug_other}`;
+            }
+        }
 
         seoMeta.value = {
             description: description.value,

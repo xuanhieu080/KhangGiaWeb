@@ -9,7 +9,7 @@
             </div>
             <div v-if="!loadingProductCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 px-5">
                 <div class="category-data flex flex-col gap-4 flex-1">
-                    <div v-if="productCollection && productCollection.data.length > 0" class="category-data-list">
+                    <div v-if="productCollection && productCollection?.data?.length > 0" class="category-data-list">
                         <div
                             v-for="product in productCollection.data"
                             class="category-data-item data-desktop hidden md:block p-2 rounded-lg"
@@ -38,61 +38,61 @@
                 class="category-product py-4">
                 <div class="product-category-title md:!hidden">
                     {{ index != 4 ? trans('Reflective Vest') : trans('Uniform Shirt') }}
-                    <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben' || category.slug_other == 'ao-phan-quang-thun-2-ben'" class="sub-title">
                         {{ trans('Mesh stretch on both sides') }}
                     </h2>
-                    <h2 v-if="category.slug == 'ao-phan-quang-ha-noi'" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-ha-noi' || category.slug_other == 'ao-phan-quang-ha-noi'" class="sub-title">
                         {{trans('Hanoi') }}
                     </h2>
-                    <h2 v-if="category.slug == 'ao-phan-quang-kieu-3m'" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-kieu-3m' || category.slug_other == 'ao-phan-quang-kieu-3m'" class="sub-title">
                         {{ trans('3M style')}}
                     </h2>
-                    <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="sub-title">
+                    <h2 v-if="category.slug == 'ao-phan-quang-palize' || category.slug_other == 'ao-phan-quang-palize'" class="sub-title">
                         {{ 'Palize' }}
                     </h2>
-                    <h2 v-if="category.slug == 'dong-phuc-cong-nhan'" class="sub-title">
+                    <h2 v-if="category.slug == 'dong-phuc-cong-nhan' || category.slug_other == 'dong-phuc-cong-nhan'" class="sub-title">
                         {{ trans('Worker') }}
                     </h2>
                 </div>
                 <div class="md:hidden">
-                    <img v-if="category.slug == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2_2.jpg" class="h-full w-full object-contain" />
-                    <img v-if="category.slug == 'ao-phan-quang-ha-noi'" src="/images/all-products/all-banner-3_3.jpg" class="h-full w-full object-contain" />
-                    <img v-if="category.slug == 'ao-phan-quang-kieu-3m'" src="/images/all-products/all-banner-4_4.jpg" class="h-full w-full object-contain" />
-                    <img v-if="category.slug == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5_5.jpg" class="h-full w-full object-contain" />
-                    <img v-if="category.slug == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6_6.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-thun-2-ben' || category.slug_other == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2_2.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-ha-noi' || category.slug_other == 'ao-phan-quang-ha-noi'" src="/images/all-products/all-banner-3_3.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-kieu-3m' || category.slug_other == 'ao-phan-quang-kieu-3m'" src="/images/all-products/all-banner-4_4.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'ao-phan-quang-palize' || category.slug_other == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5_5.jpg" class="h-full w-full object-contain" />
+                    <img v-if="category.slug == 'dong-phuc-cong-nhan' || category.slug_other == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6_6.jpg" class="h-full w-full object-contain" />
                 </div>
                 <div class="hidden md:flex items-center justify-between w-full gap-4 bg-gray-100">
                     <div class="mx-auto flex items-center justify-between w-full gap-4 relative">
                         <div
                             class="flex flex-col gap-4 absolute top-1/2 left-[22px] -translate-y-1/2 max-w-xs lg:max-w-md 2xl:max-w-screen-sm">
-                            <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-thun-2-ben' || category.slug_other == 'ao-phan-quang-thun-2-ben'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ trans('Reflective vest with mesh stretch on both sides') }}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phan-quang-ha-noi'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-ha-noi' || category.slug_other == 'ao-phan-quang-ha-noi'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ trans('Reflective vest product in Hanoi')}}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phan-quang-kieu-3m'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-kieu-3m' || category.slug_other == 'ao-phan-quang-kieu-3m'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ trans('3M-style reflective vest') }}
                             </h2>
-                            <h2 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'ao-phan-quang-palize' || category.slug_other == 'ao-phan-quang-palize'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ trans('Palize reflective vest') }}
                             </h2>
-                            <h2 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
+                            <h2 v-if="category.slug == 'dong-phuc-cong-nhan' || category.slug_other == 'dong-phuc-cong-nhan'" class="!text-xl lg:!text-2xl font-bold uppercase !mx-0 !my-0 md:my-auto">
                                 {{ trans('Worker uniform')}}
                             </h2>
-                            <h3 v-if="category.slug == 'ao-phan-quang-thun-2-ben'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-thun-2-ben' || category.slug_other == 'ao-phan-quang-thun-2-ben'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ trans('Suitable for all working environments') }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phan-quang-ha-noi'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-ha-noi' || category.slug_other == 'ao-phan-quang-ha-noi'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ trans('Popular product line in the northern market') }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phan-quang-kieu-3m'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-kieu-3m' || category.slug_other == 'ao-phan-quang-kieu-3m'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ trans('Stylish, well-fitted, and well-known') }}
                             </h3>
-                            <h3 v-if="category.slug == 'ao-phan-quang-palize'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'ao-phan-quang-palize' || category.slug_other == 'ao-phan-quang-palize'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ trans('Top #2 best-selling item') }}
                             </h3>
-                            <h3 v-if="category.slug == 'dong-phuc-cong-nhan'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
+                            <h3 v-if="category.slug == 'dong-phuc-cong-nhan' || category.slug_other == 'dong-phuc-cong-nhan'" class="!text-lg lg:!text-xl font-medium sub-title !m-0">
                                 {{ trans('Breathable 2-1 twill kaki fabric, best market price') }}
                             </h3>
                             <UButton
@@ -104,11 +104,11 @@
                                 {{ trans('All products') }}
                             </UButton>
                         </div>
-                        <img v-if="category.slug == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2.jpg" class="h-full w-full object-contain" />
-                        <img v-if="category.slug == 'ao-phan-quang-ha-noi'" src="/images/all-products/all-banner-3.jpg" class="h-full w-full object-contain" />
-                        <img v-if="category.slug == 'ao-phan-quang-kieu-3m'" src="/images/all-products/all-banner-4.jpg" class="h-full w-full object-contain" />
-                        <img v-if="category.slug == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5.jpg" class="h-full w-full object-contain" />
-                        <img v-if="category.slug == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-thun-2-ben' || category.slug_other == 'ao-phan-quang-thun-2-ben'" src="/images/all-products/all-banner-2.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-ha-noi' || category.slug_other == 'ao-phan-quang-ha-noi'" src="/images/all-products/all-banner-3.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-kieu-3m' || category.slug_other == 'ao-phan-quang-kieu-3m'" src="/images/all-products/all-banner-4.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'ao-phan-quang-palize' || category.slug_other == 'ao-phan-quang-palize'" src="/images/all-products/all-banner-5.jpg" class="h-full w-full object-contain" />
+                        <img v-if="category.slug == 'dong-phuc-cong-nhan' || category.slug_other == 'dong-phuc-cong-nhan'" src="/images/all-products/all-banner-6.jpg" class="h-full w-full object-contain" />
                     </div>
                 </div>
                 <div v-if="category.products.length > 0" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 px-5">
@@ -169,17 +169,22 @@
     </NuxtLayout>
 </template>
 <script setup>
-import Banner from '@/components/Banners/Banner.vue';
+import Banner from '~/components/Banners/Banner.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
-import ProductCard from '@/components/products/ProductCard';
-import ProductVariantCard from '@/components/products/ProductVariantCard.vue';
-import productHots from '~/api/product_hot.json';
-import productAll from '~/api/product_all.json';
+import ProductCard from '~/components/products/ProductCard.vue';
+import ProductVariantCard from '~/components/products/ProductVariantCard.vue';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = `/vi/tat-ca-san-pham`;
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
@@ -244,6 +249,7 @@ const changeCategoryTab = (index) => {
 const getParamsCollection = async () => {
     let params = {
         limit: 5,
+        lang: locale.value
     };
     return params;
 };
@@ -258,7 +264,11 @@ const { data: productCollection, pending: loadingProductCollection } = await use
     'product-category-hot',
     async () =>
         useOriginalFetch(`/api/v1/product-hots`, {
-            params: { is_hot: 1, limit: 20 },
+            params: {
+                is_hot: 1,
+                limit: 20,
+                lang: locale.value
+            },
         }),
     {
         default: () => [],

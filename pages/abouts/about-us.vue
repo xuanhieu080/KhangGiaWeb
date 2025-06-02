@@ -288,7 +288,7 @@
                         /></NuxtLink>
                     </div>
                     <div class="grid__column">
-                        <NuxtLink :to="localePath({ name: 'tat-ca-san-pham' })" target="_blank"
+                        <NuxtLink :to="localePath({ name: 'product-all-products' })" target="_blank"
                             ><img src="/images/about-us-7.jpg" alt="Khám phá ngay"
                         /></NuxtLink>
                     </div>
@@ -317,7 +317,9 @@
 </template>
 
 <script setup>
-import images from '@@/assets/icons';
+import images from 'assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
@@ -326,6 +328,11 @@ const slug = ref(router.currentRoute.value.params.slug);
 let title = 'About GAK';
 let pageDescription = 'Born from the perseverance of a dedicated team, we continue moving toward a new future — one that brings value to our customers and partners.'
 const config = useRuntimeConfig();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = `/vi/ve-chung-toi`;
 
 defineOgImageComponent('GAK', {
     title: title,

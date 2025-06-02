@@ -4,8 +4,8 @@ export default defineNuxtConfig({
     devtools: {
         enabled: false,
         timeline: {
-            enabled: false
-        }
+            enabled: false,
+        },
     },
     runtimeConfig: {
         public: {
@@ -38,7 +38,7 @@ export default defineNuxtConfig({
         },
     },
     router: {
-        scrollBehavior: function (to, from, savedPosition) {
+        scrollBehavior: function(to, from, savedPosition) {
             return { x: 0, y: 0 };
         },
     },
@@ -64,7 +64,7 @@ export default defineNuxtConfig({
         // enables nuxt-delay-hydration in dev mode for testing
         // NOTE: you should disable this once you've finished testing, it will break HMR
         debug: false,
-        mode: 'mount'
+        mode: 'mount',
     },
     site: {
         indexable: true,
@@ -136,21 +136,89 @@ export default defineNuxtConfig({
         pages: {
             'product/search': {
                 vi: '/tim-kiem-san-pham',
-                en: '/product-search'
+                en: '/product-search',
+            },
+            'product/all-products': {
+                vi: '/tat-ca-san-pham',
+                en: '/all-products',
+            },
+            'privacy-policy': {
+                vi: '/chinh-sach-bao-mat',
+                en: '/privacy-policy',
+            },
+            'cookie-policy': {
+                vi: '/chinh-sach-cookie',
+                en: '/cookie-policy',
+            },
+            'return-policy': {
+                vi: '/chinh-sach-hoan-tra-san-pham',
+                en: '/return-policy',
+            },
+            'shipping-policy': {
+                vi: '/chinh-sach-giao-hang',
+                en: '/shipping-policy',
+            },
+            'promotional-policy': {
+                vi: '/chinh-sach-khuyen-mai',
+                en: '/promotional-policy',
+            },
+            'inspection-policy': {
+                vi: '/chinh-sach-kiem-hang',
+                en: '/inspection-policy',
+            },
+            'terms-of-use': {
+                vi: '/dieu-khoan-su-dung',
+                en: '/terms-of-use',
+            },
+            'payment-regulations': {
+                vi: '/quy-dinh-thanh-toan',
+                en: '/payment-regulations',
+            },
+            'culture-gak': {
+                vi: false,
+                en: '/culture-gak',
+            },
+            'van-hoa-gak': {
+                vi: '/van-hoa-gak',
+                en: false,
+            },
+            'custom-order': {
+                vi: false,
+                en: '/custom-order',
+            },
+            'dat-may': {
+                vi: '/dat-may',
+                en: false,
+            },
+            'dedicated-customer-care-service': {
+                vi: false,
+                en: '/dedicated-customer-care-service',
+            },
+            'dvkh-tan-tam': {
+                vi: '/dvkh-tan-tam',
+                en: false,
+            },
+            'nha-may': {
+                vi: '/nha-may',
+                en: false,
+            },
+            'factory': {
+                vi: false,
+                en: '/factory',
+            },
+            'abouts/about-us': {
+                vi: false,
+                en: '/about-us',
             },
 
-            'about-us': {
-                vi: false,
-                en: '/about-us'
+            'abouts/ve-chung-toi': {
+                en: false,
+                vi: '/ve-chung-toi',
             },
-            'all-products': {
-                vi: false,
-                en: '/all-products'
-            },
-        }
+        },
     },
     tailwindcss: {
-        cssPath: ["@/assets/css/index.css"],
+        cssPath: ['@/assets/css/index.css'],
         configPath: 'tailwind.config.ts',
         exposeConfig: true,
         preprocessorOptions: {
@@ -225,7 +293,7 @@ export default defineNuxtConfig({
                 {
                     hid: 'gtmHead',
                     innerHTML:
-                        "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'GTM-5MFK8NDW');",
+                        'window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag(\'js\', new Date()); gtag(\'config\', \'GTM-5MFK8NDW\');',
                 },
                 {
                     name: 'google-site-verification',
@@ -237,8 +305,8 @@ export default defineNuxtConfig({
     },
     nitro: {
         prerender: {
-            routes: ['/404']
-        }
+            routes: ['/404'],
+        },
     },
     compatibilityDate: '2024-07-25',
 });

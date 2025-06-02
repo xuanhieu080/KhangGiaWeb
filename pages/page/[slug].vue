@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="main">
-        <div v-if="slug == 'chinh-sach-cookie'" class="container mx-auto">
+        <div v-if="slug == 'cookie-policy'" class="container mx-auto">
             <h1>Chính sách Cookie</h1>
             <div class="content prose !max-w-full">
                 <h2>Chính sách Cookie này được cập nhật lần cuối vào ngày 19/06/2023.</h2>

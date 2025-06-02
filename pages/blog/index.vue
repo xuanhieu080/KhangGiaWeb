@@ -95,6 +95,8 @@ import images from '@@/assets/icons/index';
 import ArticleSwiper from '@@/components/articles/ArticleSwiper.vue';
 import ArticleBadge from '@@/components/articles/ArticleBadge.vue';
 import ArticleCard from '@@/components/articles/ArticleCard.vue';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 definePageMeta({
     layout: false,
     seo: {
@@ -105,6 +107,16 @@ definePageMeta({
 const { locale, t: trans } = useI18n();
 const localePath = useLocalePath();
 const searchBlog = ref(null);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
+
+if (locale.value == 'en') {
+    link.value = `/vi/blog`;
+} else {
+    link.value = '/en/blog'
+}
 
 const categoryBlog = ref([]);
 
@@ -119,6 +131,7 @@ const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData
     useOriginalFetch('/api/v1/post-hots', {
         params: {
             is_hot: true,
+            lang: locale.value
         },
     }),
 );
@@ -126,7 +139,8 @@ const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncDa
     useOriginalFetch('/api/v1/posts', {
         params: {
             sort: { desc: 'view' },
-            limit: 4
+            limit: 4,
+            lang: locale.value
         },
     }),
 );
@@ -138,7 +152,8 @@ const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData(
     useOriginalFetch('/api/v1/posts', {
         params: {
             sort: { desc: 'created_at' },
-            limit: 12
+            limit: 12,
+            lang: locale.value
         },
     })
 );
@@ -149,7 +164,8 @@ async function getArticle() {
         params: {
             sort: { desc: 'created_at' },
             limit: 12,
-            page: page.value
+            page: page.value,
+            lang: locale.value
         }
     });
 
@@ -160,7 +176,11 @@ async function getArticle() {
 }
 
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>
-    useOriginalFetch('/api/v1/post-groups'),
+    useOriginalFetch('/api/v1/post-groups', {
+        params: {
+        lang: locale.value
+        }
+    }),
 );
 // const { data: articleGroup, pending: loadingArticleGroup } = await useLazyAsyncData('articles-blog-group', () =>
 //     useOriginalFetch('/api/v1/post/groups'),

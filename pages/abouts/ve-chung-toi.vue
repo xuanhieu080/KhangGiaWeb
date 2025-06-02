@@ -319,7 +319,7 @@
                         /></NuxtLink>
                     </div>
                     <div class="grid__column">
-                        <NuxtLink :to="localePath({ name: 'tat-ca-san-pham' })" target="_blank"
+                        <NuxtLink :to="localePath({ name: 'product-all-products' })" target="_blank"
                             ><img src="/images/about-us-7.jpg" alt="Khám phá ngay"
                         /></NuxtLink>
                     </div>
@@ -348,11 +348,19 @@
 </template>
 
 <script setup>
-import images from '@@/assets/icons';
+import images from 'assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = `/en/about-us`;
+
 const slug = ref(router.currentRoute.value.params.slug);
 let title = 'Về công ty GAK';
 let pageDescription = 'Được hình thành từ sự vượt khó của đội ngũ tận tâm, chúng tôi đã và đang tiến bước đến một tương lai mới mang lại giá trị cho khách hàng, đối tác của chúng tôi.'

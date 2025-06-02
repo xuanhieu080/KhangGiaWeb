@@ -25,12 +25,25 @@
 </template>
 
 <script setup>
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
+
 const error = useError();
 const router = useRouter();
 const localePath = useLocalePath();
 const timeout = ref(10);
 
 const { locale, t: trans } = useI18n();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
+
+if (locale.value == 'en') {
+    link.value = `/vi/404`;
+} else {
+    link.value = '/en/404'
+}
 
 onMounted(() => {
     const backHomepage = setInterval(() => {

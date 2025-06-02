@@ -99,6 +99,8 @@ import images from '@@/assets/icons/index';
 import ArticleSwiper from '@@/components/articles/ArticleSwiper.vue';
 import ArticleBadge from '@@/components/articles/ArticleBadge.vue';
 import ArticleCard from '@@/components/articles/ArticleCard.vue';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 definePageMeta({
     layout: false,
     seo: {
@@ -111,6 +113,9 @@ const selectedCategory = ref(null);
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
 
 //data
 
@@ -118,6 +123,7 @@ const { data: articlesHot, pending: loadingArticleHot } = await useLazyAsyncData
     useOriginalFetch('/api/v1/post-hots', {
         params: {
             is_hot: true,
+            lang: locale.value
         },
     }),
 );
@@ -125,7 +131,8 @@ const { data: articlesView, pending: loadingArticleView } = await useLazyAsyncDa
     useOriginalFetch('/api/v1/posts', {
         params: {
             sort: { desc: 'view' },
-            limit: 4
+            limit: 4,
+            lang: locale.value
         },
     }),
 );
@@ -136,7 +143,8 @@ const { data: articleNew, pending: loadingArticleNew } = await useLazyAsyncData(
         params: {
             sort: { desc: 'created_at' },
             group_slug: router.currentRoute.value.params?.slug,
-            limit: 12
+            limit: 12,
+            lang: locale.value
         },
     }),
 );
@@ -147,7 +155,8 @@ async function getArticle() {
             sort: { desc: 'created_at' },
             group_slug: router.currentRoute.value.params?.slug,
             limit: 12,
-            page: page.value
+            page: page.value,
+            lang: locale.value
         }
     });
 
@@ -167,6 +176,7 @@ const {
         useOriginalFetch(`/api/v1/post-groups/${router.currentRoute.value.params.slug}`, {
             query: {
                 code: router.currentRoute.value.query?.code,
+                lang: locale.value
             },
         }),
     {
@@ -178,7 +188,11 @@ if (errorGetCategory.value) {
 }
 
 const { data: articleGroups, pending: loadingArticleGroup } = await useLazyAsyncData('post-groups', () =>
-    useOriginalFetch('/api/v1/post-groups'),
+    useOriginalFetch('/api/v1/post-groups', {
+        params: {
+        lang: locale.value
+        }
+    }),
 );
 // const { data: articleGroup, pending: loadingArticleGroup } = await useLazyAsyncData('articles-blog-group', () =>
 //     useOriginalFetch('/api/v1/post/groups'),
@@ -216,6 +230,14 @@ watchEffect((value) => {
         description.value =  content.value.data?.meta_description;
         key.value = content.value.data?.meta_key;
         image.value =  content.value.data?.image_url;
+
+        if (content.value.data?.slug_other) {
+            if (locale.value == 'vi') {
+                link.value = `/en/blog/${content.value.data?.slug_other}`;
+            } else {
+                link.value = `/vi/blog/${content.value.data?.slug_other}`;
+            }
+        }
 
         seoMeta.value = {
             description: description.value,

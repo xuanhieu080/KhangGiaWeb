@@ -145,6 +145,8 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
@@ -160,6 +162,11 @@ const loadingPageCollection = ref(true);
 const showFullOption = ref(true);
 const tabIndex = ref(0);
 const searchItem = ref(router.currentRoute.value.query ? router.currentRoute.value.query.search : null);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = `/vi/all-products`;
 
 const filterList = ref([
     {
@@ -211,7 +218,9 @@ const deboundTime = ref({
 });
 
 const getParamsCollection = async () => {
-    let params = {};
+    let params = {
+        lang: locale.value
+    };
     let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
     if (attribute.length > 0) {
         attribute = attribute.filter((item) => item.value == true);
@@ -248,7 +257,9 @@ const {
     data: collection,
     pending: loadingCollection,
     error: collectionError,
-} = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`));
+} = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`, {
+    params: {lang: locale.value}
+}));
 const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
     'product-category-all',
     async () =>

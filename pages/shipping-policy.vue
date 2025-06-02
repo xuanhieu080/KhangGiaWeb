@@ -79,32 +79,32 @@ const defaultIndex = ref(4)
 const items = ref([
     {
         label: trans('Terms of Use'),
-        slug: 'dieu-khoan-su-dung',
+        slug: 'terms-of-use',
         content: 'This is the content shown for Tab1',
     },
     {
         label: trans('Cookie Policy'),
-        slug: 'chinh-sach-cookie',
+        slug: 'cookie-policy',
         content: 'And, this is the content for Tab2',
     },
     {
         label: trans('Promotional Policy'),
-        slug: 'chinh-sach-khuyen-mai',
+        slug: 'promotional-policy',
         content: 'Finally, this is the content for Tab3',
     },
     {
         label: trans('Privacy Policy'),
-        slug: 'chinh-sach-bao-mat',
+        slug: 'privacy-policy',
         content: 'Finally 1, this is the content for Tab3',
     },
     {
         label: trans('Shipping Policy'),
-        slug: 'chinh-sach-giao-hang',
+        slug: 'shipping-policy',
         content: 'Finally 2, this is the content for Tab3',
     },
     {
         label: trans('Return Policy'),
-        slug: 'chinh-sach-hoan-tra-san-pham',
+        slug: 'return-policy',
         content: 'Finally 2, this is the content for Tab3',
     },
     {
@@ -114,12 +114,12 @@ const items = ref([
     },
     {
         label: trans('Payment Regulations'),
-        slug: 'quy-dinh-thanh-toan',
+        slug: 'payment-regulations',
         content: 'Finally 3, this is the content for Tab3',
     },
     {
         label: trans('Inspection Policy'),
-        slug: 'chinh-sach-kiem-hang',
+        slug: 'inspection-policy',
         content: 'Finally 3, this is the content for Tab3',
     }
 ]);

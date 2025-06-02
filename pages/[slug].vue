@@ -43,7 +43,11 @@ const {
 } = await useAsyncData(
     'pages',
     async () =>
-        useOriginalFetch(`/api/v1/pages/${route.params.slug}`),
+        useOriginalFetch(`/api/v1/pages/${route.params.slug}`, {
+            params: {
+                lang: locale.value
+            }
+        }),
     {
         default: () => [],
         watch: [refreshData],
@@ -65,6 +69,14 @@ watchEffect((value) => {
         description.value = page.value.data?.meta_description;
         key.value = page.value.data?.meta_key;
         image.value = page.value.data?.image_url;
+
+        if (page.value.data?.slug_other) {
+            if (locale.value == 'vi') {
+                link.value = `/en/${page.value.data?.slug_other}`;
+            } else {
+                link.value = `/vi/${page.value.data?.slug_other}`;
+            }
+        }
 
         seoMeta.value = {
             description: description.value,

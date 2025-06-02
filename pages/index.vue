@@ -15,7 +15,7 @@
                         size="lg"
                         class="tab-button"
                         :class="{ active: productIndex === 0 }"
-                        >Sản phẩm mới</UButton
+                        >{{trans('New product')}}</UButton
                     >
                     <UButton
                         @click="
@@ -28,7 +28,7 @@
                         size="lg"
                         class="tab-button"
                         :class="{ active: productIndex === 1 }"
-                        >Sản phẩm nổi bật</UButton
+                        >{{trans('Featured product')}}</UButton
                     >
                     <UButton
                         @click="
@@ -41,7 +41,7 @@
                         size="lg"
                         class="tab-button"
                         :class="{ active: productIndex === 2 }">
-                        Sắp ra mắt
+                       {{trans('Coming soon')}}
                         <UIcon name="i-ic-round-star" class="fs-22 tab-button-icon" dynamic />
                     </UButton>
                 </div>
@@ -67,7 +67,7 @@
                     :loading="loadingProductUniform"
                     :productList="productUniform.data"
                     :collectionLink="'/collection/dong-phuc'"
-                    :collectionTitle="'CÁC MẪU ĐỒNG PHỤC CÔNG TY MADE BY GAK'" />
+                    :collectionTitle="trans('Company uniform samples made by GAK')" />
             </div>
             <div v-else-if="loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
                 <ProductList :productList="[]" />
@@ -80,7 +80,7 @@
                     key='container-2'
                     :loading='loadingProductDashboard'
                     :productList="productDashboard.data"
-                    :collectionTitle="'Áo gile kỹ sư cao cấp'"
+                    :collectionTitle="trans('Premium engineer vest')"
                     :collectionLink="'/collection/ao-ghi-le'" />
             </div>
             <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-6 md:gap-4 w-full h-full">
@@ -119,7 +119,7 @@ const { link } = storeToRefs(useLanguageLinkStore);
 if (locale.value == 'vi') {
     link.value = 'en';
 } else {
-    link.value = 'en';
+    link.value = 'vi';
 }
 
 import { useHeader } from '@@/store/useHeader';
@@ -138,64 +138,64 @@ const bannerList = ref([
         url: '/images/banner_2.jpg',
         url_mobile: '/images/banner_mobile_2.jpg',
         name: 'banner 2',
-        link: localePath({ name: 'tat-ca-san-pham' })
+        link: localePath({ name: 'product-all-products' })
     },
 ]);
 
 const bannerBlock = ref({
     image_desktop: '/images/banner_3.jpg',
     image_mobile: '/images/banner_3_mobile.jpg',
-    title: 'Đồng phục',
-    description: 'Công ty mẫu mã đẹp',
+    title: trans('Uniform'),
+    description:trans('Beautiful design company'),
     link: 'dong-phuc',
 });
 const bannerBlock2 = ref({
     image_desktop: '/images/banner_4.jpg',
     image_mobile: '/images/banner_4_mobile.jpg',
-    title: 'Áo ghile kỹ sư',
-    description: 'Chuyên dụng - Chất lượng - Uy tín',
+    title: trans('Engineer vest'),
+    description: trans('Specialized - Quality - Prestige'),
     link: 'ao-ghi-le',
 });
 const bannerBlock3 = ref({
     image_desktop: '/images/banner_5.jpg',
     image_mobile: '/images/banner_5.jpg',
-    title: 'Nguyên phụ liệu',
-    subtitle: 'Phản Quang Chất lượng cao',
+    title: trans('Raw materials'),
+    subtitle: trans('High quality reflective'),
     link: 'phan-quang'
 });
 const bannerBlock4 = ref({
     image_desktop: '/images/banner_6.jpg',
     image_mobile: '/images/banner_6.jpg',
-    title: 'Nguyên phụ liệu',
-    subtitle: 'Vải /lưới',
+    title: trans('Raw materials'),
+    subtitle: trans('Fabric / Mesh'),
     link: 'vai'
 });
 
 const categoryList = ref([
     {
-        name: 'Tất cả sản phẩm',
+        name: trans('All products'),
         image: '/images/tat-ca-san-pham.jpg',
-        link: localePath({ name: 'tat-ca-san-pham' }),
+        link: localePath({ name: 'product-all-products' }),
     },
     {
-        name: 'Đồ thể thao',
+        name: trans('Reflective shirt with 2-side elastic'),
         image: '/images/phan_quang_2B.jpg',
         link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-thun-2-ben'} })
     },
     {
-        name: 'Mặc hàng ngày',
+        name: trans('3M style reflective shirt'),
         image: '/images/phan_quang_3M.jpg',
         link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-kieu-3m'} })
     },
     {
-        name: 'Đồ lót nam',
+        name: trans("Palize reflective shirt"),
         image: '/images/phan_quang_palize.jpg',
         link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-palize'} })
     },
 ]);
 const diaryList = ref([
     {
-        name: 'Áo phản quang thun 2 bên',
+        name: trans('Reflective shirt with 2-side elastic'),
         slug: 'quan-dui-nam-ca-tinh',
         image_thumb: '/images/diary-phan-quang-thun-luoi.jpg',
         image_sale: '/images/diary-phan-quang-thun-luoi.jpg',
@@ -203,7 +203,7 @@ const diaryList = ref([
         discount: 10,
     },
     {
-        name: 'Áo phản quang kiểu 3M',
+        name:trans('3M style reflective shirt'),
         slug: 'quan-dui-nam-ca-tinh',
         image_thumb: '/images/diary-phan-quang-3M.jpg',
         image_sale: '/images/diary-phan-quang-3M.jpg',
@@ -211,7 +211,7 @@ const diaryList = ref([
         discount: 16,
     },
     {
-        name: 'Áo phản quang Hà Nội',
+        name: trans('Hanoi reflective shirt'),
         slug: 'quan-dui-nam-ca-tinh',
         image_thumb: '/images/diary-phan-quang-ha-noi.jpg',
         image_sale: '/images/diary-phan-quang-ha-noi.jpg',
@@ -219,7 +219,7 @@ const diaryList = ref([
         discount: 25,
     },
     {
-        name: 'Áo phản quang Palize',
+        name:trans('Palize reflective shirt'),
         slug: 'quan-dui-nam-ca-tinh',
         image_thumb: '/images/diary-phan-quang-palize.jpg',
         image_sale: '/images/diary-phan-quang-palize.jpg',
@@ -227,7 +227,7 @@ const diaryList = ref([
         discount: 50,
     },
     {
-        name: 'Áo phản quang túi lưới',
+        name: trans('Reflective mesh-pocket shirt'),
         slug: 'quan-dui-nam-ca-tinh',
         image_thumb: '/images/diary-phan-quang-tui-luoi.jpg',
         image_sale: '/images/diary-phan-quang-tui-luoi.jpg',
@@ -304,6 +304,7 @@ const {
             params: {
                 category_slug:'ao-ghi-le',
                 limit: 4,
+                lang: locale.value
             },
         }),
     {
@@ -319,11 +320,14 @@ const {
     'product-new',
     async () =>
         useOriginalFetch(`/api/v1/product-news`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_new: 1,
-            limit: 20,
+            params: {
+                sort: {
+                    'desc[0]': 'id',
+                },
+                is_new: 1,
+                limit: 20,
+                lang: locale.value
+            }
         }),
     {
         default: () => [],
@@ -338,11 +342,14 @@ const {
     'product-hot',
     async () =>
         useOriginalFetch(`/api/v1/product-hots`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_hot: 1,
-            limit: 20,
+            params: {
+                sort: {
+                    'desc[0]': 'id',
+                },
+                is_hot: 1,
+                limit: 20,
+                lang: locale.value
+            }
         }),
     {
         default: () => [],
@@ -357,11 +364,14 @@ const {
     'product-upcoming',
     async () =>
         useOriginalFetch(`/api/v1/product-upcoming`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_upcoming: 1,
-            limit: 20,
+            params: {
+                sort: {
+                    'desc[0]': 'id',
+                },
+                is_upcoming: 1,
+                limit: 20,
+                lang: locale.value
+            }
         }),
     {
         default: () => [],
@@ -390,11 +400,14 @@ const {
     'product-uniforms',
     async () =>
         useOriginalFetch(`/api/v1/product-uniforms`,{
-            sort: {
-                'desc[0]': 'id',
-            },
-            is_uniform: 1,
-            limit: 4,
+            params: {
+                sort: {
+                    'desc[0]': 'id',
+                },
+                is_uniform: 1,
+                limit: 4,
+                lang: locale.value
+            }
         }),
     {
         default: () => [],
@@ -404,8 +417,8 @@ const {
 
 ///SEO
 const config = useRuntimeConfig();
-let pageTitle = 'Công ty GAK | Xưởng sản xuất vải, lưới, quần áo bảo hộ, đồng phục giá gốc!';
-let pageDescription = 'Công ty GAK công ty chuyên cung cấp quần áo bảo hộ lao động, đồng phục, vải, lưới, phản quang giá sỉ, nguồn hàng sẵn có! Liên hệ GAK tư vấn tận tâm.';
+let pageTitle = trans('GAK company | Fabric, mesh, protective clothing and uniform manufacturer at wholesale prices!');
+let pageDescription = trans('GAK company specializes in supplying workwear, uniforms, fabrics, mesh, and reflective gear at wholesale prices. Contact GAK for dedicated consultation.');
 useHead({
     templateParams: {
         site: {

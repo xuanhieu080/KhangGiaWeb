@@ -61,7 +61,7 @@
                 <NuxtLink class='main-nav-item' :to="localePath({ name: 'index' })" @click='menuMobile = false'
                 >{{ trans('Home') }}
                 </NuxtLink>
-                <NuxtLink class='main-nav-item' :to="localePath({ name: 'tat-ca-san-pham' })"
+                <NuxtLink class='main-nav-item'  :to="localePath({ name: 'product-all-products' })"
                           @click='menuMobile = false'
                 >{{ trans('Product') }}
                 </NuxtLink>
@@ -478,6 +478,7 @@ const getProductSearch = async () => {
         params: {
             search: searchItem.value,
             limit: 12,
+            lang: locale.value
         },
     });
     if (response.value) {
@@ -490,9 +491,11 @@ const getProductSearch = async () => {
 };
 
 function setLocaleLanguage(language) {
-    setLocale(language)
+    // setLocale(language)
+    if (!link.value) return;
+    const newLink = localePath({path: link.value}, language)
+    console.log('newLink:', newLink);
 
-    const newLink = localePath(link.value, language)
     router.push(newLink)
 }
 

@@ -171,6 +171,8 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 
 defineComponent({
@@ -185,6 +187,10 @@ const modules = [Scrollbar];
 const isLoadingData = ref(false);
 const loadingPageCollection = ref(true);
 const tabIndex = ref(0);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
 
 const filterList = ref([
     {
@@ -234,6 +240,7 @@ const changeCategoryTab = (index) => {
 const getParamsCollection = async () => {
     let params = {
         category_slug: router.currentRoute.value.params.slug,
+        lang: locale.value
     };
     let attribute = Object.entries(selectedAll.value).map(([key, value]) => ({ key, value }));
     if (attribute.length > 0) {
@@ -268,7 +275,9 @@ const {
     data: collection,
     status: loadingCollection,
     error: collectionError,
-} = await useAsyncData('collection-category', async () => useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`));
+} = await useAsyncData('collection-category', async () => useOriginalFetch(`/api/v1/categories/${router.currentRoute.value.params.slug}`, {
+    params: {lang: locale.value}
+}));
 const { data: productCollection, status: loadingProductCollection } = await useLazyAsyncData(
     'product-category',
     async () =>
@@ -296,6 +305,14 @@ watchEffect((value) => {
         description.value =  collection.value.item?.meta_description;
         key.value = collection.value.item?.meta_key;
         image.value =  collection.value.item?.image_url;
+
+        if (collection.value.item?.slug_other) {
+            if (locale.value == 'vi') {
+                link.value = `/en/collection/${collection.value.item?.slug_other.slug_other}`;
+            } else {
+                link.value = `/vi/collection/${collection.value.item?.slug_other.slug_other}`;
+            }
+        }
 
         seoMeta.value = {
             description: description.value,

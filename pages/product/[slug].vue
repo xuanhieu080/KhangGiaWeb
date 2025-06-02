@@ -561,9 +561,9 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Autoplay, Thumbs, Zoom } from 'swiper/modules';
 import ProductCard from '@/components/products/ProductCard';
 import moment from 'moment';
-import productHots from '~/api/product_hot.json';
-import page_headers from '~/api/page_header.json';
-import { watchOnce } from '@vueuse/core';
+
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const route = useRoute();
 const router = useRouter();
@@ -571,6 +571,11 @@ const toast = useToast();
 
 let modules = ref([Navigation, Thumbs, Zoom]);
 let modulesSimilar = ref([Navigation]);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = null
 
 const { locale, t: trans } = useI18n();
 const localePath = useLocalePath();
@@ -707,6 +712,7 @@ const {
         useOriginalFetch(`/api/v1/products/${router.currentRoute.value.params.slug}`, {
             query: {
                 code: router.currentRoute.value.query?.code,
+                lang: locale.value,
             },
         }),
     {
@@ -727,6 +733,14 @@ watchEffect((value) => {
             description.value = productItemCurrent.value ? productItemCurrent.value.meta_description : productItem.value.data?.meta_description;
             key.value = productItemCurrent.value ? productItemCurrent.value.meta_key : productItem.value.data?.meta_key;
             image.value = productItemCurrent.value ? productItemCurrent.value.image_url : productItem.value.data?.image_url;
+
+            if (productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other) {
+                if (locale.value == 'vi') {
+                    link.value = `/en/products/${productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other}`;
+                } else {
+                    link.value = `/vi/products/${productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other}`;
+                }
+            }
 
             seoMeta.value = {
                 description: description.value,
@@ -896,7 +910,8 @@ async function getProductCategory() {
                 'desc[0]': 'id',
             },
             category_id: productItem.value.data.category_id,
-            limit: 20
+            limit: 20,
+            lang: locale.value,
         }
     });
 
@@ -952,6 +967,7 @@ const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyn
                 page: page.value,
                 limit: pageCount.value,
                 order: sort.value.direction,
+                 lang: locale.value,
             },
         }),
     {
