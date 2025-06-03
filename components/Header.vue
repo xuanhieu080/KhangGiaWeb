@@ -208,7 +208,7 @@
                     <NuxtImg class='h-full w-full object-contain' alt='Logo Site' :src='images.logo' />
                 </NuxtLink>
                 <div class=" flex-col justify-end gap-1 w-[82px]">
-                    <UButton class='justify-end' variant='ghost' color='none' :padded='false' @click='menuMobile = !menuMobile'>
+                    <UButton class='justify-end w-full' variant='ghost' color='none' :padded='false' @click='menuMobile = !menuMobile'>
                         <UIcon name='i-pajamas-hamburger' class='fs-28 text-black' dynamic />
                     </UButton>
                 </div>
