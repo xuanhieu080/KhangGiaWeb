@@ -234,11 +234,18 @@
 
 <script setup>
 import images from '@@/assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = '/vi/dvkh-tan-tam'
 
 let title = 'GAK’s dedicated customer service and a direct-to-source shopping journey!';
 let pageDescription = 'Thank you for choosing GAK. We’re here for you — constantly improving our services so you’re always satisfied and have the best experience with us.'

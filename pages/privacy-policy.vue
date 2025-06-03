@@ -70,11 +70,24 @@
 <script setup>
 import EditorBox from '@@/components/EditorBox.vue';
 import images from 'assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
-const slug = ref(router.currentRoute.value.params.slug);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null
+const slug = ref(null)
+
+if (locale.value == 'vi') {
+    slug.value = 'chinh-sach-bao-mat';
+} else {
+    slug.value = 'privacy-policy';
+}
+
 const defaultIndex = ref(3)
 const items = ref([
     {
@@ -128,7 +141,6 @@ const { data: page, status: loadingPage } = await useLazyAsyncData('chinh-sach-b
     useOriginalFetch(`/api/v1/pages/chinh-sach-bao-mat`),
 );
 
-
 const title = ref('');
 const description = ref('');
 const key = ref('');
@@ -143,6 +155,12 @@ watchEffect((value) => {
         description.value =  page.value.data?.meta_description;
         key.value = page.value.data?.meta_key;
         image.value =  page.value.data?.image_url;
+
+        if (locale.value == 'en') {
+            link.value = `/vi/${page.value.data?.other_slug}`;
+        } else {
+            link.value = `/en/${page.value.data?.other_slug}`;
+        }
 
         seoMeta.value = {
             description: description.value,

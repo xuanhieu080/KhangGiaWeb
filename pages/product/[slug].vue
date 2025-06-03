@@ -736,9 +736,9 @@ watchEffect((value) => {
 
             if (productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other) {
                 if (locale.value == 'vi') {
-                    link.value = `/en/products/${productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other}`;
+                    link.value = `/en/product/${productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other}`;
                 } else {
-                    link.value = `/vi/products/${productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other}`;
+                    link.value = `/vi/product/${productItemCurrent.value ? productItemCurrent.value.slug_other : productItem.value.data?.slug_other}`;
                 }
             }
 

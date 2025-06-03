@@ -70,11 +70,26 @@
 <script setup>
 import EditorBox from '@@/components/EditorBox.vue';
 import images from 'assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
-const slug = ref(router.currentRoute.value.params.slug);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = null
+const slug = ref(null)
+
+if (locale.value == 'vi') {
+    slug.value = 'chinh-sach-cookie';
+} else {
+    slug.value = 'cookie-policy';
+}
+
+
 const defaultIndex = ref(1)
 const items = ref([
     {
@@ -126,7 +141,9 @@ const items = ref([
 const content = ref();
 
 const { data: page, status: loadingPage } = await useLazyAsyncData('chinh-sach-cookie', () =>
-    useOriginalFetch(`/api/v1/pages/chinh-sach-cookie`),
+    useOriginalFetch(`/api/v1/pages/${slug.value}`, {
+        params: {lang: locale.value}
+    }),
 );
 
 //SEO
@@ -145,6 +162,15 @@ watchEffect((value) => {
         description.value =  page.value.data?.meta_description;
         key.value = page.value.data?.meta_key;
         image.value =  page.value.data?.image_url;
+        link.value = null;
+
+        if (page.value.data?.slug_other) {
+            if (locale.value == 'vi') {
+                link.value = `/en/${page.value.data.slug_other}`;
+            } else {
+                link.value = `/vi/${page.value.data.slug_other}`;
+            }
+        }
 
         seoMeta.value = {
             description: description.value,

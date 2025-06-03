@@ -69,10 +69,24 @@
 </template>
 <script setup>
 
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
+
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
-const slug = ref(router.currentRoute.value.params.slug);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null
+const slug = ref(null)
+
+if (locale.value == 'vi') {
+    slug.value = 'dieu-khoan-su-dung';
+} else {
+    slug.value = 'tearms-of-use';
+}
+
 const defaultIndex = ref(0)
 const items = ref([
     {
@@ -116,9 +130,10 @@ const items = ref([
         content: 'Finally 3, this is the content for Tab3',
     }
 ]);
-const content = ref();
 const { data: page, status: loadingPage } = await useLazyAsyncData('dieu-khoan-su-dung', () =>
-    useOriginalFetch(`/api/v1/pages/dieu-khoan-su-dung`),
+    useOriginalFetch(`/api/v1/pages/${slug.value}`, {
+        params: {lang: locale.value}
+    }),
 );
 //SEO
 
@@ -136,6 +151,12 @@ watchEffect((value) => {
         description.value =  page.value.data?.meta_description;
         key.value = page.value.data?.meta_key;
         image.value =  page.value.data?.image_url;
+
+        if (locale.value == 'en') {
+            link.value = `/vi/${page.value.data?.other_slug}`;
+        } else {
+            link.value = `/en/${page.value.data?.other_slug}`;
+        }
 
         seoMeta.value = {
             description: description.value,

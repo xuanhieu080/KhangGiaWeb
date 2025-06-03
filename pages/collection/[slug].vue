@@ -308,9 +308,9 @@ watchEffect((value) => {
 
         if (collection.value.item?.slug_other) {
             if (locale.value == 'vi') {
-                link.value = `/en/collection/${collection.value.item?.slug_other.slug_other}`;
+                link.value = `/en/collection/${collection.value.item?.slug_other}`;
             } else {
-                link.value = `/vi/collection/${collection.value.item?.slug_other.slug_other}`;
+                link.value = `/vi/collection/${collection.value.item?.slug_other}`;
             }
         }
 

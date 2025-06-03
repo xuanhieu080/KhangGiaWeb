@@ -1,5 +1,5 @@
 <template>
-    <div v-if="pageGroups.length > 0" class="site-footer mobile--hidden">
+    <div v-if="pageGroups?.length > 0" class="site-footer mobile--hidden">
         <div class="footer-container">
             <div class="site-footer__inner">
                 <div class="site-footer__sidebar">
@@ -124,12 +124,32 @@ const localePath = useLocalePath();
 
 const { locale, t: trans, setLocale } = useI18n()
 
-const {pageGroups} = storeToRefs(useMainStore)
+const pageGroups = useState('page-groups', () => []);
 
-if (pageGroups.value.length == 0) {
-    getPageGroup();
+async function loadPageGroup() {
+    const { data } = await useLazyAsyncData(
+        'page-groups',
+        () => useOriginalFetch(`/api/v1/page-groups`, {
+            query: { lang: locale.value },
+        }),
+        {
+            default: () => [],
+        },
+    );
+
+    pageGroups.value = data.value?.data;
 }
 
+if (!pageGroups.value || pageGroups.value.length === 0) {
+    loadPageGroup();
+}
+
+watch(
+    () => locale.value,
+    () => {
+        loadPageGroup();
+    },
+);
 </script>
 <style lang="scss" scoped>
 .site-footer {

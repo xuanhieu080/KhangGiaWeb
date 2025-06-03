@@ -116,11 +116,7 @@ const { locale, t: trans } = useI18n()
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
 
-if (locale.value == 'vi') {
-    link.value = 'en';
-} else {
-    link.value = 'vi';
-}
+link.value = '/';
 
 import { useHeader } from '@@/store/useHeader';
 const useHeaderStore = useHeader();

@@ -212,6 +212,8 @@ import images from '@@/assets/icons';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation } from 'swiper/modules';
 import ArticleCard from '@/components/articles/ArticleCard.vue';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 let modules = ref([Navigation]);
 
 defineComponent({
@@ -221,7 +223,16 @@ defineComponent({
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
-const slug = ref(router.currentRoute.value.params.slug);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
+
+if (locale.value == 'en') {
+    link.value = `/vi/gak-official`;
+} else {
+    link.value = '/en/gak-official'
+}
 
 const articlesList = ref([
     {

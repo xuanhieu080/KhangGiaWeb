@@ -1792,6 +1792,8 @@
 import images from '@@/assets/icons';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Navigation, Pagination, Grid } from 'swiper/modules';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
@@ -1799,8 +1801,12 @@ let modules = ref([Navigation, Pagination, Grid]);
 
 const router = useRouter();
 const localePath = useLocalePath();
-const slug = ref(router.currentRoute.value.params.slug);
 const { locale, t: trans } = useI18n();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = '/vi/van-hoa-gak'
 
 function renderBullet(index, className) {
     return '<div class="custom-bullet ' + className + '">' + (index + 1) + '</div>';

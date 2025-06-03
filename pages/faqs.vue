@@ -70,11 +70,23 @@
 <script setup>
 import EditorBox from '@@/components/EditorBox.vue';
 import images from 'assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
-const slug = ref(router.currentRoute.value.params.slug);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
+
+if (locale.value == 'en') {
+    link.value = `/vi/faqs`;
+} else {
+    link.value = '/en/faqs'
+}
+
 const defaultIndex = ref(6)
 const items = ref([
     {
@@ -125,7 +137,9 @@ const items = ref([
 ]);
 const content = ref();
 const { data: page, status: loadingPage } = await useLazyAsyncData('faqs', () =>
-    useOriginalFetch(`/api/v1/pages/faqs`),
+    useOriginalFetch(`/api/v1/pages/faqs`, {
+        params: {lang: locale.value}
+    }),
 );
 
 //SEO

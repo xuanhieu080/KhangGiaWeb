@@ -758,6 +758,8 @@ import images from '@@/assets/icons';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import { Grid } from 'swiper/modules';
 import ArticleCard from '@/components/articles/ArticleCard.vue';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 let modules = ref([]);
 
 defineComponent({
@@ -767,6 +769,11 @@ const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
 const { locale, t: trans } = useI18n();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = '/en/custom-order'
 
 const form = ref({
     phone: '',

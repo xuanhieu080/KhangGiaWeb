@@ -245,11 +245,18 @@
 
 <script setup>
 import images from '@@/assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = '/en/dedicated-customer-care-service'
 
 let title = 'CSKH GAK tận tâm và hành trình mua sắm tận gốc!';
 let pageDescription = 'Cảm ơn bạn đã chọn GAK, chúng tôi ở đây là vì bạn, không ngừng cải thiện tất cả dịch vụ để bạn luôn hài lòng và có những trải nghiệm tốt nhất tại GAK.'

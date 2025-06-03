@@ -316,13 +316,21 @@
 
 <script setup>
 import images from '@@/assets/icons';
+import { useLanguageLink } from '~/store/languageLink';
+import { storeToRefs } from 'pinia';
 
 const { locale, t: trans } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
 const slug = ref(router.currentRoute.value.params.slug);
-let title = 'Chào mừng bạn đến với nhà máy GAK | Nơi sản phẩm được tạo ra';
-let pageDescription = '3000m2 cơ sở sản xuất của chúng tôi là một niềm tự hào GAK, nơi tạo ra những sản phẩm chất lượng, gắn kết đời sống của hàng trăm con người lao động.'
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = '/vi/nha-may'
+let title = 'Welcome to the GAK Factory | Where products are made';
+let pageDescription = 'Our 3000m² manufacturing facility is a source of pride for GAK — a place where quality products are created and the lives of hundreds of workers are connected.'
+
 const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {

@@ -28,12 +28,18 @@
 import images from 'assets/icons';
 import { storeToRefs } from 'pinia';
 import { useHeader } from '~/store/useHeader';
+import { useLanguageLink } from '~/store/languageLink';
 
 const useHeaderStore = useHeader();
 const { isLoadingPage } = storeToRefs(useHeaderStore);
 
 const route = useRoute();
 const { locale, t: trans } = useI18n();
+
+const useLanguageLinkStore = useLanguageLink();
+const { link } = storeToRefs(useLanguageLinkStore);
+
+link.value = null;
 
 const refreshData = ref(0);
 const {
