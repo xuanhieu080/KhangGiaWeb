@@ -40,7 +40,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-cate-service' })"
+                    :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })"
                     color="none"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
@@ -88,7 +88,7 @@
             </UButton>
             <UButton
                 variant="ghost"
-                :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-cate-service' })"
+                :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })"
                 color="none"
                 class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                 <div class="flex justify-center">
