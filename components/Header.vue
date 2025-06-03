@@ -176,16 +176,42 @@
                 </NuxtLink>
             </div>
             <div class='right-header-mobile flex justify-between items-center gap-6'>
-                <UButton @click='handleOpenSearchSlideOver' variant='ghost' color='none' :padded='false'
-                         class='search-mobile'>
-                    <UIcon name='i-heroicons-magnifying-glass' class='fs-28 text-black' />
-                </UButton>
+                <div class="flex flex-col align-mid items-center gap-1 w-[82px]">
+                    <UButton @click='handleOpenSearchSlideOver' variant='ghost' color='none' :padded='false'
+                             class='search-mobile'>
+                        <UIcon name='i-heroicons-magnifying-glass' class='fs-28 text-black' />
+                    </UButton>
+                    <div class="flex rounded">
+                        <button
+                            class="px-3 rounded-l py-1 text-xs font-bold transition-all"
+                            :class="locale == 'vi'
+                            ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600 active'
+                            : 'bg-white text-gray-800 border border-gray-300 hover:bg-gray-100'"
+                            id="btn-vi"
+                            @click="setLocaleLanguage('vi')"
+                        >
+                            VI
+                        </button>
+                        <button
+                            class="px-3 py-1 rounded-r text-xs font-bold transition-all"
+                            id="btn-en"
+                            :class="locale == 'en'
+                        ? 'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600 active'
+                        : 'bg-white text-gray-800 border border-gray-300 hover:bg-gray-100'"
+                            @click="setLocaleLanguage('en')"
+                        >
+                            EN
+                        </button>
+                    </div>
+                </div>
                 <NuxtLink :to="localePath({ name: 'index' })" class='logo'>
                     <NuxtImg class='h-full w-full object-contain' alt='Logo Site' :src='images.logo' />
                 </NuxtLink>
-                <UButton variant='ghost' color='none' :padded='false' @click='menuMobile = !menuMobile'>
-                    <UIcon name='i-pajamas-hamburger' class='fs-28 text-black' dynamic />
-                </UButton>
+                <div class=" flex-col justify-end gap-1 w-[82px]">
+                    <UButton class='justify-end' variant='ghost' color='none' :padded='false' @click='menuMobile = !menuMobile'>
+                        <UIcon name='i-pajamas-hamburger' class='fs-28 text-black' dynamic />
+                    </UButton>
+                </div>
             </div>
         </div>
 
@@ -330,6 +356,8 @@ const { link } = storeToRefs(useLanguageLinkStore);
 const { isScrollDown, isLoadingPage, menuMobile } = storeToRefs(useHeaderStore);
 const localePath = useLocalePath();
 
+const config = useRuntimeConfig();
+
 const router = useRouter();
 const searchItem = ref('');
 const profileSide = ref(false);
@@ -410,10 +438,14 @@ const getProductSearch = async () => {
 };
 
 function setLocaleLanguage(language) {
-    // setLocale(language)
     if (!link.value) return;
-    const newLink = localePath({path: link.value}, language)
-    console.log('newLink:', newLink);
+
+    // Parse relative URL với base giả
+    const url = new URL(link.value, config.public.baseURL)
+    const path = url.pathname
+    const queryParams = Object.fromEntries(url.searchParams.entries())
+
+    const newLink = localePath({ path, query: queryParams }, language)
 
     router.push(newLink)
 }

@@ -166,7 +166,19 @@ const searchItem = ref(router.currentRoute.value.query ? router.currentRoute.val
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
 
-link.value = `/vi/all-products`;
+const linkDefault = ref();
+
+if (locale.value == 'en') {
+    link.value = `/vi/tim-kiem-san-pham`;
+    linkDefault.value = `/vi/tim-kiem-san-pham`;
+} else {
+    link.value = '/en/product-search'
+    linkDefault.value = '/en/product-search'
+}
+
+if (router.currentRoute.value.query.search) {
+    link.value = `${link.value}?search=${router.currentRoute.value.query.search}`
+}
 
 const filterList = ref([
     {
@@ -194,6 +206,7 @@ const selectedMaterial = ref({});
 const selectedColor = ref(null);
 const refreshData = ref(0);
 const selectedAll = ref({});
+const search = computed(() => router.currentRoute.value.query.search)
 const removeAllFilter = () => {
     selectedAll.value = {};
     refreshData.value++;
@@ -260,6 +273,8 @@ const {
 } = await useLazyAsyncData('all-categories', async () => useOriginalFetch(`/api/v1/attribute-groups`, {
     params: {lang: locale.value}
 }));
+
+
 const { data: productCollection, pending: loadingProductCollection } = await useLazyAsyncData(
     'product-category-all',
     async () =>
@@ -268,27 +283,49 @@ const { data: productCollection, pending: loadingProductCollection } = await use
         }),
     {
         default: () => [],
-        watch: [filter, refreshData],
-    },
-);
-
-watch(
-    () => loadingCollection.value,
-    () => {
-        if (!loadingCollection.value) loadingPageCollection.value = false;
+        watch: [filter, refreshData, locale.value, searchItem.value],
     },
 );
 
 watch(
     () => searchItem.value,
-    async () => {
+    async (value) => {
+        if (value) {
+            link.value = `${linkDefault.value}?search=${value}`
+        } else {
+            link.value = linkDefault.value
+        }
         clearTimeout(deboundTime.value.timeOut);
         deboundTime.value.timeOut = setTimeout(() => {
             refreshData.value++;
             deboundTime.value.timeOut = null;
         }, 500);
     },
+    {
+        immediate: true,
+    }
 );
+
+watch(
+    () => router.currentRoute.value.query.search,
+     (value) => {
+         searchItem.value = value
+         if (value) {
+             link.value = `${linkDefault.value}?search=${value}`
+         } else {
+             link.value = linkDefault.value
+         }
+    },
+    {
+        immediate: true,
+    }
+);
+
+watchEffect((value) => {
+    if (loadingCollection.value == false) {
+        loadingPageCollection.value = false
+    }
+})
 // const { data: categories, pending: loadingCategories } = await useLazyAsyncData('all-category', () =>
 //     useOriginalFetch(`/api/v1/categories`),
 // );

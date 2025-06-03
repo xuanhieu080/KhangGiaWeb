@@ -47,6 +47,7 @@ const { locale, t: trans } = useI18n();
 
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
+link.value = null;
 
 const articles = ref({ data: [] });
 const links = ref([]);

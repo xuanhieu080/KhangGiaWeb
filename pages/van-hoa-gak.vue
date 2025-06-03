@@ -11,7 +11,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                    :to="localePath({ name: 've-chung-toi' })"
+                    :to="localePath({ name: locale=='vi'? 'abouts-ve-chung-toi' : 'abouts-about-us' })"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
@@ -25,7 +25,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({ name: 'van-hoa-gak' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-gak': 'culture-gak' })"
                     color="none"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
@@ -40,7 +40,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({ name: 'dvkh-tan-tam' })"
+                    :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-cate-service' })"
                     color="none"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
@@ -59,7 +59,7 @@
             <UButton
                 variant="ghost"
                 color="none"
-                :to="localePath({ name: 've-chung-toi' })"
+                :to="localePath({ name: locale=='vi'? 'abouts-ve-chung-toi' : 'abouts-about-us' })"
                 class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                 <div class="flex justify-center">
                     <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
@@ -73,7 +73,7 @@
             </UButton>
             <UButton
                 variant="ghost"
-                :to="localePath({ name: 'van-hoa-gak' })"
+               :to="localePath({ name: locale=='vi' ? 'van-hoa-gak': 'culture-gak' })"
                 color="none"
                 class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
                 <div class="flex justify-center">
@@ -88,7 +88,7 @@
             </UButton>
             <UButton
                 variant="ghost"
-                :to="localePath({ name: 'dvkh-tan-tam' })"
+                :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-cate-service' })"
                 color="none"
                 class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                 <div class="flex justify-center">

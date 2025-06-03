@@ -732,7 +732,6 @@ defineComponent({
 });
 const router = useRouter();
 const localePath = useLocalePath();
-const slug = ref(router.currentRoute.value.params.slug);
 const { locale, t: trans } = useI18n();
 
 const useLanguageLinkStore = useLanguageLink();

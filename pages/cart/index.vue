@@ -338,13 +338,13 @@
                                <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'privacy-policy' })">{{trans('Privacy policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'shipping-policy' })">{{trans('Delivery policy')}}</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'delivery-policy' })">{{trans('Delivery policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'promotional-policy' })">{{trans('Promotion policy')}}</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'retail-promotions-policy' })">{{trans('Promotion policy')}}</NuxtLink>
                            </li>
                            <li>
-                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'return-policy' })">{{trans('Product return policy')}}</NuxtLink>
+                               <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'product-return-policy' })">{{trans('Product return policy')}}</NuxtLink>
                            </li>
                        </ul>
                         <p>{{trans('Thank you for choosing and purchasing products at GAK.VN')}}</p>
@@ -379,7 +379,6 @@ const router = useRouter();
 
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
-link.value = null;
 
 if (locale.value == 'en') {
     link.value = `/vi/cart`;

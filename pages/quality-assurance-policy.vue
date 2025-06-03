@@ -44,7 +44,7 @@
                 <div class="contact__content-hotline mx-auto">
                     <div class="contact__content-info">
                         <img
-                            src="/images/phone-icon.svg"
+                            src='/images/phone-icon.svg'
                             class="bg-gray-200 p-2 rounded-full !border border-solid border-gray-300"
                             alt="" />
                         <div>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="contact__content-info">
                         <img
-                            src="/images/sms-notification.svg"
+                            src='/images/sms-notification.svg'
                             class="bg-gray-200 p-2 rounded-full !border border-solid border-gray-300"
                             alt="" />
                         <div>
@@ -68,7 +68,7 @@
     </NuxtLayout>
 </template>
 <script setup>
-import EditorBox from '@@/components/EditorBox.vue';
+import EditorBox from '~/components/EditorBox.vue';
 import images from 'assets/icons';
 import { useLanguageLink } from '~/store/languageLink';
 import { storeToRefs } from 'pinia';
@@ -83,13 +83,12 @@ link.value = null
 const slug = ref(null)
 
 if (locale.value == 'vi') {
-    slug.value = 'chinh-sach-hoan-tra-san-pham';
+    slug.value = 'chinh-sach-kiem-hang';
 } else {
-    slug.value = 'return-policy';
+    slug.value = 'quality-assurance-policy';
 }
 
-
-const defaultIndex = ref(5)
+const defaultIndex = ref(8)
 const items = ref([
     {
         label: trans('Terms of Use'),
@@ -102,8 +101,8 @@ const items = ref([
         content: 'And, this is the content for Tab2',
     },
     {
-        label: trans('Promotional Policy'),
-        slug: 'promotional-policy',
+        label: trans('Retail promotions policy'),
+        slug: 'retail-promotions-policy',
         content: 'Finally, this is the content for Tab3',
     },
     {
@@ -112,13 +111,13 @@ const items = ref([
         content: 'Finally 1, this is the content for Tab3',
     },
     {
-        label: trans('Shipping Policy'),
-        slug: 'shipping-policy',
+        label: trans('Delivery policy'),
+        slug: 'delivery-policy',
         content: 'Finally 2, this is the content for Tab3',
     },
     {
-        label: trans('Return Policy'),
-        slug: 'return-policy',
+        label: trans('Product return policy'),
+        slug: 'product-return-policy',
         content: 'Finally 3, this is the content for Tab3',
     },
     {
@@ -132,18 +131,17 @@ const items = ref([
         content: 'Finally 3, this is the content for Tab3',
     },
     {
-        label: trans('Inspection Policy'),
-        slug: 'inspection-policy',
+        label: trans('Quality assurance policy'),
+        slug: 'quality-assurance-policy',
         content: 'Finally 3, this is the content for Tab3',
     }
 ]);
 const content = ref();
-const { data: page, status: loadingPage } = await useLazyAsyncData('chinh-sach-hoan-tra-san-pham', () =>
+const { data: page, status: loadingPage } = await useLazyAsyncData('faqs', () =>
     useOriginalFetch(`/api/v1/pages/${slug.value}`, {
-        params: {lang: locale.value}
+        params:{lang: locale.value}
     }),
 );
-
 //SEO
 
 const title = ref('');
@@ -162,9 +160,9 @@ watchEffect((value) => {
         image.value =  page.value.data?.image_url;
 
         if (locale.value == 'en') {
-            link.value = `/vi/${page.value.data?.other_slug}`;
+            link.value = `/vi/${page.value.data?.slug_other}`;
         } else {
-            link.value = `/en/${page.value.data?.other_slug}`;
+            link.value = `/en/${page.value.data?.slug_other}`;
         }
 
         seoMeta.value = {

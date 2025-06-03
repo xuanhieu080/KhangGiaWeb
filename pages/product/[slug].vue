@@ -605,7 +605,7 @@ const productSilk = ref(null);
 const indexActive = ref(0);
 const indexActiveColor = ref(0);
 const loadingProductItem = ref(true);
-const loadingChangeProduct = ref(true);
+const loadingChangeProduct = ref(false);
 const selectedProductVariant = ref({});
 const imageList = computed(() => null);
 const thumbsSwiper = ref(null);

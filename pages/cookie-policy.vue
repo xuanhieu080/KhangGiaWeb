@@ -103,8 +103,8 @@ const items = ref([
         content: 'And, this is the content for Tab2',
     },
     {
-        label: trans('Promotional Policy'),
-        slug: 'promotional-policy',
+        label: trans('Retail promotions policy'),
+        slug: 'retail-promotions-policy',
         content: 'Finally, this is the content for Tab3',
     },
     {
@@ -113,13 +113,13 @@ const items = ref([
         content: 'Finally 1, this is the content for Tab3',
     },
     {
-        label: trans('Shipping Policy'),
-        slug: 'shipping-policy',
+        label: trans('Delivery policy'),
+        slug: 'delivery-policy',
         content: 'Finally 2, this is the content for Tab3',
     },
     {
-        label: trans('Return Policy'),
-        slug: 'return-policy',
+        label: trans('Product return policy'),
+        slug: 'product-return-policy',
         content: 'Finally 2, this is the content for Tab3',
     },
     {
@@ -133,8 +133,8 @@ const items = ref([
         content: 'Finally 3, this is the content for Tab3',
     },
     {
-        label: trans('Inspection Policy'),
-        slug: 'inspection-policy',
+        label: trans('Quality assurance policy'),
+        slug: 'quality-assurance-policy',
         content: 'Finally 3, this is the content for Tab3',
     }
 ]);

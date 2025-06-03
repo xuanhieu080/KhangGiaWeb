@@ -110,7 +110,6 @@ const searchBlog = ref(null);
 
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
-link.value = null;
 
 if (locale.value == 'en') {
     link.value = `/vi/blog`;

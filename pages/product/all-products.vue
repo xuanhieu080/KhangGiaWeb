@@ -148,7 +148,7 @@
                 <div class="text-2xl text-white text-center">{{trans("Haven't found a suitable reflective vest yet?")}}</div>
                 <div class="flex flex-col md:flex-row gap-4 items-center justify-center w-full">
                     <UButton
-                        :to="localePath({ name: 'dat-may' })"
+                        :to="localePath({ name: locale == 'vi' ? 'dat-may': 'custom-order' })"
                         color="white"
                         class="font-bold !uppercase text-green-700 w-full md:max-w-[300px] justify-center"
                         size="xl"
@@ -180,14 +180,18 @@ import { storeToRefs } from 'pinia';
 defineComponent({
     props: ['Swiper', 'SwiperSlide'],
 });
+const { locale, t: trans } = useI18n();
+const router = useRouter();
 
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
 
-link.value = `/vi/tat-ca-san-pham`;
+watch(locale, (newLocale) => {
+    link.value = newLocale === 'en'
+        ? '/vi/tat-ca-san-pham'
+        : '/en/all-products';
+}, { immediate: true })
 
-const { locale, t: trans } = useI18n();
-const router = useRouter();
 const localePath = useLocalePath();
 const modules = [Scrollbar];
 const isLoadingData = ref(false);

@@ -150,21 +150,21 @@ export default defineNuxtConfig({
                 vi: '/chinh-sach-cookie',
                 en: '/cookie-policy',
             },
-            'return-policy': {
+            'product-return-policy': {
                 vi: '/chinh-sach-hoan-tra-san-pham',
-                en: '/return-policy',
+                en: '/product-return-policy',
             },
-            'shipping-policy': {
+            'delivery-policy': {
                 vi: '/chinh-sach-giao-hang',
-                en: '/shipping-policy',
+                en: '/delivery-policy',
             },
-            'promotional-policy': {
+            'retail-promotions-policy': {
                 vi: '/chinh-sach-khuyen-mai',
-                en: '/promotional-policy',
+                en: '/retail-promotions-policy',
             },
-            'inspection-policy': {
+            'quality-assurance-policy': {
                 vi: '/chinh-sach-kiem-hang',
-                en: '/inspection-policy',
+                en: '/quality-assurance-policy',
             },
             'terms-of-use': {
                 vi: '/dieu-khoan-su-dung',
