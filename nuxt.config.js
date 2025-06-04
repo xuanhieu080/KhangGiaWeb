@@ -232,6 +232,21 @@ export default defineNuxtConfig({
         strategy: 'override',
     },
 
+    image: {
+        // Tự động tối ưu ảnh nội bộ
+        dir: 'public',
+
+        // Cho phép ảnh từ các domain ngoài (CDN, API)
+        domains: ['app.gak.vn'],
+
+        // Chọn provider xử lý ảnh, `ipx` là default
+        provider: 'ipx', // dùng được cả cho ảnh nội bộ và từ domain ngoài
+        ipx: {
+            dir: 'public',
+            cacheDir: 'node_modules/.cache/ipx', // nơi cache ảnh xử lý
+        }
+    },
+
     colorMode: {
         preference: 'light',
     },
@@ -304,9 +319,16 @@ export default defineNuxtConfig({
         },
     },
     nitro: {
+        routeRules: {
+            '/_ipx/**': {
+                headers: {
+                    'Cache-Control': 'public, max-age=31536000, immutable',
+                }
+            }
+        },
         prerender: {
             routes: ['/404'],
-        },
+        }
     },
     compatibilityDate: '2024-07-25',
 });
