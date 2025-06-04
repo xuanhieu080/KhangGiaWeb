@@ -231,7 +231,7 @@
                     <div id="services4" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto lg:order-2">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">#4. TỬ TẾ VỚI MÔI TRƯỜNG</h3>
+                                <h3 class="cs-services__title">#4. BE KIND TO THE ENVIRONMENT</h3>
                                 <div class="cs-services__description">
                                     <p>
                                         GAK is dedicated not only to creating value for the community and our partners but also to protecting and preserving the environment. We recognize that environmental protection is not only an individual responsibility but also a collective duty to safeguard the future for millions of children. Through our ongoing efforts to explore innovative fiber materials and advanced technologies, we aim to reduce waste and minimize environmental impact.

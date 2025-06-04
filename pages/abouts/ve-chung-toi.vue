@@ -43,7 +43,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })"
+                    :to="localePath({ name: locale == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })"
                     color="none"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
@@ -91,7 +91,7 @@
             </UButton>
             <UButton
                 variant="ghost"
-                :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })"
+                :to="localePath({ name: locale == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })"
                 color="none"
                 class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                 <div class="flex justify-center">
@@ -314,7 +314,7 @@
             <section class="cs-more">
                 <div class="grid lg:grid-cols-2 grid--aligned-center grid--three-columns grid--doubling">
                     <div class="grid__column">
-                        <NuxtLink :to="localePath({ name: locate == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })" target="_blank"
+                        <NuxtLink :to="localePath({ name: locale == 'vi' ? 'dvkh-tan-tam' : 'dedicated-customer-care-service' })" target="_blank"
                             ><img src="/images/about-us-6.jpg" alt="Tim hiểu thêm GAK"
                         /></NuxtLink>
                     </div>
