@@ -311,7 +311,7 @@ const pageHeaders = useState('page-headers', () => []);
 
 async function loadPage() {
     const { data } = await useLazyAsyncData(
-        'category-headers',
+        'page-headers',
         () => useOriginalFetch(`/api/v1/pages/headers`, {
             query: { lang: locale.value },
         }),
@@ -326,7 +326,7 @@ async function loadPage() {
 const categoryHeaders = useState('category-headers', () => []);
 
 async function loadCategory() {
-    const { data } = await useLazyAsyncData(
+    const { data: categories , status: loadingCategory} = await useLazyAsyncData(
         'category-headers',
         () => useOriginalFetch(`/api/v1/categories/header`, {
             query: { lang: locale.value },
@@ -336,15 +336,9 @@ async function loadCategory() {
         },
     );
 
-    categoryHeaders.value = data.value?.data;
-}
-if (!categoryHeaders.value || categoryHeaders.value.length === 0) {
-    loadCategory();
+    categoryHeaders.value = categories.value?.data;
 }
 
-if (!pageHeaders.value || pageHeaders.value.length === 0) {
-    loadPage();
-}
 
 const useHeaderStore = useHeader();
 
@@ -405,14 +399,6 @@ let productLists = useCookie('products-cart', {
 onBeforeMount(() => {
     isLoadingPage.value = false;
 });
-
-onMounted(() => {
-    if (productLists.value && productLists.value.length > 0) {
-        cartNumber.value = productLists.value.length;
-    } else {
-        cartNumber.value = 0;
-    }
-});
 const deboundTime = ref({
     timeOut: null,
 });
@@ -450,6 +436,22 @@ function setLocaleLanguage(language) {
     router.push(newLink)
 }
 
+onMounted(() => {
+    if (productLists.value && productLists.value.length > 0) {
+        cartNumber.value = productLists.value.length;
+    } else {
+        cartNumber.value = 0;
+    }
+})
+
+    if (!categoryHeaders.value || categoryHeaders.value.length === 0) {
+        loadCategory();
+    }
+
+    if (!pageHeaders.value || pageHeaders.value.length === 0) {
+        loadPage();
+    }
+
 watch(
     () => searchItem.value,
     async () => {
@@ -479,6 +481,7 @@ watch(
         loadCategory();
     },
 );
+
 </script>
 <style lang='scss' scoped>
 .site-header {
