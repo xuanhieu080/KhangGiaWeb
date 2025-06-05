@@ -281,13 +281,13 @@
                                     {{ trans('Quantity') + ': ' + findQuantity(item) }}
                                     <div class="product-price">
                                         <div v-if="item.percent == 0" class="original-price">
-                                            {{ formatPriceProduct(item.price) + 'đ' }}
+                                            {{ formatPriceProduct(item.price) + trans('price_name') }}
                                         </div>
                                         <div v-else class="discount-price">
                                             <div class="after-discount">
-                                                {{ formatPriceProduct(item.price_discount) + 'đ' }}
+                                                {{ formatPriceProduct(item.price_discount) + trans('price_name') }}
                                             </div>
-                                            <div class="original-price">{{ formatPriceProduct(item.price) + 'đ' }}</div>
+                                            <div class="original-price">{{ formatPriceProduct(item.price) + trans('price_name') }}</div>
                                             <div class="discount-tag">{{ item.percent + '%' }}</div>
                                         </div>
                                     </div>
@@ -306,7 +306,7 @@
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{trans('Subtotal')}}</div>
                         <div class="total-price flex flex-col items-end gap-2">
-                            {{ getFullTotalPrice() }}đ
+                            {{ getFullTotalPrice() }}{{trans('price_name')}}
                             <span v-if="true" class="italic text-xs">
                                 ({{ trans('Saving') }} <span class="text-blue-600">{{ getFullDiscountPrice() + trans('price_name') }} </span>)
                             </span>
@@ -314,7 +314,7 @@
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ trans('Discount') }}</div>
-                        <div class="discount-price flex flex-col items-end gap-2">{{ getFullDiscountPrice(false) }}đ</div>
+                        <div class="discount-price flex flex-col items-end gap-2">{{ getFullDiscountPrice(false) }}{{trans('price_name')}}</div>
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ trans('Shipping fee') }}</div>
@@ -324,7 +324,7 @@
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{trans('Total')}}</div>
                         <div class="discount-price flex flex-col items-end gap-2 text-2xl">
-                            {{ getPaidPrice() }}đ
+                            {{ getPaidPrice() }}{{trans('price_name')}}
                             <span v-if="getFullDiscountPrice() > 0" class="italic text-xs text-red-500">
                                 ({{ trans('discountLabel', { price: getFullDiscountPrice() }) }})
                             </span>
