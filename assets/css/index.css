@@ -642,3 +642,8 @@ html {
   opacity: 1; }
   .custom-bullet.swiper-pagination-bullet-active {
     color: white; }
+
+  .table {
+    display: block !important;
+    overflow-x: auto;
+  }
