@@ -123,6 +123,8 @@ const config = useRuntimeConfig();
 const showMenuChat = ref(false);
 const refreshData = ref(0);
 
+
+
 watch(
     () => router.currentRoute.value.fullPath,
     () => {
@@ -159,13 +161,39 @@ function handleBackToTopButton() {
 const backToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 };
+
+const localeMap = {
+    vi: 'vi_VN',
+    en: 'en_US'
+}
+
+// Reactive, nên sẽ tự cập nhật khi đổi ngôn ngữ
+const currentLocale = computed(() => localeMap[locale.value] || 'en_US')
+const alternateLocale = computed(() =>
+    currentLocale.value === 'vi_VN' ? 'en_US' : 'vi_VN'
+)
+
 useHead({
     script: [
         {
-            innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5MFK8NDW');`
-        }
-    ]
-})
+            innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5MFK8NDW');`,
+        },
+    ],
+    meta: [
+        {
+            name: 'location',
+            content: currentLocale.value,
+        },
+        {
+            property: 'og:locale',
+            content: currentLocale.value,
+        },
+        {
+            property: 'og:locale:alternate',
+            content: alternateLocale.value,
+        },
+    ],
+});
 useSchemaOrg([
     definePlace({
         name: process.env.NUXT_SITE_NAME,

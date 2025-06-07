@@ -7,7 +7,7 @@
                         <div class="text-3xl font-bold">{{ trans('Hello guests') }}</div>
                         <span>
                             {{ trans('totalAmount', { count: cartNumber }) }}
-                            <b class="text-blue-600">{{ getPaidPrice() }}{{trans('price_name')}}</b>
+                            <b class="text-blue-600">{{trans('price_name', {price: getPaidPrice()})}}</b>
                         </span>
                     </div>
                     <div class="flex flex-col gap-4 w-full">
@@ -281,13 +281,13 @@
                                     {{ trans('Quantity') + ': ' + findQuantity(item) }}
                                     <div class="product-price">
                                         <div v-if="item.percent == 0" class="original-price">
-                                            {{ formatPriceProduct(item.price) + trans('price_name') }}
+                                            {{trans('price_name', {price: formatPriceProduct(item.price)}) }}
                                         </div>
                                         <div v-else class="discount-price">
                                             <div class="after-discount">
-                                                {{ formatPriceProduct(item.price_discount) + trans('price_name') }}
+                                                {{ trans('price_name', {price: formatPriceProduct(item.price_discount)}) }}
                                             </div>
-                                            <div class="original-price">{{ formatPriceProduct(item.price) + trans('price_name') }}</div>
+                                            <div class="original-price">{{ trans('price_name', {price: formatPriceProduct(item.price)}) }}</div>
                                             <div class="discount-tag">{{ item.percent + '%' }}</div>
                                         </div>
                                     </div>
@@ -306,15 +306,15 @@
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{trans('Subtotal')}}</div>
                         <div class="total-price flex flex-col items-end gap-2">
-                            {{ getFullTotalPrice() }}{{trans('price_name')}}
+                            {{trans('price_name', {price: getFullTotalPrice()})}}
                             <span v-if="true" class="italic text-xs">
-                                ({{ trans('Saving') }} <span class="text-blue-600">{{ getFullDiscountPrice() + trans('price_name') }} </span>)
+                                ({{ trans('Saving') }} <span class="text-blue-600">{{ trans('price_name', {price: getFullDiscountPrice()}) }} </span>)
                             </span>
                         </div>
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ trans('Discount') }}</div>
-                        <div class="discount-price flex flex-col items-end gap-2">{{ getFullDiscountPrice(false) }}{{trans('price_name')}}</div>
+                        <div class="discount-price flex flex-col items-end gap-2">{{trans('price_name', {price: getFullDiscountPrice(false)})}}</div>
                     </div>
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{ trans('Shipping fee') }}</div>
@@ -324,7 +324,7 @@
                     <div class="flex justify-between w-full gap-2 mt-6 font-semibold">
                         <div>{{trans('Total')}}</div>
                         <div class="discount-price flex flex-col items-end gap-2 text-2xl">
-                            {{ getPaidPrice() }}{{trans('price_name')}}
+                            {{trans('price_name', {price: getPaidPrice()})}}
                             <span v-if="getFullDiscountPrice() > 0" class="italic text-xs text-red-500">
                                 ({{ trans('discountLabel', { price: getFullDiscountPrice() }) }})
                             </span>

@@ -147,13 +147,13 @@
 
                         <div v-if='productItemCurrent' class='product-price font-bold text-[19px] lg:text-[22px]'>
                             <div v-if='productItemCurrent.percent == 0' class='original-price'>
-                                {{ formatPriceProduct(productItemCurrent.price) + trans('price_name') }}
+                                {{ trans('price_name', {price: formatPriceProduct(productItemCurrent.price)}) }}
                             </div>
                             <div v-else class='discount-price'>
                                 <div class='after-discount'>
-                                    {{ formatPriceProduct(productItemCurrent.price_discount) + trans('price_name') }}
+                                    {{ trans('price_name', {price: formatPriceProduct(productItemCurrent.price_discount)}) }}
                                 </div>
-                                <div class='original-price'>{{ formatPriceProduct(productItemCurrent.price) + trans('price_name') }}
+                                <div class='original-price'>{{ trans('price_name', {price: formatPriceProduct(productItemCurrent.price)}) }}
                                 </div>
                                 <div class='discount-tag'>{{ productItemCurrent.percent + '%' }}</div>
                             </div>
@@ -164,9 +164,9 @@
                             </div>
                             <div v-else class='discount-price'>
                                 <div class='after-discount'>
-                                    {{ formatPriceProduct(productItem.data?.price_discount) + trans('price_name') }}
+                                    {{ trans('price_name', {price: formatPriceProduct(productItem.data?.price_discount)}) }}
                                 </div>
-                                <div class='original-price'>{{ formatPriceProduct(productItem.data?.price) + trans('price_name') }}
+                                <div class='original-price'>{{ trans('price_name', {price: formatPriceProduct(productItem.data?.price)}) }}
                                 </div>
                                 <div class='discount-tag'>{{ productItem.data?.percent + '%' }}</div>
                             </div>

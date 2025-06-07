@@ -26,14 +26,14 @@
                             {{ diary.name }}
                         </div>
                         <div v-if="diary.discount == 0" class="diary-product-price">
-                            {{ formatPriceProduct(diary.price) + trans('price_name') }}
+                            {{ trans('price_name', {price: formatPriceProduct(diary.price)}) }}
                         </div>
                         <div v-else class="diary-product-price">
                             <div class="discount-price">
-                                {{ (formatPriceProduct(diary.price* diary.discount / 100) ) + trans('price_name') }}
+                                {{ trans('price_name', {price: (formatPriceProduct(diary.price * diary.discount / 100) )}) }}
                             </div>
                             <div class="original-price">
-                                {{ formatPriceProduct(diary.price) + trans('price_name') }}
+                                {{ trans('price_name', {price: formatPriceProduct(diary.price)}) }}
                             </div>
                             <div class="discount-tag">-{{ diary.discount }}%</div>
                         </div>

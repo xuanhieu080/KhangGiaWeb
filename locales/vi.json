@@ -44,7 +44,7 @@
   "There are no products in the cart": "Không có sản phẩm nào trong giỏ hàng",
   "Subtotal": "Tạm tính",
   "Saving": "Tiết kiệm",
-  "price_name": "đ",
+  "price_name": "{price}đ",
   "Discount": "Giảm giá",
   "Shipping fee": "Phí giao hàng",
   "Free": "Miễn phí",

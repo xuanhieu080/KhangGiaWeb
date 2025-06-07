@@ -272,13 +272,13 @@
                                 <div class='product-name'>{{ product.name }}</div>
                                 <div class='product-price'>
                                     <div v-if='product.percent == 0' class='original-price'>
-                                        {{ formatPriceProduct(product.price) + trans('price_name') }}
+                                        {{ trans('price_name', {price: formatPriceProduct(product.price)}) }}
                                     </div>
                                     <div v-else class='discount-price'>
                                         <div class='after-discount'>
-                                            {{ formatPriceProduct(product.price_discount) + trans('price_name') }}
+                                            {{ trans('price_name', {price: formatPriceProduct(product.price_discount)}) }}
                                         </div>
-                                        <div class='original-price'>{{ formatPriceProduct(product.price) + trans('price_name') }}</div>
+                                        <div class='original-price'>{{ trans('price_name', {price: formatPriceProduct(product.price)}) }}</div>
                                         <div class='discount-tag'>{{ product.percent + '%' }}</div>
                                     </div>
                                 </div>
