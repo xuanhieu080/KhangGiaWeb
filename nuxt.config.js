@@ -252,6 +252,7 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
+            titleTemplate: '%s',
             htmlAttrs: {
                 lang: 'vi',
             },

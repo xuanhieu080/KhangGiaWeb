@@ -412,23 +412,14 @@ const {
 
 
 ///SEO
-const config = useRuntimeConfig();
-let pageTitle = trans('GAK company | Fabric, mesh, protective clothing and uniform manufacturer at wholesale prices!');
-let pageDescription = trans('GAK company specializes in supplying workwear, uniforms, fabrics, mesh, and reflective gear at wholesale prices. Contact GAK for dedicated consultation.');
-useHead({
-    templateParams: {
-        site: {
-            name: config.public.name,
-        },
-        separator: '|',
-    },
 
-    titleTemplate: '%s',
-})
+let title = trans('Fabric, mesh, protective clothing and uniform manufacturer at wholesale prices!');
+let pageDescription = trans('GAK company specializes in supplying workwear, uniforms, fabrics, mesh, and reflective gear at wholesale prices. Contact GAK for dedicated consultation.');
+const config = useRuntimeConfig();
 
 defineOgImageComponent('GAK', {
-    title: pageTitle,
-    description: config.public.description,
+    title: title,
+    description: pageDescription,
     theme: '#ff0000',
     colorMode: 'dark',
 });
@@ -438,11 +429,13 @@ defineOgImage({
 let seoMeta = {
     description:  pageDescription,
     ogDescription:  pageDescription,
-    ogTitle: pageTitle,
-    title: pageTitle,
-    twitterTitle: pageTitle,
+    ogTitle: title,
+    title: title,
+    twitterTitle: title,
     twitterDescription:  pageDescription,
+    keywords: title,
 };
+
 useSeoMeta(seoMeta);
 </script>
 <style lang="scss" scoped>
