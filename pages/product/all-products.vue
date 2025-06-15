@@ -2,10 +2,10 @@
     <NuxtLayout name="main">
         <div class="category-page bg-white">
             <div class="md:hidden">
-                <img src="/images/all-products/all-banner-1_1.jpg" class="h-full w-full object-contain" :alt="trans('All products')" />
+                <img :src="locale === 'vi' ? '/images/all-products/all-banner-1_1.jpg' : '/images/all-products/en-all-banner-1_1.jpg'" class="h-full w-full object-contain" :alt="trans('All products')" />
             </div>
             <div class="hidden md:block">
-                <img src="/images/all-products/all-banner-1.jpg" class="h-full w-full object-contain" :alt="trans('All products')"/>
+                <img :src="locale === 'vi' ? '/images/all-products/all-banner-1.jpg' : '/images/all-products/en-all-banner-1.jpg'" class="h-full w-full object-contain" :alt="trans('All products')"/>
             </div>
             <div v-if="!loadingProductCollection" class="category-main flex lg:flex-row flex-col justify-between w-full gap-6 px-5">
                 <div class="category-data flex flex-col gap-4 flex-1">
