@@ -81,7 +81,7 @@
                     :loading='loadingProductDashboard'
                     :productList="productDashboard.data"
                     :collectionTitle="trans('Premium engineer vest')"
-                    :collectionLink="'/collection/ao-ghi-le'" />
+                    :collectionLink="locale === 'vi' ? '/collection/ao-ghi-le' : '/collection/gile-safety-vest'" />
             </div>
             <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-6 md:gap-4 w-full h-full">
                 <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
@@ -128,7 +128,7 @@ const bannerList = ref([
         url: '/images/banner_1.jpg',
         url_mobile: '/images/banner_mobile_1.jpg',
         name: 'banner 1',
-        link: localePath({ name: 'collection-slug', params: { slug: 'ao-ghi-le'} })
+        link: localePath({ name: 'collection-slug', params: { slug: locale.value == 'vi' ? 'ao-ghi-le' : 'gile-safety-vest'} })
     },
     {
         url: '/images/banner_2.jpg',
@@ -298,7 +298,7 @@ const {
     async () =>
         useOriginalFetch(`/api/v1/products`,{
             params: {
-                category_slug:'ao-ghi-le',
+                category_slug: locale.value === 'vi' ? 'ao-ghi-le' : 'gile-safety-vest',
                 limit: 4,
                 lang: locale.value
             },
