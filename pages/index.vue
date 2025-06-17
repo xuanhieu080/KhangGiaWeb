@@ -143,28 +143,28 @@ const bannerBlock = ref({
     image_mobile: '/images/banner_3_mobile.jpg',
     title: trans('Uniform'),
     description:trans('Beautiful design company'),
-    link: 'dong-phuc',
+    link: locale.value === 'vi' ? 'dong-phuc' : 'uniform',
 });
 const bannerBlock2 = ref({
     image_desktop: '/images/banner_4.jpg',
     image_mobile: '/images/banner_4_mobile.jpg',
     title: trans('Engineer vest'),
     description: trans('Specialized - Quality - Prestige'),
-    link: 'ao-ghi-le',
+    link: locale.value === 'vi' ? 'ao-ghi-le' : 'gile-safety-vest',
 });
 const bannerBlock3 = ref({
     image_desktop: '/images/banner_5.jpg',
     image_mobile: '/images/banner_5.jpg',
     title: trans('Raw materials'),
     subtitle: trans('High quality reflective'),
-    link: 'phan-quang'
+    link: locale.value === 'vi' ? 'phan-quang' : 'reflective-tape',
 });
 const bannerBlock4 = ref({
     image_desktop: '/images/banner_6.jpg',
     image_mobile: '/images/banner_6.jpg',
     title: trans('Raw materials'),
     subtitle: trans('Fabric / Mesh'),
-    link: 'vai'
+    link: locale.value === 'vi' ? 'vai' : 'fabric'
 });
 
 const categoryList = ref([
@@ -176,17 +176,17 @@ const categoryList = ref([
     {
         name: trans('Reflective shirt with 2-side elastic'),
         image: '/images/phan_quang_2B.jpg',
-        link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-thun-2-ben'} })
+        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'ao-phan-quang-thun-2-ben' : 'safety-vest-with-2-side-elastic-mesh'} })
     },
     {
         name: trans('3M style reflective shirt'),
         image: '/images/phan_quang_3M.jpg',
-        link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-kieu-3m'} })
+        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ?'ao-phan-quang-kieu-3m' : '3m-style-reflective-mesh-safety-vest'} })
     },
     {
         name: trans("Palize reflective shirt"),
         image: '/images/phan_quang_palize.jpg',
-        link: localePath({ name: 'collection-slug', params: { slug: 'ao-phan-quang-palize'} })
+        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'ao-phan-quang-palize' : 'palize-safety-vest'} })
     },
 ]);
 const diaryList = ref([
