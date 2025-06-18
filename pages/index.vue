@@ -125,16 +125,33 @@ const productIndex = ref(0);
 
 const bannerList = ref([
     {
-        url: '/images/banner_1.jpg',
-        url_mobile: '/images/banner_mobile_1.jpg',
+        url: locale.value === 'vi' ? '/images/banners/banner_1.jpg' : '/images/banners/banner_1_en.jpg',
+        url_mobile: locale.value === 'vi' ? '/images/banners/banner_1_mobile.jpg' : '/images/banners/banner_1_mobile_en.jpg',
         name: 'banner 1',
-        link: localePath({ name: 'collection-slug', params: { slug: locale.value == 'vi' ? 'ao-ghi-le' : 'gile-safety-vest'} })
+        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'vai-may-bao-ho-lao-dong' : 'protective-fabric-for-industrial-workers'} })
     },
     {
-        url: '/images/banner_2.jpg',
-        url_mobile: '/images/banner_mobile_2.jpg',
+        url: locale.value === 'vi' ? '/images/banners/banner_2.jpg' : '/images/banners/banner_2_en.jpg',
+        url_mobile: locale.value === 'vi' ? '/images/banners/banner_2_mobile.jpg' : '/images/banners/banner_2_mobile_en.jpg',
         name: 'banner 2',
-        link: localePath({ name: 'product-all-products' })
+        link: localePath({ name: 'product-slug', params: { slug:  locale.value === 'vi' ? 'mau-ao-ghi-le-han-quoc-xuat-khau' : 'hi-vis-korean-6-pocket-safety-vest'} })
+    },
+    {
+        url: locale.value === 'vi' ? '/images/banners/banner_3.jpg' : '/images/banners/banner_3_en.jpg',
+        url_mobile: locale.value === 'vi' ? '/images/banners/banner_3_mobile.jpg' : '/images/banners/banner_3_mobile_en.jpg',
+        name: 'banner 3',
+        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'dong-phuc-bao-ve' : 'security-uniform'} })
+    },
+    {
+        url: locale.value === 'vi' ? '/images/banners/banner_4_en.jpg' : '/images/banners/banner_4_en.jpg',
+        url_mobile: locale.value === 'vi' ? '/images/banners/banner_4_mobile.jpg' : '/images/banners/banner_4_mobile_en.jpg',
+        name: 'banner 4',
+        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'ao-ghi-le' : 'gile-safety-vest'} })
+    },  {
+        url: locale.value === 'vi' ? '/images/banners/banner_5.jpg' : '/images/banners/banner_5_en.jpg',
+        url_mobile: locale.value === 'vi' ? '/images/banners/banner_5_mobile.jpg' : '/images/banners/banner_5_mobile_en.jpg',
+        name: 'banner 3',
+        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'nha-may' : 'factory'} })
     },
 ]);
 

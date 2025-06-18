@@ -851,7 +851,7 @@ defineOgImageComponent('GAK', {
     colorMode: 'dark',
 });
 defineOgImage({
-    url: config.public.logo,
+    url: '/images/dat-may-background.jpg',
 });
 let seoMeta = {
     description: pageDescription,

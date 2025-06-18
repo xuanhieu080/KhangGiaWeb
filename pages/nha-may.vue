@@ -1,11 +1,19 @@
 <template>
     <NuxtLayout name="main">
-        <div class="w-full">
+        <div class="hidden md:block">
             <NuxtImg
                 class="w-full h-[500px] md:h-full object-cover"
                 loading="lazy"
                 format="webp"
                 src="/images/produce-poster-video.jpg"
+                alt="" />
+        </div>
+        <div class="md:hidden w-full">
+            <NuxtImg
+                class="w-full md:h-full object-cover"
+                loading="lazy"
+                format="webp"
+                src="/images/produce-poster-video-mobile.jpg"
                 alt="" />
         </div>
 <!--        <section class="running-video">-->
@@ -364,7 +372,7 @@ defineOgImageComponent('GAK', {
     colorMode: 'dark',
 });
 defineOgImage({
-    url:  config.public.logo,
+    url:  '/images/produce-poster-video.jpg"',
 });
 let seoMeta = {
     description:  pageDescription,
