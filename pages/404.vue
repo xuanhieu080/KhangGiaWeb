@@ -6,7 +6,6 @@
                     <div class="max-w-md">
                         <h1>404</h1>
                         <p>
-
                         </p>
                         <p>{{trans("Sorry, we can't find this page right now")}}</p>
                         <p>{{trans('return_in_seconds', {timeout: timeout})}}</p>

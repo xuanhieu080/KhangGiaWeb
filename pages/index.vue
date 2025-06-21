@@ -150,8 +150,8 @@ const bannerList = ref([
     },  {
         url: locale.value === 'vi' ? '/images/banners/banner_5.jpg' : '/images/banners/banner_5_en.jpg',
         url_mobile: locale.value === 'vi' ? '/images/banners/banner_5_mobile.jpg' : '/images/banners/banner_5_mobile_en.jpg',
-        name: 'banner 3',
-        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'nha-may' : 'factory'} })
+        name: 'banner 5',
+        link: localePath({ name: 'slug', params: { slug:  locale.value === 'vi' ? 'nha-may' : 'factory'} })
     },
 ]);
 

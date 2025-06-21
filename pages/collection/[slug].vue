@@ -1,12 +1,12 @@
 <template>
     <NuxtLayout name="main">
-        <div class="category-page pt-8 bg-white">
+        <div v-if='!collectionError' class="category-page pt-8 bg-white">
             <div class="px-4 md:px-8">
                 <div class="category-header mb-6">
                     <div class="category-header-title">
-                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ collection.item.name }}</h1>
+                        <h1 class="font-bold uppercase !text-2xl lg:!text-4xl">{{ collection?.item.name }}</h1>
                     </div>
-                    <div v-if="collection.item.descendants.length > 0" class="category-tabs w-full">
+                    <div v-if="collection?.item.descendants.length > 0" class="category-tabs w-full">
                         <Swiper
                             :slidesPerView="2"
                             :spaceBetween="8"
@@ -32,7 +32,7 @@
                             }"
                             class="swiper category-swiper min-w-0 relative z-10">
                             <SwiperSlide
-                                v-for="(category, index) in collection.item.descendants"
+                                v-for="(category, index) in collection?.item.descendants"
                                 :key="product"
                                 class="!h-[300px] xl:!h-[400px] w-[200px] mr-4">
                                 <UCard
@@ -163,7 +163,7 @@
             </div>
         </div>
         <UCard v-if="collection?.item?.content_seo" class="m-6 prose prose-lg max-w-full">
-            <div v-html="collection.item.content_seo"></div>
+            <div v-html="collection?.item.content_seo"></div>
         </UCard>
     </NuxtLayout>
 </template>
