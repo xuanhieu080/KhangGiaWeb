@@ -430,7 +430,7 @@ const {
 
 ///SEO
 
-let title = trans('Fabric, mesh, protective clothing and uniform manufacturer at wholesale prices!');
+let title = trans('GAK Co.,LTD factory fabric, mesh protective clothing at wholesale prices!');
 let pageDescription = trans('GAK company specializes in supplying workwear, uniforms, fabrics, mesh, and reflective gear at wholesale prices. Contact GAK for dedicated consultation.');
 const config = useRuntimeConfig();
 
