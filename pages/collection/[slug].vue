@@ -42,7 +42,7 @@
                                     <NuxtLink
                                         :to="localePath({ name: 'collection-slug', params: { slug: category.slug } })"
                                         class="category-item flex flex-col justify-between gap-2 h-full">
-                                        <NuxtImg
+                                        <img
                                             :src="category.image_url"
                                             format="webp"
                                             class="w-full object-contain object-center xl:object-left rounded-md h-[90%]" />

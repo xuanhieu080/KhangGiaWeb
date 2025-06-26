@@ -2,7 +2,7 @@
     <NuxtLayout name="main">
         <div class="blog-page">
             <div class="blog-page-image relative">
-                <NuxtImg
+                <img
                     class="w-full h-[500px] object-cover"
                     loading="lazy"
                     format="webp"

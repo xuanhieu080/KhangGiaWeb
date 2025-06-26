@@ -3,8 +3,8 @@
         <picture class="w-full banner-image">
             <source v-if='isMobile' :srcset="bannerBlock.image_mobile" media="(max-width: 991px)" />
             <source v-else :srcset="bannerBlock.image_desktop" />
-            <NuxtImg v-if='isMobie' :src="bannerBlock.image_mobile" :alt="bannerBlock.title" style="width: 100%" />
-            <NuxtImg v-else :src="bannerBlock.image_desktop" :alt="bannerBlock.title" style="width: 100%" />
+            <img v-if='isMobie' :src="bannerBlock.image_mobile" :alt="bannerBlock.title" style="width: 100%" />
+            <img v-else :src="bannerBlock.image_desktop" :alt="bannerBlock.title" style="width: 100%" />
         </picture>
         <div v-if="!hideContent" class="banner-content" :class="[splitBanner ? 'modify-position' : '', isWhite ? 'white-text' : '']">
             <div v-if="bannerBlock.subtitle" :class="[splitBanner ? 'text-white md:text-black' : '']" class="opacity-85 md:opacity-75 font-semibold uppercase">{{ bannerBlock.subtitle }}</div>

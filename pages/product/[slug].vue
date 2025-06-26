@@ -84,7 +84,7 @@
                                     v-if='productItemCurrent && productItemCurrent.thumb_image.length > 0'
                                     v-for='image in productItemCurrent.thumb_image'
                                     class='!flex justify-center !h-auto aspect-[3/4]'>
-                                    <NuxtImg
+                                    <img
                                         :src='image'
                                         loading='lazy'
                                         quality='80'
@@ -95,7 +95,7 @@
                                     v-else-if='!productItemCurrent && productItem.data?.thumb_image.length > 0'
                                     v-for='image in productItem.data?.thumb_image'
                                     class='flex justify-center items-center !h-full aspect-[3/4] w-full rounded-md'>
-                                    <NuxtImg
+                                    <img
                                         :src='image'
                                         loading='lazy'
                                         quality='80'

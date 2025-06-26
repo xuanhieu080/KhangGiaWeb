@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div class="about-us-image relative">
-            <NuxtImg class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
+            <img class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
                 <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA GAK</h1>
@@ -14,7 +14,7 @@
                     :to="localePath({ name: locale=='vi'? 'abouts-ve-chung-toi' : 'abouts-about-us' })"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
-                        <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
+                        <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
                         <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
@@ -29,7 +29,7 @@
                     color="none"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
-                        <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
+                        <img class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
                         <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
@@ -44,7 +44,7 @@
                     color="none"
                     class="about-us-button !bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
-                        <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
+                        <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
                         <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>
@@ -62,7 +62,7 @@
                 :to="localePath({ name: locale=='vi'? 'abouts-ve-chung-toi' : 'abouts-about-us' })"
                 class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                 <div class="flex justify-center">
-                    <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
+                    <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
                     <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
@@ -77,7 +77,7 @@
                 color="none"
                 class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
                 <div class="flex justify-center">
-                    <NuxtImg class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
+                    <img class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
                     <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
@@ -92,7 +92,7 @@
                 color="none"
                 class="about-us-button !bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                 <div class="flex justify-center">
-                    <NuxtImg class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
+                    <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/star-blink.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
                     <span class="max-w-[150px] text-lg">Trải nghiệm <br />98% hài lòng</span>

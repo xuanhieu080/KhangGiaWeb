@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="main">
         <div class="hidden md:block">
-            <NuxtImg
+            <img
                 class="w-full h-[500px] md:h-full object-cover"
                 loading="lazy"
                 format="webp"
@@ -9,7 +9,7 @@
                 alt="" />
         </div>
         <div class="md:hidden w-full">
-            <NuxtImg
+            <img
                 class="w-full md:h-full object-cover"
                 loading="lazy"
                 format="webp"

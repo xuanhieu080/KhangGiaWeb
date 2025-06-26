@@ -53,7 +53,7 @@
         <div class='header'>
             <div class='left-header'>
                 <NuxtLink :to="localePath({ name: 'index' })" class='logo'>
-                    <NuxtImg class='h-full w-full object-contain' alt='Logo Site' :src='images.logo' />
+                    <img class='h-full w-full object-contain' alt='Logo Site' :src='images.logo' />
                 </NuxtLink>
             </div>
             <div class='mobile-header'></div>
@@ -205,7 +205,7 @@
                     </div>
                 </div>
                 <NuxtLink :to="localePath({ name: 'index' })" class='logo'>
-                    <NuxtImg class='h-full w-full object-contain' alt='Logo Site' :src='images.logo' />
+                    <img class='h-full w-full object-contain' alt='Logo Site' :src='images.logo' />
                 </NuxtLink>
                 <div class=" flex-col justify-end gap-1 w-[82px]">
                     <UButton class='justify-end w-full' variant='ghost' color='none' :padded='false' @click='menuMobile = !menuMobile'>

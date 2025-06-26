@@ -90,7 +90,7 @@
                         <a
                         href='http://online.gov.vn/Home/WebDetails/120677'
                         target='_blank'>
-                            <NuxtImg src='/bo-cong-thuong.png'
+                            <img src='/bo-cong-thuong.png'
                                                  class="mr-3"
                                              alt='GAK' width='106' height='40' />
                         </a>
@@ -98,7 +98,7 @@
                             href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
                             title="DMCA.com Protection Status"
                             class="dmca-badge mr-3">
-                            <NuxtImg
+                            <img
                                 style="max-height: 40px;"
                                 width='106' height='40'
                                 format="webp"

@@ -15,12 +15,12 @@
             </UButton>
             <div class="flex gap-4 w-full justify-between">
                 <div class="diary-thumb-image">
-                    <NuxtImg format="jpg" class="w-full h-full object-contain object-center" :src="diary.image_thumb" :alt="diary.name" />
+                    <img format="jpg" class="w-full h-full object-contain object-center" :src="diary.image_thumb" :alt="diary.name" />
                 </div>
                 <div class="diary-product">
                     <div class="diary-product-item">
                         <div class="diary-product-image">
-                            <NuxtImg format="webp" class="w-full h-full object-cover" :src="diary.image_sale" :alt="diary.name"/>
+                            <img format="webp" class="w-full h-full object-cover" :src="diary.image_sale" :alt="diary.name"/>
                         </div>
                         <div class="diary-product-name font-medium">
                             {{ diary.name }}

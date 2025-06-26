@@ -2,7 +2,7 @@
     <NuxtLayout name='main'>
         <div v-if='page && page.data' class='page'>
             <div v-if='!page.data.is_button && page.data.image_url' class='about-us-image relative'>
-                <NuxtImg
+                <img
                     v-if='page.data.image_url'
                     class='w-full h-[500px] object-cover'
                     loading='lazy'
