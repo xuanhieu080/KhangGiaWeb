@@ -3,7 +3,7 @@
         <div v-if="ready" class="product-page py-6 w-full">
             <div class="container mx-auto flex flex-col gap-4">
                 <!-- ========= IMAGE + INFO ========= -->
-                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
+                <div class="product-image-swiper flex flex-col lg:grid lg:grid-cols-[600px,1fr] lg:items-start lg:justify-start gap-4 lg:gap-8 relative md:pt-12">
                     <UBreadcrumb
                         class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]"
                         :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate' }"
@@ -15,8 +15,8 @@
                     />
 
                     <!-- Thumbs -->
-                    <div class="image-box flex items-start justify-center gap-4 w-full relative lg:sticky lg:top-6">
-                        <Swiper
+                    <div class="image-box relative w-full lg:w-auto lg:shrink-0 lg:pl-[76px]">
+                    <Swiper
                             v-show="!loadingProductItem"
                             @swiper="setThumbsSwiper"
                             :spaceBetween="16"
@@ -26,7 +26,7 @@
                             :modules="modules"
                             :key="'thumb-mobile'"
                             :direction="'vertical'"
-                            class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-6"
+                            class="thumb-product-swiper !w-[30px] lg:!w-[60px] !mx-0 !shrink-0 !absolute top-6 left-0"
                         >
                             <!-- Ưu tiên ảnh variant đang chọn -->
                             <SwiperSlide
@@ -74,7 +74,7 @@
                         <!-- Main image -->
                         <div
                             v-show="!loadingProductItem"
-                            class="main-product-swiper rounded-md w-full xl:min-w-[540px] lg:w-[450px] xl:w-[540px] z-0 bg-[#f1f1f1]"
+                            class="main-product-swiper rounded-md w-full lg:w-[450px] xl:w-[540px] xl:min-w-[540px] lg:mx-0 lg:shrink-0 z-0 bg-[#f1f1f1]"
                         >
                             <Swiper
                                 :spaceBetween="10"
@@ -131,9 +131,11 @@
                     </div>
 
                     <!-- ========= RIGHT: INFO ========= -->
-                    <div class="product-information flex flex-col gap-4 px-4">
+                    <div class="product-information min-w-0 flex flex-col gap-4 px-4">
                         <div class="product-name flex flex-col gap-2">
-                            <h1 class="font-bold text-[20px] lg:text-[32px]">{{ current?.name }}</h1>
+                            <h1 class="product-title">
+                                {{ current?.name }}
+                            </h1>
                         </div>
 
                         <div class="product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black">
@@ -192,6 +194,7 @@
 
                         <!-- Thuộc tính variants (ĐÃ LỌC + ghost) -->
                         <div
+                            v-if="hasVariants"
                             v-for="variantAttribute in filteredVariantAttributes"
                             :key="variantAttribute.id"
                             class="flex flex-col gap-2"
@@ -200,10 +203,19 @@
                 'product-size-list': !variantAttribute.is_color
               }"
                         >
-              <span class="text-[15px] flex gap-2 items-center">
-                <span>{{ variantAttribute.name }}:</span>
-                <b>{{ selectedName(variantAttribute.id) }}</b>
-              </span>
+             <span class="variant-row">
+  <span class="variant-row__label">{{ variantAttribute.name }}:</span>
+
+                 <!-- Giá trị đã chọn: truncate cố định khung -->
+  <b class="variant-row__value">
+    {{ selectedName(variantAttribute.id) }}
+  </b>
+
+  <i v-if="variantAttribute.is_color && !selectedName(variantAttribute.id)"
+     class="variant-row__hint">
+    ({{ trans('Select a color to purchase') }})
+  </i>
+</span>
 
                             <!-- Cảnh báo generic nếu nhóm có ghost -->
                             <div v-if="hasGhostForGroup(variantAttribute.id)" class="mt-1 text-xs text-orange-600 font-semibold">
@@ -222,10 +234,7 @@
                                         :class="{
     '!ring-green-500': isActive(attribute.attribute_id),
     'ring-2 ring-dashed ring-orange-500 cursor-not-allowed opacity-80': isGhostActive(attribute.attribute_id, variantAttribute.id),
-    // chỉ còn opacity-50 (KHÔNG pointer-events-none)
-    'opacity-50':
-      !showIfSelectable(attribute.attribute_id, variantAttribute.id, attribute.is_main, variantAttribute, attribute)
-      && !isGhostActive(attribute.attribute_id, variantAttribute.id)
+    'opacity-50': isDimmed(attribute.attribute_id, variantAttribute)
   }"
                                         :style="{ backgroundColor: attribute.attribute_color }"
                                         @click="selectVariant(variantAttribute, attribute)"
@@ -261,32 +270,27 @@
                                 <div
                                     v-for="attribute in variantAttribute.attributes"
                                     :key="'s-' + variantAttribute.id + '-' + attribute.attribute_id"
-                                    v-show="showIfSelectable(attribute.attribute_id, variantAttribute.id, attribute.is_main, variantAttribute, attribute)
-                          || isGhostActive(attribute.attribute_id, variantAttribute.id)"
+                                    v-show="visibleAttr(attribute.attribute_id, variantAttribute.id)"
                                 >
                                     <button
                                         :class="[
-                      'size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14',
-                      { '!bg-black !text-white': isActive(attribute.attribute_id) },
-                      { 'ring-2 ring-dashed ring-orange-500 cursor-not-allowed opacity-80': isGhostActive(attribute.attribute_id, variantAttribute.id) },
-                      { 'opacity-50 pointer-events-none':
-                          !showIfSelectable(attribute.attribute_id, variantAttribute.id, attribute.is_main, variantAttribute, attribute)
-                          && !isGhostActive(attribute.attribute_id, variantAttribute.id)
-                      }
-                    ]"
-                                        :disabled="isGhostActive(attribute.attribute_id, variantAttribute.id)
-                               || (!showIfSelectable(attribute.attribute_id, variantAttribute.id, attribute.is_main, variantAttribute, attribute)
-                                   && !isGhostActive(attribute.attribute_id, variantAttribute.id))"
+    'size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14',
+    { '!bg-black !text-white': isActive(attribute.attribute_id) },
+    { 'ring-2 ring-dashed ring-orange-500 cursor-not-allowed opacity-80': isGhostActive(attribute.attribute_id, variantAttribute.id) },
+    { 'opacity-50': isDimmed(attribute.attribute_id, variantAttribute) }
+  ]"
                                         @click="selectVariant(variantAttribute, attribute)"
                                     >
                                         {{ attribute.attribute_name }}
                                         <span v-if="isGhostActive(attribute.attribute_id, variantAttribute.id)"
                                               class="ms-2 text-[10px] uppercase font-extrabold text-orange-600">
-                      {{ trans('Temporarily kept') }}
-                    </span>
+    {{ trans('Temporarily kept') }}
+  </span>
                                     </button>
+
                                 </div>
                             </div>
+
 
                             <UButton
                                 v-if="variantAttribute.link"
@@ -643,7 +647,8 @@ if (errorGetProduct.value) {
 
 // —— CURRENT SNAPSHOT
 const current = computed(() => productItemCurrent.value || productItem.value?.data || null)
-const hasVariants = computed(() => (productItem.value?.data?.variants?.length || 0) > 0)
+const hasVariants     = computed(() => (productItem.value?.data?.variants?.length || 0) > 0)
+const initialNoCode   = computed(() => hasVariants.value && !route.query?.code)
 
 // —— HELPERS
 const formatPrice = (n) => new Intl.NumberFormat('en-US').format(Number(n || 0))
@@ -663,6 +668,12 @@ const isVariantValid = (v) => {
     return hasImages && hasQty
 }
 
+const baseVariants = computed(() => {
+    const all = productItem.value?.data?.variants || []
+    const valids = all.filter(isVariantValid)
+    return valids.length ? valids : all
+})
+
 const validVariants = computed(() => {
     const vs = productItem.value?.data?.variants || []
     return vs.filter(isVariantValid)
@@ -671,14 +682,13 @@ const validVariants = computed(() => {
 // Map groupId -> Set(attributeId) hợp lệ (tồn tại trong ít nhất một valid variant)
 const allowedByGroup = computed(() => {
     const map = new Map()
-    for (const v of validVariants.value) {
+    for (const v of baseVariants.value) {
         const pairs = Array.isArray(v.option_all) && v.option_all.length
             ? v.option_all
             : (v.options || []).map((attrId, i) => ({
                 attribute_id: attrId,
                 attribute_group_id: (v.option_group || [])[i]
             }))
-
         for (const p of pairs) {
             if (!p?.attribute_group_id || !p?.attribute_id) continue
             if (!map.has(p.attribute_group_id)) map.set(p.attribute_group_id, new Set())
@@ -688,19 +698,25 @@ const allowedByGroup = computed(() => {
     return map
 })
 
+const visibleAttr = (attributeId, groupId) => {
+    const allowed = allowedByGroup.value.get(groupId) || new Set()
+    return allowed.has(attributeId) || isGhostActive(attributeId, groupId)
+}
+
 // Lọc lại cấu trúc variantAttribute để render (ẩn nhóm/attr không hợp lệ; giữ attr ghost)
 const filteredVariantAttributes = computed(() => {
     const groups = productItem.value?.data?.variantAttribute || []
-    return groups
-        .map(g => {
-            const allowed = allowedByGroup.value.get(g.id) || new Set()
-            const filteredAttrs = (g.attributes || []).filter(a =>
-                allowed.has(a.attribute_id) || requestedHas(a.attribute_id)
-            )
-            return { ...g, attributes: filteredAttrs }
-        })
-        .filter(g => g.attributes.length > 0)
+    return groups.map(g => {
+        const allowed = allowedByGroup.value.get(g.id) || new Set()
+        const attrs = g.attributes || []
+        const filtered = initialNoCode.value && g.is_color
+            ? attrs
+            : attrs.filter(a => allowed.has(a.attribute_id) || requestedHas(a.attribute_id))
+        return { ...g, attributes: filtered }
+    }).filter(g => g.attributes.length > 0)
 })
+
+
 
 // —— GHOST-ACTIVE HELPERS
 const isGhostActive = (attributeId, groupId) => {
@@ -755,35 +771,46 @@ function selectedName(attributeGroupId) {
     return ''
 }
 function selectVariant(group, attribute) {
-    // ghi lại ý định (ghost-active)
     requestedAttrs.add(attribute.attribute_id)
 
-    // Nếu attr KHÔNG chọn được (không tạo ra valid variant) và cũng KHÔNG phải ghost của người dùng
+    if (initialNoCode.value) {
+        const idx = productVariants.value.findIndex(it => it.attribute_group_id === group.id)
+
+        if (group.is_color) {
+            // chỉ cho chọn màu nếu có trong allowedColorsForCurrent (tương thích với non-color đã chọn)
+            if (!allowedColorsForCurrent.value.has(attribute.attribute_id)) {
+                notifyAttrUnavailable(group, attribute)
+                return
+            }
+        }
+
+        // cập nhật selection ngay
+        if (idx !== -1) productVariants.value[idx].attribute_id = attribute.attribute_id
+        else productVariants.value.push({ attribute_id: attribute.attribute_id, attribute_group_id: group.id })
+        productVariantSlugs.value[group.slug] = attribute.attribute_slug
+
+        // nếu là màu hợp lệ, thử resolve variant (đủ tổ hợp -> có code)
+        if (group.is_color) {
+            const match = getMatchingVariant()
+            if (match && (!productItemCurrent.value || match.code !== productItemCurrent.value.code)) {
+                loadingProductItem.value = true
+                productItemCurrent.value = match
+                loadingProductItem.value = false
+                router.replace({ query: { code: productItemCurrent.value.code } })
+            }
+        }
+        return
+    }
+
+    // ===== phần còn lại giữ nguyên (flow cũ) =====
     const selectable = showIfSelectable(attribute.attribute_id, group.id, attribute.is_main, group, attribute)
-    const ghost = isGhostActive(attribute.attribute_id, group.id)
-    if (!selectable && !ghost) {
-        notifyAttrUnavailable(group, attribute)
-        return
-    }
-
-    // Nếu là ghost (đã bấm từ trước nhưng không hợp ở tổ hợp hiện tại) => chỉ hiển thị, không cập nhật
-    if (ghost) {
-        notifyAttrUnavailable(group, attribute)
-        return
-    }
-
-    // đến đây là hợp lệ → cập nhật như cũ
-    const allowed = allowedByGroup.value.get(group.id) || new Set()
-    if (!allowed.has(attribute.attribute_id)) {
-        // (phòng hờ) không cập nhật selection thực, chỉ giữ ghost
-        notifyAttrUnavailable(group, attribute)
-        return
-    }
+    const ghost      = isGhostActive(attribute.attribute_id, group.id)
+    if (!selectable && !ghost) { notifyAttrUnavailable(group, attribute); return }
+    if (ghost) { notifyAttrUnavailable(group, attribute); return }
 
     const idx = productVariants.value.findIndex(it => it.attribute_group_id === group.id)
     if (idx !== -1) productVariants.value[idx].attribute_id = attribute.attribute_id
     else productVariants.value.push({ attribute_id: attribute.attribute_id, attribute_group_id: group.id })
-
     productVariantSlugs.value[group.slug] = attribute.attribute_slug
 
     const check = getMatchingVariant()
@@ -795,6 +822,49 @@ function selectVariant(group, attribute) {
     }
 }
 
+function variantMatchesNonColorSelection(variant, pairs) {
+    // lấy cặp option_all của variant
+    const pairsV = Array.isArray(variant.option_all) && variant.option_all.length
+        ? variant.option_all
+        : (variant.options || []).map((attrId, i) => ({
+            attribute_id: attrId,
+            attribute_group_id: (variant.option_group || [])[i]
+        }))
+    // mọi cặp non-color đã chọn đều phải nằm trong variant
+    return pairs.every(sel =>
+        pairsV.some(vp => vp.attribute_group_id === sel.attribute_group_id && vp.attribute_id === sel.attribute_id)
+    )
+}
+
+// chỉ gom màu từ những biến thể HỢP LỆ (có ảnh + còn hàng) và KHỚP non-color đang chọn
+const allowedColorsForCurrent = computed(() => {
+    const pairs = pickedNonColorPairs.value
+    const colorGroup = (productItem.value?.data?.variantAttribute || []).find(g => g.is_color)
+    if (!colorGroup) return new Set()
+
+    const set = new Set()
+    for (const v of validVariants.value) {         // validVariants = variants có ảnh & qty > 0
+        if (!variantMatchesNonColorSelection(v, pairs)) continue
+        const pairsV = Array.isArray(v.option_all) && v.option_all.length
+            ? v.option_all
+            : (v.options || []).map((attrId, i) => ({
+                attribute_id: attrId,
+                attribute_group_id: (v.option_group || [])[i]
+            }))
+        // lấy attribute_id thuộc group màu
+        const colorPair = pairsV.find(x => x.attribute_group_id === colorGroup.id)
+        if (colorPair) set.add(colorPair.attribute_id)
+    }
+    return set
+})
+
+
+// các cặp {attribute_id, attribute_group_id} đã chọn ở nhóm KHÔNG phải màu
+const pickedNonColorPairs = computed(() => {
+    const groups = productItem.value?.data?.variantAttribute || []
+    const nonColorIds = new Set(groups.filter(g => !g.is_color).map(g => g.id))
+    return productVariants.value.filter(p => nonColorIds.has(p.attribute_group_id))
+})
 
 function getMatchingVariant() {
     const ids  = productVariants.value.map(i => i.attribute_id)
@@ -810,7 +880,7 @@ function askSelectColor() {
     toast.add({
         title: trans('Notification') + ' !',
         description: trans("You haven't selected a color"),
-        timeout: 3000,
+        timeout: 4500,
         icon: 'i-heroicons-check-badge',
         color: 'red'
     })
@@ -830,7 +900,7 @@ function addCookie(item, isVariant) {
     toast.add({
         title: trans('Congratulations') + ' !',
         description: trans('The product has been added to your cart'),
-        timeout: 3000,
+        timeout: 4500,
         icon: 'i-heroicons-check-badge',
         color: 'green'
     })
@@ -956,16 +1026,34 @@ const { data: reviewProduct, pending: loadingReviewProduct } = await useLazyAsyn
 function notifyAttrUnavailable(group, attribute) {
     const description = trans('attr_unavailable', { group: group.name, value: attribute.attribute_name })
 
-
     toast.add({
         title: trans('Notification') + ' !',
         // Gộp 2 ngôn ngữ cho rõ ràng
         description: description,
-        timeout: 3500,
+        timeout: 4500,
         icon: 'i-heroicons-exclamation-triangle',
         color: 'red'
     })
 }
+
+function isDimmed(attributeId, group) {
+    if (!hasVariants.value) return false
+
+    if (initialNoCode.value) {
+        if (group.is_color) {
+            // màu bị mờ nếu KHÔNG nằm trong allowedColorsForCurrent
+            return !allowedColorsForCurrent.value.has(attributeId)
+        }
+        // nhóm khác: không mờ
+        return false
+    }
+
+    // flow cũ
+    if (isGhostActive(attributeId, group.id)) return false
+    return !showIfSelectable(attributeId, group.id, false, group, { attribute_id: attributeId })
+}
+
+
 
 
 // —— INIT VARIANT (dựa trên validVariants)
@@ -981,7 +1069,7 @@ function initProduct(p) {
             router.replace({ query: {} })
         }
     } else {
-        // pick attr đầu tiên hợp lệ cho các group không phải color
+        // pick attr đầu tiên hợp lệ cho các group KHÔNG phải màu
         productVariants.value = (p.variantAttribute || [])
             .filter(g => !g.is_color)
             .map(g => {
@@ -998,6 +1086,7 @@ function initProduct(p) {
     getProductCategory()
     applySeo()
 }
+
 
 // —— WATCHERS
 watch(
@@ -1086,5 +1175,21 @@ function resetProductPage(refresh = true) {
             .discount-tag { @apply font-semibold; font-size: 13px; color: red; }
         }
     }
+}
+.product-title { /* bạn đã có */
+    @apply font-bold text-[20px] lg:text-[32px] leading-snug line-clamp-2 min-h-[48px] lg:min-h-[80px];
+}
+
+.variant-row { @apply flex items-baseline gap-2 min-h-[24px]; }
+.variant-row__label { @apply shrink-0; }
+.variant-row__value {
+    @apply inline-block flex-1 truncate align-baseline;
+    /* cố định “khung” hiển thị để thay đổi nội dung không đổi bề ngang hàng */
+    @apply max-w-[360px] lg:max-w-[420px];
+}
+.variant-row__hint { @apply opacity-70; }
+
+.main-product-swiper .swiper {
+    @apply min-h-[420px] lg:min-h-[540px];
 }
 </style>
