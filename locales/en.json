@@ -198,5 +198,6 @@
     "Search for products by entering keywords": "Search for products by entering keywords",
     "No products found": "No products found",
     "absdfsdf": "sdfsdfsdfa",
-    "Customer Service Center": "Customer Service Center"
+    "Customer Service Center": "Customer Service Center",
+    "attr_unavailable": "{group}: “{value}” is unavailable. Please choose another option."
 }

@@ -200,5 +200,6 @@
   "Search for products by entering keywords": "Nhập từ khóa để tìm kiếm sản phẩm",
   "No products found": "Không tìm thấy sản phẩm",
   "absdfsdf": "sdfsdfsdfa",
-  "Customer Service Center": "Trung tâm CSKH"
+  "Customer Service Center": "Trung tâm CSKH",
+  "attr_unavailable": "{group}: “{value}” hiện không còn sản phẩm. Vui lòng chọn thuộc tính khác."
 }
