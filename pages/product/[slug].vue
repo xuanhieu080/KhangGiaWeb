@@ -204,18 +204,18 @@
               }"
                         >
              <span class="variant-row">
-  <span class="variant-row__label">{{ variantAttribute.name }}:</span>
+                      <span class="variant-row__label">{{ variantAttribute.name }}:</span>
 
-                 <!-- Giá trị đã chọn: truncate cố định khung -->
-  <b class="variant-row__value">
-    {{ selectedName(variantAttribute.id) }}
-  </b>
+                                     <!-- Giá trị đã chọn: truncate cố định khung -->
+                      <b v-if="selectedName(variantAttribute.id)" class="variant-row__value">
+                        {{ selectedName(variantAttribute.id) }}
+                      </b>
 
-  <i v-if="variantAttribute.is_color && !selectedName(variantAttribute.id)"
-     class="variant-row__hint">
-    ({{ trans('Select a color to purchase') }})
-  </i>
-</span>
+                      <i v-else-if="variantAttribute.is_color"
+                         class="variant-row__hint">
+                        ({{ trans('Select a color to purchase') }})
+                      </i>
+                    </span>
 
                             <!-- Cảnh báo generic nếu nhóm có ghost -->
                             <div v-if="hasGhostForGroup(variantAttribute.id)" class="mt-1 text-xs text-orange-600 font-semibold">
@@ -223,24 +223,26 @@
                             </div>
 
                             <!-- Color -->
-                            <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
-                                <div
-                                    v-for="(attribute, index) in variantAttribute.attributes"
-                                    v-show="index < 4 || showAllColor"
+                            <!-- COLORS -->
+                            <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap">
+                                <!-- Lọc trước các màu không dimmed, rồi mới phân trang 4 cái -->
+                                <template
+                                    v-for="(attribute, index) in visibleColorAttrs(variantAttribute)"
                                     :key="'c-' + variantAttribute.id + '-' + attribute.attribute_id"
                                 >
-                                    <button
-                                        class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
-                                        :class="{
-    '!ring-green-500': isActive(attribute.attribute_id),
-    'ring-2 ring-dashed ring-orange-500 cursor-not-allowed opacity-80': isGhostActive(attribute.attribute_id, variantAttribute.id),
-    'opacity-50': isDimmed(attribute.attribute_id, variantAttribute)
-  }"
-                                        :style="{ backgroundColor: attribute.attribute_color }"
-                                        @click="selectVariant(variantAttribute, attribute)"
-                                    ></button>
-
-                                </div>
+                                    <div v-if="index < 4 || showAllColor" class="mr-4">
+                                        <button
+                                            class="color-list-item w-12 h-8 rounded-3xl ring-2 ring-transparent"
+                                            :class="{
+          '!ring-green-500': isActive(attribute.attribute_id),
+          'ring-2 ring-dashed ring-orange-500 cursor-not-allowed opacity-80':
+            isGhostActive(attribute.attribute_id, variantAttribute.id)
+        }"
+                                            :style="{ backgroundColor: attribute.attribute_color }"
+                                            @click="selectVariant(variantAttribute, attribute)"
+                                        />
+                                    </div>
+                                </template>
 
                                 <UButton
                                     v-if="productItemCurrent"
@@ -253,9 +255,9 @@
                                     {{ trans('Reset') }}
                                 </UButton>
 
+                                <!-- Dựa vào số màu SAU khi lọc để quyết định hiện “Load more” -->
                                 <UButton
-                                    v-if="variantAttribute.attributes.length > 3"
-                                    :to="localePath({ name: 'product-slug', params: { slug: router.currentRoute.value.params.slug } })"
+                                    v-if="visibleColorAttrs(variantAttribute).length > 4"
                                     variant="ghost"
                                     color="none"
                                     class="text-blue-500"
@@ -265,8 +267,9 @@
                                 </UButton>
                             </div>
 
+
                             <!-- Các thuộc tính khác (size, chất liệu...) -->
-                            <div v-else class="size-list flex items-center flex-wrap gap-4">
+                            <div v-else class="size-list flex items-center flex-wrap">
                                 <div
                                     v-for="attribute in variantAttribute.attributes"
                                     :key="'s-' + variantAttribute.id + '-' + attribute.attribute_id"
@@ -274,10 +277,10 @@
                                 >
                                     <button
                                         :class="[
-    'size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14',
+    'size-list-item bg-gray-200 flex items-center justify-center w-fit py-2 px-3 h-10 rounded-2xl font-bold fs-14 mr-4',
     { '!bg-black !text-white': isActive(attribute.attribute_id) },
     { 'ring-2 ring-dashed ring-orange-500 cursor-not-allowed opacity-80': isGhostActive(attribute.attribute_id, variantAttribute.id) },
-    { 'opacity-50': isDimmed(attribute.attribute_id, variantAttribute) }
+    { 'hidden': isDimmed(attribute.attribute_id, variantAttribute) }
   ]"
                                         @click="selectVariant(variantAttribute, attribute)"
                                     >
@@ -679,6 +682,11 @@ const validVariants = computed(() => {
     return vs.filter(isVariantValid)
 })
 
+const visibleColorAttrs = (group) => {
+    const attrs = group?.attributes || []
+    return attrs.filter(a => !isDimmed(a?.attribute_id, group))
+}
+
 // Map groupId -> Set(attributeId) hợp lệ (tồn tại trong ít nhất một valid variant)
 const allowedByGroup = computed(() => {
     const map = new Map()
@@ -716,7 +724,11 @@ const filteredVariantAttributes = computed(() => {
     }).filter(g => g.attributes.length > 0)
 })
 
-
+const totalColors = computed(() => {
+    return (filteredVariantAttributes.value || [])
+        .filter(g => g.is_color)
+        .reduce((sum, g) => sum + (g.attributes?.length || 0), 0)
+})
 
 // —— GHOST-ACTIVE HELPERS
 const isGhostActive = (attributeId, groupId) => {
