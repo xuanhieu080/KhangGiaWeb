@@ -31,6 +31,8 @@ const props = defineProps({
         default: true,
     },
 });
+
+
 </script>
 <style lang="scss" scoped>
 .collection-wrapper {

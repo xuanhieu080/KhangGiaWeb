@@ -9,10 +9,7 @@
                         class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]"
                         :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate' }"
                         divider="/"
-                        :links="[
-              { label: trans('Home'), to: localePath({ name: 'index' }) },
-              { label: currentName || '' }
-            ]"
+                        :links="breadcrumbLinks"
                     />
 
                     <!-- Thumbs -->
@@ -598,8 +595,10 @@ if (errorGetProduct.value) {
     navigateTo({ path: `/${locale.value}/404` }, { redirectCode: 301, replace: true })
 }
 
-/** ============== Helpers ============== */
+/** Helper: format số tiền */
 const formatVnd = (num) => new Intl.NumberFormat('vi-VN').format(Number(num || 0))
+
+/** Helper: so sánh mảng (dùng cho match variant) */
 const arraysEqual = (a, b) => {
     if (!a || !b) return false
     const aa = [...a].sort()
@@ -609,14 +608,28 @@ const arraysEqual = (a, b) => {
     return true
 }
 
-/** ============== Derivations ============== */
+/** ============== Derivations từ productItem ============== */
 const base = computed(() => productItem.value?.data || null)
-const noVariant = computed(() => !!base.value && (base.value.variants?.length === 0) && (base.value.variantAttribute?.length === 0))
-const hasVariantsAndColor = computed(() => (base.value?.variants?.length || 0) > 0 && !!(base.value?.variantAttribute?.some(g => g.is_color)))
+const noVariant = computed(() =>
+    !!base.value &&
+    (base.value.variants?.length === 0) &&
+    (base.value.variantAttribute?.length === 0)
+)
+const hasVariantsAndColor = computed(() =>
+    (base.value?.variants?.length || 0) > 0 &&
+    !!(base.value?.variantAttribute?.some(g => g.is_color))
+)
 
 const current = computed(() => productItemCurrent.value || base.value || null)
 const currentName = computed(() => current.value?.name || '')
-const currentImages = computed(() => (productItemCurrent.value?.thumb_image?.length ? productItemCurrent.value.thumb_image : (base.value?.thumb_image || [])))
+
+const currentImages = computed(() => {
+    if (productItemCurrent.value?.thumb_image?.length) {
+        return productItemCurrent.value.thumb_image
+    }
+    return base.value?.thumb_image || []
+})
+
 const currentQty = computed(() => {
     if (productItemCurrent.value) return productItemCurrent.value.qty || 0
     if (noVariant.value) return base.value?.qty || 0
@@ -628,7 +641,9 @@ const currentPrice = computed(() => {
     return base.value?.price
 })
 const currentPriceDiscount = computed(() => {
-    if (productItemCurrent.value) return productItemCurrent.value.price_discount ?? productItemCurrent.value.price
+    if (productItemCurrent.value) {
+        return productItemCurrent.value.price_discount ?? productItemCurrent.value.price
+    }
     return base.value?.price_discount ?? base.value?.price
 })
 const currentPercent = computed(() => {
@@ -637,7 +652,7 @@ const currentPercent = computed(() => {
 })
 const hasDiscount = computed(() => Number(currentPercent.value) > 0)
 
-/** Thumbs limit and badges */
+/** Thumbs và badge "more" */
 const limitedThumbs = computed(() => {
     const arr = [...currentImages.value]
     return arr.slice(0, 4)
@@ -655,7 +670,63 @@ const extraThumbCount = (index) => {
 const setThumbsSwiper = (swiper) => { thumbsSwiper.value = swiper }
 const handleMainImageSwiper = () => { imageLoading.value = false }
 
-/** ============== Build default non-color selection ============== */
+/** ============== Breadcrumb builder ============== */
+/**
+ * Backend trả về:
+ * productItem.data.categories = [
+ *   { id, name, slug, slug_other, ... }, // root
+ *   { id, name, slug, slug_other, ... }, // child
+ *   ... cuối cùng là category hiện tại
+ * ]
+ *
+ * Mình cần:
+ * [
+ *   { label: 'Home', to: '/' },
+ *   { label: 'Điện lạnh', to: '/category/dien-lanh' },
+ *   { label: 'Máy lạnh âm trần', to: '/category/may-lanh-am-tran' },
+ *   { label: 'Tên sản phẩm', to: undefined }
+ * ]
+ */
+const routeCategory = (slug) => {
+    // chỉnh 1 chỗ này nếu route danh mục thay đổi
+    // ví dụ bạn có named route 'category-slug' đa ngôn ngữ:
+    // return localePath({ name: 'category-slug', params: { slug } })
+    return localePath({ name: 'collection-slug', params: { slug } })
+}
+
+const breadcrumbLinks = computed(() => {
+    const links = []
+
+    // Home luôn đứng đầu
+    links.push({
+        label: trans('Home'),
+        to: localePath({ name: 'index' })
+    })
+
+    const cats = base.value?.categories || []
+    cats.forEach((cat, idx) => {
+        const isLastCategory = idx === cats.length - 1
+        links.push({
+            label: cat.name || '',
+            // Cho phép click vào category (kể cả cuối). Nếu muốn category cuối không click:
+            // to: isLastCategory ? undefined : routeCategory(cat.slug)
+            to: routeCategory(cat.slug)
+        })
+    })
+
+    // Cuối cùng là tên sản phẩm
+    if (currentName.value) {
+        links.push({
+            label: currentName.value,
+            to: undefined
+        })
+    }
+
+    return links
+})
+/** ============== Breadcrumb DONE ============== */
+
+/** ============== Default chọn variant khi load ============== */
 const buildDefaultNonColorSelections = (product) => {
     const acc = []
     for (const variant of (product.variantAttribute || [])) {
@@ -667,16 +738,17 @@ const buildDefaultNonColorSelections = (product) => {
     return acc
 }
 
-/** ============== Variant matching ============== */
+/** Tìm variant theo selections */
 const findVariantBySelections = (product, selections) => {
     const attrIds = selections.map(x => x.attribute_id)
     const groupIds = selections.map(x => x.attribute_group_id)
-    return product.variants?.find(v => arraysEqual(v.options, attrIds) && arraysEqual(v.option_group, groupIds)) || null
+    return product.variants?.find(
+        v => arraysEqual(v.options, attrIds) && arraysEqual(v.option_group, groupIds)
+    ) || null
 }
 
-/** ============== Init logic ============== */
+/** Init logic (sau khi fetch product xong) */
 const initializeProduct = (product) => {
-    // Preselect by code (if present)
     const code = route.query?.code
     if (code) {
         const found = product.variants?.find(v => v.code === code)
@@ -692,11 +764,10 @@ const initializeProduct = (product) => {
         productVariants.value = buildDefaultNonColorSelections(product)
     }
 
-    // Ready flags
     pageReady.value = true
 }
 
-/** ============== SEO ============== */
+/** ============== SEO head/meta + hreflang link ============== */
 const title = ref('')
 const description = ref('')
 const key = ref('')
@@ -712,10 +783,12 @@ watchEffect(() => {
     key.value = prod.meta_key || ''
     image.value = prod.image_url || (prod.thumb_image?.[0] || '')
 
-    // Switch language link if slug_other present
+    // hreflang mapping
     const slugOther = prod.slug_other
     if (slugOther) {
-        link.value = locale.value === 'vi' ? `/en/product/${slugOther}` : `/vi/product/${slugOther}`
+        link.value = locale.value === 'vi'
+            ? `/en/product/${slugOther}`
+            : `/vi/product/${slugOther}`
     } else {
         link.value = null
     }
@@ -738,7 +811,7 @@ watchEffect(() => {
     useSeoMeta(seoMeta.value)
 })
 
-/** ============== Similar products ============== */
+/** ============== Sản phẩm tương tự ============== */
 const productHot = ref([])
 async function getProductCategory () {
     if (!base.value) return
@@ -787,14 +860,13 @@ function selectVariant (group, attribute, showToast = true) {
     if (matched && matched.image_url && (matched.thumb_image?.length || 0) > 0) {
         imageLoading.value = true
         productItemCurrent.value = matched
-        // push code into query for shareable URL
         router.replace({ query: { code: matched.code } })
         imageLoading.value = false
     } else if (group.is_color) {
-        // khi chọn màu trước → auto apply các is_main đã lưu
+        // Chọn màu trước -> tự apply attribute is_main còn lại
         attributeAll.value.forEach((it) => selectVariant(it.variant_attribute, it.attribute, false))
     } else if (selectColor.value) {
-        // rollback nếu đang ở trạng thái buộc chọn màu trước
+        // nếu đã lock chọn màu thì rollback khi không hợp lệ
         selectColor.value = false
         productVariants.value = prevSelections
         if (showToast) {
@@ -809,6 +881,7 @@ function selectVariant (group, attribute, showToast = true) {
     }
 }
 
+/** Kiểm tra attr đang active */
 function isAttrActive (attributeId) {
     if (productItemCurrent.value?.options) {
         return productItemCurrent.value.options.includes(attributeId)
@@ -816,9 +889,9 @@ function isAttrActive (attributeId) {
     return productVariants.value.some(x => x.attribute_id === attributeId)
 }
 
-/** Guard hiển thị cho size/others trước khi có variant hợp lệ */
+/** Guard hiển thị size/others */
 function sizeDisplayGuard (attribute, variantAttribute) {
-    // Đánh dấu các attr is_main để lần chọn màu có thể auto-apply
+    // Lưu is_main attribute để auto-apply sau khi chọn màu
     if (attribute.is_main) {
         const existed = attributeAll.value.find(
             (i) => i.attribute_id === attribute.attribute_id && i.attribute_group_id === variantAttribute.id
@@ -836,7 +909,7 @@ function sizeDisplayGuard (attribute, variantAttribute) {
 
     if (!productItemCurrent.value) return true
 
-    // giả lập selections nếu chọn thuộc tính này
+    // thử giả lập chọn attr này
     const hypothetic = productVariants.value.map((it) =>
         it.attribute_group_id === variantAttribute.id
             ? { ...it, attribute_id: attribute.attribute_id }
@@ -846,7 +919,6 @@ function sizeDisplayGuard (attribute, variantAttribute) {
     const matched = findVariantBySelections(base.value, hypothetic)
     const ok = !!(matched && (matched.thumb_image?.length || 0) > 0)
 
-    // nếu hợp lệ và is_main ⇒ ghi nhận để auto-apply khi chọn màu
     if (ok && attribute.is_main) {
         const exists = attributeAll.value.find(
             (i) => i.attribute_id === attribute.attribute_id && i.attribute_group_id === variantAttribute.id
@@ -864,7 +936,7 @@ function sizeDisplayGuard (attribute, variantAttribute) {
     return ok
 }
 
-/** Hiển thị tên thuộc tính đã chọn theo group id */
+/** Tên thuộc tính đã chọn theo group */
 function getSelectedAttrName (attributeGroupId = null) {
     const source = productItemCurrent.value ? productItemCurrent.value.option_all : null
     if (!source || !attributeGroupId) return null
@@ -879,7 +951,7 @@ function getSelectedAttrName (attributeGroupId = null) {
     return null
 }
 
-/** Qty handlers */
+/** Số lượng mua */
 function handleQuantity (delta, forVariant) {
     if (delta === 1) {
         if (forVariant) {
@@ -892,7 +964,7 @@ function handleQuantity (delta, forVariant) {
     }
 }
 
-/** Add to cart */
+/** Add to cart (cookie) */
 let productLists = useCookie('products-cart', { default: () => [], maxAge: 60 * 60 * 24 * 7 })
 
 function needSelectColor () {
@@ -932,7 +1004,7 @@ function handleAddToCookie (item, isVariant) {
     })
 }
 
-/** Reset */
+/** Reset all variant selection */
 function resetProductPage (refresh = true) {
     productItemCurrent.value = null
     thumbsSwiper.value = null
@@ -942,7 +1014,7 @@ function resetProductPage (refresh = true) {
     router.replace({ query: undefined })
 }
 
-/** ============== Bootstrapping ============== */
+/** Bootstrapping sau khi fetch xong */
 watch(
     () => productItem.value,
     (val) => {
