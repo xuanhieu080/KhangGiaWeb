@@ -6,14 +6,15 @@
                 <!-- =============== IMAGE + INFO =============== -->
                 <div ref="rootRef" class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
                     <div ref="bcRef" class="breadcrumb-wrap">
-                    <UBreadcrumb
-                        class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px] breadcrumb"
-                        :ui="{
-    ol: 'flex flex-wrap items-center gap-1 mt-0 pl-0 list-none',
-    li: 'flex items-center text-sm leading-6 text-gray-500 dark:text-gray-400 whitespace-normal break-words overflow-visible'
-  }"                        divider="/"
-                        :links="breadcrumbLinks"
-                    />
+                        <UBreadcrumb
+                            class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px] breadcrumb"
+                            :ui="{
+                          ol: 'flex flex-wrap items-center gap-1 mt-0 pl-0 list-none',
+                          li: 'flex items-center text-sm leading-6 text-gray-500 dark:text-gray-400 whitespace-normal break-words overflow-visible'
+                        }"
+                            divider="/"
+                            :links="breadcrumbLinks"
+                        />
                     </div>
 
                     <!-- Thumbs -->
@@ -27,7 +28,7 @@
                         :modules="modules"
                         :lazy="true"
                         direction="vertical"
-                        class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-22"
+                        class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 !top-20"
                         :key="'thumbs'"
                         aria-label="Product thumbnails"
                     >
@@ -36,15 +37,18 @@
                             :key="'thumb-'+index"
                             class="!h-[36px] lg:!h-[80px] w-full rounded-md relative"
                         >
-              <span
-                  v-if="showMoreThumbBadge(index)"
-                  class="absolute inset-0 flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
-              >
-                +{{ extraThumbCount(index) }}
-              </span>
+                          <span
+                              v-if="showMoreThumbBadge(index)"
+                              class="absolute inset-0 flex items-center justify-center rounded-md bg-gray-500/50 text-white font-bold text-xs lg:text-lg"
+                          >
+                            +{{ extraThumbCount(index) }}
+                          </span>
+                            <!-- [OPT] thêm width/height để ổn định layout -->
                             <img
                                 :src="image"
                                 loading="lazy"
+                                decoding="async"
+                                width="60" height="80"
                                 :alt="currentName"
                                 class="w-full h-full object-cover rounded-md"
                             />
@@ -60,59 +64,71 @@
                         v-show="!imageLoading"
                         class="main-product-swiper rounded-md w-full xl:min-w-[540px] lg:w-[450px] xl:w-[540px] z-0 bg-[#f1f1f1]"
                     >
-                        <Swiper
-                            :spaceBetween="10"
-                            :lazy="true"
-                            :navigation="{ nextEl: '.main-product-swiper .next-product-btn', prevEl: '.main-product-swiper .prev-product-btn' }"
-                            :thumbs="{ swiper: thumbsSwiper }"
-                            :zoom="true"
-                            :modules="modules"
-                            @swiper="handleMainImageSwiper"
-                            class="!mx-0"
-                            aria-label="Product images"
-                        >
-                            <SwiperSlide
-                                v-for="(image, idx) in currentImages"
-                                :key="'main-'+idx"
-                                class="!flex justify-center !h-auto aspect-[3/4]"
+                        <!-- [OPT] khung cố định để không đổi kích thước khi ảnh load -->
+                        <div class="relative w-full aspect-[3/4] rounded-md overflow-hidden">
+                            <Swiper
+                                :spaceBetween="10"
+                                :lazy="true"
+                                :navigation="{ nextEl: '.main-product-swiper .next-product-btn', prevEl: '.main-product-swiper .prev-product-btn' }"
+                                :thumbs="{ swiper: thumbsSwiper }"
+                                :zoom="true"
+                                :modules="modules"
+                                @swiper="handleMainImageSwiper"
+                                class="!mx-0 h-full"
+                                aria-label="Product images"
                             >
-                                <img :src="image" loading="lazy" :alt="currentName" class="rounded-md object-contain" />
-                            </SwiperSlide>
+                                <SwiperSlide
+                                    v-for="(image, idx) in currentImages"
+                                    :key="'main-'+idx"
+                                    class="!flex justify-center items-center !h-full"
+                                >
+                                    <!-- [OPT] eager + fetchpriority cho ảnh đầu, width/height để tránh CLS -->
+                                    <img
+                                        :src="image"
+                                        :loading="idx===0 ? 'eager' : 'lazy'"
+                                        :fetchpriority="idx===0 ? 'high' : 'auto'"
+                                        decoding="async"
+                                        width="540" height="720"
+                                        :alt="currentName"
+                                        class="max-h-full max-w-full object-contain"
+                                    />
+                                </SwiperSlide>
 
-                            <template #container-end>
-                                <UButton
-                                    variant="ghost"
-                                    color="none"
-                                    class="prev-product-btn w-[40px] h-[40px] absolute bottom-4 right-6 -translate-x-full z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
-                                    :padded="false"
-                                    aria-label="Prev"
-                                >
-                                    <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
-                                </UButton>
-                                <UButton
-                                    variant="ghost"
-                                    color="none"
-                                    class="next-product-btn w-[40px] h-[40px] absolute bottom-4 right-4 z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
-                                    :padded="false"
-                                    aria-label="Next"
-                                >
-                                    <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
-                                </UButton>
-                            </template>
-                        </Swiper>
+                                <template #container-end>
+                                    <UButton
+                                        variant="ghost"
+                                        color="none"
+                                        class="prev-product-btn w-[40px] h-[40px] absolute bottom-4 right-6 -translate-x-full z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
+                                        :padded="false"
+                                        aria-label="Prev"
+                                    >
+                                        <UIcon class="text-[22px]" name="i-heroicons-arrow-long-left" dynamic />
+                                    </UButton>
+                                    <UButton
+                                        variant="ghost"
+                                        color="none"
+                                        class="next-product-btn w-[40px] h-[40px] absolute bottom-4 right-4 z-[99] !bg-white text-black rounded-full justify-center hover:!bg-black hover:!text-white"
+                                        :padded="false"
+                                        aria-label="Next"
+                                    >
+                                        <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
+                                    </UButton>
+                                </template>
+                            </Swiper>
+                        </div>
                     </div>
 
                     <div v-show="imageLoading" class="loading-frame flex flex-col gap-4 md:w-4/5">
-                        <USkeleton class="min-w-[350px] w-full h-[500px] md:h-[700px] rounded-md" />
+                        <!-- [OPT] skeleton cùng tỷ lệ khung chính -->
+                        <USkeleton class="min-w-[350px] w-full rounded-md" style="aspect-ratio: 3 / 4;" />
                     </div>
 
                     <!-- Info -->
                     <div class="product-information flex flex-col gap-4 px-4">
+                        <!-- ... GIỮ NGUYÊN PHẦN INFO CỦA BẠN ... -->
                         <div class="product-name flex flex-col gap-2">
                             <h1 class="font-bold text-[20px] lg:text-[32px]">{{ currentName }}</h1>
                         </div>
-
-                        <!-- Rate -->
                         <div class="product-rate flex flex-col md:flex-row md:items-center gap-4 md:gap-2 text-black">
                             <NuxtRating
                                 class="w-[220px]"
@@ -126,7 +142,6 @@
                             </div>
                         </div>
 
-                        <!-- Price -->
                         <div class="product-price font-bold text-[19px] lg:text-[22px]">
                             <template v-if="hasDiscount">
                                 <div class="discount-price">
@@ -156,17 +171,17 @@
                             :key="'group-'+variantAttribute.id"
                             class="flex flex-col gap-2"
                             :class="{
-                'product-color-list': variantAttribute.is_color,
-                'product-size-list': !variantAttribute.is_color,
-              }"
+                              'product-color-list': variantAttribute.is_color,
+                              'product-size-list': !variantAttribute.is_color,
+                            }"
                         >
-              <span class="text-[15px] flex gap-2 items-baseline">
-                {{ variantAttribute.name }}:
-                <b>{{ getSelectedAttrName(variantAttribute.id) || '' }}</b>
-                <i v-if="!getSelectedAttrName(variantAttribute.id) && variantAttribute.is_color">
-                  ({{ trans('Select a color to purchase') }})
-                </i>
-              </span>
+                          <span class="text-[15px] flex gap-2 items-baseline">
+                            {{ variantAttribute.name }}:
+                            <b>{{ getSelectedAttrName(variantAttribute.id) || '' }}</b>
+                            <i v-if="!getSelectedAttrName(variantAttribute.id) && variantAttribute.is_color">
+                              ({{ trans('Select a color to purchase') }})
+                            </i>
+                          </span>
 
                             <!-- Colors -->
                             <div v-if="variantAttribute.is_color" class="color-list flex items-center flex-wrap gap-4">
@@ -237,9 +252,9 @@
 
                         <!-- Qty remain -->
                         <span class="fs-14">
-              {{ trans('Quantity remaining') }}
-              <b>{{ currentQty }}</b>
-            </span>
+                          {{ trans('Quantity remaining') }}
+                          <b>{{ currentQty }}</b>
+                        </span>
 
                         <!-- Add to cart -->
                         <div
@@ -393,10 +408,10 @@
                         :grabCursor="true"
                         :loop="true"
                         :breakpoints="{
-              1280: { slidesPerView: 4, spaceBetween: 12 },
-              992: { slidesPerView: 3, spaceBetween: 14 },
-              567: { slidesPerView: 2, spaceBetween: 16 }
-            }"
+                          1280: { slidesPerView: 4, spaceBetween: 12 },
+                          992: { slidesPerView: 3, spaceBetween: 14 },
+                          567: { slidesPerView: 2, spaceBetween: 16 }
+                        }"
                         class="similar-products-swiper relative"
                         aria-label="Similar products"
                     >
@@ -486,15 +501,15 @@
                                 <USelect v-model="pageCount" :options="[8, 25, 50]" class="me-2 w-20" size="xs" />
                             </div>
                             <div class="hidden md:block">
-                <span class="text-sm leading-5">
-                  Hiển thị
-                  <span class="font-bold">{{ pageFrom }}</span>
-                  đến
-                  <span class="font-bold">{{ pageTo }}</span>
-                  trong
-                  <span class="font-bold">{{ pageTotal }}</span>
-                  tổng số
-                </span>
+                              <span class="text-sm leading-5">
+                                Hiển thị
+                                <span class="font-bold">{{ pageFrom }}</span>
+                                đến
+                                <span class="font-bold">{{ pageTo }}</span>
+                                trong
+                                <span class="font-bold">{{ pageTotal }}</span>
+                                tổng số
+                              </span>
                             </div>
 
                             <UPagination
@@ -502,10 +517,10 @@
                                 :page-count="pageCount"
                                 :total="pageTotal"
                                 :ui="{
-                  wrapper: 'flex items-center gap-1',
-                  rounded: '!rounded-full min-w-[32px] justify-center',
-                  default: { activeButton: { variant: 'outline' } }
-                }"
+                                  wrapper: 'flex items-center gap-1',
+                                  rounded: '!rounded-full min-w-[32px] justify-center',
+                                  default: { activeButton: { variant: 'outline' } }
+                                }"
                             />
                         </div>
                     </div>
@@ -678,57 +693,17 @@ const setThumbsSwiper = (swiper) => { thumbsSwiper.value = swiper }
 const handleMainImageSwiper = () => { imageLoading.value = false }
 
 /** ============== Breadcrumb builder ============== */
-/**
- * Backend trả về:
- * productItem.data.categories = [
- *   { id, name, slug, slug_other, ... }, // root
- *   { id, name, slug, slug_other, ... }, // child
- *   ... cuối cùng là category hiện tại
- * ]
- *
- * Mình cần:
- * [
- *   { label: 'Home', to: '/' },
- *   { label: 'Điện lạnh', to: '/category/dien-lanh' },
- *   { label: 'Máy lạnh âm trần', to: '/category/may-lanh-am-tran' },
- *   { label: 'Tên sản phẩm', to: undefined }
- * ]
- */
-const routeCategory = (slug) => {
-    // chỉnh 1 chỗ này nếu route danh mục thay đổi
-    // ví dụ bạn có named route 'category-slug' đa ngôn ngữ:
-    // return localePath({ name: 'category-slug', params: { slug } })
-    return localePath({ name: 'collection-slug', params: { slug } })
-}
+const routeCategory = (slug) => localePath({ name: 'collection-slug', params: { slug } })
 
 const breadcrumbLinks = computed(() => {
     const links = []
-
-    // Home luôn đứng đầu
-    links.push({
-        label: trans('Home'),
-        to: localePath({ name: 'index' })
-    })
+    links.push({ label: trans('Home'), to: localePath({ name: 'index' }) })
 
     const cats = base.value?.categories || []
-    cats.forEach((cat, idx) => {
-        const isLastCategory = idx === cats.length - 1
-        links.push({
-            label: cat.name || '',
-            // Cho phép click vào category (kể cả cuối). Nếu muốn category cuối không click:
-            // to: isLastCategory ? undefined : routeCategory(cat.slug)
-            to: routeCategory(cat.slug)
-        })
+    cats.forEach((cat) => {
+        links.push({ label: cat.name || '', to: routeCategory(cat.slug) })
     })
-
-    // Cuối cùng là tên sản phẩm
-    if (currentName.value) {
-        links.push({
-            label: currentName.value,
-            to: undefined
-        })
-    }
-
+    if (currentName.value) links.push({ label: currentName.value, to: undefined })
     return links
 })
 /** ============== Breadcrumb DONE ============== */
@@ -744,8 +719,6 @@ const buildDefaultNonColorSelections = (product) => {
     }
     return acc
 }
-
-/** Tìm variant theo selections */
 const findVariantBySelections = (product, selections) => {
     const attrIds = selections.map(x => x.attribute_id)
     const groupIds = selections.map(x => x.attribute_group_id)
@@ -754,7 +727,7 @@ const findVariantBySelections = (product, selections) => {
     ) || null
 }
 
-/** Init logic (sau khi fetch product xong) */
+/** Init logic */
 const initializeProduct = (product) => {
     const code = route.query?.code
     if (code) {
@@ -774,12 +747,13 @@ const initializeProduct = (product) => {
     pageReady.value = true
 }
 
-/** ============== SEO head/meta + hreflang link ============== */
+/** ============== SEO head/meta + hreflang + preload LCP ============== */
 const title = ref('')
 const description = ref('')
 const key = ref('')
 const image = ref('')
 const seoMeta = ref({})
+const firstImage = computed(() => currentImages.value?.[0] || '')
 
 watchEffect(() => {
     const prod = productItemCurrent.value || base.value
@@ -790,7 +764,6 @@ watchEffect(() => {
     key.value = prod.meta_key || ''
     image.value = prod.image_url || (prod.thumb_image?.[0] || '')
 
-    // hreflang mapping
     const slugOther = prod.slug_other
     if (slugOther) {
         link.value = locale.value === 'vi'
@@ -814,8 +787,14 @@ watchEffect(() => {
         ogImage: image.value,
         ogImageAlt: title.value
     }
-
     useSeoMeta(seoMeta.value)
+
+    // [OPT] Preload ảnh LCP để paint sớm
+    if (process.client && firstImage.value) {
+        useHead({
+            link: [{ rel: 'preload', as: 'image', href: firstImage.value, fetchpriority: 'high' }]
+        })
+    }
 })
 
 /** ============== Sản phẩm tương tự ============== */
@@ -868,12 +847,11 @@ function selectVariant (group, attribute, showToast = true) {
         imageLoading.value = true
         productItemCurrent.value = matched
         router.replace({ query: { code: matched.code } })
-        imageLoading.value = false
+        // [OPT] giảm flicker
+        nextTick(() => { imageLoading.value = false })
     } else if (group.is_color) {
-        // Chọn màu trước -> tự apply attribute is_main còn lại
         attributeAll.value.forEach((it) => selectVariant(it.variant_attribute, it.attribute, false))
     } else if (selectColor.value) {
-        // nếu đã lock chọn màu thì rollback khi không hợp lệ
         selectColor.value = false
         productVariants.value = prevSelections
         if (showToast) {
@@ -898,7 +876,6 @@ function isAttrActive (attributeId) {
 
 /** Guard hiển thị size/others */
 function sizeDisplayGuard (attribute, variantAttribute) {
-    // Lưu is_main attribute để auto-apply sau khi chọn màu
     if (attribute.is_main) {
         const existed = attributeAll.value.find(
             (i) => i.attribute_id === attribute.attribute_id && i.attribute_group_id === variantAttribute.id
@@ -916,7 +893,6 @@ function sizeDisplayGuard (attribute, variantAttribute) {
 
     if (!productItemCurrent.value) return true
 
-    // thử giả lập chọn attr này
     const hypothetic = productVariants.value.map((it) =>
         it.attribute_group_id === variantAttribute.id
             ? { ...it, attribute_id: attribute.attribute_id }
@@ -1052,8 +1028,7 @@ onBeforeUnmount(() => {
 
 let ro = null
 function setBcVar (h) {
-    h = h+20;
-    // set biến CSS vào container để CSS calc()
+    h = h + 20
     const host = rootRef.value || document.querySelector('.product-image-swiper')
     if (host) host.style.setProperty('--bc-h', `${Math.ceil(h)}px`)
 }
@@ -1075,7 +1050,6 @@ const onResize = (() => {
 
 function initBreadcrumbHeightObserver () {
     updateBcHeight() // lần đầu
-    // thay đổi nội dung/đa dòng => height đổi theo -> theo dõi
     if ('ResizeObserver' in window) {
         ro = new ResizeObserver(() => updateBcHeight())
         if (bcRef.value) ro.observe(bcRef.value)
@@ -1109,9 +1083,10 @@ defineOgImage({ url: imageRef.value, image: imageRef.value })
     @apply w-full bg-white;
 
     .product-image-swiper {
-        li {
-            margin:0;
-        }
+        /* [OPT] giá trị mặc định tránh top nhảy 0 -> N trên mobile */
+        //--bc-h: 24px; /* fallback an toàn ~ 1 dòng breadcrumb */
+
+        li { margin: 0; }
     }
 
     .container {
@@ -1124,20 +1099,21 @@ defineOgImage({ url: imageRef.value, image: imageRef.value })
             @media (max-width: 991px) { opacity: .4; }
             &.swiper-slide-thumb-active { opacity: 1; }
         }
+        /* [OPT] cô lập layout để thumb di chuyển không ảnh hưởng bố cục xung quanh */
+        contain: layout paint style;
     }
 
     .product-image-swiper {
         .product-information {
-            .product-size-list .size-list .size-list-item {
-                position: relative; overflow: hidden;
-            }
+            .product-size-list .size-list .size-list-item,
             .product-color-list .color-list .color-list-item {
                 position: relative; overflow: hidden;
             }
         }
 
         .main-product-swiper {
-            .swiper { @media (max-width: 991px) { height: 450px; } }
+            /* [OPT] .swiper full-height theo khung aspect để tránh đổi chiều cao */
+            .swiper { height: 100%; }
         }
     }
 
@@ -1162,15 +1138,11 @@ defineOgImage({ url: imageRef.value, image: imageRef.value })
 </style>
 
 <style>
+:root {
+    --bc-h: 100px;
+}
 @media screen and (max-width: 991px) {
-    .product-page {
-        .product-image-swiper {
-            li {
-                margin: 0;
-            }
-        }
-    }
-
+    .product-page .product-image-swiper li { margin: 0; }
 }
 
 @media (max-width: 768px) {
@@ -1179,7 +1151,7 @@ defineOgImage({ url: imageRef.value, image: imageRef.value })
     .product-image-swiper .thumb-product-swiper {
         position: absolute !important;
         left: .5rem !important;                 /* = left-2 */
-        top: calc(var(--bc-h, 0px) + .5rem) !important; /* .5rem = top-2 */
+        top: calc(var(--bc-h, 24px) + .5rem) !important; /* [OPT] fallback 24px */
         width: 36px !important;                 /* = w-9 */
         z-index: 10;
     }
@@ -1198,5 +1170,4 @@ defineOgImage({ url: imageRef.value, image: imageRef.value })
         left: auto !important;
     }
 }
-
 </style>
