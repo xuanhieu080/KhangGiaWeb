@@ -4,13 +4,17 @@
         <div v-if="pageReady" class="product-page py-6 w-full">
             <div class="container mx-auto flex flex-col gap-4">
                 <!-- =============== IMAGE + INFO =============== -->
-                <div class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
+                <div ref="rootRef" class="product-image-swiper flex flex-col lg:flex-row justify-center items-start gap-4 relative md:pt-12">
+                    <div ref="bcRef" class="breadcrumb-wrap">
                     <UBreadcrumb
-                        class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px]"
-                        :ui="{ ol: 'gap-0 max-w-fit mt-0 pl-0 space-x-1', li: 'truncate' }"
-                        divider="/"
+                        class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px] breadcrumb"
+                        :ui="{
+    ol: 'flex flex-wrap items-center gap-1 mt-0 pl-0 list-none',
+    li: 'flex items-center text-sm leading-6 text-gray-500 dark:text-gray-400 whitespace-normal break-words overflow-visible'
+  }"                        divider="/"
                         :links="breadcrumbLinks"
                     />
+                    </div>
 
                     <!-- Thumbs -->
                     <Swiper
@@ -23,7 +27,7 @@
                         :modules="modules"
                         :lazy="true"
                         direction="vertical"
-                        class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-6"
+                        class="!w-[30px] lg:!w-[60px] !mx-0 !shrink-0 thumb-product-swiper lg:!sticky lg:top-2.5 !absolute left-2 top-22"
                         :key="'thumbs'"
                         aria-label="Product thumbnails"
                     >
@@ -570,6 +574,9 @@ const thumbsSwiper = ref(null)
 const imageLoading = ref(true)
 const pageReady = ref(false)
 
+const bcRef = ref(null)        // wrapper của breadcrumb
+const rootRef = ref(null)
+
 const sort = ref({ direction: 'desc' })
 const page = ref(1)
 const pageCount = ref(8)
@@ -1033,6 +1040,49 @@ watch(
     { immediate: true }
 )
 
+onMounted(async () => {
+    await nextTick()
+    initBreadcrumbHeightObserver()
+})
+
+onBeforeUnmount(() => {
+    if (ro) ro.disconnect()
+    window.removeEventListener('resize', onResize)
+})
+
+let ro = null
+function setBcVar (h) {
+    h = h+20;
+    // set biến CSS vào container để CSS calc()
+    const host = rootRef.value || document.querySelector('.product-image-swiper')
+    if (host) host.style.setProperty('--bc-h', `${Math.ceil(h)}px`)
+}
+
+function updateBcHeight () {
+    const el = bcRef.value
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    setBcVar(rect.height || 0)
+}
+
+const onResize = (() => {
+    let t
+    return () => {
+        clearTimeout(t)
+        t = setTimeout(updateBcHeight, 120)
+    }
+})()
+
+function initBreadcrumbHeightObserver () {
+    updateBcHeight() // lần đầu
+    // thay đổi nội dung/đa dòng => height đổi theo -> theo dõi
+    if ('ResizeObserver' in window) {
+        ro = new ResizeObserver(() => updateBcHeight())
+        if (bcRef.value) ro.observe(bcRef.value)
+    }
+    window.addEventListener('resize', onResize)
+}
+
 /** Simple OG image */
 const titleRef = ref('')
 const descriptionRef = ref('')
@@ -1057,6 +1107,12 @@ defineOgImage({ url: imageRef.value, image: imageRef.value })
 <style lang="scss" scoped>
 .product-page {
     @apply w-full bg-white;
+
+    .product-image-swiper {
+        li {
+            margin:0;
+        }
+    }
 
     .container {
         @media screen and (min-width: 1536px) { max-width: 1280px !important; }
@@ -1103,4 +1159,44 @@ defineOgImage({ url: imageRef.value, image: imageRef.value })
         }
     }
 }
+</style>
+
+<style>
+@media screen and (max-width: 991px) {
+    .product-page {
+        .product-image-swiper {
+            li {
+                margin: 0;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 768px) {
+    .product-image-swiper .main-product-swiper { position: relative; }
+
+    .product-image-swiper .thumb-product-swiper {
+        position: absolute !important;
+        left: .5rem !important;                 /* = left-2 */
+        top: calc(var(--bc-h, 0px) + .5rem) !important; /* .5rem = top-2 */
+        width: 36px !important;                 /* = w-9 */
+        z-index: 10;
+    }
+
+    .product-image-swiper .thumb-product-swiper .swiper-slide {
+        height: 36px !important; /* h-9 */
+    }
+}
+
+/* Desktop: giữ sticky như cũ */
+@media (min-width: 1024px) {
+    .product-image-swiper .thumb-product-swiper {
+        position: sticky !important;
+        top: .625rem;  /* ~ top-2.5 */
+        width: 60px !important;
+        left: auto !important;
+    }
+}
+
 </style>
