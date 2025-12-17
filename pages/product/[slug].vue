@@ -827,7 +827,12 @@ watchEffect(() => {
             image: images,
             sku,
             url,
-            brand: defineBrand({ name: process.env.NUXT_SITE_NAME }),
+            // Nuxt Schema.org có thể không có helper defineBrand trong phiên bản hiện tại
+            // nên khai báo trực tiếp đối tượng Brand theo JSON-LD để tránh lỗi.
+            brand: {
+                '@type': 'Brand',
+                name: process.env.NUXT_SITE_NAME || 'Brand'
+            },
             offers: [
                 defineOffer({
                     priceCurrency: 'VND',
