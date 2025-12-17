@@ -797,6 +797,55 @@ watchEffect(() => {
     }
 })
 
+/** ============== Schema.org Product ============== */
+const stripHtml = (html) => typeof html === 'string'
+    ? html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+    : ''
+
+const requestURL = useRequestURL()
+
+watchEffect(() => {
+    const prod = current.value
+    if (!prod) return
+
+    // Build canonical URL for the product in current locale
+    const url = `${requestURL.origin}${localePath({ name: 'product-slug', params: { slug: route.params.slug } })}`
+
+    const images = currentImages.value || []
+    const sku = prod.code || prod.sku || undefined
+    const price = Number((currentPriceDiscount.value ?? currentPrice.value) || 0)
+    const availability = (currentQty.value || 0) > 0
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock'
+
+    // Tối thiểu cần name, image, offers
+    useSchemaOrg([
+        defineProduct({
+            '@id': `${url}#product`,
+            name: prod.meta_title || prod.name || '',
+            description: stripHtml(prod.meta_description || base.value?.description || ''),
+            image: images,
+            sku,
+            url,
+            brand: defineBrand({ name: process.env.NUXT_SITE_NAME }),
+            offers: [
+                defineOffer({
+                    priceCurrency: 'VND',
+                    price,
+                    availability,
+                    url,
+                })
+            ],
+            aggregateRating: (base.value?.rate_count || 0) > 0
+                ? defineAggregateRating({
+                    ratingValue: Number(base.value?.average_rate || 0) || 0,
+                    reviewCount: Number(base.value?.rate_count || 0) || 0,
+                })
+                : undefined,
+        })
+    ])
+})
+
 /** ============== Sản phẩm tương tự ============== */
 const productHot = ref([])
 async function getProductCategory () {
