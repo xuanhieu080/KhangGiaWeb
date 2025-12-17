@@ -803,22 +803,38 @@ const stripHtml = (html) => typeof html === 'string'
     : ''
 
 const requestURL = useRequestURL()
-
 watchEffect(() => {
     const prod = current.value
     if (!prod) return
 
-    // Build canonical URL for the product in current locale
     const url = `${requestURL.origin}${localePath({ name: 'product-slug', params: { slug: route.params.slug } })}`
 
     const images = currentImages.value || []
     const sku = prod.code || prod.sku || undefined
     const price = Number((currentPriceDiscount.value ?? currentPrice.value) || 0)
+
     const availability = (currentQty.value || 0) > 0
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock'
 
-    // Tối thiểu cần name, image, offers
+    // ===== AggregateRating safe build =====
+    const reviewCount = Number(base.value?.rate_count || 0)
+    const avgRaw = Number(base.value?.average_rate || 0)
+
+    // Chỉ set rating khi:
+    // - có reviewCount > 0
+    // - avgRaw là số hợp lệ
+    // - avgRaw nằm trong 1..5 (hoặc bạn đổi range)
+    const aggregateRating =
+        reviewCount > 0 && Number.isFinite(avgRaw) && avgRaw >= 1 && avgRaw <= 5
+            ? defineAggregateRating({
+                ratingValue: Number(avgRaw.toFixed(1)),
+                reviewCount,
+                bestRating: 5,
+                worstRating: 1,
+            })
+            : undefined
+
     useSchemaOrg([
         defineProduct({
             '@id': `${url}#product`,
@@ -827,11 +843,9 @@ watchEffect(() => {
             image: images,
             sku,
             url,
-            // Nuxt Schema.org có thể không có helper defineBrand trong phiên bản hiện tại
-            // nên khai báo trực tiếp đối tượng Brand theo JSON-LD để tránh lỗi.
             brand: {
                 '@type': 'Brand',
-                name: process.env.NUXT_SITE_NAME || 'Brand'
+                name: process.env.NUXT_SITE_NAME || 'Brand',
             },
             offers: [
                 defineOffer({
@@ -839,17 +853,13 @@ watchEffect(() => {
                     price,
                     availability,
                     url,
-                })
+                }),
             ],
-            aggregateRating: (base.value?.rate_count || 0) > 0
-                ? defineAggregateRating({
-                    ratingValue: Number(base.value?.average_rate || 0) || 0,
-                    reviewCount: Number(base.value?.rate_count || 0) || 0,
-                })
-                : undefined,
-        })
+            aggregateRating,
+        }),
     ])
 })
+
 
 /** ============== Sản phẩm tương tự ============== */
 const productHot = ref([])
