@@ -10,11 +10,13 @@
                             class="w-fit max-w-full md:absolute md:-top-2 md:left-2 lg:left-[96px] breadcrumb"
                             :ui="{
                           ol: 'flex flex-wrap items-center gap-1 mt-0 pl-0 list-none',
-                          li: 'flex items-center text-sm leading-6 text-gray-500 dark:text-gray-400 whitespace-normal break-words overflow-visible'
+                          li: 'flex items-center text-sm leading-6 text-gray-500 dark:text-gray-400 whitespace-normal break-words overflow-visible',
+                          label: 'block truncate whitespace-pre-wrap'
                         }"
                             divider="/"
                             :links="breadcrumbLinks"
-                        />
+                        >
+                        </UBreadcrumb>
                     </div>
 
                     <!-- Thumbs -->
