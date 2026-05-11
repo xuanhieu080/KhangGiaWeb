@@ -1,7 +1,7 @@
 pwd
-cd /home/DEV-GAK-UI/
+cd /home/KhangGiaWeb/
 export NODE_OPTIONS=--max-old-space-size=19192
 yarn build
 pwd
-echo "cd /home/DEV-GAK-UI/"
+echo "cd /home/KhangGiaWeb/"
 pm2 reload all
