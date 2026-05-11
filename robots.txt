@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /
-sitemap: https://gak.vn/sitemap.xml
+Disallow: /

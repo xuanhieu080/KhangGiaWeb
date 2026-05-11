@@ -78,11 +78,11 @@ export default defineNuxtConfig({
     },
 
     sitemap: {
-        enabled: false,
+        enabled: true,
     },
 
     robots: {
-        enabled: false,
+        enabled: true,
     },
 
     schemaOrg: {
@@ -269,16 +269,16 @@ export default defineNuxtConfig({
                     content: 'width=device-width, initial-scale=1, maximum-scale=1',
                 },
                 {
-                    name: 'bingbot',
-                    content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
-                },
-                {
                     name: 'robots',
-                    content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large',
+                    content: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
                 },
                 {
                     name: 'googlebot',
-                    content: 'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large',
+                    content: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
+                },
+                {
+                    name: 'bingbot',
+                    content: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
                 },
                 {
                     name: 'location',
