@@ -1,12 +1,12 @@
-import vi from '/locales/vi.json';
-import en from '/locales/en.json';
-export default {
+import vi from './locales/vi.json';
+import en from './locales/en.json';
+
+export default defineI18nConfig(() => ({
     legacy: false,
-    globalInjection: true,
     locale: 'vi',
     messages: {
         vi,
         en,
     },
     defaultLocale: 'vi'
-};
+}))

@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     debug: false,
+    experimental: {
+        appManifest: false,
+    },
     devtools: {
         enabled: false,
         timeline: {
@@ -50,7 +53,7 @@ export default defineNuxtConfig({
     },
 
     modules: [
-        'nuxt-delay-hydration',
+        // 'nuxt-delay-hydration',
         '@nuxtjs/i18n',
         '@nuxt/ui',
         '@pinia/nuxt',
@@ -75,6 +78,10 @@ export default defineNuxtConfig({
     },
 
     sitemap: {
+        enabled: false,
+    },
+
+    robots: {
         enabled: false,
     },
 
@@ -119,13 +126,13 @@ export default defineNuxtConfig({
         locales: [
             {
                 code: 'vi',
-                iso: 'vi-VN',
+                language: 'vi-VN',
                 name: 'Việt Nam',
                 file: 'vi.json',
             },
             {
                 code: 'en',
-                iso: 'en-US',
+                language: 'en-US',
                 name: 'English',
                 file: 'en.json',
             },
