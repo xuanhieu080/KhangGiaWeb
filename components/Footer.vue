@@ -4,7 +4,7 @@
             <div class="site-footer__inner">
                 <div class="site-footer__sidebar">
                     <div class="footer-about mb-6">
-                        <div class="site-footer__title">{{trans('GAK is dedicated & thoughtful in every product')}}</div>
+                        <div class="site-footer__title">{{trans('KHANG GIA is dedicated & thoughtful in every product')}}</div>
                         <p class="site-footer__description">
                             {{trans('We always appreciate and welcome all customer feedback to help us improve our service and product experience.')}}
                         </p>
@@ -81,7 +81,7 @@
                 <div class="site-footer__after">
                     <div class="copyright">
                         <h5 class="copyright__title">
-                            @ {{trans('GAK TRADING - SERVICE - MANUFACTURING - IMPORT EXPORT CO., LTD')}}
+                            @ {{trans('KHANG GIA TRADING - SERVICE - MANUFACTURING - IMPORT EXPORT CO., LTD')}}
                 </h5>
                         <p class="copyright__description">{{trans('Business Registration Number: 0317511532. The business registration certificate was first issued by the Ho Chi Minh City Department of Planning and Investment on October 7, 2022.')}}</p>
                     </div>
@@ -92,10 +92,10 @@
                         target='_blank'>
                             <img src='/bo-cong-thuong.png'
                                                  class="mr-3"
-                                             alt='GAK' width='106' height='40' />
+                                             alt='KHANG GIA' width='106' height='40' />
                         </a>
                         <a
-                            href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
+                            href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://khanggiagarment.com/"
                             title="DMCA.com Protection Status"
                             class="dmca-badge mr-3">
                             <img

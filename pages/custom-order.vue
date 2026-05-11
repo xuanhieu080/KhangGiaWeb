@@ -44,7 +44,7 @@
         <div class="about-content md:pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="pod-why__heading">Why should you order at GAK factory?</h2>
+                    <h2 class="pod-why__heading">Why should you order at KHANG GIA factory?</h2>
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="grid__column three-twelfths mobile--one-half">
                             <div class="pod-why__card">
@@ -52,7 +52,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Good price from manufacturer</div>
                                     <p class="card__item__description">
-                                        The uniform products processed at GAK company always have the meticulousness and the best price. Because we are a manufacturer of fabric, dyeing, uniform sewing, and closed printing.
+                                        The uniform products processed at KHANG GIA company always have the meticulousness and the best price. Because we are a manufacturer of fabric, dyeing, uniform sewing, and closed printing.
                                     </p>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Dedicated Tailoring Service</div>
                                     <p class="card__item__description">
-                                        At GAK, we always prioritize dedication in every product. Our experienced craftsmen take great care with every seam, and it is this commitment to quality that defines our brand.
+                                        At KHANG GIA, we always prioritize dedication in every product. Our experienced craftsmen take great care with every seam, and it is this commitment to quality that defines our brand.
                                     </p>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Best uniform printing cost on the market</div>
                                     <p class="card__item__description">
-                                        Thanks to its strong and flexible production capacity, GAK is confident in the quality of all its prints. Trust us and your brand will always be perfect on every uniform.
+                                        Thanks to its strong and flexible production capacity, KHANG GIA is confident in the quality of all its prints. Trust us and your brand will always be perfect on every uniform.
                                     </p>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Fast delivery</div>
                                     <p class="card__item__description">
-                                        Thanks to the ability to produce from the factory and print in-house. Helps GAK company to ensure the progress of sewing and delivery to customers. If you already have the expected quantity, our sample will inform you of the delivery date!
+                                        Thanks to the ability to produce from the factory and print in-house. Helps KHANG GIA company to ensure the progress of sewing and delivery to customers. If you already have the expected quantity, our sample will inform you of the delivery date!
                                     </p>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                     <div class="pod-activity__card">
                         <div class="pod-activity__heading-card">
                             <div class="pod-activity__heading-top">
-                                <h2>How to order uniforms at GAK</h2>
+                                <h2>How to order uniforms at KHANG GIA</h2>
                             </div>
                             <div class="pod-activity__heading-cta mobile--hidden tablet--hidden">
                                 <p>It's never been so simple.</p>
@@ -157,7 +157,7 @@
                     </h2>
                     <div>
                         <h3 style="text-align: center; font-size: 16px; padding: 0px 30px">
-                            GAK has the ability to diversify production according to customers' specific requirements.
+                            KHANG GIA has the ability to diversify production according to customers' specific requirements.
                         </h3>
                     </div>
                     <div class="tab-content">
@@ -414,7 +414,7 @@
                                 </SwiperSlide>
                             </Swiper>
                             <p class="pod-customer__description active-description mobile--hidden">
-                                Trusted by clients for customized uniform solutions — from promotional samples to discreet bespoke services. Contact GAK today to create uniforms tailored exclusively for your company.
+                                Trusted by clients for customized uniform solutions — from promotional samples to discreet bespoke services. Contact KHANG GIA today to create uniforms tailored exclusively for your company.
                             </p>
                         </div>
                         <UButton
@@ -465,7 +465,7 @@
                             </div>
                             <div class="contact__form">
                                 <UForm @submit="submit" class="xp-form">
-                                    <h2 class="title">Send request for uniform sewing consultation to GAK</h2>
+                                    <h2 class="title">Send request for uniform sewing consultation to KHANG GIA</h2>
                                     <UFormGroup class="form-group" label="Products and estimated quantities you need" required>
                                         <UInput
                                             size="xl"
@@ -515,7 +515,7 @@
                                             name="product"
                                             required
                                             v-model="form.email"
-                                            placeholder="vd: dobaoho@gak.vn"
+                                            placeholder="vd: dobaoho@khanggiagarment.com"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
 
@@ -552,7 +552,7 @@
                         To create a beautiful uniform or a high-quality company t-shirt, it all starts with premium materials. Only by carefully selecting the right fibers, using advanced weaving processes, and applying expert tailoring techniques can we produce garments worthy of carrying your company logo.
                     </p>
                     <UButton variant="ghost" color="none" size="lg" type="submit" class="bg-[#2f5acf] text-white px-8 rounded-3xl">
-                        GAK Company Capabilities
+                        KHANG GIA Company Capabilities
                     </UButton>
                 </div>
             </section>
@@ -607,7 +607,7 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Join the GAK Deal Club - Get information about promotions, warehouse clearance and live streams to give away shocking gifts!!!
+                        Join the KHANG GIA Deal Club - Get information about promotions, warehouse clearance and live streams to give away shocking gifts!!!
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton
@@ -620,12 +620,12 @@
                             Deal Club
                         </UButton>
                         <UButton
-                            :to="localePath({ name: 'gak-official' })"
+                            :to="localePath({ name: 'khanggia-official' })"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"
                             color="none">
-                            GAK OFFICIAL
+                            KHANG GIA OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -669,7 +669,7 @@
                                     </li>
                                 </ul>
                                 <span>
-                                   Based on the above criteria for evaluating reputable uniform sewing factory addresses, GAK company hopes that it will help you find a reputable sewing company.
+                                   Based on the above criteria for evaluating reputable uniform sewing factory addresses, KHANG GIA company hopes that it will help you find a reputable sewing company.
                                 </span>
                             </div>
                         </template>
@@ -680,7 +680,7 @@
                                 </p>
 
                                 <p>
-                                    At GAK, we take pride in being self-sufficient in producing high-quality fabrics that prioritize safety, comfort in movement and work, excellent absorbency, and elasticity. Thanks to our fully integrated ecosystem—from yarn production, weaving, dyeing to printing—we ensure that every set of worker uniforms meets the highest quality standards while maintaining the most competitive prices in the market. Discover more about our available products today!
+                                    At KHANG GIA, we take pride in being self-sufficient in producing high-quality fabrics that prioritize safety, comfort in movement and work, excellent absorbency, and elasticity. Thanks to our fully integrated ecosystem—from yarn production, weaving, dyeing to printing—we ensure that every set of worker uniforms meets the highest quality standards while maintaining the most competitive prices in the market. Discover more about our available products today!
                                 </p>
                             </div>
                         </template>
@@ -691,23 +691,23 @@
                                 </p>
                                 <ul class="marker:text-gray-700">
                                     <li>
-                                        Create a professional impression: Uniforms are an effective way to create a professional and consistent image for your entire team. With extensive experience in the garment industry, GAK is committed to providing quality uniforms that reflect the professionalism of the business.
+                                        Create a professional impression: Uniforms are an effective way to create a professional and consistent image for your entire team. With extensive experience in the garment industry, KHANG GIA is committed to providing quality uniforms that reflect the professionalism of the business.
                                     </li>
                                     <li>
-                                        Enhance Brand Recognition: Logos and brand messages printed on uniforms not only make it easier for customers to recognize your business, but also serve as a powerful tool for brand promotion. At GAK, we specialize in designing and printing distinctive uniforms that reflect the core values and style of your brand—helping you stand out with every impression.
+                                        Enhance Brand Recognition: Logos and brand messages printed on uniforms not only make it easier for customers to recognize your business, but also serve as a powerful tool for brand promotion. At KHANG GIA, we specialize in designing and printing distinctive uniforms that reflect the core values and style of your brand—helping you stand out with every impression.
                                     </li>
                                     <li>
-                                        Team Spirit Uniforms are more than just clothing—they symbolize unity and consistency within an organization. At GAK, we understand the importance of building strong team cohesion. That’s why we’re committed to delivering well-designed uniforms that foster a sense of connection and pride among your employees.
+                                        Team Spirit Uniforms are more than just clothing—they symbolize unity and consistency within an organization. At KHANG GIA, we understand the importance of building strong team cohesion. That’s why we’re committed to delivering well-designed uniforms that foster a sense of connection and pride among your employees.
                                     </li>
                                     <li>
-                                        Premium & High-Quality Tailoring Service At GAK, we don’t just offer standard uniform designs — we specialize in customized tailoring to meet the unique needs of each business. From premium fabrics and buttons to advanced printing technologies, every detail is carefully crafted to deliver uniforms that are not only stylish but also of exceptional quality.
+                                        Premium & High-Quality Tailoring Service At KHANG GIA, we don’t just offer standard uniform designs — we specialize in customized tailoring to meet the unique needs of each business. From premium fabrics and buttons to advanced printing technologies, every detail is carefully crafted to deliver uniforms that are not only stylish but also of exceptional quality.
                                     </li>
                                     <li>
-                                        Reasonable Value At GAK, we understand that investing in uniforms should be cost-effective. With our competitive pricing and meticulous attention to product quality, we are committed to delivering the best value for every amount you spend.
+                                        Reasonable Value At KHANG GIA, we understand that investing in uniforms should be cost-effective. With our competitive pricing and meticulous attention to product quality, we are committed to delivering the best value for every amount you spend.
                                     </li>
                                 </ul>
                                 <span>
-                                    Let GAK be your trusted partner in designing premium apparel and tailoring high-quality uniforms. Contact us today to begin your journey toward building a professional image and a strong, impressive brand for your business!
+                                    Let KHANG GIA be your trusted partner in designing premium apparel and tailoring high-quality uniforms. Contact us today to begin your journey toward building a professional image and a strong, impressive brand for your business!
                                 </span>
                             </div>
                         </template>
@@ -757,7 +757,7 @@ const items = [
         slot: 'item-2',
     },
     {
-        label: 'Benefits of ordering uniforms - printing from factory GAK',
+        label: 'Benefits of ordering uniforms - printing from factory KHANG GIA',
         slot: 'item-3',
     },
 ];
@@ -805,10 +805,10 @@ async function submit() {
     }
 }
 let title = 'Custom uniform orders in HCMC | High-quality fabric, affordable prices';
-let pageDescription = 'GAK offers custom-made uniform solutions, from fabric selection to advanced tailoring techniques for company uniforms, t-shirts, polos, and dresses. We accept sample orders from just 1 piece!'
+let pageDescription = 'KHANG GIA offers custom-made uniform solutions, from fabric selection to advanced tailoring techniques for company uniforms, t-shirts, polos, and dresses. We accept sample orders from just 1 piece!'
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',

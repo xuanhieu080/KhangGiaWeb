@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gak.vn/sitemap.xml
+Sitemap: https://khanggiagarment.com/sitemap.xml

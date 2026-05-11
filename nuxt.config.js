@@ -182,12 +182,12 @@ export default defineNuxtConfig({
                 vi: '/quy-dinh-thanh-toan',
                 en: '/payment-regulations',
             },
-            'culture-gak': {
+            'culture-khanggia': {
                 vi: false,
-                en: '/culture-gak',
+                en: '/culture-khanggia',
             },
-            'van-hoa-gak': {
-                vi: '/van-hoa-gak',
+            'van-hoa-khanggia': {
+                vi: '/van-hoa-khanggia',
                 en: false,
             },
             'custom-order': {
@@ -245,7 +245,7 @@ export default defineNuxtConfig({
         dir: 'public',
 
         // Cho phép ảnh từ các domain ngoài (CDN, API)
-        domains: ['app.gak.vn'],
+        domains: ['app.khanggiagarment.com'],
 
         // Chọn provider xử lý ảnh, `ipx` là default
         provider: 'ipx', // dùng được cả cho ảnh nội bộ và từ domain ngoài

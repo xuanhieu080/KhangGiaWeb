@@ -17,17 +17,17 @@
             <h2 class="font-bold !text-2xl md:!text-4xl text-center">SOCIAL MEDIA</h2>
             <div class="md:grid md:grid-cols-3 flex flex-col justify-center items-center w-full gap-4 md:gap-0">
                 <a href="https://www.facebook.com/GAKBHLD" target="_blank">
-                    <img src="/images/facebook-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
+                    <img src="/images/facebook-khanggia.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
                 </a>
                 <a href="https://www.tiktok.com/@congtygak" target="_blank">
-                    <img src="/images/tiktok-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
+                    <img src="/images/tiktok-khanggia.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
                 </a>
                 <a href="https://www.youtube.com/@CongtyGAK" target="_blank">
-                    <img src="/images/youtube-gak.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
+                    <img src="/images/youtube-khanggia.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
                 </a>
             </div>
         </section>
-        <div v-if="false" class="gak-news flex flex-col gap-4 p-5 w-full">
+        <div v-if="false" class="khanggia-news flex flex-col gap-4 p-5 w-full">
             <h3 class="font-bold !text-2xl md:!text-3xl">TIN TỨC</h3>
             <Swiper
                 :spaceBetween="0"
@@ -80,9 +80,9 @@
                 </template>
             </Swiper>
         </div>
-        <div class="gak-map flex flex-col gap-4 relative">
-            <h3 class="font-bold !text-2xl md:!text-3xl absolute top-4 left-1/2 -translate-x-1/2">{{trans('GAK Map')}}</h3>
-            <img src="/images/gak-map.jpg" class="h-[600px] md:h-[auto] md:max-h-[600px] object-bottom w-full object-cover" alt="" />
+        <div class="khanggia-map flex flex-col gap-4 relative">
+            <h3 class="font-bold !text-2xl md:!text-3xl absolute top-4 left-1/2 -translate-x-1/2">{{trans('KHANG GIA Map')}}</h3>
+            <img src="/images/khanggia-map.jpg" class="h-[600px] md:h-[auto] md:max-h-[600px] object-bottom w-full object-cover" alt="" />
             <div class="map-box w-full absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center justify-center p-6 md:p-0">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d823.936581647136!2d106.652818292957!3d10.786402732044506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752eca006bdbe5%3A0x9a8c008355ae6829!2zMTUgTMOqIE1pbmggWHXDom4sIFBoxrDhu51uZyA4LCBUw6JuIELDrG5oLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1717928335457!5m2!1svi!2s"
@@ -98,7 +98,7 @@
             <section v-if="false" class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                     {{trans('Join the GAK Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!')}}
+                     {{trans('Join the KHANG GIA Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!')}}
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton
@@ -108,15 +108,15 @@
                             class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase"
                             variant="ghost"
                             color="none">
-                            {{trans('Join the GAK Deal Hunters group')}}
+                            {{trans('Join the KHANG GIA Deal Hunters group')}}
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'gak-official'})"
+                            :to="localePath({name: 'khanggia-official'})"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
-                            GAK OFFICIAL
+                            KHANG GIA OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -149,7 +149,7 @@
                         <template #item-2>
                             <div class="text-gray-900 dark:text-white px-3 text-lg">
                                 <p>
-                                    {{trans("GAK Company specializes in providing fabric, mesh, labor protection products, and company uniforms with quality and prices suitable for the company's budget. During its operation, GAK has been trusted by many customers and partners to choose high-quality Vietnamese products. Currently, GAK is becoming a supplier and strategic partner of many industrial parks, restaurants, construction, real estate... throughout Vietnam. Choose GAK to choose quality, choose good prices.")}}
+                                    {{trans("KHANG GIA Company specializes in providing fabric, mesh, labor protection products, and company uniforms with quality and prices suitable for the company's budget. During its operation, KHANG GIA has been trusted by many customers and partners to choose high-quality Vietnamese products. Currently, KHANG GIA is becoming a supplier and strategic partner of many industrial parks, restaurants, construction, real estate... throughout Vietnam. Choose KHANG GIA to choose quality, choose good prices.")}}
                                 </p>
                             </div>
                         </template>
@@ -229,9 +229,9 @@ const { link } = storeToRefs(useLanguageLinkStore);
 link.value = null;
 
 if (locale.value == 'en') {
-    link.value = `/vi/gak-official`;
+    link.value = `/vi/khanggia-official`;
 } else {
-    link.value = '/en/gak-official'
+    link.value = '/en/khanggia-official'
 }
 
 const articlesList = ref([
@@ -279,28 +279,28 @@ const articlesList = ref([
 
 const items = [
     {
-        label: trans('GAK company address'),
+        label: trans('KHANG GIA company address'),
         slot: 'item-1',
         defaultOpen: true,
     },
     {
-        label: trans('Is GAK company a scam?'),
+        label: trans('Is KHANG GIA company a scam?'),
         slot: 'item-2',
     },
     {
-        label: trans("GAK's social media platforms"),
+        label: trans("KHANG GIA's social media platforms"),
         slot: 'item-3',
     },
     {
-        label: trans("What are the hotline numbers of GAK company?"),
+        label: trans("What are the hotline numbers of KHANG GIA company?"),
         slot: 'item-4',
     },
 ];
-let title = 'GAK MEDIA OFFICIAL';
-let pageDescription = trans('Where is GAK and how can you contact us? Explore our official media channels!');
+let title = 'KHANG GIA MEDIA OFFICIAL';
+let pageDescription = trans('Where is KHANG GIA and how can you contact us? Explore our official media channels!');
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',
@@ -399,7 +399,7 @@ useSeoMeta(seoMeta);
         }
     }
 }
-.gak-map {
+.khanggia-map {
 }
 .about-content {
     .container--medium {

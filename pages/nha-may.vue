@@ -47,12 +47,12 @@
                                         Trong hành trình của mình, chúng tôi đã đi đến nhiều nơi, học hỏi và áp dụng nhiều quy trình may mặc
                                         tiên tiến để tạo ra những sản phẩm chất lượng như áo đồng phục và áo bảo hộ. Tuy nhiên, điều khiến
                                         chúng tôi ấn tượng nhất là sự yêu thích và đón nhận từ khắp năm châu dành cho các sản phẩm đồng phục
-                                        mang thương hiệu GAK.
+                                        mang thương hiệu KHANG GIA.
                                     </p>
                                     <p>
                                         Từ niềm tự hào về hàng Việt Nam, chúng tôi đã trở về và tập trung phân phối sản phẩm trong nước với
-                                        mong muốn mang đến cho người dân quê hương những sản phẩm chất lượng từ thương hiệu GAK. Chúng tôi
-                                        hy vọng những bộ đồng phục và các sản phẩm khác của GAK sẽ mang đến giá trị tích cực, đồng thời cung
+                                        mong muốn mang đến cho người dân quê hương những sản phẩm chất lượng từ thương hiệu KHANG GIA. Chúng tôi
+                                        hy vọng những bộ đồng phục và các sản phẩm khác của KHANG GIA sẽ mang đến giá trị tích cực, đồng thời cung
                                         cấp cho mọi người cơ hội sở hữu những sản phẩm chất lượng với mức giá hợp lý nhất.
                                     </p>
                                 </div>
@@ -73,12 +73,12 @@
                                 <div class="cs-services__description">
                                     <p>
                                         Đem đến những sản phẩm quần áo đẹp, ổn định và đồng đều qua từng thời kỳ là một thách thức lớn đối
-                                        với bất kỳ công ty may mặc nào. Tuy nhiên, tại GAK, chúng tôi tập trung toàn bộ nguồn lực vào việc
+                                        với bất kỳ công ty may mặc nào. Tuy nhiên, tại KHANG GIA, chúng tôi tập trung toàn bộ nguồn lực vào việc
                                         xây dựng từ gốc, từ khâu tuyển chọn sợi, công nghệ dệt - nhuộm đến nguồn nguyên phụ liệu.
                                     </p>
                                     <p>
                                         Ngay tại thời điểm này, chúng tôi đã tạo ra một hệ sinh thái may mặc bền vững, quản lý chặt chẽ toàn
-                                        bộ quy trình sản xuất từ đầu đến cuối. Chúng tôi cam kết chất lượng của từng sản phẩm MADE BY GAK,
+                                        bộ quy trình sản xuất từ đầu đến cuối. Chúng tôi cam kết chất lượng của từng sản phẩm MADE BY KHANG GIA,
                                         đảm bảo mọi chi tiết đều được chăm chút tỉ mỉ để mang lại trải nghiệm tốt nhất cho khách hàng.
                                     </p>
                                 </div>
@@ -99,14 +99,14 @@
                                 <div class="cs-services__description">
                                     <p>
                                         Lao động mang lại hạnh phúc, và mỗi con người đều nỗ lực làm việc để cống hiến tuổi trẻ và sức khỏe
-                                        nhằm tạo ra nguồn thu nhập chăm lo cho gia đình. Tại GAK, tất cả các nhân viên, từ thợ may, thợ
+                                        nhằm tạo ra nguồn thu nhập chăm lo cho gia đình. Tại KHANG GIA, tất cả các nhân viên, từ thợ may, thợ
                                         nhuộm, thợ máy đến người nhân viên dọn dẹp đều tận tâm với công việc của mình. Chính sự hỗ trợ từ
                                         các đối tác và khách hàng đã giúp họ giữ được công việc ổn định và điều kiện để chăm sóc gia đình.
                                     </p>
                                     <p>
-                                        Mỗi ngày, GAK tập trung duy trì vai trò nghiên cứu, sản xuất và xây dựng mối quan hệ chiến lược với
+                                        Mỗi ngày, KHANG GIA tập trung duy trì vai trò nghiên cứu, sản xuất và xây dựng mối quan hệ chiến lược với
                                         khách hàng. Bởi chỉ có làm tốt vai trò cốt lõi và không ngừng tiến lên mới có thể mang đến hạnh phúc
-                                        cho người lao động tại GAK.
+                                        cho người lao động tại KHANG GIA.
                                     </p>
                                 </div>
                             </div>
@@ -126,8 +126,8 @@
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-1.png" alt="" /></span>
                             <h3 class="workshop-card__title">Tử tế</h3>
                             <p class="workshop-card__desc">
-                                GAK tin rằng sự tự tế mang nhiều nghĩa hơn trong cuộc sống này, từ việc tạo ra việc làm, phúc lợi, đạo đức
-                                kinh doanh... cho tới sự hoàn thiện tỉ mỉ từng sản phẩm, nó là điểm mấu chốt mà GAK tập trung trong sự phát
+                                KHANG GIA tin rằng sự tự tế mang nhiều nghĩa hơn trong cuộc sống này, từ việc tạo ra việc làm, phúc lợi, đạo đức
+                                kinh doanh... cho tới sự hoàn thiện tỉ mỉ từng sản phẩm, nó là điểm mấu chốt mà KHANG GIA tập trung trong sự phát
                                 triển của mình
                             </p>
                         </div>
@@ -139,7 +139,7 @@
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-2.png" alt="" /></span>
                             <h3 class="workshop-card__title">Đoàn kết &amp; tương trợ</h3>
                             <p class="workshop-card__desc">
-                                GAK mong rằng mỗi một đối tác là người bạn, sự tương trợ, chia sẻ và thấu hiểu nhau để sáng tạo các giải
+                                KHANG GIA mong rằng mỗi một đối tác là người bạn, sự tương trợ, chia sẻ và thấu hiểu nhau để sáng tạo các giải
                                 pháp tốt nhất cho tương lai phát triển bền vững
                             </p>
                         </div>
@@ -151,7 +151,7 @@
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-3.png" alt="" /></span>
                             <h3 class="workshop-card__title">HƯỚNG TỚI MỐI QUAN HỆ LÂU DÀI</h3>
                             <p class="workshop-card__desc">
-                                GAK tập trung vào xây dựng giá trị lâu dài với đối tác. GAK tin rằng qua thời gian dài làm việc cùng nhau,
+                                KHANG GIA tập trung vào xây dựng giá trị lâu dài với đối tác. KHANG GIA tin rằng qua thời gian dài làm việc cùng nhau,
                                 sẽ hiểu nhau sâu hơn và tạo ra nhiều giá trị hơn. Có những đối tác đã đồng hành từ khi bắt đầu và vẫn tiếp
                                 tục hợp tác đến hiện tại.
                             </p>
@@ -171,7 +171,7 @@
                         </h2>
                         <div class="workshop-description">
                             <p>
-                                Mỗi sản phẩm GAK được sản xuất đều mang một câu chuyện riêng, chúng tôi gửi đến bạn những hình ảnh chân thực
+                                Mỗi sản phẩm KHANG GIA được sản xuất đều mang một câu chuyện riêng, chúng tôi gửi đến bạn những hình ảnh chân thực
                                 nhất để tạo nên những sản phẩm chất lượng đến tay bạn. &ZeroWidthSpace;Và cùng nhau chúng tôi đã làm được
                                 những điều ấn tượng: #GAKFactories
                             </p>
@@ -212,7 +212,7 @@
                     <h2 class="workshop-heading text-center">CÁC NHÀ MÁY SẢN XUẤT</h2>
                     <div class="mb-8 lg:mb-[96px]">
                         <p class="workshop-description text--center" style="text-align: center !important; max-width: unset">
-                            Cùng GAK khám phá những xưởng sản xuất đặc biệt đã luôn đồng hành để tạo ra những sản phẩm tốt nhất dành cho
+                            Cùng KHANG GIA khám phá những xưởng sản xuất đặc biệt đã luôn đồng hành để tạo ra những sản phẩm tốt nhất dành cho
                             bạn.
                         </p>
                     </div>
@@ -327,18 +327,18 @@
             </div>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal GAK
+                            Tham gia hội săn Deal KHANG GIA
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'gak-official'})"
+                            :to="localePath({name: 'khanggia-official'})"
                             size="lg"
                             class="!text-white border bg-[#22c55ebf] rounded-3xl px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
-                            GAK OFFICIAL
+                            KHANG GIA OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -361,11 +361,11 @@ const { link } = storeToRefs(useLanguageLinkStore);
 
 link.value = '/en/factory'
 
-let title = 'Chào mừng bạn đến với nhà máy GAK | Nơi sản phẩm được tạo ra';
-let pageDescription = '3000m2 cơ sở sản xuất của chúng tôi là một niềm tự hào GAK, nơi tạo ra những sản phẩm chất lượng, gắn kết đời sống của hàng trăm con người lao động.'
+let title = 'Chào mừng bạn đến với nhà máy KHANG GIA | Nơi sản phẩm được tạo ra';
+let pageDescription = '3000m2 cơ sở sản xuất của chúng tôi là một niềm tự hào KHANG GIA, nơi tạo ra những sản phẩm chất lượng, gắn kết đời sống của hàng trăm con người lao động.'
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',

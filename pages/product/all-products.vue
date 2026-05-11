@@ -301,11 +301,11 @@ const { data: productCollectionAll, pending: loadingProductCollectionAll } = awa
 //     () => {},
 // );
 
-let title = trans('GAK Store | Direct-from-factory pricing | The more you buy, the more you save');
-let pageDescription = trans('Discover products manufactured and tailored by GAK. Industry-leading quality, great prices every day, and meticulous craftsmanship — only at GAK.');
+let title = trans('KHANG GIA Store | Direct-from-factory pricing | The more you buy, the more you save');
+let pageDescription = trans('Discover products manufactured and tailored by KHANG GIA. Industry-leading quality, great prices every day, and meticulous craftsmanship — only at KHANG GIA.');
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',

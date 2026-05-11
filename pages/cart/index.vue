@@ -332,7 +332,7 @@
                     </div>
 
                     <div class="mt-8">
-                        <b>{{trans('By clicking the payment button, you have understood the policies when purchasing at the website GAK.VN')}}</b>
+                        <b>{{trans('By clicking the payment button, you have understood the policies when purchasing at the website KHANGGIAGARMENT.COM')}}</b>
                        <ul class="list-disc px-4">
                            <li>
                                <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'privacy-policy' })">{{trans('Privacy policy')}}</NuxtLink>
@@ -347,7 +347,7 @@
                                <NuxtLink class="text-blue-600 dark:text-blue-500 hover:no-underline" :to="localePath({ name: 'product-return-policy' })">{{trans('Product return policy')}}</NuxtLink>
                            </li>
                        </ul>
-                        <p>{{trans('Thank you for choosing and purchasing products at GAK.VN')}}</p>
+                        <p>{{trans('Thank you for choosing and purchasing products at KHANGGIAGARMENT.COM')}}</p>
                     </div>
                 </div>
             </div>
@@ -748,10 +748,10 @@ watch(
 
 
 let title = trans('Shopping cart');
-let description = 'Complete your online shopping at GAK. Transparent delivery, returns and more.';
+let description = 'Complete your online shopping at KHANG GIA. Transparent delivery, returns and more.';
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: description,
     theme: '#ff0000',

@@ -328,7 +328,7 @@
                             <button class="flex items-center gap-2">
                                 <img src="https://page.widget.zalo.me/static/images/2.0/Logo.svg" class="h-8 w-8 object-contain" alt="Zalo" />
                                 <a href="https://zalo.me/0569133339" class="text-blue-700 fs-14 font-bold">
-                                    {{ trans('Chat with GAK for instant support') }} ( 08:00 - 17:30)
+                                    {{ trans('Chat with KHANG GIA for instant support') }} ( 08:00 - 17:30)
                                 </a>
                                 <UIcon class="text-[22px]" name="i-heroicons-arrow-long-right" dynamic />
                             </button>
@@ -1133,7 +1133,7 @@ watchEffect(() => {
     imageRef.value = image.value || currentImages.value?.[0] || ''
 })
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: titleRef.value,
     description: descriptionRef.value,
     theme: '#ff0000',

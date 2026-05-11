@@ -45,7 +45,7 @@
         <div class="about-content md:pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty GAK</h2>
+                    <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty KHANG GIA</h2>
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="grid__column three-twelfths mobile--one-half">
                             <div class="pod-why__card">
@@ -53,7 +53,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Chi phí tốt nhất trên thị trường</div>
                                     <p class="card__item__description">
-                                        Các sản phẩm đồng phục được gia công tại công ty GAK luôn có sự tỉ mỉ và giá thành tốt nhất. Bởi
+                                        Các sản phẩm đồng phục được gia công tại công ty KHANG GIA luôn có sự tỉ mỉ và giá thành tốt nhất. Bởi
                                         chúng tôi là nhà sản xuất vải, nhuộm, may đồng phục, in ấn khép kín
                                     </p>
                                 </div>
@@ -65,7 +65,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Dịch vụ tận tâm</div>
                                     <p class="card__item__description">
-                                        GAK luôn chú trọng sự tận tâm trên từng sản phẩm, bởi những người thợ giàu kinh nghiệm cần thận trên
+                                        KHANG GIA luôn chú trọng sự tận tâm trên từng sản phẩm, bởi những người thợ giàu kinh nghiệm cần thận trên
                                         từng đường may mũi chỉ và sản phẩm chất lượng cao đang tạo nên thương hiệu của chúng tôi.
                                     </p>
                                 </div>
@@ -77,7 +77,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Chi phí in ấn đồng phục tốt nhất thị trường</div>
                                     <p class="card__item__description">
-                                        Nhờ năng lực sản xuất mạnh và linh hoạt, công ty GAK tự tin vào chất lượng tất cả bản in ấn. Hãy đặt
+                                        Nhờ năng lực sản xuất mạnh và linh hoạt, công ty KHANG GIA tự tin vào chất lượng tất cả bản in ấn. Hãy đặt
                                         niềm tin vào chúng tôi thương hiệu của bạn sẽ luôn chỉn chu trên từng bộ đồng phục.
                                     </p>
                                 </div>
@@ -89,7 +89,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Biết ngày giao hàng!</div>
                                     <p class="card__item__description">
-                                        Nhờ vào khả năng sản xuất và in khép kín. Giúp công ty GAK có thể đảm bảo tiến độ may và giao hàng
+                                        Nhờ vào khả năng sản xuất và in khép kín. Giúp công ty KHANG GIA có thể đảm bảo tiến độ may và giao hàng
                                         cho khách hàng. Nếu bạn đã có số lượng dự kiến, bản mẫu chúng tôi sẽ báo với bạn ngày giao hàng!
                                     </p>
                                 </div>
@@ -103,7 +103,7 @@
                     <div class="pod-activity__card">
                         <div class="pod-activity__heading-card">
                             <div class="pod-activity__heading-top">
-                                <h2>Quy trình<br />may đồng phục tại Công ty GAK<br />như thế nào?</h2>
+                                <h2>Quy trình<br />may đồng phục tại Công ty KHANG GIA<br />như thế nào?</h2>
                             </div>
                             <div class="pod-activity__heading-cta mobile--hidden tablet--hidden">
                                 <p>Chưa bao giờ đơn giản đến thế.</p>
@@ -162,7 +162,7 @@
                     </h2>
                     <div>
                         <h3 style="text-align: center; font-size: 16px; padding: 0px 30px">
-                            GAK có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
+                            KHANG GIA có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
                         </h3>
                     </div>
                     <div class="tab-content">
@@ -342,7 +342,7 @@
                 <div class="container container--medium">
                     <div class="pod-customer">
                         <div class="pod-customer__wrapper">
-                            <h2 class="pod-customer__heading">Khách hàng của công ty GAK</h2>
+                            <h2 class="pod-customer__heading">Khách hàng của công ty KHANG GIA</h2>
                             <Swiper
                                 :slidesPerView="3"
                                 :spaceBetween="12"
@@ -419,7 +419,7 @@
                                 </SwiperSlide>
                             </Swiper>
                             <p class="pod-customer__description active-description mobile--hidden">
-                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Gak còn hỗ trợ may riêng áo polo dành cho nữ dù số lượng ít
+                                Ngoài việc tư vấn chất liệu vải và màu phù hợp, Khang Gia còn hỗ trợ may riêng áo polo dành cho nữ dù số lượng ít
                                 và sản phẩm không có sẵn . Rất tuyệt vời.
                             </p>
                         </div>
@@ -462,17 +462,17 @@
                                 <div class="contact__content-contact">
                                     <a href="https://zalo.me/1160130089290834053" target="_blank" class="contact__content-social">
                                         <img src="/images/zalo.png" alt="zalo-podz" />
-                                        <div>Liên hệ Sale GAK qua Zalo</div>
+                                        <div>Liên hệ Sale KHANG GIA qua Zalo</div>
                                     </a>
                                     <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="contact__content-social"
                                         ><img src="/images/facebook.png" alt="fb-pod" />
-                                        <div>CSKH GAK</div></a
+                                        <div>CSKH KHANG GIA</div></a
                                     >
                                 </div>
                             </div>
                             <div class="contact__form">
                                 <UForm @submit="submit" class="xp-form">
-                                    <h2 class="title">Gửi yêu cầu tư vấn may đồng phục cho GAK</h2>
+                                    <h2 class="title">Gửi yêu cầu tư vấn may đồng phục cho KHANG GIA</h2>
                                     <UFormGroup class="form-group" label="Sản phẩm và số lượng dự kiến bạn cần" required>
                                         <UInput
                                             size="xl"
@@ -522,7 +522,7 @@
                                             name="product"
                                             required
                                             v-model="form.email"
-                                            placeholder="vd: dobaoho@gak.vn"
+                                            placeholder="vd: dobaoho@khanggiagarment.com"
                                             :ui="{ base: '!rounded-xl border border-blue-700 !bg-gray-100' }" />
                                     </UFormGroup>
 
@@ -561,7 +561,7 @@
                         lên logo công ty bạn!
                     </p>
                     <UButton variant="ghost" color="none" size="lg" type="submit" class="bg-[#2f5acf] text-white px-8 rounded-3xl">
-                        Năng lực Công ty GAK
+                        Năng lực Công ty KHANG GIA
                     </UButton>
                 </div>
             </section>
@@ -616,7 +616,7 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
+                        Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton
@@ -626,15 +626,15 @@
                             class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit no-underline uppercase"
                             variant="ghost"
                             color="none">
-                            Tham gia hội săn Deal GAK
+                            Tham gia hội săn Deal KHANG GIA
                         </UButton>
                         <UButton
-                            :to="localePath({ name: 'gak-official' })"
+                            :to="localePath({ name: 'khanggia-official' })"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl text-white px-6 py-4 justify-center w-full sm:max-w-[300px] no-underline"
                             variant="ghost"
                             color="none">
-                            GAK OFFICIAL
+                            KHANG GIA OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -642,7 +642,7 @@
             <div class="cs-faq-container py-8">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-faq__heading text-center w-full">FAQ MAY ĐỒNG PHỤC</h2>
-                    <p class="text-center w-full">Bạn có câu hỏi GAK xin trả lời ạ!</p>
+                    <p class="text-center w-full">Bạn có câu hỏi KHANG GIA xin trả lời ạ!</p>
                     <UAccordion multiple :items="items" :ui="{ wrapper: 'flex flex-col w-full' }">
                         <template #default="{ item, index, open }">
                             <UButton
@@ -681,7 +681,7 @@
                                     </li>
                                 </ul>
                                 <span>
-                                    Dựa theo những tiêu chí đánh giá địa chỉ xưởng may đồng phục uy tín bên trên, công ty GAK mong rằng nó
+                                    Dựa theo những tiêu chí đánh giá địa chỉ xưởng may đồng phục uy tín bên trên, công ty KHANG GIA mong rằng nó
                                     sẽ giúp bạn tìm thấy công ty may có uy tín.
                                 </span>
                             </div>
@@ -696,7 +696,7 @@
                                 </p>
 
                                 <p>
-                                    Tại GAK chúng tôi tự chủ sản xuất nguồn vải có chất lượng, đem lại sự an toàn, thoải mái khi vận động -
+                                    Tại KHANG GIA chúng tôi tự chủ sản xuất nguồn vải có chất lượng, đem lại sự an toàn, thoải mái khi vận động -
                                     làm việc, khả năng thấm hút co giãn tốt. Đặc biệt nhờ vào hệ sinh thái khép kín từ sợi, dệt, nhuộm cho
                                     tới in ấn chúng tôi luôn đảm bảo mọi bộ đồng phục công nhân luôn có chất lượng, giá thành cạnh tranh
                                     nhất thị trường. Hãy tìm hiểu thêm các sản phẩm có sẵn của chúng tôi!
@@ -713,34 +713,34 @@
                                 <ul class="marker:text-gray-700">
                                     <li>
                                         Tạo ấn tượng chuyên nghiệp: Đồng phục là một cách hiệu quả để tạo ra một hình ảnh chuyên nghiệp và
-                                        đồng nhất cho toàn bộ đội ngũ của bạn. Với bề dày kinh nghiệm trong ngành may, GAK cam kết mang lại
+                                        đồng nhất cho toàn bộ đội ngũ của bạn. Với bề dày kinh nghiệm trong ngành may, KHANG GIA cam kết mang lại
                                         những bộ đồng phục chất lượng, phản ánh sự chuyên nghiệp của doanh nghiệp.
                                     </li>
                                     <li>
                                         Nâng cao nhận diện thương hiệu: Logo và thông điệp của thương hiệu được in trên đồng phục không chỉ
-                                        giúp khách hàng dễ dàng nhận ra bạn mà còn là một cách hiệu quả để quảng bá thương hiệu của bạn. GAK
+                                        giúp khách hàng dễ dàng nhận ra bạn mà còn là một cách hiệu quả để quảng bá thương hiệu của bạn. KHANG GIA
                                         sẽ giúp bạn thiết kế và in ấn các mẫu đồng phục độc đáo, thể hiện đầy đủ giá trị và phong cách của
                                         thương hiệu.
                                     </li>
                                     <li>
                                         Tinh thần đồng đội: Đồng phục không chỉ là trang phục, mà còn là biểu tượng của sự đoàn kết và nhất
-                                        quán trong tổ chức. GAK hiểu rõ giá trị của việc tạo sự gắn kết giữa các thành viên, và chúng tôi
+                                        quán trong tổ chức. KHANG GIA hiểu rõ giá trị của việc tạo sự gắn kết giữa các thành viên, và chúng tôi
                                         cam kết mang lại những bộ đồng phục đẹp mắt, tạo cảm giác kết nôi và đoàn kết cho nhân viên của bạn.
                                     </li>
                                     <li>
-                                        Dịch vụ may đo cao cấp và chất lượng cao: GAK không chỉ cung cấp những mẫu đồng phục tiêu chuẩn mà
+                                        Dịch vụ may đo cao cấp và chất lượng cao: KHANG GIA không chỉ cung cấp những mẫu đồng phục tiêu chuẩn mà
                                         còn chú trọng đến sự tùy chỉnh theo yêu cầu của khách hàng - công ty. Chúng tôi cam kết sử dụng vật
                                         liệu vải, khuy nút chất lượng cao và công nghệ in ấn tiên tiến để đảm bảo bạn nhận được sản phẩm
                                         hoàn hảo nhất.
                                     </li>
                                     <li>
-                                        Giá trị hợp lý: GAK hiểu rằng việc đầu tư vào đồng phục cần phải hợp lý về chi phí. Với chính sách
+                                        Giá trị hợp lý: KHANG GIA hiểu rằng việc đầu tư vào đồng phục cần phải hợp lý về chi phí. Với chính sách
                                         giá cạnh tranh và chất lượng sản phẩm được hoàn thiện tỉ mỉ, chúng tôi cam kết mang lại giá trị tốt
                                         nhất với mức chi phí bạn đã bỏ ra.
                                     </li>
                                 </ul>
                                 <span>
-                                    Hãy để GAK trở thành đối tác đáng tin cậy của bạn trong việc thiết kế trang phục cao cấp và may đồng
+                                    Hãy để KHANG GIA trở thành đối tác đáng tin cậy của bạn trong việc thiết kế trang phục cao cấp và may đồng
                                     phục chất lượng . Liên hệ với chúng tôi ngay hôm nay để bắt đầu hành trình tạo ra một hình ảnh chuyên
                                     nghiệp và thương hiệu ấn tượng cho doanh nghiệp của bạn!
                                 </span>
@@ -841,10 +841,10 @@ async function submit() {
     }
 }
 let title = 'Nhận đặt may theo yêu cầu tại TPHCM vải tốt | Đồng phục đẹp giá rẻ';
-let pageDescription = 'Công ty GAK mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
+let pageDescription = 'Công ty KHANG GIA mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',

@@ -22,8 +22,8 @@
                     <picture class="w-full h-full object-contain banner-image">
                         <source v-if='isMobile' media="(max-width:767px)" :srcset="item.url_mobile">
                         <source v-else media="(min-width:768px)" :srcset="item.url">
-                        <img v-if='isMobile' class="w-full h-full object-contain banner-image" :src="item.url_mobile" loading="lazy" alt="GAK" />
-                        <img v-else class="w-full h-full object-contain banner-image" :src="item.url" loading="lazy" alt="GAK" />
+                        <img v-if='isMobile' class="w-full h-full object-contain banner-image" :src="item.url_mobile" loading="lazy" alt="KHANG GIA" />
+                        <img v-else class="w-full h-full object-contain banner-image" :src="item.url" loading="lazy" alt="KHANG GIA" />
                     </picture>
                 </NuxtLink>
             </SwiperSlide>

@@ -5,7 +5,7 @@
                 <div
                     class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center">
                     <h1 class="font-bold !text-[54px] 2xl:!text-[64px] !my-2">{{trans('Hello')}}</h1>
-                    <span class="text-lg xl:text-xl">{{trans('How can GAK assist you?')}}</span>
+                    <span class="text-lg xl:text-xl">{{trans('How can KHANG GIA assist you?')}}</span>
                 </div>
             </div>
             <div class="about-content !py-12 container mx-auto">
@@ -172,7 +172,7 @@ watchEffect((value) => {
             ogImage: image.value,
             ogImageAlt: title.value,
         }
-        defineOgImageComponent('GAK', {
+        defineOgImageComponent('KHANG GIA', {
             title: title.value,
             description: description.value,
             theme: '#ff0000',

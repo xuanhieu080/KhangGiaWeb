@@ -4,8 +4,8 @@
             <img class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA GAK</h1>
-                <span class="text-lg xl:text-xl">Tất cả những điều bạn muốn biết về GAK!</span>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA KHANG GIA</h1>
+                <span class="text-lg xl:text-xl">Tất cả những điều bạn muốn biết về KHANG GIA!</span>
             </div>
             <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
@@ -17,7 +17,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về KHANG GIA') }}</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -25,14 +25,14 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                   :to="localePath({ name: locale=='vi' ? 'van-hoa-gak': 'culture-gak' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
                     color="none"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <img class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />KHANG GIA</span>
                     </div>
                     <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -65,7 +65,7 @@
                     <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về GAK') }}</span>
+                    <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về KHANG GIA') }}</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -73,14 +73,14 @@
             </UButton>
             <UButton
                 variant="ghost"
-               :to="localePath({ name: locale=='vi' ? 'van-hoa-gak': 'culture-gak' })"
+               :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
                 color="none"
                 class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
                 <div class="flex justify-center">
                     <img class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">Văn hóa <br />GAK</span>
+                    <span class="max-w-[150px] text-lg">Văn hóa <br />KHANG GIA</span>
                 </div>
                 <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -117,7 +117,7 @@
                         <div class="grid__column seven-twelfths mobile--one-whole">
                             <div class="cs-about__description">
                                 <p>
-                                    Cùng chúng tôi tìm hiểu văn hoá tại công ty GAK và những mục tiêu mà chúng tôi đang hoàn thiện ngày một
+                                    Cùng chúng tôi tìm hiểu văn hoá tại công ty KHANG GIA và những mục tiêu mà chúng tôi đang hoàn thiện ngày một
                                     tốt hơn.
                                 </p>
                             </div>
@@ -130,9 +130,9 @@
                     <div class="container container--medium text-white">
                         <div class="grid md:grid-cols-2 gap-4 items-center">
                             <div class="grid-column text-white text-left">
-                                <h2 class="cs-caption__heading !mb-0">VĂN HOÁ GAK</h2>
+                                <h2 class="cs-caption__heading !mb-0">VĂN HOÁ KHANG GIA</h2>
                                 <p class="max-w-[500px] leading-6 !ml-0">
-                                    Tại GAK, văn hóa không chỉ là một chuỗi các quy tắc, mà nó được coi là tinh thần sống động và nguồn động
+                                    Tại KHANG GIA, văn hóa không chỉ là một chuỗi các quy tắc, mà nó được coi là tinh thần sống động và nguồn động
                                     lực cho mỗi cá nhân trong công ty. Văn hóa của chúng tôi là một phần không thể tách rời trong mỗi hoạt
                                     động hàng ngày, từ sản xuất đến dịch vụ khách hàng để hoà trộn sự tự tế trên nhiều phương diện:
                                 </p>
@@ -156,7 +156,7 @@
                                     <div class="ten-facts__item">
                                         <div class="ten-facts__order">02</div>
                                         <div class="ten-facts__description">
-                                            Sự Đoàn Kết và Hỗ Trợ: Tại GAK, chúng tôi là một gia đình. Chúng tôi luôn hỗ trợ và động viên
+                                            Sự Đoàn Kết và Hỗ Trợ: Tại KHANG GIA, chúng tôi là một gia đình. Chúng tôi luôn hỗ trợ và động viên
                                             lẫn nhau, xây dựng một môi trường làm việc tích cực và đầy sức mạnh tập thể
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@
                                         <div class="ten-facts__order">04</div>
                                         <div class="ten-facts__description">
                                             Trách Nhiệm Xã Hội và Môi Trường: Chúng tôi cùng nhau cam kết hành động trách nhiệm với cộng
-                                            đồng và môi trường. Tập thể nhân viên tại GAK luôn sẽ cùng nhau tìm cách để góp phần vào sự phát
+                                            đồng và môi trường. Tập thể nhân viên tại KHANG GIA luôn sẽ cùng nhau tìm cách để góp phần vào sự phát
                                             triển bền vững của xã hội và đất nước.
                                         </div>
                                     </div>
@@ -185,7 +185,7 @@
                                         <div class="ten-facts__order">05</div>
                                         <div class="ten-facts__description">
                                             Tôn Trọng và Trung Thực: Tôn trọng và trung thực là giá trị cốt lõi của từng con người tại công
-                                            ty GAK. Chúng tôi đánh giá cao mỗi mối quan hệ và cam kết đối xử công bằng và trung thực trong
+                                            ty KHANG GIA. Chúng tôi đánh giá cao mỗi mối quan hệ và cam kết đối xử công bằng và trung thực trong
                                             mọi tình huống.
                                         </div>
                                     </div>
@@ -234,7 +234,7 @@
                 <div class="container container--medium prose prose-lg">
                     <h2 class="recruitment-jobs__heading !text-3xl">Cơ hội để chúng ta gặp nhau</h2>
                     <div class="recruitment-jobs__sub-heading text-center text-white font-medium">
-                        Hãy đồng hành cùng GAK đi xa và bền vững hơn<br />Tìm hiểu về các vị trí đang tuyển dụng mới nhất!
+                        Hãy đồng hành cùng KHANG GIA đi xa và bền vững hơn<br />Tìm hiểu về các vị trí đang tuyển dụng mới nhất!
                     </div>
                     <div class="recruitment-job__swiper w-full mt-8 mb-4 relative">
                         <Swiper
@@ -1347,10 +1347,10 @@
             </div>
             <section class="recruitment-send">
                 <div class="container container--medium prose prose-lg flex flex-col">
-                    <h2 class="recruitment-send__heading">Cảm ơn bạn đã chọn công ty GAK</h2>
+                    <h2 class="recruitment-send__heading">Cảm ơn bạn đã chọn công ty KHANG GIA</h2>
                     <p class="recruitment-send__description">
-                        Nếu các vị trí đang mở chưa phù hợp với bạn, nhưng bạn lại muốn cùng GAK thực hiện những ước mơ lớn, hãy cứ tự tin
-                        gửi CV cho GAK nhé. Phòng HR sẽ liên hệ với bạn sớm!
+                        Nếu các vị trí đang mở chưa phù hợp với bạn, nhưng bạn lại muốn cùng KHANG GIA thực hiện những ước mơ lớn, hãy cứ tự tin
+                        gửi CV cho KHANG GIA nhé. Phòng HR sẽ liên hệ với bạn sớm!
                     </p>
                     <UButton
                         variant="ghost"
@@ -1383,7 +1383,7 @@
                                                         <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
-                                                                alt="Gak Year End Party 2023 - Một bước nhảy, vạn dặm bay"
+                                                                alt="Khang Gia Year End Party 2023 - Một bước nhảy, vạn dặm bay"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1392,11 +1392,11 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Gak Year End Party 2023 - Một bước nhảy, vạn dặm bay </a>
+                                                        <a target="_blank"> Khang Gia Year End Party 2023 - Một bước nhảy, vạn dặm bay </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Để tổng kết lại năm cũ và lên tinh thần cho năm mới 2024 bùng nổ, anh chị em
-                                                        Gak đã tham gia chương trình YEP 2023 tại 2 đầu cầu Nam - Bắc, với rất nhiều
+                                                        Khang Gia đã tham gia chương trình YEP 2023 tại 2 đầu cầu Nam - Bắc, với rất nhiều
                                                         những hoạt động và nội dung thú vị.
                                                     </p>
                                                     <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
@@ -1408,7 +1408,7 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Giáng sinh 2023 Gak có gì?"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Giáng sinh 2023 Khang Gia có gì?"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1417,7 +1417,7 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Giáng sinh 2023 Gak có gì? </a>
+                                                        <a target="_blank"> Giáng sinh 2023 Khang Gia có gì? </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Chúng mình đã cùng nhau trải qua một buổi Giáng sinh 2023 với rất nhiều tiếng cười.
@@ -1434,7 +1434,7 @@
                                                         <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
-                                                                alt="20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Gak "
+                                                                alt="20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Khang Gia "
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1443,12 +1443,12 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> 20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Gak </a>
+                                                        <a target="_blank"> 20/10 - Chúc mừng ngày Phụ nữ Việt Nam cùng Khang Gia </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
                                                         Như thông lệ hằng năm, dịp để tôn vinh các chị em như ngày Phụ nữ Việt Nam 20/10 là
-                                                        dịp mà các chàng trai nhà Gak không bao giờ bỏ lỡ. Cùng theo dõi xem các chị em
-                                                        nhà Gak đã có một chương trình 20/10 như thế nào nhé!
+                                                        dịp mà các chàng trai nhà Khang Gia không bao giờ bỏ lỡ. Cùng theo dõi xem các chị em
+                                                        nhà Khang Gia đã có một chương trình 20/10 như thế nào nhé!
                                                     </p>
                                                     <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
                                                 </div>
@@ -1459,7 +1459,7 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Vui Trung thu cùng Gak "
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Vui Trung thu cùng Khang Gia "
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1468,10 +1468,10 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Vui Trung thu cùng Gak </a>
+                                                        <a target="_blank"> Vui Trung thu cùng Khang Gia </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
-                                                        Một mùa Trung thu nữa lại về với anh em Gak . Cùng theo chân chúng mình đi xem
+                                                        Một mùa Trung thu nữa lại về với anh em Khang Gia . Cùng theo chân chúng mình đi xem
                                                         Trung thu năm nay chúng mình có những chương trình thú vị gì nhé!
                                                     </p>
                                                     <a target="_blank" class="recruitment-blog-grid__link"> Đọc thêm </a>
@@ -1485,7 +1485,7 @@
                                                         <a target="_blank"
                                                             ><img
                                                                 src="/images/blog-VH-1.jpg"
-                                                                alt="Gak Company Trip 2023 - Better Me, Better Gak "
+                                                                alt="Khang Gia Company Trip 2023 - Better Me, Better Khang Gia "
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1494,10 +1494,10 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Gak Company Trip 2023 - Better Me, Better Gak </a>
+                                                        <a target="_blank"> Khang Gia Company Trip 2023 - Better Me, Better Khang Gia </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
-                                                        Sau một năm làm việc chăm chỉ thì anh em Gak lại có dịp được du lịch cùng nhau
+                                                        Sau một năm làm việc chăm chỉ thì anh em Khang Gia lại có dịp được du lịch cùng nhau
                                                         trong chuyến Company Trip. Cùng theo dõi xem chuyến đi 2 ngày 1 đêm năm nay có điều
                                                         gì thú vị nhé!
                                                     </p>
@@ -1510,7 +1510,7 @@
                                                 <div class="recruitment-blog-grid__thumbnail">
                                                     <div class="recruitment-blog-grid__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Gak lên tư -  Từ bạn mà có"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Khang Gia lên tư -  Từ bạn mà có"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1519,10 +1519,10 @@
                                                         <span class="recruitment-blog-grid__cat"> Tin Tức và Hoạt Động </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-grid__title">
-                                                        <a target="_blank"> Gak lên tư - Từ bạn mà có </a>
+                                                        <a target="_blank"> Khang Gia lên tư - Từ bạn mà có </a>
                                                     </h3>
                                                     <p style="margin: 0px 0px 15px; color: rgb(255, 255, 255)">
-                                                        Tháng 3 tưng bừng với chuỗi hoạt động chúc mừng sinh nhật Gak lên 4, hướng tới
+                                                        Tháng 3 tưng bừng với chuỗi hoạt động chúc mừng sinh nhật Khang Gia lên 4, hướng tới
                                                         việc gắn kết tất cả các thành viên và gia tăng kỹ năng quản lý đội nhóm qua các cuộc
                                                         thi. Cùng chúng mình nhìn lại các chương trình thú vị qua bài viết này nhé!
                                                     </p>
@@ -1536,7 +1536,7 @@
                         </div>
                         <div class="grid__column">
                             <div class="recruitment-blogs__right">
-                                <h3 class="recruitment-blogs__title">Tự hào GAK</h3>
+                                <h3 class="recruitment-blogs__title">Tự hào KHANG GIA</h3>
                                 <div
                                     rel-script="blogs-listing"
                                     data-cat-id="61d415b9f9289f26a80883f8"
@@ -1548,7 +1548,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 03/2024"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Khang Gia tháng 03/2024"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1557,10 +1557,10 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Gak tháng 03/2024 </a>
+                                                        <a> Bản tin Khang Gia tháng 03/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
-                                                        5 năm đồng hành, chân thành cùng bạn - Gak đã đón sinh nhật 5 tuổi cùng với
+                                                        5 năm đồng hành, chân thành cùng bạn - Khang Gia đã đón sinh nhật 5 tuổi cùng với
                                                         những chương trình hoạt động gì? Hãy cùng đón đọc ngay tại vài viết này nhé!
                                                     </p>
                                                     <a
@@ -1577,7 +1577,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 02/2024"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Khang Gia tháng 02/2024"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1586,11 +1586,11 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Gak tháng 02/2024 </a>
+                                                        <a> Bản tin Khang Gia tháng 02/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Tháng 2 đã đi qua, cùng chúng mình nhìn lại các tin tức, chương trình và hoạt động
-                                                        của nhà Gak qua bản tin tháng 2 dưới đây nha!
+                                                        của nhà Khang Gia qua bản tin tháng 2 dưới đây nha!
                                                     </p>
                                                     <a
                                                         href="https://drive.google.com/file/d/16IeWWGG56y_oMETc5P20rkQYVovUIsKa/view?usp=sharing"
@@ -1606,7 +1606,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 01/2024"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Khang Gia tháng 01/2024"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1615,7 +1615,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Gak tháng 01/2024 </a>
+                                                        <a> Bản tin Khang Gia tháng 01/2024 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Chào đón năm mới 2024 với nhiều chương trình và hoạt động thú vị. Cùng nhìn lại
@@ -1635,7 +1635,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 12/2023"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Khang Gia tháng 12/2023"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1644,7 +1644,7 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Gak tháng 12/2023 </a>
+                                                        <a> Bản tin Khang Gia tháng 12/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
                                                         Vậy là chúng ta đã cùng nhau đi qua tháng 12 - tháng cuối cùng của năm 2023 với rất
@@ -1665,7 +1665,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 11/2023"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Khang Gia tháng 11/2023"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1674,13 +1674,13 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Gak tháng 11/2023 </a>
+                                                        <a> Bản tin Khang Gia tháng 11/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
-                                                        Giai đoạn nước rút của năm 2023, Gak cùng anh chị em Gak rs đang tràn đầy
+                                                        Giai đoạn nước rút của năm 2023, Khang Gia cùng anh chị em Khang Gia rs đang tràn đầy
                                                         năng lượng với kỉ lục xử lý hơn 12.000 đơn hàng trong ngày 11/11, tiến thẳng tới mục
                                                         tiêu lớn của năm 2023. Cùng theo dõi các chương trình hoạt động và kết quả thú vị
-                                                        của Gak qua bản tin Gak tháng 11/2023 nhé!
+                                                        của Khang Gia qua bản tin Khang Gia tháng 11/2023 nhé!
                                                     </p>
                                                     <a
                                                         href="https://drive.google.com/file/d/1eslwXRKIvRL78g0CrPOi9YLPFXwmzkkI/view?usp=drive_link"
@@ -1696,7 +1696,7 @@
                                                 <div class="recruitment-blog-item__thumbnail">
                                                     <div class="recruitment-blog-item__image">
                                                         <a target="_blank"
-                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Gak tháng 10/2023"
+                                                            ><img src="/images/blog-VH-1.jpg" alt="Bản tin Khang Gia tháng 10/2023"
                                                         /></a>
                                                     </div>
                                                 </div>
@@ -1705,10 +1705,10 @@
                                                         <span class="recruitment-blog-item__cat"> Tạp Chí Hàng Tháng </span>
                                                     </div>
                                                     <h3 class="recruitment-blog-item__title">
-                                                        <a> Bản tin Gak tháng 10/2023 </a>
+                                                        <a> Bản tin Khang Gia tháng 10/2023 </a>
                                                     </h3>
                                                     <p class="recruitment-blog-item__description">
-                                                        Bắt đầu chạy đua chặng nước rút của Gak với tháng 10 - tháng đầu tiên của quý
+                                                        Bắt đầu chạy đua chặng nước rút của Khang Gia với tháng 10 - tháng đầu tiên của quý
                                                         IV với rất nhiều hoạt động đặc biệt. Cùng theo dõi qua bản tin tháng 10 của chúng
                                                         mình nhé!
                                                     </p>
@@ -1757,7 +1757,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/facebook.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Fanpage</div>
-                                    <a href="https://www.facebook.com/GAKBHLD" class="recruitment-social__link"> Life at GAK </a>
+                                    <a href="https://www.facebook.com/GAKBHLD" class="recruitment-social__link"> Life at KHANG GIA </a>
                                 </div>
                             </div>
                         </div>
@@ -1766,7 +1766,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/linkedin.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Linkedin</div>
-                                    <a href="https://www.linkedin.com/company/cong-ty-gak" class="recruitment-social__link"> GAK VN </a>
+                                    <a href="https://www.linkedin.com/company/cong-ty-khanggia" class="recruitment-social__link"> KHANG GIA VN </a>
                                 </div>
                             </div>
                         </div>
@@ -1775,7 +1775,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/tiktok.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Tiktok</div>
-                                    <a href="https://www.tiktok.com/@congtygak" class="recruitment-social__link"> Life at GAK </a>
+                                    <a href="https://www.tiktok.com/@congtygak" class="recruitment-social__link"> Life at KHANG GIA </a>
                                 </div>
                             </div>
                         </div>
@@ -1784,18 +1784,18 @@
             </section>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal GAK - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal GAK
+                            Tham gia hội săn Deal KHANG GIA
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'gak-official'})"
+                            :to="localePath({name: 'khanggia-official'})"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
-                            GAK OFFICIAL
+                            KHANG GIA OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -1823,17 +1823,17 @@ const { locale, t: trans } = useI18n();
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
 
-link.value = '/en/culture-gak'
+link.value = '/en/culture-khanggia'
 
 function renderBullet(index, className) {
     return '<div class="custom-bullet ' + className + '">' + (index + 1) + '</div>';
 }
 
-let title = 'Văn hoá công ty GAK';
+let title = 'Văn hoá công ty KHANG GIA';
 let pageDescription = 'Tử tế, chân thành và đoàn kết. Khám phá những điều chúng tôi làm, để tiến bước tới tương lai cùng chúng tôi.'
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',

@@ -23,7 +23,7 @@
                         href="https://zalo.me/1160130089290834053"
                         target="_blank">
                         <div class="sub-button-overlay">
-                            <img src="/images/zalo-gak.png" alt="" />
+                            <img src="/images/zalo-khanggia.png" alt="" />
                         </div>
                     </a>
                     <a
@@ -57,7 +57,7 @@
         <Footer />
         <div class="dmca-container">
             <a
-                href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://gak.vn/"
+                href="https://www.dmca.com/Protection/Status.aspx?ID=2f97a68e-2887-430c-a056-d40ed5fa44e2&refurl=https://khanggiagarment.com/"
                 title="DMCA.com Protection Status"
                 class="dmca-badge">
                 <NuxtImg

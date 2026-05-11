@@ -46,7 +46,7 @@
                             class="rounded-full h-11 px-6 font-bold border border-gray-300 shadow-sm"
                             variant="ghost"
                             color="none"
-                            >{{ trans("What's new in Gak?") }}
+                            >{{ trans("What's new in Khang Gia?") }}
                         </UButton>
                     </NuxtLink>
                 </div>
@@ -206,7 +206,7 @@ onBeforeUnmount(() => {
 let title = trans('All articles');
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: config.public.description,
     theme: '#ff0000',

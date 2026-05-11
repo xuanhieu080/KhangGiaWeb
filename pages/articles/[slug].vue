@@ -163,7 +163,7 @@ watchEffect((value) => {
             ogImage: image.value,
             ogImageAlt: title.value,
         }
-        defineOgImageComponent('GAK', {
+        defineOgImageComponent('KHANG GIA', {
             title: title.value,
             description: description.value,
             theme: '#ff0000',

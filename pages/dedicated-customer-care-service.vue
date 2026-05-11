@@ -9,9 +9,9 @@
                 alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">GAK STORY</h1>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">KHANG GIA STORY</h1>
                 <span class="text-lg xl:text-xl"
-                    >This section helps you understand how GAK came to be and what kind of model we want to build!</span
+                    >This section helps you understand how KHANG GIA came to be and what kind of model we want to build!</span
                 >
             </div>
             <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
@@ -24,7 +24,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Gak Story</span>
+                        <span class="max-w-[150px] text-lg">Khang Gia Story</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -33,13 +33,13 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                   :to="localePath({ name: locale=='vi' ? 'van-hoa-gak': 'culture-gak' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Culture GAK</span>
+                        <span class="max-w-[150px] text-lg">Culture KHANG GIA</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -72,7 +72,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Gak Story</span>
+                        <span class="max-w-[150px] text-lg">Khang Gia Story</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -81,13 +81,13 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                   :to="localePath({ name: locale=='vi' ? 'van-hoa-gak': 'culture-gak' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Culture GAK</span>
+                        <span class="max-w-[150px] text-lg">Culture KHANG GIA</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -112,24 +112,24 @@
         <div class="about-content pt-6 md:!pt-[5rem] mx-auto">
             <section class="cs-caption pt-4 pb-8">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-about__heading w-full text-center !my-6">WELCOME GAK</h2>
+                    <h2 class="cs-about__heading w-full text-center !my-6">WELCOME KHANG GIA</h2>
                     <div class="cs-caption__wrapper !bg-[#2f5acf]">
                         <div class="cs-content">
                             <p>
-                                Dear valued customer, Thank you so much for choosing GAK's products. Your trust and support truly make a difference—it is because of kind customers like you that our team at GAK continues to build better lives every single day.
+                                Dear valued customer, Thank you so much for choosing KHANG GIA's products. Your trust and support truly make a difference—it is because of kind customers like you that our team at KHANG GIA continues to build better lives every single day.
                             </p>
                             <p>
-                                We understand that while e-commerce is becoming increasingly popular, clicking that "Order" button can still feel a little complicated at times. If you’re facing any difficulties during your shopping journey, please don’t hesitate to reach out to our GAK Customer Support Team—we’re always here to help you.
+                                We understand that while e-commerce is becoming increasingly popular, clicking that "Order" button can still feel a little complicated at times. If you’re facing any difficulties during your shopping journey, please don’t hesitate to reach out to our KHANG GIA Customer Support Team—we’re always here to help you.
                             </p>
                             <p>
-                                Also, please note that all product images on GAK’s online store are real photos of the actual items. However, due to lighting and screen differences, slight color variations may occur. If something doesn’t look quite like what you imagined, feel free to reach out and ask—we’re happy to assist before and after your purchase.
+                                Also, please note that all product images on KHANG GIA’s online store are real photos of the actual items. However, due to lighting and screen differences, slight color variations may occur. If something doesn’t look quite like what you imagined, feel free to reach out and ask—we’re happy to assist before and after your purchase.
                             </p>
                             <p>
-                                At GAK, our foundation is built on kindness, precision, and continuous improvement—from the sourcing of materials to the tailoring technology we use. We believe that only through dedication and adding real value to each product can we earn the trust and satisfaction of our customers and long-term partners.
+                                At KHANG GIA, our foundation is built on kindness, precision, and continuous improvement—from the sourcing of materials to the tailoring technology we use. We believe that only through dedication and adding real value to each product can we earn the trust and satisfaction of our customers and long-term partners.
 
 
                             </p>
-                            <strong class="text-white"> Thank you once again for choosing GAK! We invite you to enjoy a smooth and meaningful online shopping journey with us. </strong>
+                            <strong class="text-white"> Thank you once again for choosing KHANG GIA! We invite you to enjoy a smooth and meaningful online shopping journey with us. </strong>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                                         That’s why we are committed to providing clear and transparent information to every customer—whether it’s an individual online order or a large-scale project.
                                     </p>
                                     <p>
-                                        When you choose GAK, you're not only receiving high-quality products, but also experiencing a smooth and trustworthy online shopping process.
+                                        When you choose KHANG GIA, you're not only receiving high-quality products, but also experiencing a smooth and trustworthy online shopping process.
                                     </p>
                                 </div>
                                 <div class="cs-services-info__order">01</div>
@@ -164,7 +164,7 @@
                                 <h3 class="cs-services__title">ORDER CARE</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        At GAK, we believe that thoughtfulness and dedication are the driving forces behind genuine kindness. Every time you place an order, we use your order information to connect with you—offering consultation and guiding you through the payment process to ensure your order is processed quickly and smoothly.
+                                        At KHANG GIA, we believe that thoughtfulness and dedication are the driving forces behind genuine kindness. Every time you place an order, we use your order information to connect with you—offering consultation and guiding you through the payment process to ensure your order is processed quickly and smoothly.
                                     </p>
                                 </div>
                                 <div class="cs-services-info__order !text-left">02</div>
@@ -199,7 +199,7 @@
             <section class="services-thankyou mt-8 lg:mt-[128px]">
                 <div class="services-thankyou__wrapper">
                     <h2 class="services-thankyou__heading">THANK YOU!</h2>
-                    <div class="services-thankyou__content">In a world full of choices, thank you for choosing GAK!</div>
+                    <div class="services-thankyou__content">In a world full of choices, thank you for choosing KHANG GIA!</div>
                 </div>
                 <div class="services-thankyou__image">
                     <picture style="width: 100%"
@@ -211,19 +211,19 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Join the GAK Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!
+                        Join the KHANG GIA Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Join the GAK Deal Hunters group
+                            Join the KHANG GIA Deal Hunters group
                         </UButton>
                         <UButton
-                            :to="localePath({name: 'gak-official'})"
+                            :to="localePath({name: 'khanggia-official'})"
                             size="lg"
                             class="border bg-[#22c55ebf] rounded-3xl !text-white px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
-                            GAK OFFICIAL
+                            KHANG GIA OFFICIAL
                         </UButton>
                     </span>
                 </div>
@@ -246,11 +246,11 @@ const { link } = storeToRefs(useLanguageLinkStore);
 
 link.value = '/vi/dvkh-tan-tam'
 
-let title = 'GAK’s dedicated customer service and a direct-to-source shopping journey!';
-let pageDescription = 'Thank you for choosing GAK. We’re here for you — constantly improving our services so you’re always satisfied and have the best experience with us.'
+let title = 'KHANG GIA’s dedicated customer service and a direct-to-source shopping journey!';
+let pageDescription = 'Thank you for choosing KHANG GIA. We’re here for you — constantly improving our services so you’re always satisfied and have the best experience with us.'
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',

@@ -1,6 +1,6 @@
 <template>
     <div class="diary-container">
-        <div class="diary-title text-center text-3xl font-bold leading-relaxed">{{trans('GAK Journal')}}</div>
+        <div class="diary-title text-center text-3xl font-bold leading-relaxed">{{trans('KHANG GIA Journal')}}</div>
         <div class="diary-subtitle text-xl text-center">{{trans('Share your latest look with hashtag #GAKVN')}}</div>
         <div v-if="diaryList.length > 0" class="diary-wrapper w-full my-4 relative">
             <Swiper

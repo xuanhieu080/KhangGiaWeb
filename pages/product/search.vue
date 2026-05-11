@@ -338,7 +338,7 @@ watchEffect((value) => {
 let title = 'Tìm kiếm sản phẩm';
 const config = useRuntimeConfig();
 
-defineOgImageComponent('GAK', {
+defineOgImageComponent('KHANG GIA', {
     title: title,
     description: config.public.description,
     theme: '#ff0000',

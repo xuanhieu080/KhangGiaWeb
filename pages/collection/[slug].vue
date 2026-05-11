@@ -157,7 +157,7 @@
             <div class="category-description flex items-center mt-6 bg-[#f1f1f1] p-6 w-full min-h-[250px]">
                 <div class="container mx-auto md:max-w-[1280px] p-4">
                     <span class="text-gray-500 font-medium fs-20 leading-relaxed">
-                        {{trans('GAK is a pioneer in delivering high-quality, precisely customized products tailored to customer needs, with a steadfast commitment to continuous improvement')}}
+                        {{trans('KHANG GIA is a pioneer in delivering high-quality, precisely customized products tailored to customer needs, with a steadfast commitment to continuous improvement')}}
                     </span>
                 </div>
             </div>
@@ -328,7 +328,7 @@ watchEffect((value) => {
             ogImage: image.value,
             ogImageAlt: title.value,
         }
-        defineOgImageComponent('GAK', {
+        defineOgImageComponent('KHANG GIA', {
             title: title.value,
             description: description.value,
             theme: '#ff0000',
