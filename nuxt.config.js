@@ -74,7 +74,16 @@ export default defineNuxtConfig({
         url: process.env.WEB_BASE_URL,
         name: process.env.NUXT_SITE_NAME,
         description: process.env.NUXT_SITE_DESCRIPTION,
-        defaultLocale: process.env.NUXT_SITE_LOCALE,
+        defaultLocale: 'vi',
+        locales: ['vi', 'en'],
+    },
+
+    sitemap: {
+        enabled: true,
+    },
+
+    robots: {
+        enabled: false,
     },
 
     schemaOrg: {
