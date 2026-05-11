@@ -78,7 +78,11 @@ export default defineNuxtConfig({
     },
 
     sitemap: {
-        enabled: true,
+        enabled: false,
+    },
+
+    robots: {
+        enabled: false,
     },
 
     schemaOrg: {
