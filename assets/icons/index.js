@@ -8,7 +8,7 @@ const images = {
     logo_tiktok: '/images/icon-tiktok.png',
     logo_zalo: '/images/icon-zalo.png',
     logo_facebook: '/images/icon-facebook.png',
-    logo: '/logo.svg'
+    logo: '/logo.jpg'
 }
 
 export default images
