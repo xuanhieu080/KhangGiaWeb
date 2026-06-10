@@ -201,5 +201,8 @@
   "No products found": "Không tìm thấy sản phẩm",
   "absdfsdf": "sdfsdfsdfa",
   "Customer Service Center": "Trung tâm CSKH",
-  "attr_unavailable": "{group}: “{value}” hiện không còn sản phẩm. Vui lòng chọn thuộc tính khác."
+  "attr_unavailable": "{group}: “{value}” hiện không còn sản phẩm. Vui lòng chọn thuộc tính khác.",
+  "uniform_tshirt": "Đồng phục áo thun",
+  "worker_uniform": "Đồng phục công nhân",
+  "vest": "Áo ghi lê"
 }

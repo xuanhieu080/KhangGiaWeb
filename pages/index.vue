@@ -58,20 +58,23 @@
                     <ProductList :productList="productUpcoming.data" />
                 </div>
             </div>
+
             <div class="banner-block h-full">
-                <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock" :isWhite="true" />
+                <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock"  :isWhite="true" />
             </div>
-            <div v-if="!loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
+            <div v-if='!loadingProductDashboard' class='container mx-auto overflow-hidden lg:overflow-visible my-4'>
                 <ProductCollectionOther
-                    key="container-1"
-                    :loading="loadingProductUniform"
-                    :productList="productUniform.data"
-                    :collectionLink="'/collection/dong-phuc'"
-                    :collectionTitle="trans('Company uniform samples made by KHANG GIA')" />
+                    key='container-3'
+                    :loading='loadingProductDashboard'
+                    :productList="productDashboard.data"
+                    :collectionTitle="trans('Premium engineer vest')"
+                    :collectionLink="locale === 'vi' ? '/collection/dong-phuc-ao-thun' : '/collection/uniform-tshirt'" />
             </div>
             <div v-else-if="loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
                 <ProductList :productList="[]" />
             </div>
+
+
             <div class="banner-block h-full">
                 <BannerBlock key="banner-block-2" :bannerBlock="bannerBlock2"  :isWhite="true" />
             </div>
@@ -83,6 +86,28 @@
                     :collectionTitle="trans('Premium engineer vest')"
                     :collectionLink="locale === 'vi' ? '/collection/ao-ghi-le' : '/collection/gile-safety-vest'" />
             </div>
+            <div class="banner-block h-full">
+                <BannerBlock key="banner-block-1" :bannerBlock="bannerBlock"  :isWhite="true" />
+            </div>
+
+
+            <div class="banner-block h-full">
+                <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :isWhite="true" />
+            </div>
+            <div v-if="!loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
+                <ProductCollectionOther
+                    key="container-3"
+                    :loading="loadingProductUniform"
+                    :productList="productUniform.data"
+                    :collectionLink="'/collection/dong-phuc'"
+                    :collectionTitle="trans('Company uniform samples made by KHANG GIA')" />
+            </div>
+            <div v-else-if="loadingProductUniform" class="container mx-auto overflow-hidden lg:overflow-visible my-4">
+                <ProductList :productList="[]" />
+            </div>
+
+
+
             <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-6 md:gap-4 w-full h-full">
                 <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
                 <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
@@ -142,41 +167,38 @@ const bannerList = ref([
         name: 'banner 3',
         link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'dong-phuc-bao-ve' : 'security-uniform'} })
     },
-    {
-        url: locale.value === 'vi' ? '/images/banners/banner_4_en.jpg' : '/images/banners/banner_4_en.jpg',
-        url_mobile: locale.value === 'vi' ? '/images/banners/banner_4_mobile.jpg' : '/images/banners/banner_4_mobile_en.jpg',
-        name: 'banner 4',
-        link: localePath({ name: 'collection-slug', params: { slug:  locale.value === 'vi' ? 'ao-ghi-le' : 'gile-safety-vest'} })
-    },  {
-        url: locale.value === 'vi' ? '/images/banners/banner_5.jpg' : '/images/banners/banner_5_en.jpg',
-        url_mobile: locale.value === 'vi' ? '/images/banners/banner_5_mobile.jpg' : '/images/banners/banner_5_mobile_en.jpg',
-        name: 'banner 5',
-        link: localePath({ name: 'slug', params: { slug:  locale.value === 'vi' ? 'nha-may' : 'factory'} })
-    },
 ]);
 
 const bannerBlock = ref({
-    image_desktop: '/images/banner_3.jpg',
+    image_desktop: '/images/banner-blocks/banner_block__1.jpg',
     image_mobile: '/images/banner_3_mobile.jpg',
-    title: trans('Uniform'),
+    title: trans('uniform_tshirt'),
     description:trans('Beautiful design company'),
-    link: locale.value === 'vi' ? 'dong-phuc' : 'uniform',
+    link: locale.value === 'vi' ? 'dong-phuc-ao-thun' : 'uniform-tshirt',
 });
 const bannerBlock2 = ref({
-    image_desktop: '/images/banner_4.jpg',
+    image_desktop: '/images/banner-blocks/banner_block__2.jpg',
     image_mobile: '/images/banner_4_mobile.jpg',
     title: trans('Engineer vest'),
     description: trans('Specialized - Quality - Prestige'),
     link: locale.value === 'vi' ? 'ao-ghi-le' : 'gile-safety-vest',
 });
 const bannerBlock3 = ref({
+    image_desktop: '/images/banner-blocks/banner_block__3.jpg',
+    image_mobile: '/images/banner_3_mobile.jpg',
+    title: trans('Uniform'),
+    description: trans('Beautiful design company'),
+    link: locale.value === 'vi' ? 'dong-phuc' : 'uniform',
+})
+
+const bannerBlock4 = ref({
     image_desktop: '/images/banner_5.jpg',
     image_mobile: '/images/banner_5.jpg',
     title: trans('Raw materials'),
     subtitle: trans('High quality reflective'),
     link: locale.value === 'vi' ? 'phan-quang' : 'reflective-tape',
 });
-const bannerBlock4 = ref({
+const bannerBlock5 = ref({
     image_desktop: '/images/banner_6.jpg',
     image_mobile: '/images/banner_6.jpg',
     title: trans('Raw materials'),
