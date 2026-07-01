@@ -60,7 +60,7 @@ export default defineNuxtConfig({
         'nuxt-rating',
         '@nuxt/image',
         '@nuxtjs/seo',
-        '@zadigetvoltaire/nuxt-gtm',
+        // '@zadigetvoltaire/nuxt-gtm',
         '@nuxtjs/device',
     ],
     delayHydration: {
