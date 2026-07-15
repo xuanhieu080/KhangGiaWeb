@@ -1,9 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const isDev = process.env.NODE_ENV === 'development';
+
 export default defineNuxtConfig({
     debug: false,
     experimental: {
         appManifest: false,
     },
+    css: ['@/assets/css/index.css'],
     devtools: {
         enabled: false,
         timeline: {
@@ -79,14 +82,27 @@ export default defineNuxtConfig({
     },
 
     sitemap: {
-        enabled: true,
+        // Tắt khi dev để tránh crawl toàn bộ routes, làm chậm dev server
+        enabled: !isDev,
+    },
+
+    linkChecker: {
+        // Tắt khi dev — link-checker scan toàn bộ links rất chậm
+        enabled: !isDev,
     },
 
     robots: {
         enabled: false,
     },
 
+    ogImage: {
+        // Tắt ogImage trong dev — module này rất nặng khi khởi động
+        enabled: !isDev,
+    },
+
     schemaOrg: {
+        // Tắt schemaOrg trong dev để giảm overhead module
+        enabled: !isDev,
         identity: {
             type: 'Organization',
             name: process.env.NUXT_SITE_NAME,
@@ -225,19 +241,15 @@ export default defineNuxtConfig({
             },
         },
     },
+    // Override lại exposeConfig của @nuxt/ui — mặc định nó set true
+    // khiến Tailwind compile hàng chục file theme/*.mjs riêng lẻ (~500ms/file)
     tailwindcss: {
-        cssPath: ['@/assets/css/index.css'],
-        configPath: 'tailwind.config.ts',
-        exposeConfig: true,
-        preprocessorOptions: {
-            scss: {
-                additionalData: '@import "@/assets/scss/index.scss";',
-            },
-        },
+        exposeConfig: false,
     },
     ui: {
         global: true,
         strategy: 'override',
+        safelistColors: [],
     },
 
     image: {
@@ -305,6 +317,8 @@ export default defineNuxtConfig({
             __dangerouslyDisableSanitizers: ['script'],
         },
     },
+
+
     nitro: {
         routeRules: {
             '/_ipx/**': {
@@ -317,5 +331,31 @@ export default defineNuxtConfig({
             routes: ['/404'],
         }
     },
+    vite: {
+        optimizeDeps: {
+            include: ['moment', 'swiper', 'yup', 'zod', 'pinia', 'swiper/vue', 'swiper/css', 'swiper/css/navigation', 'swiper/css/pagination', 'vue-router', '@vueuse/core'],
+        },
+        build: {
+            commonjsOptions: {
+                transformMixedEsModules: true,
+            },
+        },
+        server: {
+            // Bỏ qua thư mục lớn khi watcher chạy — giảm thời gian khởi động dev
+            watch: {
+                ignored: [
+                    '**/public/**',
+                    '**/storage/**',
+                    '**/.output/**',
+                    '**/dist/**',
+                ],
+            },
+            fs: {
+                // Cho phép truy cập file ngoài workspace nếu cần
+                allow: ['.'],
+            },
+        },
+    },
+
     compatibilityDate: '2024-07-25',
 });
