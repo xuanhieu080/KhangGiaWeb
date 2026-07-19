@@ -1,12 +1,12 @@
 <template>
     <NuxtLayout name="main">
         <div class="about-us-image relative">
-            <img class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
+            <img class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner1.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
                 <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">KHANG GIA COMPANY STORY</h1>
                 <span class="text-lg xl:text-xl"
-                    >This category helps you know how KHANG GIA was formed and what kind of model we want to build!</span>
+                    >This category helps you know how KG was formed and what kind of model we want to build!</span>
             </div>
             <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
@@ -18,7 +18,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">KHANG GIA Story</span>
+                        <span class="max-w-[150px] text-lg">KG Story</span>
                     </div>
                     <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -33,7 +33,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Culture KHANG GIA</span>
+                        <span class="max-w-[150px] text-lg">Culture KG</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -66,7 +66,7 @@
                     <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">KHANG GIA Story</span>
+                    <span class="max-w-[150px] text-lg">KG Story</span>
                 </div>
                 <div class="go-btn bg-green-500 h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -81,7 +81,7 @@
                     <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">Culture KHANG GIA</span>
+                    <span class="max-w-[150px] text-lg">Culture KG</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -111,7 +111,7 @@
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">
                                     What is <br />
-                                    KHANG GIA born for?
+                                    KG born for?
                                 </h2>
                                 <div class="cs-about__image">
                                     <img src="/images/company-banner-box.png" class="h-full w-full object-contain !mt-4" alt="" />
@@ -121,13 +121,11 @@
                         <div class="grid__column seven-twelfths mobile--one-whole flex">
                             <div class="cs-about__description flex flex-col justify-center items-center flex-nowrap">
                                 <p>
-                                    Formed during some of the most challenging periods of the economy, we have risen through quality, dedication, and an unwavering pursuit of the highest values to improve the lives of the Vietnamese people.
-                                </p>
+                                    Built by dedicated and hardworking people, Khang Gia is not only a business, but also a commitment to creating a sustainable and stable working environment for all employees under any circumstances. We aim to build a strong foundation where everyone can contribute, grow, and develop together as part of our shared home.                                </p>
                                 <p>
-                                    Our sustainable development model is encapsulated in the three core letters KHANG GIA—representing Gia (Family), An (Peace), and Khang (Prosperity)—a philosophy that not only focuses on the well-being of our employees but also delivers long-term value to our partners.
-                                </p>
+                                    Our sustainable development model focuses on ensuring the highest quality standards for every product before delivery, providing customers with confidence and peace of mind when using our products. This commitment is also an important foundation that allows our employees to feel supported in their lives and secure about their professional future.                                </p>
                                 <p>
-                                    Through practical actions and genuine kindness across all areas of our work, we are proud to stand today as a leading manufacturer of a wide range of high-quality products, including personal protective equipment, fabrics, nets, and uniforms—bringing prosperity to every customer we serve.
+                                    Through practical actions and a culture of integrity across all aspects of our operations, today we are proud to be a leading garment manufacturing company specializing in workwear, corporate uniforms, and industrial uniforms, delivering high-quality products to the market and creating sustainable value and prosperity for all our customers.
                                 </p>
                             </div>
                         </div>
@@ -138,9 +136,9 @@
                 <div class="container container--medium prose prose-lg">
                     <div class="cs-caption__wrapper">
                         <h2 class="cs-caption__heading">
-                            <span>“</span>We believe that building a company based on responsibility, kindness, and balance—where the best interests of employees, customers, and partners are prioritized—will foster a sustainable ecosystem that extends far beyond our organization.<span>“</span>
+                            <span>“</span>Every individual at Khang Gia is talented, passionate, and creative. We believe that each person will become a source of inspiration and motivation, contributing to the success of our collective journey. From Khang Gia, every Local Brand created with dedication and passion has the potential to reach new heights, expand beyond boundaries, and make its way to the global market.<span>“</span>
                         </h2>
-                        <span class="cs-caption__author">KHANG GIA CO.,LTD</span>
+                        <span class="cs-caption__author">KHANG GIA COMPANY</span>
                     </div>
                 </div>
             </section>
@@ -157,14 +155,12 @@
                                 <h2 class="cs-story__heading">WHO WE ARE!</h2>
                                 <div class="ca-story__description">
                                     <p>
-                                        KHANG GIA is the realization of a dream nurtured by resilient individuals who aspire to elevate a Vietnamese brand to the global stage. Guided by the principles of integrity in business and a relentless focus on product quality, we have gradually established a strong foothold in the markets for workwear, fabric, netting, and uniforms.
+                                        Khang Gia Garment Company is not simply a garment factory; it is a passion-driven project, a heartfelt commitment, and a reflection of our empathy toward the community. We are here to honor and promote the garment profession while pursuing meaningful human values: “Peace of Mind” – “Prosperity”. We believe our employees are not just workers, but our brothers, sisters, and companions on the journey of building and growing together.
                                     </p>
                                     <p>
-                                        With a clear direction toward a Direct-to-Consumer (D2C) model, we are confident that our next steps will deliver maximum value to our customers—earning not only their satisfaction but also their trust in our core products.
-                                    </p>
+                                        With our D2C development strategy, we believe that every step we take forward will create maximum value for our customers — from product satisfaction to building long-term trust in our core products.                                    </p>
                                     <p>
-                                        And we’re only just beginning. With a fully integrated production process—from fabric weaving and dyeing to a nearly 3,000-square-meter garment factory and warehouse system based in Ho Chi Minh City—KHANG GIA is well-positioned to offer competitive pricing and robust production capacity for both the domestic and international markets.
-                                    </p>
+                                        With 15 years of experience in the workwear and safety garment industry, Khang Gia has been entering a new phase of expansion and brand positioning across Vietnam and the region. We continue to build our reputation through product quality, transparency, and the core values behind every product proudly labeled “Made By Khang Gia.”                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -173,18 +169,16 @@
             </section>
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-services__heading">The story of the RESPONSIBLE business model Khang Gia is aiming for</h2>
+                    <h2 class="cs-services__heading">The story of the RESPONSIBLE business model KG is aiming for</h2>
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
                                 <h3 class="cs-services__title">#1 BE KIND TO CUSTOMERS</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        KHANG GIA is committed to delivering high-quality products at reasonable prices—crafted by skilled and experienced tailors, supported by a fully integrated supply chain from the very source (in the garment industry: yarn, weaving, dyeing, and sewing).
-                                    </p>
+                                        KG is committed to delivering high-quality products at reasonable prices—crafted by skilled and experienced tailors, supported by a fully integrated supply chain from the very source (in the garment industry: yarn, weaving, dyeing, and sewing).                                    </p>
                                     <p>
-                                        Moreover, our Direct-to-Consumer (D2C) ecommerce model allows us to focus on research, production, and continuous product improvement rather than simply cutting costs as in traditional models. As a result, more than 21% of our customers have gradually become distribution partners—growing and prospering alongside us.
-                                    </p>
+                                        Moreover, our Direct-to-Consumer (D2C) ecommerce model allows us to focus on research, production, and continuous product improvement rather than simply cutting costs as in traditional models. As a result, more than 21% of our customers have gradually become distribution partners—growing and prospering alongside us.                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -200,8 +194,7 @@
                                 <h3 class="cs-services__title">#2. BE KIND WITH EMPLOYEE</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        KHANG GIA operates on the foundation of a united, compassionate, and collaborative team—continuously building a strong corporate culture. Here, young talents and workers are empowered through training, career development opportunities, and clear, transparent recognition and reward systems that honor their efforts year after year.
-                                    </p>
+                                        KG operates on the foundation of a united, compassionate, and collaborative team—continuously building a strong corporate culture. Here, young talents and workers are empowered through training, career development opportunities, and clear, transparent recognition and reward systems that honor their efforts year after year.                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -217,8 +210,7 @@
                                 <h3 class="cs-services__title">#3. BE KIND TO OUR PARTNER</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        We view our partners not merely as commercial distributors, but as long-term companions on the journey toward shared prosperity. With a firm commitment to fostering close, transparent, and lasting collaboration, we treat every partner—whether a distributor or business—as a valued ally. Together, we strive to create lasting value and sustainable success.
-                                    </p>
+                                        We view our partners not merely as commercial distributors, but as long-term companions on the journey toward shared prosperity. With a firm commitment to fostering close, transparent, and lasting collaboration, we treat every partner—whether a distributor or business—as a valued ally. Together, we strive to create lasting value and sustainable success.                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -234,8 +226,7 @@
                                 <h3 class="cs-services__title">#4. BE KIND TO THE ENVIRONMENT</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        KHANG GIA is dedicated not only to creating value for the community and our partners but also to protecting and preserving the environment. We recognize that environmental protection is not only an individual responsibility but also a collective duty to safeguard the future for millions of children. Through our ongoing efforts to explore innovative fiber materials and advanced technologies, we aim to reduce waste and minimize environmental impact.
-                                    </p>
+                                        KG is dedicated not only to creating value for the community and our partners but also to protecting and preserving the environment. We recognize that environmental protection is not only an individual responsibility but also a collective duty to safeguard the future for millions of children. Through our ongoing efforts to explore innovative fiber materials and advanced technologies, we aim to reduce waste and minimize environmental impact.                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -251,8 +242,7 @@
                                 <h3 class="cs-services__title">#5. BE KIND TO THE COMMUNITY</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        We are also committed to making a positive impact on the communities around us through heartfelt charitable initiatives and meaningful social projects. KHANG GIA continuously seeks opportunities to invest in education, culture, and job creation—providing thousands of employment opportunities each year and helping workers improve their quality of life and professional skills over time.
-                                    </p>
+                                        We are also committed to making a positive impact on the communities around us through heartfelt charitable initiatives and meaningful social projects. KG continuously seeks opportunities to invest in education, culture, and job creation—providing thousands of employment opportunities each year and helping workers improve their quality of life and professional skills over time.                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -268,7 +258,7 @@
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-thanks__heading">
                         In life there are many choices, <br />
-                        thank you for choosing KHANG GIA!
+                        thank you for choosing KG!
                     </h2>
                     <span class="flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="80" height="73" viewBox="0 0 118 73" fill="none">
@@ -284,7 +274,7 @@
                 <div class="grid lg:grid-cols-2 grid--aligned-center grid--three-columns grid--doubling">
                     <div class="grid__column">
                         <NuxtLink :to="localePath({ name: 'dedicated-customer-care-service' })" target="_blank"
-                            ><img src="/images/about-us-6.jpg" alt="Tim hiểu thêm KHANG GIA"
+                            ><img src="/images/about-us-6.jpg" alt="Tìm hiểu thêm KHANG GIA"
                         /></NuxtLink>
                     </div>
                     <div class="grid__column">
@@ -296,10 +286,10 @@
             </section>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Join the KHANG GIA Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!</h2>
+                    <h2 class="cs-cta__heading">Join the KG Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Join the KHANG GIA Deal Hunters group
+                            Join the KG Deal Hunters group
                         </UButton>
                         <UButton
                             :to="localePath({name: 'khanggia-official'})"
@@ -307,7 +297,7 @@
                             class="!text-white border bg-[#22c55ebf] rounded-3xl px-6 py-4 justify-center w-full sm:max-w-[300px] !no-underline"
                             variant="ghost"
                             color="none">
-                            KHANG GIA OFFICIAL
+                            KG OFFICIAL
                         </UButton>
                     </span>
                 </div>

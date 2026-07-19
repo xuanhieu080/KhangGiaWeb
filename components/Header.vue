@@ -135,7 +135,7 @@
                 <NuxtLink class='main-nav-item' :to="localePath({ name: locale=='vi'? 'dat-may' :'custom-order'})" @click='menuMobile = false'>
                     {{ trans('Custom order') }}
                 </NuxtLink>
-                <NuxtLink class='main-nav-item' :to="localePath({ name: locale=='vi'? 'van-hoa-khanggia' :'culture-khanggia' })" @click='menuMobile = false'
+                <NuxtLink class='main-nav-item' :to="localePath({ name: locale=='vi'? 'van-hoa-khang-gia' :'culture-khang-gia' })" @click='menuMobile = false'
                 >{{ trans('KHANG GIA Culture') }}
                 </NuxtLink>
             </div>
