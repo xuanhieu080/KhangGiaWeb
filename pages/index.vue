@@ -170,21 +170,21 @@ const bannerList = ref([
 ]);
 
 const bannerBlock = ref({
-    image_desktop: '/images/banner-blocks/banner_block__1.jpg',
+    image_desktop: '/images/banner-blocks/banner_block_1.jpg',
     image_mobile: '/images/banner_3_mobile.jpg',
     title: trans('uniform_tshirt'),
     description:trans('Beautiful design company'),
     link: locale.value === 'vi' ? 'dong-phuc-ao-thun' : 'uniform-tshirt',
 });
 const bannerBlock2 = ref({
-    image_desktop: '/images/banner-blocks/banner_block__2.jpg',
+    image_desktop: '/images/banner-blocks/banner_block_2.jpg',
     image_mobile: '/images/banner_4_mobile.jpg',
     title: trans('Engineer vest'),
     description: trans('Specialized - Quality - Prestige'),
     link: locale.value === 'vi' ? 'ao-ghi-le' : 'gile-safety-vest',
 });
 const bannerBlock3 = ref({
-    image_desktop: '/images/banner-blocks/banner_block__3.jpg',
+    image_desktop: '/images/banner-blocks/banner_block_3.jpg',
     image_mobile: '/images/banner_3_mobile.jpg',
     title: trans('Uniform'),
     description: trans('Beautiful design company'),
