@@ -24,7 +24,7 @@
                             <div class="footer-info__content">
                                 <span class="footer-info__title"> Hotline </span>
                                 <p class="footer-info__desciption">
-                                    <a href="tel: 0569133339">056.913.33.39</a><br />
+                                    <a href="tel: 0949361188">094 936 11 88</a><br />
                                     <span>(8:00 - 17:30)</span>
                                 </p>
                             </div>
@@ -40,10 +40,10 @@
                         </div>
                     </div>
                     <div class="footer-social">
-                        <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="footer-social__item"
+                        <a href="https://www.facebook.com/khanggiagarment" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_facebook" alt="Footer Icon facebook"
                         /></a>
-                        <a href="https://zalo.me/0569133339" target="_blank" class="footer-social__item"
+                        <a href="https://zalo.me/3650436242866367358" target="_blank" class="footer-social__item"
                             ><img :src="images.logo_zalo" alt="Footer Icon Zalo"
                         /></a>
                         <a href="https://www.tiktok.com/@congtygak" target="_blank" class="footer-social__item"

@@ -45,16 +45,15 @@
         <div class="about-content md:pt-8 mx-auto bg-white">
             <section class="pod-why">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty KHANG GIA</h2>
+                    <h2 class="pod-why__heading">Vì sao nên chọn may đồng phục tại công ty Khang Gia</h2>
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="grid__column three-twelfths mobile--one-half">
                             <div class="pod-why__card">
                                 <div class="card__item__icon"><img src="/images/booking-step-1.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Chi phí tốt nhất trên thị trường</div>
+                                    <div class="card__item__title">Giá tận nhà sản xuất</div>
                                     <p class="card__item__description">
-                                        Các sản phẩm đồng phục được gia công tại công ty KHANG GIA luôn có sự tỉ mỉ và giá thành tốt nhất. Bởi
-                                        chúng tôi là nhà sản xuất vải, nhuộm, may đồng phục, in ấn khép kín
+                                        Các sản phẩm đồng phục được may bởi công ty Khang Gia luôn đạt chất lượng và giá thành tốt nhất. Bởi chúng tôi là nhà sản xuất trực tiếp từ vải cho đến may và in thêu các sản phẩm đồng phục khép kín
                                     </p>
                                 </div>
                             </div>
@@ -65,8 +64,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Dịch vụ tận tâm</div>
                                     <p class="card__item__description">
-                                        KHANG GIA luôn chú trọng sự tận tâm trên từng sản phẩm, bởi những người thợ giàu kinh nghiệm cần thận trên
-                                        từng đường may mũi chỉ và sản phẩm chất lượng cao đang tạo nên thương hiệu của chúng tôi.
+                                        Khang Gia luôn chú trọng tới sự minh bạch và tận tâm trên từng sản phẩm. Những sản phẩm đồng phục công ty tại nhà máy của chúng tôi luôn được may bởi những thợ may giàu kinh nghiệm, bên cạnh đội ngũ tư vấn viên am hiểu từng công đoạn và chất vải. Để giúp khách hàng hiểu chính xác về sản phẩm nhận được.
                                     </p>
                                 </div>
                             </div>
@@ -77,8 +75,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Chi phí in ấn đồng phục tốt nhất thị trường</div>
                                     <p class="card__item__description">
-                                        Nhờ năng lực sản xuất mạnh và linh hoạt, công ty KHANG GIA tự tin vào chất lượng tất cả bản in ấn. Hãy đặt
-                                        niềm tin vào chúng tôi thương hiệu của bạn sẽ luôn chỉn chu trên từng bộ đồng phục.
+                                        Nhờ năng lực sản xuất tự chủ và linh hoạt, công ty Khang Gia tự tin vào chất lượng tất cả bản in ấn. Hãy đặt niềm tin vào chúng tôi thương hiệu của bạn sẽ luôn chỉn chu trên từng bộ đồng phục.
                                     </p>
                                 </div>
                             </div>
@@ -89,8 +86,7 @@
                                 <div class="card__item__content">
                                     <div class="card__item__title">Biết ngày giao hàng!</div>
                                     <p class="card__item__description">
-                                        Nhờ vào khả năng sản xuất và in khép kín. Giúp công ty KHANG GIA có thể đảm bảo tiến độ may và giao hàng
-                                        cho khách hàng. Nếu bạn đã có số lượng dự kiến, bản mẫu chúng tôi sẽ báo với bạn ngày giao hàng!
+                                        Áp dụng các công nghệ AI vào phần mềm sản xuất và quy trình đào tạo may chuyên nghiệp. Khang Gia có thể đảm bảo tiến độ may và thời gian giao hàng cho khách hàng. Nếu bạn đã có số lượng dự kiến, bản mẫu đồng phục chúng tôi sẽ báo với bạn ngày giao hàng!
                                     </p>
                                 </div>
                             </div>
@@ -103,7 +99,7 @@
                     <div class="pod-activity__card">
                         <div class="pod-activity__heading-card">
                             <div class="pod-activity__heading-top">
-                                <h2>Quy trình<br />may đồng phục tại Công ty KHANG GIA<br />như thế nào?</h2>
+                                <h2>Quy trình<br />Đặt may đồng phục tại công ty Khang Gia<br />như thế nào?</h2>
                             </div>
                             <div class="pod-activity__heading-cta mobile--hidden tablet--hidden">
                                 <p>Chưa bao giờ đơn giản đến thế.</p>
@@ -117,7 +113,7 @@
                                     <div class="card__item__title">Tiếp nhận yêu cầu</div>
                                     <p class="card__item__description">
                                         Gửi yêu cầu trực tiếp qua Zalo hoặc qua <br />
-                                        Hotline: <a href="tel:0569133339">0569133339</a>
+                                        Hotline: <a href="tel:0949361188">0949361188</a>
                                     </p>
                                 </div>
                             </div>
@@ -144,7 +140,7 @@
                             <div class="card__item">
                                 <div class="card__item__icon"><img src="/images/booking-process-4.png" alt="" /></div>
                                 <div class="card__item__content">
-                                    <div class="card__item__title">Giao hàng và cám ơn</div>
+                                    <div class="card__item__title">Giao hàng và cảm ơn</div>
                                     <p class="card__item__description">
                                         Giao hàng miễn phí trong nội thành <br />
                                         hoặc tính phí giao vận thông qua bưu cục địa phương
@@ -158,11 +154,10 @@
             <section id="products" class="pod-products">
                 <div class="container container--medium">
                     <h2 class="pod-products__heading" style="margin-bottom: 10px">
-                        Các mẫu đồng phục đẹp giá tốt đang được khách hàng tin chọn
-                    </h2>
+                        Đặt may đồng phục đẹp giá tốt nhất tại Khang Gia                    </h2>
                     <div>
                         <h3 style="text-align: center; font-size: 16px; padding: 0px 30px">
-                            KHANG GIA có khả năng đa dạng sản xuất theo yêu cầu riêng của khách hàng
+                            Chúng tôi cam kết đem tới những bộ đồng phục công ty chất lượng cao, may kỹ và bền đẹp khi gửi tới tay khách hàng
                         </h3>
                     </div>
                     <div class="tab-content">
@@ -342,7 +337,7 @@
                 <div class="container container--medium">
                     <div class="pod-customer">
                         <div class="pod-customer__wrapper">
-                            <h2 class="pod-customer__heading">Khách hàng của công ty KHANG GIA</h2>
+                            <h2 class="pod-customer__heading">Khách hàng của công ty Khang Gia</h2>
                             <Swiper
                                 :slidesPerView="3"
                                 :spaceBetween="12"
@@ -448,7 +443,7 @@
                                         <img src="/images/phone-icon.svg" alt="" />
                                         <div>
                                             <p>Hotline</p>
-                                            <a href="tel:0569133339">0569133339</a>
+                                            <a href="tel:0949361188">0949361188</a>
                                         </div>
                                     </div>
                                     <div class="contact__content-info">
@@ -460,11 +455,11 @@
                                     </div>
                                 </div>
                                 <div class="contact__content-contact">
-                                    <a href="https://zalo.me/1160130089290834053" target="_blank" class="contact__content-social">
+                                    <a href="https://zalo.me/3650436242866367358" target="_blank" class="contact__content-social">
                                         <img src="/images/zalo.png" alt="zalo-podz" />
-                                        <div>Liên hệ Sale KHANG GIA qua Zalo</div>
+                                        <div>Liên hệ Sale Khang Gia qua Zalo</div>
                                     </a>
-                                    <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="contact__content-social"
+                                    <a href="https://www.facebook.com/khanggiagarment" target="_blank" class="contact__content-social"
                                         ><img src="/images/facebook.png" alt="fb-pod" />
                                         <div>CSKH KHANG GIA</div></a
                                     >
@@ -472,7 +467,7 @@
                             </div>
                             <div class="contact__form">
                                 <UForm @submit="submit" class="xp-form">
-                                    <h2 class="title">Gửi yêu cầu tư vấn may đồng phục cho KHANG GIA</h2>
+                                    <h2 class="title">Gửi yêu cầu tư vấn may đồng phục cho Khang Gia</h2>
                                     <UFormGroup class="form-group" label="Sản phẩm và số lượng dự kiến bạn cần" required>
                                         <UInput
                                             size="xl"
@@ -561,7 +556,7 @@
                         lên logo công ty bạn!
                     </p>
                     <UButton variant="ghost" color="none" size="lg" type="submit" class="bg-[#2f5acf] text-white px-8 rounded-3xl">
-                        Năng lực Công ty KHANG GIA
+                        Năng lực Công ty Khang Gia
                     </UButton>
                 </div>
             </section>
@@ -616,7 +611,7 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
+                        Tham gia hội săn Deal Khang Gia - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton
@@ -626,7 +621,7 @@
                             class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit no-underline uppercase"
                             variant="ghost"
                             color="none">
-                            Tham gia hội săn Deal KHANG GIA
+                            Tham gia hội săn Deal Khang Gia
                         </UButton>
                         <UButton
                             :to="localePath({ name: 'khanggia-official' })"
@@ -642,7 +637,7 @@
             <div class="cs-faq-container py-8">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-faq__heading text-center w-full">FAQ MAY ĐỒNG PHỤC</h2>
-                    <p class="text-center w-full">Bạn có câu hỏi KHANG GIA xin trả lời ạ!</p>
+                    <p class="text-center w-full">Bạn có câu hỏi Khang Gia xin trả lời ạ!</p>
                     <UAccordion multiple :items="items" :ui="{ wrapper: 'flex flex-col w-full' }">
                         <template #default="{ item, index, open }">
                             <UButton
@@ -681,7 +676,7 @@
                                     </li>
                                 </ul>
                                 <span>
-                                    Dựa theo những tiêu chí đánh giá địa chỉ xưởng may đồng phục uy tín bên trên, công ty KHANG GIA mong rằng nó
+                                    Dựa theo những tiêu chí đánh giá địa chỉ xưởng may đồng phục uy tín bên trên, công ty Khang Gia mong rằng nó
                                     sẽ giúp bạn tìm thấy công ty may có uy tín.
                                 </span>
                             </div>
@@ -696,7 +691,7 @@
                                 </p>
 
                                 <p>
-                                    Tại KHANG GIA chúng tôi tự chủ sản xuất nguồn vải có chất lượng, đem lại sự an toàn, thoải mái khi vận động -
+                                    Tại Khang Gia chúng tôi tự chủ sản xuất nguồn vải có chất lượng, đem lại sự an toàn, thoải mái khi vận động -
                                     làm việc, khả năng thấm hút co giãn tốt. Đặc biệt nhờ vào hệ sinh thái khép kín từ sợi, dệt, nhuộm cho
                                     tới in ấn chúng tôi luôn đảm bảo mọi bộ đồng phục công nhân luôn có chất lượng, giá thành cạnh tranh
                                     nhất thị trường. Hãy tìm hiểu thêm các sản phẩm có sẵn của chúng tôi!
@@ -713,34 +708,34 @@
                                 <ul class="marker:text-gray-700">
                                     <li>
                                         Tạo ấn tượng chuyên nghiệp: Đồng phục là một cách hiệu quả để tạo ra một hình ảnh chuyên nghiệp và
-                                        đồng nhất cho toàn bộ đội ngũ của bạn. Với bề dày kinh nghiệm trong ngành may, KHANG GIA cam kết mang lại
+                                        đồng nhất cho toàn bộ đội ngũ của bạn. Với bề dày kinh nghiệm trong ngành may, Khang Gia cam kết mang lại
                                         những bộ đồng phục chất lượng, phản ánh sự chuyên nghiệp của doanh nghiệp.
                                     </li>
                                     <li>
                                         Nâng cao nhận diện thương hiệu: Logo và thông điệp của thương hiệu được in trên đồng phục không chỉ
-                                        giúp khách hàng dễ dàng nhận ra bạn mà còn là một cách hiệu quả để quảng bá thương hiệu của bạn. KHANG GIA
+                                        giúp khách hàng dễ dàng nhận ra bạn mà còn là một cách hiệu quả để quảng bá thương hiệu của bạn. Khang Gia
                                         sẽ giúp bạn thiết kế và in ấn các mẫu đồng phục độc đáo, thể hiện đầy đủ giá trị và phong cách của
                                         thương hiệu.
                                     </li>
                                     <li>
                                         Tinh thần đồng đội: Đồng phục không chỉ là trang phục, mà còn là biểu tượng của sự đoàn kết và nhất
-                                        quán trong tổ chức. KHANG GIA hiểu rõ giá trị của việc tạo sự gắn kết giữa các thành viên, và chúng tôi
+                                        quán trong tổ chức. Khang Gia hiểu rõ giá trị của việc tạo sự gắn kết giữa các thành viên, và chúng tôi
                                         cam kết mang lại những bộ đồng phục đẹp mắt, tạo cảm giác kết nôi và đoàn kết cho nhân viên của bạn.
                                     </li>
                                     <li>
-                                        Dịch vụ may đo cao cấp và chất lượng cao: KHANG GIA không chỉ cung cấp những mẫu đồng phục tiêu chuẩn mà
+                                        Dịch vụ may đo cao cấp và chất lượng cao: Khang Gia không chỉ cung cấp những mẫu đồng phục tiêu chuẩn mà
                                         còn chú trọng đến sự tùy chỉnh theo yêu cầu của khách hàng - công ty. Chúng tôi cam kết sử dụng vật
                                         liệu vải, khuy nút chất lượng cao và công nghệ in ấn tiên tiến để đảm bảo bạn nhận được sản phẩm
                                         hoàn hảo nhất.
                                     </li>
                                     <li>
-                                        Giá trị hợp lý: KHANG GIA hiểu rằng việc đầu tư vào đồng phục cần phải hợp lý về chi phí. Với chính sách
+                                        Giá trị hợp lý: Khang Gia hiểu rằng việc đầu tư vào đồng phục cần phải hợp lý về chi phí. Với chính sách
                                         giá cạnh tranh và chất lượng sản phẩm được hoàn thiện tỉ mỉ, chúng tôi cam kết mang lại giá trị tốt
                                         nhất với mức chi phí bạn đã bỏ ra.
                                     </li>
                                 </ul>
                                 <span>
-                                    Hãy để KHANG GIA trở thành đối tác đáng tin cậy của bạn trong việc thiết kế trang phục cao cấp và may đồng
+                                    Hãy để Khang Gia trở thành đối tác đáng tin cậy của bạn trong việc thiết kế trang phục cao cấp và may đồng
                                     phục chất lượng . Liên hệ với chúng tôi ngay hôm nay để bắt đầu hành trình tạo ra một hình ảnh chuyên
                                     nghiệp và thương hiệu ấn tượng cho doanh nghiệp của bạn!
                                 </span>
@@ -841,10 +836,10 @@ async function submit() {
     }
 }
 let title = 'Nhận đặt may theo yêu cầu tại TPHCM vải tốt | Đồng phục đẹp giá rẻ';
-let pageDescription = 'Công ty KHANG GIA mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
+let pageDescription = 'Công ty Khang Gia mang đến những tuỳ chọn may đo theo yêu cầu của khách hàng, từ chất liệu vải cho đến các kỹ thuật may tiên tiến cho đồng phục công ty, áo thun, polo, váy. Nhận may mẫu từ 1 cái!'
 const config = useRuntimeConfig();
 
-defineOgImageComponent('KHANG GIA', {
+defineOgImageComponent('Khang Gia', {
     title: title,
     description: pageDescription,
     theme: '#ff0000',

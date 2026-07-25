@@ -11,7 +11,7 @@
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
                 <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">CÂU CHUYỆN VỀ CÔNG TY KHANG GIA</h1>
                 <span class="text-lg xl:text-xl"
-                    >Đây là chuyên mục giúp các bạn biết được KHANG GIA đã hình thành ra sao và chúng tôi muốn xây dựng một hình mẫu như thế
+                    >Đây là chuyên mục giúp các bạn biết được Khang Gia đã hình thành ra sao và chúng tôi muốn xây dựng một hình mẫu như thế
                     nào!</span
                 >
             </div>
@@ -25,7 +25,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về KHANG GIA') }}</span>
+                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về Khang Gia') }}</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -34,13 +34,13 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />KHANG GIA</span>
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />Khang Gia</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -73,7 +73,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về KHANG GIA') }}</span>
+                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về Khang Gia') }}</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -82,13 +82,13 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />KHANG GIA</span>
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />Khang Gia</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -117,25 +117,12 @@
                     <div class="cs-caption__wrapper !bg-[#2f5acf]">
                         <div class="cs-content">
                             <p>
-                                Bạn ơi, chúng mình cảm ơn bạn đã lựa chọn các sản phẩm công ty KHANG GIA. Bạn biết không nhờ vào sự tin yêu và tấm
-                                lòng của bạn đã và đang giúp các nhân viên tại KHANG GIA có cuộc sống tốt hơn từng ngày.
+                                Bạn thân mến, Chúng mình xin gửi lời cảm ơn chân thành vì bạn đã tin tưởng và lựa chọn sản phẩm của công ty Khang Gia. Bạn biết không, mỗi đơn hàng không chỉ là một sản phẩm trao đi, mà còn là nguồn động lực giúp các anh chị em tại Khang Gia có thêm thu nhập, ổn định cuộc sống và nuôi dưỡng những ước mơ nhỏ bé mỗi ngày. Chính sự tin yêu của bạn đang tiếp thêm sức mạnh để chúng mình cố gắng từng ngày – từ từng đường kim mũi chỉ cho đến cách phục vụ tận tâm.
                             </p>
                             <p>
-                                Chúng tớ biết mặc dù thương mại điện tử thật sự đang phổ biến, nhưng vẫn có một chút sự phức tạp khi bấm vào
-                                nút đặt hàng. Bạn xinh yêu ơi, nếu bạn đang gặp khó khăn trong hành trình mua hàng của mình, hãy liên hệ tới
-                                đội CSKH của KHANG GIA nha.
+                                Chúng tớ hiểu mà – dù mua sắm online ngày nay đã rất phổ biến, nhưng đôi khi việc "chốt đơn" vẫn có thể hơi... rối rắm một chút đúng không? Nếu bạn đang gặp bất kỳ khó khăn nào trong hành trình đặt hàng – từ chọn size, chọn mẫu, hay chỉ đơn giản là chưa biết bắt đầu từ đâu, đừng ngại ngần inbox ngay cho đội CSKH nhà Khang Gia nhé! Chúng tớ luôn sẵn sàng hỗ trợ bạn tận tình, nhanh chóng và thật đáng yêu. Vì một trải nghiệm mua sắm dễ dàng, vui vẻ và ưng bụng nhất dành cho bạn!
                             </p>
-                            <p>
-                                À bạn ơi, mỗi một sản phẩm trên gian hàng của KHANG GIA đều là ảnh sản phẩm thực tế, nhưng đôi lúc cũng có một
-                                chút sai lệch về màu sắc, nên nếu bạn cảm thấy không giống những gì mình hình dung hãy hỏi KHANG GIA nha. Chúng tớ
-                                luôn và luôn luôn bên bạn trước và sau bán hàng ạ.
-                            </p>
-                            <p>
-                                Tại KHANG GIA chúng tớ đi lên bởi sự tử tế, tỉ mỉ và không ngừng tập trung cải thiện sản phẩm, từ nguồn sợi, cho
-                                đến công nghệ may mặc. Bởi chỉ có sự tận tâm và gia tăng giá trị sản phẩm mới đem lại sự tin yêu của khách
-                                hàng và làm hài lòng những người bạn đang đồng hành cùng chúng tớ. Cảm ơn bạn đã chọn Công ty KHANG GIA!!!!
-                            </p>
-                            <strong class="text-white"> Khám phá hành trình mua sắm Online tại KHANG GIA nhé </strong>
+                            <strong class="text-white"> Đặt may đồng phục công ty giá gốc tại Khang Gia</strong>
                         </div>
                     </div>
                 </div>
@@ -145,7 +132,7 @@
                     <div id="services1" class="grid lg:grid-cols-2 gap-6 grid--aligned-center grid--two-columns grid--doubling items-end">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">ĐẶT HÀNG ONLINE THÔNG TIN RÕ RÀNG</h3>
+                                <h3 class="cs-services__title">Đặt hàng online rõ ràng và minh bạch</h3>
                                 <div class="cs-services__description">
                                     <p>Chúng tớ tin rằng sự minh bạch và đạo đức là nền tảng của một mối quan hệ kinh doanh thành công.</p>
                                     <p>
@@ -153,7 +140,7 @@
                                         hàng, từ mỗi giao dịch đặt hàng online cho đến những đơn hàng theo dự án.
                                     </p>
                                     <p>
-                                        Khi bạn chọn KHANG GIA, bạn không chỉ nhận được sản phẩm chất lượng, mà còn được trải nghiệm một quy trình
+                                        Khi bạn chọn Khang Gia, bạn không chỉ nhận được sản phẩm chất lượng, mà còn được trải nghiệm một quy trình
                                         mua sắm trực tuyến mượt mà và đáng tin cậy.
                                     </p>
                                 </div>
@@ -172,9 +159,7 @@
                                 <h3 class="cs-services__title">CHĂM SÓC ĐƠN ĐẶT HÀNG</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Tại KHANG GIA chúng tớ tin rằng sự ân cần và tận tâm là nguồn động lực giúp thể hiện tinh thần tử tế. Mỗi
-                                        khi bạn đặt hàng, chúng tớ sử dụng thông tin đơn hàng sẽ kết nối tới bạn để tư vấn và hướng dẫn bạn
-                                        thủ tục thanh toán để lên đơn hàng nhanh chóng .
+                                        Tại công ty Khang Gia chúng tớ tin rằng sự ân cần và tận tâm là nguồn động lực giúp thể hiện tinh thần tử tế. Mỗi khi bạn đặt hàng, chúng tớ sử dụng thông tin đơn hàng sẽ kết nối tới bạn để tư vấn và hướng dẫn bạn thủ tục thanh toán để lên đơn hàng nhanh chóng.
                                     </p>
                                 </div>
                                 <div class="cs-services-info__order !text-left">02</div>
@@ -210,7 +195,7 @@
             <section class="services-thankyou mt-8 lg:mt-[128px]">
                 <div class="services-thankyou__wrapper">
                     <h2 class="services-thankyou__heading">THANK YOU!</h2>
-                    <div class="services-thankyou__content">Trong cuộc sống có quá nhiều sự lựa chọn, cảm ơn bạn đã chọn KHANG GIA!</div>
+                    <div class="services-thankyou__content">Trong cuộc sống có quá nhiều sự lựa chọn, cảm ơn bạn đã chọn Khang Gia!</div>
                 </div>
                 <div class="services-thankyou__image">
                     <picture style="width: 100%"
@@ -222,11 +207,11 @@
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
                     <h2 class="cs-cta__heading">
-                        Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
+                        Tham gia hội săn Deal Khang Gia - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!
                     </h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal KHANG GIA
+                            Tham gia hội săn Deal Khang Gia
                         </UButton>
                         <UButton
                             :to="localePath({name: 'khanggia-official'})"

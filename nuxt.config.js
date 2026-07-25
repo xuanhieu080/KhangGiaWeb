@@ -113,7 +113,7 @@ export default defineNuxtConfig({
             phone: process.env.NUXT_SITE_PHONE,
             telephone: process.env.NUXT_SITE_PHONE,
             sameAs: [
-                'https://www.facebook.com/GAKBHLD',
+                'https://www.facebook.com/khanggiagarment',
                 'https://twitter.com/congtygak',
                 'https://www.instagram.com/congtygak',
                 'https://www.tiktok.com/@congtygak',
@@ -199,12 +199,12 @@ export default defineNuxtConfig({
                 vi: '/quy-dinh-thanh-toan',
                 en: '/payment-regulations',
             },
-            'culture-khanggia': {
+            'culture-khang-gia': {
                 vi: false,
-                en: '/culture-khanggia',
+                en: '/culture-khang-gia',
             },
-            'van-hoa-khanggia': {
-                vi: '/van-hoa-khanggia',
+            'van-hoa-khang-gia': {
+                vi: '/van-hoa-khang-gia',
                 en: false,
             },
             'custom-order': {

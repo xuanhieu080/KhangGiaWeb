@@ -20,7 +20,7 @@
                         type="button"
                         class="sub-button zalo"
                         :class="showMenuChat ? 'show' : ''"
-                        href="https://zalo.me/1160130089290834053"
+                        href="https://zalo.me/3650436242866367358"
                         target="_blank">
                         <div class="sub-button-overlay">
                             <img src="/images/zalo-khanggia.png" alt="" />
@@ -30,24 +30,24 @@
                         type="button"
                         class="sub-button zalo"
                         :class="showMenuChat ? 'show' : ''"
-                        href="https://zalo.me/0569133339"
+                        href="https://zalo.me/3650436242866367358"
                         target="_blank">
                         <div class="sub-button-overlay">
                             <img src="/images/zalo-cskh.png" alt="" />
                         </div>
                     </a>
                     <button class="sub-button livechat" :class="showMenuChat ? 'show' : ''" rel-script="toggle-chat-box" data-id="livechat">
-                        <a href="tel:0569133339" ga-tracking-label="Gọi hotline">
+                        <a href="tel:0949361188" ga-tracking-label="Gọi hotline">
                             <img src="/images/phone-hotline-icon.png" alt="" />
                         </a>
-                        <a href="tel:0569133339" class="sub-button-tooltip" ga-tracking-label="Gọi hotline">
+                        <a href="tel:0949361188" class="sub-button-tooltip" ga-tracking-label="Gọi hotline">
                         <span class="sub-button-tooltip__hotline flex items-center gap-2 w-max">
                             <svg width="12" height="12" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M22.374 16.8797L19.1643 13.67C18.018 12.5236 16.0692 12.9822 15.6107 14.4724C15.2668 15.5041 14.1205 16.0773 13.0888 15.848C10.7961 15.2748 7.70102 12.2944 7.12786 9.88709C6.78396 8.85535 7.47176 7.70902 8.50345 7.36517C9.99368 6.90663 10.4522 4.95788 9.30588 3.81155L6.09616 0.60183C5.1791 -0.2006 3.80351 -0.2006 3.00108 0.60183L0.823054 2.77985C-1.35497 5.07251 1.05232 11.148 6.44006 16.5358C11.8278 21.9235 17.9033 24.4455 20.196 22.1528L22.374 19.9748C23.1765 19.0577 23.1765 17.6821 22.374 16.8797Z"
                                     fill="#2F5ACF"></path>
                             </svg>
-                            <span class="sub-button-tooltip__number text-sm">0569133339</span>
+                            <span class="sub-button-tooltip__number text-sm">0949361188</span>
                         </span>
                         </a>
                     </button>

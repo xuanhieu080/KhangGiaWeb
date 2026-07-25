@@ -158,7 +158,7 @@
                         variant="outline"
                         color="none"
                         target="_blank"
-                        to="https://zalo.me/0569133339"
+                        to="https://zalo.me/3650436242866367358"
                         class="font-bold !uppercase bg-green-700 text-white w-full md:max-w-[300px] justify-center"
                         size="xl"
                         >{{trans('Get consultation')}}</UButton

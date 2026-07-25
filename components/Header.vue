@@ -2,14 +2,6 @@
     <div class='site-header' :class="{ 'hidden-header': isScrollDown }">
         <div class='topbar'>
             <div class='left-top-bar'>
-                <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: locale == 'vi'? 'phan-quang' : 'reflective-tape' } })" class='logo'>
-                    <div class="w-max">
-                        {{trans('Reflective Product')}}
-                    </div>
-                </NuxtLink>
-                <NuxtLink :to="localePath({ name: 'collection-slug', params: { slug: locale == 'vi' ? 'vai' : 'fabric' } })" class='logo'>
-                    <div class="w-max">{{trans('Fabric Product')}}</div>
-                </NuxtLink>
                 <div class="flex rounded">
                     <button
                         class="px-3 rounded-l py-1 text-xs font-bold transition-all"
@@ -47,7 +39,7 @@
                         <div class="w-max">{{ page.name }}</div>
                     </NuxtLink>
                 </div>
-                <NuxtLink to='https://zalo.me/1160130089290834053' target='_blank'>{{ trans('Customer Service Center') }}</NuxtLink>
+                <NuxtLink to='https://zalo.me/3650436242866367358' target='_blank'>{{ trans('Customer Service Center') }}</NuxtLink>
             </div>
         </div>
         <div class='header'>

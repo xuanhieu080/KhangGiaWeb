@@ -49,7 +49,7 @@
                             alt="" />
                         <div>
                             <p>Hotline</p>
-                            <a href="tel:0569133339">0569133339</a>
+                            <a href="tel:0949361188">0949361188</a>
                         </div>
                     </div>
                     <div class="contact__content-info">

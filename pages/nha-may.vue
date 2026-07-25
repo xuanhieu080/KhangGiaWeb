@@ -30,30 +30,22 @@
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg space-y-8">
-                    <h2 class="cs-services__heading">TỰ CHỦ NGUỒN NGUYÊN LIỆU VÀ SẢN XUẤT</h2>
+                    <h2 class="cs-services__heading">NHÀ MÁY MAY OEM TỰ CHỦ SẢN XUẤT VẢI VÀ MAY MẶC</h2>
                     <div
                         id="services1"
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column lg:order-2 my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">CÂU CHUYỆN TỰ HÀO HÀNG VIỆT NAM</h3>
+                                <h3 class="cs-services__title">KHANG GIA XIN CHÀO</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Nghề may mặc của Việt Nam đã được cả thế giới biết đến nhờ sự tỉ mỉ, tinh tế và chất lượng cao của
-                                        những bộ quần áo được tạo ra bởi các thợ may lành nghề người Việt. Chính từ những tinh hoa này đã
-                                        giúp ngành dệt may Việt Nam trở thành điểm sáng trong mắt bạn bè quốc tế.
+                                        Chúng tôi là nhà sản xuất đồng phục và may mặc tại Việt Nam, với hơn 10 năm kinh nghiệm trong lĩnh vực thiết kế, gia công và in ấn đồng phục cho các doanh nghiệp, trường học, nhà hàng, bệnh viện, nhà xưởng và nhiều ngành nghề khác.
                                     </p>
                                     <p>
-                                        Trong hành trình của mình, chúng tôi đã đi đến nhiều nơi, học hỏi và áp dụng nhiều quy trình may mặc
-                                        tiên tiến để tạo ra những sản phẩm chất lượng như áo đồng phục và áo bảo hộ. Tuy nhiên, điều khiến
-                                        chúng tôi ấn tượng nhất là sự yêu thích và đón nhận từ khắp năm châu dành cho các sản phẩm đồng phục
-                                        mang thương hiệu KHANG GIA.
+                                        Với xưởng may diện tích 3.000m², đội ngũ thợ lành nghề và hệ thống máy móc hiện đại, Khang Gia cam kết mang đến những sản phẩm chất lượng, chuẩn form, đúng tiến độ với chi phí tối ưu cho công ty, doanh nghiệp và các nhà máy.
                                     </p>
                                     <p>
-                                        Từ niềm tự hào về hàng Việt Nam, chúng tôi đã trở về và tập trung phân phối sản phẩm trong nước với
-                                        mong muốn mang đến cho người dân quê hương những sản phẩm chất lượng từ thương hiệu KHANG GIA. Chúng tôi
-                                        hy vọng những bộ đồng phục và các sản phẩm khác của KHANG GIA sẽ mang đến giá trị tích cực, đồng thời cung
-                                        cấp cho mọi người cơ hội sở hữu những sản phẩm chất lượng với mức giá hợp lý nhất.
+                                        Trên hành trình phát triển, Khang Gia may mắn khi luôn có sự đồng hành của những cán bộ, công nhân may giàu kinh nghiệm và tận tâm, họ là những con người thầm lặng nhưng bền bỉ góp phần tạo nên từng bộ đồng phục chỉn chu, chất lượng, làm hài lòng khách hàng. Sự thành công của chúng tôi sẽ không bao giờ đặt được nếu thiếu đi các đối tác chiến lược, những người đã luôn tin tưởng, sát cánh cùng chúng tôi, không chỉ giúp đảm bảo đầu ra ổn định cho đơn hàng, mà còn tạo đà để Khang Gia mở rộng quy mô sản xuất trong nước và từng bước đưa sản phẩm Việt vươn ra thị trường quốc tế như Châu Âu, Mỹ, Úc…
                                     </p>
                                 </div>
                             </div>
@@ -69,17 +61,16 @@
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">CỐT LÕI TỪ SỢI, VẢI VÓC VÀ TỰ CHỦ NGUỒN LỰC SẢN XUẤT</h3>
+                                <h3 class="cs-services__title">Tự chủ nguồn vải</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Đem đến những sản phẩm quần áo đẹp, ổn định và đồng đều qua từng thời kỳ là một thách thức lớn đối
-                                        với bất kỳ công ty may mặc nào. Tuy nhiên, tại KHANG GIA, chúng tôi tập trung toàn bộ nguồn lực vào việc
-                                        xây dựng từ gốc, từ khâu tuyển chọn sợi, công nghệ dệt - nhuộm đến nguồn nguyên phụ liệu.
+                                        88% chất lượng đến từ vải – và chúng tôi hiểu điều đó. Tại Khang Gia, chúng tôi tin rằng chất lượng vải là nền tảng quyết định vẻ đẹp, độ bền và sự đồng đều của từng bộ quần áo. Để có thể mang đến những sản phẩm ổn định qua từng mùa đơn hàng, chúng tôi không chấp nhận sự may rủi.
                                     </p>
                                     <p>
-                                        Ngay tại thời điểm này, chúng tôi đã tạo ra một hệ sinh thái may mặc bền vững, quản lý chặt chẽ toàn
-                                        bộ quy trình sản xuất từ đầu đến cuối. Chúng tôi cam kết chất lượng của từng sản phẩm MADE BY KHANG GIA,
-                                        đảm bảo mọi chi tiết đều được chăm chút tỉ mỉ để mang lại trải nghiệm tốt nhất cho khách hàng.
+                                        Thay vào đó, toàn bộ nguồn lực được tập trung ngay từ gốc: từ khâu tuyển chọn sợi chất lượng, ứng dụng công nghệ dệt – nhuộm hiện đại, đến việc kiểm soát chặt chẽ nguồn nguyên phụ liệu đầu vào. Bằng cách đó, Khang Gia chủ động trong việc tạo ra chất vải đạt chuẩn, ổn định về màu sắc, thẩm mỹ và độ bền, giúp khách hàng yên tâm về từng sản phẩm mang thương hiệu của họ.
+                                    </p>
+                                    <p>
+                                        Ngay tại thời điểm này, chúng tôi đã tạo ra một hệ sinh thái may mặc bền vững, quản lý chặt chẽ toàn bộ quy trình sản xuất từ đầu đến cuối. Chúng tôi cam kết chất lượng của từng sản phẩm MADE BY KHANG GIA, đảm bảo mọi chi tiết đều được chăm chút tỉ mỉ để mang lại trải nghiệm tốt nhất cho khách hàng.
                                     </p>
                                 </div>
                             </div>
@@ -95,18 +86,21 @@
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column lg:order-2 my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">NHỮNG NGƯỜI THỢ HẠNH PHÚC</h3>
+                                <h3 class="cs-services__title">MÁI NHÀ CHUNG CỦA NHỮNG NGƯỜI THỢ</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Lao động mang lại hạnh phúc, và mỗi con người đều nỗ lực làm việc để cống hiến tuổi trẻ và sức khỏe
-                                        nhằm tạo ra nguồn thu nhập chăm lo cho gia đình. Tại KHANG GIA, tất cả các nhân viên, từ thợ may, thợ
-                                        nhuộm, thợ máy đến người nhân viên dọn dẹp đều tận tâm với công việc của mình. Chính sự hỗ trợ từ
-                                        các đối tác và khách hàng đã giúp họ giữ được công việc ổn định và điều kiện để chăm sóc gia đình.
+                                        Tại Khang Gia, chúng tôi hiểu rằng mỗi bộ quần áo chất lượng đều bắt đầu từ đôi tay và sự tận tâm của người thợ. Vì thế, chúng tôi cam kết xây dựng môi trường làm việc ổn định, đảm bảo thu nhập và phúc lợi để người lao động có thể yên tâm gắn bó lâu dài.
                                     </p>
                                     <p>
-                                        Mỗi ngày, KHANG GIA tập trung duy trì vai trò nghiên cứu, sản xuất và xây dựng mối quan hệ chiến lược với
-                                        khách hàng. Bởi chỉ có làm tốt vai trò cốt lõi và không ngừng tiến lên mới có thể mang đến hạnh phúc
-                                        cho người lao động tại KHANG GIA.
+                                        <span>
+                                            - Cơ hội phát triển bền vững cho công nhân và gia đình họ <br>
+                                            - Chính sách hỗ trợ an sinh: bảo hiểm, thưởng, phúc lợi rõ ràng <br>
+                                            - Môi trường làm việc thân thiện, gắn kết như một đại gia đình <br>
+                                            - Cơ sở vật chất hiện đại, quy trình sản xuất tối ưu, ổn định đơn hàng <br>
+                                        </span>
+                                    </p>
+                                    <p>
+                                        Chúng tôi tin rằng: khi người lao động hạnh phúc – doanh nghiệp sẽ phát triển bền vững. Sự đồng hành của họ là động lực để Khang Gia không ngừng vươn xa, phục vụ tốt hơn cho khách hàng trong và ngoài nước.
                                     </p>
                                 </div>
                             </div>
@@ -126,9 +120,7 @@
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-1.png" alt="" /></span>
                             <h3 class="workshop-card__title">Tử tế</h3>
                             <p class="workshop-card__desc">
-                                KHANG GIA tin rằng sự tự tế mang nhiều nghĩa hơn trong cuộc sống này, từ việc tạo ra việc làm, phúc lợi, đạo đức
-                                kinh doanh... cho tới sự hoàn thiện tỉ mỉ từng sản phẩm, nó là điểm mấu chốt mà KHANG GIA tập trung trong sự phát
-                                triển của mình
+                                KHANG GIA tin rằng sự tự tế mang nhiều nghĩa hơn trong cuộc sống này, từ việc tạo ra việc làm, phúc lợi, đạo đức kinh doanh... cho tới sự hoàn thiện tỉ mỉ từng sản phẩm, nó là điểm mấu chốt mà KHANG GIA tập trung trong sự phát triển của mình
                             </p>
                         </div>
                     </div>
@@ -139,8 +131,7 @@
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-2.png" alt="" /></span>
                             <h3 class="workshop-card__title">Đoàn kết &amp; tương trợ</h3>
                             <p class="workshop-card__desc">
-                                KHANG GIA mong rằng mỗi một đối tác là người bạn, sự tương trợ, chia sẻ và thấu hiểu nhau để sáng tạo các giải
-                                pháp tốt nhất cho tương lai phát triển bền vững
+                                KHANG GIA mong rằng mỗi một đối tác là người bạn, sự tương trợ, chia sẻ và thấu hiểu nhau để sáng tạo các giải pháp tốt nhất cho tương lai phát triển bền vững
                             </p>
                         </div>
                     </div>
@@ -151,9 +142,7 @@
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-3.png" alt="" /></span>
                             <h3 class="workshop-card__title">HƯỚNG TỚI MỐI QUAN HỆ LÂU DÀI</h3>
                             <p class="workshop-card__desc">
-                                KHANG GIA tập trung vào xây dựng giá trị lâu dài với đối tác. KHANG GIA tin rằng qua thời gian dài làm việc cùng nhau,
-                                sẽ hiểu nhau sâu hơn và tạo ra nhiều giá trị hơn. Có những đối tác đã đồng hành từ khi bắt đầu và vẫn tiếp
-                                tục hợp tác đến hiện tại.
+                                Khang GIa tập trung vào xây dựng giá trị lâu dài với đối tác. Công ty Khang Gia tin rằng qua thời gian dài làm việc cùng nhau, sẽ hiểu nhau sâu hơn và tạo ra nhiều giá trị hơn. Có những đối tác đã đồng hành từ khi bắt đầu và vẫn tiếp tục hợp tác đến hiện tại.
                             </p>
                         </div>
                     </div>
@@ -171,9 +160,7 @@
                         </h2>
                         <div class="workshop-description">
                             <p>
-                                Mỗi sản phẩm KHANG GIA được sản xuất đều mang một câu chuyện riêng, chúng tôi gửi đến bạn những hình ảnh chân thực
-                                nhất để tạo nên những sản phẩm chất lượng đến tay bạn. &ZeroWidthSpace;Và cùng nhau chúng tôi đã làm được
-                                những điều ấn tượng: #GAKFactories
+                                Mỗi sản phẩm Khang Gia được sản xuất đều mang một câu chuyện riêng, chúng tôi gửi đến bạn những hình ảnh chân thực nhất để tạo nên những sản phẩm chất lượng đến tay bạn. ​Và cùng nhau chúng tôi đã làm được những điều ấn tượng: #KhangGiaFactories
                             </p>
                         </div>
                     </div>
@@ -212,8 +199,7 @@
                     <h2 class="workshop-heading text-center">CÁC NHÀ MÁY SẢN XUẤT</h2>
                     <div class="mb-8 lg:mb-[96px]">
                         <p class="workshop-description text--center" style="text-align: center !important; max-width: unset">
-                            Cùng KHANG GIA khám phá những xưởng sản xuất đặc biệt đã luôn đồng hành để tạo ra những sản phẩm tốt nhất dành cho
-                            bạn.
+                            Cùng Khang Gia khám phá những xưởng sản xuất đặc biệt đã luôn đồng hành để tạo ra những sản phẩm tốt nhất dành cho bạn.
                         </p>
                     </div>
                     <div class="grid lg:grid-cols-3 gap-10 grid--doubling">
@@ -327,10 +313,10 @@
             </div>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Tham gia hội săn Deal Khang Gia - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal KHANG GIA
+                            Tham gia hội săn Deal Khang Gia
                         </UButton>
                         <UButton
                             :to="localePath({name: 'khanggia-official'})"

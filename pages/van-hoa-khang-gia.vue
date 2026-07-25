@@ -4,8 +4,8 @@
             <img class="w-full h-[500px] object-cover" loading="lazy" format="webp" src="/images/company-banner.jpg" alt="" />
             <div
                 class="about-us-content absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-10">
-                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">VĂN HÓA KHANG GIA</h1>
-                <span class="text-lg xl:text-xl">Tất cả những điều bạn muốn biết về KHANG GIA!</span>
+                <h1 class="font-bold !text-[24px] md:!text-[54px] 2xl:!text-[64px] !my-2">Văn Hóa Khang Gia</h1>
+                <span class="text-lg xl:text-xl">Tất cả những điều bạn muốn biết về Khang Gia!</span>
             </div>
             <div class="hidden lg:flex justify-center gap-4 absolute bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 z-10">
                 <UButton
@@ -17,7 +17,7 @@
                         <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về KHANG GIA') }}</span>
+                        <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về Khang Gia') }}</span>
                     </div>
                     <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -25,14 +25,14 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                     color="none"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <img class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                     </div>
                     <div class="font-bold text-left flex-1 flex justify-start">
-                        <span class="max-w-[150px] text-lg">Văn hóa <br />KHANG GIA</span>
+                        <span class="max-w-[150px] text-lg">Văn hóa <br />Khang Gia</span>
                     </div>
                     <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                         <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -65,7 +65,7 @@
                     <img class="h-full w-12 object-contain" alt="Logo Site" :src="images.logo" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về KHANG GIA') }}</span>
+                    <span class="max-w-[150px] text-lg">{{ $t('Câu chuyện về Khang Gia') }}</span>
                 </div>
                 <div class="go-btn bg-white border border-black h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-black" />
@@ -73,14 +73,14 @@
             </UButton>
             <UButton
                 variant="ghost"
-               :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+               :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                 color="none"
                 class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
                 <div class="flex justify-center">
                     <img class="h-full w-12 object-contain filter-green" alt="Logo Site" src="/images/loa.png" />
                 </div>
                 <div class="font-bold text-left flex-1 flex justify-start">
-                    <span class="max-w-[150px] text-lg">Văn hóa <br />KHANG GIA</span>
+                    <span class="max-w-[150px] text-lg">Văn hóa <br />Khang Gia</span>
                 </div>
                 <div class="go-btn bg-green-500 border h-6 w-8 flex items-center justify-center rounded-3xl self-end">
                     <UIcon name="i-heroicons-arrow-right" class="text-lg text-white" />
@@ -108,17 +108,16 @@
                     <div class="grid lg:grid-cols-2 items-center md:gap-12">
                         <div class="grid__column five-twelfths mobile--one-whole">
                             <div class="cs-about__content">
-                                <h2 class="cs-about__heading">ĐI LÊN TỪ CHẤT LƯỢNG VÀ SỰ TỈ MỈ</h2>
+                                <h2 class="cs-about__heading">Tận tâm đem tới sản phẩm chất lượng</h2>
                                 <div class="cs-about__image">
-                                    <img src="/images/company-banner-box.png" alt="" />
+                                    <img src="/images/company-banner-box.jpg" alt="" />
                                 </div>
                             </div>
                         </div>
                         <div class="grid__column seven-twelfths mobile--one-whole">
                             <div class="cs-about__description">
                                 <p>
-                                    Cùng chúng tôi tìm hiểu văn hoá tại công ty KHANG GIA và những mục tiêu mà chúng tôi đang hoàn thiện ngày một
-                                    tốt hơn.
+                                    Cùng chúng tôi tìm hiểu văn hoá tại công ty Khang Gia và những mục tiêu mà chúng tôi đang hoàn thiện ngày một tốt hơn.
                                 </p>
                             </div>
                         </div>
@@ -132,9 +131,7 @@
                             <div class="grid-column text-white text-left">
                                 <h2 class="cs-caption__heading !mb-0">VĂN HOÁ KHANG GIA</h2>
                                 <p class="max-w-[500px] leading-6 !ml-0">
-                                    Tại KHANG GIA, văn hóa không chỉ là một chuỗi các quy tắc, mà nó được coi là tinh thần sống động và nguồn động
-                                    lực cho mỗi cá nhân trong công ty. Văn hóa của chúng tôi là một phần không thể tách rời trong mỗi hoạt
-                                    động hàng ngày, từ sản xuất đến dịch vụ khách hàng để hoà trộn sự tự tế trên nhiều phương diện:
+                                    Tại Công ty Khang Gia, văn hóa không chỉ là một chuỗi các quy tắc, mà nó được coi là nguồn động lực cho mỗi cá nhân trong công ty. Văn hóa của chúng tôi là những hành động, ứng xử và cách chúng tôi chia sẻ tới từng con người, từ sản xuất đến dịch vụ khách hàng để hoà trộn sự tự tế trên nhiều phương diện:
                                 </p>
                             </div>
                             <div class="grid-column">
@@ -234,7 +231,8 @@
                 <div class="container container--medium prose prose-lg">
                     <h2 class="recruitment-jobs__heading !text-3xl">Cơ hội để chúng ta gặp nhau</h2>
                     <div class="recruitment-jobs__sub-heading text-center text-white font-medium">
-                        Hãy đồng hành cùng KHANG GIA đi xa và bền vững hơn<br />Tìm hiểu về các vị trí đang tuyển dụng mới nhất!
+                        Hãy đồng hành cùng Khang Gia đi xa và bền vững hơn <br>
+                        Tìm hiểu về các vị trí đang tuyển dụng mới nhất!
                     </div>
                     <div class="recruitment-job__swiper w-full mt-8 mb-4 relative">
                         <!-- Mobile Swiper -->
@@ -685,7 +683,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/facebook.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Fanpage</div>
-                                    <a href="https://www.facebook.com/GAKBHLD" class="recruitment-social__link"> Life at KHANG GIA </a>
+                                    <a href="https://www.facebook.com/khanggiagarment" class="recruitment-social__link"> Life at KHANG GIA </a>
                                 </div>
                             </div>
                         </div>
@@ -712,10 +710,10 @@
             </section>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Tham gia hội săn Deal Khang Gia - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
-                            Tham gia hội săn Deal KHANG GIA
+                            Tham gia hội săn Deal Khang Gia
                         </UButton>
                         <UButton
                             :to="localePath({name: 'khanggia-official'})"
@@ -751,7 +749,7 @@ const { locale, t: trans } = useI18n();
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
 
-link.value = '/en/culture-khanggia'
+link.value = '/en/culture-khang-gia'
 
 function renderBullet(index, className) {
     return '<div class="custom-bullet ' + className + '">' + (index + 1) + '</div>';

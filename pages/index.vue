@@ -108,18 +108,18 @@
 
 
 
-            <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-6 md:gap-4 w-full h-full">
-                <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />
-                <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />
-            </div>
-            <div class="container mx-auto w-full h-full">
-                <ClientOnly>
-                    <CategoryBox :categoryList="categoryList" />
-                </ClientOnly>
-            </div>
-            <div class="container mx-auto w-full my-4  overflow-hidden lg:overflow-visible">
-                <DiaryWrapper :diaryList="diaryList" :autoPlay="true" />
-            </div>
+<!--            <div class="banner-block container mx-auto flex flex-col md:flex-row justify-between gap-6 md:gap-4 w-full h-full">-->
+<!--                <BannerBlock key="banner-block-3" :bannerBlock="bannerBlock3" :split-banner="true" />-->
+<!--                <BannerBlock key="banner-block-4" :bannerBlock="bannerBlock4" :split-banner="true" />-->
+<!--            </div>-->
+<!--            <div class="container mx-auto w-full h-full">-->
+<!--                <ClientOnly>-->
+<!--                    <CategoryBox :categoryList="categoryList" />-->
+<!--                </ClientOnly>-->
+<!--            </div>-->
+<!--            <div class="container mx-auto w-full my-4  overflow-hidden lg:overflow-visible">-->
+<!--                <DiaryWrapper :diaryList="diaryList" :autoPlay="true" />-->
+<!--            </div>-->
         </div>
     </NuxtLayout>
 </template>

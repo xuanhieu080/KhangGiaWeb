@@ -25,7 +25,7 @@
                 </UButton>
                 <UButton
                     variant="ghost"
-                    :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+                    :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                     color="none"
                     class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full max-w-[300px] border-2 border-green-500 items-center justify-between gap-4">
                     <div class="flex justify-center">
@@ -73,7 +73,7 @@
             </UButton>
             <UButton
                 variant="ghost"
-               :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+               :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                 color="none"
                 class="about-us-button !bg-white p-4 text-green-500 rounded-2xl w-full border-2 border-green-500 items-center justify-between gap-4">
                 <div class="flex justify-center">
@@ -110,7 +110,7 @@
                             <div class="cs-about__content">
                                 <h2 class="cs-about__heading">GO UP FROM QUALITY AND DETAILS</h2>
                                 <div class="cs-about__image">
-                                    <img src="/images/company-banner-box.png" alt="" />
+                                    <img src="/images/company-banner-box.jpg" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -669,7 +669,7 @@
                                 <div class="recruitment-social__icon"><img src="/images/facebook.png" alt="" /></div>
                                 <div class="recruitment-social__content">
                                     <div class="recruitment-social__title">Fanpage</div>
-                                    <a href="https://www.facebook.com/GAKBHLD" class="recruitment-social__link"> Life at KHANG GIA </a>
+                                    <a href="https://www.facebook.com/khanggiagarment" class="recruitment-social__link"> Life at KHANG GIA </a>
                                 </div>
                             </div>
                         </div>
@@ -734,7 +734,7 @@ const { locale, t: trans } = useI18n();
 const useLanguageLinkStore = useLanguageLink();
 const { link } = storeToRefs(useLanguageLinkStore);
 
-link.value = '/vi/van-hoa-khanggia'
+link.value = '/vi/van-hoa-khang-gia'
 
 function renderBullet(index, className) {
     return '<div class="custom-bullet ' + className + '">' + (index + 1) + '</div>';

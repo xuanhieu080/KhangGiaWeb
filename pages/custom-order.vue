@@ -112,7 +112,7 @@
                                     <div class="card__item__title">Receive requests</div>
                                     <p class="card__item__description">
                                         Send requests directly via Zalo or via <br />
-                                        Hotline: <a href="tel:0569133339">+84569133339</a>
+                                        Hotline: <a href="tel:0949361188">+0949361188</a>
                                     </p>
                                 </div>
                             </div>
@@ -441,7 +441,7 @@
                                         <img src="/images/phone-icon.svg" alt="" />
                                         <div>
                                             <p>Hotline</p>
-                                            <a href="tel:0569133339">0569133339</a>
+                                            <a href="tel:0949361188">0949361188</a>
                                         </div>
                                     </div>
                                     <div class="contact__content-info">
@@ -453,11 +453,11 @@
                                     </div>
                                 </div>
                                 <div class="contact__content-contact">
-                                    <a href="https://zalo.me/1160130089290834053" target="_blank" class="contact__content-social">
+                                    <a href="https://zalo.me/3650436242866367358" target="_blank" class="contact__content-social">
                                         <img src="/images/zalo.png" alt="zalo-podz" />
                                         <div>Contact us on ZALO APP</div>
                                     </a>
-                                    <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="contact__content-social"
+                                    <a href="https://www.facebook.com/khanggiagarment" target="_blank" class="contact__content-social"
                                         ><img src="/images/facebook.png" alt="fb-pod" />
                                         <div>CUSTOMER CARE ON FACEBOOK</div></a
                                     >

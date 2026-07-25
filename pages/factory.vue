@@ -30,24 +30,27 @@
         <div class="about-content !pt-[5rem] mx-auto">
             <section class="cs-services">
                 <div class="container container--medium prose prose-lg space-y-8">
-                    <h2 class="cs-services__heading">AUTONOMY IN RAW MATERIALS AND PRODUCTION</h2>
+                    <h2 class="cs-services__heading">OEM GARMENT FACTORY WITH SELF-SUSTAINABLE FABRIC & APPAREL PRODUCTION</h2>
                     <div
                         id="services1"
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column lg:order-2 my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">STORY OF PROUD VIETNAMESE PRODUCTS</h3>
+                                <h3 class="cs-services__title">HI! I'M KHANG GIA GARMENT</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Vietnam’s garment industry has gained global recognition for the meticulous craftsmanship, precision, and high quality embedded in every stitch. Behind each piece of clothing lies the dedication of skilled Vietnamese tailors — artisans who bring both tradition and innovation to life.
+                                        We are a uniform and garment manufacturer in Vietnam with over 10 years of experience in designing, manufacturing, and printing uniforms for businesses, schools, restaurants, hospitals, factories, and various industries.
                                     </p>
                                     <p>
-                                        Throughout our journey, we at KHANG GIA have traveled far and wide, learning and implementing advanced manufacturing techniques to create world-class uniforms and protective workwear. Yet, what touches us most deeply is the genuine admiration and trust our KHANG GIA-branded products have received from customers across five continents.
+                                        With a 3,000m² garment factory, a skilled workforce, and modern production equipment, Khang Gia is committed to delivering high-quality products with accurate sizing, on-time production, and optimized costs for companies, enterprises, and manufacturing partners.
                                     </p>
                                     <p>
-                                        Fueled by pride in Vietnamese craftsmanship, we’ve returned to our roots — delivering these international-quality products back to the hands of our own people. We believe that every Vietnamese deserves access to well-made, durable uniforms and workwear at a fair price.
+                                        Throughout our development journey, Khang Gia has been fortunate to have the dedication and support of experienced garment workers and staff. They are the quiet yet persistent individuals who contribute to creating every well-crafted, high-quality uniform that meets customer expectations.
                                     </p>
-                                </div>
+                                    <p>
+                                        Our success would never be possible without the trust and partnership of our strategic partners. Their continuous collaboration not only helps us maintain stable production demand but also creates opportunities for Khang Gia to expand our domestic manufacturing capacity and gradually bring Vietnamese-made products to international markets such as Europe, the United States, Australia, and beyond.
+                                    </p>
+                            </div>
                             </div>
                         </div>
                         <div class="grid__column">
@@ -61,13 +64,16 @@
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">CORE FROM FIBERS, FABRICS AND SELF-CONTROL OF PRODUCTION RESOURCES</h3>
+                                <h3 class="cs-services__title">SELF-SUFFICIENT FABRIC SUPPLY</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Creating garments that are consistently beautiful, stable in quality, and reliable across time is a true challenge for any apparel manufacturer. At KHANG GIA, we take this challenge seriously — by building our foundation from the very core. From carefully selecting yarns to applying advanced weaving and dyeing technologies, and sourcing premium raw materials and accessories, every stage is part of our deliberate strategy to ensure excellence.
+                                        88% of quality comes from fabric — and we understand that. At Khang Gia, we believe fabric quality is the foundation that determines the appearance, durability, and consistency of every garment. To deliver stable product quality throughout every production season, we do not leave quality to chance.
                                     </p>
                                     <p>
-                                        Today, KHANG GIA proudly operates a fully integrated and sustainable garment ecosystem. We maintain tight control over the entire production process — from design to the final stitch — ensuring that every product stamped MADE BY KHANG GIA is crafted with precision and pride. Every detail is refined with care, so that the experience you receive isn’t just a piece of clothing — it’s the embodiment of our values, dedication, and Vietnamese craftsmanship at its best.
+                                        Instead, we focus our resources from the very beginning — from carefully selecting high-quality fibers, applying advanced weaving and dyeing technologies, to strictly controlling all incoming raw materials and accessories. Through this approach, Khang Gia takes full control of creating fabrics with consistent standards in color, aesthetics, and durability, allowing customers to feel confident in every product carrying their brand.
+                                    </p>
+                                    <p>
+                                        Today, we have built a sustainable garment ecosystem with strict management throughout the entire production process, from raw materials to finished products. We are committed to maintaining the quality of every MADE BY KHANG GIA product, ensuring every detail is carefully crafted to deliver the best experience for our customers.
                                     </p>
                                 </div>
                             </div>
@@ -83,13 +89,19 @@
                         class="grid lg:grid-cols-2 items-center gap-12 grid--aligned-center grid--two-columns grid--doubling">
                         <div class="grid__column lg:order-2 my-auto">
                             <div class="cs-services__content">
-                                <h3 class="cs-services__title">HAPPY WORKERS</h3>
+                                <h3 class="cs-services__title">A SHARED HOME FOR GARMENT WORKERS</h3>
                                 <div class="cs-services__description">
                                     <p>
-                                        Work brings happiness. Every individual strives to contribute their youth and energy to earn an income that supports and nurtures their family. At KHANG GIA, every team member — from tailors and dyers to technicians and housekeeping staff — is dedicated to their craft with sincerity and heart. It is thanks to the ongoing trust and collaboration from our partners and customers that these workers can maintain stable jobs and provide for their loved ones with dignity and security.
+                                        At Khang Gia, we understand that every high-quality garment begins with the skilled hands and dedication of our workers. Therefore, we are committed to building a stable working environment with secure income and clear benefits, allowing our employees to feel confident and stay with us for the long term.
                                     </p>
                                     <p>
-                                        Each day, KHANG GIA remains focused on its core mission: innovating, producing, and strengthening strategic relationships with clients. We believe that only by excelling in our foundational roles and constantly moving forward can we create a workplace that truly supports the well-being and happiness of every employee.
+                                        - Sustainable development opportunities for workers and their families <br>
+                                        - Social welfare support policies including insurance, bonuses, and transparent benefits <br>
+                                        - A friendly and connected workplace built like a family <br>
+                                        - Modern facilities, optimized production processes, and stable order management <br>
+                                    </p>
+                                    <p>
+                                        We believe that: when employees are happy, the company can grow sustainably. Their dedication and partnership are the driving force that helps Khang Gia continuously improve, expand, and deliver better products and services to customers both domestically and internationally.
                                     </p>
                                 </div>
                             </div>
@@ -109,7 +121,7 @@
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-1.png" alt="" /></span>
                             <h3 class="workshop-card__title">Kind</h3>
                             <p class="workshop-card__desc">
-                                KHANG GIA believes that kindness has more meanings in this life, from job creation, welfare, business ethics... to meticulous perfection of each product, it is the key point that KHANG GIA focuses on in its development.
+                                At Khang Gia, we believe that kindness carries a deeper meaning in life. It is reflected not only through creating job opportunities, providing employee welfare, and maintaining ethical business practices, but also through the dedication and meticulous attention given to every single product we create.
                             </p>
                         </div>
                     </div>
@@ -118,9 +130,9 @@
                     <div class="workshop-card__item">
                         <div class="workshop-card__content">
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-2.png" alt="" /></span>
-                            <h3 class="workshop-card__title">Solidarity & Mutual Support</h3>
+                            <h3 class="workshop-card__title">UNITY & COLLABORATION</h3>
                             <p class="workshop-card__desc">
-                                KHANG GIA hopes that each partner is a friend, supporting, sharing and understanding each other to create the best solutions for a sustainable future development.
+                                At Khang Gia, we believe every partner is not just a business connection, but a companion on the journey of growth. Through mutual support, sharing, and understanding, we aim to create the best solutions together and build sustainable value for the future.
                             </p>
                         </div>
                     </div>
@@ -129,9 +141,9 @@
                     <div class="workshop-card__item">
                         <div class="workshop-card__content">
                             <span class="workshop-card__icon"><img src="/images/produce-workshop-3.png" alt="" /></span>
-                            <h3 class="workshop-card__title">TOWARDS LONG-TERM RELATIONSHIP</h3>
+                            <h3 class="workshop-card__title">BUILDING LONG-TERM PARTNERSHIPS</h3>
                             <p class="workshop-card__desc">
-                                KHANG GIA focuses on building long-term value with partners. KHANG GIA believes that through long-term working together, we will understand each other more deeply and create more value. There are partners who have been with us since the beginning and continue to cooperate until now.
+                                At Khang Gia, we focus on creating long-term value and sustainable relationships with our partners. We believe that through years of collaboration, mutual understanding grows stronger, allowing both sides to create greater value together.
                             </p>
                         </div>
                     </div>
@@ -149,7 +161,7 @@
                         </h2>
                         <div class="workshop-description">
                             <p>
-                                Each product crafted by KHANG GIA carries its own story. Behind every stitch is the dedication, skill, and pride of our people. We share with you the most authentic glimpses into our production journey — where quality is built not just from materials, but from heart. Together, we’ve created something truly remarkable. #GAKFactories
+                                Every product created by Khang Gia carries its own unique story. We share the most authentic moments behind our production journey — from the dedication of our workers to every careful step in creating high-quality products delivered to our customers. Together, we have created meaningful achievements and remarkable milestones along the way. #KhangGiaFactories
                             </p>
                         </div>
                     </div>
@@ -188,7 +200,7 @@
                     <h2 class="workshop-heading text-center">MANUFACTURING FACTORIES</h2>
                     <div class="mb-8 lg:mb-[96px]">
                         <p class="workshop-description text--center" style="text-align: center !important; max-width: unset">
-                            Join KHANG GIA to discover the special factories that have always accompanied to create the best products for you.
+                            Join KG to discover the special factories that have always accompanied to create the best products for you.
                         </p>
                     </div>
                     <div class="grid lg:grid-cols-3 gap-10 grid--doubling">
@@ -302,7 +314,7 @@
             </div>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Join the KHANG GIA Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!</h2>
+                    <h2 class="cs-cta__heading">Join the Khang Gia Deal Hunters group – Get instant updates on promotions, clearance sales, and shocking giveaway livestreams!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.facebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
                             Join the KHANG GIA Deal Hunters group

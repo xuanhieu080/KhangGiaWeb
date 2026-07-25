@@ -16,7 +16,7 @@
         <section class="smo-content flex flex-col w-full px-5 bg-white py-8">
             <h2 class="font-bold !text-2xl md:!text-4xl text-center">SOCIAL MEDIA</h2>
             <div class="md:grid md:grid-cols-3 flex flex-col justify-center items-center w-full gap-4 md:gap-0">
-                <a href="https://www.facebook.com/GAKBHLD" target="_blank">
+                <a href="https://www.facebook.com/khanggiagarment" target="_blank">
                     <img src="/images/facebook-khanggia.jpg" class="max-h-[250px] md:max-h-auto" alt="" />
                 </a>
                 <a href="https://www.tiktok.com/@congtygak" target="_blank">
@@ -158,7 +158,7 @@
                                 <ul>
                                     <li>
                                         {{trans('GAKPlatforms', {platform: "Facebook"})}}
-                                        <a href="https://www.facebook.com/GAKBHLD" target="_blank" class="text-blue-500"
+                                        <a href="https://www.facebook.com/khanggiagarment" target="_blank" class="text-blue-500"
                                             >{{trans('Here')}}</a
                                         >
                                     </li>
@@ -170,7 +170,7 @@
                                     </li>
                                     <li>
                                         {{trans('GAKPlatforms', {platform: "Zalo"})}}
-                                        <a href="https://zalo.me/0569133339" target="_blank" class="text-blue-500"
+                                        <a href="https://zalo.me/3650436242866367358" target="_blank" class="text-blue-500"
                                             >{{trans('Here')}}</a
                                         >
                                     </li>
@@ -194,7 +194,7 @@
                                 <ul>
                                     <li>
                                         Hotline:
-                                        <a href="tel:0569133339">056.913.33.39</a> 
+                                        <a href="tel:0949361188">094 936 11 88</a>
                                     </li>
                                     
                                 </ul>

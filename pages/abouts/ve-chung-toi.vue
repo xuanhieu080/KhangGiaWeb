@@ -28,7 +28,7 @@
                 <UButton
                     variant="ghost"
                     color="none"
-                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+                   :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                     class="about-us-button bg-white p-4 rounded-2xl w-full max-w-[300px] border-2 items-center justify-between gap-4">
                     <div class="flex justify-center">
                         <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
@@ -76,7 +76,7 @@
             <UButton
                 variant="ghost"
                 color="none"
-               :to="localePath({ name: locale=='vi' ? 'van-hoa-khanggia': 'culture-khanggia' })"
+               :to="localePath({ name: locale=='vi' ? 'van-hoa-khang-gia': 'culture-khang-gia' })"
                 class="about-us-button bg-white p-4 rounded-2xl w-full border-2 items-center justify-between gap-4">
                 <div class="flex justify-center">
                     <img class="h-full w-12 object-contain" alt="Logo Site" src="/images/loa.png" />
@@ -114,7 +114,7 @@
                                     KHANG GIA
                                 </h2>
                                 <div class="cs-about__image">
-                                    <img src="/images/company-banner-box.png" class="h-full w-full object-contain !mt-4" alt="" />
+                                    <img src="/images/company-banner-box.jpg" class="h-full w-full object-contain !mt-4" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -296,7 +296,7 @@
             </section>
             <section class="cs-cta">
                 <div class="container container--medium prose prose-lg">
-                    <h2 class="cs-cta__heading">Tham gia hội săn Deal KHANG GIA - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
+                    <h2 class="cs-cta__heading">Tham gia hội săn Deal Khang Gia - Nhận ngay thông tin ưu đãi, xả kho và live stream tặng quà cực sốc!!!</h2>
                     <span class="flex items-center justify-center flex-col sm:flex-row gap-4">
                         <UButton to="https://www.fagcebook.com/groups/1587962561968530" target="_blank" size="lg" class="text-[#22c55ebf] bg-white rounded-3xl px-6 py-4 w-full justify-center sm:max-w-fit !no-underline uppercase" variant="ghost" color="none">
                             Tham gia hội săn Deal KG
