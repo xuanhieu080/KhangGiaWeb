@@ -158,14 +158,6 @@
                         <img :src='images.person' class='filter-white' alt='' />
                     </div>
                 </UButton>
-                <NuxtLink :to="localePath({ name: 'cart' })" class='flex-grow-0 flex-shrink-0'>
-                    <UButton type='button' class='cart-btn' variant='ghost' color='none'>
-                        <div type='button' to='' class=''>
-                            <img :src='images.cart' class='' alt='' />
-                        </div>
-                        <div class='count-item'>{{ cartNumber }}</div>
-                    </UButton>
-                </NuxtLink>
             </div>
             <div class='right-header-mobile flex justify-between items-center gap-6'>
                 <div class="flex flex-col align-mid items-center gap-1 w-[82px]">
@@ -291,13 +283,8 @@
 import images from '@@/assets/icons/index';
 import { useHeader } from '@@/store/useHeader';
 import { storeToRefs } from 'pinia';
-import { useMain } from '@@/store/index';
 
 const { locale, t: trans, setLocale } = useI18n()
-
-const useMainStore = useMain();
-
-const { cartNumber } = storeToRefs(useMainStore);
 
 const pageHeaders = useState('page-headers', () => []);
 
@@ -383,11 +370,6 @@ const handleSearchKeyword = () => {
 const formatPriceProduct = (item) => {
     return new Intl.NumberFormat('en-US').format(item);
 };
-let productLists = useCookie('products-cart', {
-    default: () => [],
-    maxAge: 60 * 60 * 24 * 7,
-});
-
 onBeforeMount(() => {
     isLoadingPage.value = false;
 });
@@ -429,11 +411,7 @@ function setLocaleLanguage(language) {
 }
 
 onMounted(() => {
-    if (productLists.value && productLists.value.length > 0) {
-        cartNumber.value = productLists.value.length;
-    } else {
-        cartNumber.value = 0;
-    }
+    // Cart removed
 })
 
     if (!categoryHeaders.value || categoryHeaders.value.length === 0) {
@@ -653,29 +631,6 @@ watch(
                 display: none;
             }
 
-            .cart-btn {
-                position: relative;
-
-                .count-item {
-                    position: absolute;
-                    bottom: 0;
-                    right: 4px;
-                    width: 15px;
-                    height: 15px;
-                    background-color: #f9f86c;
-                    color: #000;
-                    font-size: 10px;
-                    font-weight: bold;
-                    pointer-events: none;
-                    @apply flex items-center justify-center rounded-full;
-                    &.bigger {
-                        bottom: -2px;
-                        right: 2px;
-                        width: 18px;
-                        height: 18px;
-                    }
-                }
-            }
         }
 
         .right-header-mobile {

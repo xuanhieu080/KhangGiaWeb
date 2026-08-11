@@ -69,16 +69,6 @@ const handleCloseDiaryProduct = () => {
     height: 100%;
     .diary-card-wrapper {
         position: relative;
-        &:after {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            top: 10px;
-            right: 10px;
-            background-image: url('/images/cart-circle-btn.png');
-            background-repeat: no-repeat;
-            background-size: 30px;
-        }
         .diary-name {
             font-size: 20px;
             width: 150px;

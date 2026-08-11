@@ -2,7 +2,6 @@ export const useMain = defineStore('main-store', {
     // arrow function recommended for full type inference
     state: () => ({
         pageGroups: [],
-        cartNumber: null,
     }),
     actions: {
         async getPageGroup() {

@@ -22,9 +22,22 @@
                                 <img :src="images.icon_hotline" alt="Footer Icon Phone" />
                             </div>
                             <div class="footer-info__content">
-                                <span class="footer-info__title"> Hotline </span>
+                                <span class="footer-info__title"> Ms Như</span>
                                 <p class="footer-info__desciption">
-                                    <a href="tel: 0949361188">094 936 11 88</a><br />
+                                    <a href="tel:0949361188">094 936 11 88</a><br />
+                                    <span>(8:00 - 17:30)</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="footer-info">
+                            <div class="footer-info__icon">
+                                <img :src="images.icon_hotline" alt="Footer Icon Phone" />
+                            </div>
+
+                            <div class="footer-info__content">
+                                <span class="footer-info__title"> Ms Hương </span>
+                                <p class="footer-info__desciption">
+                                    <a href="tel:0949361188">093 126 97 69</a><br />
                                     <span>(8:00 - 17:30)</span>
                                 </p>
                             </div>

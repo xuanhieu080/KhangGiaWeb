@@ -258,67 +258,21 @@
                           <b>{{ currentQty }}</b>
                         </span>
 
-                        <!-- Add to cart -->
+                        <!-- Contact button -->
                         <div
-                            v-if="productItemCurrent"
                             class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full"
                         >
-                            <div
-                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black"
-                            >
-                                <UIcon name="i-heroicons-minus" role="button" tabindex="0" @click="handleQuantity(-1, true)" />
-                                {{ quantity }}
-                                <UIcon name="i-heroicons-plus" role="button" tabindex="0" @click="handleQuantity(1, true)" />
-                            </div>
-
-                            <NuxtLink
+                            <a
+                                href="https://zalo.me/3650436242866367358"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 class="flex flex-1 h-12 rounded-full justify-center"
-                                :class="productItemCurrent.qty > 0 ? '' : 'pointer-events-none'"
-                                @click="handleAddToCookie(productItemCurrent, true)"
-                                :to="localePath({ name: 'cart' })"
                             >
-                                <UButton :class="productItemCurrent.qty > 0 ? '' : 'bg-gray-400'" class="flex-1 h-12 rounded-full justify-center">
-                                    <UIcon name="i-heroicons-shopping-bag" class="text-xl" />
-                                    <span>{{ trans('Add to cart') }}</span>
+                                <UButton class="flex-1 h-12 rounded-full justify-center !bg-green-600 hover:!bg-green-700">
+                                    <UIcon name="i-heroicons-chat-bubble-left-right" class="text-xl" />
+                                    <span>{{ trans('Contact us') }}</span>
                                 </UButton>
-                            </NuxtLink>
-                        </div>
-
-                        <div
-                            v-else-if="noVariant"
-                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full"
-                        >
-                            <div
-                                class="select-amount flex items-center justify-between md:w-1/4 min-w-[120px] max-w-[200px] border h-12 px-4 rounded-3xl border-black"
-                            >
-                                <UIcon name="i-heroicons-minus" role="button" tabindex="0" @click="handleQuantity(-1, false)" />
-                                {{ quantity }}
-                                <UIcon name="i-heroicons-plus" role="button" tabindex="0" @click="handleQuantity(1, false)" />
-                            </div>
-
-                            <NuxtLink
-                                class="flex flex-1 h-12 rounded-full justify-center"
-                                :class="(productItem.data?.qty || 0) > 0 ? '' : 'pointer-events-none'"
-                                @click="handleAddToCookie(productItem.data, false)"
-                                :to="localePath({ name: 'cart' })"
-                            >
-                                <UButton :class="(productItem.data?.qty || 0) > 0 ? '' : 'bg-gray-400'" class="flex-1 h-12 rounded-full justify-center">
-                                    <UIcon name="i-heroicons-shopping-bag" class="text-xl" />
-                                    <span>{{ trans('Add to cart') }}</span>
-                                </UButton>
-                            </NuxtLink>
-                        </div>
-
-                        <div
-                            v-else-if="hasVariantsAndColor"
-                            class="product-add-to-cart mt-auto flex flex-col md:flex-row md:flex-wrap md:items-center gap-4 w-full"
-                        >
-                            <NuxtLink class="flex flex-1 h-12 rounded-full justify-center" @click="needSelectColor()">
-                                <UButton class="flex-1 h-12 rounded-full justify-center">
-                                    <UIcon name="i-heroicons-shopping-bag" class="text-xl" />
-                                    <span>{{ trans('Add to cart') }}</span>
-                                </UButton>
-                            </NuxtLink>
+                            </a>
                         </div>
 
                         <UDivider />
@@ -1013,45 +967,7 @@ function handleQuantity (delta, forVariant) {
     }
 }
 
-/** Add to cart (cookie) */
-let productLists = useCookie('products-cart', { default: () => [], maxAge: 60 * 60 * 24 * 7 })
 
-function needSelectColor () {
-    toast.add({
-        title: trans('Notification') + ' !',
-        description: trans("You haven't selected a color"),
-        timeout: 2500,
-        icon: 'i-heroicons-exclamation-triangle',
-        color: 'red'
-    })
-}
-
-function handleAddToCookie (item, isVariant) {
-    if (!item?.id) return
-
-    const pid = base.value.id
-    const record = isVariant
-        ? { variant_id: item.id, product_id: pid, quantity: quantity.value }
-        : { variant_id: null, product_id: item.id, quantity: quantity.value }
-
-    const idx = productLists.value.findIndex(
-        (e) => (e.product_id === pid && e.variant_id === null) || e.variant_id === item.id
-    )
-
-    if (idx === -1) {
-        productLists.value.push(record)
-    } else {
-        productLists.value[idx].quantity += quantity.value
-    }
-
-    toast.add({
-        title: trans('Congratulations') + ' !',
-        description: trans('The product has been added to your cart'),
-        timeout: 2500,
-        icon: 'i-heroicons-check-badge',
-        color: 'green'
-    })
-}
 
 /** Reset all variant selection */
 function resetProductPage (refresh = true) {
